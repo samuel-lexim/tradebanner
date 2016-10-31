@@ -5,8 +5,8 @@
  */
 -->
 <theme xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Config/etc/theme.xsd">
-    <title>TradeBanner Blank</title>
-    <parent>Magento/blank</parent>
+    <title>Trade Banner Blank</title>
+    <parent>magento/blank</parent>
     <media>
         <preview_image>media/preview.jpg</preview_image>
     </media>
