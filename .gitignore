@@ -57,7 +57,7 @@ atlassian*
 /app/design/adminhtml
 /app/design/frontend/Magento/luma
 
-update
+
 /bin
 /dev
 /phpserver
@@ -65,7 +65,6 @@ update
 /vendor
 /setup
 /*.*
-.htaccess
-LICENSE
+!/.htaccess
 !.gitignore
 
