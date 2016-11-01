@@ -1,0 +1,20 @@
+
+<?php
+/**
+ * @var \Magento\Theme\Block\Html\Header $block
+ */
+$welcomeMessage = $block->getWelcome();
+?>
+<?php switch ($block->getShowPart()):
+    case 'welcome': ?>
+        <li class="greet welcome" data-bind="scope: 'customer'">
+            <span data-bind="text: customer().fullname ? $t('Welcome, %1!').replace('%1', customer().fullname) : '<?=$block->escapeHtml($welcomeMessage) ?>'"></span>
+        </li>
+
+    <?php break; ?>
+
+    <?php case 'other': ?>
+        <?php echo $block->getChildHtml(); ?>
+    <?php break; ?>
+
+<?php endswitch; ?>
