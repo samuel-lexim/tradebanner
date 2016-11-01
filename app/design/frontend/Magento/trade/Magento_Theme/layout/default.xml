@@ -54,6 +54,10 @@
         <referenceContainer name="footer" remove="true" />
         <move element="copyright" destination="before.body.end" />
 
+        <!-- home -->
+        <block class="Magento\Framework\View\Element\Template" name="home.page" template="Magento_Theme::html/homepage.phtml"/>
+        <!-- {{block class="Magento\Framework\View\Element\Template" name="home_static" template="Magento_Theme::html/homepage.phtml"}} -->
+
         <!-- JS -->
         <block class="Magento\Framework\View\Element\Text" name="bootstrap">
             <arguments>
