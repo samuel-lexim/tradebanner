@@ -4,10 +4,8 @@
     background: #1a1a1a;
 }
 .footer-content {
-    width: 1288px;
-    height: 400px;
-    margin: auto;
     padding-top: 30px;
+    padding-bottom: 30px;
     color: #949494;
 }
 .footer-header {
@@ -18,6 +16,10 @@
 .footer-logo {
     padding-top: 10px;
 }
+.footer-logo > img {
+    width: 50%;
+}
+
 .footer-detail {
     padding-top: 15px;
 }
@@ -26,7 +28,7 @@
 }
 .footer-detail p {
     font-weight: bold;
-    margin-bottom: 0px;
+    margin-bottom: 0;
 }
 .footer-copyright {
     width: 100%;
