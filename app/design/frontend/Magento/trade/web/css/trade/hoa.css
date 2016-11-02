@@ -1,4 +1,4 @@
-/* Footer */
+/************************** Footer ******************************/
 #tradeFooter {
     position: relative;
     background: #1a1a1a;
@@ -11,7 +11,6 @@
 .footer-header {
     color: #1ca1ac;
     font-weight: bold;
-    font-size: 16px;
 }
 .footer-logo {
     padding-top: 10px;
@@ -30,17 +29,23 @@
     font-weight: bold;
     margin-bottom: 0;
 }
+.rated p{
+    font-weight: normal;
+}
 .footer-copyright {
     width: 100%;
     height: 50px;
     background: #161616;
     color: #949494;
 }
-.copyright-content {
-    width: 1288px;
+.copyright-text {
     height: 50px;
-    margin: auto;
-    padding-left: 10px;
     display: flex;
     align-items: center;
+}
+.button-to-top {
+    position: fixed;
+    bottom: 10px;
+    right: 15%;
+    z-index: 99;
 }
