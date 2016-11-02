@@ -1,4 +1,4 @@
-/************************** Footer ******************************/
+/************************** FOOTER ******************************/
 #tradeFooter {
     position: relative;
     background: #1a1a1a;
@@ -16,7 +16,7 @@
     padding-top: 10px;
 }
 .footer-logo > img {
-    width: 50%;
+    width: 40%;
 }
 
 .footer-detail {
@@ -46,6 +46,33 @@
 .button-to-top {
     position: fixed;
     bottom: 10px;
-    right: 15%;
+    right: 10%;
     z-index: 99;
+}
+/************************** HEADER ******************************/
+.page-header .wrapper {
+    background: #f05624;
+}
+.page-header .links a {
+    color: #fff;
+}
+/************************** REGISTER PAGE ******************************/
+.customer-account-create .action.primary {
+    background: #1ca1ac;
+    border-radius: 0;
+}
+/************************** LOGIN PAGE ******************************/
+.block-customer-login .action.primary, .block-new-customer .action.primary {
+    background: #1ca1ac;
+    border-radius: 0;
+}
+.action.primary {
+    border: none;
+    font-weight: normal;
+}
+.action.primary:hover{
+    border: none;
+}
+.block-customer-login .actions-toolbar .secondary {
+    padding-right: 115px;
 }
