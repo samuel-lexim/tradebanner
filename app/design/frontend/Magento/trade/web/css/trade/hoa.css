@@ -127,7 +127,11 @@
     border: none;
     font-weight: normal;
 }
-.action.primary:hover{
+.action.primary:hover {
+    background: #1ca1ac;
+    border: none;
+}
+.action.primary:active {
     background: #1ca1ac;
     border: none;
 }
@@ -146,4 +150,29 @@
 }
 .contact-index-index .contact {
     padding: 550px 0 0;
+}
+.contact-info {
+    color: #949494;
+}
+.contact-index-index input {
+    width: 260px;
+    height: 40px;
+    margin: 10px 0;
+}
+.contact-index-index textarea {
+    width: 425px;
+    height: 250px;
+    margin: 10px 0;
+}
+.contact-index-index .action.primary {
+    width: 260px;
+    height: 40px;
+    margin: 10px 0;
+}
+.contact-index-index .column:not(.sidebar-main) form .actions-toolbar {
+    margin-left: 0;
+}
+.contact-note {
+    color: #949494;
+    margin-bottom: 60px;
 }
