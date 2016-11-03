@@ -157,17 +157,17 @@
 .contact-index-index input {
     width: 260px;
     height: 40px;
-    margin: 10px 0;
+    margin: 15px 0 5px;
 }
 .contact-index-index textarea {
-    width: 425px;
+    width: 420px;
     height: 250px;
-    margin: 10px 0;
+    margin: 15px 0;
 }
 .contact-index-index .action.primary {
     width: 260px;
     height: 40px;
-    margin: 10px 0;
+    margin: 15px 0;
 }
 .contact-index-index .column:not(.sidebar-main) form .actions-toolbar {
     margin-left: 0;
