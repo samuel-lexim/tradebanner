@@ -51,10 +51,16 @@
 
         <referenceBlock name="wish-list-link" remove="true" />
         <referenceBlock name="catalog.compare.link" remove="true"/>
+
+
         <referenceContainer name="footer" remove="true" />
         <move element="copyright" destination="before.body.end" />
 
+        <referenceBlock name="advanced-search-link" remove="true"/>
+        <move element="top.search" destination="header-wrapper" before="minicart" />
         <move element="catalog.topnav" destination="header-wrapper" after="-" />
+        <block class="Magento\Framework\View\Element\Template" name="file.toplink" template="Magento_Theme::html/uploadfile.phtml"/>
+        <move element="file.toplink" destination="header-wrapper" after="minicart" />
 
 
         <!-- home -->
