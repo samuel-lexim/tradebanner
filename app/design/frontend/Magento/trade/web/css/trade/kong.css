@@ -158,6 +158,42 @@
 }
 
 /* Header */
+.header2.content3 {
+    padding-top: 20px;
+}
+
+.panel2.header2 {
+    text-align: right;
+    line-height: 50px;
+}
+
+.header.links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+}
+
+.header.links li {
+    display: inline-block;
+    padding: 0 0 0 20px;
+    margin: 0;
+}
+
+#topRightInfo {
+    display: inline-block;
+}
+
+.tri-item {
+    display: inline-block;
+    padding: 0 0 0 20px;
+}
+
+.tri-item span {
+    color: #fff;
+}
+
+/* */
 #uploadTopMenu {
     float: right;
 }
@@ -208,6 +244,7 @@
     /* Top Menu */
 #topMenuNav {
     display: block;
+    position: relative;
 }
 
 #topMenuNav > ul {

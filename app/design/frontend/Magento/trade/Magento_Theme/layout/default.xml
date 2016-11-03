@@ -10,6 +10,12 @@
         <referenceContainer name="header.container">
             <container name="header.panel.wrapper" htmlClass="panel wrapper" htmlTag="div" before="-"/>
         </referenceContainer>
+
+        <!-- change Class container -->
+        <referenceContainer name="header.panel" label="Page Header Panel" htmlTag="div" htmlClass="panel2 header2 container" />
+        <referenceContainer name="header-wrapper" label="Page Header" as="header-wrapper" htmlTag="div" htmlClass="header2 content3 container" />
+        <!-- # change Class container -->
+
         <move element="header.panel" destination="header.panel.wrapper"/>
         <move element="top.links" destination="header.panel" after="-"/>
         <move element="catalog.topnav" destination="store.menu" before="-"/>
@@ -61,7 +67,8 @@
         <move element="catalog.topnav" destination="header-wrapper" after="-" />
         <block class="Magento\Framework\View\Element\Template" name="file.toplink" template="Magento_Theme::html/uploadfile.phtml"/>
         <move element="file.toplink" destination="header-wrapper" after="minicart" />
-
+        <block class="Magento\Framework\View\Element\Template" name="top.right.info" template="Magento_Theme::html/topRightInfo.phtml"/>
+        <move element="top.right.info" destination="header.panel" after="-" />
 
         <!-- home -->
         <block class="Magento\Framework\View\Element\Template" name="home.page" template="Magento_Theme::html/homepage.phtml"/>
