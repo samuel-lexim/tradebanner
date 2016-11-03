@@ -8,123 +8,91 @@
 
 ?>
 <div id="map"></div>
-<div class="col-xs-12 col-sm-2"></div>
-<div class="col-xs-12 col-sm-2">
-    <form class="form contact"
-          action="<?= $block->getFormAction(); ?>"
-          id="contact-form"
-          method="post"
-          data-hasrequired="<?= __('* Required Fields') ?>"
-          data-mage-init='{"validation":{}}'>
-        <fieldset class="fieldset">
 
-            <div class="field name required">
-                <label class="label" for="name"><span><?= __('Name') ?></span></label>
-                <div class="control">
-                    <input name="name" id="name" title="<?= __('Name') ?>" value="<?php echo $block->escapeHtml($this->helper('Magento\Contact\Helper\Data')->getUserName()) ?>" class="input-text" type="text" data-validate="{required:true}"/>
-                </div>
+<form class="form contact"
+      action="<?= $block->getFormAction(); ?>"
+      id="contact-form"
+      method="post"
+      data-hasrequired="<?= __('* Required Fields') ?>"
+      data-mage-init='{"validation":{}}'>
+    <div class="col-xs-12 col-sm-4">
+        <div class="contact-info">
+            <div class="footer-detail">
+                <img src="/pub/media/images/icon/icon-footer-home.png">
+                6012 Clara St. Bell Gardens, CA 90201</div>
+            <div class="footer-detail">
+                <img src="/pub/media/images/icon/icon-footer-phone.png">
+                1-888-900-6539
             </div>
-            <div class="field email required">
-                <label class="label" for="email"><span><?= __('Email') ?></span></label>
-                <div class="control">
-                    <input name="email" id="email" title="<?= __('Email') ?>" value="<?php echo $block->escapeHtml($this->helper('Magento\Contact\Helper\Data')->getUserEmail()) ?>" class="input-text" type="email" data-validate="{required:true, 'validate-email':true}"/>
-                </div>
+            <div class="footer-detail">
+                <img src="/pub/media/images/icon/icon-footer-fax.png">
+                1-562-381-2114
             </div>
-            <div class="field telephone">
-                <label class="label" for="telephone"><span><?= __('Phone Number') ?></span></label>
-                <div class="control">
-                    <input name="telephone" id="telephone" title="<?= __('Phone Number') ?>" value="" class="input-text" type="text" />
-                </div>
+            <div class="footer-detail">
+                <img src="/pub/media/images/icon/icon-footer-email.png">
+                info@tradebanner.com
             </div>
-            <div class="field comment required">
-                <label class="label" for="comment"><span><?= __('What’s on your mind?') ?></span></label>
-                <div class="control">
-                    <textarea name="comment" id="comment" title="<?= __('What’s on your mind?') ?>" class="input-text" cols="5" rows="3" data-validate="{required:true}"></textarea>
-                </div>
-            </div>
-            <?php echo $block->getChildHtml('form.additional.info'); ?>
-        </fieldset>
-        <div class="actions-toolbar">
-            <div class="primary">
-                <input type="hidden" name="hideit" id="hideit" value="" />
-                <button type="submit" title="<?= __('Submit') ?>" class="action submit primary">
-                    <span><?= __('Submit') ?></span>
-                </button>
+            <div class="footer-detail">
+                <img src="/pub/media/images/icon/icon-footer-clock.png">
+                M-F: 8:30AM-5:00PM PST
             </div>
         </div>
-    </form>
-    <script>
-        function initMap() {
-            var uluru = {lat: 16.062732, lng: 108.223864};
-            var map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 16,
-                center: uluru
-            });
-            var marker = new google.maps.Marker({
-                position: uluru,
-                map: map
-            });
-        }
-    </script>
-    <script async defer
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCuZ2QDhNV8pCfmw88Deh16dGsZ0jUONZM&callback=initMap">
-    </script><form class="form contact"
-          action="<?= $block->getFormAction(); ?>"
-          id="contact-form"
-          method="post"
-          data-hasrequired="<?= __('* Required Fields') ?>"
-          data-mage-init='{"validation":{}}'>
+    </div>
+    <div class="col-xs-12 col-sm-8">
         <fieldset class="fieldset">
-
-            <div class="field name required">
-                <label class="label" for="name"><span><?= __('Name') ?></span></label>
-                <div class="control">
-                    <input name="name" id="name" title="<?= __('Name') ?>" value="<?php echo $block->escapeHtml($this->helper('Magento\Contact\Helper\Data')->getUserName()) ?>" class="input-text" type="text" data-validate="{required:true}"/>
+            <div class="col-xs-12 col-sm-8">
+                <div class="field comment required">
+                    <div class="control">
+                        <textarea name="comment" id="comment" placeholder=" Message *" title="<?= __('What’s on your mind?') ?>" class="input-text" cols="5" rows="3" data-validate="{required:true}"></textarea>
+                    </div>
+                </div>
+                <div class="contact-note">
+                    <p>Ask us a question and we'll write back to you promptly! Simply fill out the form below and click Send Email.</p>
+                    <p>Thanks. Items marked with an asterisk (*) are required fields.</p>
                 </div>
             </div>
-            <div class="field email required">
-                <label class="label" for="email"><span><?= __('Email') ?></span></label>
-                <div class="control">
-                    <input name="email" id="email" title="<?= __('Email') ?>" value="<?php echo $block->escapeHtml($this->helper('Magento\Contact\Helper\Data')->getUserEmail()) ?>" class="input-text" type="email" data-validate="{required:true, 'validate-email':true}"/>
+            <div class="col-xs-12 col-sm-4">
+                <div class="field name required">
+                    <div class="control">
+                        <input name="name" id="name" placeholder=" Enter your name *" title="<?= __('Name') ?>" value="<?php echo $block->escapeHtml($this->helper('Magento\Contact\Helper\Data')->getUserName()) ?>" class="input-text" type="text" data-validate="{required:true}"/>
+                    </div>
+                </div>
+                <div class="field email required">
+                    <div class="control">
+                        <input name="email" id="email" placeholder=" Enter E-mail *" title="<?= __('Email') ?>" value="<?php echo $block->escapeHtml($this->helper('Magento\Contact\Helper\Data')->getUserEmail()) ?>" class="input-text" type="email" data-validate="{required:true, 'validate-email':true}"/>
+                    </div>
+                </div>
+                <div class="field telephone">
+                    <div class="control">
+                        <input name="telephone" id="telephone" placeholder=" Enter Telephone *" title="<?= __('Phone Number') ?>" value="" class="input-text" type="text" />
+                    </div>
+                </div>
+                <?php echo $block->getChildHtml('form.additional.info'); ?>
+                <div class="actions-toolbar">
+                    <div class="primary">
+                        <input type="hidden" name="hideit" id="hideit" value="" />
+                        <button type="submit" title="<?= __('Submit') ?>" class="action submit primary">
+                            <span><?= __('SUBMIT') ?></span>
+                        </button>
+                    </div>
                 </div>
             </div>
-            <div class="field telephone">
-                <label class="label" for="telephone"><span><?= __('Phone Number') ?></span></label>
-                <div class="control">
-                    <input name="telephone" id="telephone" title="<?= __('Phone Number') ?>" value="" class="input-text" type="text" />
-                </div>
-            </div>
-            <div class="field comment required">
-                <label class="label" for="comment"><span><?= __('What’s on your mind?') ?></span></label>
-                <div class="control">
-                    <textarea name="comment" id="comment" title="<?= __('What’s on your mind?') ?>" class="input-text" cols="5" rows="3" data-validate="{required:true}"></textarea>
-                </div>
-            </div>
-            <?php echo $block->getChildHtml('form.additional.info'); ?>
         </fieldset>
-        <div class="actions-toolbar">
-            <div class="primary">
-                <input type="hidden" name="hideit" id="hideit" value="" />
-                <button type="submit" title="<?= __('Submit') ?>" class="action submit primary">
-                    <span><?= __('Submit') ?></span>
-                </button>
-            </div>
-        </div>
-    </form>
-    <script>
-        function initMap() {
-            var uluru = {lat: 16.062732, lng: 108.223864};
-            var map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 16,
-                center: uluru
-            });
-            var marker = new google.maps.Marker({
-                position: uluru,
-                map: map
-            });
-        }
-    </script>
-    <script async defer
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCuZ2QDhNV8pCfmw88Deh16dGsZ0jUONZM&callback=initMap">
-    </script>
-</div>
+    </div>
+</form>
+<script>
+    function initMap() {
+        var uluru = {lat: 16.062732, lng: 108.223864};
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 16,
+            center: uluru
+        });
+        var marker = new google.maps.Marker({
+            position: uluru,
+            map: map
+        });
+    }
+</script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCuZ2QDhNV8pCfmw88Deh16dGsZ0jUONZM&callback=initMap">
+</script>
