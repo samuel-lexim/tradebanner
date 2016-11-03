@@ -1,3 +1,6 @@
+.page-title-wrapper {
+    display: none;
+}
 /************************** FOOTER ******************************/
 #tradeFooter {
     position: relative;
@@ -60,19 +63,87 @@
 .customer-account-create .action.primary {
     background: #1ca1ac;
     border-radius: 0;
+    padding: 10px 30px;
+}
+.customer-account-create .legend {
+    margin-left: 0;
+    border-bottom: #1ca1ac 1px solid;
+    padding: 8px 0;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+.customer-account-create .fieldset
+{
+    margin: 0;
+}
+.customer-account-create .note {
+    color: #949494;
+}
+.customer-account-create .fieldset > .field:not(.choice) > .label {
+    text-align: left;
+    float: none;
+    padding: 8px 0;
+    font-weight: normal;
+}
+.customer-account-create .fieldset > .field:not(.choice) > .control {
+    float: none;
+    width: 400px;
+}
+.customer-account-create .fieldset > .field:not(.choice) > .control > input{
+    height: 40px;
+}
+.customer-account-create .fieldset > .field {
+    margin: 0;
+}
+.customer-account-create .column:not(.sidebar-main) form .actions-toolbar {
+    width: 400px;
+    margin-left: 0;
+}
+.customer-account-create .actions-toolbar > .primary {
+    float: right;
+}
+.customer-account-create .actions-toolbar > .secondary {
+    float: left;
+}
+.customer-account-create .actions-toolbar > .primary .action:last-child {
+    margin: 25px 0 125px 0;
+}
+.customer-account-create .fieldset > .field {
+    margin: 8px 0;
+}
+.customer-account-create .fieldset > .field:before {
+    width: 0;
+    padding: 0;
+}
+.login-register-title {
+    font-size: 20px;
+    font-weight: bold;
+    padding: 15px 0;
 }
 /************************** LOGIN PAGE ******************************/
-.block-customer-login .action.primary, .block-new-customer .action.primary {
+.action.primary {
     background: #1ca1ac;
     border-radius: 0;
-}
-.action.primary {
     border: none;
     font-weight: normal;
 }
 .action.primary:hover{
+    background: #1ca1ac;
     border: none;
+}
+.block-customer-login .legend {
+    font-size: 16px;
 }
 .block-customer-login .actions-toolbar .secondary {
     padding-right: 115px;
+}
+/************************** CONTACT US PAGE ******************************/
+#map {
+    height: 500px;
+    width: 100%;
+    position: absolute;
+    left: 0;
+}
+.contact-index-index .contact {
+    padding: 550px 0 0;
 }
