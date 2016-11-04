@@ -56,7 +56,9 @@
         </referenceContainer>
 
         <referenceBlock name="wish-list-link" remove="true" />
+        <referenceBlock name="wishlist_sidebar" remove="true" />
         <referenceBlock name="catalog.compare.link" remove="true"/>
+        <referenceBlock name="catalog.compare.sidebar" remove="true" />
 
 
         <referenceContainer name="footer" remove="true" />
@@ -77,7 +79,7 @@
         <!-- JS -->
         <block class="Magento\Framework\View\Element\Text" name="bootstrap">
             <arguments>
-                <argument name="text" xsi:type="string"><![CDATA[<script type="text/javascript" src="/pub/js/jquery-3.1.1.min.js"></script><script type="text/javascript" src="/pub/js/bootstrap.min.js"></script>]]></argument>
+                <argument name="text" xsi:type="string"><![CDATA[<script type="text/javascript" src="/pub/js/carousel.js"></script>]]></argument>
             </arguments>
         </block>
         <move element="bootstrap" destination="before.body.end"/>

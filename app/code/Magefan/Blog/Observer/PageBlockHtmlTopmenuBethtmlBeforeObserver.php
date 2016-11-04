@@ -43,15 +43,15 @@ class PageBlockHtmlTopmenuBethtmlBeforeObserver implements ObserverInterface
         $menu = $observer->getMenu();
         $block = $observer->getBlock();
 
-        $tree = $menu->getTree();
-        $data = [
-            'name'      => __('Blog'),
-            'id'        => 'magefan-blog',
-            'url'       => $this->_url->getBaseUrl(),
-            'is_active' => ($block->getRequest()->getModuleName() == 'blog'),
-        ];
-        $node = new Node($data, 'id', $tree, $menu);
-        $menu->addChild($node);
+//        $tree = $menu->getTree();
+//        $data = [
+//            'name'      => __('Blog'),
+//            'id'        => 'magefan-blog',
+//            'url'       => $this->_url->getBaseUrl(),
+//            'is_active' => ($block->getRequest()->getModuleName() == 'blog'),
+//        ];
+//        $node = new Node($data, 'id', $tree, $menu);
+//        $menu->addChild($node);
         return $this;
     }
 }

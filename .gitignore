@@ -40,3 +40,4 @@ LICENSE
 .htaccess
 !.gitignore
 update
+/sqldb

@@ -1,0 +1,43 @@
+
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+// Get Menu
+$menu = $objectManager->get('\Magento\Theme\Block\Html\Topmenu');
+$_menu = $menu->getHtml('level-top', 'submenu');
+// Get Current Category name
+$currentCategory = $objectManager->get('Magento\Framework\Registry')->registry('current_category');
+?>
+
+
+<div class="menuLeftSidebar">
+    <ul id="leftMenuUl">
+        <div class="titleLeftSidebar hidden-xs">CATEGORIES</div>
+        <?= $_menu ?>
+    </ul>
+</div>
+<div class="clearfix pad30"></div>
+
+<script type="text/javascript">
+    require([ 'jquery', 'jquery/ui'], function($){
+        $( document ).ready(function() {
+            $('#leftMenuUl li.parent').each(function() {
+                var data = $(this).hasClass("has-active") ? "-" : "+";
+                var curWidth = $(window).width();
+                if (curWidth <= 767) data = "+";
+                $(this).prepend('<span class="dropLeftMenu">'+data+'</span>');
+            });
+
+            $('#leftMenuUl .dropLeftMenu').click(function(){
+                var selectCt = $(this).parent().find('ul.submenu').first();
+                if (selectCt.is(':visible')) {
+                    $(this).text("+");
+                    selectCt.slideUp('normal');
+                } else {
+                    $(this).text("-");
+                    selectCt.slideDown('normal');
+                }
+            });
+        })
+    });
+</script>
+
