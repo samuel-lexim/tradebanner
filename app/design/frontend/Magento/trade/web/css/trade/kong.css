@@ -363,6 +363,28 @@
 #minicart-header {
     z-index: 40;
 }
+
+#minicart-header .action.showcart:before {
+    width: 40px;
+    height: 35px;
+    -webkit-font-smoothing: antialiased;
+    line-height: 33px;
+    color: #8f8f8f;
+    content: '';
+    background: url(/pub/media/images/header/icon-cart.png) no-repeat center ;
+    margin: 0;
+    vertical-align: top;
+    display: inline-block;
+    overflow: hidden;
+    text-align: center;
+}
+
+#minicart-header .action.showcart .counter.qty {
+    background: #fff;
+    color: #000;
+    margin: 13px 0 0;
+}
+
     /* Search */
 #topSearchWrap {
     cursor: pointer;
