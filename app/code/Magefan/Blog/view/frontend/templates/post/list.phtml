@@ -23,11 +23,13 @@ $_postCollection = $block->getPostCollection();
     <div class="message info empty"><div><?php echo __('We can\'t find posts matching the selection.') ?></div></div>
 <?php else: ?>
     <?php echo $block->getAdditionalHtml() ?>
-    <div class="post-list-wrapper">
+    <div class="post-list-wrapper row">
         <?php $iterator = 1; ?>
         <ol class="post-list">
             <?php foreach ($_postCollection as $_post): ?>
-                <?php echo $block->getPostHtml($_post) ?>
+                <div class="col-xs-12 col-sm-4 recent-news-item">
+                    <?php echo $block->getPostHtml($_post) ?>
+                </div>
             <?php endforeach; ?>
         </ol>
     </div>

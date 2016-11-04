@@ -176,3 +176,46 @@
     color: #949494;
     margin-bottom: 60px;
 }
+/************************** RECENT NEWS PAGE ******************************/
+.blog-index-index .post-holder {
+    height: 650px;
+}
+.blog-index-index .recent-news-item {
+    padding: 0 20px 20px;
+}
+.blog-index-index .post-categories, .blog-index-index .dash, .blog-index-index .post-posed-date .label {
+    display: none;
+}
+.blog-index-index .post-holder {
+    padding: 0;
+}
+.blog-index-index .post-news-content {
+    padding: 0 20px 40px;
+    color: #949494;
+    text-align: center;
+    font-size: 18px;
+}
+.blog-index-index .post-news-content .post-title {
+    font-size: 22px;
+}
+.blog-index-index .post-news-content .post-item-link {
+    color: #949494;
+}
+.blog-index-index .column.main {
+    width: 100%;
+}
+.blog-index-index .news-detail-button {
+    margin: auto;
+    text-align: center;
+    width: 100px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #c9c9c9;
+}
+.blog-index-index .news-detail-button .post-read-more {
+    float: none;
+    padding: 0;
+    color: #ffffff;
+}
