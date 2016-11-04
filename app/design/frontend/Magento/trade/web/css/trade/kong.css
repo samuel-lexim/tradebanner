@@ -9,6 +9,37 @@
 .pad70 { padding-bottom: 70px }
 .pad100 { padding-bottom: 100px }
 
+.img-resp {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    background: #ccc;
+}
+
+.img-resp img {
+    position: absolute;
+    top: 0;
+    left:0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    width: 100%;
+    height: auto;
+}
+
+.img100 {
+    padding-bottom: 100%;
+}
+
+/* Layout */
+.page-layout-2columns-left .sidebar-main {
+    width: 25%;
+}
+.page-layout-2columns-left .column.main {
+    width: 75%;
+}
+/* # Layout */
+
 /* Home */
 #topContentHome {
     background: #1da1ad;
@@ -116,6 +147,110 @@
     background: #1da1ad;
 }
 
+/* Recent product */
+.recent-head {
+    text-align: center;
+    font-size: 40px;
+    color: #474747;
+    line-height: normal;
+    margin: 0;
+    padding: 15px 0 0;
+    position: relative;
+}
+
+.recent-tit {
+    text-align: center;
+    color: #474747;
+    font-size: 20px;
+}
+
+.recent-head:before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    content: '';
+    width: 100px;
+    height: 5px;
+    background: #474747;
+    margin: auto;
+}
+.recent-list {
+    margin-left: -7px;
+    margin-right: -7px;
+}
+.left-recent {
+    width: 60%;
+    float: left;
+    padding: 0 7px;
+}
+.right-recent {
+    position: relative;
+    width: 40%;
+    float: left;
+    padding: 0;
+}
+
+.right-rc-item {
+    width:100%;
+}
+
+.rc-item {
+    position: relative;
+    width: 50%;
+    padding: 0 7px 15px;
+    float: left;
+}
+
+.rc-item .main-bt {
+    margin: 0 auto;
+}
+
+.rc-item .main-bt span {
+    margin: 0 auto;
+}
+
+.rc-item .tit {
+    text-align: center;
+    margin: 0;
+    padding: 10px 0;
+    color: #999;
+}
+
+.main-rc-info {
+    position: absolute;
+    bottom: 0;
+    left:0;
+    right:0;
+    margin: auto;
+}
+
+.main-rc-info > span {
+    width: 100%;
+    text-align: center;
+    display: block;
+    font-size: 24px;
+    color: #fff;
+}
+
+.main-rc-info > a {
+    color: #fff;
+    text-align: center;
+    display: block;
+    width: 100px;
+    border: 1px solid #fff;
+    margin: 10px auto 20%;
+    padding: 10px 0;
+    text-decoration: none;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    border-radius: 5px;
+}
+
+/* # Recent Product */
+
 /* left Home Menu */
 #leftHomeMenu, #leftHomeMenu ul, #leftHomeMenu li {
     padding: 0;
@@ -193,14 +328,18 @@
     color: #fff;
 }
 
-/* */
+.logo {
+    margin: 0;
+}
+
+/* upload link */
 #uploadTopMenu {
     float: right;
     position: relative;
     z-index: 40;
 }
 
-#uploadTopMenu span {
+.main-bt span {
     width: 100px;
     height: 40px;
     background: #ededed;
@@ -211,15 +350,19 @@
     color: #999;
 }
 
-#uploadTopMenu > a {
+.main-bt > a {
     text-decoration: none;
 }
 
-#uploadTopMenu > a:hover > span {
+.main-bt > a:hover > span {
     color: #fff;
     background: #1da1ad;
 }
 
+    /* Mini cart */
+#minicart-header {
+    z-index: 40;
+}
     /* Search */
 #topSearchWrap {
     cursor: pointer;
@@ -276,7 +419,7 @@
     background: #fff;
     width: 100%;
     margin: 0;
-    top: 70px;
+    top: 50px;
     left: 0;
     padding: 0 10px 20px;
     border: 1px solid #eee;
@@ -345,6 +488,158 @@
     padding: 0;
     width: 100%;
 }
-
     /* # Top Menu */
 /* # Header */
+
+/* Product List page */
+
+    /* left Menu - category page */
+.titleLeftSidebar {
+    padding: 7px 15px;
+    border-bottom: 3px solid #313131;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#leftMenuUl {
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    background: #ececec;
+}
+
+#leftMenuUl ul {
+    padding: 5px 0 0 20px;
+    list-style: none;
+    clear: both;
+}
+
+#leftMenuUl ul.submenu {
+    display: none;
+}
+
+#leftMenuUl li {
+    list-style: none;
+    clear: both;
+    padding: 8px 0;
+    margin: 0;
+    overflow: hidden;
+}
+
+#leftMenuUl > li {
+    border-bottom: 1px solid #ddd;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+#leftMenuUl a {
+    max-width: calc(100% - 40px);
+    float: left;
+    text-transform: uppercase;
+    color: #474747;
+    text-decoration: none;
+}
+
+#leftMenuUl a:hover {
+    color: #ff5f2b;
+}
+
+#leftMenuUl li.active > a {
+    color: #ff5f2b;
+}
+
+#leftMenuUl li.has-active > ul.submenu {
+    display: block;
+}
+
+#leftMenuUl span.dropLeftMenu {
+    display: inline-block;
+    width: 20px;
+    height: 16px;
+    color: #000;
+    font-size: 30px;
+    line-height: 14px;
+    float: right;
+    cursor: pointer;
+    text-align: right;
+}
+
+@media only screen and (max-width: 767px) {
+    #leftMenuUl li.has-active > ul.submenu {
+        display: none;
+    }
+
+    .page-layout-2columns-left .sidebar-main {
+        width: 100%;
+        padding: 0;
+    }
+
+    #leftMenuUl {
+        background: #e1e1e1;
+    }
+
+    #leftMenuUl ul {
+        padding: 0;
+    }
+
+    #leftMenuUl a {
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+
+    #leftMenuUl li {
+        padding: 0;
+        border-bottom: 1px solid #c2c2c2;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+    #leftMenuUl li.level1.parent ul.submenu {
+        background: #474747;
+    }
+
+    #leftMenuUl li.level1.parent ul.submenu a {
+        color: #fff;
+    }
+
+    #leftMenuUl li.level0 > a {
+        padding-left: 15px;
+    }
+
+    #leftMenuUl li.level1 > a {
+        padding-left: 30px;
+    }
+
+    #leftMenuUl li.level2 > a {
+        padding-left: 45px;
+    }
+
+    #leftMenuUl li.level3 > a {
+        padding-left: 60px;
+    }
+
+    #leftMenuUl li.last {
+        border-bottom: none;
+    }
+
+    #leftMenuUl ul.level0.submenu {
+        border-top: 1px solid #c2c2c2;
+    }
+
+    #leftMenuUl ul.level1.submenu ul.submenu {
+        border-top: 1px solid #c2c2c2;
+    }
+
+    #leftMenuUl span.dropLeftMenu {
+        margin: 7px 0 0 10px;
+    }
+
+    #leftMenuUl li.active > a {
+        color: #ff5f2b !important;
+    }
+}
+
+/* left Menu - category page */
+
+/* # Product List page */
