@@ -51,7 +51,7 @@ class Category extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
     protected function _beforeSave(\Magento\Framework\Model\AbstractModel $object)
     {
         $identifierGenerator = \Magento\Framework\App\ObjectManager::getInstance()
-                ->create('Magefan\Blog\Model\ResourceModel\PageIdentifierGenerator');
+            ->create('Magefan\Blog\Model\ResourceModel\PageIdentifierGenerator');
         $identifierGenerator->generate($object);
 
         if (!$this->isValidPageIdentifier($object)) {
@@ -145,7 +145,7 @@ class Category extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
      * return category id if category exists
      *
      * @param string $identifier
-     * @param int $storeId
+     * @param int $store
      * @return int
      */
     protected function _getLoadByIdentifierSelect($identifier, $store, $isActive = null)
@@ -196,9 +196,9 @@ class Category extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
      * Check if category identifier exist for specific store
      * return page id if page exists
      *
-     * @param string $identifier
-     * @param int|array $storeId
-     * @return int
+     * @param $identifier
+     * @param $stores
+     * @return string
      */
     public function checkIdentifier($identifier, $stores)
     {
@@ -215,7 +215,7 @@ class Category extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
     /**
      * Get store ids to which specified item is assigned
      *
-     * @param int $pageId
+     * @param $categoryId
      * @return array
      */
     public function lookupStoreIds($categoryId)

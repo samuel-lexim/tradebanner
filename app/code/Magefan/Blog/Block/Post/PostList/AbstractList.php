@@ -62,7 +62,8 @@ abstract class AbstractList extends \Magento\Framework\View\Element\Template
         \Magefan\Blog\Model\ResourceModel\Post\CollectionFactory $postCollectionFactory,
         \Magefan\Blog\Model\Url $url,
         array $data = []
-    ) {
+    )
+    {
         parent::__construct($context, $data);
         $this->_coreRegistry = $coreRegistry;
         $this->_filterProvider = $filterProvider;

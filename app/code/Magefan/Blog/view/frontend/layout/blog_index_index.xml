@@ -14,5 +14,7 @@
         <referenceContainer name="content">
             <block class="Magefan\Blog\Block\Index" name="blog.posts.list" template="post/list.phtml" />
         </referenceContainer>
+
+        <!--<move element="main" destination="columns" after="-"/>-->
     </body>
 </page>

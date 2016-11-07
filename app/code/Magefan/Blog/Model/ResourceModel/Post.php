@@ -167,13 +167,13 @@ class Post extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
 
     /**
      * Update post connections
-     * @param  \Magento\Framework\Model\AbstractModel $object
-     * @param  Array $newRelatedIds
-     * @param  Array $oldRelatedIds
-     * @param  String $tableName
-     * @param  String  $field
-     * @param  Array  $rowData
-     * @return void
+    /**
+     * @param \Magento\Framework\Model\AbstractModel $object
+     * @param array $newRelatedIds
+     * @param array $oldRelatedIds
+     * @param $tableName
+     * @param $field
+     * @param array $rowData
      */
     protected function _updateLinks(
         \Magento\Framework\Model\AbstractModel $object,
@@ -248,9 +248,11 @@ class Post extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
      * Check if post identifier exist for specific store
      * return post id if post exists
      *
-     * @param string $identifier
-     * @param int $storeId
-     * @return int
+     * @param $identifier
+     * @param $store
+     * @param null $isActive
+     * @return \Magento\Framework\DB\Select
+     * @throws \Magento\Framework\Exception\LocalizedException
      */
     protected function _getLoadByIdentifierSelect($identifier, $store, $isActive = null)
     {
@@ -301,9 +303,9 @@ class Post extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
      * Check if post identifier exist for specific store
      * return post id if post exists
      *
-     * @param string $identifier
-     * @param int|array $storeId
-     * @return int
+     * @param $identifier
+     * @param $stores
+     * @return string
      */
     public function checkIdentifier($identifier, $stores)
     {
@@ -320,7 +322,7 @@ class Post extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
     /**
      * Get store ids to which specified item is assigned
      *
-     * @param int $pageId
+     * @param $postId
      * @return array
      */
     public function lookupStoreIds($postId)
@@ -331,7 +333,7 @@ class Post extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
     /**
      * Get category ids to which specified item is assigned
      *
-     * @param int $pageId
+     * @param $postId
      * @return array
      */
     public function lookupCategoryIds($postId)
@@ -342,7 +344,7 @@ class Post extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
     /**
      * Get related post ids to which specified item is assigned
      *
-     * @param int $pageId
+     * @param $postId
      * @return array
      */
     public function lookupRelatedPostIds($postId)
@@ -353,7 +355,7 @@ class Post extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
     /**
      * Get related product ids to which specified item is assigned
      *
-     * @param int $pageId
+     * @param $postId
      * @return array
      */
     public function lookupRelatedProductIds($postId)

@@ -95,17 +95,33 @@ class View extends \Magefan\Blog\Block\Post\PostList
 
             for ($i = count($parentCategories) - 1; $i >= 0; $i--) {
                 $_category = $parentCategories[$i];
-                $breadcrumbsBlock->addCrumb('blog_parent_category_'.$_category->getId(), [
+                $breadcrumbsBlock->addCrumb('blog_parent_category_' . $_category->getId(), [
                     'label' => $_category->getTitle(),
                     'title' => $_category->getTitle(),
-                    'link'  => $_category->getCategoryUrl()
+                    'link' => $_category->getCategoryUrl()
                 ]);
             }
 
-            $breadcrumbsBlock->addCrumb('blog_category',[
+            $breadcrumbsBlock->addCrumb('blog_category', [
                 'label' => $category->getTitle(),
                 'title' => $category->getTitle()
             ]);
         }
     }
+
+    /**
+     * Get Posts by Url category
+     * @param $urlKey
+     * @return mixed
+     */
+    public function getPostsByUrlCat($urlKey)
+    {
+        $_objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+        $cat = $_objectManager->create('Magefan\Blog\Model\Category')->load($urlKey);
+
+        $ar = $_objectManager->create('Magefan\Blog\Model\ResourceModel\Post\Collection');
+        $ar->addActiveFilter()->addCategoryFilter($cat);
+        return $ar;
+    }
+
 }

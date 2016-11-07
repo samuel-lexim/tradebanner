@@ -37,7 +37,7 @@ class RelatedPosts extends \Magefan\Blog\Block\Post\PostList\AbstractList
         $this->_postCollection = $this->getPost()->getRelatedPosts($storeId)
             ->addActiveFilter()
             ->setPageSize(
-                (int) $this->_scopeConfig->getValue(
+                (int)$this->_scopeConfig->getValue(
                     'mfblog/post_view/related_posts/number_of_posts',
                     \Magento\Store\Model\ScopeInterface::SCOPE_STORE
                 )
@@ -52,7 +52,7 @@ class RelatedPosts extends \Magefan\Blog\Block\Post\PostList\AbstractList
      */
     public function displayPosts()
     {
-        return (bool) $this->_scopeConfig->getValue(
+        return (bool)$this->_scopeConfig->getValue(
             'mfblog/post_view/related_posts/enabled',
             \Magento\Store\Model\ScopeInterface::SCOPE_STORE
         );
@@ -75,10 +75,10 @@ class RelatedPosts extends \Magefan\Blog\Block\Post\PostList\AbstractList
 
     /**
      * Get Block Identities
-     * @return Array
+     * @return array
      */
     public function getIdentities()
     {
-        return [\Magento\Cms\Model\Page::CACHE_TAG . '_relatedposts_'.$this->getPost()->getId()  ];
+        return [\Magento\Cms\Model\Page::CACHE_TAG . '_relatedposts_' . $this->getPost()->getId()];
     }
 }

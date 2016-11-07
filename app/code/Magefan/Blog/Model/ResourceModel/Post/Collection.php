@@ -25,14 +25,15 @@ class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\Ab
 
 
     /**
+     * Collection constructor.
      * @param \Magento\Framework\Data\Collection\EntityFactory $entityFactory
      * @param \Psr\Log\LoggerInterface $logger
      * @param \Magento\Framework\Data\Collection\Db\FetchStrategyInterface $fetchStrategy
      * @param \Magento\Framework\Event\ManagerInterface $eventManager
      * @param \Magento\Framework\Stdlib\DateTime\DateTime $date
-     * @param Magento\Store\Model\StoreManagerInterface $storeManager
-     * @param null|\Zend_Db_Adapter_Abstract $connection
-     * @param \Magento\Framework\Model\ResourceModel\Db\AbstractDb $resource
+     * @param \Magento\Store\Model\StoreManagerInterface $storeManager
+     * @param null $connection
+     * @param \Magento\Framework\Model\ResourceModel\Db\AbstractDb|null $resource
      */
     public function __construct(
         \Magento\Framework\Data\Collection\EntityFactory $entityFactory,
@@ -43,7 +44,8 @@ class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\Ab
         \Magento\Store\Model\StoreManagerInterface $storeManager,
         $connection = null,
         \Magento\Framework\Model\ResourceModel\Db\AbstractDb $resource = null
-    ) {
+    )
+    {
         parent::__construct($entityFactory, $logger, $fetchStrategy, $eventManager, $connection, $resource);
 
         $this->_date = $date;
@@ -83,7 +85,7 @@ class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\Ab
 
     /**
      * Add store filter to collection
-     * @param array|int|\Magento\Store\Model\Store  $store
+     * @param array|int|\Magento\Store\Model\Store $store
      * @param boolean $withAdmin
      * @return $this
      */
@@ -113,7 +115,7 @@ class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\Ab
 
     /**
      * Add category filter to collection
-     * @param array|int|\Magefan\Blog\Model\Category  $category
+     * @param array|int|\Magefan\Blog\Model\Category $category
      * @return $this
      */
     public function addCategoryFilter($category)
@@ -198,7 +200,7 @@ class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\Ab
 
             if ($result) {
                 $categories = [];
-                foreach($result as $item) {
+                foreach ($result as $item) {
                     $categories[$item['post_id']][] = $item['category_id'];
                 }
 
@@ -223,11 +225,11 @@ class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\Ab
      */
     protected function _renderFiltersBefore()
     {
-        foreach(array('store', 'category') as $key) {
+        foreach (array('store', 'category') as $key) {
             if ($this->getFilter($key)) {
                 $this->getSelect()->join(
-                    [$key.'_table' => $this->getTable('magefan_blog_post_'.$key)],
-                    'main_table.post_id = '.$key.'_table.post_id',
+                    [$key . '_table' => $this->getTable('magefan_blog_post_' . $key)],
+                    'main_table.post_id = ' . $key . '_table.post_id',
                     []
                 )->group(
                     'main_table.post_id'
