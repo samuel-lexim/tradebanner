@@ -26,6 +26,7 @@
             <a href="<?php echo $_postUrl ?>" title="<?php echo $_postName ?>">
                 <img src="<?php echo $featuredImage ?>" alt="<?php echo $_postName ?>" />
             </a>
+            <?php echo $this->getInfoHtml() ?>
         </div>
         <?php } ?>
         <div class="post-news-content">
@@ -38,10 +39,8 @@
                 </h2>
             </div>
 
-            <?php echo $this->getInfoHtml() ?>
-
             <div class="post-text-hld clearfix">
-                <?php echo implode(' ', array_slice(explode(' ', $block->getShorContent()), 0, 20)); ?>
+                <?php echo implode(' ', array_slice(explode(' ', $block->getShorContent()), 0, 30)); ?>
                 <?php echo '...' ?>
             </div>
             <div class="news-detail-button">

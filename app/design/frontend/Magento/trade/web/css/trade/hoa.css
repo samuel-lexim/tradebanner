@@ -189,7 +189,7 @@
     display: none;
 }
 .post-holder {
-    height: 650px;
+    height: 700px;
     padding: 0;
 }
 .post-news-content {
@@ -203,6 +203,18 @@
 }
 .post-news-content .post-item-link {
     color: #949494;
+}
+.post-posed-date {
+    position: absolute;
+    transform: translate(0%, -100%);
+    width: 86px;
+    background: #000;
+    color: #fff;
+    opacity: 0.5;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
 }
 .page-layout-2columns-right .column.main {
     width: 100%;
@@ -219,7 +231,7 @@
 }
 .news-detail-button .post-read-more {
     float: none;
-    padding: 0;
+    padding: 0 !important;
     color: #ffffff;
 }
 .page-layout-2columns-right .sidebar-additional {
