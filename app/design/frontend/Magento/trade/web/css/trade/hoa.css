@@ -185,29 +185,29 @@
     margin-bottom: 60px;
 }
 /************************** RECENT NEWS PAGE ******************************/
-.blog-index-index .post-categories, .blog-index-index .dash, .blog-index-index .post-posed-date .label {
+.post-categories, .dash, .post-posed-date .label {
     display: none;
 }
-.blog-index-index .post-holder {
+.post-holder {
     height: 650px;
     padding: 0;
 }
-.blog-index-index .post-news-content {
+.post-news-content {
     padding: 0 20px 40px;
     color: #949494;
     text-align: center;
     font-size: 18px;
 }
-.blog-index-index .post-news-content .post-title {
+.post-news-content .post-title {
     font-size: 22px;
 }
-.blog-index-index .post-news-content .post-item-link {
+.post-news-content .post-item-link {
     color: #949494;
 }
 .blog-index-index .column.main {
     width: 100%;
 }
-.blog-index-index .news-detail-button {
+.news-detail-button {
     margin: auto;
     text-align: center;
     width: 100px;
@@ -217,8 +217,30 @@
     justify-content: center;
     background: #c9c9c9;
 }
-.blog-index-index .news-detail-button .post-read-more {
+.news-detail-button .post-read-more {
     float: none;
     padding: 0;
     color: #ffffff;
+}
+.page-layout-2columns-right .sidebar-additional {
+    width: 100%;
+    padding-left: 0;
+    float: left;
+    border-bottom: 1px #f5f5f5 solid;
+}
+.sidebar-additional .block-title {
+    display: none;
+}
+.widget.block-categories ul {
+    margin: 0;
+}
+#accordion-2 li {
+    width: 25%;
+    float: left;
+    margin: 0;
+    list-style-type: none;
+}
+#accordion-2 li a {
+    color: #949494;
+    font-size: 18px;
 }
