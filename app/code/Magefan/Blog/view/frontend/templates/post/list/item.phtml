@@ -41,7 +41,8 @@
             <?php echo $this->getInfoHtml() ?>
 
             <div class="post-text-hld clearfix">
-                <?php echo substr($block->getShorContent(), 0, 150) .((strlen($block->getShorContent()) > 150) ? '...' : ''); ?>
+                <?php echo implode(' ', array_slice(explode(' ', $block->getShorContent()), 0, 20)); ?>
+                <?php echo '...' ?>
             </div>
             <div class="news-detail-button">
                 <a class="post-read-more" href="<?php echo $_postUrl ?>" title="<?php echo $_postName ?>"
