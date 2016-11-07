@@ -73,6 +73,7 @@
         <move element="top.right.info" destination="header.panel" after="-" />
 
         <!-- home -->
+        <block class="Magento\Framework\View\Element\Template" name="home.banner" template="Magento_Theme::html/homebanner.phtml"/>
         <block class="Magento\Framework\View\Element\Template" name="home.page" template="Magento_Theme::html/homepage.phtml"/>
         <!-- {{block class="Magento\Framework\View\Element\Template" name="home_static" template="Magento_Theme::html/homepage.phtml"}} -->
 

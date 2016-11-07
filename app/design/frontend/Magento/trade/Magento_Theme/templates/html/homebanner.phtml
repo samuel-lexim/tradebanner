@@ -1,0 +1,63 @@
+<?php
+$_objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$storeManager = $_objectManager->get('Magento\Store\Model\StoreManagerInterface');
+$currentStore = $storeManager->getStore();
+$baseUrl = $currentStore->getBaseUrl();
+$mediaUrl = $currentStore->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
+$linkUrl = $currentStore->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_LINK);
+
+$banners = $_objectManager->get('Sahy\Banner\Block\Frontend\Banners');
+$collection = $banners->getAllBannerByType($banners::TYPE_HOME_BANNER);
+?>
+
+<?php if (isset($collection) && count($collection) > 0) { ?>
+    <?php $size = count($collection); ?>
+    <div class="clearfix"></div>
+    <div id="bannerHS" class="carousel slide" data-ride="carousel" data-interval="5000">
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+            <?php $i = 1; ?>
+            <?php foreach($collection as $bn) { ?>
+                <div class="item <?= ($i == 1) ? 'active':'' ?>">
+                    <a href="<?=$bn['link']?>">
+                        <img src="<?= $mediaUrl . $bn['image']?>" />
+                    </a>
+                </div>
+                <?php $i++; ?>
+            <?php } ?>
+        </div>
+        <!-- Controls -->
+        <a href="#bannerHS" role="button" data-slide="prev">
+            <div class="prevButtonWrap" aria-hidden="true">
+
+            </div>
+        </a>
+        <a href="#bannerHS" role="button" data-slide="next">
+            <div class="nextButtonWrap" aria-hidden="true">
+            </div>
+        </a>
+
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <?php $i =0 ?>
+            <?php foreach($collection as $bn) { ?>
+                <li data-target="#bannerHS" data-slide-to="<?= $i ?>" class="<?= ($i == 0) ? 'active':'' ?>"></li>
+                <?php $i++; ?>
+            <?php } ?>
+        </ol>
+    </div>
+
+<?php } ?>
+
+<style type="text/css">
+    #bannerHS {
+        margin-top: 96px;
+    }
+
+    @media only screen and (min-width: 1200px) and (max-width: 1340px) {
+        #bannerHS {
+            margin-top: 126px;
+        }
+    }
+
+</style>
