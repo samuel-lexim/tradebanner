@@ -100,7 +100,22 @@
 #topContentHome {
     background: #1da1ad;
     margin: 0 !important;
+    display: table;
+    width: 100%;
 }
+
+#topContentHome .item {
+    display: table-cell;
+    float: none;
+    vertical-align: top;
+    width: 25%;
+    padding: 0;
+}
+
+.inner-wrap {
+    padding: 20px 10px;
+}
+
 
 #topContentHome .odd .img {
     background: rgba(0, 0, 0, 0.1);
@@ -119,7 +134,7 @@
     width: 120px;
     height: 120px;
     text-align: center;
-    margin: 30px auto;
+    margin: 0 auto 20px;
     -moz-border-radius: 50%;
     -webkit-border-radius: 50%;
     -o-border-radius: 50%;
@@ -159,6 +174,16 @@
 #topContentHome .sum {
     color: #fff;
     text-align: center;
+    margin: 0;
+}
+
+
+@media only screen and (max-width: 767px) {
+    #topContentHome .item {
+        display: table-row;
+        width: 100%;
+        vertical-align: middle;
+    }
 }
 
 /* Promotion */
