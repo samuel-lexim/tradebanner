@@ -58,31 +58,28 @@
 
             <div class="clearfix pad50"></div>
 
+            <?php
+            $_objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+
+            $newsCat = $_objectManager->create('Magefan\Blog\Model\Category')->load('news');
+            $proCat = $_objectManager->create('Magefan\Blog\Model\Category')->load('promotion');
+            $news = $_objectManager->create('Magefan\Blog\Model\ResourceModel\Post\Collection')
+                ->addActiveFilter()->addCategoryFilter($newsCat)->setOrder('creation_time', 'DESC')->setPageSize(5);
+            $promotions = $_objectManager->create('Magefan\Blog\Model\ResourceModel\Post\Collection')
+                ->addActiveFilter()->addCategoryFilter($proCat)->setOrder('creation_time', 'DESC')->setPageSize(3);
+            ?>
+
             <div class="row" id="promotionHome">
+                <?php foreach($promotions as $proItem) { ?>
                 <div class="col-xs-4 col-sm-4">
-                    <img src="/pub/media/images/product/promotion-1.png" />
-                    <p class="tit">PROMOTION #1</p>
-                    <p class="sum">13oz Vinyl Banner - 89c per square foot</p>
-                    <a href="#" >
+                    <img src="<?= $proItem->getFeaturedImage() ?>" />
+                    <p class="tit"><?= $proItem->getTitle() ?></p>
+                    <div class="sum"><?= $proItem->getContent() ?></div>
+                    <a href="<?= $proItem->getPostUrl()?>" >
                         <div class="promoHomeBt">CLICK FOR DETAILS</div>
                     </a>
                 </div>
-                <div class="col-xs-4 col-sm-4">
-                    <img src="/pub/media/images/product/promotion-2.png" />
-                    <p class="tit">PROMOTION #2</p>
-                    <p class="sum">NEXT DAY Turnaround on all orders under 100sq/ft*</p>
-                    <a href="#" >
-                        <div class="promoHomeBt">CLICK FOR DETAILS</div>
-                    </a>
-                </div>
-                <div class="col-xs-4 col-sm-4">
-                    <img src="/pub/media/images/product/promotion-3.png" />
-                    <p class="tit">PROMOTION #3</p>
-                    <p class="sum">FREE LOCAL DELIVERY TO LOS ANGELES* Not all Areas qualify</p>
-                    <a href="#" >
-                        <div class="promoHomeBt">CLICK FOR DETAILS</div>
-                    </a>
-                </div>
+                <?php } ?>
             </div>
             <div class="clearfix pad50"></div>
 
@@ -91,55 +88,43 @@
                 <p class="recent-tit">Product & Gift</p>
                 <div class="clearfix pad40"></div>
                 <div class="recent-list">
+                    <?php $i = 0;
+                    foreach($news as $newItem) { ?>
+                        <?php if ($i == 0) { ?>
                     <div class="left-recent">
                         <div class="right-rc-item">
                             <div class="img-resp img100">
-                                <img src="/pub/media/images/product/recent-5.png" />
+                                <img src="<?= $newItem->getFeaturedImage() ?>" />
                                 <div class="main-rc-info">
-                                    <span>Free 2'x3' Premium Fabric Banner</span>
-                                    <a href="javascript:void(0);">Details</a>
+                                    <span><?= $newItem->getTitle() ?></span>
+                                    <a href="<?= $newItem->getPostUrl()?>">Details</a>
                                 </div>
                             </div>
                         </div>
                     </div>
+                        <?php } else { ?>
+
+                            <?php if ($i == 1) { ?>
                     <div class="right-recent">
+                            <?php } ?>
+
                         <div class="rc-item">
                             <div class="img-resp img100">
-                                <img src="/pub/media/images/product/recent-1.png" />
+                                <img src="<?= $newItem->getFeaturedImage() ?>" />
                             </div>
-                            <p class="tit">News 1</p>
+                            <p class="tit"><?= $newItem->getTitle() ?></p>
                             <div class="main-bt">
-                                <a href="javascript:void(0);"><span>Details</span></a>
+                                <a href="<?= $newItem->getPostUrl()?>"><span>Details</span></a>
                             </div>
                         </div>
-                        <div class="rc-item">
-                            <div class="img-resp img100">
-                                <img src="/pub/media/images/product/recent-2.png" />
-                            </div>
-                            <p class="tit">News 2</p>
-                            <div class="main-bt">
-                                <a href="javascript:void(0);"><span>Details</span></a>
-                            </div>
-                        </div>
-                        <div class="rc-item">
-                            <div class="img-resp img100">
-                                <img src="/pub/media/images/product/recent-3.png" />
-                            </div>
-                            <p class="tit">News 3</p>
-                            <div class="main-bt">
-                                <a href="javascript:void(0);"><span>Details</span></a>
-                            </div>
-                        </div>
-                        <div class="rc-item">
-                            <div class="img-resp img100">
-                                <img src="/pub/media/images/product/recent-4.png" />
-                            </div>
-                            <p class="tit">News 4</p>
-                            <div class="main-bt">
-                                <a href="javascript:void(0);"><span>Details</span></a>
-                            </div>
-                        </div>
+
+                            <?php if ($i == 4 || ($i + 1) == count($newItem)) { ?>
                     </div>
+                            <?php } ?>
+
+                        <?php } ?>
+                    <?php $i++; } ?>
+
                 </div>
             </div>
 
