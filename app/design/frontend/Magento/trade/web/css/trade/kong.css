@@ -116,7 +116,6 @@
     padding: 20px 10px;
 }
 
-
 #topContentHome .odd .img {
     background: rgba(0, 0, 0, 0.1);
 }
@@ -177,7 +176,6 @@
     margin: 0;
 }
 
-
 @media only screen and (max-width: 767px) {
     #topContentHome .item {
         display: table-row;
@@ -194,7 +192,7 @@
     height: 100%;
     top: 0;
     right: 0;
-    background: rgba(0,0,0,0.2);
+    background: rgba(0, 0, 0, 0.2);
 }
 
 .btHomeSlider {
@@ -204,12 +202,15 @@
     top: 0;
     z-index: 99;
 }
+
 .prevButtonWrap {
     left: 0;
 }
+
 .nextButtonWrap {
     right: 0;
 }
+
 .btHomeSlider > span {
     display: block;
     position: relative;
@@ -217,7 +218,7 @@
     height: 50px;
     top: 50%;
     margin-top: -25px;
-    background: rgba(0,0,0,0.3);
+    background: rgba(0, 0, 0, 0.3);
 }
 
 .btHomeSlider > span:after {
@@ -233,8 +234,8 @@
 }
 
 .prevButtonWrap > span:after {
-    -ms-transform:rotate(-45deg);
-    -webkit-transform:rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
     transform: rotate(-45deg);
     left: 18px;
 }
@@ -292,6 +293,7 @@ a.clickHereHS {
         font-size: 24px;
     }
 }
+
 /* # Home Slider */
 
 /* Promotion */
@@ -707,7 +709,6 @@ a.clickHereHS {
 /* # Header */
 
 /* Product List page */
-
 /* left Menu - category page */
 .titleLeftSidebar {
     padding: 7px 15px;
@@ -855,6 +856,151 @@ a.clickHereHS {
     }
 }
 
-/* left Menu - category page */
+/* # left Menu - category page */
 
-/* # Product List page */
+.products .product-items {
+    margin: 0 -10px !important;
+    overflow: hidden;
+}
+
+.products-grid .product-item {
+    width: 33.3333% !important;
+    padding: 10px !important;
+    margin: 0 !important;
+}
+
+.products-list .product-item-info {
+    width: 100%;
+    text-align: center;
+    display: table;
+}
+
+.products-list .product-item {
+    width: 50%;
+    padding: 10px !important;
+    margin: 0;
+    display: inline-block;
+}
+
+.products-list .product-item-photo {
+    padding: 0 20px 0 0;
+    vertical-align: top;
+    margin: 0;
+    width: 40%;
+    display: table-cell;
+}
+
+.products-list .product-item-photo .product-image-container {
+    max-width: 100%;
+    width: 100% !important;
+}
+
+.products-list .product-item-details {
+    vertical-align: middle;
+    display: table-cell;
+    text-align: left;
+}
+
+.page-products .product-item-info {
+    width: 100%;
+    text-align: center;
+}
+
+.page-products .product-item-name > a {
+    color: #999
+}
+
+.product-image-container {
+    width: 100% !important;
+}
+
+.product-image-photo {
+    width: 100%;
+}
+
+/* Toolbar */
+.toolbar-products {
+    padding: 0;
+}
+
+.toolbar-products .pages, .products.wrapper ~ .toolbar .pages {
+    float: right;
+    display: inline-block;
+}
+
+.toolbar-sorter {
+    float: left;
+    padding: 3px 20px 0 0;
+}
+
+.page-products .toolbar .limiter, .products.wrapper ~ .toolbar .limiter {
+    float: left;
+    display: inline-block;
+    padding: 3px 0 0;
+}
+
+#toolbar-amount {
+    padding: 6px 20px 0 0;
+}
+
+.pages a.page {
+    color: #444 !important;
+    font-weight: normal;
+}
+
+.pages strong.page, .pages a.page:hover {
+    color: #ff5f2b;
+    font-weight: normal;
+    font-size: 14px;
+}
+
+.pages .action {
+    border: none;
+    margin: 0 !important;
+}
+
+.pages .action.next:before {
+    -webkit-font-smoothing: antialiased;
+    color: #444;
+    content: '';
+    vertical-align: middle;
+    text-align: center;
+    width: 0;
+    height: 0;
+    margin: -2px 0 0;
+    display: inline-block;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 7px solid;
+}
+
+.pages .action.previous:before {
+    -webkit-font-smoothing: antialiased;
+    color: #444;
+    content: '';
+    vertical-align: middle;
+    text-align: center;
+    width: 0;
+    height: 0;
+    margin: -2px 0 0;
+    display: inline-block;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-right: 7px solid;
+}
+
+.pages .items {
+    letter-spacing: 2px;
+}
+
+.pages .item {
+    font-size: 14px;
+}
+
+@media only screen and (max-width: 767px) {
+    .products-grid .product-item {
+        width: 50% !important;
+    }
+}
+
+/* # Product List page - category page */
