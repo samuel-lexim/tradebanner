@@ -18,6 +18,7 @@ use Magento\Catalog\Model\Product\ProductList\Toolbar;
             <?php include ($block->getTemplateFile('Magento_Catalog::product/list/toolbar/sorter.phtml')) ?>
         <?php endif; ?>
 
+        <div class="clearfix" id="breakToolbar"></div>
         <?php include ($block->getTemplateFile('Magento_Catalog::product/list/toolbar/limiter.phtml')) ?>
 
         <?= $block->getPagerHtml() ?>
