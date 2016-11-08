@@ -585,6 +585,7 @@ a.clickHereHS {
     width: 50px;
     height: 40px;
     background: url('/pub/media/images/header/icon-search.png') no-repeat 100% 50%;
+    z-index: 60;
 }
 
 #topSearchWrap > .block-content {
