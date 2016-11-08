@@ -1,4 +1,9 @@
-<!-- $ block->getCopyright() -->
+<?php
+$_objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$newsCat = $_objectManager->create('Magefan\Blog\Model\Category')->load('news');
+$news = $_objectManager->create('Magefan\Blog\Model\ResourceModel\Post\Collection')
+    ->addActiveFilter()->addCategoryFilter($newsCat)->setOrder('creation_time', 'DESC')->setPageSize(6);
+?>
 
 <div class="button-to-top">
     <a href="#"><img src="/pub/media/images/button-to-top.png"></a>
@@ -41,21 +46,24 @@
                     <p>RECENT SPECIALS</p>
                     <img src="/pub/media/images/icon/footer-line.png">
                 </div>
+                <?php foreach($news as $item) { ?>
                 <div class="footer-detail">
-                    <p>Frequently Asked Questions</p>
-                    July 12, 2016.</div>
-                <div class="footer-detail">
-                    <p>Die-Cut Templates</p>
-                    May 12, 2016</div>
-                <div class="footer-detail">
-                    <p>Turnaround Times</p>
-                    March 3, 2016</div>
-                <div class="footer-detail">
-                    <p>Local Delivery Changes</p>
-                    June 11, 2015</div>
-                <div class="footer-detail">
-                    <p>New File Upload Server</p>
-                    February 27, 2015</div>
+                    <a href="<?= $item->getPostUrl() ?>"><p><?= $item->getTitle() ?></p></a>
+                    <?php
+                    $d = "";
+                    if (!is_null($item->getCreationTime())) {
+                        $date = new DateTime($item->getCreationTime());
+                        $d = $date->format('F d, Y');
+                    }
+                    echo $d;
+                    ?>
+                </div>
+                <?php } ?>
+
+
+<!--                <div class="footer-detail">-->
+<!--                    <p>New File Upload Server</p>-->
+<!--                    February 27, 2015</div>-->
             </div>
             <div class="col-xs-12 col-sm-4">
                 <div class="footer-header">

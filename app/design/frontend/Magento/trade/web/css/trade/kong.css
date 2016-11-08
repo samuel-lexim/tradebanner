@@ -60,6 +60,10 @@
     padding-bottom: 100%;
 }
 
+p {
+    margin: 0;
+}
+
 /* Layout */
 
 #maincontent {
@@ -94,6 +98,16 @@
     margin: auto;
 }
 
+@media only screen and (min-width: 768px) and (max-width: 1199px) {
+    .breadcrumbs {
+        padding: 15px 20px;
+    }
+}
+@media only screen and (max-width: 767px) {
+    .breadcrumbs {
+        padding: 15px 10px;
+    }
+}
 /* # breadcrumbs */
 
 /* Home */
@@ -314,6 +328,10 @@ a.clickHereHS {
     padding: 0 0 25px;
 }
 
+#promotionHome .sum p, #promotionHome .sum span {
+    margin: 0;
+}
+
 #promotionHome a {
     text-decoration: none;
 }
@@ -336,6 +354,24 @@ a.clickHereHS {
 #promotionHome .promoHomeBt:hover {
     color: #fff;
     background: #1da1ad;
+}
+
+#promotionHome img {
+    width: 100%;
+}
+
+@media only screen and (max-width: 767px) {
+    #promotionHome .tit {
+        padding: 10px 0;
+    }
+
+    #promotionHome .sum {
+        padding: 0 0 10px;
+    }
+
+    #promotionHome .promoHomeBt {
+        margin-bottom: 20px
+    }
 }
 
 /* Recent product */
@@ -443,6 +479,16 @@ a.clickHereHS {
     border-radius: 5px;
 }
 
+@media only screen and (max-width: 767px) {
+    .left-recent, .right-recent {
+        width: 100%;
+    }
+
+    .right-rc-item {
+        margin-bottom: 15px;
+    }
+}
+
 /* # Recent Product */
 
 /* left Home Menu */
@@ -487,6 +533,10 @@ a.clickHereHS {
 }
 
 /* Header */
+.page-header {
+    border: none;
+    margin: 0;
+}
 .header2.content3 {
     padding-top: 20px;
 }
@@ -526,6 +576,10 @@ a.clickHereHS {
     margin: 0;
 }
 
+.nav-toggle {
+    display: none;
+}
+
 /* upload link */
 #uploadTopMenu {
     float: right;
@@ -556,6 +610,7 @@ a.clickHereHS {
 /* Mini cart */
 #minicart-header {
     z-index: 40;
+    margin: 0;
 }
 
 #minicart-header .action.showcart:before {
@@ -706,7 +761,33 @@ a.clickHereHS {
     width: 100%;
 }
 
+@media only screen and (max-width: 767px) {
+    #topMenuNav {
+        clear: both;
+    }
+    .logo {
+        clear: both;
+        margin: 0 auto;
+    }
+    #topSearchWrap {
+        clear: both;
+        float: right;
+    }
+    .logo {
+        clear: both;
+        margin: 0 auto;
+        float: none;
+    }
+    .logo img {
+        margin: 0 auto;
+        max-height: 100px;
+        width: auto !important;
+    }
+    .header2.content3 { padding-top: 0 }
+}
 /* # Top Menu */
+
+
 /* # Header */
 
 /* Product List page */
@@ -778,7 +859,7 @@ a.clickHereHS {
     line-height: 14px;
     float: right;
     cursor: pointer;
-    text-align: right;
+    text-align: center;
 }
 
 @media only screen and (max-width: 767px) {

@@ -1,133 +1,132 @@
-<div class="">
-    <!-- Slide home    <-->
-
-</div>
-
-
 <div class="row">
-        <div class="col-xs-12 col-sm-3">
-            <?php
-            $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
-            // Get Menu
-            $menu = $objectManager->get('\Magento\Theme\Block\Html\Topmenu');
-            $_menu = $menu->getHtml('level-top', 'submenu');
-            ?>
+    <div class="col-xs-12 col-sm-3 hidden-xs">
+        <?php
+        $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+        // Get Menu
+        $menu = $objectManager->get('\Magento\Theme\Block\Html\Topmenu');
+        $_menu = $menu->getHtml('level-top', 'submenu');
+        ?>
 
-            <ul id="leftHomeMenu"><?= $_menu ?></ul>
-        </div>
+        <ul id="leftHomeMenu"><?= $_menu ?></ul>
+    </div>
 
-        <div class="col-xs-12 col-sm-9">
-            <div id="topContentHome">
-                <div class="item odd">
-                    <div class="inner-wrap">
-                        <div class="img">
-                            <img src="/pub/media/images/home/icon-price.png" />
-                        </div>
-                        <div class="tit">Lower Price</div>
-                        <p class="sum">We 100% guarantee to give the lowest possible price for EVERY product. Not just the banner like other places, but everything is guaranteed.</p>
+    <div class="col-xs-12 col-sm-9">
+        <div id="topContentHome">
+            <div class="item odd">
+                <div class="inner-wrap">
+                    <div class="img">
+                        <img src="/pub/media/images/home/icon-price.png"/>
                     </div>
-                </div>
-                <div class="item even">
-                    <div class="inner-wrap">
-                        <div class="img">
-                            <img src="/pub/media/images/home/icon-quality.png" />
-                        </div>
-                        <div class="tit">Premium Quality</div>
-                        <p class="sum">Not like other printing companies, we use MADE IN USA ink and premium materials only. You will be amazed with TradeBanner's final product.</p>
-                    </div>
-                </div>
-                <div class="item odd">
-                    <div class="inner-wrap">
-                        <div class="img">
-                            <img src="/pub/media/images/home/icon-broker.png" />
-                        </div>
-                        <div class="tit">Broker Friendly</div>
-                        <p class="sum">Our biggest vision is to support broken & wholesalers. When you succeed, we succeed. Not only we will have best price and quality, but we give 100% support for any of your custom job.<br>Just talk to us.</p>
-                    </div>
-                </div>
-                <div class="item even">
-                    <div class="inner-wrap">
-                        <div class="img">
-                            <img src="/pub/media/images/home/icon-order.png" />
-                        </div>
-                        <div class="tit">Custom Orders</div>
-                        <p class="sum">From 1 print of custom job or to 1,000 pieces of custom print, we will work with you. Just talk to our staff for your unordinary custom job.<br>Just talk to us.</p>
-                    </div>
+                    <div class="tit">Lower Price</div>
+                    <p class="sum">We 100% guarantee to give the lowest possible price for EVERY product. Not just the
+                        banner like other places, but everything is guaranteed.</p>
                 </div>
             </div>
+            <div class="item even">
+                <div class="inner-wrap">
+                    <div class="img">
+                        <img src="/pub/media/images/home/icon-quality.png"/>
+                    </div>
+                    <div class="tit">Premium Quality</div>
+                    <p class="sum">Not like other printing companies, we use MADE IN USA ink and premium materials only.
+                        You will be amazed with TradeBanner's final product.</p>
+                </div>
+            </div>
+            <div class="item odd">
+                <div class="inner-wrap">
+                    <div class="img">
+                        <img src="/pub/media/images/home/icon-broker.png"/>
+                    </div>
+                    <div class="tit">Broker Friendly</div>
+                    <p class="sum">Our biggest vision is to support broken & wholesalers. When you succeed, we succeed.
+                        Not only we will have best price and quality, but we give 100% support for any of your custom
+                        job.<br>Just talk to us.</p>
+                </div>
+            </div>
+            <div class="item even">
+                <div class="inner-wrap">
+                    <div class="img">
+                        <img src="/pub/media/images/home/icon-order.png"/>
+                    </div>
+                    <div class="tit">Custom Orders</div>
+                    <p class="sum">From 1 print of custom job or to 1,000 pieces of custom print, we will work with you.
+                        Just talk to our staff for your unordinary custom job.<br>Just talk to us.</p>
+                </div>
+            </div>
+        </div>
 
-            <div class="clearfix pad50"></div>
+        <div class="clearfix pad50"></div>
 
-            <?php
-            $_objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+        <?php
+        $_objectManager = \Magento\Framework\App\ObjectManager::getInstance();
 
-            $newsCat = $_objectManager->create('Magefan\Blog\Model\Category')->load('news');
-            $proCat = $_objectManager->create('Magefan\Blog\Model\Category')->load('promotion');
-            $news = $_objectManager->create('Magefan\Blog\Model\ResourceModel\Post\Collection')
-                ->addActiveFilter()->addCategoryFilter($newsCat)->setOrder('creation_time', 'DESC')->setPageSize(5);
-            $promotions = $_objectManager->create('Magefan\Blog\Model\ResourceModel\Post\Collection')
-                ->addActiveFilter()->addCategoryFilter($proCat)->setOrder('creation_time', 'DESC')->setPageSize(3);
-            ?>
+        $newsCat = $_objectManager->create('Magefan\Blog\Model\Category')->load('news');
+        $proCat = $_objectManager->create('Magefan\Blog\Model\Category')->load('promotion');
+        $news = $_objectManager->create('Magefan\Blog\Model\ResourceModel\Post\Collection')
+            ->addActiveFilter()->addCategoryFilter($newsCat)->setOrder('creation_time', 'DESC')->setPageSize(5);
+        $promotions = $_objectManager->create('Magefan\Blog\Model\ResourceModel\Post\Collection')
+            ->addActiveFilter()->addCategoryFilter($proCat)->setOrder('creation_time', 'DESC')->setPageSize(3);
+        ?>
 
-            <div class="row" id="promotionHome">
-                <?php foreach($promotions as $proItem) { ?>
-                <div class="col-xs-4 col-sm-4">
-                    <img src="<?= $proItem->getFeaturedImage() ?>" />
+        <div class="row" id="promotionHome">
+            <?php foreach ($promotions as $proItem) { ?>
+                <div class="col-xs-12 col-sm-4">
+                    <img src="<?= $proItem->getFeaturedImage() ?>"/>
                     <p class="tit"><?= $proItem->getTitle() ?></p>
                     <div class="sum"><?= $proItem->getContent() ?></div>
-                    <a href="<?= $proItem->getPostUrl()?>" >
+                    <a href="<?= $proItem->getPostUrl() ?>">
                         <div class="promoHomeBt">CLICK FOR DETAILS</div>
                     </a>
                 </div>
-                <?php } ?>
-            </div>
-            <div class="clearfix pad50"></div>
+            <?php } ?>
+        </div>
+        <div class="clearfix pad50"></div>
 
-            <div id="recent-product">
-                <p class="recent-head">Recent News</p>
-                <p class="recent-tit">Product & Gift</p>
-                <div class="clearfix pad40"></div>
-                <div class="recent-list">
-                    <?php $i = 0;
-                    foreach($news as $newItem) { ?>
-                        <?php if ($i == 0) { ?>
-                    <div class="left-recent">
-                        <div class="right-rc-item">
-                            <div class="img-resp img100">
-                                <img src="<?= $newItem->getFeaturedImage() ?>" />
-                                <div class="main-rc-info">
-                                    <span><?= $newItem->getTitle() ?></span>
-                                    <a href="<?= $newItem->getPostUrl()?>">Details</a>
+        <div id="recent-product">
+            <p class="recent-head">Recent News</p>
+            <p class="recent-tit">Product & Gift</p>
+            <div class="clearfix pad40"></div>
+            <div class="recent-list">
+                <?php $i = 0;
+                foreach ($news as $newItem) { ?>
+                    <?php if ($i == 0) { ?>
+                        <div class="left-recent">
+                            <div class="right-rc-item">
+                                <div class="img-resp img100">
+                                    <img src="<?= $newItem->getFeaturedImage() ?>"/>
+                                    <div class="main-rc-info">
+                                        <span><?= $newItem->getTitle() ?></span>
+                                        <a href="<?= $newItem->getPostUrl() ?>">Details</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                        <?php } else { ?>
+                    <?php } else { ?>
 
-                            <?php if ($i == 1) { ?>
-                    <div class="right-recent">
-                            <?php } ?>
+                        <?php if ($i == 1) { ?>
+                            <div class="right-recent">
+                        <?php } ?>
 
                         <div class="rc-item">
                             <div class="img-resp img100">
-                                <img src="<?= $newItem->getFeaturedImage() ?>" />
+                                <img src="<?= $newItem->getFeaturedImage() ?>"/>
                             </div>
                             <p class="tit"><?= $newItem->getTitle() ?></p>
                             <div class="main-bt">
-                                <a href="<?= $newItem->getPostUrl()?>"><span>Details</span></a>
+                                <a href="<?= $newItem->getPostUrl() ?>"><span>Details</span></a>
                             </div>
                         </div>
 
-                            <?php if ($i == 4 || ($i + 1) == count($newItem)) { ?>
-                    </div>
-                            <?php } ?>
-
+                        <?php if ($i == 4 || ($i + 1) == count($newItem)) { ?>
+                            </div>
                         <?php } ?>
-                    <?php $i++; } ?>
 
-                </div>
+                    <?php } ?>
+                    <?php $i++;
+                } ?>
+
             </div>
-
         </div>
     </div>
+</div>
 
