@@ -1,24 +1,29 @@
 .page-title-wrapper {
     display: none;
 }
+
 /************************** FOOTER ******************************/
 #tradeFooter {
     position: relative;
     background: #1a1a1a;
 }
+
 .footer-content {
     padding-top: 30px;
     padding-bottom: 30px;
     color: #949494;
 }
+
 .footer-header {
     color: #1ca1ac;
     font-weight: bold;
 }
+
 .footer-logo {
     padding-top: 10px;
     padding-bottom: 10px;
 }
+
 .footer-logo > img {
     width: 40%;
 }
@@ -27,27 +32,37 @@
     padding-top: 5px;
     padding-bottom: 10px;
 }
+
 .footer-detail img {
     padding-right: 10px;
 }
+
 .footer-detail p {
     font-weight: bold;
     margin-bottom: 0;
 }
-.rated p{
+
+.footer-detail a {
+    color: #aaa;
+}
+
+.rated p {
     font-weight: normal;
 }
+
 .footer-copyright {
     width: 100%;
     height: 50px;
     background: #161616;
     color: #949494;
 }
+
 .copyright-text {
     height: 50px;
     display: flex;
     align-items: center;
 }
+
 .button-to-top {
     position: fixed;
     bottom: 10px;
@@ -64,15 +79,18 @@
 .page-header .wrapper {
     background: #f05624;
 }
+
 .page-header .links a {
     color: #fff;
 }
+
 /************************** REGISTER PAGE ******************************/
 .customer-account-create .action.primary {
     background: #1ca1ac;
     border-radius: 0;
     padding: 10px 30px;
 }
+
 .customer-account-create .legend {
     margin-left: 0;
     border-bottom: #1ca1ac 1px solid;
@@ -80,60 +98,75 @@
     margin-bottom: 10px;
     font-size: 16px;
 }
-.customer-account-create .fieldset
-{
+
+.customer-account-create .fieldset {
     margin: 0;
 }
+
 .customer-account-create .note {
     color: #949494;
 }
+
 .customer-account-create .fieldset > .field:not(.choice) > .label {
     text-align: left;
     float: none;
     padding: 8px 0;
     font-weight: normal;
 }
+
 .customer-account-create .fieldset > .field:not(.choice) > .control {
     float: none;
 }
+
 @media screen and (min-width: 720px) {
     .customer-account-create .fieldset > .field:not(.choice) > .control {
         width: 400px;
     }
+
     .customer-account-create .column:not(.sidebar-main) form .actions-toolbar {
         width: 400px;
     }
 }
-.customer-account-create .fieldset > .field:not(.choice) > .control > input{
+
+.customer-account-create .fieldset > .field:not(.choice) > .control > input {
     height: 40px;
 }
+
 .customer-account-create .fieldset > .field {
     margin: 0;
 }
+
 .customer-account-create .column:not(.sidebar-main) form .actions-toolbar {
     margin-left: 0;
 }
+
 .customer-account-create .actions-toolbar > .primary {
     float: right;
 }
+
 .customer-account-create .actions-toolbar > .secondary {
     float: left;
 }
+
 .customer-account-create .actions-toolbar > .primary .action:last-child {
     margin: 25px 0 125px 0;
 }
+
 .customer-account-create .fieldset > .field {
     margin: 8px 0;
 }
+
 .customer-account-create .fieldset > .field:before {
     width: 0;
     padding: 0;
 }
+
 .login-register-title {
     font-size: 20px;
     font-weight: bold;
     padding: 15px 0;
 }
+
 /************************** LOGIN PAGE ******************************/
 .action.primary {
     background: #1ca1ac;
@@ -141,20 +174,25 @@
     border: none;
     font-weight: normal;
 }
+
 .action.primary:hover {
     background: #1ca1ac;
     border: none;
 }
+
 .action.primary:active {
     background: #1ca1ac;
     border: none;
 }
+
 .block-customer-login .legend {
     font-size: 16px;
 }
+
 .block-customer-login .actions-toolbar .secondary {
     padding-right: 115px;
 }
+
 /************************** CONTACT US PAGE ******************************/
 #map {
     height: 500px;
@@ -162,60 +200,75 @@
     position: absolute;
     left: 0;
 }
+
 .contact-index-index .contact {
     padding: 550px 0 0;
 }
+
 .contact-info {
     color: #949494;
 }
+
 .contact-index-index input {
     height: 40px;
     margin: 15px 0 5px;
 }
+
 .contact-index-index textarea {
     height: 250px;
     margin: 15px 0;
 }
+
 @media screen and (min-width: 960px) {
     .contact-index-index input {
         width: 260px;
     }
+
     .contact-index-index textarea {
         width: 420px;
     }
 }
+
 .contact-index-index .action.primary {
     width: 260px;
     height: 40px;
     margin: 15px 0;
 }
+
 .contact-index-index .column:not(.sidebar-main) form .actions-toolbar {
     margin-left: 0;
 }
+
 .contact-note {
     color: #949494;
     margin-bottom: 60px;
 }
+
 /************************** RECENT NEWS PAGE ******************************/
 .post-categories, .dash, .post-posed-date .label {
     display: none;
 }
+
 .post-holder {
     height: 700px;
     padding: 0;
 }
+
 .post-news-content {
     padding: 0 20px 40px;
     color: #949494;
     text-align: center;
     font-size: 18px;
 }
+
 .post-news-content .post-title {
     font-size: 22px;
 }
+
 .post-news-content .post-item-link {
     color: #949494;
 }
+
 .post-posed-date {
     position: absolute;
     transform: translate(18%, -120%);
@@ -229,9 +282,11 @@
     text-align: center;
     text-transform: uppercase;
 }
+
 .page-layout-2columns-right .column.main {
     width: 100%;
 }
+
 .news-detail-button {
     margin: auto;
     text-align: center;
@@ -242,29 +297,35 @@
     justify-content: center;
     background: #c9c9c9;
 }
+
 .news-detail-button .post-read-more {
     float: none;
     padding: 0 !important;
     color: #ffffff;
 }
+
 .page-layout-2columns-right .sidebar-additional {
     width: 100%;
     padding-left: 0;
     float: left;
     border-bottom: 1px #f5f5f5 solid;
 }
+
 .sidebar-additional .block-title {
     display: none;
 }
+
 .widget.block-categories ul {
     margin: 0;
 }
+
 #accordion-2 li {
     width: 25%;
     float: left;
     margin: 0;
     list-style-type: none;
 }
+
 #accordion-2 li a {
     color: #949494;
     font-size: 18px;
