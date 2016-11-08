@@ -13,32 +13,32 @@ $collection = $banners->getAllBannerByType($banners::TYPE_HOME_BANNER);
 <?php if (isset($collection) && count($collection) > 0) { ?>
     <?php $size = count($collection); ?>
     <div class="clearfix"></div>
-    <div id="bannerHS" class="carousel slide" data-ride="carousel" data-interval="5000">
+    <div id="bannerHS" class="carousel slide" data-ride="carousel" data-interval="false">
         <!-- Wrapper for slides -->
         <div class="carousel-inner" role="listbox">
             <?php $i = 1; ?>
             <?php foreach($collection as $bn) { ?>
                 <div class="item <?= ($i == 1) ? 'active':'' ?>">
-                    <a href="<?=$bn['link']?>">
-                        <img src="<?= $mediaUrl . $bn['image']?>" />
-                    </a>
+                    <img src="<?= $mediaUrl . $bn['image']?>" />
+                    <div class="innerHS">
+                        <p class="titHS"><?= $bn['name'] ?></p>
+                        <p class="sumHS"><?= $bn['details'] ?></p>
+                        <a href="<?=$bn['link']?>" class="clickHereHS">CLICK HERE</a>
+                    </div>
                 </div>
                 <?php $i++; ?>
             <?php } ?>
         </div>
         <!-- Controls -->
         <a href="#bannerHS" role="button" data-slide="prev">
-            <div class="prevButtonWrap" aria-hidden="true">
-
-            </div>
+            <div class="prevButtonWrap btHomeSlider" aria-hidden="true"><span></span></div>
         </a>
         <a href="#bannerHS" role="button" data-slide="next">
-            <div class="nextButtonWrap" aria-hidden="true">
-            </div>
+            <div class="nextButtonWrap btHomeSlider" aria-hidden="true"><span></span></div>
         </a>
 
         <!-- Indicators -->
-        <ol class="carousel-indicators">
+        <ol class="carousel-indicators hidden">
             <?php $i =0 ?>
             <?php foreach($collection as $bn) { ?>
                 <li data-target="#bannerHS" data-slide-to="<?= $i ?>" class="<?= ($i == 0) ? 'active':'' ?>"></li>
@@ -46,18 +46,6 @@ $collection = $banners->getAllBannerByType($banners::TYPE_HOME_BANNER);
             <?php } ?>
         </ol>
     </div>
-
+    <div class="clearfix pad40"></div>
 <?php } ?>
 
-<style type="text/css">
-    #bannerHS {
-        margin-top: 96px;
-    }
-
-    @media only screen and (min-width: 1200px) and (max-width: 1340px) {
-        #bannerHS {
-            margin-top: 126px;
-        }
-    }
-
-</style>

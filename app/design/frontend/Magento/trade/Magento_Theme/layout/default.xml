@@ -5,27 +5,32 @@
  * See COPYING.txt for license details.
  */
 -->
-<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceContainer name="header.container">
             <container name="header.panel.wrapper" htmlClass="panel wrapper" htmlTag="div" before="-"/>
         </referenceContainer>
 
         <!-- change Class container -->
-        <referenceContainer name="header.panel" label="Page Header Panel" htmlTag="div" htmlClass="panel2 header2 container" />
-        <referenceContainer name="header-wrapper" label="Page Header" as="header-wrapper" htmlTag="div" htmlClass="header2 content3 container" />
+        <referenceContainer name="header.panel" label="Page Header Panel" htmlTag="div"
+                            htmlClass="panel2 header2 container"/>
+        <referenceContainer name="header-wrapper" label="Page Header" as="header-wrapper" htmlTag="div"
+                            htmlClass="header2 content3 container"/>
         <!-- # change Class container -->
 
         <move element="header.panel" destination="header.panel.wrapper"/>
         <move element="top.links" destination="header.panel" after="-"/>
         <move element="catalog.topnav" destination="store.menu" before="-"/>
         <referenceContainer name="page.top">
-            <block class="Magento\Framework\View\Element\Template" name="navigation.sections" before="-" template="Magento_Theme::html/sections.phtml">
+            <block class="Magento\Framework\View\Element\Template" name="navigation.sections" before="-"
+                   template="Magento_Theme::html/sections.phtml">
                 <arguments>
                     <argument name="group_name" xsi:type="string">navigation-sections</argument>
                     <argument name="group_css" xsi:type="string">nav-sections</argument>
                 </arguments>
-                <block class="Magento\Framework\View\Element\Template" name="store.menu" group="navigation-sections" template="Magento_Theme::html/container.phtml">
+                <block class="Magento\Framework\View\Element\Template" name="store.menu" group="navigation-sections"
+                       template="Magento_Theme::html/container.phtml">
                     <arguments>
                         <argument name="title" translate="true" xsi:type="string">Menu</argument>
                     </arguments>
@@ -37,16 +42,19 @@
                         <argument name="text" xsi:type="string"><![CDATA[<!-- Account links -->]]></argument>
                     </arguments>
                 </block>
-                <block class="Magento\Framework\View\Element\Template" name="store.settings" group="navigation-sections" template="Magento_Theme::html/container.phtml">
+                <block class="Magento\Framework\View\Element\Template" name="store.settings" group="navigation-sections"
+                       template="Magento_Theme::html/container.phtml">
                     <arguments>
                         <argument name="title" translate="true" xsi:type="string">Settings</argument>
                     </arguments>
-                    <block class="Magento\Store\Block\Switcher" name="store.settings.language" template="switch/languages.phtml">
+                    <block class="Magento\Store\Block\Switcher" name="store.settings.language"
+                           template="switch/languages.phtml">
                         <arguments>
                             <argument name="id_modifier" xsi:type="string">nav</argument>
                         </arguments>
                     </block>
-                    <block class="Magento\Directory\Block\Currency" name="store.settings.currency" before="store_language" template="currency.phtml">
+                    <block class="Magento\Directory\Block\Currency" name="store.settings.currency"
+                           before="store_language" template="currency.phtml">
                         <arguments>
                             <argument name="id_modifier" xsi:type="string">nav</argument>
                         </arguments>
@@ -55,32 +63,42 @@
             </block>
         </referenceContainer>
 
-        <referenceBlock name="wish-list-link" remove="true" />
-        <referenceBlock name="wishlist_sidebar" remove="true" />
+        <referenceBlock name="wish-list-link" remove="true"/>
+        <referenceBlock name="wishlist_sidebar" remove="true"/>
         <referenceBlock name="catalog.compare.link" remove="true"/>
-        <referenceBlock name="catalog.compare.sidebar" remove="true" />
+        <referenceBlock name="catalog.compare.sidebar" remove="true"/>
 
+        <!-- Footer -->
+        <referenceContainer name="footer" remove="true"/>
+        <move element="copyright" destination="before.body.end"/>
 
-        <referenceContainer name="footer" remove="true" />
-        <move element="copyright" destination="before.body.end" />
-
+        <!-- Header -->
         <referenceBlock name="advanced-search-link" remove="true"/>
-        <move element="top.search" destination="header-wrapper" before="minicart" />
-        <move element="catalog.topnav" destination="header-wrapper" after="-" />
-        <block class="Magento\Framework\View\Element\Template" name="file.toplink" template="Magento_Theme::html/uploadfile.phtml"/>
-        <move element="file.toplink" destination="header-wrapper" after="minicart" />
-        <block class="Magento\Framework\View\Element\Template" name="top.right.info" template="Magento_Theme::html/topRightInfo.phtml"/>
-        <move element="top.right.info" destination="header.panel" after="-" />
+        <move element="top.search" destination="header-wrapper" before="minicart"/>
+        <move element="catalog.topnav" destination="header-wrapper" after="-"/>
+        <block class="Magento\Framework\View\Element\Template" name="file.toplink"
+               template="Magento_Theme::html/uploadfile.phtml"/>
+        <move element="file.toplink" destination="header-wrapper" after="minicart"/>
+        <block class="Magento\Framework\View\Element\Template" name="top.right.info"
+               template="Magento_Theme::html/topRightInfo.phtml"/>
+        <move element="top.right.info" destination="header.panel" after="-"/>
 
         <!-- home -->
-        <block class="Magento\Framework\View\Element\Template" name="home.banner" template="Magento_Theme::html/homebanner.phtml"/>
-        <block class="Magento\Framework\View\Element\Template" name="home.page" template="Magento_Theme::html/homepage.phtml"/>
+        <block class="Magento\Framework\View\Element\Template" name="home.banner"
+               template="Magento_Theme::html/homebanner.phtml"/>
+        <!--  <move element="home.banner" destination="columns.top" /> -->
+        <block class="Magento\Framework\View\Element\Template" name="home.page"
+               template="Magento_Theme::html/homepage.phtml"/>
         <!-- {{block class="Magento\Framework\View\Element\Template" name="home_static" template="Magento_Theme::html/homepage.phtml"}} -->
+
+        <!-- Category page -->
+        <referenceBlock name="catalog.leftnav" remove="true"/>
 
         <!-- JS -->
         <block class="Magento\Framework\View\Element\Text" name="bootstrap">
             <arguments>
-                <argument name="text" xsi:type="string"><![CDATA[<script type="text/javascript" src="/pub/js/carousel.js"></script>]]></argument>
+                <argument name="text" xsi:type="string">
+                    <![CDATA[<script type="text/javascript" src="/pub/js/carousel.js"></script>]]></argument>
             </arguments>
         </block>
         <move element="bootstrap" destination="before.body.end"/>
