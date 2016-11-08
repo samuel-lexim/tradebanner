@@ -95,7 +95,14 @@
 }
 .customer-account-create .fieldset > .field:not(.choice) > .control {
     float: none;
-    width: 400px;
+}
+@media screen and (min-width: 720px) {
+    .customer-account-create .fieldset > .field:not(.choice) > .control {
+        width: 400px;
+    }
+    .customer-account-create .column:not(.sidebar-main) form .actions-toolbar {
+        width: 400px;
+    }
 }
 .customer-account-create .fieldset > .field:not(.choice) > .control > input{
     height: 40px;
@@ -104,7 +111,6 @@
     margin: 0;
 }
 .customer-account-create .column:not(.sidebar-main) form .actions-toolbar {
-    width: 400px;
     margin-left: 0;
 }
 .customer-account-create .actions-toolbar > .primary {
@@ -163,14 +169,20 @@
     color: #949494;
 }
 .contact-index-index input {
-    width: 260px;
     height: 40px;
     margin: 15px 0 5px;
 }
 .contact-index-index textarea {
-    width: 420px;
     height: 250px;
     margin: 15px 0;
+}
+@media screen and (min-width: 960px) {
+    .contact-index-index input {
+        width: 260px;
+    }
+    .contact-index-index textarea {
+        width: 420px;
+    }
 }
 .contact-index-index .action.primary {
     width: 260px;

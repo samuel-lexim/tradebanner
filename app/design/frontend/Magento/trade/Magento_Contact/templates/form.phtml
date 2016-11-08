@@ -15,7 +15,7 @@
       method="post"
       data-hasrequired="<?= __('* Required Fields') ?>"
       data-mage-init='{"validation":{}}'>
-    <div class="col-xs-12 col-sm-4">
+    <div class="col-xs-12 col-lg-4">
         <div class="contact-info">
             <div class="footer-detail">
                 <img src="/pub/media/images/icon/icon-footer-home.png">
@@ -38,9 +38,9 @@
             </div>
         </div>
     </div>
-    <div class="col-xs-12 col-sm-8">
+    <div class="col-xs-12 col-lg-8">
         <fieldset class="fieldset">
-            <div class="col-xs-12 col-sm-8">
+            <div class="col-xs-12 col-lg-8">
                 <div class="field comment required">
                     <div class="control">
                         <textarea name="comment" id="comment" placeholder=" Message *" title="<?= __('What’s on your mind?') ?>" class="input-text" cols="5" rows="3" data-validate="{required:true}"></textarea>
@@ -51,7 +51,7 @@
                     <p>Thanks. Items marked with an asterisk (*) are required fields.</p>
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-4">
+            <div class="col-xs-12 col-lg-4">
                 <div class="field name required">
                     <div class="control">
                         <input name="name" id="name" placeholder=" Enter your name *" title="<?= __('Name') ?>" value="<?php echo $block->escapeHtml($this->helper('Magento\Contact\Helper\Data')->getUserName()) ?>" class="input-text" type="text" data-validate="{required:true}"/>
