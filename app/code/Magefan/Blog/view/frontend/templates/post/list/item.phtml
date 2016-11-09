@@ -18,8 +18,7 @@
     $_postUrl = $_post->getPostUrl();
     $_postName = $block->escapeHtml($_post->getTitle(), null, true);
 ?>
-<li class="post-holder post-holder-<?php echo $_post->getId() ?>">
-
+<div class="post-holder-<?php echo $_post->getId() ?>">
     <div class="post-content">
         <?php if ($featuredImage = $_post->getFeaturedImage()) { ?>
         <div class="post-ftimg-hld">
@@ -41,17 +40,14 @@
 
             <div class="post-text-hld clearfix">
                 <?php echo implode(' ', array_slice(explode(' ', $block->getShorContent()), 0, 30)); ?>
-                <?php echo '...' ?>
             </div>
-            <div class="news-detail-button">
-                <a class="post-read-more" href="<?php echo $_postUrl ?>" title="<?php echo $_postName ?>"
-                   >
-                   <?php echo __('Details') ?>
-                </a>
-            </div>
+
+            <a class="post-read-more" href="<?php echo $_postUrl ?>" title="<?php echo $_postName ?>"
+               >
+               <?php echo __('Details') ?>
+            </a>
+
         </div>
     </div>
-    <div class="post-footer">
-
-    </div>
-</li>
+    <div class="post-footer"></div>
+</div>

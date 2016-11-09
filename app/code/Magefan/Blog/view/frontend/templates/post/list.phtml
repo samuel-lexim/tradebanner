@@ -25,22 +25,33 @@ $_postCollection = $block->getPostCollection();
     <?php echo $block->getAdditionalHtml() ?>
     <div class="post-list-wrapper">
         <?php $iterator = 1; ?>
-        <div class="post-list row">
-            <?php foreach ($_postCollection as $_post): ?>
-                <div class="col-xs-12 col-sm-6 col-md-4 recent-news-item">
+        <div class="row">
+            <?php
+            $i = 1;
+            foreach ($_postCollection as $_post) { ?>
+            <?php if($i % 4 == 1) { ?>
+            <div class="row-height">
+            <?php } ?>
+                <div class="col-xs-6 col-sm-6 col-md-3 recent-news-item col-height">
+                    <div class="inside-full-height">
                     <?php echo $block->getPostHtml($_post) ?>
+                    </div>
                 </div>
-            <?php endforeach; ?>
+            <?php if($i % 4 == 0 || $i == count($_postCollection)) { ?>
+            </div>
+            <?php } ?>
+            <?php $i++; } ?>
+            </div>
         </div>
     </div>
 
     <?php echo $block->getToolbarHtml() ?>
 
-    <script type="text/javascript">var addthis_config = {"data_track_clickback":false};</script>
-    <script type="text/javascript" async src="//s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4def63cd3cf37569"></script>
-    <script type="text/javascript">
-        var addthis_config = {
-            ui_language: "en"
-        }
-    </script>
+<!--    <script type="text/javascript">var addthis_config = {"data_track_clickback":false};</script>-->
+<!--    <script type="text/javascript" async src="//s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4def63cd3cf37569"></script>-->
+<!--    <script type="text/javascript">-->
+<!--        var addthis_config = {-->
+<!--            ui_language: "en"-->
+<!--        }-->
+<!--    </script>-->
 <?php endif; ?>
