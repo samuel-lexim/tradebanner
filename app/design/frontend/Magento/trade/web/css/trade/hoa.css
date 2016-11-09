@@ -268,7 +268,7 @@
     color: #949494;
 }
 
-.post-posed-date {
+.blog-index-index .post-posed-date, .blog-category-view .post-posed-date {
     position: absolute;
     transform: translate(18%, -120%);
     width: 70px;
