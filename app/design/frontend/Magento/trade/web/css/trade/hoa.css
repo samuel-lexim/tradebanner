@@ -335,16 +335,9 @@
     font-size: 18px;
 }
 
-.post-list-wrapper .row-height {
+.post-list-wrapper img { width: 100%; }
+
+.post-list-wrapper .inner {
+    background: #fafafa;
     margin: 0 0 20px;
 }
-
-.post-list-wrapper .col-height {
-    vertical-align: top;
-}
-
-.post-list-wrapper .inside-full-height {
-    background: #fafafa;
-}
-
-.post-list-wrapper img { width: 100%; }

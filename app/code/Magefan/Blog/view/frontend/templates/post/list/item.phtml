@@ -18,7 +18,7 @@
     $_postUrl = $_post->getPostUrl();
     $_postName = $block->escapeHtml($_post->getTitle(), null, true);
 ?>
-<div class="post-holder-<?php echo $_post->getId() ?>">
+<div class="inner post-holder-<?php echo $_post->getId() ?>">
     <div class="post-content">
         <?php if ($featuredImage = $_post->getFeaturedImage()) { ?>
         <div class="post-ftimg-hld">
