@@ -18,22 +18,22 @@
     $_postUrl = $_post->getPostUrl();
     $_postName = $block->escapeHtml($_post->getTitle(), null, true);
 ?>
-<div class="inner post-holder-<?php echo $_post->getId() ?>">
+<div class="inner post-holder-<?= $_post->getId() ?>">
     <div class="post-content">
         <?php if ($featuredImage = $_post->getFeaturedImage()) { ?>
         <div class="post-ftimg-hld">
-            <a href="<?php echo $_postUrl ?>" title="<?php echo $_postName ?>">
-                <img src="<?php echo $featuredImage ?>" alt="<?php echo $_postName ?>" />
+            <a href="<?= $_postUrl ?>" title="<?= $_postName ?>">
+                <img src="<?= $featuredImage ?>" alt="<?= $_postName ?>" />
             </a>
-            <?php echo $this->getInfoHtml() ?>
+            <?= $this->getInfoHtml() ?>
         </div>
         <?php } ?>
         <div class="post-news-content">
             <div class="post-title-holder clearfix">
                 <h2 class="post-title">
                     <a class="post-item-link"
-                       href="<?php echo $_postUrl ?>">
-                        <?php echo $_postName; ?>
+                       href="<?= $_postUrl ?>">
+                        <?= $_postName; ?>
                     </a>
                 </h2>
             </div>
@@ -41,15 +41,12 @@
             <div class="post-text-hld clearfix">
                 <?php $shortNewsContent = implode(' ', array_slice(explode(' ', $block->getShorContent()), 0, 30)); ?>
                 <?php if(str_word_count($block->getShorContent()) > 30) $shortNewsContent = $shortNewsContent . ' ...'; ?>
-                <?php echo $shortNewsContent; ?>
+                <?= $shortNewsContent; ?>
             </div>
 
-            <a class="post-read-more" href="<?php echo $_postUrl ?>" title="<?php echo $_postName ?>"
-               >
-               <?php echo __('Details') ?>
+            <a class="post-read-more" href="<?= $_postUrl ?>" title="<?= $_postName ?>">
+               <?= __('Details') ?>
             </a>
-
         </div>
-    </div>
-    <div class="post-footer"></div>
+    </div> 
 </div>
