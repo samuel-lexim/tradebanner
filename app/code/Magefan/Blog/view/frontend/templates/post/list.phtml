@@ -17,7 +17,7 @@ use Magento\Framework\App\Action\Action;
  */
 ?>
 <?php
-$_postCollection = $block->getPostCollection();
+$_postCollection = $block->getPostCollection('title', 'DESC');
 ?>
 <?php if (!$_postCollection->count()): ?>
     <div class="message info empty">
