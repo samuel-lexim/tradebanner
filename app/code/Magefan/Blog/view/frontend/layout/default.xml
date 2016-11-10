@@ -16,7 +16,5 @@
                 <!--</arguments>-->
             <!--</block>-->
         <!--</referenceBlock>-->
-
-        <referenceBlock name="category.menu" remove="true" />
     </body>
 </page>

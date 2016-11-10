@@ -1,0 +1,9 @@
+
+<?php if ($detailedInfoGroup = $block->getGroupChildNames('detailed_info', 'getChildHtml')) { ?>
+    <div class="descriptionBlock">
+        <p class="headingDP">Product Description</p>
+        <?php $layout = $block->getLayout();
+        $description = $layout->renderElement('product.info.description'); ?>
+        <div class="desData"><?= $description ?></div>
+    </div>
+<?php } ?>

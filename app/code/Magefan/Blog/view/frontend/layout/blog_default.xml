@@ -42,6 +42,6 @@
             <referenceBlock name="wishlist_sidebar" remove="true"/>
         </referenceContainer>
         <move element="main" destination="columns" after="-"/>
-
+        <referenceBlock name="category.menu" remove="true" />
     </body>
 </page>
