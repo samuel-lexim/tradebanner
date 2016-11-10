@@ -1172,4 +1172,104 @@ a.clickHereHS {
     margin: 0 0 20px;
 }
 
+/* media */
+.fotorama__stage {
+    margin: 0 0 20px;
+}
+.fotorama__stage__frame .fotorama__img {
+    width: 100%;
+}
+
+/* Dot */
+.fotorama__nav--dots {
+    width: 100% !important;
+    height: 50px !important;
+}
+
+.fotorama__nav--dots .fotorama__nav__frame {
+    width: 30px;
+}
+
+.fotorama__dot {
+    border: 1px solid #777;
+    display: block;
+    left: 0;
+    position: relative;
+    top: 20px;
+    width: 12px;
+    height: 12px;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -o-border-radius: 50%;
+    border-radius: 50%;
+}
+
+/* Controller */
+.fotorama__arr .fotorama__arr__arr {
+    background: none;
+    position: absolute;
+    content: "";
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border-left: 2px solid #fff;
+    border-top: 2px solid #fff;
+    top: 50%;
+    left: 50%;
+    margin-top: -15px;
+    margin-left: -15px;
+}
+
+.fotorama__arr--prev .fotorama__arr__arr {
+    -ms-transform:rotate(-45deg);
+    -webkit-transform:rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+
+.fotorama__arr--next .fotorama__arr__arr {
+    -ms-transform:rotate(135deg);
+    -webkit-transform:rotate(135deg);
+    -moz-transform: rotate(135deg);
+    -o-transform: rotate(135deg);
+    transform: rotate(135deg);
+}
+
+/* Full screen */
+.fotorama--fullscreen {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+.fotorama--fullscreen .fotorama__wrap {
+    width: 100%;
+    height: 100%;
+}
+
+.fotorama--fullscreen .fotorama__stage {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.fotorama--fullscreen .fotorama__stage__frame .fotorama__img {
+    width: auto;
+    max-width: 80%;
+    max-height: 90%;
+}
+
+.fotorama--fullscreen .fotorama__fullscreen-icon {
+    background: url('/pub/media/images/icon/white.close.png') no-repeat center;
+    background-size: cover;
+    top: 20px;
+    right: 22px;
+}
+
+@media only screen and (max-width: 767px) {
+    .catalog-product-view #maincontent .mediaDP,
+    .catalog-product-view #maincontent .contentDP {
+        width: 100%;
+        padding: 0;
+    }
+}
 /* # Product detail page */

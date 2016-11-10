@@ -20,14 +20,9 @@ atlassian*
 !/pub/media/images
 !/pub/js
 
-
-/lib/internal
-
-
 /app/*.*
 /app/etc
 /app/design/adminhtml
-
 
 LICENSE
 /bin

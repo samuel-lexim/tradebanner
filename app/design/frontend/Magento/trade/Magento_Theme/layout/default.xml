@@ -98,7 +98,7 @@
         <block class="Magento\Framework\View\Element\Text" name="bootstrap">
             <arguments>
                 <argument name="text" xsi:type="string">
-                    <![CDATA[<script type="text/javascript" src="/pub/js/carousel.js"></script>]]></argument>
+                    <![CDATA[<script type="text/javascript" src="/pub/js/bootstrap.min.js"></script>]]></argument>
             </arguments>
         </block>
         <move element="bootstrap" destination="before.body.end"/>
