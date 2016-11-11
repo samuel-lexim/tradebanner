@@ -17,8 +17,52 @@ use Magento\Framework\App\Action\Action;
  */
 ?>
 <?php
-$_postCollection = $block->getPostCollection('title', 'DESC');
+//$_postCollection = $block->getPostCollection()->setOrder('publish_time', 'DESC');
 ?>
+<!--<body onload="doSortNews();">-->
+<div class="search-bar-news">
+    <h3>Date</h3>
+    <label class="switch">
+        <input type="checkbox" id="search-button-news-1" onchange="doSortNews()">
+        <div class="slider round"></div>
+    </label>
+    <h3>Name</h3>
+    <h3>|</h3>
+    <h3>Desc</h3>
+    <label class="switch">
+        <input type="checkbox" id="search-button-news-2" onchange="doSortNews()">
+        <div class="slider round"></div>
+    </label>
+    <h3>Asc</h3>
+</div>
+<script>
+    function doSortNews() {
+        var a = document.getElementById('search-button-news-1');
+        var b = document.getElementById('search-button-news-2');
+        if (a.checked) {
+            if (b.checked) {
+                alert('1');
+                <?php $_postCollection = $block->getPostCollection()->setOrder('title', 'ASC'); ?>
+                location.reload();
+            } else {
+                alert('2');
+                <?php $_postCollection = $block->getPostCollection()->setOrder('title', 'DESC'); ?>
+                location.reload();
+            }
+        } else {
+            if (b.checked) {
+                alert('3');
+                <?php $_postCollection = $block->getPostCollection()->setOrder('publish_time', 'ASC'); ?>
+                location.reload();
+            } else {
+                alert('4');
+                <?php $_postCollection = $block->getPostCollection()->setOrder('publish_time', 'DESC'); ?>
+                location.reload();
+            }
+        }
+    }
+</script>
+
 <?php if (!$_postCollection->count()): ?>
     <div class="message info empty">
         <div><?php echo __('We can\'t find posts matching the selection.') ?></div>

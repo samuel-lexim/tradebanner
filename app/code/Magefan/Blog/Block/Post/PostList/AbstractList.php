@@ -101,31 +101,5 @@ abstract class AbstractList extends \Magento\Framework\View\Element\Template
 
         return $this->_postCollection;
     }
-    /**
-     * CUSTOMER
-     *
-     * @param $field
-     * @param $direction
-     * @return \Magefan\Blog\Model\ResourceModel\Post\Collection
-     */
-//    protected function _preparePostCollection2($field, $direction)
-//    {
-//        $this->_postCollection = $this->_postCollectionFactory->create()
-//            ->addActiveFilter()
-//            ->addStoreFilter($this->_storeManager->getStore()->getId())
-//            ->setOrder($field, $direction);
-//
-//        if ($this->getPageSize()) {
-//            $this->_postCollection->setPageSize($this->getPageSize());
-//        }
-//    }
-//    public function getPostCollection2($field, $direction)
-//    {
-//        if (is_null($this->_postCollection)) {
-//            $this->_preparePostCollection2($field, $direction);
-//        }
-//
-//        return $this->_postCollection;
-//    }
 
 }
