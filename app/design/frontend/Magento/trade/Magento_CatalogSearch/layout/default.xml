@@ -22,7 +22,5 @@
             </block>
         </referenceBlock>
 
-        <block class="Magento\Framework\View\Element\Template" name="category.menu" template="Magento_Theme::html/product-menu.phtml"/>
-        <move element="category.menu" before="-" destination="div.sidebar.main"/>
     </body>
 </page>

@@ -11,8 +11,10 @@
         <referenceContainer name="product.info.main" htmlTag="div" htmlClass="product-info-main contentDP" />
         <referenceContainer name="product.info.media" htmlTag="div" htmlClass="product media mediaDP" />
 
-        <move element="page.main.title" destination="product.info.main" before="-"/>
+        <block class="Magento\Framework\View\Element\Template" name="category.menu" template="Magento_Theme::html/product-menu.phtml"/>
         <move element="category.menu" destination="columns" before="-" />
+
+        <move element="page.main.title" destination="product.info.main" before="-"/>
         <move element="product.info.media" destination="content" before="-" />
 
     </body>
