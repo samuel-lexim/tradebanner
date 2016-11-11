@@ -17,8 +17,58 @@ use Magento\Framework\App\Action\Action;
  */
 ?>
 <?php
-$_postCollection = $block->getPostCollection('title', 'DESC');
+//$_postCollection = $block->getPostCollection()->setOrder('publish_time', 'DESC');
 ?>
+<!--<body onload="doSortNews();">-->
+<div class="search-bar-news">
+    <h3>Date</h3>
+    <label class="switch">
+        <input type="checkbox" id="search-button-news-1" onchange="doSortNews()">
+        <div class="slider round"></div>
+    </label>
+    <h3>Name</h3>
+    <h3>|</h3>
+    <h3>Desc</h3>
+    <label class="switch">
+        <input type="checkbox" id="search-button-news-2" onchange="doSortNews()">
+        <div class="slider round"></div>
+    </label>
+    <h3>Asc</h3>
+</div>
+<script>
+    function doSortNews() {
+        var a = document.getElementById('search-button-news-1');
+        var b = document.getElementById('search-button-news-2');
+        if (a.checked) {
+            if (b.checked) {
+                window.location.href = "http://tradebanner.vn/promotion-news?field=title&type=ASC";
+                alert($_GET['filed']);
+                <?php $_postCollection = $block->getPostCollection()->setOrder('title', 'ASC'); ?>
+            } else {
+                window.location.href = "http://tradebanner.vn/promotion-news?field=title&type=DESC";
+                alert($_GET['filed']);
+                <?php $_postCollection = $block->getPostCollection()->setOrder('title', 'DESC'); ?>
+            }
+        } else {
+            if (b.checked) {
+                window.location.href = "http://tradebanner.vn/promotion-news?field=publish_time&type=ASC";
+                alert($_GET['filed']);
+                <?php $_postCollection = $block->getPostCollection()->setOrder('publish_time', 'ASC'); ?>
+            } else {
+                window.location.href = "http://tradebanner.vn/promotion-news?field=publish_time&type=DESC";
+                alert($_GET['filed']);
+                <?php $_postCollection = $block->getPostCollection()->setOrder('publish_time', 'DESC'); ?>
+            }
+        }
+    }
+</script>
+<body onload="printscript();">
+<script>
+    function printscript() {
+        alert($_GET['filed']);
+    }
+</script>
+
 <?php if (!$_postCollection->count()): ?>
     <div class="message info empty">
         <div><?php echo __('We can\'t find posts matching the selection.') ?></div>
