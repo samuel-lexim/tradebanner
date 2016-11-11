@@ -41,25 +41,31 @@ use Magento\Framework\App\Action\Action;
         var b = document.getElementById('search-button-news-2');
         if (a.checked) {
             if (b.checked) {
-                alert('1');
+                window.location.href = "http://tradebanner.vn/promotion-news?field=title&type=ASC";
+                alert($_GET['filed']);
                 <?php $_postCollection = $block->getPostCollection()->setOrder('title', 'ASC'); ?>
-                location.reload();
             } else {
-                alert('2');
+                window.location.href = "http://tradebanner.vn/promotion-news?field=title&type=DESC";
+                alert($_GET['filed']);
                 <?php $_postCollection = $block->getPostCollection()->setOrder('title', 'DESC'); ?>
-                location.reload();
             }
         } else {
             if (b.checked) {
-                alert('3');
+                window.location.href = "http://tradebanner.vn/promotion-news?field=publish_time&type=ASC";
+                alert($_GET['filed']);
                 <?php $_postCollection = $block->getPostCollection()->setOrder('publish_time', 'ASC'); ?>
-                location.reload();
             } else {
-                alert('4');
+                window.location.href = "http://tradebanner.vn/promotion-news?field=publish_time&type=DESC";
+                alert($_GET['filed']);
                 <?php $_postCollection = $block->getPostCollection()->setOrder('publish_time', 'DESC'); ?>
-                location.reload();
             }
         }
+    }
+</script>
+<body onload="printscript();">
+<script>
+    function printscript() {
+        alert($_GET['filed']);
     }
 </script>
 
