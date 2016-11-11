@@ -83,6 +83,9 @@
                template="Magento_Theme::html/topRightInfo.phtml"/>
         <move element="top.right.info" destination="header.panel" after="-"/>
 
+        <!-- Message -->
+        <referenceContainer name="page.messages" htmlTag="div" htmlClass="page messages container" />
+
         <!-- home -->
         <block class="Magento\Framework\View\Element\Template" name="home.banner"
                template="Magento_Theme::html/homebanner.phtml"/>

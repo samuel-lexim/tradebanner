@@ -12,16 +12,23 @@
         </referenceBlock>
         <referenceContainer name="content">
 
-            <block class="Magento\Customer\Block\Form\Register" name="customer_form_register" template="form/register.phtml">
-                <container name="form.additional.info" as="form_additional_info"/>
-                <container name="customer.form.register.fields.before" as="form_fields_before" label="Form Fields Before" htmlTag="div" htmlClass="customer-form-before"/>
-            </block>
+            <container name="row.create.page" htmlClass="row" htmlTag="div" after="-">
+                <!-- Register Block -->
+                <block class="Magento\Customer\Block\Form\Register" name="customer_form_register" template="form/register.phtml">
+                    <container name="form.additional.info" as="form_additional_info"/>
+                    <container name="customer.form.register.fields.before" as="form_fields_before" label="Form Fields Before" htmlTag="div" htmlClass="customer-form-before"/>
+                </block>
 
-            <!-- add login -->
-            <block class="Magento\Customer\Block\Form\Login" name="form_login_custom" template="Magento_Customer::form/login.phtml">
-                <container name="form.additional.info" as="form_additional_info"/>
-            </block>
-            <!-- # add login -->
+                <!-- add login Block -->
+                <block class="Magento\Customer\Block\Form\Login" name="form_login_custom" template="Magento_Customer::form/login.phtml">
+                    <container name="form.additional.info" as="form_additional_info"/>
+                </block>
+
+                <!-- Right Banner -->
+                <block class="Magento\Framework\View\Element\Template" name="ads.customerr"  template="Magento_Customer::form/ads.phtml"/>
+
+            </container>
+
 
             <block class="Magento\Cookie\Block\RequireCookie" name="require-cookie" template="Magento_Cookie::require_cookie.phtml">
                 <arguments>
