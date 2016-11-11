@@ -1273,3 +1273,45 @@ a.clickHereHS {
     }
 }
 /* # Product detail page */
+
+/* My account page */
+body.account .column.main {
+    background: #fafafa;
+    padding: 10px;
+}
+
+.block.account-nav {
+    background: #fafafa;
+    padding: 0;
+    margin: 0;
+}
+
+.block.account-nav .title {
+    padding: 15px 10px;
+    margin: 0;
+    text-align: center;
+    background: #efefef;
+    text-transform: uppercase;
+    color: #ed5621;
+}
+
+nav.account-nav li {
+    padding: 10px;
+    border-bottom: 2px dotted #bbb;
+}
+
+nav.account-nav li > a {
+    text-decoration: none;
+    color: #bbb;
+    width: 100%;
+    display: block;
+}
+
+nav.account-nav li > a:hover {
+    color: #ed5621;
+}
+
+nav.account-nav li.current strong {
+    color: #ed5621;
+}
+/* # My Account page */

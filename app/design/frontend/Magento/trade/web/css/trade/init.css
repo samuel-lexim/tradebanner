@@ -1,0 +1,9 @@
+a:visited, .alink:visited {
+    color: #ed5621;
+    text-decoration: none;
+}
+
+a, .alink {
+    color: #ed5621;
+    text-decoration: none;
+}
