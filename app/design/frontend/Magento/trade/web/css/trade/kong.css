@@ -1278,6 +1278,7 @@ a.clickHereHS {
 body.account .column.main {
     background: #fafafa;
     padding: 10px;
+    margin: 0 0 40px;
 }
 
 .block.account-nav {

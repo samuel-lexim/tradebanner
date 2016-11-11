@@ -85,6 +85,12 @@
 }
 
 /************************** REGISTER PAGE ******************************/
+#form-validate {
+    width: 100%;
+    min-width: 10%;
+    max-width: 100%;
+}
+
 .customer-account-create .action.primary {
     background: #1ca1ac;
     border-radius: 0;
@@ -107,29 +113,23 @@
     color: #949494;
 }
 
-.customer-account-create .fieldset > .field:not(.choice) > .label {
+.customer-account-create .fieldset .field .label {
     text-align: left;
-    float: none;
     padding: 8px 0;
     font-weight: normal;
+    width: 100%;
 }
 
-.customer-account-create .fieldset > .field:not(.choice) > .control {
-    float: none;
+.customer-account-create .fieldset .field .control {
+    width: 100%;
 }
 
-@media screen and (min-width: 720px) {
-    .customer-account-create .fieldset > .field:not(.choice) > .control {
-        width: 400px;
-    }
-
-    .customer-account-create .column:not(.sidebar-main) form .actions-toolbar {
-        width: 400px;
-    }
-}
-
-.customer-account-create .fieldset > .field:not(.choice) > .control > input {
+.customer-account-create .fieldset input {
     height: 40px;
+}
+
+.customer-account-create .fieldset input[type="checkbox"] {
+    height: auto;
 }
 
 .customer-account-create .fieldset > .field {
@@ -146,10 +146,6 @@
 
 .customer-account-create .actions-toolbar > .secondary {
     float: left;
-}
-
-.customer-account-create .actions-toolbar > .primary .action:last-child {
-    margin: 25px 0 125px 0;
 }
 
 .customer-account-create .fieldset > .field {
