@@ -296,7 +296,7 @@ a.clickHereHS {
     margin: 0 auto;
     text-align: center;
     width: 140px;
-    background: #f05621;
+    background: #f05624;
     padding: 12px 0;
     color: #fff;
     border-radius: 5px;
@@ -506,7 +506,7 @@ a.clickHereHS {
 }
 
 #leftHomeMenu li > a:hover {
-    color: #ed5621;
+    color: #f05624;
 }
 
 #leftHomeMenu li > a > span {
@@ -518,7 +518,7 @@ a.clickHereHS {
 #leftHomeMenu > li.parent > a > span {
     background: #efefef;
     text-align: center;
-    color: #ed5621;
+    color: #f05624;
     padding: 20px 0;
     font-weight: bold;
 }
@@ -637,6 +637,117 @@ a.clickHereHS {
     margin: 13px 0 0;
 }
 
+.minicart-wrapper .block-minicart {
+    width: 350px;
+    right: 0;
+    padding: 40px 15px 0;
+    background: #fff;
+    margin: 0;
+}
+
+.minicart-items-wrapper {
+    border: none;
+    margin: 0;
+    overflow-x: hidden;
+    padding: 0;
+    height: auto !important;
+}
+
+#mini-cart .product-item {
+    padding: 10px 0;
+    border-top: 2px dotted #bbb;
+}
+
+#mini-cart .product-item:last-child {
+    border-bottom: 2px dotted #bbb;
+}
+
+.block-minicart .items-total {
+    float: left;
+    margin: -30px 0 0;
+    padding: 0 0 10px;
+}
+
+#mini-cart {
+    height: 380px;
+    overflow-y: scroll;
+}
+
+#mini-cart .product > .product-item-photo {
+    width: 90px;
+    float: left;
+}
+
+#mini-cart .product .product-image-photo {
+    width: 100% !important;
+    height: auto !important;
+}
+
+.minicart-items .product-item-details {
+    padding-left: 100px;
+}
+
+.minicart-items .product-item-name a {
+    color: #777;
+}
+
+.minicart-items .product-item-name a:hover {
+    color: #f05624;
+}
+
+.block-minicart .block-content > .actions > .primary {
+    margin: 0 auto;
+}
+
+.block-minicart .subtitle.empty {
+    padding: 0;
+}
+
+.block-minicart .subtotal {
+    margin: 0;
+    background: #f05624;
+    overflow: hidden;
+    padding: 15px 10px;
+    color: #fff;
+}
+
+.block-minicart .subtotal .label {
+    float: left;
+    font-weight: bold;
+}
+
+.block-minicart .subtotal .price-container {
+    float: right;
+}
+
+.block-minicart .block-content > .actions > .primary .action.primary {
+    margin: 0;
+}
+
+.block-minicart .block-content > .actions {
+    margin: 0;
+}
+
+#top-cart-btn-checkout {
+    margin: 0;
+}
+
+
+.block-minicart .block-content > .actions.viewCart {
+    background: #eee;
+    overflow: hidden;
+    display: block;
+    padding: 0;
+    margin: 0 0 15px;
+}
+
+.block-minicart .block-content > .actions.viewCart .action > span {
+    width: 100%;
+    display: block;
+    padding: 15px 10px;
+    font-size: 16px;
+}
+
 /* Search */
 #topSearchWrap {
     cursor: pointer;
@@ -726,7 +837,7 @@ a.clickHereHS {
 }
 
 #topMegaMenu > li > a {
-    color: #ed5621;
+    color: #f05624;
     font-weight: bold;
     width: 100%;
     padding: 10px 0;
@@ -849,11 +960,11 @@ a.clickHereHS {
 }
 
 #leftMenuUl a:hover {
-    color: #ff5f2b;
+    color: #f05624;
 }
 
 #leftMenuUl li.active > a {
-    color: #ff5f2b;
+    color: #f05624;
 }
 
 #leftMenuUl li.has-active > ul.submenu {
@@ -944,7 +1055,7 @@ a.clickHereHS {
     }
 
     #leftMenuUl li.active > a {
-        color: #ff5f2b !important;
+        color: #f05624 !important;
     }
 }
 
@@ -1050,7 +1161,7 @@ a.clickHereHS {
 }
 
 .pages strong.page, .pages a.page:hover {
-    color: #ff5f2b;
+    color: #f05624;
     font-weight: normal;
     font-size: 14px;
 }
@@ -1176,6 +1287,7 @@ a.clickHereHS {
 .fotorama__stage {
     margin: 0 0 20px;
 }
+
 .fotorama__stage__frame .fotorama__img {
     width: 100%;
 }
@@ -1222,16 +1334,16 @@ a.clickHereHS {
 }
 
 .fotorama__arr--prev .fotorama__arr__arr {
-    -ms-transform:rotate(-45deg);
-    -webkit-transform:rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
     -moz-transform: rotate(-45deg);
     -o-transform: rotate(-45deg);
     transform: rotate(-45deg);
 }
 
 .fotorama__arr--next .fotorama__arr__arr {
-    -ms-transform:rotate(135deg);
-    -webkit-transform:rotate(135deg);
+    -ms-transform: rotate(135deg);
+    -webkit-transform: rotate(135deg);
     -moz-transform: rotate(135deg);
     -o-transform: rotate(135deg);
     transform: rotate(135deg);
@@ -1272,6 +1384,7 @@ a.clickHereHS {
         padding: 0;
     }
 }
+
 /* # Product detail page */
 
 /* My account page */
@@ -1293,7 +1406,7 @@ body.account .column.main {
     text-align: center;
     background: #efefef;
     text-transform: uppercase;
-    color: #ed5621;
+    color: #f05624;
 }
 
 nav.account-nav li {
@@ -1309,10 +1422,12 @@ nav.account-nav li > a {
 }
 
 nav.account-nav li > a:hover {
-    color: #ed5621;
+    color: #f05624;
 }
 
 nav.account-nav li.current strong {
-    color: #ed5621;
+    color: #f05624;
 }
+
 /* # My Account page */
+

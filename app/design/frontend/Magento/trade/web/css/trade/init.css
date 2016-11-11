@@ -1,9 +1,14 @@
+a, .alink {
+    color: #008994;
+    text-decoration: none;
+}
+
 a:visited, .alink:visited {
     color: #ed5621;
     text-decoration: none;
 }
 
-a, .alink {
+a:active, a:hover {
     color: #ed5621;
     text-decoration: none;
 }
