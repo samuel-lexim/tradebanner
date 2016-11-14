@@ -56,27 +56,28 @@ switch ($check) {
 ?>
 
 <div class="search-bar-news">
-    <h3>Date</h3>
+    <span>Date</span>
     <label class="switch">
         <input type="checkbox" class="listenChanged" id="filterCheckbox" <?= ($filterIsChecked) ? 'checked="checked"' : ''?> />
-        <div class="slider round"></div>
+        <span class="slider round"></span>
     </label>
-    <h3>Name</h3>
-    <h3>|</h3>
-    <h3>Desc</h3>
+
+    <span>Name</span>
+    <span>|</span>
+    <span>Desc</span>
     <label class="switch">
         <input type="checkbox" class="listenChanged" id="sortCheckbox" <?= ($sortIsChecked) ? 'checked="checked"' : ''?> />
-        <div class="slider round"></div>
+        <span class="slider round"></span>
     </label>
-    <h3>Asc</h3>
+    <span>Asc</span>
 </div>
 
 
-<?php if (!$_postCollection->count()): ?>
+<?php if (isset($_postCollection) && count($_postCollection) <= 0) { ?>
     <div class="message info empty">
         <div><?php echo __('We can\'t find posts matching the selection.') ?></div>
     </div>
-<?php else: ?>
+<?php } else if (isset($_postCollection)) { ?>
     <?php echo $block->getAdditionalHtml() ?>
     <div class="post-list-wrapper">
         <div class="flex-row row">
@@ -109,4 +110,4 @@ switch ($check) {
         });
     </script>
 
-<?php endif; ?>
+<?php } ?>
