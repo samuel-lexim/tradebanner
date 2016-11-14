@@ -83,21 +83,23 @@
 .page-header .links a {
     color: #fff;
 }
-
 /************************** REGISTER PAGE ******************************/
+.login-container {
+    display: none;
+}
 #form-validate {
     width: 100%;
     min-width: 10%;
     max-width: 100%;
 }
 
-.customer-account-create .action.primary {
+.customer-account-login .action.primary {
     background: #1ca1ac;
     border-radius: 0;
     padding: 10px 30px;
 }
 
-.customer-account-create .legend {
+.customer-account-login .legend {
     margin-left: 0;
     border-bottom: #1ca1ac 1px solid;
     padding: 8px 0;
@@ -105,54 +107,54 @@
     font-size: 16px;
 }
 
-.customer-account-create .fieldset {
+.customer-account-login .fieldset {
     margin: 0;
 }
 
-.customer-account-create .note {
+.customer-account-login .note {
     color: #949494;
 }
 
-.customer-account-create .fieldset .field .label {
+.customer-account-login .fieldset .field .label {
     text-align: left;
     padding: 8px 0;
     font-weight: normal;
     width: 100%;
 }
 
-.customer-account-create .fieldset .field .control {
+.customer-account-login .fieldset .field .control {
     width: 100%;
 }
 
-.customer-account-create .fieldset input {
+.customer-account-login .fieldset input {
     height: 40px;
 }
 
-.customer-account-create .fieldset input[type="checkbox"] {
+.customer-account-login .fieldset input[type="checkbox"] {
     height: auto;
 }
 
-.customer-account-create .fieldset > .field {
+.customer-account-login .fieldset > .field {
     margin: 0;
 }
 
-.customer-account-create .column:not(.sidebar-main) form .actions-toolbar {
+.customer-account-login .column:not(.sidebar-main) form .actions-toolbar {
     margin-left: 0;
 }
 
-.customer-account-create .actions-toolbar > .primary {
+.customer-account-login .actions-toolbar > .primary {
     float: right;
 }
 
-.customer-account-create .actions-toolbar > .secondary {
+.customer-account-login .actions-toolbar > .secondary {
     float: left;
 }
 
-.customer-account-create .fieldset > .field {
+.customer-account-login .fieldset > .field {
     margin: 8px 0;
 }
 
-.customer-account-create .fieldset > .field:before {
+.customer-account-login .fieldset > .field:before {
     width: 0;
     padding: 0;
 }
@@ -162,7 +164,11 @@
     font-weight: bold;
     padding: 15px 0;
 }
-
+@media screen and (min-width: 720px) {
+    #form-validate, .block-customer-login {
+        width: 80%;
+    }
+}
 /************************** LOGIN PAGE ******************************/
 .action.primary {
     background: #1ca1ac;
