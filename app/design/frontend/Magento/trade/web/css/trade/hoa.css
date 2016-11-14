@@ -83,6 +83,9 @@
 .page-header .links a {
     color: #fff;
 }
+.header.links .authorization-link {
+    display: none;
+}
 
 /************************** REGISTER PAGE ******************************/
 #form-validate {
@@ -162,7 +165,11 @@
     font-weight: bold;
     padding: 15px 0;
 }
-
+@media screen and (min-width: 720px) {
+    #form-validate, .block-customer-login {
+        width: 80%;
+    }
+}
 /************************** LOGIN PAGE ******************************/
 .action.primary {
     background: #1ca1ac;
