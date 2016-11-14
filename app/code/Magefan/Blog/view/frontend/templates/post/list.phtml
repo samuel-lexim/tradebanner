@@ -1,79 +1,83 @@
 <?php
 /**
- * Copyright © 2016 Ihor Vansach (ihor@magefan.com). All rights reserved.
- * See LICENSE.txt for license details (http://opensource.org/licenses/osl-3.0.php).
- *
- * Glory to Ukraine! Glory to the heroes!
- */
-
-use Magento\Framework\App\Action\Action;
-
-?>
-<?php
-/**
  * Blog post list template
- *
  * @var $block \Magefan\Blog\Block\Post\PostList
  */
 ?>
-<?php
-//$_postCollection = $block->getPostCollection()->setOrder('publish_time', 'DESC');
-?>
-<!--<body onload="doSortNews();">-->
-<div class="search-bar-news">
-    <h3>Date</h3>
-    <label class="switch">
-        <input type="checkbox" id="search-button-news-1" onchange="doSortNews()">
-        <div class="slider round"></div>
-    </label>
-    <h3>Name</h3>
-    <h3>|</h3>
-    <h3>Desc</h3>
-    <label class="switch">
-        <input type="checkbox" id="search-button-news-2" onchange="doSortNews()">
-        <div class="slider round"></div>
-    </label>
-    <h3>Asc</h3>
-</div>
-<script>
-    function doSortNews() {
-        var a = document.getElementById('search-button-news-1');
-        var b = document.getElementById('search-button-news-2');
-        if (a.checked) {
-            if (b.checked) {
-                window.location.href = "http://tradebanner.vn/promotion-news?field=title&type=ASC";
-                alert($_GET['filed']);
-                <?php $_postCollection = $block->getPostCollection()->setOrder('title', 'ASC'); ?>
-            } else {
-                window.location.href = "http://tradebanner.vn/promotion-news?field=title&type=DESC";
-                alert($_GET['filed']);
-                <?php $_postCollection = $block->getPostCollection()->setOrder('title', 'DESC'); ?>
-            }
-        } else {
-            if (b.checked) {
-                window.location.href = "http://tradebanner.vn/promotion-news?field=publish_time&type=ASC";
-                alert($_GET['filed']);
-                <?php $_postCollection = $block->getPostCollection()->setOrder('publish_time', 'ASC'); ?>
-            } else {
-                window.location.href = "http://tradebanner.vn/promotion-news?field=publish_time&type=DESC";
-                alert($_GET['filed']);
-                <?php $_postCollection = $block->getPostCollection()->setOrder('publish_time', 'DESC'); ?>
-            }
-        }
-    }
-</script>
-<body onload="printscript();">
-<script>
-    function printscript() {
-        alert($_GET['filed']);
-    }
-</script>
 
-<?php if (!$_postCollection->count()): ?>
+<?php
+$urlInterface = \Magento\Framework\App\ObjectManager::getInstance()->get('Magento\Framework\UrlInterface');
+
+$path = explode("?", $urlInterface->getCurrentUrl());
+if (isset($path[1])) $path2 = strtolower($path[1]);
+else $path2 = "";
+
+$check = 0; $filter = ""; $sort=""; $filterIsChecked = $sortIsChecked = false;
+$params = explode("&", $path2);
+if (isset($params[0])) {
+    $a = explode("=",$params[0]);
+    if (isset($a[1])) $filter = $a[1];
+}
+if (isset($params[1])) {
+    $a = explode("=",$params[1]);
+    if (isset($a[1])) $sort = $a[1];
+}
+
+
+if (!is_null($filter) && !is_null($sort)) {
+    if ($filter == "date" && $sort == "desc") $check = 0;
+    else if ($filter == "date" && $sort == "asc") {
+        $check = 1; $sortIsChecked = true;
+    }
+    else if ($filter == "name" && $sort == "desc") {
+        $check = 2; $filterIsChecked = true;
+    }
+    else if ($filter == "name" && $sort == "asc") {
+        $check = 3; $filterIsChecked = $sortIsChecked = true;
+    }
+}
+?>
+
+<?php
+switch ($check) {
+    case 0:
+        $_postCollection = $block->getSortedCollection('post_id','desc');
+        break;
+    case 1:
+        $_postCollection = $block->getSortedCollection('post_id','asc');
+        break;
+    case 2:
+        $_postCollection = $block->getSortedCollection('title', 'desc');
+        break;
+    case 3:
+        $_postCollection = $block->getSortedCollection('title', 'asc');
+        break;
+}
+?>
+
+<div class="search-bar-news">
+    <span>Date</span>
+    <label class="switch">
+        <input type="checkbox" class="listenChanged" id="filterCheckbox" <?= ($filterIsChecked) ? 'checked="checked"' : ''?> />
+        <span class="slider round"></span>
+    </label>
+
+    <span>Name</span>
+    <span>|</span>
+    <span>Desc</span>
+    <label class="switch">
+        <input type="checkbox" class="listenChanged" id="sortCheckbox" <?= ($sortIsChecked) ? 'checked="checked"' : ''?> />
+        <span class="slider round"></span>
+    </label>
+    <span>Asc</span>
+</div>
+
+
+<?php if (isset($_postCollection) && count($_postCollection) <= 0) { ?>
     <div class="message info empty">
         <div><?php echo __('We can\'t find posts matching the selection.') ?></div>
     </div>
-<?php else: ?>
+<?php } else if (isset($_postCollection)) { ?>
     <?php echo $block->getAdditionalHtml() ?>
     <div class="post-list-wrapper">
         <div class="flex-row row">
@@ -84,7 +88,26 @@ use Magento\Framework\App\Action\Action;
             <?php } ?>
         </div>
     </div>
-
     <?php echo $block->getToolbarHtml() ?>
 
-<?php endif; ?>
+    <script type="text/javascript">
+        require([ 'jquery', 'jquery/ui'], function($){
+            $(document).ready(function() {
+                $('.listenChanged').change(function(){
+                    var filter = $('#filterCheckbox').is(":checked"); // filter: false = date , true = name
+                    var sort = $('#sortCheckbox').is(":checked"); // sort: false = desc, true = asc
+                    var search = "";
+
+                    if (!filter && !sort) search = '?filter=date&sort=desc';
+                    else if (!filter && sort) search = '?filter=date&sort=asc';
+                    else if (filter && !sort) search = '?filter=name&sort=desc';
+                    else if (filter && sort) search = '?filter=name&sort=asc';
+
+                    var url = $(location).attr('pathname') + search;
+                    window.location.replace(url);
+                })
+            })
+        });
+    </script>
+
+<?php } ?>
