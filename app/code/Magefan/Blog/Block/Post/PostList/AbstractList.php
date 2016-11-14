@@ -102,4 +102,24 @@ abstract class AbstractList extends \Magento\Framework\View\Element\Template
         return $this->_postCollection;
     }
 
+    /**
+     * Get Sorted Collection
+     *
+     * @param $type
+     * @param $sort
+     * @return $this|\Magefan\Blog\Model\ResourceModel\Post\Collection
+     */
+    public function getSortedCollection($type, $sort)
+    {
+        $this->_postCollection = $this->_postCollectionFactory->create()
+            ->addActiveFilter()
+            ->addStoreFilter($this->_storeManager->getStore()->getId())
+            ->setOrder($type, $sort);
+
+        if ($this->getPageSize()) {
+            $this->_postCollection->setPageSize($this->getPageSize());
+        }
+        return $this->_postCollection;
+    }
+
 }
