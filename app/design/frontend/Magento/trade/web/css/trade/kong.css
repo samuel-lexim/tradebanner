@@ -731,7 +731,6 @@ a.clickHereHS {
     margin: 0;
 }
 
-
 .block-minicart .block-content > .actions.viewCart {
     background: #eee;
     overflow: hidden;
@@ -1430,3 +1429,95 @@ nav.account-nav li.current strong {
 
 /* # My Account page */
 
+/* Checkout Cart page */
+.checkout-cart-index #maincontent {
+    background: #fafafa;
+}
+
+.topSectionCP {
+    color: #444;
+    font-size: 16px;
+    padding: 0 0 20px;
+    overflow: hidden;
+}
+
+.topSectionCP > b {
+    float: left;
+}
+
+.topSectionCP > a {
+    float: right;
+    color: #444;
+    position: relative;
+    padding: 0 30px 0 0;
+}
+
+.topSectionCP a > span {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: url(/pub/media/images/icon/right_arrow_cart.png) no-repeat center;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -o-border-radius: 50%;
+    -ms-border-radius: 50%;
+    border-radius: 50%;
+}
+
+.headingCartPage {
+    background: #1da1ad;
+    color: #fff;
+    padding: 10px 0;
+    margin: 0 0 30px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#cartPage .cart.main.actions {
+    text-align: right;
+}
+
+.checkout-cart-index .block {
+    margin: 0
+}
+
+.checkout-cart-index .block > .title {
+    margin: 0;
+    padding: 0 0 30px;
+}
+
+.checkout-cart-index .block > .title strong {
+    border-bottom: 2px solid #1da1ad;
+    padding: 0 0 5px;
+}
+
+#shipping-zip-form .field, #block-discount .field {
+    margin: 0;
+    padding: 0 0 20px;
+}
+
+#shipping-zip-form .label, #block-discount .label {
+    width: 100%;
+    text-align: left;
+    padding: 0 0 10px;
+}
+
+#shipping-zip-form .control, #block-discount .control {
+    width: 100%;
+}
+
+#shipping-zip-form .label > span {
+    padding: 0;
+    text-align: left;
+}
+
+#block-discount .actions-toolbar {
+    margin: 0;
+}
+
+/* # Checkout Cart page */

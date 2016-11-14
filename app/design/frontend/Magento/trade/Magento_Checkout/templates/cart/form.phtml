@@ -1,0 +1,68 @@
+<?php
+/**  @var $block \Magento\Checkout\Block\Cart */
+?>
+
+<?php $mergedCells = ($this->helper('Magento\Tax\Helper\Data')->displayCartBothPrices() ? 2 : 1);
+$size = count($block->getItems()); ?>
+<?= $block->getChildHtml('form_before') ?>
+
+<div class="col-xs-12 col-sm-12">
+    <p class="headingCartPage">Check out our latest deals and start saving</p>
+
+    <div class="topSectionCP">
+        <b>Shopping Cart (<?= $size ?>)</b>
+        <a href="/">Continue Shopping <span></span></a>
+    </div>
+    <div class="clearfix"></div>
+    <p style="font-size: 12px;">If you have any queries, our Customer Service team will be happy to help - just call +44 (0)845 260 3880</p>
+
+    <form action="<?= $block->getUrl('checkout/cart/updatePost') ?>"
+          method="post"
+          id="form-validate"
+          data-mage-init='{"validation":{}}'
+          class="form form-cart ">
+        <?= $block->getBlockHtml('formkey'); ?>
+        <div class="cart table-wrapper<?= $mergedCells == 2 ? ' detailed' : ''; ?>">
+            <table id="shopping-cart-table"
+                   class="cart items data table"
+                   data-mage-init='{"shoppingCart":{"emptyCartButton": "action.clear",
+               "updateCartActionContainer": "#update_cart_action_container"}}'>
+                <caption role="heading" aria-level="2" class="table-caption"><?= __('Shopping Cart Items') ?></caption>
+                <thead>
+                <tr>
+                    <th class="col item" scope="col"><span><?= __('Item') ?></span></th>
+                    <th class="col price" scope="col"><span><?= __('Price') ?></span></th>
+                    <th class="col qty" scope="col"><span><?= __('Qty') ?></span></th>
+                    <th class="col subtotal" scope="col"><span><?= __('Subtotal') ?></span></th>
+                </tr>
+                </thead>
+                <?php foreach ($block->getItems() as $_item): ?>
+                    <?= $block->getItemHtml($_item) ?>
+                <?php endforeach ?>
+            </table>
+        </div>
+        <div class="cart main actions">
+            <button type="submit"
+                    name="update_cart_action"
+                    data-cart-empty=""
+                    value="empty_cart"
+                    title="<?= $block->escapeHtml(__('Clear Shopping Cart')); ?>"
+                    class="action clear" id="empty_cart_button">
+                <span><?= __('Clear Shopping Cart'); ?></span>
+            </button>
+            <button type="submit"
+                    name="update_cart_action"
+                    data-cart-item-update=""
+                    value="update_qty"
+                    title="<?= $block->escapeHtml(__('Update Shopping Cart')); ?>"
+                    class="action update">
+                <span><?= __('Update Shopping Cart'); ?></span>
+            </button>
+            <input type="hidden" value="" id="update_cart_action_container" data-cart-item-update=""/>
+        </div>
+    </form>
+    <?= $block->getChildHtml('checkout.cart.order.actions') ?>
+    <?= $block->getChildHtml('shopping.cart.table.after'); ?>
+
+    <div class="clearfix pad50"></div>
+</div>

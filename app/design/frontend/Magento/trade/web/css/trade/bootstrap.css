@@ -71,11 +71,6 @@ h1 {
     margin: 0.67em 0;
 }
 
-mark {
-    background: #ff0;
-    color: #000;
-}
-
 small {
     font-size: 80%;
 }
@@ -288,12 +283,6 @@ p {
 small,
 .small {
     font-size: 85%;
-}
-
-mark,
-.mark {
-    background-color: #fcf8e3;
-    padding: .2em;
 }
 
 .text-left {

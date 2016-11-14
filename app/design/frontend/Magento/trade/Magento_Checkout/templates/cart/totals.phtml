@@ -1,0 +1,21 @@
+<?php
+/**
+ * Shopping cart totals template
+ * @var $block \Magento\Checkout\Block\Cart\Totals
+ */
+?>
+
+<div class="block">
+    <div class="title"><strong>SUB TOTAL</strong></div>
+</div>
+<div id="cart-totals" class="cart-totals" data-bind="scope:'block-totals'">
+    <!-- ko template: getTemplate() --><!-- /ko -->
+    <script type="text/x-magento-init">
+        {
+            "#cart-totals": {
+                "Magento_Ui/js/core/app": <?= $block->getJsLayout(); ?>
+            }
+        }
+    </script>
+</div>
+
