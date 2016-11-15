@@ -1,32 +1,58 @@
-
 <?php
+//$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+//$menu = $objectManager->get('\Magento\Theme\Block\Html\Topmenu');
+//$_menu = $menu->getHtml('level-top', 'submenu');
+//$currentCategory = $objectManager->get('Magento\Framework\Registry')->registry('current_category');
+
 $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
-// Get Menu
-$menu = $objectManager->get('\Magento\Theme\Block\Html\Topmenu');
-$_menu = $menu->getHtml('level-top', 'submenu');
-// Get Current Category name
-$currentCategory = $objectManager->get('Magento\Framework\Registry')->registry('current_category');
+$categoryFac =  $objectManager->create('Magento\Catalog\Model\ResourceModel\Category\CollectionFactory');
+$categories = $categoryFac->create()
+    ->addAttributeToSelect('*')
+    ->addAttributeToFilter('parent_id', array('gt' => '1'))
+    ->addAttributeToFilter('is_active', '1');
+
+$productFac = $objectManager->create('Magento\Catalog\Model\ResourceModel\Product\CollectionFactory');
+
 ?>
 
 
 <div class="menuLeftSidebar hidden-xs">
     <ul id="leftMenuUl">
-        <div class="titleLeftSidebar hidden-xs">CATEGORIES</div>
-        <?= $_menu ?>
+        <div class="titleLeftSidebar">CATEGORIES</div>
+
+        <?php foreach($categories as $cate ) { ?>
+        <li class="">
+            <?php $products = $productFac->create()
+                ->addAttributeToSelect('*')
+                ->addCategoryFilter($cate)
+                ->addAttributeToFilter('status', '1')
+                ->load();
+            ?>
+            <?php if (count($products) > 0) { ?>
+                <span class="dropLeftMenu">+</span>
+            <?php } ?>
+            <a href="<?= $cate->getUrl() ?>"><?= $cate->getName() ?></a>
+            <ul class="submenu">
+                <?php foreach($products as $p) { ?>
+                    <li><a href="<?= $p->getProductUrl() ?>"><?= $p->getName() ?></a></li>
+                <?php } ?>
+            </ul>
+        </li>
+        <?php } ?>
     </ul>
 </div>
 
 <script type="text/javascript">
-    require([ 'jquery', 'jquery/ui'], function($){
-        $( document ).ready(function() {
-            $('#leftMenuUl li.parent').each(function() {
-                var data = $(this).hasClass("has-active") ? "-" : "+";
-                var curWidth = $(window).width();
-                if (curWidth <= 767) data = "+";
-                $(this).prepend('<span class="dropLeftMenu">'+data+'</span>');
-            });
+    require(['jquery', 'jquery/ui'], function ($) {
+        $(document).ready(function () {
+//            $('#leftMenuUl li.parent').each(function () {
+//                var data = $(this).hasClass("has-active") ? "-" : "+";
+//                var curWidth = $(window).width();
+//                if (curWidth <= 767) data = "+";
+//                $(this).prepend('<span class="dropLeftMenu">' + data + '</span>');
+//            });
 
-            $('#leftMenuUl .dropLeftMenu').click(function(){
+            $('#leftMenuUl .dropLeftMenu').click(function () {
                 var selectCt = $(this).parent().find('ul.submenu').first();
                 if (selectCt.is(':visible')) {
                     $(this).text("+");

@@ -500,37 +500,35 @@ a.clickHereHS {
     margin: 0;
 }
 
-#leftHomeMenu li > a {
-    text-decoration: none;
-    color: #bbb;
-}
-
-#leftHomeMenu li > a:hover {
-    color: #f05624;
-}
-
-#leftHomeMenu li > a > span {
-    width: 100%;
-    display: block;
-    padding: 15px 20px;
-}
-
-#leftHomeMenu > li.parent > a > span {
+#leftHomeMenu .categoryItem > a {
     background: #efefef;
     text-align: center;
     color: #f05624;
     padding: 20px 0;
     font-weight: bold;
+    display: block;
 }
 
-#leftHomeMenu .submenu > li {
+#leftHomeMenu .categoryItem li {
     padding: 0;
     background: #fafafa;
     margin: 0;
     border-bottom: 2px dotted #bbb;
 }
 
-#leftHomeMenu .submenu > li:last-child {
+#leftHomeMenu .categoryItem ul a {
+    text-decoration: none;
+    color: #bbb;
+    width: 100%;
+    display: block;
+    padding: 15px 20px;
+}
+
+#leftHomeMenu .categoryItem ul a:hover {
+    color: #f05624;
+}
+
+#leftHomeMenu .categoryItem li:last-child{
     border: none;
 }
 
@@ -926,7 +924,7 @@ a.clickHereHS {
 }
 
 #leftMenuUl ul {
-    padding: 5px 0 0 20px;
+    padding: 5px 0 0 0;
     list-style: none;
     clear: both;
 }
@@ -950,11 +948,20 @@ a.clickHereHS {
 }
 
 #leftMenuUl a {
-    max-width: calc(100% - 40px);
-    float: left;
-    text-transform: uppercase;
     color: #474747;
     text-decoration: none;
+    width: 100%;
+    display: block;
+    max-width: 100%;
+}
+
+#leftMenuUl > li > a {
+    max-width: calc(100% - 40px);
+    text-transform: uppercase;
+}
+
+#leftMenuUl .submenu li a {
+    padding:  0 0 0 20px;
 }
 
 #leftMenuUl a:hover {
@@ -1020,22 +1027,6 @@ a.clickHereHS {
         color: #fff;
     }
 
-    #leftMenuUl li.level0 > a {
-        padding-left: 15px;
-    }
-
-    #leftMenuUl li.level1 > a {
-        padding-left: 30px;
-    }
-
-    #leftMenuUl li.level2 > a {
-        padding-left: 45px;
-    }
-
-    #leftMenuUl li.level3 > a {
-        padding-left: 60px;
-    }
-
     #leftMenuUl li.last {
         border-bottom: none;
     }
@@ -1094,7 +1085,7 @@ a.clickHereHS {
     display: table-cell;
 }
 
-.products-list .product-item-photo .product-image-container {
+.products.wrapper .product-item-photo .product-image-container {
     max-width: 100%;
     width: 100% !important;
 }
@@ -1112,10 +1103,6 @@ a.clickHereHS {
 
 .page-products .product-item-name > a {
     color: #999
-}
-
-.product-image-container {
-    width: 100% !important;
 }
 
 .product-image-photo {
@@ -1520,4 +1507,11 @@ nav.account-nav li.current strong {
     margin: 0;
 }
 
+#form-validate {
+    width: 100%;
+}
+
+#shopping-cart-table {
+    border: 1px solid #ccc;
+}
 /* # Checkout Cart page */
