@@ -83,6 +83,13 @@
 .page-header .links a {
     color: #fff;
 }
+#topRightInfo .tri-item a {
+    color: #fff;
+}
+.header-cross {
+    padding-right: 20px;
+    font-size: 15px;
+}
 /************************** REGISTER PAGE ******************************/
 .login-container {
     display: none;
