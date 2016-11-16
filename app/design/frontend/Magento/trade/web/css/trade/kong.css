@@ -1370,6 +1370,22 @@ a.clickHereHS {
     }
 }
 
+.tabsWrapper a {
+    display: block;
+    padding: 10px 20px;
+    margin: 0 10px 10px 0;
+    background: #eee;
+    color: #ed5621;
+    float: left;
+}
+
+.tabsWrapper a:hover, .tabsWrapper a.active {
+    background: #ed5621;
+    color: #fff;
+}
+
+.tabContent { display: none; }
+
 /* # Product detail page */
 
 /* My account page */
