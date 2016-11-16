@@ -848,7 +848,7 @@ a.clickHereHS {
     color: #bbb;
 }
 
-#topMegaMenu > li li.first {
+#topMegaMenu > li li:first-child {
     border-top: 2px dotted #bbb;
 }
 

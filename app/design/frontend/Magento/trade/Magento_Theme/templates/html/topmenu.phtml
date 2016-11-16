@@ -1,20 +1,47 @@
 <?php
 /**
  * Top menu for store
- *
  * @see \Magento\Theme\Block\Html\Topmenu
  */
 ?>
 
-<?php $columnsLimit = $block->getColumnsLimit() ?: 0; ?>
-<?php $_menu = $block->getHtml('level-top', 'submenu', $columnsLimit) ?>
+<?php
+//$columnsLimit = $block->getColumnsLimit() ?: 0;
+//$_menu = $block->getHtml('level-top', 'submenu', $columnsLimit);
+?>
 
 <nav role="navigation" id="topMenuNav">
     <ul>
         <li>
             <a href="javascript:void(0)">ALL PRODUCT</a>
             <ul id="topMegaMenu">
-                <?= $_menu; ?>
+                <?php
+                $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+                $categoryFac =  $objectManager->create('Magento\Catalog\Model\ResourceModel\Category\CollectionFactory');
+                $categories = $categoryFac->create()
+                    ->addAttributeToSelect('*')
+                    ->addAttributeToFilter('parent_id', array('gt' => '1'))
+                    ->addAttributeToFilter('is_active', '1');
+
+                $productFac = $objectManager->create('Magento\Catalog\Model\ResourceModel\Product\CollectionFactory');
+                ?>
+                <?php foreach($categories as $cate ) { ?>
+                <li class="item">
+                    <a href="<?= $cate->getUrl() ?>"><?= $cate->getName() ?></a>
+                    <?php
+                    $products = $productFac->create()
+                        ->addAttributeToSelect('*')
+                        ->addCategoryFilter($cate)
+                        ->addAttributeToFilter('status', '1')
+                        ->load();
+                    ?>
+                    <ul>
+                        <?php foreach($products as $p) { ?>
+                            <li><a href="<?= $p->getProductUrl() ?>"><?= $p->getName() ?></a></li>
+                        <?php } ?>
+                    </ul>
+                    <?php  } ?>
+                </li>
             </ul>
         </li>
         <li><a href="javascript:void(0)">CUSTOM ESTIMATE</a></li>
