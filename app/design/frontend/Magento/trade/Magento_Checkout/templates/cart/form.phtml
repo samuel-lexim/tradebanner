@@ -15,26 +15,22 @@ $size = count($block->getItems()); ?>
     </div>
     <div class="clearfix"></div>
     <p style="font-size: 12px;">If you have any queries, our Customer Service team will be happy to help - just call +44 (0)845 260 3880</p>
+    <div class="clearfix pad30"></div>
 
-    <form action="<?= $block->getUrl('checkout/cart/updatePost') ?>"
-          method="post"
-          id="form-validate"
-          data-mage-init='{"validation":{}}'
-          class="form form-cart ">
+    <form action="<?= $block->getUrl('checkout/cart/updatePost') ?>" method="post" data-mage-init='{"validation":{}}'
+          id="form-validate"  class="form form-cart ">
         <?= $block->getBlockHtml('formkey'); ?>
-        <div class="cart table-wrapper<?= $mergedCells == 2 ? ' detailed' : ''; ?>">
-            <table id="shopping-cart-table"
-                   class="cart items data table"
+        <div class="cart table-responsive">
+            <table id="shopping-cart-table" class="table-bordered table cart items data"
                    data-mage-init='{"shoppingCart":{"emptyCartButton": "action.clear",
                "updateCartActionContainer": "#update_cart_action_container"}}'>
-                <caption role="heading" aria-level="2" class="table-caption"><?= __('Shopping Cart Items') ?></caption>
                 <thead>
-                <tr>
-                    <th class="col item" scope="col"><span><?= __('Item') ?></span></th>
-                    <th class="col price" scope="col"><span><?= __('Price') ?></span></th>
-                    <th class="col qty" scope="col"><span><?= __('Qty') ?></span></th>
-                    <th class="col subtotal" scope="col"><span><?= __('Subtotal') ?></span></th>
-                </tr>
+                    <tr>
+                        <th class="colTb item"><span><?= __('Products') ?></span></th>
+                        <th class="colTb price"><span><?= __('Price') ?></span></th>
+                        <th class="colTb qty"><span><?= __('Qty') ?></span></th>
+                        <th class="colTb subtotal"><span><?= __('Total') ?></span></th>
+                    </tr>
                 </thead>
                 <?php foreach ($block->getItems() as $_item): ?>
                     <?= $block->getItemHtml($_item) ?>

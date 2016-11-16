@@ -1513,5 +1513,6 @@ nav.account-nav li.current strong {
 
 #shopping-cart-table {
     border: 1px solid #ccc;
+    /*border-collapse:;*/
 }
 /* # Checkout Cart page */
