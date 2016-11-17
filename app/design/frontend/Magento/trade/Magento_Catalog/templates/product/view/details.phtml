@@ -1,9 +1,58 @@
+<?php
+$tabArray = [];
+$pro = $block->getProduct();
 
-<?php if ($detailedInfoGroup = $block->getGroupChildNames('detailed_info', 'getChildHtml')) { ?>
-    <div class="descriptionBlock">
-        <p class="headingDP">Product Description</p>
-        <?php $layout = $block->getLayout();
-        $description = $layout->renderElement('product.info.description'); ?>
-        <div class="desData"><?= $description ?></div>
+$description = preg_replace("/\s|&nbsp;/",'',strip_tags($pro->getDescription()));
+if ($description != "" ) $tabArray['Product Description'] = $pro->getDescription();
+
+$filePre = preg_replace("/\s|&nbsp;/",'',strip_tags($pro->getFilePreparation()));
+if ($filePre != "") $tabArray['File Preparation'] = $pro->getFilePreparation();;
+
+$grommets = preg_replace("/\s|&nbsp;/",'',strip_tags($pro->getGrommets()));
+if ($grommets != "") $tabArray['Grommets'] = $pro->getGrommets();
+
+$winds_slits = preg_replace("/\s|&nbsp;/",'',strip_tags($pro->getWindsSlits()));
+if ($winds_slits != "") $tabArray['Winds Slits'] = $pro->getWindsSlits();
+
+$lamination = preg_replace("/\s|&nbsp;/",'',strip_tags($pro->getLamination()));
+if ($lamination != "") $tabArray['Lamination'] = $pro->getLamination();
+?>
+
+<div class="descriptionBlock">
+    <p class="headingDP">Product Description</p>
+</div>
+
+<div class="clearfix"></div>
+
+<div class="tabsWrapper">
+    <?php $i=0; foreach($tabArray as $variable => $content) { ?>
+    <a href="javascript:void(0)" <?= ($i == 0) ? 'class="active"' : ''?> data-tab="#<?= preg_replace('/\s+/', '', $variable)?>">
+        <?= $variable ?>
+    </a>
+    <?php $i++; } ?>
+</div>
+<div class="clearfix"></div>
+
+<div class="tabContentWrap">
+    <?php $i=0; foreach($tabArray as $variable => $content) { ?>
+    <div class="tabContent" id="<?= preg_replace('/\s+/', '', $variable); ?>" <?= ($i == 0) ? 'style="display: block"':''?>>
+        <?= $content ?>
     </div>
-<?php } ?>
+    <?php $i++; } ?>
+</div>
+
+<script type="text/javascript">
+    require(['jquery', 'jquery/ui'], function ($) {
+        $(document).ready(function () {
+            $('.tabsWrapper > a').click(function(){
+                var tab = $(this).attr("data-tab");
+                $('.tabContent').hide();
+                $(tab).show();
+                $('.tabsWrapper a').removeClass('active');
+                $(this).addClass('active');
+            })
+        })
+    })
+</script>
+
+<!-- container -->
