@@ -1226,13 +1226,13 @@ a.clickHereHS {
 }
 
 .catalog-product-view #maincontent .mediaDP {
-    width: 55%;
+    width: 40%;
     float: left;
     padding: 0 20px 0 0;
 }
 
 .catalog-product-view #maincontent .contentDP {
-    width: 45%;
+    width: 60%;
     float: right;
 }
 
