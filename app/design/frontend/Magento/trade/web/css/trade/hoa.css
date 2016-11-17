@@ -172,8 +172,8 @@
     padding: 15px 0;
 }
 @media screen and (min-width: 720px) {
-    .form-create-account, .block-customer-login {
-        width: 80%;
+    .form.create.account, .block-customer-login {
+        width: 80% !important;
     }
 }
 /************************** LOGIN PAGE ******************************/
