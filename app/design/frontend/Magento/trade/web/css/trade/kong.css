@@ -1370,6 +1370,7 @@ a.clickHereHS {
     }
 }
 
+    /* tab content */
 .tabsWrapper a {
     display: block;
     padding: 10px 20px;
@@ -1385,6 +1386,21 @@ a.clickHereHS {
 }
 
 .tabContent { display: none; }
+
+    /* bundle product */
+.catalog-product-view .page-title-wrapper {
+    display: block;
+}
+.catalog-product-view .bundle-options-container .product-add-form {
+    display: block;
+}
+.bundle-options-wrapper {
+    width: 100%;
+}
+
+#bundleSummary {
+    width: 100%;
+}
 
 /* # Product detail page */
 

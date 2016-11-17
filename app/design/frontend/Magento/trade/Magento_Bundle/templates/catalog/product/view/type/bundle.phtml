@@ -1,0 +1,19 @@
+<?php
+/* @var $block \Magento\Bundle\Block\Catalog\Product\View\Type\Bundle */
+?>
+
+<?php $_product = $block->getProduct() ?>
+<?php if ($block->displayProductStockStatus()): ?>
+    <?php if ($_product->isAvailable()): ?>
+        <!--
+        <p class="stock available" title="<?= __('Availability:') ?>">
+            <span><?= __('In stock') ?></span>
+        </p> -->
+    <?php else: ?>
+        <!--
+        <p class="stock unavailable" title="<?= __('Availability:') ?>">
+            <span><?= __('Out of stock') ?></span>
+        </p> -->
+    <?php endif; ?>
+<?php endif; ?>
+<?php // echo $block->getChildHtml('bundle_prices') ?>
