@@ -439,3 +439,15 @@
         padding: 0 3px;
     }
 }
+
+/************************** CUSTOM ESTIMATE ******************************/
+/*.estimate-group {*/
+    /*float: left;*/
+    /*width: 100%;*/
+    /*border-bottom: 1px #949494 solid;*/
+    /*padding: 20px 0;*/
+/*}*/
+.estimate-group {
+    padding: 20px 0;
+    border-bottom: 1px #949494 solid;
+}

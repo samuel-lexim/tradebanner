@@ -1,0 +1,133 @@
+<?php
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+
+<form class="form quickrfq"
+      action="<?php /* @escapeNotVerified */ echo $block->getFormAction(); ?>"
+      id="quickrfq_form"
+      enctype="multipart/form-data"
+      method="post"
+      data-hasrequired="<?php /* @escapeNotVerified */ echo __('* Required Fields') ?>"
+      data-mage-init='{"validation":{}}'>
+
+
+    <fieldset class="fieldset">
+        <legend class="legend"><span><?php /* @escapeNotVerified */ echo __('Custom Estimate') ?></span></legend><br />
+        <div class="estimate-group row">
+            <div class="col-xs-12 col-lg-6">
+                <div class="field name required">
+                    <label class="label" for="company"><?php echo __('Custom Quote Name') ?></label>
+                    <div class="control">
+                        <input name="company" id="company" value="" class="input-text" type="text" data-validate="{required:true}"/>
+                    </div>
+                </div>
+
+                <div class="field email required">
+                    <label class="label" for="email"><span><?php /* @escapeNotVerified */ echo __('Email - Your User Name') ?></span></label>
+                    <div class="control">
+                        <input name="email" id="email" title="<?php /* @escapeNotVerified */ echo __('Email') ?>" value="<?php echo $block->escapeHtml($this->helper('Magento\Contact\Helper\Data')->getUserEmail()) ?>" class="input-text" type="email" data-validate="{required:true, 'validate-email':true}"/>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-lg-6">
+                <div class="field contact_name required">
+                    <label class="label" for="contact_name"><span><?php /* @escapeNotVerified */ echo __('Company Name') ?></span></label>
+                    <div class="control">
+                        <input name="contact_name" id="contact_name" title="<?php /* @escapeNotVerified */ echo __('Contact Name') ?>" value="<?php echo $block->escapeHtml($this->helper('Magento\Contact\Helper\Data')->getUserName()) ?>" class="input-text" type="text" data-validate="{required:true}"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="estimate-group row">
+            <div class="col-xs-12 col-lg-6">
+                <div class="field phone">
+                    <label class="label" for="phone"><span><?php /* @escapeNotVerified */ echo __('Category') ?></span></label>
+                    <div class="control">
+                        <input name="phone" id="phone" title="<?php /* @escapeNotVerified */ echo __('Phone Number') ?>" value="" class="input-text" type="text" />
+                    </div>
+                </div>
+
+                <!--<div class="field date">
+                    <label class="label" for="date"><span><?php /* @escapeNotVerified */ echo __('Quote Needed By') ?></span></label>
+                    <div class="control">
+                        <input name="date" id="date" title="<?php /* @escapeNotVerified */ echo __('Quote Needed By') ?>" value="" class="hasDatepicker" type="text" />
+
+                    </div>
+                </div>-->
+
+                <?php $_date = $block->getLayout()->createBlock('FME\Quickrfq\Block\Widget\DateQuote') ?>
+                <?php if ($_date->isEnabled()): ?>
+                    <?php echo $_date->toHtml() ?>
+                <?php endif ?>
+
+                <div class="field budget">
+                        <label for="budget"><?php echo __('Project Budget Status') ?></label>
+                        <div class="input-box">
+                           <input name="budget" value="Approved" checked="checked" type="radio"><?php echo __('Approved') ?>
+                           <input name="budget" value="Approval Pending" type="radio"><?php echo __('Approval Pending') ?>
+                           <input name="budget" value="Open" type="radio"><?php echo __('Open') ?>
+                           <input name="budget" value="No Approval" type="radio"><?php echo __('No Approval') ?>
+                        </div>
+                </div>
+
+                <div class="field overview required">
+                    <label class="label" for="overview"><span><?php /* @escapeNotVerified */ echo __('Brief Overview') ?></span></label>
+                    <div class="control">
+                        <textarea name="overview" id="overview" title="<?php /* @escapeNotVerified */ echo __('Brief Overview') ?>" class="input-text" cols="5" rows="3" data-validate="{required:true}"></textarea>
+                    </div>
+                </div>
+
+                <div class="field prd">
+                    <label for="prd"><?php echo __('Upload Document:') ?></label>
+                    <div class="input-box">
+                        <input type="file" id="prd" name="prd">
+                        <br>
+                        <p> <?php echo __("You can upload files with these file extensions only (%1)", $block->getAllowedFileExtensions()) ?> </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-lg-6">
+                <div class="field project_title">
+                    <label class="label" for="project_title"><span><?php /* @escapeNotVerified */ echo __('Material') ?></span></label>
+                    <div class="control">
+                        <input name="project_title" id="project_title" title="<?php /* @escapeNotVerified */ echo __('Project Title') ?>" value="" class="input-text" type="text" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="field">
+                
+                <?php if($block->isCaptchaEnable()): ?>
+                        <script type="text/javascript">
+                                var RecaptchaOptions = {
+                                       theme : "<?php echo $block->getCaptchaTheme() ?>"
+                                       //custom_theme_widget: 'recaptcha_widget'
+                                };
+                        </script>
+                        <?php echo $block->getCaptcha(); ?>
+                        
+                         
+                <?php endif; ?>
+        </div>
+        
+        
+        
+        
+        <?php echo $block->getChildHtml('form.additional.info'); ?>
+    </fieldset>
+    <div class="actions-toolbar">
+        <div class="primary">
+            <input type="hidden" name="hideit" id="hideit" value="" />
+            <button type="submit" title="<?php /* @escapeNotVerified */ echo __('Submit') ?>" class="action submit primary">
+                <span><?php /* @escapeNotVerified */ echo __('Submit') ?></span>
+            </button>
+        </div>
+    </div>
+</form>

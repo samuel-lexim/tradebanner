@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+        <head>
+                <title>Quick RFQ</title>
+        </head>
+        <body>
+            <referenceContainer name="content">
+                <block template="FME_Quickrfq::postform.phtml" class="FME\Quickrfq\Block\Postform" name="fme_quickrfq_postform">
+                    <container name="form.additional.info" label="Form Additional Info"/>
+                </block>
+            </referenceContainer>
+        </body>    
+</page>
