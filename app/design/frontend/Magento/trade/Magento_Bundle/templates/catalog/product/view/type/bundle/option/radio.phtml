@@ -1,0 +1,75 @@
+<?php
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php /* @var $block \Magento\Bundle\Block\Catalog\Product\View\Type\Bundle\Option\Radio */ ?>
+<?php $_option = $block->getOption(); ?>
+<?php $_selections  = $_option->getSelections(); ?>
+<?php $_default     = $_option->getDefaultSelection(); ?>
+<?php list($_defaultQty, $_canChangeQty) = $block->getDefaultValues(); ?>
+
+<div class="col-xs-12 col-sm-12 field option <?= ($_option->getRequired()) ? ' required': ''; ?>">
+    <label class="label">
+        <span><?= $block->escapeHtml($_option->getTitle()) ?></span>
+    </label>
+    <div class="control">
+        <div class="nested options-list">
+            <?php if ($block->showSingle()): ?>
+                <?= $block->getSelectionTitlePrice($_selections[0]) ?>
+                <input type="hidden"
+                       class="bundle-option-<?= $_option->getId() ?>  product bundle option"
+                       name="bundle_option[<?= $_option->getId() ?>]"
+                       value="<?= $_selections[0]->getSelectionId() ?>" />
+            <?php else:?>
+                <?php if (!$_option->getRequired()): ?>
+                    <div class="field choice">
+                        <input type="radio"
+                               class="radio product bundle option"
+                               id="bundle-option-<?= $_option->getId() ?>"
+                               name="bundle_option[<?= $_option->getId() ?>]"
+                               <?= ($_default && $_default->isSalable())?'':' checked="checked" ' ?>
+                               value=""/>
+                        <label class="label" for="bundle-option-<?= $_option->getId() ?>">
+                            <span><?= __('None') ?></span>
+                        </label>
+                    </div>
+                <?php endif; ?>
+                <?php foreach ($_selections as $_selection): ?>
+                    <div class="field choice">
+                        <input type="radio"
+                               class="radio product bundle option change-container-classname"
+                               id="bundle-option-<?= $_option->getId() ?>-<?= $_selection->getSelectionId() ?>"
+                               <?php if ($_option->getRequired()) echo 'data-validate="{\'validate-one-required-by-name\':true}"'?>
+                               name="bundle_option[<?= $_option->getId() ?>]"
+                               <?php if ($block->isSelected($_selection)) echo ' checked="checked"' ?>
+                               <?php if (!$_selection->isSaleable()) echo ' disabled="disabled"' ?>
+                               value="<?= $_selection->getSelectionId() ?>"/>
+                        <label class="label"
+                               for="bundle-option-<?= $_option->getId() ?>-<?= $_selection->getSelectionId() ?>">
+                            <span><?= $block->getSelectionTitlePrice($_selection) ?></span>
+                        </label>
+                    </div>
+                <?php endforeach; ?>
+                <div id="bundle-option-<?= $_option->getId() ?>-container"></div>
+            <?php endif; ?>
+            <div class="field qty qty-holder hidden">
+                <label class="label" for="bundle-option-<?= $_option->getId() ?>-qty-input">
+                    <span><?= __('Quantity') ?></span>
+                </label>
+                <div class="control">
+                    <input <?php if (!$_canChangeQty) echo ' disabled="disabled"' ?>
+                           id="bundle-option-<?= $_option->getId() ?>-qty-input"
+                           class="input-text qty<?php if (!$_canChangeQty) echo ' qty-disabled' ?>"
+                           type="number"
+                           name="bundle_option_qty[<?= $_option->getId() ?>]"
+                           value="<?= $_defaultQty ?>"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
