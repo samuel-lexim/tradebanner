@@ -70,6 +70,7 @@
         <referenceBlock name="customize.button" remove="true" />
         <referenceBlock name="bundle.back.button" remove="true" />
         <referenceContainer name="product.info.bundle.options.top" remove="true" />
+        <referenceBlock name="product.info.addto.bundle" remove="true" />
 
 
     </body>

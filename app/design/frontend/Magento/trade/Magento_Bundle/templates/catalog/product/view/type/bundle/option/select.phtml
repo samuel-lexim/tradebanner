@@ -1,0 +1,49 @@
+<?php /* @var $block \Magento\Bundle\Block\Catalog\Product\View\Type\Bundle\Option\Select */ ?>
+
+<?php $_option      = $block->getOption(); ?>
+<?php $_selections  = $_option->getSelections(); ?>
+<?php $_default     = $_option->getDefaultSelection(); ?>
+<?php list($_defaultQty, $_canChangeQty) = $block->getDefaultValues(); ?>
+<div class="col-xs-12 col-sm-12 col-md-6 field option <?= ($_option->getRequired()) ? ' required': ''; ?>">
+    <label class="label" for="bundle-option-<?= $_option->getId() ?>">
+        <span><?= $block->escapeHtml($_option->getTitle()) ?></span>
+    </label>
+    <div class="control">
+        <?php if ($block->showSingle()): ?>
+            <?= $block->getSelectionTitlePrice($_selections[0]) ?>
+            <input type="hidden"
+                   class="bundle-option-<?= $_option->getId() ?>  product bundle option"
+                   name="bundle_option[<?= $_option->getId() ?>]"
+                   value="<?= $_selections[0]->getSelectionId() ?>"/>
+        <?php else:?>
+            <select id="bundle-option-<?= $_option->getId() ?>"
+                    name="bundle_option[<?= $_option->getId() ?>]"
+                    class="bundle-option-<?= $_option->getId() ?> product bundle option bundle-option-select change-container-classname"
+                <?php if ($_option->getRequired()) echo 'data-validate = {required:true}' ?>>
+                <option value=""><?= __('Choose a selection...') ?></option>
+                <?php foreach ($_selections as $_selection): ?>
+                    <option value="<?= $_selection->getSelectionId() ?>"
+                        <?php if ($block->isSelected($_selection)) echo ' selected="selected"' ?>
+                        <?php if (!$_selection->isSaleable()) echo ' disabled="disabled"' ?>>
+                        <?= $block->getSelectionTitlePrice($_selection, false) ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
+        <?php endif; ?>
+        <div class="nested hidden">
+            <div class="field qty qty-holder">
+                <label class="label" for="bundle-option-<?= $_option->getId() ?>-qty-input">
+                    <span>Qty</span>
+                </label>
+                <div class="control">
+                    <input <?php if (!$_canChangeQty) echo ' disabled="disabled"' ?>
+                           id="bundle-option-<?= $_option->getId() ?>-qty-input"
+                           class="input-text qty<?php if (!$_canChangeQty) echo ' qty-disabled' ?>"
+                           type="number"
+                           name="bundle_option_qty[<?= $_option->getId() ?>]"
+                           value="<?= $_defaultQty ?>"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -528,7 +528,7 @@ a.clickHereHS {
     color: #f05624;
 }
 
-#leftHomeMenu .categoryItem li:last-child{
+#leftHomeMenu .categoryItem li:last-child {
     border: none;
 }
 
@@ -961,7 +961,7 @@ a.clickHereHS {
 }
 
 #leftMenuUl .submenu li a {
-    padding:  0 0 0 20px;
+    padding: 0 0 0 20px;
 }
 
 #leftMenuUl a:hover {
@@ -1370,7 +1370,7 @@ a.clickHereHS {
     }
 }
 
-    /* tab content */
+/* tab content */
 .tabsWrapper a {
     display: block;
     padding: 10px 20px;
@@ -1385,21 +1385,79 @@ a.clickHereHS {
     color: #fff;
 }
 
-.tabContent { display: none; }
+.tabContent {
+    display: none;
+}
 
-    /* bundle product */
+/* bundle product */
 .catalog-product-view .page-title-wrapper {
     display: block;
 }
+
 .catalog-product-view .bundle-options-container .product-add-form {
     display: block;
 }
-.bundle-options-wrapper {
+
+.contentDP > .product-info-price .price-box {
+    display: none;
+}
+
+.bundle-options-container .bundle-options-wrapper {
     width: 100%;
 }
 
-#bundleSummary {
+.contentDP #bundleSummary {
     width: 100%;
+    padding: 0;
+    background: #fff;
+}
+
+#product-options-wrapper .fieldset-bundle-options {
+    margin: 0;
+}
+
+#priceBundleDetail {
+    font-size: 24px;
+    margin: 0 10px 0 0;
+    float: left;
+}
+
+.contentDP #bundleSummary .price-box {
+    margin: 0;
+    padding: 10px 0 0;
+    float: left;
+}
+
+.contentDP #bundleSummary .price-box .price {
+    font-size: 24px;
+    color: #ed5621;
+}
+
+.contentDP #bundleSummary .box-tocart {
+    margin: 0;
+    padding: 20px 0 0;
+    width: 100%;
+    clear: both;
+}
+
+.contentDP #bundleSummary .box-tocart .field.qty,
+.contentDP #bundleSummary .box-tocart .actions {
+    display: inline-block;
+    padding: 0;
+    margin: 0 20px 10px 0;
+    vertical-align: top;
+}
+
+.contentDP #bundleSummary .box-tocart .actions {
+    margin: 0;
+}
+
+.contentDP #bundleSummary .box-tocart .field.qty > div {
+    display: inline-block;
+}
+
+.contentDP #bundleSummary .box-tocart .field.qty .label {
+    margin-right: 10px;
 }
 
 /* # Product detail page */
@@ -1547,4 +1605,5 @@ nav.account-nav li.current strong {
     border: 1px solid #ccc;
     /*border-collapse:;*/
 }
+
 /* # Checkout Cart page */
