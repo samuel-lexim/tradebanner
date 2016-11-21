@@ -11,11 +11,18 @@ if ($filePre != "") $tabArray['File Preparation'] = $pro->getFilePreparation();;
 $grommets = preg_replace("/\s|&nbsp;/",'',strip_tags($pro->getGrommets()));
 if ($grommets != "") $tabArray['Grommets'] = $pro->getGrommets();
 
+$pole_pockets = preg_replace("/\s|&nbsp;/",'',strip_tags($pro->getPolePockets()));
+if ($pole_pockets != "") $tabArray['Pole Pockets'] = $pro->getPolePockets();
+
 $winds_slits = preg_replace("/\s|&nbsp;/",'',strip_tags($pro->getWindsSlits()));
 if ($winds_slits != "") $tabArray['Winds Slits'] = $pro->getWindsSlits();
 
 $lamination = preg_replace("/\s|&nbsp;/",'',strip_tags($pro->getLamination()));
 if ($lamination != "") $tabArray['Lamination'] = $pro->getLamination();
+
+
+$frame = preg_replace("/\s|&nbsp;/",'',strip_tags($pro->getFrame()));
+if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
 ?>
 
 <div class="descriptionBlock">
