@@ -1416,12 +1416,6 @@ a.clickHereHS {
     margin: 0;
 }
 
-#priceBundleDetail {
-    font-size: 24px;
-    margin: 0 10px 0 0;
-    float: left;
-}
-
 .contentDP #bundleSummary .price-box {
     margin: 0;
     padding: 10px 0 0;
@@ -1431,6 +1425,19 @@ a.clickHereHS {
 .contentDP #bundleSummary .price-box .price {
     font-size: 24px;
     color: #ed5621;
+    display: none;
+}
+
+.priceBoxBundle {
+    font-size: 24px;
+    color: #ed5621;
+}
+
+#priceBundleDetail {
+    font-size: 24px;
+    margin: 0 10px 0 0;
+    float: left;
+    color: #000;
 }
 
 .contentDP #bundleSummary .box-tocart {
@@ -1458,6 +1465,11 @@ a.clickHereHS {
 
 .contentDP #bundleSummary .box-tocart .field.qty .label {
     margin-right: 10px;
+}
+
+.bundle-options-wrapper .radioOp input.qty {
+    width: 100%;
+    text-align: left;
 }
 
 /* # Product detail page */

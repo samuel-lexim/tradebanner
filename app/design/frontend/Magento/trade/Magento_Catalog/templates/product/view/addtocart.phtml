@@ -42,17 +42,27 @@
     </script>
 <?php else : ?>
     <script type="text/javascript">
-        require(['jquery', 'mage/mage', 'Magento_Catalog/product/view/validation', 'Magento_Catalog/js/catalog-add-to-cart'], function ($) {
+        require(['jquery',
+            'mage/mage',
+            'Magento_Catalog/product/view/validation',
+            'Magento_Catalog/js/catalog-add-to-cart'],
+        function ($) {
             'use strict';
 
             $('#product_addtocart_form').mage('validation', {
                 radioCheckboxClosest: '.nested',
                 submitHandler: function (form) {
-                    var widget = $(form).catalogAddToCart({
-                        bindSubmit: false
-                    });
+                    var areaVal = $('#areaInputId').val();
 
-                    widget.catalogAddToCart('submitForm', $(form));
+                    if (isNaN(areaVal) || areaVal > 0) {
+                        var widget = $(form).catalogAddToCart({
+                            bindSubmit: false
+                        });
+                        widget.catalogAddToCart('submitForm', $(form));
+                    }
+                    else {
+                        alert("Error! Please check width value or Height value.");
+                    }
 
                     return false;
                 }

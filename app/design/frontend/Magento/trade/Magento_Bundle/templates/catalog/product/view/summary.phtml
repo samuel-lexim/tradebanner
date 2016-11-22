@@ -6,7 +6,9 @@
     <div class="content">
         <div class="bundle-info">
             <div class="product-details">
-                <span id="priceBundleDetail">Price:</span>
+                <span class="hidden" id="priceWithoutArea"></span>
+                <p class="priceBoxBundle"><span id="priceBundleDetail">Price: </span>$<span id="totalPrice"></span></p>
+
                 <?= $block->getChildHtml('', true);?>
             </div>
         </div>

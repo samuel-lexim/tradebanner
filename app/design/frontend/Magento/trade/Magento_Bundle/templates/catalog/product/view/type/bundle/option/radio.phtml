@@ -8,23 +8,70 @@
 
 ?>
 <?php /* @var $block \Magento\Bundle\Block\Catalog\Product\View\Type\Bundle\Option\Radio */ ?>
-<?php $_option = $block->getOption(); ?>
-<?php $_selections  = $_option->getSelections(); ?>
-<?php $_default     = $_option->getDefaultSelection(); ?>
-<?php list($_defaultQty, $_canChangeQty) = $block->getDefaultValues(); ?>
+<?php $_option = $block->getOption();
+$_selections  = $_option->getSelections();
+$_default     = $_option->getDefaultSelection();
+list($_defaultQty, $_canChangeQty) = $block->getDefaultValues();
 
-<div class="col-xs-12 col-sm-12 field option <?= ($_option->getRequired()) ? ' required': ''; ?>">
-    <label class="label">
+// Detect width, height, area
+$title = 'notDetect'; $isArea = false;
+if ($block->showSingle()) {
+    $cats = $_selections[0]->getCategoryIds();
+    $catId = $cats[0];
+
+    $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+    $categoryFac =  $objectManager->create('Magento\Catalog\Model\ResourceModel\Category\CollectionFactory');
+    $cat = $categoryFac->create()
+        ->addAttributeToSelect('*')
+        ->addAttributeToFilter('entity_id', $catId)
+        ->addAttributeToFilter('is_active', '0')
+        ->getFirstItem();
+
+    $title = $cat->getName();
+    $isArea = strpos(strtolower($title), 'area');
+    $isArea = ($isArea !== false);
+
+    $isWidth = strpos(strtolower($title), 'width');
+    $isWidth = ($isWidth !== false);
+
+    $isHeight = strpos(strtolower($title), 'height');
+    $isHeight = ($isHeight !== false);
+}
+
+?>
+
+
+<div class="col-xs-12 col-sm-6 field radioOp <?= ($isArea) ? 'hidden':'' ?> option <?= ($_option->getRequired()) ? ' required': ''; ?>">
+    <label class="label <?= $isArea ?>">
         <span><?= $block->escapeHtml($_option->getTitle()) ?></span>
     </label>
     <div class="control">
         <div class="nested options-list">
             <?php if ($block->showSingle()): ?>
-                <?= $block->getSelectionTitlePrice($_selections[0]) ?>
-                <input type="hidden"
-                       class="bundle-option-<?= $_option->getId() ?>  product bundle option"
+                <!-- = $ block->getSelectionTitlePrice($_selections[0]) -->
+                <input type="hidden" class="single bundle-option-<?= $_option->getId() ?>  product bundle option"
                        name="bundle_option[<?= $_option->getId() ?>]"
                        value="<?= $_selections[0]->getSelectionId() ?>" />
+
+                <div class="field qty-holder <?= $title ?>">
+                    <div class="control">
+                        <?php
+                        $qtyId = '';
+                        if ($isArea) $qtyId = 'areaInputId';
+                        else if ($isWidth) $qtyId = 'widthInputId';
+                        else if ($isHeight) $qtyId = 'heightInputId';
+                        else $qtyId = 'bundle-option-'. $_option->getId() .'-qty-input';
+                        ?>
+                        <input <?php if (!$_canChangeQty) echo ' disabled="disabled"' ?>
+                            id="<?= $qtyId ?>"
+                            class="input-text qty<?php if (!$_canChangeQty) echo ' qty-disabled' ?>"
+                            type="number"
+                            name="bundle_option_qty[<?= $_option->getId() ?>]"
+                            value="<?= $_defaultQty ?>"
+                            data-price="<?= $_selections[0]->getFinalPrice() ?>"/>
+                    </div>
+                </div>
+
             <?php else:?>
                 <?php if (!$_option->getRequired()): ?>
                     <div class="field choice">
@@ -56,20 +103,21 @@
                     </div>
                 <?php endforeach; ?>
                 <div id="bundle-option-<?= $_option->getId() ?>-container"></div>
-            <?php endif; ?>
-            <div class="field qty qty-holder hidden">
-                <label class="label" for="bundle-option-<?= $_option->getId() ?>-qty-input">
-                    <span><?= __('Quantity') ?></span>
-                </label>
-                <div class="control">
-                    <input <?php if (!$_canChangeQty) echo ' disabled="disabled"' ?>
-                           id="bundle-option-<?= $_option->getId() ?>-qty-input"
-                           class="input-text qty<?php if (!$_canChangeQty) echo ' qty-disabled' ?>"
-                           type="number"
-                           name="bundle_option_qty[<?= $_option->getId() ?>]"
-                           value="<?= $_defaultQty ?>"/>
+
+                <div class="field qty qty-holder">
+                    <label class="label" for="bundle-option-<?= $_option->getId() ?>-qty-input">
+                        <span><?= __('Quantity') ?></span>
+                    </label>
+                    <div class="control">
+                        <input <?php if (!$_canChangeQty) echo ' disabled="disabled"' ?>
+                            id="bundle-option-<?= $_option->getId() ?>-qty-input"
+                            class="input-text qty<?php if (!$_canChangeQty) echo ' qty-disabled' ?>"
+                            type="number"
+                            name="bundle_option_qty[<?= $_option->getId() ?>]"
+                            value="<?= $_defaultQty ?>"/>
+                    </div>
                 </div>
-            </div>
+            <?php endif; ?>
         </div>
     </div>
 </div>
