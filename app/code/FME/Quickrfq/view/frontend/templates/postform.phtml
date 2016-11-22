@@ -9,124 +9,146 @@
 ?>
 
 <form class="form quickrfq"
-      action="<?php /* @escapeNotVerified */ echo $block->getFormAction(); ?>"
+      action="<?= $block->getFormAction(); ?>"
       id="quickrfq_form"
       enctype="multipart/form-data"
       method="post"
-      data-hasrequired="<?php /* @escapeNotVerified */ echo __('* Required Fields') ?>"
+      data-hasrequired="* Required Fields"
       data-mage-init='{"validation":{}}'>
 
 
     <fieldset class="fieldset">
-        <legend class="legend"><span><?php /* @escapeNotVerified */ echo __('Custom Estimate') ?></span></legend><br />
+        <div class="custom-title">
+            <legend class="legend"><span>Custom Estimate</span></legend><br />
+        </div>
         <div class="estimate-group row">
-            <div class="col-xs-12 col-lg-6">
+            <div class="col-xs-12 col-sm-6">
                 <div class="field name required">
-                    <label class="label" for="company"><?php echo __('Custom Quote Name') ?></label>
+                    <label class="label" for="contact_name">Custom Quote Name</label>
                     <div class="control">
-                        <input name="company" id="company" value="" class="input-text" type="text" data-validate="{required:true}"/>
+                        <input name="contact_name" id="contact_name" title="Contact Name" value="<?= $block->escapeHtml($this->helper('Magento\Contact\Helper\Data')->getUserName()) ?>" class="input-text" type="text" data-validate="{required:true}"/>
                     </div>
                 </div>
 
                 <div class="field email required">
-                    <label class="label" for="email"><span><?php /* @escapeNotVerified */ echo __('Email - Your User Name') ?></span></label>
+                    <label class="label" for="email"><span>Email - Your User Name</span></label>
                     <div class="control">
-                        <input name="email" id="email" title="<?php /* @escapeNotVerified */ echo __('Email') ?>" value="<?php echo $block->escapeHtml($this->helper('Magento\Contact\Helper\Data')->getUserEmail()) ?>" class="input-text" type="email" data-validate="{required:true, 'validate-email':true}"/>
+                        <input name="email" id="email" title="Email" value="<?= $block->escapeHtml($this->helper('Magento\Contact\Helper\Data')->getUserEmail()) ?>" class="input-text" type="email" data-validate="{required:true, 'validate-email':true}"/>
                     </div>
                 </div>
             </div>
-            <div class="col-xs-12 col-lg-6">
+            <div class="col-xs-12 col-sm-6">
                 <div class="field contact_name required">
-                    <label class="label" for="contact_name"><span><?php /* @escapeNotVerified */ echo __('Company Name') ?></span></label>
+                    <label class="label" for="company"><span>Company Name</span></label>
                     <div class="control">
-                        <input name="contact_name" id="contact_name" title="<?php /* @escapeNotVerified */ echo __('Contact Name') ?>" value="<?php echo $block->escapeHtml($this->helper('Magento\Contact\Helper\Data')->getUserName()) ?>" class="input-text" type="text" data-validate="{required:true}"/>
+                        <input name="company" id="company" value="" class="input-text" type="text" data-validate="{required:true}"/>
                     </div>
                 </div>
             </div>
         </div>
         <div class="estimate-group row">
-            <div class="col-xs-12 col-lg-6">
-                <div class="field phone">
-                    <label class="label" for="phone"><span><?php /* @escapeNotVerified */ echo __('Category') ?></span></label>
+            <div class="col-xs-12 col-sm-6">
+                <div class="field category">
+                    <label class="label" for="category"><span>Category</span></label>
                     <div class="control">
-                        <input name="phone" id="phone" title="<?php /* @escapeNotVerified */ echo __('Phone Number') ?>" value="" class="input-text" type="text" />
+                        <select name="category" id="category">
+                            <option value="Banners">Banners</option>
+                            <option value="Adhesive">Adhesive</option>
+                            <option value="Digital Print">Digital Print</option>
+                            <option value="Signs and Boards">Signs and Boards</option>
+                            <option value="Banner Stands">Banner Stands</option>
+                            <option value="Car Wraps">Car Wraps</option>
+                            <option value="Lettering (Die Cut Vinyl - Plotter)">Lettering (Die Cut Vinyl - Plotter)</option>
+                            <option value="Others">Others</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="field material">
+                    <label class="label" for="material"><span><?= __('Material') ?></span></label>
+                    <div class="control">
+                        <select name="material" id="material">
+                            <option value="Backlit Film">Backlit Film</option>
+                            <option value="Canvas">Canvas</option>
+                            <option value="Car Magnets">Car Magnets</option>
+                            <option value="Digital Poster Gloss">Digital Poster Gloss</option>
+                            <option value="Digital Poster Matte">Digital Poster Matte</option>
+                            <option value="Polyropylene (PET)">Polyropylene (PET)</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="field delivery">
+                    <label class="label" for="delivery">'Delivery Method Required'</span></label>
+                    <div class="control">
+                        <select name="delivery" id="delivery">
+                            <option  value="Pick-Up">Pick-Up</option>
+                            <option  value="Free-Delivery">Free-Delivery</option>
+                            <option  value="FedEx Ground">FedEx Ground</option>
+                            <option  value="FedEx Overnight">FedEx Overnight</option>
+                            <option  value="FedEx 2nd Day">FedEx 2nd Day</option>
+                            <option  value="FedEx Express Saver">FedEx Express Saver</option>
+                        </select>
                     </div>
                 </div>
 
-                <!--<div class="field date">
-                    <label class="label" for="date"><span><?php /* @escapeNotVerified */ echo __('Quote Needed By') ?></span></label>
-                    <div class="control">
-                        <input name="date" id="date" title="<?php /* @escapeNotVerified */ echo __('Quote Needed By') ?>" value="" class="hasDatepicker" type="text" />
-
-                    </div>
-                </div>-->
-
-                <?php $_date = $block->getLayout()->createBlock('FME\Quickrfq\Block\Widget\DateQuote') ?>
-                <?php if ($_date->isEnabled()): ?>
-                    <?php echo $_date->toHtml() ?>
-                <?php endif ?>
 
                 <div class="field budget">
-                        <label for="budget"><?php echo __('Project Budget Status') ?></label>
-                        <div class="input-box">
-                           <input name="budget" value="Approved" checked="checked" type="radio"><?php echo __('Approved') ?>
-                           <input name="budget" value="Approval Pending" type="radio"><?php echo __('Approval Pending') ?>
-                           <input name="budget" value="Open" type="radio"><?php echo __('Open') ?>
-                           <input name="budget" value="No Approval" type="radio"><?php echo __('No Approval') ?>
-                        </div>
+                    <label for="budget">Finishing Options</label>
+                    <div class="input-box custom-multi-option">
+                       <input name="budget" value="Hemming" type="checkbox">Hemming
+                       <input name="budget" value="Grommets" type="checkbox">Grommets
+                       <input name="budget" value="Pole Pockets" type="checkbox">Pole Pockets
+                       <input name="budget" value="Wind Holes" type="checkbox">Wind Holes
+                    </div>
                 </div>
 
                 <div class="field overview required">
-                    <label class="label" for="overview"><span><?php /* @escapeNotVerified */ echo __('Brief Overview') ?></span></label>
+                    <label class="label" for="overview"><span>Additional Note</span></label>
                     <div class="control">
-                        <textarea name="overview" id="overview" title="<?php /* @escapeNotVerified */ echo __('Brief Overview') ?>" class="input-text" cols="5" rows="3" data-validate="{required:true}"></textarea>
+                        <textarea name="overview" id="overview" title="Brief Overview" class="input-text" cols="5" rows="3" data-validate="{required:true}"></textarea>
                     </div>
                 </div>
 
                 <div class="field prd">
-                    <label for="prd"><?php echo __('Upload Document:') ?></label>
+                    <label for="prd">Upload Document:</label>
                     <div class="input-box">
                         <input type="file" id="prd" name="prd">
                         <br>
-                        <p> <?php echo __("You can upload files with these file extensions only (%1)", $block->getAllowedFileExtensions()) ?> </p>
+                        <p> <?= __("You can upload files with these file extensions only (%1)", $block->getAllowedFileExtensions()) ?> </p>
                     </div>
                 </div>
             </div>
-            <div class="col-xs-12 col-lg-6">
-                <div class="field project_title">
-                    <label class="label" for="project_title"><span><?php /* @escapeNotVerified */ echo __('Material') ?></span></label>
+
+            <div class="col-xs-12 col-sm-6">
+                <div class="field width">
+                    <label class="label" for="width"><span>Width</span></label>
                     <div class="control">
-                        <input name="project_title" id="project_title" title="<?php /* @escapeNotVerified */ echo __('Project Title') ?>" value="" class="input-text" type="text" />
+                        <input name="width" id="width" title="Width" value="" class="input-text" type="text" data-validate="{required:true}"/>
+                    </div>
+                </div>
+                <div class="field height">
+                    <label class="label" for="height"><span>Height</span></label>
+                    <div class="control">
+                        <input name="height" id="height" title="Height" value="" class="input-text" type="text" data-validate="{required:true}"/>
+                    </div>
+                </div>
+                <div class="field quantity">
+                    <label class="label" for="quantity"><span>Quantity</span></label>
+                    <div class="control">
+                        <input name="quantity" id="quantity" title="Quantity" value="" class="input-text" type="text" data-validate="{required:true}"/>
                     </div>
                 </div>
             </div>
         </div>
+
+
         
-        <div class="field">
-                
-                <?php if($block->isCaptchaEnable()): ?>
-                        <script type="text/javascript">
-                                var RecaptchaOptions = {
-                                       theme : "<?php echo $block->getCaptchaTheme() ?>"
-                                       //custom_theme_widget: 'recaptcha_widget'
-                                };
-                        </script>
-                        <?php echo $block->getCaptcha(); ?>
-                        
-                         
-                <?php endif; ?>
-        </div>
-        
-        
-        
-        
-        <?php echo $block->getChildHtml('form.additional.info'); ?>
+        <?= $block->getChildHtml('form.additional.info'); ?>
     </fieldset>
-    <div class="actions-toolbar">
+    <div class="actions-toolbar custom-submit">
         <div class="primary">
             <input type="hidden" name="hideit" id="hideit" value="" />
-            <button type="submit" title="<?php /* @escapeNotVerified */ echo __('Submit') ?>" class="action submit primary">
-                <span><?php /* @escapeNotVerified */ echo __('Submit') ?></span>
+            <button type="submit" title="Submit" class="action submit primary">
+                <span>SUBMIT</span>
             </button>
         </div>
     </div>

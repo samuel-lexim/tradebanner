@@ -142,12 +142,13 @@ class Main extends \Magento\Backend\Block\Widget\Form\Generic implements \Magent
         );
         
         $fieldset->addField(
-            'phone',
-            'text',
+            'category',
+            'select',
             [
-                'name' => 'phone',
-                'label' => __('Phone'),
-                'title' => __('Phone'),
+                'name' => 'category',
+                'label' => __('Category'),
+                'title' => __('Category'),
+                'options' => $model->getCategoryCustomEs(),
                 'class' => '',          
                 'disabled' => $isElementDisabled
             ]
@@ -180,12 +181,61 @@ class Main extends \Magento\Backend\Block\Widget\Form\Generic implements \Magent
         );
         
         $fieldset->addField(
-            'project_title',
+            'material',
+            'select',
+            [
+                'name' => 'material',
+                'label' => __('Material'),
+                'title' => __('Material'),
+                'options' => $model->getMaterialCustomEs(),
+                'class' => '',
+                'disabled' => $isElementDisabled
+            ]
+        );
+
+        $fieldset->addField(
+            'width',
             'text',
             [
-                'name' => 'project_title',
-                'label' => __('Project Title'),
-                'title' => __('Project Title'),
+                'name' => 'width',
+                'label' => __('Width'),
+                'title' => __('Width'),
+                'class' => '',
+                'disabled' => $isElementDisabled
+            ]
+        );
+
+        $fieldset->addField(
+            'height',
+            'text',
+            [
+                'name' => 'height',
+                'label' => __('Height'),
+                'title' => __('Height'),
+                'class' => '',
+                'disabled' => $isElementDisabled
+            ]
+        );
+
+        $fieldset->addField(
+            'quantity',
+            'text',
+            [
+                'name' => 'quantity',
+                'label' => __('Quantity'),
+                'title' => __('Quantity'),
+                'class' => '',
+                'disabled' => $isElementDisabled
+            ]
+        );
+
+        $fieldset->addField(
+            'delivery',
+            'text',
+            [
+                'name' => 'delivery',
+                'label' => __('Delivery'),
+                'title' => __('Delivery'),
                 'class' => '',
                 'disabled' => $isElementDisabled
             ]

@@ -296,16 +296,17 @@
                 </item>
             </argument>
         </column>       
-        <column name="project_title">
+        <column name="material">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="filter" xsi:type="string">text</item>
                     <item name="editor" xsi:type="string">text</item>                        
-                    <item name="label" xsi:type="string" translate="true">Project Title</item>
+                    <item name="label" xsi:type="string" translate="true">Material</item>
                     <item name="sortOrder" xsi:type="number">50</item>
                 </item>
             </argument>
         </column>
+
         <column name="status">
             <argument name="data" xsi:type="array">
                 <item name="options" xsi:type="object">FME\Quickrfq\Model\Quickrfq\Source\Status</item>
