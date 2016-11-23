@@ -140,7 +140,20 @@ class Main extends \Magento\Backend\Block\Widget\Form\Generic implements \Magent
                 'disabled' => $isElementDisabled
             ]
         );
-        
+
+        $fieldset->addField(
+            'email',
+            'text',
+            [
+                'name' => 'email',
+                'label' => __('Email'),
+                'title' => __('Email'),
+                'required' => true,
+                'class' => '',
+                'disabled' => $isElementDisabled
+            ]
+        );
+
         $fieldset->addField(
             'category',
             'select',
@@ -153,32 +166,19 @@ class Main extends \Magento\Backend\Block\Widget\Form\Generic implements \Magent
                 'disabled' => $isElementDisabled
             ]
         );
-        
-        $fieldset->addField(
-            'email',
-            'text',
-            [
-                'name' => 'email',
-                'label' => __('Email'),
-                'title' => __('Email'),
-                'required' => true,
-                'class' => '',          
-                'disabled' => $isElementDisabled
-            ]
-        );       
 
-        $fieldset->addField(
-            'date',
-            'date',
-            [
-                'name' => 'date',
-                'label' => __('Date Quote Needed by Client'),
-                'title' => __('Date Quote Needed by Client'),
-                'date_format' => $dateFormat,
-                'class' => 'validate-date validate-date-range date-range-custom_theme-from',          
-                'disabled' => $isElementDisabled
-            ]
-        );
+//        $fieldset->addField(
+//            'date',
+//            'date',
+//            [
+//                'name' => 'date',
+//                'label' => __('Date Quote Needed by Client'),
+//                'title' => __('Date Quote Needed by Client'),
+//                'date_format' => $dateFormat,
+//                'class' => 'validate-date validate-date-range date-range-custom_theme-from',
+//                'disabled' => $isElementDisabled
+//            ]
+//        );
         
         $fieldset->addField(
             'material',
@@ -240,7 +240,55 @@ class Main extends \Magento\Backend\Block\Widget\Form\Generic implements \Magent
                 'disabled' => $isElementDisabled
             ]
         );
-        
+
+        $fieldset->addField(
+            'windholes',
+            'text',
+            [
+                'name' => 'windholes',
+                'label' => __('Wind holes'),
+                'title' => __('Wind holes'),
+                'class' => '',
+                'disabled' => $isElementDisabled
+            ]
+        );
+
+        $fieldset->addField(
+            'hemming',
+            'text',
+            [
+                'name' => 'hemming',
+                'label' => __('Hemming'),
+                'title' => __('Hemming'),
+                'class' => '',
+                'disabled' => $isElementDisabled
+            ]
+        );
+
+        $fieldset->addField(
+            'grommets',
+            'text',
+            [
+                'name' => 'grommets',
+                'label' => __('Grommets'),
+                'title' => __('Grommets'),
+                'class' => '',
+                'disabled' => $isElementDisabled
+            ]
+        );
+
+        $fieldset->addField(
+            'lamination',
+            'text',
+            [
+                'name' => 'lamination',
+                'label' => __('Lamination'),
+                'title' => __('Lamination'),
+                'class' => '',
+                'disabled' => $isElementDisabled
+            ]
+        );
+
         $field = $fieldset->addField(
             'prd',
             'text',
@@ -256,21 +304,20 @@ class Main extends \Magento\Backend\Block\Widget\Form\Generic implements \Magent
                 'FME\Quickrfq\Block\Adminhtml\Quickrfq\Renderer\ElementFile'
         );
         $field->setRenderer($renderer);
-            
-            
+
         
-        $fieldset->addField(
-            'budget',
-            'select',
-            [
-                'name' => 'budget',
-                'label' => __('Budget Status'),
-                'title' => __('Budget Status'),
-                'options' => $model->getBudgetStatuses(),
-                'class' => '',
-                'disabled' => $isElementDisabled
-            ]
-        );
+//        $fieldset->addField(
+//            'budget',
+//            'select',
+//            [
+//                'name' => 'budget',
+//                'label' => __('Budget Status'),
+//                'title' => __('Budget Status'),
+//                'options' => $model->getBudgetStatuses(),
+//                'class' => '',
+//                'disabled' => $isElementDisabled
+//            ]
+//        );
         
         
         $wysiwygConfig = $this->_wysiwygConfig->getConfig(['tab_id' => $this->getTabId()]);
