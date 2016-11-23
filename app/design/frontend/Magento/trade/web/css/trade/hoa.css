@@ -439,3 +439,43 @@
         padding: 0 3px;
     }
 }
+
+/************************** CUSTOM ESTIMATE ******************************/
+.estimate-group {
+    padding: 20px 0;
+    border-bottom: 1px #949494 solid;
+}
+.estimate-group input, .estimate-group select {
+    height: 40px;
+    margin: 10px 0;
+}
+.estimate-group textarea {
+    margin: 10px 0;
+}
+.estimate-group .custom-multi-option input {
+    height: 12px;
+    margin-left: 5%;
+}
+.estimate-group label {
+    font-weight: bold;
+}
+.custom-title {
+    font-size: 30px;
+    height: 100px;
+    margin-bottom: 50px;
+    background: #1ca1ac;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.custom-title .legend {
+    margin: 0;
+}
+.custom-submit {
+    margin-left: 0 !important;
+}
+.custom-submit button {
+    height: 40px;
+    width: 120px;
+}
