@@ -1518,7 +1518,7 @@ nav.account-nav li.current strong {
 
 /* # My Account page */
 
-/* Checkout Cart page */
+/* Cart page */
 .checkout-cart-index #maincontent {
     background: #fafafa;
 }
@@ -1569,6 +1569,15 @@ nav.account-nav li.current strong {
 
 #cartPage .cart.main.actions {
     text-align: right;
+    margin: 15px 0 0;
+}
+
+#cartPage .cart.main.actions > button {
+    background: #1ca1ac;
+    color: #fff;
+    border-radius: 0;
+    border: 0;
+    margin: 0 0 0 7px;
 }
 
 .checkout-cart-index .block {
@@ -1615,7 +1624,95 @@ nav.account-nav li.current strong {
 
 #shopping-cart-table {
     border: 1px solid #ccc;
-    /*border-collapse:;*/
 }
 
-/* # Checkout Cart page */
+#shopping-cart-table > thead {
+    background: #f1f1f1;
+}
+
+#shopping-cart-table td {
+    vertical-align: middle;
+}
+
+.colTb.qty {
+    width: 70px;
+}
+
+.colTb.subtotal, .colTb.price {
+    width: 150px;
+}
+
+.align-center {
+    text-align: center !important;
+}
+
+.itemCartCol .product-item-photo {
+    float: left;
+}
+
+.itemCartCol .product-item-details {
+    float: right;
+    width: calc(100% - 110px);
+}
+
+.itemCartCol .actionsBar {
+    clear: both;
+    width: 100%;
+}
+
+.itemCartCol .titCartCol {
+    color: #000;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+a.showDetailCartCol {
+    padding: 0 0 15px;
+    display: block;
+}
+
+.actionsBar > .action {
+    display: block;
+    background: #1ca1ac;
+    margin: 5px 8px 0 0;
+    padding: 5px 15px;
+    float: left;
+    color: #fff;
+}
+
+@media only screen and (max-width: 767px) {
+    .colTb.qty {
+        width: 70px;
+    }
+
+    #shopping-cart-table td {
+        padding: 5px;
+    }
+
+    .colTb.subtotal, .colTb.price {
+        width: 70px;
+    }
+
+    .itemCartCol .product-item-details {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .colTb.price, #shopping-cart-table .col.price.align-center {
+        display: none;
+    }
+
+    #shopping-cart-table td span {
+        font-size: 14px;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .actionsBar > .action {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* # Cart page */

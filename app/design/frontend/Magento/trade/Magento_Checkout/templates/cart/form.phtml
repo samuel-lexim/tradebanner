@@ -18,18 +18,18 @@ $size = count($block->getItems()); ?>
     <div class="clearfix pad30"></div>
 
     <form action="<?= $block->getUrl('checkout/cart/updatePost') ?>" method="post" data-mage-init='{"validation":{}}'
-          id="form-validate"  class="form form-cart ">
+          id="form-validate2"  class="form form-cart ">
         <?= $block->getBlockHtml('formkey'); ?>
-        <div class="cart table-responsive">
+        <div class="cart table-responsive22">
             <table id="shopping-cart-table" class="table-bordered table cart items data"
                    data-mage-init='{"shoppingCart":{"emptyCartButton": "action.clear",
                "updateCartActionContainer": "#update_cart_action_container"}}'>
                 <thead>
                     <tr>
                         <th class="colTb item"><span><?= __('Products') ?></span></th>
-                        <th class="colTb price"><span><?= __('Price') ?></span></th>
-                        <th class="colTb qty"><span><?= __('Qty') ?></span></th>
-                        <th class="colTb subtotal"><span><?= __('Total') ?></span></th>
+                        <th class="colTb price align-center"><span><?= __('Price') ?></span></th>
+                        <th class="colTb qty align-center"><span><?= __('Qty') ?></span></th>
+                        <th class="colTb subtotal align-center"><span><?= __('Total') ?></span></th>
                     </tr>
                 </thead>
                 <?php foreach ($block->getItems() as $_item): ?>
@@ -61,4 +61,16 @@ $size = count($block->getItems()); ?>
     <?= $block->getChildHtml('shopping.cart.table.after'); ?>
 
     <div class="clearfix pad50"></div>
+
+    <script type="text/javascript">
+        require(['jquery', 'jquery/ui'], function($){
+            $(document).ready(function($) {
+                $('.showDetailCartCol').click(function(){
+                    var itemDetail = $(this).parent().find('.item-options');
+                    itemDetail.toggle();
+                });
+            });
+        });
+    </script>
+
 </div>
