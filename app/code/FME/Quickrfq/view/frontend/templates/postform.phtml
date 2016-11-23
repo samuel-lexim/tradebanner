@@ -64,7 +64,7 @@
                     </div>
                 </div>
                 <div class="field material">
-                    <label class="label" for="material"><span><?= __('Material') ?></span></label>
+                    <label class="label" for="material"><span>Material</span></label>
                     <div class="control">
                         <select name="material" id="material">
                             <option value="Backlit Film">Backlit Film</option>
@@ -77,7 +77,7 @@
                     </div>
                 </div>
                 <div class="field delivery">
-                    <label class="label" for="delivery">'Delivery Method Required'</span></label>
+                    <label class="label" for="delivery">Delivery Method Required</span></label>
                     <div class="control">
                         <select name="delivery" id="delivery">
                             <option  value="Pick-Up">Pick-Up</option>
@@ -88,26 +88,35 @@
                             <option  value="FedEx Express Saver">FedEx Express Saver</option>
                         </select>
                     </div>
+                    <p>* Only Certain LA County (California) locations qualify for Free-Delivery</p>
+                    <br/>
                 </div>
-
-
-                <div class="field budget">
-                    <label for="budget">Finishing Options</label>
-                    <div class="input-box custom-multi-option">
-                       <input name="budget" value="Hemming" type="checkbox">Hemming
-                       <input name="budget" value="Grommets" type="checkbox">Grommets
-                       <input name="budget" value="Pole Pockets" type="checkbox">Pole Pockets
-                       <input name="budget" value="Wind Holes" type="checkbox">Wind Holes
+                <div class="size-options row">
+                    <div class="col-xs-12 col-sm-4">
+                        <div class="field width">
+                            <label class="label" for="width"><span>Width</span></label>
+                            <div class="control">
+                                <input name="width" id="width" title="Width" value="" class="input-text" type="text" data-validate="{required:true}"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-4">
+                        <div class="field height">
+                            <label class="label" for="height"><span>Height</span></label>
+                            <div class="control">
+                                <input name="height" id="height" title="Height" value="" class="input-text" type="text" data-validate="{required:true}"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-4">
+                        <div class="field quantity">
+                            <label class="label" for="quantity"><span>Quantity</span></label>
+                            <div class="control">
+                                <input name="quantity" id="quantity" title="Quantity" value="" class="input-text" type="text" data-validate="{required:true}"/>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
-                <div class="field overview required">
-                    <label class="label" for="overview"><span>Additional Note</span></label>
-                    <div class="control">
-                        <textarea name="overview" id="overview" title="Brief Overview" class="input-text" cols="5" rows="3" data-validate="{required:true}"></textarea>
-                    </div>
-                </div>
-
                 <div class="field prd">
                     <label for="prd">Upload Document:</label>
                     <div class="input-box">
@@ -116,25 +125,75 @@
                         <p> <?= __("You can upload files with these file extensions only (%1)", $block->getAllowedFileExtensions()) ?> </p>
                     </div>
                 </div>
+
+<!--                <div class="field budget">-->
+<!--                    <label for="budget">Finishing Options</label>-->
+<!--                    <div class="input-box custom-multi-option">-->
+<!--                       <input name="budget" value="Hemming" type="checkbox">Hemming-->
+<!--                       <input name="budget" value="Grommets" type="checkbox">Grommets-->
+<!--                       <input name="budget" value="Pole Pockets" type="checkbox">Pole Pockets-->
+<!--                       <input name="budget" value="Wind Holes" type="checkbox">Wind Holes-->
+<!--                    </div>-->
+<!--                </div>-->
+
+
             </div>
 
             <div class="col-xs-12 col-sm-6">
-                <div class="field width">
-                    <label class="label" for="width"><span>Width</span></label>
-                    <div class="control">
-                        <input name="width" id="width" title="Width" value="" class="input-text" type="text" data-validate="{required:true}"/>
+
+                <div class="finish-options row">
+                    <div class="col-xs-12 col-sm-6">
+                        <div class="field windholes">
+                            <label class="label" for="windholes">Wind Holes</span></label>
+                            <div class="control">
+                                <select name="windholes" id="windholes">
+                                    <option  value="N/A">Choose a selection...</option>
+                                    <option  value="Standard Wind Holes  +$5.00">Standard Wind Holes  +$5.00</option>
+                                    <option  value="No Wind Holes">No Wind Holes</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="field hemming">
+                            <label class="label" for="hemming">Hemming</span></label>
+                            <div class="control">
+                                <select name="hemming" id="hemming">
+                                    <option  value="N/A">Choose a selection...</option>
+                                    <option  value="Hemming">Hemming</option>
+                                    <option  value="No Hemming">No Hemming</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6">
+                        <div class="field grommets">
+                            <label class="label" for="grommets">Grommets</span></label>
+                            <div class="control">
+                                <select name="grommets" id="grommets">
+                                    <option  value="N/A">Choose a selection...</option>
+                                    <option  value="Grommets Every 3 feet">Grommets Every 3 feet</option>
+                                    <option  value="4 Corners Only">4 Corners Only</option>
+                                    <option  value="No Grommets">No Grommets</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="field lamination">
+                            <label class="label" for="lamination">Lamination</span></label>
+                            <div class="control">
+                                <select name="lamination" id="lamination">
+                                    <option  value="N/A">Choose a selection...</option>
+                                    <option  value="Dry Erase Lamination  +$15.00">Dry Erase Lamination  +$15.00</option>
+                                    <option  value="Matte Lamination  +$4.81">Matte Lamination  +$4.81</option>
+                                    <option  value="High Gloss Lamination  +$4.80">High Gloss Lamination  +$4.80</option>
+                                    <option  value="FedEx Overnight">No Lamination</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="field height">
-                    <label class="label" for="height"><span>Height</span></label>
+                <div class="field overview required">
+                    <label class="label" for="overview"><span>Additional Note</span></label>
                     <div class="control">
-                        <input name="height" id="height" title="Height" value="" class="input-text" type="text" data-validate="{required:true}"/>
-                    </div>
-                </div>
-                <div class="field quantity">
-                    <label class="label" for="quantity"><span>Quantity</span></label>
-                    <div class="control">
-                        <input name="quantity" id="quantity" title="Quantity" value="" class="input-text" type="text" data-validate="{required:true}"/>
+                        <textarea name="overview" id="overview" title="Brief Overview" class="input-text" cols="5" rows="7" data-validate="{required:true}"></textarea>
                     </div>
                 </div>
             </div>

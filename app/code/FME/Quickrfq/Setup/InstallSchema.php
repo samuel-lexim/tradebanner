@@ -101,6 +101,30 @@ class InstallSchema implements InstallSchemaInterface
                 ['nullable' => false, 'default' => 'Pick-Up'],
                 'Delivery'
             )
+            ->addColumn('windholes',
+                \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                255,
+                ['nullable' => false, 'default' => 'N/A'],
+                'Windholes'
+            )
+            ->addColumn('hemming',
+                \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                255,
+                ['nullable' => false, 'default' => 'N/A'],
+                'Hemming'
+            )
+            ->addColumn('grommets',
+                \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                255,
+                ['nullable' => false, 'default' => 'N/A'],
+                'Grommets'
+            )
+            ->addColumn('lamination',
+                \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                255,
+                ['nullable' => false, 'default' => 'N/A'],
+                'Lamination'
+            )
             ->addColumn('prd',
                 \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
                 255,

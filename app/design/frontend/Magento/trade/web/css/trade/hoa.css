@@ -449,6 +449,9 @@
     height: 40px;
     margin: 10px 0;
 }
+.estimate-group textarea {
+    margin: 10px 0;
+}
 .estimate-group .custom-multi-option input {
     height: 12px;
     margin-left: 5%;
