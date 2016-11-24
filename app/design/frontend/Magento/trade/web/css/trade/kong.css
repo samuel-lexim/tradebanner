@@ -933,6 +933,10 @@ a.clickHereHS {
     display: none;
 }
 
+#leftMenuUl li.open ul.submenu {
+    display: block;
+}
+
 #leftMenuUl li {
     list-style: none;
     clear: both;

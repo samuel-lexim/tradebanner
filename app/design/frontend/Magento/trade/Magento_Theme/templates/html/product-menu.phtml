@@ -13,15 +13,21 @@ $categories = $categoryFac->create()
 
 $productFac = $objectManager->create('Magento\Catalog\Model\ResourceModel\Product\CollectionFactory');
 
-?>
+$product = $objectManager->get('Magento\Framework\Registry')->registry('current_product');//get current product
+$pId = 0; $catId = 0;
+if (!is_null($product)) {
+    $pId = intval($product->getId());
+    if (count($product->getCategoryIds()) == 1) $catId = intval($product->getCategoryIds()[0]);
+}
 
+?>
 
 <div class="menuLeftSidebar hidden-xs">
     <ul id="leftMenuUl">
         <div class="titleLeftSidebar">CATEGORIES</div>
 
         <?php foreach($categories as $cate ) { ?>
-        <li class="">
+        <li class="<?= ($catId > 0 && $catId == $cate->getId()) ? 'open' : '' ?>">
             <?php $products = $productFac->create()
                 ->addAttributeToSelect('*')
                 ->addCategoryFilter($cate)
@@ -29,12 +35,14 @@ $productFac = $objectManager->create('Magento\Catalog\Model\ResourceModel\Produc
                 ->load();
             ?>
             <?php if (count($products) > 0) { ?>
-                <span class="dropLeftMenu">+</span>
+                <span class="dropLeftMenu"><?= ($catId > 0 && $catId == $cate->getId()) ? '-' : '+' ?></span>
             <?php } ?>
             <a href="<?= $cate->getUrl() ?>"><?= $cate->getName() ?></a>
             <ul class="submenu">
                 <?php foreach($products as $p) { ?>
-                    <li><a href="<?= $p->getProductUrl() ?>"><?= $p->getName() ?></a></li>
+                    <li class="<?= ($pId > 0 && $pId == intval($p->getId())) ? 'active': '' ?>">
+                        <a href="<?= $p->getProductUrl() ?>"><?= $p->getName() ?></a>
+                    </li>
                 <?php } ?>
             </ul>
         </li>
