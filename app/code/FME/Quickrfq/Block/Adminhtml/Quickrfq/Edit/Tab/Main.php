@@ -63,7 +63,7 @@ class Main extends \Magento\Backend\Block\Widget\Form\Generic implements \Magent
 
         $form->setHtmlIdPrefix('rfq_');
 
-        $fieldset = $form->addFieldset('base_fieldset', ['legend' => __('RFQ Information')]);
+        $fieldset = $form->addFieldset('base_fieldset', ['legend' => __('Custom Estimate Information')]);
 
         if ($model->getId()) {
             $fieldset->addField('quickrfq_id', 'hidden', ['name' => 'quickrfq_id']);
@@ -385,7 +385,7 @@ class Main extends \Magento\Backend\Block\Widget\Form\Generic implements \Magent
      */
     public function getTabLabel()
     {
-        return __('RFQ Information');
+        return __('Custom Estimate Information');
     }
 
     /**
@@ -395,7 +395,7 @@ class Main extends \Magento\Backend\Block\Widget\Form\Generic implements \Magent
      */
     public function getTabTitle()
     {
-        return __('RFQ Information');
+        return __('Custom Estimate Information');
     }
 
     /**

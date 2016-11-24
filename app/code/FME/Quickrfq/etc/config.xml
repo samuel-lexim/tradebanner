@@ -20,11 +20,11 @@
                 <template>quickrfq_email_template</template>
             </email>
             <email_reply>
-                <subject>Quick RFQ</subject>
+                <subject>Custom Estimate</subject>
                 <body>Quote Received ...</body>
             </email_reply>
             <upload>
-                <allow>jpg,jpeg,png,gif</allow>
+                <allow>jpg,jpeg,png,pdf</allow>
             </upload>
         </quickrfq>
     </default>

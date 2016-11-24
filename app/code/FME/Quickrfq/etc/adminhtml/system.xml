@@ -8,13 +8,13 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
     <system>
         <section id="quickrfq" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
-            <label>Quick Rfq</label>
+            <label>Custom Estimate</label>
             <tab>general</tab>
             <resource>FME_Quickrfq::quickrfq</resource>
             <group id="option" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
-                <label>Options For RFQ</label>
+                <label>Options For Custom Estimate</label>
                 <field id="enabled" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Enable RFQ</label>
+                    <label>Enable Custom Estimate</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>                    
                 </field>
                 <field id="date" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
@@ -49,7 +49,7 @@
                     </field>
             </group>
             <group id="upload" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
-                <label>Upload Restrictions For RFQ</label>
+                <label>Upload Restrictions For Custom Estimate</label>
                     <field id="allow" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                         <label>Allowed File Extensions Only</label>
                         <comment><![CDATA[Please Enter the extensions you allow customer to upload files with.<br/>
@@ -58,25 +58,25 @@
                         </comment>
                     </field>
             </group>
-            <group id="google_options" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
-                <label>Google Captcha Keys</label>
-                <field id="captchastatus" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Enable</label>
-                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>                    
-                </field>
-                <field id="theme" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Theme</label>
-                    <source_model>FME\Quickrfq\Model\Config\Source\GoogleCaptcha\Theme</source_model>
-                </field>
-                <field id="googleprivatekey" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Google Captcha Private Key</label>
-                    <comment>Private Key provied by Google Captcha</comment>
-                </field>
-                <field id="googlepublickey" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Google Captcha Public Key</label>
-                    <comment>Public Key provied by Google Captcha</comment>
-                </field>
-            </group>
+            <!--<group id="google_options" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">-->
+                <!--<label>Google Captcha Keys</label>-->
+                <!--<field id="captchastatus" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">-->
+                    <!--<label>Enable</label>-->
+                    <!--<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>                    -->
+                <!--</field>-->
+                <!--<field id="theme" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">-->
+                    <!--<label>Theme</label>-->
+                    <!--<source_model>FME\Quickrfq\Model\Config\Source\GoogleCaptcha\Theme</source_model>-->
+                <!--</field>-->
+                <!--<field id="googleprivatekey" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">-->
+                    <!--<label>Google Captcha Private Key</label>-->
+                    <!--<comment>Private Key provied by Google Captcha</comment>-->
+                <!--</field>-->
+                <!--<field id="googlepublickey" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">-->
+                    <!--<label>Google Captcha Public Key</label>-->
+                    <!--<comment>Public Key provied by Google Captcha</comment>-->
+                <!--</field>-->
+            <!--</group>-->
         </section>
     </system>
 </config>

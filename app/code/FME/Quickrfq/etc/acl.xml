@@ -9,19 +9,17 @@
     <acl>
         <resources>
             <resource id="Magento_Backend::admin">
-                
-                <resource id="FME_Extensions::fmeextensions" title="FME Extensions">
-                        <resource id="FME_Quickrfq::quickrfq" title="Quick RFQ" sortOrder="30" />                            
+                <resource id="FME_Extensions::fmeextensions" title="Custom Estimate">
+                        <resource id="FME_Quickrfq::quickrfq" title="Custom Estimate" sortOrder="30" />
                 </resource>
                 
                 <resource id="Magento_Backend::stores">
                     <resource id="Magento_Backend::stores_settings">
                         <resource id="Magento_Config::config">
-                            <resource id="FME_Quickrfq::config_quickrfq" title="Quick RFQ Management" />
+                            <resource id="FME_Quickrfq::config_quickrfq" title="Custom Estimate Manager" />
                         </resource>
                     </resource>
                 </resource>
-                
             </resource>
         </resources>
     </acl>

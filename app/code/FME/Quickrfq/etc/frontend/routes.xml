@@ -1,6 +1,6 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../lib/internal/Magento/Framework/App/etc/routes.xsd">
     <router id="standard">
-        <route id="quickrfq" frontName="quickrfq">
+        <route id="quickrfq" frontName="custom-estimate">
             <module name="FME_Quickrfq" />
         </route>
     </router>

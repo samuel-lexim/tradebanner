@@ -10,7 +10,7 @@
         <referenceBlock name="footer_links">
             <block class="Magento\Framework\View\Element\Html\Link\Current" ifconfig="quickrfq/option/enabled" name="quickrfq-link">
                 <arguments>
-                    <argument name="label" xsi:type="string" translate="true">Quick RFQ</argument>
+                    <argument name="label" xsi:type="string" translate="true">Custom Estimate</argument>
                     <argument name="path" xsi:type="string">quickrfq</argument>
                 </arguments>
             </block>

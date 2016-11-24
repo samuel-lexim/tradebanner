@@ -18,6 +18,6 @@ class Tabs extends \Magento\Backend\Block\Widget\Tabs
         parent::_construct();
         $this->setId('quickrfq_tabs');
         $this->setDestElementId('edit_form');
-        $this->setTitle(__('RFQ Information'));
+        $this->setTitle(__('Custom Estimate Information'));
     }
 }
