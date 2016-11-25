@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+ 
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="fmeextensions" translate="label" sortOrder="1">
+            <label>FME Extensions</label>
+        </tab>
+        <section id="pricecalculator" translate="label" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>FME Price Calculator</label>
+            <tab>fmeextensions</tab>
+            <resource>FME_Pricecalculator::system_config</resource>
+            <group id="general" translate="label" type="text" sortOrder="1" showInDefault="1" 
+                   showInWebsite="1" 
+                   showInStore="1"
+            >
+                <label>General Settings</label>
+                <field id="enable_in_frontend" translate="label" type="select" sortOrder="1"  showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable in frontend</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+            <group id="basic" translate="label" type="text" sortOrder="2" showInDefault="1" 
+                   showInWebsite="1" 
+                   showInStore="1"
+            >
+                <label>Basic</label>
+                
+                <field id="fields_label" translate="label" type="text" sortOrder="3"  showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Fields Label</label>
+                    <comment><![CDATA[Please Separate Each Word with ';' <b>e.g(Length;Width)</b><br/>
+                            ]]></comment>
+                </field>
+                
+                <field id="discount_title" translate="label" type="text" sortOrder="4"  showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label> Enter title for discount</label>
+                    <comment><![CDATA[Example: <b>e.g discount</b><br/>
+                            ]]></comment>
+                </field>
+                
+                <field id="keyword_min" translate="label" type="text" sortOrder="5"  showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Keyword for minimum quantity</label>
+                    <comment><![CDATA[Example: <b>e.g min</b><br/>
+                            ]]></comment>
+                </field>
+                <field id="keyword_max" translate="label" type="text" sortOrder="6"  showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Keyword for maximum quantity</label>
+                    <comment><![CDATA[Example: <b>e.g max</b><br/>]]></comment>
+                </field>
+            </group>
+            <group id="product_page" translate="label" type="text" sortOrder="3" showInDefault="1" 
+                   showInWebsite="1" 
+                   showInStore="1"
+            >
+                <label>Product Page</label>
+                <field id="show_basic_price" translate="label" type="select" sortOrder="1"  showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Base Price</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="show_discount_price" translate="label" type="select" sortOrder="1"  showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Discount Price</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
+
