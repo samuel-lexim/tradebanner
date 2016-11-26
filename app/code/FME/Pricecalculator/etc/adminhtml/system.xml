@@ -3,8 +3,8 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
     <system>
-        <tab id="fmeextensions" translate="label" sortOrder="1">
-            <label>FME Extensions</label>
+        <tab id="fmeextensions" translate="label" sortOrder="140">
+            <label>Price Calculator</label>
         </tab>
         <section id="pricecalculator" translate="label" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
             <label>FME Price Calculator</label>

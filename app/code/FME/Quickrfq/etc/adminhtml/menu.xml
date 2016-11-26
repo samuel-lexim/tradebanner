@@ -8,7 +8,7 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
     <menu>
         
-        <update id="FME_Extensions::fmeextensions" title="Custom Estimate" module="FME_Quickrfq" sortOrder="300" resource="FME_Extensions::fmeextensions"/>
+        <update id="FME_Extensions::fmeextensions" title="Custom Estimate" module="FME_Quickrfq" sortOrder="33" resource="FME_Extensions::fmeextensions"/>
         <add id="FME_Quickrfq::quickrfq" title="Custom Estimate" module="FME_Quickrfq" sortOrder="50" parent="FME_Extensions::fmeextensions" action="quickrfq/index" resource="FME_Quickrfq::quickrfq"/>
         
     </menu>
