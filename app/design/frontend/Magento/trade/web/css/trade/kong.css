@@ -216,7 +216,7 @@ p {
     width: 50px;
     height: 100%;
     top: 0;
-    z-index: 99;
+    z-index: 30;
 }
 
 .prevButtonWrap {
@@ -556,7 +556,7 @@ a.clickHereHS {
 
 .header.links li {
     display: inline-block;
-    padding: 0 0 0 20px;
+    padding: 0 0 0 15px;
     margin: 0;
 }
 
@@ -586,6 +586,7 @@ a.clickHereHS {
     float: right;
     position: relative;
     z-index: 40;
+    padding: 0 10px 0 0;
 }
 
 .main-bt span {
@@ -638,6 +639,7 @@ a.clickHereHS {
 .minicart-wrapper .block-minicart {
     width: 350px;
     right: 0;
+    top: 45px;
     padding: 40px 15px 0;
     background: #fff;
     margin: 0;
@@ -747,25 +749,52 @@ a.clickHereHS {
 /* Search */
 #topSearchWrap {
     cursor: pointer;
-    width: 50px;
+    width: auto;
+    margin: 0;
+    padding: 0;
+    z-index: 60;
+    position: relative;
+}
+
+#clickTopSearchIcon {
+    width: 40px;
     height: 40px;
     background: url('/pub/media/images/header/icon-search.png') no-repeat 100% 50%;
-    z-index: 60;
 }
 
 #topSearchWrap > .block-content {
     position: absolute;
     display: none;
-    top: 40px;
+    top: 45px;
     right: 0;
+}
+
+#topSearchWrap .control {
+    border: none;
+    clear: both;
+    margin: 0;
+    padding: 0;
 }
 
 #search {
     width: 260px;
+    left: auto;
+    right: 0;
+    margin: 0;
+    padding: 0;
 }
 
-#topSearchWrap:hover > .block-content {
-    display: block;
+@media only screen and (min-width: 1025px) {
+    #topSearchWrap:hover > .block-content {
+        display: block;
+    }
+}
+
+@media only screen and (max-width: 450px) {
+    .minicart-wrapper .block-minicart {
+        width: 300px;
+        right: -50px;
+    }
 }
 
 /* Top Menu */
@@ -805,10 +834,6 @@ a.clickHereHS {
     left: 0;
     padding: 0 10px 20px;
     border: 1px solid #eee;
-}
-
-#topMenuNav > ul > li:hover > ul {
-    display: block;
 }
 
 #topMegaMenu ul {
@@ -864,6 +889,10 @@ a.clickHereHS {
     border-radius: 50%;
 }
 
+#topMegaMenu > li li:hover:before {
+    border-color: #f05624;
+}
+
 #topMegaMenu > li li > a {
     display: block;
     color: #bbb;
@@ -871,9 +900,26 @@ a.clickHereHS {
     width: 100%;
 }
 
+#topMegaMenu > li li:hover > a {
+    color: #f05624;
+}
+
+@media only screen and (min-width: 768px) {
+    #topMenuNav > ul > li:hover > ul {
+        display: block;
+    }
+}
+
 @media only screen and (max-width: 767px) {
     #topMenuNav {
         clear: both;
+        position: absolute;
+        top: 210px;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+        background: #F3F3F3;
+        display: none;
     }
 
     .logo {
@@ -893,13 +939,70 @@ a.clickHereHS {
     }
 
     .logo img {
-        margin: 0 auto;
+        margin: 0 auto 10px;
         max-height: 100px;
         width: auto !important;
     }
 
     .header2.content3 {
         padding-top: 0
+    }
+
+    #menuIcon {
+        width: 40px;
+        height: 40px;
+        cursor: pointer;
+        float: left;
+    }
+
+    #menuIcon > div {
+        width: 35px;
+        height: 5px;
+        background: #000;
+        margin: 6px 0;
+    }
+
+    #menuIcon:hover > div {
+        background: #f05624;
+    }
+
+    #topMenuNav > ul > li {
+        width: 100%;
+        margin: 0;
+        border-bottom: 1px solid #ccc;
+    }
+
+    #topMegaMenu {
+        background: #F3F3F3;
+        position: relative;
+        z-index: 9;
+        width: 100%;
+        margin: 0;
+        top: 0;
+        left: 0;
+        padding: 0;
+        border: none;
+    }
+
+    #topMegaMenu > li {
+        width: 100%;
+        margin: 0;
+        padding: 0 10px 10px;
+    }
+
+    #topMenuNav > ul > li > a {
+        line-height: 40px;
+        padding: 0 10px;
+    }
+
+    #topMegaMenu > li:last-child > ul > li:last-child {
+        border-bottom: none;
+    }
+
+    #clickAllProduct > span {
+        float: right;
+        font-weight: bold;
+        font-size: 24px;
     }
 }
 
