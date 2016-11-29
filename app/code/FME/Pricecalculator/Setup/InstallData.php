@@ -20,9 +20,8 @@ class InstallData implements InstallDataInterface {
      */
     private $eavSetupFactory;
 
-    /**
-     * Init
-     *
+     /**
+     * InstallData constructor.
      * @param EavSetupFactory $eavSetupFactory
      */
     public function __construct(EavSetupFactory $eavSetupFactory) {
@@ -30,8 +29,8 @@ class InstallData implements InstallDataInterface {
     }
 
     /**
-     * {@inheritdoc}
-     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
+     * @param ModuleDataSetupInterface $setup
+     * @param ModuleContextInterface $context
      */
     public function install(ModuleDataSetupInterface $setup, ModuleContextInterface $context) {
         /** @var EavSetup $eavSetup */
@@ -48,7 +47,7 @@ class InstallData implements InstallDataInterface {
             'visible' => true,
             'required' => false,
             'user_defined' => false,
-            'default' => '',
+            'default' => 'discount=0,0;size=0,0;area;fixed',
             'apply_to' => 'simple,configurable,bundle,grouped',
             'visible_on_front' => true,
             'is_configurable' => false,
@@ -57,12 +56,8 @@ class InstallData implements InstallDataInterface {
             'is_html_allowed_on_front' => true,
             'group' => 'Price Calculator',
             'sort_order' => '83',
-            'note' => "For area & discount in percentage  use below syntax "
-            . "discount=10,50;size=15,30;area;percent "
-            . "For volume & discount in fixed use below syntax "
-            . "discount=10,50;size=15,30;volume;fixed "
-            . "Discount is not tied with area or volume, you can use any type or do not give discount by specifing only. "
-            . "area or  volume in text field",
+            'note' => "Default: discount=0,0;size=0,0;area;fixed <br>For area & discount in percentage: discount=10,50;size=15,30;area;percent
+                <br>For volume & discount in fixed: discount=10,50;size=15,30;volume;fixed",
         ];
 
         $attributes['pricing_limit'] = [
@@ -74,7 +69,7 @@ class InstallData implements InstallDataInterface {
             'visible' => true,
             'required' => false,
             'user_defined' => false,
-            'default' => '',
+            'default' => 'Width_min=0;Width_max=0;Height_min=0;Height_max=0',
             'apply_to' => 'simple,configurable,bundle,grouped',
             'visible_on_front' => true,
             'is_configurable' => false,
@@ -83,10 +78,9 @@ class InstallData implements InstallDataInterface {
             'is_html_allowed_on_front' => true,
             'group' => 'Price Calculator',
             'sort_order' => '84',
-            'note' => "For applying limit on custom options please use the following syntax "
-            . "Length_min=5;Length_max=70;Width_min=5;Width_max=80 "
-            . "this will set upper and lower limit for each field "
-            . "Please use keyword given in configuration like keyword_min or keyword_max",
+            'note' => "Default: Width_min=0;Width_max=0;Height_min=0;Height_max=0"
+                . "<br>For applying limit on custom options: Width_min=24;Width_max=1800;Height_min=50;Height_max=100"
+                . "<br>Please use keyword given in configuration like keyword_min or keyword_max",
         ];
 
         $attributes['current_unit'] = [
@@ -98,7 +92,7 @@ class InstallData implements InstallDataInterface {
             'visible' => true,
             'required' => false,
             'user_defined' => false,
-            'default' => '',
+            'default' => 'Inch',
             'apply_to' => 'simple,configurable,bundle,grouped',
             'option' => [
                 'value' => [
@@ -195,9 +189,9 @@ class InstallData implements InstallDataInterface {
          * Add attributes to the eav/attribute
          */
         foreach ($attributes as $attribute => $options) {
-
             $eavSetup->addAttribute(\Magento\Catalog\Model\Product::ENTITY, $attribute, $options);
         }
+
 //        $eavSetup->addAttribute(\Magento\Catalog\Model\Product::ENTITY, 'test_attribute', [
 //            'type' => 'int',
 //            'backend' => '',
