@@ -914,7 +914,7 @@ a.clickHereHS {
     #topMenuNav {
         clear: both;
         position: absolute;
-        top: 210px;
+        top: 180px;
         left: 0;
         width: 100%;
         z-index: 1000;
@@ -939,7 +939,7 @@ a.clickHereHS {
     }
 
     .logo img {
-        margin: 0 auto 10px;
+        margin: 10px auto;
         max-height: 100px;
         width: auto !important;
     }
