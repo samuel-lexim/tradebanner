@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+
+        <update id="FME_Extensions::fmeextensions"  title="Price Calculator"
+                module="Magento_Backend"
+                sortOrder="30"
+                resource="FME_Extensions::fmeextensions"/>
+
+        <add id="FME_Pricecalculator::pricecalculator"
+             title="Price Calculator"
+             module="FME_Pricecalculator"
+             sortOrder="10"
+             parent="FME_Extensions::fmeextensions"
+             resource="FME_Pricecalculator::pricecalculator" />
+
+        <add id="FME_Pricecalculator::system_config"
+             title="Configurations"
+            module="FME_Pricecalculator"
+             sortOrder="12"
+             parent="FME_Pricecalculator::pricecalculator"
+            action="adminhtml/system_config/edit/section/pricecalculator"
+            resource="FME_Pricecalculator::system_config" />
+    </menu>
+</config>
