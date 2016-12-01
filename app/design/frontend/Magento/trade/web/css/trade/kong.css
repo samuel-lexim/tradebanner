@@ -1668,6 +1668,11 @@ nav.account-nav li.current strong {
 /* # My Account page */
 
 /* Cart page */
+.cart-container2 {
+    margin-right: -10px;
+    margin-left: -10px;
+}
+
 .checkout-cart-index #maincontent {
     background: #fafafa;
 }
@@ -1709,19 +1714,19 @@ nav.account-nav li.current strong {
 .headingCartPage {
     background: #1da1ad;
     color: #fff;
-    padding: 10px 0;
+    padding: 10px;
     margin: 0 0 30px;
     text-align: center;
     font-size: 24px;
     font-weight: bold;
 }
 
-#cartPage .cart.main.actions {
+.cart.main.actions {
     text-align: right;
     margin: 15px 0 0;
 }
 
-#cartPage .cart.main.actions > button {
+.cart.main.actions > button {
     background: #1ca1ac;
     color: #fff;
     border-radius: 0;
