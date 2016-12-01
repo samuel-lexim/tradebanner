@@ -254,6 +254,9 @@
 }
 
 /************************** RECENT NEWS PAGE ******************************/
+.blog-post-view .post-info {
+    padding: 15px !important;
+}
 .post-categories, .dash, .post-posed-date .label {
     display: none;
 }
