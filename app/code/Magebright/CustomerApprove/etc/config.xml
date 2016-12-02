@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <customer_approve>
+            <general>
+                <enabled>1</enabled>
+                <auto_approve>0</auto_approve>
+            </general>
+            <email>
+                <approved_email_template>customer_approve_email_approved_email_template</approved_email_template>
+                <rejected_email_template>customer_approve_email_rejected_email_template</rejected_email_template>
+            </email>
+			<admin_email_settings>
+                <email_template>customer_approve_admin_email_settings_email_template</email_template>
+            </admin_email_settings>
+            <redirect_settings>
+                <unapproved_customer_message>Your account requires approve. You will be notified via email when your account is approved or rejected.</unapproved_customer_message>
+            </redirect_settings>
+        </customer_approve>
+    </default>
+</config>
