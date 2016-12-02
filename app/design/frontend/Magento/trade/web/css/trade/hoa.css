@@ -1,7 +1,9 @@
 .page-title-wrapper {
     display: none;
 }
-
+.catalog-product-view .tabContentWrap {
+    padding-top: 10px;
+}
 /************************** FOOTER ******************************/
 #tradeFooter {
     position: relative;
