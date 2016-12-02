@@ -98,12 +98,6 @@
 }
 
 @media only screen and (min-width: 640px) and (max-width: 768px) {
-    .iwd-onepage-checkout.checkout-index-index .modal-popup .modal-inner-wrap {
-        margin: 60px auto;
-        background-color: #fff;
-        min-height: 350px;
-    }
-
     .iwd-onepage-checkout.checkout-index-index .iwd-opc-forgot-wrapper .modal-inner-wrap {
         margin: 60px auto;
         background-color: #fff;
@@ -113,40 +107,18 @@
         padding: 15px 0 15px 0;
     }
 
-    .iwd-onepage-checkout .modal-popup._inner-scroll .modal-content {
-        padding: 25px 25px 20px;
-    }
-
     .iwd-onepage-checkout .modal-popup.modal-slide .modal-footer .action-save-address {
         float: right;
-    }
-
-    .iwd-onepage-checkout .modal-popup.modal-slide .modal-footer .action-hide-popup {
-        float: right;
-        margin-top: 8px;
-        margin-right: 15px;
     }
 }
 
 @media only screen and (min-width: 480px) and (max-width: 639px) {
-    .iwd-onepage-checkout.checkout-index-index .modal-popup .modal-inner-wrap {
-        margin: 60px auto;
-        background-color: #fff;
-        max-height: 350px;
-    }
-
     .modal-content form.form-shipping-address div#shipping-new-address-form .field {
         width: 100%;
     }
 
     .iwd-onepage-checkout .modal-popup.modal-slide .modal-footer .action-save-address {
         float: right;
-    }
-
-    .iwd-onepage-checkout .modal-popup.modal-slide .modal-footer .action-hide-popup {
-        float: right;
-        margin-top: 8px;
-        margin-right: 15px;
     }
 }
 
@@ -197,10 +169,6 @@
 
     .iwd-onepage-checkout-container .opc-wrapper .iwd-checkout-shipping-address .step-title {
         margin: 18px 0 29px 0;
-    }
-
-    .iwd-opc-shipping-method .checkout-shipping-method div.step-title {
-        margin-bottom: 0 !important;
     }
 
     .iwd-onepage-checkout-container .opc-wrapper .iwd-checkout-shipping-address .iwd-step-title-list-of-addresses {
@@ -278,7 +246,20 @@
     }
 }
 
-@media only screen and (min-width: 320px) and (max-width: 479px) {
+@media only screen and (max-width: 768px) {
+    .iwd-onepage-checkout.checkout-index-index .modal-popup .modal-inner-wrap {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+        background-color: #fff;
+        height: 90vh;
+        max-height: 100%;
+        min-height: 350px;
+        outline: 0;
+    }
 
     aside.modal-custom.opc-sidebar.opc-summary-wrapper.iwd-opc-summary-wrapper.hide.custom-slide.show {
         visibility: visible;
@@ -348,10 +329,6 @@
         max-width: 110px;
     }
 
-    .iwd-onepage-checkout-container .opc-wrapper {
-        width: 95%;
-    }
-
     .iwd-onepage-checkout-container .opc-wrapper .iwd-checkout-shipping-address {
         width: 100%;
         padding-right: 0;
@@ -403,11 +380,12 @@
     }
 
     .iwd-onepage-checkout .modal-popup .modal-title {
-        font-size: 20px;
+        font-size: 18px;
     }
 
     .iwd-onepage-checkout .modal-popup.modal-slide .modal-footer {
-        margin-top: 0;
+        margin: 0 auto;
+        width: calc(100% - 30px);
     }
 
     .modal-content form.form-shipping-address div#shipping-new-address-form .field ._with-tooltip .field-tooltip._active .field-tooltip-content {
@@ -416,13 +394,9 @@
         width: 131px;
     }
 
-    .iwd-onepage-checkout.checkout-index-index .modal-popup .modal-inner-wrap {
-        margin: 60px auto;
-        background-color: #fff; /*max-height: 350px;*/
-    }
-
-    .modal-content form.form-shipping-address div#shipping-new-address-form .field {
+    .modal-content form.form-shipping-address div#shipping-new-address-form > .field {
         width: 100%;
+        padding: 0 10px 10px;
     }
 
     .iwd-onepage-checkout .modal-popup.modal-slide .modal-footer .action-save-address {
@@ -431,7 +405,6 @@
 
     .iwd-onepage-checkout .modal-popup.modal-slide .modal-footer .action-hide-popup {
         float: right;
-        margin-top: 8px;
         margin-right: 15px;
     }
 
@@ -454,7 +427,6 @@
     }
 
     .iwd-checkout-step-shipping > button.action-show-popup {
-        margin-bottom: -20px;
         margin-top: 15px;
     }
 
@@ -476,9 +448,6 @@
         padding-bottom: 105px;
     }
 
-}
-
-@media only screen and (min-width: 480px) and (max-width: 768px) {
     .iwd-checkout-step-shipping form.form-login fieldset.hidden-fields div.actions-toolbar > div.secondary {
         margin-top: 0;
     }
@@ -546,13 +515,32 @@
         margin-bottom: 16px;
     }
 
-    .iwd-checkout-shipping-address .action-show-popup {
-        margin-top: 14px;
-    }
-
     .iwd-checkout-shipping-address .iwd-checkout-step-shipping {
         margin-bottom: -24px;
     }
+
+    .iwd-onepage-checkout .modal-popup {
+        left: 10px;
+        right: 10px;
+    }
+
+    .iwd-onepage-checkout .modal-popup .modal-header {
+        padding: 15px 15px 0 !important;
+    }
+
+    .iwd-onepage-checkout .modal-popup._inner-scroll .modal-content {
+        padding: 10px 15px;
+    }
+
+    #shipping-new-address-form .field > .label {
+        font-size: 14px;
+    }
+
+    .modal-popup .iwd-shipping-new-address-form input,
+    .modal-popup .iwd-shipping-new-address-form select {
+        height: 30px;
+    }
+
 }
 
 /*END RESPONSIVE*/
