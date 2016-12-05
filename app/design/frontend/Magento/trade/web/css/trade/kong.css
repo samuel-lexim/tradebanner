@@ -499,6 +499,10 @@ a.clickHereHS {
     margin: 0;
 }
 
+#leftHomeMenu li:not(:last-child) {
+    border-bottom: 1px solid #ccc;
+}
+
 #leftHomeMenu .categoryItem > a {
     background: #efefef;
     text-align: center;
