@@ -848,12 +848,8 @@ a.clickHereHS {
     padding: 0;
 }
 
-#topMegaMenu li {
-    border-bottom: 2px dotted #bbb;
-    padding: 10px 0;
-}
-
 #topMegaMenu > li {
+    position: relative;
     width: 20%;
     float: left;
     padding: 10px;
@@ -874,7 +870,7 @@ a.clickHereHS {
 
 #topMegaMenu > li li {
     position: relative;
-    border-bottom: 2px dotted #bbb;
+    border-top: 2px dotted #bbb;
     padding: 10px 0 10px 20px;
     margin: 0;
     color: #bbb;
@@ -909,6 +905,19 @@ a.clickHereHS {
 
 #topMegaMenu > li li:hover > a {
     color: #f05624;
+}
+
+.clickTopCateMenu {
+    position: absolute;
+    width: 30px;
+    height: 40px;
+    font-size: 24px;
+    line-height: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    top: 10px;
+    right: 10px;
+    text-align: center;
 }
 
 @media only screen and (min-width: 768px) {
@@ -991,10 +1000,15 @@ a.clickHereHS {
         border: none;
     }
 
+    .clickTopCateMenu {
+        top: 0;
+    }
+
     #topMegaMenu > li {
         width: 100%;
         margin: 0;
-        padding: 0 10px 10px;
+        padding: 0 10px;
+        border-top: 1px solid #ccc;
     }
 
     #topMenuNav > ul > li > a {
