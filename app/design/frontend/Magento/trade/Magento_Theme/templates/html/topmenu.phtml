@@ -27,8 +27,7 @@
                 ?>
                 <?php foreach ($categories as $cate) { ?>
                 <li class="item">
-                    <a href="<?= $cate->getUrl() ?>"><?= $cate->getName() ?></a>
-                    <div class="clickTopCateMenu" >+</div>
+                    <a href="javascript:void(0)" class="clickCateTopMenu"><?= $cate->getName() ?></a>
                     <?php
                     $products = $productFac->create()
                         ->addAttributeToSelect('*')
@@ -74,13 +73,11 @@
             });
 
             // Drop-down sub-menu on top menu
-            $('.clickTopCateMenu').click(function () {
+            $('.clickCateTopMenu').click(function () {
                 var ul = $(this).find('+ ul');
                 if(ul.is(':visible')) {
-                    $(this).text('+');
                     ul.slideUp('normal');
                 } else {
-                    $(this).text('-');
                     ul.slideDown('normal');
                 }
             });

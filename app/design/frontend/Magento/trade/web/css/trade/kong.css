@@ -907,19 +907,6 @@ a.clickHereHS {
     color: #f05624;
 }
 
-.clickTopCateMenu {
-    position: absolute;
-    width: 30px;
-    height: 40px;
-    font-size: 24px;
-    line-height: 40px;
-    font-weight: bold;
-    cursor: pointer;
-    top: 10px;
-    right: 10px;
-    text-align: center;
-}
-
 @media only screen and (min-width: 768px) {
     #topMenuNav > ul > li:hover > ul {
         display: block;
@@ -998,10 +985,6 @@ a.clickHereHS {
         left: 0;
         padding: 0;
         border: none;
-    }
-
-    .clickTopCateMenu {
-        top: 0;
     }
 
     #topMegaMenu > li {
