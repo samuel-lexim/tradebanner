@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * This file is part of the Force Login module for Magento2.
+ *
+ * (c) bitExpert AG
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+
+    <event name="customer_session_init">
+        <observer name="bitexpert_force_customer_login_required_on_customer_session_init"
+                  instance="\bitExpert\ForceCustomerLogin\Observer\LoginRequiredOnCustomerSessionInitObserver" />
+    </event>
+
+    <event name="visitor_init">
+        <observer name="bitexpert_force_customer_login_required_on_visitor_init"
+                  instance="\bitExpert\ForceCustomerLogin\Observer\LoginRequiredOnVisitorInitObserver" />
+    </event>
+
+</config>
