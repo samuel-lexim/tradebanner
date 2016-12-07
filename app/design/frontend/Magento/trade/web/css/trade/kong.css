@@ -1666,6 +1666,15 @@ nav.account-nav li.current strong {
     color: #f05624;
 }
 
+.block-collapsible-nav .item a {
+    color: #777;
+}
+
+.block-collapsible-nav .item a:hover {
+    background: #e8e8e8;
+    color: #ed5621;
+}
+
 /* # My Account page */
 
 /* Cart page */
