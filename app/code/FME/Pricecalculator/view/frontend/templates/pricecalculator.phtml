@@ -293,11 +293,13 @@ endforeach;
 
             // Get id product
             var price = 0;
-            var id = parseInt($('.product-add-form').prop('id').split('_')[1]);
+            var id = parseInt($('#banner_product').attr('data-id'));
 
             // area: dien tich, unitAreaPrice: gia cho 1 don vi dien tich
             if (id == 97) {
-                var pocket = $('#option_2').find(":selected").attr('price');
+                var pocket = $('#select_1').find(":selected").attr('price');
+                pocket = (isNaN(pocket)) ? 0 : parseFloat(pocket);
+                console.log(pocket);
                 price = pocket * 3;
 
             } else if (id == 98) {
