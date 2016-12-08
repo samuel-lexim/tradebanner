@@ -281,34 +281,22 @@ endforeach;
          */
         function showFinalPrice() {
             // Call area price
-            var total = 0;
             var unitAreaPrice = 0;
             <?php if (isset($unitPrice) && $unitPrice != '') echo 'unitAreaPrice = ' . $unitPrice . ';' ?>
             var area = calculateArea(fields);
             area = (isNaN(area)) ? 0 : area;
             var pricePerUnit = area * unitAreaPrice;
+            pricePerUnit = Number(Math.round(pricePerUnit * 100) / 100);
 
-            // pricePerUnit = Number(Math.round(pricePerUnit * 100) / 100); // Lam tron 2 chu so
+            // Get price of fields
+            var ops = $('.changeSelectOp > select');
+            $.each(ops, function(i, seclect){
+                var p = $(seclect).find(":selected").attr('price');
+                p = (p) ? parseFloat(p) : 0;
+                pricePerUnit += p;
+            });
 
-
-            // Get id product
-            var price = 0;
-            var id = parseInt($('.product-add-form').prop('id').split('_')[1]);
-
-            // area: dien tich, unitAreaPrice: gia cho 1 don vi dien tich
-            if (id == 97) {
-                var pocket = $('#option_2').find(":selected").attr('price');
-                price = pocket * 3;
-
-            } else if (id == 98) {
-
-            } else if (id == 99) {
-
-            }
-
-            // Tong ket gia
-            total = pricePerUnit + price;
-            $('#pricePerUnit').text('$' + total.toFixed(2));
+            $('#pricePerUnit').text('$' + pricePerUnit.toFixed(2));
         }
 
         $('.changeSelectOp > select').change(function () {
