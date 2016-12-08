@@ -54,8 +54,6 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface {
         $price = $this->_calculatePrice($_product, $posted_options);
         
         $updatePrice = $price + $final_price;
-
-        $updatePrice = ($updatePrice < 8) ? 8 : $updatePrice;
         
         
         $item = ( $quoteItem->getParentItem() ? $quoteItem->getParentItem() : $quoteItem );
