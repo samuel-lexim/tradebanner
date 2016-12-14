@@ -18,7 +18,6 @@
 
         <referenceBlock name="product.info.mailto" remove="true" />
         <referenceBlock name="product.info.addto" remove="true" />
-        <referenceBlock name="product.info.review" remove="true" />
 
     </body>
 </page>
