@@ -1,7 +1,9 @@
 <?php $_product = $block->getProduct(); ?>
 
-<p class="finalUnitPrice">Unit Price: <span id="pricePerUnit"></span></p>
-<p class="finalUnitPrice">Sub Total: <span id="subTotalPrice"></span></p>
+<div class="row">
+    <div class="col-xs-12 col-sm-6"><p class="finalUnitPrice">Unit Price: <span id="pricePerUnit"></span></p></div>
+    <div class="col-xs-12 col-sm-6"><p class="finalUnitPrice">Sub Total: <span id="subTotalPrice"></span></p></div>
+</div>
 
 <div><?= $_product->getNoteAfterPrice() ?></div>
 
