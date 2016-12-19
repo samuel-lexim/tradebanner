@@ -10,6 +10,8 @@
     <preference for="Magento\Catalog\Block\Product\ProductList\Toolbar" type="Lexim\Override\Block\Toolbar" />
     <!-- Override Model -->
     <preference for="Magento\Catalog\Model\Config\Source\ListSort" type="Lexim\Override\Model\CatalogModelConfigSourceListSort" />
+    <preference for="Magento\Quote\Model\Quote\Address" type="Lexim\Override\Model\QuoteModelQuoteAddress" />
+
     <!-- Define plugin -->
     <type name="Magento\Catalog\Model\Config">
         <plugin name="" type="\Lexim\Override\Plugin\sortByCreateDate" />

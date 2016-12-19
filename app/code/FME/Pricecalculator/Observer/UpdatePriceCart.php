@@ -97,11 +97,11 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
         } else if ($id == 96) { // Mesh Banner
             if ($posted_options[395] == 764) $has17 = true;
 
-        } else if ($id == 97) { // Premium Coated Banner
-            if ($posted_options[385] == 744) $has17 = true;
-
-        } else if ($id == 97) { // Premium Coated Banner
-            if ($posted_options[385] == 744) $has17 = true;
+//        } else if ($id == 97) { // Premium Coated Banner
+//            if ($posted_options[385] == 744) $has17 = true;
+//
+//        } else if ($id == 97) { // Premium Coated Banner
+//            if ($posted_options[385] == 744) $has17 = true;
 
         } else if ($id == 98) { // Super Smooth Banner
             $notFixAreaPrice = false;
