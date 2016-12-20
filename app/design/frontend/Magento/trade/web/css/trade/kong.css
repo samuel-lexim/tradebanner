@@ -768,7 +768,7 @@ a.clickHereHS {
 #topSearchWrap > .block-content {
     position: absolute;
     display: none;
-    top: 45px;
+    top: 40px;
     right: 0;
 }
 
@@ -1508,89 +1508,6 @@ a.clickHereHS {
     display: none;
 }
 
-/* bundle product */
-/*.catalog-product-view .page-title-wrapper {*/
-/*display: block;*/
-/*}*/
-
-/*.catalog-product-view .bundle-options-container .product-add-form {*/
-/*display: block;*/
-/*}*/
-
-/*.contentDP > .product-info-price .price-box {*/
-/*display: none;*/
-/*}*/
-
-/*.bundle-options-container .bundle-options-wrapper {*/
-/*width: 100%;*/
-/*}*/
-
-/*.contentDP #bundleSummary {*/
-/*width: 100%;*/
-/*padding: 0;*/
-/*background: #fff;*/
-/*}*/
-
-/*#product-options-wrapper .fieldset-bundle-options {*/
-/*margin: 0;*/
-/*}*/
-
-/*.contentDP #bundleSummary .price-box {*/
-/*margin: 0;*/
-/*padding: 10px 0 0;*/
-/*float: left;*/
-/*}*/
-
-/*.contentDP #bundleSummary .price-box .price {*/
-/*font-size: 24px;*/
-/*color: #ed5621;*/
-/*display: none;*/
-/*}*/
-
-/*.priceBoxBundle {*/
-/*font-size: 24px;*/
-/*color: #ed5621;*/
-/*}*/
-
-/*#priceBundleDetail {*/
-/*font-size: 24px;*/
-/*margin: 0 10px 0 0;*/
-/*float: left;*/
-/*color: #000;*/
-/*}*/
-
-/*.contentDP #bundleSummary .box-tocart {*/
-/*margin: 0;*/
-/*padding: 20px 0 0;*/
-/*width: 100%;*/
-/*clear: both;*/
-/*}*/
-
-/*.contentDP #bundleSummary .box-tocart .field.qty,*/
-/*.contentDP #bundleSummary .box-tocart .actions {*/
-/*display: inline-block;*/
-/*padding: 0;*/
-/*margin: 0 20px 10px 0;*/
-/*vertical-align: top;*/
-/*}*/
-
-/*.contentDP #bundleSummary .box-tocart .actions {*/
-/*margin: 0;*/
-/*}*/
-
-/*.contentDP #bundleSummary .box-tocart .field.qty > div {*/
-/*display: inline-block;*/
-/*}*/
-
-/*.contentDP #bundleSummary .box-tocart .field.qty .label {*/
-/*margin-right: 10px;*/
-/*}*/
-
-/*.bundle-options-wrapper .radioOp input.qty {*/
-/*width: 100%;*/
-/*text-align: left;*/
-/*}*/
-
 /* simple product */
 #product-options-wrapper .field {
     margin-bottom: 20px;
@@ -1619,6 +1536,17 @@ a.clickHereHS {
 .catalog-product-view .box-tocart .actions {
     display: inline-block;
     padding: 0;
+}
+
+/* Review */
+#reviews {
+    padding: 20px 0 0;
+}
+
+@media only screen and (max-width: 767px) {
+    #reviews {
+        padding: 10px;
+    }
 }
 
 /* # Product detail page */

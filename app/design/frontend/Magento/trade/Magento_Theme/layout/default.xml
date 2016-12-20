@@ -23,8 +23,6 @@
 
         <move element="header.panel" destination="header.panel.wrapper"/>
         <move element="top.links" destination="header.panel" after="-"/>
-        <move element="catalog.topnav" destination="store.menu" before="-"/>
-
 
         <referenceBlock name="wish-list-link" remove="true"/>
         <referenceBlock name="wishlist_sidebar" remove="true"/>
