@@ -3,6 +3,10 @@ $_objectManager = \Magento\Framework\App\ObjectManager::getInstance();
 $newsCat = $_objectManager->create('Magefan\Blog\Model\Category')->load('news');
 $news = $_objectManager->create('Magefan\Blog\Model\ResourceModel\Post\Collection')
     ->addActiveFilter()->addCategoryFilter($newsCat)->setOrder('creation_time', 'DESC')->setPageSize(6);
+
+$rateHelper = $_objectManager->get('Lexim\Override\Helper\Rate');
+$ratedAr = $rateHelper->getTopRateProducts();
+$ratingList = $rateHelper->ratingList;
 ?>
 
 <div class="button-to-top">
@@ -61,40 +65,26 @@ $news = $_objectManager->create('Magefan\Blog\Model\ResourceModel\Post\Collectio
                     ?>
                 </div>
                 <?php } ?>
-
-
-<!--                <div class="footer-detail">-->
-<!--                    <p>New File Upload Server</p>-->
-<!--                    February 27, 2015</div>-->
             </div>
             <div class="col-xs-12 col-sm-4">
                 <div class="footer-header">
                     <p>TOP RATED PRODUCTS</p>
                     <img src="/pub/media/images/icon/footer-line.png">
                 </div>
+
+                <?php foreach($ratedAr as $id => $score) { ?>
                 <div class="footer-detail rated">
-                    <p>13oz Vinyl Banner</p>
-                    <img src="/pub/media/images/icon/icon-footer-star.png">
-                    <img src="/pub/media/images/icon/icon-footer-star.png">
-                    <img src="/pub/media/images/icon/icon-footer-star.png">
-                    <img src="/pub/media/images/icon/icon-footer-star.png">
-                    <img src="/pub/media/images/icon/icon-footer-star.png"></div>
-                <div class="footer-detail rated">
-                    <p>3M IJ35 Adhesive Vinyl</p>
-                    <img src="/pub/media/images/icon/icon-footer-star.png">
-                    <img src="/pub/media/images/icon/icon-footer-star.png">
-                    <img src="/pub/media/images/icon/icon-footer-star.png">
-                    <img src="/pub/media/images/icon/icon-footer-star.png"></div>
-                <div class="footer-detail rated">
-                    <p>Double Retractable Stand</p>
-                    <img src="/pub/media/images/icon/icon-footer-star.png">
-                    <img src="/pub/media/images/icon/icon-footer-star.png">
-                    <img src="/pub/media/images/icon/icon-footer-star.png">
-                    <img src="/pub/media/images/icon/icon-footer-star.png"></div>
-                <div class="footer-detail rated">
-                    <p>H-Stakes</p>
-                    <img src="/pub/media/images/icon/icon-footer-star.png">
-                    <img src="/pub/media/images/icon/icon-footer-star.png"></div>
+                    <a href="<?= $ratingList[$id]['url'] ?>"><p><?= $ratingList[$id]['title'] . $ratingList[$id]['star'] ?></p></a>
+                    <?php for($i = 1; $i <= 5; $i++) {
+                        $starImg = ($i <= $ratingList[$id]['star']) ? '/pub/media/images/icon/icon-footer-star-yellow.png' : '/pub/media/images/icon/icon-footer-star.png';
+                    ?>
+                        <img src="<?= $starImg ?>">
+                    <?php } ?>
+                </div>
+                <?php } ?>
+
+
+
             </div>
         </div>
     </div>
