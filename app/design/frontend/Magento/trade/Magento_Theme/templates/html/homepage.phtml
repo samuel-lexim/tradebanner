@@ -15,24 +15,19 @@
         <?php foreach($categories as $cate ) { ?>
             <li class="categoryItem">
                 <a href="<?= $cate->getUrl() ?>"><?= $cate->getName() ?></a>
-            </li>
-
-            <!--
-            <php
+            <?php
                 $products = $productFac->create()
                     ->addAttributeToSelect('*')
                     ->addCategoryFilter($cate)
                     ->addAttributeToFilter('status', '1')
                     ->load();
             ?>
-
                 <ul>
-                <php foreach($products as $p) { ?>
-                    <li><a href="<= $p->getProductUrl() ?>"><= $p->getName() ?></a></li>
-                <php } ?>
+                <?php foreach($products as $p) { ?>
+                    <li><a href="<?= $p->getProductUrl() ?>"><?= $p->getName() ?></a></li>
+                <?php } ?>
                 </ul>
-            -->
-
+            </li>
         <?php  } ?>
         </ul>
     </div>

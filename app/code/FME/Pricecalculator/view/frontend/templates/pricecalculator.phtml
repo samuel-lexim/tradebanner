@@ -4,9 +4,9 @@ if (!$block->pricecalculatorHelper->isEnabledInFrontend()) {
 }
 $helper = $block->pricecalculatorHelper;
 $isFrontSecure = $block->storeManager->getStore()
-    ->isCurrentlySecure();
+        ->isCurrentlySecure();
 $currencySymbol = $block->storeManager->getStore()
-    ->getCurrentCurrency()->getCurrencySymbol();
+        ->getCurrentCurrency()->getCurrencySymbol();
 
 $_product = $block->getProduct();
 $productFinalPrice = $_product->getFinalPrice();
@@ -22,17 +22,17 @@ $outputUnit = $helper->getOutputUnitLabel($_product);
 
 
 $outputUnitLabel = $outputUnit;
-if ($pricingRule['by'] == 'volume') {
-    $outputUnitLabel = 'Cubic ' . $outputUnit;
+if($pricingRule['by'] == 'volume'){
+    $outputUnitLabel = 'Cubic '.$outputUnit;
     $areaVolLabel = __('Volume');
-} else
-    if ($pricingRule['by'] == 'area') {
-        $outputUnitLabel = 'Square ' . $outputUnit;
-        $areaVolLabel = __('Area');
-    } else {
-        $outputUnitLabel = $outputUnit;
-        $areaVolLabel = $pricingRule['by']; //length or width or depth
-    }
+}else
+if($pricingRule['by'] == 'area'){
+    $outputUnitLabel = 'Square '.$outputUnit;
+    $areaVolLabel = __('Area');
+}else{
+    $outputUnitLabel = $outputUnit;
+    $areaVolLabel = $pricingRule['by']; //length or width or depth
+}    
 
 
 $unitCoversion = $helper->unitConversion($inputUnit, $outputUnit);
@@ -40,9 +40,8 @@ $unitCoversion = $helper->unitConversion($inputUnit, $outputUnit);
 
 $fields = [];
 $totalOp = 0;
-
 foreach ($customOptions as $option):
-    if (isset($fieldOptions[$option->getTitle()])) {
+    if (isset($fieldOptions[$option->getTitle()])){
         $totalOp++;
     }
 endforeach;
@@ -51,198 +50,213 @@ endforeach;
 <script type="text/javascript">
     require(['jquery',
         'priceBox',
-        'mage/translate',
+        'mage/translate', 
         'Magento_Catalog/js/price-utils',
         'mage/validation',
         'jquery/ui'
     ], function ($, priceBox, $t, priceUtils) {
-
+        
+        
         priceBox = new priceBox();
-        var productFinalPrice = "<?= $this->helper('Magento\Framework\Pricing\Helper\Data')->currency(number_format($productFinalPrice, 2), true, false); ?>";
+        var productFinalPrice = "<?php echo $this->helper('Magento\Framework\Pricing\Helper\Data')->currency(number_format($productFinalPrice,2),true,false); ?>";
 
-        var fields = [];
+        var fields = new Array();
         var nof_options = 0;
-        var total_options = "<?= $totalOp; ?>";
-        var showBasePrice = "<?= $showBasePrice; ?>";
-        var showDiscountPrice = "<?= $showDiscountPrice; ?>";
-        var discountTitle = "<?= $discountTitle; ?>";
-        var areaVolLabel = "<?= $areaVolLabel; ?>";
+        var total_options = "<?php echo $totalOp; ?>";
+        var showBasePrice = "<?php echo $showBasePrice; ?>";
+        var showDiscountPrice = "<?php echo $showDiscountPrice; ?>";
+        var discountTitle = "<?php echo $discountTitle; ?>";
+        var areaVolLabel = "<?php echo $areaVolLabel; ?>";
         var first_load = 0;
         var current_url = window.location.href;
         var is_edit = current_url.indexOf('checkout/cart/configure/id');
+            
+        
+            
+            <?php foreach ($customOptions as $option): ?>
+                <?php if (isset($fieldOptions[$option->getTitle()])): ?>
 
+                    var opId = "<?php /* @escapeNotVerified */ echo $option->getId() ?>";
+                    var opIdName = '#options_<?php /* @escapeNotVerified */ echo $option->getId() ?>_text';
+                    var opJid = $('#options_<?php /* @escapeNotVerified */ echo $option->getId() ?>_text');
 
-        <?php foreach ($customOptions as $option): ?>
-        <?php if (isset($fieldOptions[$option->getTitle()])): ?>
+                    //change field title/label for input/output 
+                    var parent = $('#options_<?php /* @escapeNotVerified */ echo $option->getId() ?>_text').parent().parent();
+                    var child = parent.find('label span');
+                    var str = child[0].innerHTML+' ('+"<?php echo $inputUnit ?>"+')';
+                    child[0].innerHTML = str;
+                    
+                    if($('#calculations').text() === ''){
+                        var calculations = '<div id="calculations">'+areaVolLabel+': <span></span></div>';
+                        var discount_price = '<div id="discount_price">'+discountTitle+': <span></span></div>';
+                        var base_price = '<div id="base_price">Base Price: '+productFinalPrice+'</div>';
+                        var html_insert = calculations;
+                        
+                        if(showDiscountPrice == 1){
+                            html_insert = html_insert+discount_price;
+                        }
+                        if(showBasePrice == 1){
+                            html_insert = html_insert+base_price;
+                        }
+                        $('#product-options-wrapper').before(html_insert+'<br>');
+                    }
+                    
 
-        var opId = "<?= $option->getId() ?>";
-        var opIdName = '#options_<?= $option->getId() ?>_text';
-        var opJid = $('#options_<?= $option->getId() ?>_text');
+                    if (opId !== "undefined") {
+                        fields[opId] = "options[" + opId + "]"; 
+                        //fields.push("options[" + opId + "]");
+                    }
+                    
+                    var min = <?php echo $fieldOptions[$option->getTitle()]['min'] ?>;
+                    var max = <?php echo $fieldOptions[$option->getTitle()]['max'] ?>;
 
-        //change field title/label for input/output
-        var parent = $('#options_<?= $option->getId() ?>_text').parent().parent();
-        var child = parent.find('label span');
-        var str = child[0].innerHTML + ' (' + '<?= $inputUnit ?>' + ')';
-        child[0].innerHTML = str;
+                    $.validator.addMethod('pricecalculator-minmax-<?php echo $option->getTitle() ?>', function (value) {
+                        if (value < min || value > max) {
+                            return false;
+                        }
+                        return true;
+                    }, $.mage.__('Please enter between ' + min + ' and ' + max));
 
-        if ($('#calculations').text() === '') {
-            var calculations = '<div id="calculations">' + areaVolLabel + ': <span></span></div>';
-            var discount_price = '<div id="discount_price">' + discountTitle + ': <span></span></div>';
-            var base_price = '<div id="base_price">Base Price: ' + productFinalPrice + '</div>';
-            var html_insert = calculations;
+                    var dataId<?php /* @escapeNotVerified */ echo $option->getId() ?> = $('#options_<?php /* @escapeNotVerified */ echo $option->getId() ?>_text').data("validate");
 
-            if (showDiscountPrice == 1) {
-                html_insert = html_insert + discount_price;
-            }
-            if (showBasePrice == 1) {
-                html_insert = html_insert + base_price;
-            }
-            $('#product-options-wrapper').before(html_insert + '<br>');
-        }
-
-
-        if (opId !== "undefined") {
-            fields[opId] = "options[" + opId + "]";
-            //fields.push("options[" + opId + "]");
-        }
-
-        var min_<?= $option->getId() ?> = <?= $fieldOptions[$option->getTitle()]['min'] ?>;
-        var max_<?= $option->getId() ?> = <?= $fieldOptions[$option->getTitle()]['max'] ?>;
-
-        $.validator.addMethod('pricecalculator-minmax-<?= $option->getTitle() ?>', function (value) {
-            return !(value < min_<?= $option->getId() ?> || value > max_<?= $option->getId() ?>);
-        }, $.mage.__('Please enter between ' + min_<?= $option->getId() ?> + ' and ' + max_<?= $option->getId() ?>));
-
-        var dataId<?= $option->getId() ?> = $('#options_<?= $option->getId() ?>_text').data("validate");
-
-        if (!("pricecalculator-minmax-<?= $option->getTitle() ?>" in dataId<?= $option->getId() ?>)) {
-            var newObj = {"pricecalculator-minmax-<?= $option->getTitle() ?>": true};
-            $.extend(dataId<?= $option->getId() ?>, newObj);
-            var itemStringify = JSON.stringify(dataId<?= $option->getId() ?>)
-                .replace(/&quot;/g, '"');
-            $('#options_<?= $option->getId() ?>_text').attr("data-validate", itemStringify);
-        }
-
-        //check on change
-        $('#options_<?= $option->getId() ?>_text').change(function () {
-            var value = $(this).val();
-
-            if (value === '') {
-                $(this).val(0);
-                updatePriceOnChange(0, <?= $option->getId() ?>);
-                return;
-            }
-
-            if ($.validator.validateElement($('#options_<?= $option->getId() ?>_text'))) {
-                disableAddToCartBtn('#product_addtocart_form');
-                calculatePrice($(this));
-                enableAddToCartBtn('#product_addtocart_form');
-            }
-            showFinalPrice();
-        });
-
-        <?php endif; ?>
-        <?php endforeach; ?>
-
+                    if (!("pricecalculator-minmax-<?php echo $option->getTitle() ?>" in dataId<?php /* @escapeNotVerified */ echo $option->getId() ?>)) {
+                        var newObj = {"pricecalculator-minmax-<?php echo $option->getTitle() ?>": true};
+                        $.extend(dataId<?php /* @escapeNotVerified */ echo $option->getId() ?>, newObj);
+                        var itemStringify = JSON.stringify(dataId<?php /* @escapeNotVerified */ echo $option->getId() ?>)
+                                .replace(/&quot;/g, '"');
+                        $('#options_<?php /* @escapeNotVerified */ echo $option->getId() ?>_text').attr("data-validate", itemStringify);
+                    }
+                    
+                    
+                    
+                    //check on change
+                    $('#options_<?php /* @escapeNotVerified */ echo $option->getId() ?>_text').change(function () {
+                        var value = $(this).val();
+                        
+                        if (value === '') { 
+                            $(this).val(0);
+                            updatePriceOnChange(0, <?php echo $option->getId() ?>);                            
+                            return;
+                        }
+                        
+                        if ($.validator.validateElement($('#options_<?php /* @escapeNotVerified */ echo $option->getId() ?>_text'))) {
+                            
+                            disableAddToCartBtn('#product_addtocart_form');
+                            calculatePrice($(this));
+                            enableAddToCartBtn('#product_addtocart_form');
+                        }
+                    });
+                <?php endif; ?>
+            <?php endforeach; ?>
+                
+       
+        
         function calculatePrice(elemObj) {
+            
+            
             var elemName = elemObj.attr('name');
             var additionalPriceObj = priceBox.cache.additionalPriceObject;
-
-            var unitPrice = <?= $unitPrice ?>;
+            
+            var unitPrice = <?php echo $unitPrice ?>;
             var area = calculateArea(fields); //increment nof_options
             var discount = calculateDiscount(area, unitPrice);
             var price = parseFloat(unitPrice * area) - discount;
-
-            $.each(additionalPriceObj, function (key, val) {
-
+            
+            
+            $.each(additionalPriceObj, function (key, val){                
+                
                 if ($.inArray(key, fields) > -1) {
                     //if (key === elemName) {                        
-                    if (nof_options == total_options) {
-                        if (additionalPriceObj[key].basePrice) {
-
-                            if (is_edit > -1 && first_load == 0) {
+                    if(nof_options == total_options){    
+                        if(additionalPriceObj[key].basePrice){
+                            
+                            if(is_edit > -1 && first_load == 0){ 
                                 additionalPriceObj[key].basePrice.amount = parseFloat(price);
-                            } else {
-                                additionalPriceObj[key].basePrice.amount = parseFloat(price / nof_options);
+                            }else{
+                                additionalPriceObj[key].basePrice.amount = parseFloat(price/nof_options);
                             }
                         }
-                        if (additionalPriceObj[key].finalPrice) {
-
-                            if (is_edit > -1 && first_load == 0) {
-                                first_load++;
+                        if(additionalPriceObj[key].finalPrice){
+                            
+                            if(is_edit > -1 && first_load == 0){ first_load++;
                                 additionalPriceObj[key].finalPrice.amount = parseFloat(price);
-                            } else {
-                                additionalPriceObj[key].finalPrice.amount = parseFloat(price / nof_options);
+                            }else{
+                                additionalPriceObj[key].finalPrice.amount = parseFloat(price/nof_options);
                             }
-                        }
+                        }                  
                     }
                     //}
                 }
             });
-
+            
+            
             $("div.price-box .price-final_price").trigger("updatePrice");
-
+            
         }
-
-        function calculateArea(fields) {
+        
+        function calculateArea(fields){
+            
             var area = 1;
             nof_options = 0;
-            var outputUnit = "<?= $outputUnitLabel ?>";
-
-            $.each(fields, function (key, val) {
-
-                if (val !== undefined) {
-                    if (parseFloat($('#options_' + key + '_text').val()) !== 0) {
-                        var option_val = parseFloat($('#options_' + key + '_text').val());
+            var outputUnit = "<?php echo $outputUnitLabel ?>";
+            
+            $.each(fields, function (key, val){
+                
+                if(val !== undefined){ 
+                    if(parseFloat($('#options_'+key+'_text').val()) !== 0){
+                        var option_val = parseFloat($('#options_'+key+'_text').val());
                         area = area * option_val;
                         nof_options++;
                     }
                 }
             });
-
-            var unitConv = parseFloat(<?= $unitCoversion ?>);
+            
+            var unitConv = parseFloat(<?php echo $unitCoversion ?>);
             area = area * unitConv;
-
-            $('#calculations span').text(area + ' (' + outputUnit + ')');
+            
+            $('#calculations span').text(area+' ('+outputUnit+')'); 
             return area;
         }
-
-        function calculateDiscount(area, unitPrice) {
-            var rules = <?= json_encode($pricingRule) ?>;
+        
+        function calculateDiscount(area, unitPrice){
+            
+            var rules = <?php echo json_encode($pricingRule) ?>;
             var discount = 0;
-
-            if (area < parseFloat(rules.size.min_limit)) {
-                discount = 0;
-            } else if (area >= parseFloat(rules.size.min_limit) && area < parseFloat(rules.size.max_limit)) {
-                if (rules.type === 'percent') {
-                    discount = parseFloat((area * unitPrice) * (parseFloat(rules.discount.min_limit) / 100));
-                } else {
-                    discount = parseFloat(rules.discount.min_limit);
+            
+            if(area < parseFloat(rules.size.min_limit)){
+                discount =  0;
+            }else
+            if(area >= parseFloat(rules.size.min_limit) && area < parseFloat(rules.size.max_limit) ){
+                if(rules.type === 'percent'){
+                    discount =  parseFloat( (area*unitPrice) * (parseFloat(rules.discount.min_limit) / 100));
+                }else{
+                    discount =  parseFloat(rules.discount.min_limit);
                 }
-
-            } else if (area >= parseFloat(rules.size.max_limit)) {
-                if (rules.type === 'percent') {
-                    discount = parseFloat((area * unitPrice) * (parseFloat(rules.discount.max_limit) / 100));
-                } else {
-                    discount = parseFloat(rules.discount.max_limit);
+                
+            }else
+            if(area >= parseFloat(rules.size.max_limit) ){
+                if(rules.type === 'percent'){
+                    discount =  parseFloat( (area*unitPrice) * (parseFloat(rules.discount.max_limit) / 100));
+                }else{
+                    discount =  parseFloat(rules.discount.max_limit);
                 }
             }
-            var currency_symbol = "<?= $currencySymbol; ?>";
-
-            if (showDiscountPrice == 1) {
-                $('#discount_price span').text(currency_symbol + discount.toFixed(2));
+            var currency_symbol = "<?php echo $currencySymbol; ?>";
+            
+            if(showDiscountPrice == 1){
+                $('#discount_price span').text(currency_symbol+discount.toFixed(2));
             }
-
+            
             return discount;
         }
-
+        
         function updatePriceOnChange(fp = 0, opid) {
             var additionalPriceObj = priceBox.cache.additionalPriceObject;
             var rowOpKey = "options[" + opid + "]";
-
+            
             var rowPriceOp = additionalPriceObj[rowOpKey];
             console.log(additionalPriceObj.toSource());
-
+            
             if (!$.isEmptyObject(rowPriceOp)) {
                 rowPriceOp.basePrice.amount = fp;
                 rowPriceOp.finalPrice.amount = fp;
@@ -250,8 +264,9 @@ endforeach;
 
             $("div.price-box .price-final_price").trigger("updatePrice");
         }
-
+        
         function disableAddToCartBtn(form) {
+        
             var addToCartButton = $(form).find('.action.tocart');
             addToCartButton.addClass('disabled');
             addToCartButton.attr('title', $t('Checking...'));
@@ -259,67 +274,24 @@ endforeach;
         }
 
         function enableAddToCartBtn(form) {
+        
             var addToCartButton = $(form).find('.action.tocart');
             addToCartButton.attr('title', $t('Checking...'));
             addToCartButton.find('span').text($t('Checking...'));
             setTimeout(function () {
                 addToCartButton.removeClass('disabled');
-
-                if (is_edit > -1) {
+                
+                if(is_edit > -1){
                     addToCartButton.find('span').text($t('Update Cart'));
-                    addToCartButton.attr('title', $t('Update Cart'));
-                } else {
+                    addToCartButton.attr('title', $t('Update Cart'));                    
+                }else{
                     addToCartButton.find('span').text($t('Add to Cart'));
                     addToCartButton.attr('title', $t('Add to Cart'));
                 }
-
+                
             }, 1000);
         }
-
-        /**
-         * Display total price per unit product
-         */
-        function showFinalPrice() {
-            // Call area price
-            var total = 0;
-            var unitAreaPrice = 0;
-            <?php if (isset($unitPrice) && $unitPrice != '') echo 'unitAreaPrice = ' . $unitPrice . ';' ?>
-            var area = calculateArea(fields);
-            area = (isNaN(area)) ? 0 : area;
-            var pricePerUnit = area * unitAreaPrice;
-
-            // pricePerUnit = Number(Math.round(pricePerUnit * 100) / 100); // Lam tron 2 chu so
-
-
-            // Get id product
-            var price = 0;
-            var id = parseInt($('#banner_product').attr('data-id'));
-
-            // area: dien tich, unitAreaPrice: gia cho 1 don vi dien tich
-            if (id == 97) {
-                var pocket = $('#select_1').find(":selected").attr('price');
-                pocket = (isNaN(pocket)) ? 0 : parseFloat(pocket);
-                console.log(pocket);
-                price = pocket * 3;
-
-            } else if (id == 98) {
-
-            } else if (id == 99) {
-
-            }
-
-            // Tong ket gia
-            total = pricePerUnit + price;
-            $('#pricePerUnit').text('$' + total.toFixed(2));
-        }
-
-        $('.changeSelectOp > select').change(function () {
-            showFinalPrice();
-        });
-
-        showFinalPrice();
-
     });
-
+    
 
 </script>

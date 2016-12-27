@@ -7,7 +7,7 @@
 <?php $_helper = $this->helper('Magento\Catalog\Helper\Output'); ?>
 <?php $_product = $block->getProduct(); ?>
 
-<div class="product-add-form" id="banner_product" data-id="<?= $_product->getId() ?>">
+<div class="product-add-form">
     <form action="<?= $block->getSubmitUrl($_product) ?>" method="post"
           id="product_addtocart_form"<?php if ($_product->getOptions()): ?> enctype="multipart/form-data"<?php endif; ?>>
         <input type="hidden" name="product" value="<?= $_product->getId() ?>" />
