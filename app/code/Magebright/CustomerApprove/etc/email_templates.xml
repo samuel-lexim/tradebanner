@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Email:etc/email_templates.xsd">
+    <template area="frontend" file="magebright_customer_approved.html" id="customer_approve_email_approved_email_template" label="Customer Approved" module="Magebright_CustomerApprove" type="html"/>
+    <template area="frontend" file="magebright_customer_rejected.html" id="customer_approve_email_rejected_email_template" label="Customer Rejected" module="Magebright_CustomerApprove" type="html"/>
+    <template area="frontend" file="magebright_admin_notify_registration.html" id="customer_approve_admin_email_settings_email_template" label="Account registration admin notification" module="Magebright_CustomerApprove" type="html"/>
+</config>

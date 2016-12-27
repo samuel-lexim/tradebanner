@@ -56,8 +56,146 @@ class InstallSchema implements InstallSchemaInterface
             ->addColumn('material',
                 \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
                 255,
-                ['nullable' => false, 'default' => 'Backlit Film'],
+                ['nullable' => false, 'default' => 'N/A'],
                 'Material'
+            )
+            ->addColumn('material_02',
+                \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                255,
+                ['nullable' => false, 'default' => 'N/A'],
+                'Material'
+            )
+            ->addColumn('material_03',
+                \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                255,
+                ['nullable' => false, 'default' => 'N/A'],
+                'Material'
+            )
+            ->addColumn('material_04',
+                \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                255,
+                ['nullable' => false, 'default' => 'N/A'],
+                'Material'
+            )
+            ->addColumn('material_05',
+                \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                255,
+                ['nullable' => false, 'default' => 'N/A'],
+                'Material'
+            )
+            ->addColumn('material_06',
+                \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                255,
+                ['nullable' => false, 'default' => 'N/A'],
+                'Material'
+            )
+            ->addColumn('color_options',
+                \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                255,
+                ['nullable' => false, 'default' => 'N/A'],
+                'Color'
+            )
+            ->addColumn('diecut_options',
+                \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                255,
+                ['nullable' => false, 'default' => 'N/A'],
+                'Die Cut'
+            )
+            ->addColumn('finishing_options',
+                \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                255,
+                ['nullable' => false, 'default' => 'N/A'],
+                'Finish Options'
+            )
+            ->addColumn('frame_options',
+                \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                255,
+                ['nullable' => false, 'default' => 'N/A'],
+                'Frame'
+            )
+            ->addColumn('grommet_options',
+                \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                255,
+                ['nullable' => false, 'default' => 'N/A'],
+                'Gromets'
+            )
+            ->addColumn('hstake_options',
+                \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                255,
+                ['nullable' => false, 'default' => 'N/A'],
+                'H-Stakes'
+            )
+            ->addColumn('lamination_options',
+                \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                255,
+                ['nullable' => false, 'default' => 'N/A'],
+                'Lamination'
+            )
+            ->addColumn('lamination_options_02',
+                \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                255,
+                ['nullable' => false, 'default' => 'N/A'],
+                'Lamination'
+            )
+            ->addColumn('round_corners_options',
+                \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                255,
+                ['nullable' => false, 'default' => 'N/A'],
+                'Round Corners'
+            )
+            ->addColumn('thickness_options',
+                \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                255,
+                ['nullable' => false, 'default' => 'N/A'],
+                'Thickness'
+            )
+            ->addColumn('thickness_options_02',
+                \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                255,
+                ['nullable' => false, 'default' => 'N/A'],
+                'Thickness'
+            )
+            ->addColumn('thickness_options_03',
+                \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                255,
+                ['nullable' => false, 'default' => 'N/A'],
+                'Thickness'
+            )
+            ->addColumn('thickness_options_04',
+                \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                255,
+                ['nullable' => false, 'default' => 'N/A'],
+                'Thickness'
+            )
+            ->addColumn('size_options',
+                \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                255,
+                ['nullable' => false, 'default' => 'N/A'],
+                'Size'
+            )
+            ->addColumn('size_options_02',
+                \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                255,
+                ['nullable' => false, 'default' => 'N/A'],
+                'Size'
+            )
+            ->addColumn('standtype_options',
+                \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                255,
+                ['nullable' => false, 'default' => 'N/A'],
+                'Stand Type'
+            )
+            ->addColumn('carmodel',
+                \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                255,
+                ['nullable' => false, 'default' => 'N/A'],
+                'Car Model'
+            )
+            ->addColumn('carwrapping',
+                \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                255,
+                ['nullable' => false, 'default' => 'N/A'],
+                'Car Wrapping'
             )
             ->addColumn('date',
                 \Magento\Framework\DB\Ddl\Table::TYPE_DATE,

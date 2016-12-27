@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+	<!-- Add new Tab -->
+	<tab id="magebright" translate="label" sortOrder="300">
+		<label>Magebright</label>
+	</tab>
+        <section id="customer_approve" showInDefault="1" showInStore="1" showInWebsite="1" translate="label" type="text">
+            <label>Customer Approve</label>
+            <tab>magebright</tab>
+            <resource>Magebright_CustomerApprove::customer_approve</resource>
+            <group id="general" showInDefault="1" showInStore="1" showInWebsite="1" translate="label" type="text">
+                <label>General</label>
+                <field id="enabled" showInDefault="1" showInStore="1" showInWebsite="1" translate="label" type="select"  sortOrder="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="auto_approve" showInDefault="1" showInStore="1" showInWebsite="1" translate="label" type="select"  sortOrder="2">
+                    <label>Auto Approve Customer Account</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+            <group id="email" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="1" type="text">
+                <label>Customer Notification Settings</label>
+                <field id="send_approve_email" showInDefault="1" showInStore="1" showInWebsite="1" translate="label" type="select">
+                    <label>Notify Customer when approved or rejected</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+				 <field id="customer_email_sender" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="1" translate="label" type="select">
+                    <label>Email Sender</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Identity</source_model>
+                </field>
+				 <field id="approved_email_template" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="2" translate="label" type="select">
+                    <label>Approved Email Template</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+				<field id="rejected_email_template" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="3" translate="label" type="select">
+                    <label>Disapprove Email Template</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+			</group>
+			 <group id="admin_email_settings" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="3" type="text">
+                <label>Admin Notification Settings</label>
+                <field id="notify_admin_after_account_creation" showInDefault="1" showInStore="1" showInWebsite="1" translate="label" type="select">
+                    <label>Notify Admin after account creation</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="email_template" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="1" translate="label" type="select">
+                    <label>Email Template</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+                <field id="email_sender" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="1" translate="label" type="select">
+                    <label>Email Sender</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Identity</source_model>
+                </field>
+                <field id="recipients" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="3" translate="label" type="text">
+                    <label>Recipients</label>
+                    <comment>Seperated by comma (,). Ex: abc@example.com, xyz@example.com</comment>
+                </field>
+            </group>
+			 <group id="redirect_settings" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="2" type="text">
+                <label>Redirect Settings</label>
+                <field id="redirect_customers" showInDefault="1" showInStore="1" showInWebsite="1" translate="label" type="select">
+                    <label>Redirect Customers</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>
+                        If 'No' is selected customers will be redirected to the previous page with message entered in the next field.
+                    </comment>
+                </field>
+                <field id="unapproved_customer_message" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="1" translate="label" type="text">
+                    <label>Unapproved Customer Message</label>
+                    <comment>If specified message will be shown either on the previous page or redirected page but not redirected URL.</comment>
+                </field>
+                <field id="redirect_to_cms_page" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="2" translate="label" type="select">
+                    <label>Redirect To CMS page</label>
+                    <source_model>Magento\Cms\Model\Config\Source\Page</source_model>
+                </field>
+                <field id="custom_redirect_url" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="3" translate="label" type="text">
+                    <label>Custom Redirect URL</label>
+                    <comment>
+                        Will be redirected to a custom URL. If left blank the customer will be redirected to CMS page if allowed.
+                    </comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

@@ -1,0 +1,18 @@
+/************************** PRODUCT DETAIL ******************************/
+.tabsWrapper2 a {
+    display: block;
+    float: left;
+    margin: 10px 20px;
+}
+/************************** PRODUCT DETAIL ******************************/
+.material_02, .material_03, .material_04, .material_05, .material_06, .lamination_options, .grommet_options, .lamination_options_02, .diecut_options,
+.round_corners_options, .color_options, .frame_options, .thickness_options, .thickness_options_02, .thickness_options_03, .thickness_options_04,
+.hstake_options, .size_options, .size_options_02, .standtype_options, .carmodel, .carwrapping {
+    display: none ;
+}
+.material_02.active, .material_03.active, .material_04.active, .material_05.active, .material_06.active, .grommet_options.active, .lamination_options.active,
+.lamination_options_02.active, .diecut_options.active, .round_corners_options.active, .color_options.active, .frame_options.active,
+.thickness_options.active, .thickness_options_02.active, .thickness_options_03.active, .thickness_options_04.active, .hstake_options.active,
+.size_options.active, .size_options_02.active, .standtype_options.active, .carmodel.active, .carwrapping.active {
+    display: block ;
+}
