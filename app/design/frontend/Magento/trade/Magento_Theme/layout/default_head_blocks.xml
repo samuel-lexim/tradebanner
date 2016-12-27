@@ -14,5 +14,6 @@
         <css src="css/trade/init.css" media="all" />
         <css src="css/trade/hoa.css" media="all" />
         <css src="css/trade/kong.css" media="all" />
+        <css src="css/trade/custom_estimate.css" media="all" />
     </head>
 </page>
