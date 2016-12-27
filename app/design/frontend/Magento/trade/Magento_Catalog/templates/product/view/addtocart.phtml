@@ -39,10 +39,6 @@
             }
         }
     }
-
-
-
-
     </script>
 <?php else : ?>
     <script type="text/javascript">
@@ -100,6 +96,9 @@
 <script type="text/javascript">
     require(['jquery', 'jquery/ui'], function ($) {
         $(document).ready(function ($) {
+            var w = <?= $_product->getWeight() ?>;
+            if (!w || w <= 0) w = 3;
+
             // Event when zip-code is filled
             $('#zipCodeInput').change(function (ele) {
                 var val = ele.target.value;
@@ -110,6 +109,8 @@
             // Get Fedex rate
             $('#fedexSubmit').click(function () {
                 var zip = $('#zipCodeInput').val();
+                var qty = parseInt($('#qty').val());
+                qty = (isNaN(qty) || qty <= 0) ? 1 : qty;
 
                 $('#fedexResult').html('');
                 $('#fedexLoading').css('display', 'block');
@@ -118,7 +119,7 @@
                     url: '/lexim/fedex/rate/',
                     type: 'post',
                     data: {
-                        'w': 4,
+                        'w': w * qty,
                         'z': zip,
                         'p': 100.23
                     },
