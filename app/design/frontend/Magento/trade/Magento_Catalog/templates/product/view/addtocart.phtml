@@ -21,7 +21,8 @@
                 </div>
             <?php endif; ?>
             <div class="actions">
-                <button type="submit" title="<?= $buttonTitle ?>" class="action primary tocart" id="product-addtocart-button">
+                <button type="submit" title="<?= $buttonTitle ?>" class="action primary tocart"
+                        id="product-addtocart-button">
                     <span><?= $buttonTitle ?></span>
                 </button>
                 <?= $block->getChildHtml('', true) ?>
@@ -39,34 +40,120 @@
         }
     }
 
+
+
+
     </script>
 <?php else : ?>
     <script type="text/javascript">
         require(['jquery',
-            'mage/mage',
-            'Magento_Catalog/product/view/validation',
-            'Magento_Catalog/js/catalog-add-to-cart'],
-        function ($) {
-            'use strict';
+                'mage/mage',
+                'Magento_Catalog/product/view/validation',
+                'Magento_Catalog/js/catalog-add-to-cart'],
+            function ($) {
+                'use strict';
 
-            $('#product_addtocart_form').mage('validation', {
-                radioCheckboxClosest: '.nested',
-                submitHandler: function (form) {
-                    var areaVal = $('#areaInputId').val();
+                $('#product_addtocart_form').mage('validation', {
+                    radioCheckboxClosest: '.nested',
+                    submitHandler: function (form) {
+                        var areaVal = $('#areaInputId').val();
 
-                    if (isNaN(areaVal) || areaVal > 0) {
-                        var widget = $(form).catalogAddToCart({
-                            bindSubmit: false
-                        });
-                        widget.catalogAddToCart('submitForm', $(form));
+                        if (isNaN(areaVal) || areaVal > 0) {
+                            var widget = $(form).catalogAddToCart({
+                                bindSubmit: false
+                            });
+                            widget.catalogAddToCart('submitForm', $(form));
+                        }
+                        else {
+                            alert("Error! Please check width value or Height value.");
+                        }
+
+                        return false;
                     }
-                    else {
-                        alert("Error! Please check width value or Height value.");
-                    }
-
-                    return false;
-                }
+                });
             });
-        });
     </script>
 <?php endif; ?>
+
+
+<div id="fedexWrapper">
+    <p class="finalUnitPrice">Get Fedex Rates</p>
+    <form id="fedexRateForm">
+        <div>
+            <label for="zip-code">Zip code (US)</label>
+            <input type="number" id="zipCodeInput" name="zip-code"/>
+        </div>
+        <button type="button" id="fedexSubmit" class="action primary" disabled>SUBMIT</button>
+    </form>
+    <div class="clearfix pad20"></div>
+    <div style="text-align: center; display: none" id="fedexLoading"><img src="/pub/media/images/icon/loading.gif"/>
+    </div>
+    <div id="fedexResult"></div>
+</div>
+
+<style type="text/css">
+    #zipCodeInput {
+        margin: 12px 0;
+    }
+</style>
+
+<script type="text/javascript">
+    require(['jquery', 'jquery/ui'], function ($) {
+        $(document).ready(function ($) {
+            // Event when zip-code is filled
+            $('#zipCodeInput').change(function (ele) {
+                var val = ele.target.value;
+                if (val == '') $('#fedexSubmit').prop('disabled', true);
+                else $('#fedexSubmit').prop('disabled', false);
+            });
+
+            // Get Fedex rate
+            $('#fedexSubmit').click(function () {
+                var zip = $('#zipCodeInput').val();
+
+                $('#fedexResult').html('');
+                $('#fedexLoading').css('display', 'block');
+                $('#fedexSubmit').prop('disabled', true);
+                $.ajax({
+                    url: '/lexim/fedex/rate/',
+                    type: 'post',
+                    data: {
+                        'w': 4,
+                        'z': zip,
+                        'p': 100.23
+                    },
+                    cache: false,
+                    success: function (data) {
+                        var dataObj, array, result = 'Error!';
+
+                        dataObj = $.parseJSON(data);
+                        var check = typeof dataObj;
+
+                        if (check == 'object') {
+                            array = $.map(dataObj, function (value, index) {
+                                value.key = index;
+                                return [value];
+                            });
+
+                            if (array.length > 0) {
+                                result = '';
+                                array.forEach(function (item) {
+                                    result += '<p>' + item.name + ' - ' + item.price + '</p>';
+                                })
+                            }
+                        } else {
+                            result = '<p>' + dataObj + '</p>'
+                        }
+
+                        $('#fedexLoading').css('display', 'none');
+                        $('#fedexSubmit').prop('disabled', false);
+                        $('#fedexResult').html(result);
+                    }
+                })
+            });
+
+        });
+    });
+</script>
+
+<div class="clearfix pad20"></div>
