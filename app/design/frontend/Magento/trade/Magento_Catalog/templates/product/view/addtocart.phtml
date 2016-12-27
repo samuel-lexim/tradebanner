@@ -73,13 +73,20 @@
 
 
 <div id="fedexWrapper">
-    <p class="finalUnitPrice">Get Fedex Rates</p>
+
     <form id="fedexRateForm">
-        <div>
-            <label for="zip-code">Zip code (US)</label>
-            <input type="number" id="zipCodeInput" name="zip-code"/>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12">
+                <div id="fedexHeading">SHIPPING ESTIMATE FOR THIS PRODUCT</div>
+            </div>
+            <div class="col-xs-6 col-sm-6">
+                <input type="number" id="zipCodeInput" name="zip-code" placeholder="ENTER 5 DIGIT ZIP CODE"/>
+            </div>
+            <div class="col-xs-6 col-sm-6">
+                <button type="button" id="fedexSubmit" class="action primary" disabled>GET ESTIMATE</button>
+            </div>
         </div>
-        <button type="button" id="fedexSubmit" class="action primary" disabled>SUBMIT</button>
+
     </form>
     <div class="clearfix pad20"></div>
     <div style="text-align: center; display: none" id="fedexLoading"><img src="/pub/media/images/icon/loading.gif"/>
@@ -88,8 +95,31 @@
 </div>
 
 <style type="text/css">
+    #fedexHeading {
+        background: #ed5621;
+        color: #fff;
+        text-align: center;
+        font-size: 16px;
+        padding: 10px 0;
+        margin: 0 0 20px;
+        font-weight: bold;
+    }
+
+    #fedexSubmit {
+        background: #1ca1ac;
+        color: #fff;
+        width: 100%;
+        font-size: 16px;
+        font-weight: bold;
+        padding: 9px 0;
+    }
+
     #zipCodeInput {
-        margin: 12px 0;
+        height: 40px;
+        font-size: 16px;
+        outline: 0;
+        box-shadow: none;
+        font-weight: bold;
     }
 </style>
 
@@ -112,16 +142,24 @@
                 var qty = parseInt($('#qty').val());
                 qty = (isNaN(qty) || qty <= 0) ? 1 : qty;
 
+                var price = parseFloat($('#subTotalPrice').text().replace('$',''));
+                price = (isNaN(price) || price <= 0) ? -1 : price;
+
                 $('#fedexResult').html('');
                 $('#fedexLoading').css('display', 'block');
                 $('#fedexSubmit').prop('disabled', true);
+
+                console.log(w*qty);
+                console.log(zip);
+                console.log(price);
+
                 $.ajax({
                     url: '/lexim/fedex/rate/',
                     type: 'post',
                     data: {
                         'w': w * qty,
                         'z': zip,
-                        'p': 100.23
+                        'p': price
                     },
                     cache: false,
                     success: function (data) {

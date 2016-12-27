@@ -49,6 +49,7 @@ class Rate extends Action
 
         $request = $this->_rateRequestFactory->create();
         $price = floatval($price);
+        $price = ($price <= 0) ? -1 : $price;
         $request->setPackagePhysicalValue($price);
         $request->setDestCountryId('US');
         $request->setDestPostcode($zipCode);
