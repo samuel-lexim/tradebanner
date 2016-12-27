@@ -3,7 +3,7 @@
 ?>
 
 <?php
-$count = 0;
+$count = 0; $title= '';
 switch ($type = $block->getType()) {
     case 'related-rule':
         if ($exist = $block->hasItems()) {
@@ -178,7 +178,11 @@ $linkUrl = $currentStore->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_L
                     <div class="col-xs-6 col-sm-3">
                         <div class="innerSliderDP">
                             <a href="<?= $block->getProductUrl($_item) ?>">
-                                <img src="<?= $mediaUrl .'catalog/product'. $_item->getThumbnail()  ?>" />
+                                <?php
+                                $imgUrl = $block->getImage($_item, 'category_page_list')->getImageUrl();
+                                // $mediaUrl .'catalog/product'. $_item->getThumbnail()
+                                ?>
+                                <img src="<?= $imgUrl  ?>" />
                                 <p><?= $_item->getName() ?></p>
                                 <!-- $block->getProductPrice($_item) ?> -->
                             </a>
