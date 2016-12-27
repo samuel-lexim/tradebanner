@@ -11,6 +11,7 @@
     <!-- Override Model -->
     <preference for="Magento\Catalog\Model\Config\Source\ListSort" type="Lexim\Override\Model\CatalogModelConfigSourceListSort" />
     <preference for="Magento\Quote\Model\Quote\Address" type="Lexim\Override\Model\QuoteModelQuoteAddress" />
+    <preference for="Magento\Fedex\Model\Carrier" type="Lexim\Override\Model\FedexModelCarrier" />
 
     <!-- Define plugin -->
     <type name="Magento\Catalog\Model\Config">
