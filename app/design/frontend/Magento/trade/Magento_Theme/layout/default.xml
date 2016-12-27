@@ -57,6 +57,8 @@
         <!-- Category page -->
         <referenceBlock name="catalog.leftnav" remove="true"/>
 
+        <referenceBlock name="sale.reorder.sidebar" remove="true"/>
+
         <!-- JS -->
         <block class="Magento\Framework\View\Element\Text" name="bootstrap">
             <arguments>
