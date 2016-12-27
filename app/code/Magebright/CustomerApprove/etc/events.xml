@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="customer_login">
+        <observer instance="Magebright\CustomerApprove\Observer\CheckCustomerApprove"
+            name="magebright_customerapprove_customer_login_handler"/>
+    </event>
+    <event name="customer_register_success">
+        <observer instance="Magebright\CustomerApprove\Observer\RegistrationSuccess"
+            name="magebright_customerapprovecustomer_register_success_handler"/>
+    </event>
+</config>
