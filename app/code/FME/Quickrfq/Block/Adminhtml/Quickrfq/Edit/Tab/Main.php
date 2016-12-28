@@ -393,23 +393,56 @@ class Main extends \Magento\Backend\Block\Widget\Form\Generic implements \Magent
             ]
         );
         $fieldset->addField(
-            'finishing_options',
+            'finishing_options_mc01',
             'text',
             [
-                'name' => 'finishing_options',
-                'label' => __('Finish Options'),
-                'title' => __('Finish Options'),
+                'name' => 'finishing_options_mc01',
+                'label' => __('Finishing Options Multi 1'),
+                'title' => __('Finishing Options Multi 1'),
                 'class' => '',
                 'disabled' => $isElementDisabled
             ]
         );
         $fieldset->addField(
-            'finish_options_02',
+            'finishing_options_mc02',
             'text',
             [
-                'name' => 'finish_options_02',
-                'label' => __('Finishing Options 2'),
-                'title' => __('Finishing Options 2'),
+                'name' => 'finishing_options_mc02',
+                'label' => __('Finishing Options Multi 2'),
+                'title' => __('Finishing Options Multi 2'),
+                'class' => '',
+                'disabled' => $isElementDisabled
+            ]
+        );
+        $fieldset->addField(
+            'finishing_options_mc03',
+            'text',
+            [
+                'name' => 'finishing_options_mc03',
+                'label' => __('Finishing Options Multi 3'),
+                'title' => __('Finishing Options Multi 3'),
+                'class' => '',
+                'disabled' => $isElementDisabled
+            ]
+        );
+        $fieldset->addField(
+            'finishing_options_mc04',
+            'text',
+            [
+                'name' => 'finishing_options_mc04',
+                'label' => __('Finishing Options Multi 4'),
+                'title' => __('Finishing Options Multi 4'),
+                'class' => '',
+                'disabled' => $isElementDisabled
+            ]
+        );
+        $fieldset->addField(
+            'finishing_options',
+            'text',
+            [
+                'name' => 'finishing_options',
+                'label' => __('Finishing Options'),
+                'title' => __('Finishing Options'),
                 'class' => '',
                 'disabled' => $isElementDisabled
             ]
@@ -427,12 +460,34 @@ class Main extends \Magento\Backend\Block\Widget\Form\Generic implements \Magent
             ]
         );
         $fieldset->addField(
-            'lamination_options_02',
+            'lamination_options_mc01',
             'text',
             [
-                'name' => 'lamination_options_02',
-                'label' => __('Lamination 2'),
-                'title' => __('Lamination 2'),
+                'name' => 'lamination_options_mc01',
+                'label' => __('Lamination Multi Choice 1'),
+                'title' => __('Lamination Multi Choice 1'),
+                'class' => '',
+                'disabled' => $isElementDisabled
+            ]
+        );
+        $fieldset->addField(
+            'lamination_options_mc02',
+            'text',
+            [
+                'name' => 'lamination_options_mc02',
+                'label' => __('Lamination Multi Choice 2'),
+                'title' => __('Lamination Multi Choice 2'),
+                'class' => '',
+                'disabled' => $isElementDisabled
+            ]
+        );
+        $fieldset->addField(
+            'lamination_options_mc03',
+            'text',
+            [
+                'name' => 'lamination_options_mc03',
+                'label' => __('Lamination Multi Choice 3'),
+                'title' => __('Lamination Multi Choice 3'),
                 'class' => '',
                 'disabled' => $isElementDisabled
             ]
