@@ -292,7 +292,28 @@ class Main extends \Magento\Backend\Block\Widget\Form\Generic implements \Magent
                 'disabled' => $isElementDisabled
             ]
         );
-
+        $fieldset->addField(
+            'product_options',
+            'text',
+            [
+                'name' => 'product_options',
+                'label' => __('Product'),
+                'title' => __('Product'),
+                'class' => '',
+                'disabled' => $isElementDisabled
+            ]
+        );
+        $fieldset->addField(
+            'note_options',
+            'text',
+            [
+                'name' => 'note_options',
+                'label' => __('Option/Note'),
+                'title' => __('Option/Note'),
+                'class' => '',
+                'disabled' => $isElementDisabled
+            ]
+        );
         $fieldset->addField(
             'delivery',
             'text',
