@@ -47,33 +47,21 @@ class Quickrfq extends \Magento\Framework\Model\AbstractModel
         return $options;
     }
 
-    public function getMaterialCustomEs()
+    public function getMaterialCustomEs_01()
     {
-        $options = array('13oz Scrim Vinyl   - Matte' => '13oz Scrim Vinyl   - Matte',
+        $options = array('N/A' => 'N/A',
+            '13oz Scrim Vinyl   - Matte' => '13oz Scrim Vinyl   - Matte',
             '13oz Scrim Vinyl   - Gloss' => '13oz Scrim Vinyl   - Gloss',
             '14oz Scrim Vinyl   - Matte' => '14oz Scrim Vinyl   - Matte',
             '14oz Scrim Vinyl   - Gloss' => '14oz Scrim Vinyl   - Gloss',
+            '14oz Scrim Vinyl   - Matte' => '14oz Scrim Vinyl   - Matte',
             '16oz Blockout Banner' => '16oz Blockout Banner',
             'Backlit Banner' => 'Backlit Banner',
             'Fabric Banner - Premium' => 'Fabric Banner - Premium',
-            'Fabric Banner- Deluxe' => 'Fabric Banner- Deluxe',
+            'Fabric Banner - Deluxe' => 'Fabric Banner - Deluxe',
             'Mesh Banner' => 'Mesh Banner',
             'Premium Coated Banner' => 'Premium Coated Banner',
-            'SuperSmooth Banner' => 'SuperSmooth Banner',
-            'Window Vinyl Decal - White Gloss' => 'Window Vinyl Decal - White Gloss',
-            'Window Vinyl Decal - White Matte' => 'Window Vinyl Decal - White Matte',
-            'Window Vinyl Decal - Clear' => 'Window Vinyl Decal - Clear',
-            'Window Static Cling - White' => 'Window Static Cling - White',
-            'Backlit Film' => 'Backlit Film',
-            'Canvas' => 'Canvas',
-            'Car Magnets' => 'Car Magnets',
-            'Digital Poster Gloss' => 'Digital Poster Gloss',
-            'Digital Poster Matte' => 'Digital Poster Matte',
-            'Polyropylene (PET)' => 'Polyropylene (PET)',
-            'Acrylic Boards' => 'Acrylic Boards',
-            'Aluminum Sandwhich Board (Dibond)' => 'Aluminum Sandwhich Board (Dibond)',
-
-        );
+            'SuperSmooth Banner' => 'SuperSmooth Banner');
 
         return $options;
     }

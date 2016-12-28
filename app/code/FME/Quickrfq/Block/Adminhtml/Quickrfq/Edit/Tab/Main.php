@@ -179,20 +179,84 @@ class Main extends \Magento\Backend\Block\Widget\Form\Generic implements \Magent
 //                'disabled' => $isElementDisabled
 //            ]
 //        );
-        
+
         $fieldset->addField(
-            'material',
-            'select',
+            'material_01',
+            'text',
             [
-                'name' => 'material',
-                'label' => __('Material'),
-                'title' => __('Material'),
-                'options' => $model->getMaterialCustomEs(),
+                'name' => 'material_01',
+                'label' => __('Material 1'),
+                'title' => __('Material 1'),
                 'class' => '',
                 'disabled' => $isElementDisabled
             ]
         );
-
+        $fieldset->addField(
+            'material_02',
+            'text',
+            [
+                'name' => 'material_02',
+                'label' => __('Material 2'),
+                'title' => __('Material 2'),
+                'class' => '',
+                'disabled' => $isElementDisabled
+            ]
+        );
+        $fieldset->addField(
+            'material_03',
+            'text',
+            [
+                'name' => 'material_03',
+                'label' => __('Material 3'),
+                'title' => __('Material 3'),
+                'class' => '',
+                'disabled' => $isElementDisabled
+            ]
+        );
+        $fieldset->addField(
+            'material_04',
+            'text',
+            [
+                'name' => 'material_04',
+                'label' => __('Material 4'),
+                'title' => __('Material 4'),
+                'class' => '',
+                'disabled' => $isElementDisabled
+            ]
+        );
+        $fieldset->addField(
+            'material_05',
+            'text',
+            [
+                'name' => 'material_05',
+                'label' => __('Material 5'),
+                'title' => __('Material 5'),
+                'class' => '',
+                'disabled' => $isElementDisabled
+            ]
+        );
+        $fieldset->addField(
+            'material_06',
+            'text',
+            [
+                'name' => 'material_06',
+                'label' => __('Material 6'),
+                'title' => __('Material 6'),
+                'class' => '',
+                'disabled' => $isElementDisabled
+            ]
+        );
+        $fieldset->addField(
+            'standtype_options',
+            'text',
+            [
+                'name' => 'standtype_options',
+                'label' => __('Stand Type'),
+                'title' => __('Stand Type'),
+                'class' => '',
+                'disabled' => $isElementDisabled
+            ]
+        );
         $fieldset->addField(
             'width',
             'text',
@@ -240,55 +304,305 @@ class Main extends \Magento\Backend\Block\Widget\Form\Generic implements \Magent
                 'disabled' => $isElementDisabled
             ]
         );
-
         $fieldset->addField(
-            'windholes',
+            'company_name_02',
             'text',
             [
-                'name' => 'windholes',
-                'label' => __('Wind holes'),
-                'title' => __('Wind holes'),
+                'name' => 'company_name_02',
+                'label' => __('Company-Name'),
+                'title' => __('Company-Name'),
+                'class' => '',
+                'disabled' => $isElementDisabled
+            ]
+        );
+        $fieldset->addField(
+            'first_name',
+            'text',
+            [
+                'name' => 'first_name',
+                'label' => __('First Name'),
+                'title' => __('First Name'),
+                'class' => '',
+                'disabled' => $isElementDisabled
+            ]
+        );
+        $fieldset->addField(
+            'last_name',
+            'text',
+            [
+                'name' => 'last_name',
+                'label' => __('Last Name'),
+                'title' => __('Last Name'),
+                'class' => '',
+                'disabled' => $isElementDisabled
+            ]
+        );
+        $fieldset->addField(
+            'street_address',
+            'text',
+            [
+                'name' => 'street_address',
+                'label' => __('Street Address'),
+                'title' => __('Street Address'),
+                'class' => '',
+                'disabled' => $isElementDisabled
+            ]
+        );
+        $fieldset->addField(
+            'address_line_02',
+            'text',
+            [
+                'name' => 'address_line_02',
+                'label' => __('Address Line 2'),
+                'title' => __('Address Line 2'),
+                'class' => '',
+                'disabled' => $isElementDisabled
+            ]
+        );
+        $fieldset->addField(
+            'city',
+            'text',
+            [
+                'name' => 'city',
+                'label' => __('City'),
+                'title' => __('City'),
+                'class' => '',
+                'disabled' => $isElementDisabled
+            ]
+        );
+        $fieldset->addField(
+            'state_options',
+            'text',
+            [
+                'name' => 'state_options',
+                'label' => __('State'),
+                'title' => __('State'),
+                'class' => '',
+                'disabled' => $isElementDisabled
+            ]
+        );
+        $fieldset->addField(
+            'zip_code',
+            'text',
+            [
+                'name' => 'zip_code',
+                'label' => __('Zip Code'),
+                'title' => __('Zip Code'),
+                'class' => '',
+                'disabled' => $isElementDisabled
+            ]
+        );
+        $fieldset->addField(
+            'finishing_options',
+            'text',
+            [
+                'name' => 'finishing_options',
+                'label' => __('Finish Options'),
+                'title' => __('Finish Options'),
+                'class' => '',
+                'disabled' => $isElementDisabled
+            ]
+        );
+        $fieldset->addField(
+            'finish_options_02',
+            'text',
+            [
+                'name' => 'finish_options_02',
+                'label' => __('Finishing Options 2'),
+                'title' => __('Finishing Options 2'),
                 'class' => '',
                 'disabled' => $isElementDisabled
             ]
         );
 
         $fieldset->addField(
-            'hemming',
+            'lamination_options',
             'text',
             [
-                'name' => 'hemming',
-                'label' => __('Hemming'),
-                'title' => __('Hemming'),
-                'class' => '',
-                'disabled' => $isElementDisabled
-            ]
-        );
-
-        $fieldset->addField(
-            'grommets',
-            'text',
-            [
-                'name' => 'grommets',
-                'label' => __('Grommets'),
-                'title' => __('Grommets'),
-                'class' => '',
-                'disabled' => $isElementDisabled
-            ]
-        );
-
-        $fieldset->addField(
-            'lamination',
-            'text',
-            [
-                'name' => 'lamination',
+                'name' => 'lamination_options',
                 'label' => __('Lamination'),
                 'title' => __('Lamination'),
                 'class' => '',
                 'disabled' => $isElementDisabled
             ]
         );
+        $fieldset->addField(
+            'lamination_options_02',
+            'text',
+            [
+                'name' => 'lamination_options_02',
+                'label' => __('Lamination 2'),
+                'title' => __('Lamination 2'),
+                'class' => '',
+                'disabled' => $isElementDisabled
+            ]
+        );
 
+        $fieldset->addField(
+            'round_corners_options',
+            'text',
+            [
+                'name' => 'round_corners_options',
+                'label' => __('Round Corners'),
+                'title' => __('Round Corners'),
+                'class' => '',
+                'disabled' => $isElementDisabled
+            ]
+        );
+        $fieldset->addField(
+            'color_options',
+            'text',
+            [
+                'name' => 'color_options',
+                'label' => __('Color'),
+                'title' => __('Color'),
+                'class' => '',
+                'disabled' => $isElementDisabled
+            ]
+        );
+        $fieldset->addField(
+            'color_options_02',
+            'text',
+            [
+                'name' => 'color_options_02',
+                'label' => __('Color 2'),
+                'title' => __('Color 2'),
+                'class' => '',
+                'disabled' => $isElementDisabled
+            ]
+        );
+        $fieldset->addField(
+            'diecut_options',
+            'text',
+            [
+                'name' => 'diecut_options',
+                'label' => __('Die Cut'),
+                'title' => __('Die Cut'),
+                'class' => '',
+                'disabled' => $isElementDisabled
+            ]
+        );
+        $fieldset->addField(
+            'frame_options',
+            'text',
+            [
+                'name' => 'frame_options',
+                'label' => __('Frame'),
+                'title' => __('Frame'),
+                'class' => '',
+                'disabled' => $isElementDisabled
+            ]
+        );
+        $fieldset->addField(
+            'grommet_options',
+            'text',
+            [
+                'name' => 'grommet_options',
+                'label' => __('Gromets'),
+                'title' => __('Gromets'),
+                'class' => '',
+                'disabled' => $isElementDisabled
+            ]
+        );
+        $fieldset->addField(
+            'hstake_options',
+            'text',
+            [
+                'name' => 'hstake_options',
+                'label' => __('H-Stakes'),
+                'title' => __('H-Stakes'),
+                'class' => '',
+                'disabled' => $isElementDisabled
+            ]
+        );
+        $fieldset->addField(
+            'thickness_options',
+            'text',
+            [
+                'name' => 'thickness_options',
+                'label' => __('Thickness'),
+                'title' => __('Thickness'),
+                'class' => '',
+                'disabled' => $isElementDisabled
+            ]
+        );
+        $fieldset->addField(
+            'thickness_options_02',
+            'text',
+            [
+                'name' => 'thickness_options_02',
+                'label' => __('Thickness 2'),
+                'title' => __('Thickness 2'),
+                'class' => '',
+                'disabled' => $isElementDisabled
+            ]
+        );
+        $fieldset->addField(
+            'thickness_options_03',
+            'text',
+            [
+                'name' => 'thickness_options_03',
+                'label' => __('Thickness 3'),
+                'title' => __('Thickness 3'),
+                'class' => '',
+                'disabled' => $isElementDisabled
+            ]
+        );
+        $fieldset->addField(
+            'thickness_options_04',
+            'text',
+            [
+                'name' => 'thickness_options_04',
+                'label' => __('Thickness 4'),
+                'title' => __('Thickness 4'),
+                'class' => '',
+                'disabled' => $isElementDisabled
+            ]
+        );
+        $fieldset->addField(
+            'size_options',
+            'text',
+            [
+                'name' => 'size_options',
+                'label' => __('Size'),
+                'title' => __('Size'),
+                'class' => '',
+                'disabled' => $isElementDisabled
+            ]
+        );
+        $fieldset->addField(
+            'size_options_02',
+            'text',
+            [
+                'name' => 'size_options_02',
+                'label' => __('Size 2'),
+                'title' => __('Size 2'),
+                'class' => '',
+                'disabled' => $isElementDisabled
+            ]
+        );
+        $fieldset->addField(
+            'carmodel',
+            'text',
+            [
+                'name' => 'carmodel',
+                'label' => __('Car Model'),
+                'title' => __('Car Model'),
+                'class' => '',
+                'disabled' => $isElementDisabled
+            ]
+        );
+        $fieldset->addField(
+            'carwrapping',
+            'text',
+            [
+                'name' => 'carwrapping',
+                'label' => __('Car Wrapping'),
+                'title' => __('Car Wrapping'),
+                'class' => '',
+                'disabled' => $isElementDisabled
+            ]
+        );
         $field = $fieldset->addField(
             'prd',
             'text',

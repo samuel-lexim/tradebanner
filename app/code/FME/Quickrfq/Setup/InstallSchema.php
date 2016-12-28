@@ -53,47 +53,71 @@ class InstallSchema implements InstallSchemaInterface
                 ['nullable' => false, 'default' => 'Banners'],
                 'Category'
             )
-            ->addColumn('material',
+            ->addColumn('material_01',
                 \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
                 255,
                 ['nullable' => false, 'default' => 'N/A'],
-                'Material'
+                'Material 1'
             )
             ->addColumn('material_02',
                 \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
                 255,
                 ['nullable' => false, 'default' => 'N/A'],
-                'Material'
+                'Material 2'
             )
             ->addColumn('material_03',
                 \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
                 255,
                 ['nullable' => false, 'default' => 'N/A'],
-                'Material'
+                'Material 3'
             )
             ->addColumn('material_04',
                 \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
                 255,
                 ['nullable' => false, 'default' => 'N/A'],
-                'Material'
+                'Material 4'
             )
             ->addColumn('material_05',
                 \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
                 255,
                 ['nullable' => false, 'default' => 'N/A'],
-                'Material'
+                'Material 5'
             )
             ->addColumn('material_06',
                 \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
                 255,
                 ['nullable' => false, 'default' => 'N/A'],
-                'Material'
+                'Material 6'
+            )
+            ->addColumn('standtype_options',
+                \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                255,
+                ['nullable' => false, 'default' => 'N/A'],
+                'Stand Type'
             )
             ->addColumn('color_options',
                 \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
                 255,
                 ['nullable' => false, 'default' => 'N/A'],
                 'Color'
+            )
+            ->addColumn('color_options_02',
+                \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                255,
+                ['nullable' => false, 'default' => 'N/A'],
+                'Color 2'
+            )
+            ->addColumn('finish_options_02',
+                \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                255,
+                ['nullable' => false, 'default' => 'N/A'],
+                'Finishing Options 2'
+            )
+            ->addColumn('note_options',
+                \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                255,
+                ['nullable' => false, 'default' => 'N/A'],
+                'Option/Note'
             )
             ->addColumn('diecut_options',
                 \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
@@ -135,7 +159,7 @@ class InstallSchema implements InstallSchemaInterface
                 \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
                 255,
                 ['nullable' => false, 'default' => 'N/A'],
-                'Lamination'
+                'Lamination 2'
             )
             ->addColumn('round_corners_options',
                 \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
@@ -153,19 +177,19 @@ class InstallSchema implements InstallSchemaInterface
                 \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
                 255,
                 ['nullable' => false, 'default' => 'N/A'],
-                'Thickness'
+                'Thickness 2'
             )
             ->addColumn('thickness_options_03',
                 \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
                 255,
                 ['nullable' => false, 'default' => 'N/A'],
-                'Thickness'
+                'Thickness 3'
             )
             ->addColumn('thickness_options_04',
                 \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
                 255,
                 ['nullable' => false, 'default' => 'N/A'],
-                'Thickness'
+                'Thickness 4'
             )
             ->addColumn('size_options',
                 \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
@@ -177,13 +201,13 @@ class InstallSchema implements InstallSchemaInterface
                 \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
                 255,
                 ['nullable' => false, 'default' => 'N/A'],
-                'Size'
+                'Size 2'
             )
-            ->addColumn('standtype_options',
+            ->addColumn('product_options',
                 \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
                 255,
                 ['nullable' => false, 'default' => 'N/A'],
-                'Stand Type'
+                'Product'
             )
             ->addColumn('carmodel',
                 \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
@@ -239,6 +263,54 @@ class InstallSchema implements InstallSchemaInterface
                 ['nullable' => false, 'default' => 'Pick-Up'],
                 'Delivery'
             )
+            ->addColumn('company_name_02',
+                \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                255,
+                ['nullable' => false, 'default' => 'N/A'],
+                'Company-Name'
+            )
+            ->addColumn('first_name',
+                \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                255,
+                ['nullable' => false, 'default' => 'N/A'],
+                'First Name'
+            )
+            ->addColumn('last_name',
+                \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                255,
+                ['nullable' => false, 'default' => 'N/A'],
+                'Last Name'
+            )
+            ->addColumn('street_address',
+                \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                255,
+                ['nullable' => false, 'default' => 'N/A'],
+                'Street Address'
+            )
+            ->addColumn('address_line_02',
+                \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                255,
+                ['nullable' => false, 'default' => 'N/A'],
+                'Address Line 2'
+            )
+            ->addColumn('city',
+                \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                255,
+                ['nullable' => false, 'default' => 'N/A'],
+                'City'
+            )
+            ->addColumn('state_options',
+                \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                255,
+                ['nullable' => false, 'default' => 'N/A'],
+                'State'
+            )
+            ->addColumn('zip_code',
+                \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                255,
+                ['nullable' => false, 'default' => 'N/A'],
+                'Zip Code'
+            )
             ->addColumn('windholes',
                 \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
                 255,
@@ -256,12 +328,6 @@ class InstallSchema implements InstallSchemaInterface
                 255,
                 ['nullable' => false, 'default' => 'N/A'],
                 'Grommets'
-            )
-            ->addColumn('lamination',
-                \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
-                255,
-                ['nullable' => false, 'default' => 'N/A'],
-                'Lamination'
             )
             ->addColumn('prd',
                 \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
