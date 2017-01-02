@@ -126,7 +126,7 @@
 <script type="text/javascript">
     require(['jquery', 'jquery/ui'], function ($) {
         $(document).ready(function ($) {
-            var w = <?= $_product->getWeight() ?>;
+            var w = <?= ($_product->getWeight()) ? $_product->getWeight() : 0 ?>;
             if (!w || w <= 0) w = 3;
 
             // Event when zip-code is filled
