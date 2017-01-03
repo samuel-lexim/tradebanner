@@ -36,11 +36,11 @@ class RegistrationSuccess implements ObserverInterface
     protected $customerExtensionFactory;
 
     /**
-     * Constructor
-     *
-     * @param Data                        $helper
+     * RegistrationSuccess constructor.
+     * @param Data $helper
+     * @param CustomerFactory $customerFactory
      * @param CustomerRepositoryInterface $customerRepository
-     * @param CustomerExtensionFactory    $customerExtensionFactory
+     * @param CustomerExtensionFactory $customerExtensionFactory
      */
     public function __construct(
         Data $helper,
@@ -59,8 +59,7 @@ class RegistrationSuccess implements ObserverInterface
      * of the new registration.
      *
      * @param \Magento\Framework\Event\Observer $observer
-     *
-     * @return Magebright\CustomerApprove\Observer\RegistrationSuccess
+     * @return $this
      */
     public function execute(\Magento\Framework\Event\Observer $observer)
     {

@@ -15,7 +15,7 @@ use Magento\Customer\Api\Data\CustomerExtensionFactory;
 
 class Data extends \Magento\Framework\App\Helper\AbstractHelper
 {
-	const CONFIG_ENABLED = 'customer_approve/general/enabled';
+    const CONFIG_ENABLED = 'customer_approve/general/enabled';
 
     const CONFIG_AUTO_APPROVE = 'customer_approve/general/auto_approve';
 
@@ -83,12 +83,12 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     protected $customerExtensionFactory;
 
     /**
-     * Constructor
-     *
-     * @param Context                     $context
-     * @param TransportBuilder            $transportBuilder
+     * Data constructor.
+     * @param Context $context
+     * @param TransportBuilder $transportBuilder
+     * @param StoreManagerInterface $storeManager
      * @param CustomerRepositoryInterface $customerRepository
-     * @param CustomerExtensionFactory    $customerExtensionFactory
+     * @param CustomerExtensionFactory $customerExtensionFactory
      */
     public function __construct(
         Context $context,
@@ -96,7 +96,8 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         StoreManagerInterface $storeManager,
         CustomerRepositoryInterface $customerRepository,
         CustomerExtensionFactory $customerExtensionFactory
-    ) {
+    )
+    {
         $this->storeManager = $storeManager;
         $this->transportBuilder = $transportBuilder;
         $this->customerRepository = $customerRepository;
@@ -108,6 +109,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     /**
      * Return true if active and false otherwise.
      *
+     * @param null $storeId
      * @return bool
      */
     public function isEnabled($storeId = null)
@@ -122,6 +124,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     /**
      * Check whether auto approve enabled.
      *
+     * @param null $storeId
      * @return bool
      */
     public function canAutoApprove($storeId = null)
@@ -136,6 +139,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     /**
      * Check whether to notify customer.
      *
+     * @param null $storeId
      * @return bool
      */
     public function canNotifyCustomer($storeId = null)
@@ -150,6 +154,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     /**
      * Check whether to notify admin.
      *
+     * @param null $storeId
      * @return bool
      */
     public function canNotifyAdmin($storeId = null)
@@ -164,7 +169,8 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     /**
      * Retrieve store by id or current store if no id is passed.
      *
-     * @return \Mage\Store\Model\Store
+     * @param null $id
+     * @return \Magento\Store\Api\Data\StoreInterface
      */
     public function getStore($id = null)
     {
@@ -178,15 +184,17 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
      */
     public function getRedirectUrl()
     {
-        if(false === $this->scopeConfig->isSetFlag(
-            self::CONFIG_REDIRECT_CUSTOMER, ScopeInterface::SCOPE_STORE
-        )) {
-            return $this->_getRequest()->getServer('HTTP_REFERER');;
+        if (false === $this->scopeConfig->isSetFlag(
+                self::CONFIG_REDIRECT_CUSTOMER, ScopeInterface::SCOPE_STORE
+            )
+        ) {
+            return $this->_getRequest()->getServer('HTTP_REFERER');
         }
 
         if ($url = $this->scopeConfig->getValue(
             self::CONFIG_REDIRECT_TO_CUSTOM_URL, ScopeInterface::SCOPE_STORE
-        )) {
+        )
+        ) {
             return $url;
         }
 
@@ -201,7 +209,8 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     /**
      * Retrieve approved email template id.
      *
-     * @return string|int
+     * @param null $storeId
+     * @return mixed
      */
     public function getApprovedEmailTemplateId($storeId = null)
     {
@@ -215,7 +224,8 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     /**
      * Retrieve rejected email template id.
      *
-     * @return string|int
+     * @param null $storeId
+     * @return mixed
      */
     public function getRejectedEmailTemplateId($storeId = null)
     {
@@ -229,7 +239,8 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     /**
      * Retrieve admin notification email template id.
      *
-     * @return string|int
+     * @param null $storeId
+     * @return mixed
      */
     public function getAdminNotifyEmailTemplateId($storeId = null)
     {
@@ -256,14 +267,14 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     /**
      * Retrieve sender email.
      *
-     * @param string     $type
+     * @param string $type
      * @param string|int $storeId
      *
      * @return string
      */
     public function getSenderEmail($type = null, $storeId = null)
     {
-        if($type == self::TYPE_ADMIN) {
+        if ($type == self::TYPE_ADMIN) {
             $identifier = $this->scopeConfig->getValue(
                 self::CONFIG_NOTIFY_ADMIN_EMAIL_SENDER,
                 ScopeInterface::SCOPE_STORE,
@@ -284,14 +295,14 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     /**
      * Retrieve sender name.
      *
-     * @param string     $type
+     * @param string $type
      * @param string|int $storeId
      *
      * @return string
      */
     public function getSenderName($type = null, $storeId = null)
     {
-        if($type == self::TYPE_ADMIN) {
+        if ($type == self::TYPE_ADMIN) {
             $identifier = $this->scopeConfig->getValue(
                 self::CONFIG_NOTIFY_ADMIN_EMAIL_SENDER,
                 ScopeInterface::SCOPE_STORE,
@@ -312,7 +323,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     /**
      * Retrieve formatted sender details.
      *
-     * @param string     $type
+     * @param string $type
      * @param string|int $storeId
      *
      * @return string
@@ -328,7 +339,8 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     /**
      * Retrieve admin email notification recipients.
      *
-     * @return array
+     * @param null $storeId
+     * @return array|bool
      */
     public function getAdminEmailRecipients($storeId = null)
     {
@@ -338,7 +350,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
             $storeId
         );
 
-        if(!$recipients) {
+        if (!$recipients) {
             return false;
         }
         return explode(',', $recipients);
@@ -354,10 +366,10 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
      */
     public function saveApproveStatus($customer, $status)
     {
-		$customerExtension = $customer->getExtensionAttributes();
-       // if(null === $customerExtension) {
-            $customerExtension = $this->customerExtensionFactory->create();
-       // }
+        $customerExtension = $customer->getExtensionAttributes();
+        // if(null === $customerExtension) {
+        $customerExtension = $this->customerExtensionFactory->create();
+        // }
 
         $customerExtension->setApproveStatus($status);
         $customer->setExtensionAttributes($customerExtension);
@@ -380,20 +392,18 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     /**
      * Send Email
      *
-     * @param string $recipientName
-     * @param string $recipientEmail
-     * @param        $template
-     * @param        $sender
-     * @param array  $templateParams
-     * @param null   $storeId
-     *
+     * @param $recipientName
+     * @param $recipientEmail
+     * @param $template
+     * @param $sender
+     * @param array $templateParams
+     * @param null $storeId
      * @return $this
-     *
-     * @throws Exception
      */
     public function sendEmailTemplate(
         $recipientName, $recipientEmail, $template, $sender, $templateParams = [], $storeId = null
-    ) {
+    )
+    {
         /** @var \Magento\Framework\Mail\Template\TransportBuilder $transport */
         $transport = $this->transportBuilder->setTemplateIdentifier(
             $template
@@ -411,5 +421,5 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
 
         return $this;
     }
-   
+
 }
