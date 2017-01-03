@@ -1,0 +1,180 @@
+<?php
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php /** @var $block \Magento\Checkout\Block\Onepage\Success */ ?>
+
+<style type="text/css">
+    .selectFileGroup select {
+        margin: 0 12px 12px 0;
+        width: calc(50% - 15px);
+        float: left;
+        clear: both;
+    }
+
+    .selectFileGroup input {
+        margin: 0 0 12px;
+        width: 48%;
+        float: left;
+    }
+
+    #s3ActionBar > button {
+        border: 0;
+        border-radius: 0;
+        color: #fff;
+        background: #1ca1ac;
+    }
+
+    button#s3Submit {
+        background: #f05624;
+    }
+
+    @media only screen and (max-width: 680px) {
+        .selectFileGroup select, .selectFileGroup input {
+            width: 100%;
+        }
+    }
+</style>
+
+<?php
+$_objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+?>
+
+<div class="checkout-success">
+    <?php $orderId = $block->getOrderId(); ?>
+    <?php if ($orderId) : ?>
+        <?php $oIdHtml = $block->escapeHtml($orderId); ?>
+        <?php if ($block->getCanViewOrder()) : ?>
+        <p>Your order number is: <?= $oIdHtml ?> <a href="<?= $block->escapeHtml($block->getViewOrderUrl()) ?>" class="order-number"><strong><?= $oIdHtml ?></strong></a></p>
+    <?php else : ?>
+        <p>Your order # is: <span><?= $oIdHtml ?></span></p>
+    <?php endif; ?>
+
+        <div class="clearfix pad20"></div>
+    <?php // Get Order items by order id
+    $order = $_objectManager->create('Magento\Sales\Model\Order')->loadByIncrementId($orderId);
+    $orders = $order->getAllItems();
+    $items = [];
+    foreach ($orders as $item) {
+        array_push($items, $item->getName());
+    }
+    ?>
+        <form action="" enctype="multipart/form-data" method="post" id="s3Form">
+            <input type="hidden" name="order" value="<?= $orderId ?>">
+
+            <div class="selectFileGroup">
+                <select name="upload[0]">
+                    <?php foreach ($items as $key => $name) {
+                        echo '<option value="' . $name . '">' . $name . '</option>';
+                    } ?>
+                </select>
+                <input type="file" name="file[0]" />
+            </div>
+
+            <div id="bodyS3Form" class="selectFileGroup"></div>
+
+            <div class="clearfix pad10"></div>
+            <p>Only jpeg, jpg, png, psd, tiff, pdf, aiff files are allowed.<br>Image size should be less than 100MB.</p>
+            <div class="clearfix pad20"></div>
+
+            <div id="s3ActionBar">
+                <button type="button" name="s3AddMore" id="s3AddMore">Add more file</button>
+                <button type="button" name="s3Reset" id="s3Reset">Reset</button>
+                <button type="button" name="submit" id="s3Submit">Submit</button>
+            </div>
+
+        </form>
+
+
+        <div class="clearfix pad20"></div>
+
+        <div style="text-align: center; display: none" id="fedexLoading">
+            <img src="/pub/media/images/icon/loading.gif"/>
+        </div>
+        <div id="s3Result"></div>
+
+        <script type="text/javascript">
+            require(['jquery', 'jquery/validate', 'jquery/ui', 'mage/mage'], function ($) {
+                $(document).ready(function ($) {
+                    var indexer = 0;
+                    var name = [  <?php foreach ($items as $i => $name) {
+                        echo '"' . $name . '"';
+                        echo (($i + 1) == count($items)) ? '' : ',';
+                    } ?>  ];
+
+                    $('#s3Submit').click(function () {
+                        $('#s3Result').html('');
+                        $('#fedexLoading').css('display', 'block');
+                        $('#s3Submit').prop('disabled', true);
+                        $('#s3AddMore').prop('disabled', true);
+                        $('#s3Reset').prop('disabled', true);
+
+                        var form = $('#s3Form')[0];
+                        var data = new FormData(form);
+
+                        $.ajax({
+                            url: '/upload.php',
+                            type: 'post',
+                            data: data,
+                            cache: false,
+                            contentType: false,
+                            processData: false,
+                            success: function (rs) {
+                                $('#fedexLoading').css('display', 'none');
+                                $('#s3Submit').prop('disabled', false);
+                                $('#s3AddMore').prop('disabled', false);
+                                $('#s3Reset').prop('disabled', false);
+                                $('#s3Result').html(rs);
+                                form.reset();
+                            }
+                        });
+                    });
+
+
+                    function addMoreFile() {
+                        indexer++;
+                        var html = '';
+
+                        html += '<select name="upload[' + indexer + ']">';
+                        name.forEach(function (s) {
+                            html += '<option value="' + s + '">' + s + '</option>';
+                        });
+                        html += '</select><input type="file" name="file[' + indexer + ']" />';
+
+                        return html;
+                    }
+
+                    $('#s3Reset').click(function () {
+                        indexer = 0;
+                        $('#bodyS3Form').html('');
+                        $('#s3Form')[0].reset();
+                    });
+
+                    $('#s3AddMore').click(function () {
+                        $('#bodyS3Form').append(addMoreFile());
+                    });
+
+                });
+            });
+        </script>
+
+        <div class="clearfix pad20"></div>
+        <p><?= 'We\'ll email you an order confirmation with details and tracking info.' ?></p>
+    <?php endif; ?>
+
+    <?php echo $block->getAdditionalInfoHtml() ?>
+
+    <div class="clearfix pad20"></div>
+
+    <div class="actions-toolbar">
+        <div class="primary">
+            <a class="action primary continue"
+               href="<?= $block->getUrl() ?>"><span><?= 'Continue Shopping' ?></span></a>
+        </div>
+    </div>
+</div>

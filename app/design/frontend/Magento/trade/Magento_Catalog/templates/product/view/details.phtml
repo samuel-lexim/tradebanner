@@ -25,50 +25,42 @@ $frame = preg_replace("/\s|&nbsp;/",'',strip_tags($pro->getFrame()));
 if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
 ?>
 
-<div class="descriptionBlock">
-    <p class="headingDP">Product Description</p>
-</div>
-
-<div class="clearfix"></div>
-
-<div class="tabsWrapper">
-    <?php $i=0; foreach($tabArray as $variable => $content) { ?>
-    <a href="javascript:void(0)" <?= ($i == 0) ? 'class="active"' : ''?> data-tab="#<?= preg_replace('/\s+/', '', $variable)?>">
-        <?= $variable ?>
-    </a>
-    <?php $i++; } ?>
-</div>
-<div class="clearfix"></div>
-
-<div class="tabContentWrap">
-    <?php $i=0; foreach($tabArray as $variable => $content) { ?>
-    <div class="tabContent" id="<?= preg_replace('/\s+/', '', $variable); ?>" <?= ($i == 0) ? 'style="display: block"':''?>>
-        <?= $content ?>
+<ul id="tab-description-review">
+  <li id="defaultTabOpen" class="tablinks" style="background-color: #ddd;">Description</li>
+  <li id="tablinks-Reviews">Reviews</li>
+</ul>
+<div id="tabDescriptions" class="tabcontent22">
+    <div class="descriptionBlock">
+        <p class="headingDP">Product Description</p>
     </div>
-    <?php $i++; } ?>
+
+    <div class="clearfix"></div>
+
+    <div class="tabsWrapper">
+        <?php $i=0; foreach($tabArray as $variable => $content) { ?>
+        <a href="javascript:void(0)" <?= ($i == 0) ? 'class="active"' : ''?> data-tab="#<?= preg_replace('/\s+/', '', $variable)?>">
+            <?= $variable ?>
+        </a>
+        <?php $i++; } ?>
+    </div>
+    <div class="clearfix"></div>
+
+    <div class="tabContentWrap">
+        <?php $i=0; foreach($tabArray as $variable => $content) { ?>
+        <div class="tabContent" id="<?= preg_replace('/\s+/', '', $variable); ?>" <?= ($i == 0) ? 'style="display: block"':''?>>
+            <?= $content ?>
+        </div>
+        <?php $i++; } ?>
+    </div>
 </div>
 
-<script type="text/javascript">
-    require(['jquery', 'jquery/ui'], function ($) {
-        $(document).ready(function () {
-            $('.tabsWrapper > a').click(function(){
-                var tab = $(this).attr("data-tab");
-                $('.tabContent').hide();
-                $(tab).show();
-                $('.tabsWrapper a').removeClass('active');
-                $(this).addClass('active');
-            })
-        })
-    })
-</script>
-
-<!-- container -->
-
-<?php if ($detailedInfoGroup = $block->getGroupChildNames('detailed_info', 'getChildHtml')):?>
+<div id="tabReviews" class="tabcontent22">
+    <?php if ($detailedInfoGroup = $block->getGroupChildNames('detailed_info', 'getChildHtml')) { ?>
+    <div class="clearfix pad20 visible-xs"></div>
     <div class="product info detailed" id="reviewSection">
         <?php $layout = $block->getLayout(); ?>
         <div class="product data items" data-mage-init='{"tabs":{"openedState":"active"}}'>
-            <?php foreach ($detailedInfoGroup as $name):?>
+            <?php foreach ($detailedInfoGroup as $name) { ?>
                 <?php
                 $html = $layout->renderElement($name);
                 if (!trim($html)) {
@@ -82,7 +74,1507 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
                     <?= $html; ?>
                 </div>
                 <?php } ?>
-            <?php endforeach;?>
+            <?php } ?>
         </div>
     </div>
-<?php endif; ?>
+    <?php } ?>
+</div>
+
+<script type="text/javascript">
+
+    require(['jquery', 'jquery/ui'], function ($) {
+        $(document).ready(function () {
+            $('.tabsWrapper > a').click(function(){
+                var tab = $(this).attr("data-tab");
+                $('.tabContent').hide();
+                $(tab).show();
+                $('.tabsWrapper a').removeClass('active');
+                $(this).addClass('active');
+            });
+            $('#defaultTabOpen').click(function() {
+                $('#tabDescriptions').show();
+                $('#tabReviews').hide();
+                $("#tablinks-Reviews").removeAttr("style");
+                $('#defaultTabOpen').css('background-color','#ddd');
+            });
+            $('#tablinks-Reviews').click(clickLink);
+            $('.reviews-actions .view').click(clickLink);
+            $('.reviews-actions .add').click(clickLink);
+            function clickLink(){
+                $('#tabReviews').show();
+                $('#tabDescriptions').hide();
+                $("#defaultTabOpen").removeAttr("style");
+                $('#tablinks-Reviews').css('background-color','#ddd');
+            }
+
+            // 13oz Vinyl Banner
+            $("#select_298").change(function(){
+		        var id=$(this).val();
+		        if((id==546) || (id==547) || (id==548) || (id==549) || (id==550) || (id==551) || (id==552)){
+		        	$('.Size_829').addClass('Addactive');
+	                $('.Hemming_830').addClass('Addactive');
+	                $('.Grommets_831').addClass('Addactive');
+	                $('.Hemming_300').addClass('Addhidden');
+	                $('.Grommets_301').addClass('Addhidden');
+		        }
+		        else{
+		        	$('.Size_829').removeClass('Addactive');
+   					$('.Hemming_830').removeClass('Addactive');
+   					$('.Grommets_831').removeClass('Addactive');
+        			$("#select_829 option:selected").removeAttr("selected");
+        			$("#select_830 option:selected").removeAttr("selected");
+        			$("#select_831 option:selected").removeAttr("selected");
+        			$('.Hemming_300').removeClass('Addhidden');
+        			$('.Grommets_301').removeClass('Addhidden');
+
+		        }				       
+		    });
+            $("#select_303").change(function(){
+                var id=$(this).val();
+                if(id==1314) {
+                    $('.Agreement_907').addClass('Addactive');
+                }
+                else{
+                    $('.Agreement_907').removeClass('Addactive');
+                }                      
+            });
+            $("#select_1006").change(function(){
+                var id=$(this).val();
+                if(id==1648) {
+                    $('.Artworks_1007').show();
+                }
+                else{
+                    $('.Artworks_1007').hide();
+                }                      
+            });
+           // 14oz Vinyl Banner
+           $("#select_309").change(function(){
+                var id=$(this).val();
+                if((id==572) || (id==573) || (id==574) || (id==575) || (id==576) || (id==577) || (id==578)){
+                    $('.Size_845').addClass('Addactive');
+                    $('.Hemming_846').addClass('Addactive');
+                    $('.Grommets_847').addClass('Addactive');
+                    $('.Hemming_311').addClass('Addhidden');
+                    $('.Grommets_312').addClass('Addhidden');
+                }
+                else{
+                    $('.Size_845').removeClass('Addactive');
+                    $('.Hemming_846').removeClass('Addactive');
+                    $('.Grommets_847').removeClass('Addactive');
+                    $("#select_845 option:selected").removeAttr("selected");
+                    $("#select_846 option:selected").removeAttr("selected");
+                    $("#select_847 option:selected").removeAttr("selected");
+                    $('.Hemming_311').removeClass('Addhidden');
+                    $('.Grommets_312').removeClass('Addhidden');
+
+                }                      
+            });
+            $("#select_314").change(function(){
+                var id=$(this).val();
+                if(id==593) {
+                    $('.Agreement_906').addClass('Addactive');
+                }
+                else{
+                    $('.Agreement_906').removeClass('Addactive');
+                }                      
+            });
+            $("#select_1008").change(function(){
+                var id=$(this).val();
+                if(id==1652) {
+                    $('.Artworks_1009').show();
+                }
+                else{
+                    $('.Artworks_1009').hide();
+                }                      
+            });
+            // 16 oz Blockout Banner
+            $("#select_320").change(function(){
+                var id=$(this).val();
+                if((id==597) || (id==598) || (id==599) || (id==600) || (id==601) || (id==602) || (id==603)){
+                    $('.Pocket-Size_680').addClass('Addactive');
+                    $('.Hemming_832').addClass('Addactive');
+                    $('.Grommets_323').addClass('Addactive');
+                    $('.Hemming_322').addClass('Addhidden');
+                    $('.Grommets_833').addClass('Addhidden');
+                }
+                else{
+                    $('.Pocket-Size_680').removeClass('Addactive');
+                    $('.Hemming_832').removeClass('Addactive');
+                    $('.Grommets_323').removeClass('Addactive');
+                    $("#select_680 option:selected").removeAttr("selected");
+                    $("#select_832 option:selected").removeAttr("selected");
+                    $("#select_323 option:selected").removeAttr("selected");
+                    $('.Hemming_322').removeClass('Addhidden');
+                    $('.Grommets_833').removeClass('Addhidden');
+                }                      
+            });
+            $("#select_325").change(function(){
+                var id=$(this).val();
+                if(id==618) {
+                    $('.Agreement_908').addClass('Addactive');
+                }
+                else{
+                    $('.Agreement_908').removeClass('Addactive');
+                }                      
+            });
+            $("#select_1010").change(function(){
+                var id=$(this).val();
+                if(id==1656) {
+                    $('.Artworks_1011').show();
+                }
+                else{
+                    $('.Artworks_1011').hide();
+                }                      
+            });
+            // Backlit Banner
+            $("#select_334").change(function(){
+                var id=$(this).val();
+                if(id==633) {
+                    $('.Agreement_909').addClass('Addactive');
+                }
+                else{
+                    $('.Agreement_909').removeClass('Addactive');
+                }                      
+            });
+            $("#select_1012").change(function(){
+                var id=$(this).val();
+                if(id==1660) {
+                    $('.Artworks_1013').show();
+                }
+                else{
+                    $('.Artworks_1013').hide();
+                }                      
+            });
+            // Double Sided Banner (Super Smooth)
+            $("#select_340").change(function(){
+                var id=$(this).val();
+                if((id==638) || (id==639) || (id==640) || (id==641) || (id==642) || (id==643) || (id==644)){
+                    $('.Pocket-Size_834').addClass('Addactive');
+                    $('.Grommets_835').addClass('Addactive');
+                    $('.Grommets_341').addClass('Addhidden');
+                }
+                else{
+                    $('.Pocket-Size_834').removeClass('Addactive');
+                    $('.Grommets_835').removeClass('Addactive');
+                    $("#select_834 option:selected").removeAttr("selected");
+                    $("#select_835 option:selected").removeAttr("selected");
+                    $('.Grommets_341').removeClass('Addhidden');
+                }                      
+            });
+            $("#select_345").change(function(){
+                var id=$(this).val();
+                if(id==656) {
+                    $('.Artworks_836').show();
+                }
+                else{
+                    $('.Artworks_836').hide();
+                }                      
+            });
+            $("#select_343").change(function(){
+                var id=$(this).val();
+                if(id==654) {
+                    $('.Agreement_910').addClass('Addactive');
+                }
+                else{
+                    $('.Agreement_910').removeClass('Addactive');
+                }                      
+            });
+             // Fabric Banner- Premium 
+            $("#select_351").change(function(){
+                var id=$(this).val();
+                if((id==660) || (id==661) || (id==662) || (id==663) || (id==664) || (id==665) || (id==666)){
+                    $('.Size_837').addClass('Addactive');
+                    $('.Grommets_838').addClass('Addactive');
+                    $('.Grommets_841').addClass('Addhidden');
+                }
+                else{
+                    $('.Size_837').removeClass('Addactive');
+                    $('.Grommets_838').removeClass('Addactive');
+                    $("#select_838 option:selected").removeAttr("selected");
+                    $("#select_837 option:selected").removeAttr("selected");
+                    $('.Grommets_841').removeClass('Addhidden');
+
+                }                      
+            });
+            $("#select_353").change(function(){
+                var id=$(this).val();
+                if(id==675) {
+                    $('.Agreement_911').addClass('Addactive');
+                }
+                else{
+                    $('.Agreement_911').removeClass('Addactive');
+                }                      
+            });
+            $("#select_1014").change(function(){
+                var id=$(this).val();
+                if(id==1664) {
+                    $('.Artworks_1015').show();
+                }
+                else{
+                    $('.Artworks_1015').hide();
+                }                      
+            });
+            // Mesh Banner
+            $("#select_392").change(function(){
+                var id=$(this).val();
+                if((id==748) || (id==749) || (id==750) || (id==751) || (id==752) || (id==753)){
+                    $('.Size_839').addClass('Addactive');
+                    $('.Grommets_840').addClass('Addactive');
+                    $('.Grommets_393').addClass('Addhidden');
+                }
+                else{
+                    $('.Size_839').removeClass('Addactive');
+                    $('.Grommets_840').removeClass('Addactive');
+                    $("#select_839 option:selected").removeAttr("selected");
+                    $("#select_840 option:selected").removeAttr("selected");
+                    $('.Grommets_393').removeClass('Addhidden');
+
+                }                      
+            });
+            $("#select_395").change(function(){
+                var id=$(this).val();
+                if(id==764) {
+                    $('.Agreement_912').addClass('Addactive');
+                }
+                else{
+                    $('.Agreement_912').removeClass('Addactive');
+                }                      
+            });
+            $("#select_1016").change(function(){
+                var id=$(this).val();
+                if(id==1668) {
+                    $('.Artworks_1017').show();
+                }
+                else{
+                    $('.Artworks_1017').hide();
+                }                      
+            });
+            // Premium Coated Banner
+            $("#select_380").change(function(){
+                var id=$(this).val();
+                if((id==724) || (id==725) || (id==726) || (id==727) || (id==728) || (id==729)){
+                    $('.Pocket-Size_842').addClass('Addactive');
+                    $('.Hemming_843').addClass('Addactive');
+                    $('.Grommets_844').addClass('Addactive');
+                    $('.Hemming_382').addClass('Addhidden');
+                    $('.Grommets_383').addClass('Addhidden');
+                }
+                else{
+                    $('.Pocket-Size_842').removeClass('Addactive');
+                    $('.Hemming_843').removeClass('Addactive');
+                    $('.Grommets_844').removeClass('Addactive');
+                    $("#select_842 option:selected").removeAttr("selected");
+                    $("#select843 option:selected").removeAttr("selected");
+                    $("#select_844 option:selected").removeAttr("selected");
+                    $('.Hemming_382').removeClass('Addhidden');
+                    $('.Grommets_383').removeClass('Addhidden');
+
+                }                      
+            });
+            $("#select_385").change(function(){
+                var id=$(this).val();
+                if(id==744) {
+                    $('.Agreement_913').addClass('Addactive');
+                }
+                else{
+                    $('.Agreement_913').removeClass('Addactive');
+                }                      
+            });
+            $("#select_1018").change(function(){
+                var id=$(this).val();
+                if(id==1672) {
+                    $('.Artworks_1019').show();
+                }
+                else{
+                    $('.Artworks_1019').hide();
+                }                      
+            });
+            // Super Smooth Banner
+            $("#select_369").change(function(){
+                var id=$(this).val();
+                if((id==699) || (id==700) || (id==701) || (id==702) || (id==703) || (id==704) || (id==705)){
+                    $('.Pocket-Size_848').addClass('Addactive');
+                    $('.Grommets_849').addClass('Addactive');
+                    $('.Grommets_372').addClass('Addhidden');
+                }
+                else{
+                    $('.Pocket-Size_848').removeClass('Addactive');
+                    $('.Grommets_849').removeClass('Addactive');
+                    $("#select_848 option:selected").removeAttr("selected");
+                    $("#select_372 option:selected").removeAttr("selected");
+                    $('.Grommets_372').removeClass('Addhidden');
+
+                }                      
+            });
+            $("#select_374").change(function(){
+                var id=$(this).val();
+                if(id==720) {
+                    $('.Agreement_914').addClass('Addactive');
+                }
+                else{
+                    $('.Agreement_914').removeClass('Addactive');
+                }                      
+            });
+            $("#select_1020").change(function(){
+                var id=$(this).val();
+                if(id==1676) {
+                    $('.Artworks_1021').show();
+                }
+                else{
+                    $('.Artworks_1021').hide();
+                }                      
+            });
+            // Fabric Banner- Deluxe
+            $("#select_360").change(function(){
+                var id=$(this).val();
+                if((id==679) || (id==680) || (id==681) || (id==682) || (id==683) || (id==684) || (id==685)){
+                    $('.Size_851').addClass('Addactive');
+                    $('.Grommets_852').addClass('Addactive');
+                    $('.Grommets_361').addClass('Addhidden');
+                }
+                else{
+                    $('.Size_851').removeClass('Addactive');
+                    $('.Grommets_852').removeClass('Addactive');
+                    $("#select_851 option:selected").removeAttr("selected");
+                    $("#select_852 option:selected").removeAttr("selected");
+                    $('.Grommets_361').removeClass('Addhidden');
+
+                }                      
+            });
+            $("#select_362").change(function(){
+                var id=$(this).val();
+                if(id==694) {
+                    $('.Agreement_853').addClass('Addactive');
+                }
+                else{
+                    $('.Agreement_853').removeClass('Addactive');
+                }                      
+            });
+            $("#select_1022").change(function(){
+                var id=$(this).val();
+                if(id==1680) {
+                    $('.Artworks_1023').show();
+                }
+                else{
+                    $('.Artworks_1023').hide();
+                }                      
+            });
+            // 3M Controltac (IJ 180C)
+            $("#select_403").change(function(){
+                var id=$(this).val();
+                if(id==770) {
+                    $('.Agreement_915').addClass('Addactive');
+                }
+                else{
+                    $('.Agreement_915').removeClass('Addactive');
+                }                      
+            });
+            $("#select_1024").change(function(){
+                var id=$(this).val();
+                if(id==1684) {
+                    $('.Artworks_1025').show();
+                }
+                else{
+                    $('.Artworks_1025').hide();
+                }                      
+            });
+            // 3M IJ35 Adhesive Vinyl
+            $("#select_411").change(function(){
+                var id=$(this).val();
+                if(id==778) {
+                    $('.Agreement_855').addClass('Addactive');
+                }
+                else{
+                    $('.Agreement_855').removeClass('Addactive');
+                }                      
+            });
+            $("#select_1026").change(function(){
+                var id=$(this).val();
+                if(id==1688) {
+                    $('.Artworks_1027').show();
+                }
+                else{
+                    $('.Artworks_1027').hide();
+                }                      
+            });
+            // Bumper Stickers 
+            $("#select_418").change(function(){
+                var id=$(this).val();
+                if(id==788) {
+                    $('.Agreement_856').addClass('Addactive');
+                }
+                else{
+                    $('.Agreement_856').removeClass('Addactive');
+                }                      
+            });
+            $("#select_420").change(function(){
+                var id=$(this).val();
+                if(id==790) {
+                    $('.Artworks_857').addClass('Addactive');
+                }
+                else{
+                    $('.Artworks_857').removeClass('Addactive');
+                }                      
+            });
+            // Floor Graphics
+            $("#select_508").change(function(){
+                var id=$(this).val();
+                if(id==901) {
+                    $('.Agreement_858').addClass('Addactive');
+                }
+                else{
+                    $('.Agreement_858').removeClass('Addactive');
+                }                      
+            });
+            $("#select_1028").change(function(){
+                var id=$(this).val();
+                if(id==1692) {
+                    $('.Artworks_1029').show();
+                }
+                else{
+                    $('.Artworks_1029').hide();
+                }                      
+            });
+            // Perforated Stickers (One-Way Vision)
+            $("#select_500").change(function(){
+                var id=$(this).val();
+                if(id==896) {
+                    $('.Agreement_859').addClass('Addactive');
+                }
+                else{
+                    $('.Agreement_859').removeClass('Addactive');
+                }                      
+            });
+            $("#select_1030").change(function(){
+                var id=$(this).val();
+                if(id==1696) {
+                    $('.Artworks_1031').show();
+                }
+                else{
+                    $('.Artworks_1031').hide();
+                }                      
+            });
+            // Static Clings (Window Clings)
+            $("#select_493").change(function(){
+                var id=$(this).val();
+                if(id==892) {
+                    $('.Agreement_860').addClass('Addactive');
+                }
+                else{
+                    $('.Agreement_860').removeClass('Addactive');
+                }                      
+            });
+            $("#select_1032").change(function(){
+                var id=$(this).val();
+                if(id==1700) {
+                    $('.Artworks_1033').show();
+                }
+                else{
+                    $('.Artworks_1033').hide();
+                }                      
+            });
+            // Vinyl Stickers (Window Decal)
+            $("#select_486").change(function(){
+                var id=$(this).val();
+                if(id==887) {
+                    $('.Agreement_861').addClass('Addactive');
+                }
+                else{
+                    $('.Agreement_861').removeClass('Addactive');
+                }                      
+            });
+            $("#select_1034").change(function(){
+                var id=$(this).val();
+                if(id==1704) {
+                    $('.Artworks_1035').show();
+                }
+                else{
+                    $('.Artworks_1035').hide();
+                }                      
+            });
+            // Wall Vinyl Decals
+            $("#select_478").change(function(){
+                var id=$(this).val();
+                if(id==877) {
+                    $('.Agreement_862').addClass('Addactive');
+                }
+                else{
+                    $('.Agreement_862').removeClass('Addactive');
+                }                      
+            });
+            $("#select_1036").change(function(){
+                var id=$(this).val();
+                if(id==1708) {
+                    $('.Artworks_1037').show();
+                }
+                else{
+                    $('.Artworks_1037').hide();
+                }                      
+            });
+            // Backlit Film
+            $("#select_427").change(function(){
+                var id=$(this).val();
+                if(id==796) {
+                    $('.Agreement_863').addClass('Addactive');
+                }
+                else{
+                    $('.Agreement_863').removeClass('Addactive');
+                }                      
+            });
+            $("#select_1038").change(function(){
+                var id=$(this).val();
+                if(id==1712) {
+                    $('.Artworks_1039').show();
+                }
+                else{
+                    $('.Artworks_1039').hide();
+                }                      
+            });
+            // Canvas Roll
+            $("#select_434").change(function(){
+                var id=$(this).val();
+                if(id==801) {
+                    $('.Agreement_864').addClass('Addactive');
+                }
+                else{
+                    $('.Agreement_864').removeClass('Addactive');
+                }                      
+            });
+            $("#select_1040").change(function(){
+                var id=$(this).val();
+                if(id==1716) {
+                    $('.Artworks_1041').show();
+                }
+                else{
+                    $('.Artworks_1041').hide();
+                }                      
+            });
+            // Framed Canvas
+            $("#select_815").change(function(){
+                var id=$(this).val();
+                if(id==1305) {
+                    $('.Agreement_865').addClass('Addactive');
+                }
+                else{
+                    $('.Agreement_865').removeClass('Addactive');
+                }                      
+            });
+            $("#select_1044").change(function(){
+                var id=$(this).val();
+                if(id==1724) {
+                    $('.Artworks_1045').show();
+                }
+                else{
+                    $('.Artworks_1045').hide();
+                }                      
+            });
+            // Car Magnets
+            $("#select_534").change(function(){
+                var id=$(this).val();
+                if(id==931) {
+                    $('.Agreement_866').addClass('Addactive');
+                }
+                else{
+                    $('.Agreement_866').removeClass('Addactive');
+                }                      
+            });
+            $("#select_1048").change(function(){
+                var id=$(this).val();
+                if(id==1732) {
+                    $('.Artworks_1049').show();
+                }
+                else{
+                    $('.Artworks_1049').hide();
+                }                      
+            });
+            // Polypropylene (PET)
+            $("#select_515").change(function(){
+                var id=$(this).val();
+                if(id==905) {
+                    $('.Agreement_867').addClass('Addactive');
+                }
+                else{
+                    $('.Agreement_867').removeClass('Addactive');
+                }                      
+            });
+            $("#select_1042").change(function(){
+                var id=$(this).val();
+                if(id==1720) {
+                    $('.Artworks_1043').show();
+                }
+                else{
+                    $('.Artworks_1043').hide();
+                }                      
+            });
+            // Digital Poster
+            $("#select_1046").change(function(){
+                var id=$(this).val();
+                if(id==1728) {
+                    $('.Artworks_1047').show();
+                }
+                else{
+                    $('.Artworks_1047').hide();
+                }                      
+            });
+            // Acrylic Boards
+            $("#select_451").change(function(){
+                var id=$(this).val();
+                if(id==834) {
+                    $('.Agreement_868').addClass('Addactive');
+                }
+                else{
+                    $('.Agreement_868').removeClass('Addactive');
+                }                      
+            });
+            $("#select_1050").change(function(){
+                var id=$(this).val();
+                if(id==1736) {
+                    $('.Artworks_1051').show();
+                }
+                else{
+                    $('.Artworks_1051').hide();
+                }                      
+            });
+            // Aluminum Sandwich Board “Dibond” 
+            $("#select_460").change(function(){
+                var id=$(this).val();
+                if(id==848) {
+                    $('.Agreement_869').addClass('Addactive');
+                }
+                else{
+                    $('.Agreement_869').removeClass('Addactive');
+                }                      
+            });
+            $("#select_456").change(function(){
+                var id=$(this).val();
+                if(id==836) {
+                    $('.Material-_870').addClass('Addactive');
+                    $('.Material_457').removeClass('Addactive');
+                }
+                else{
+                    $('.Material-_870').removeClass('Addactive');
+                    $('.Material_457').addClass('Addactive');
+                }                      
+            });
+            $("#select_1052").change(function(){
+                var id=$(this).val();
+                if(id==1740) {
+                    $('.Artworks_1053').show();
+                }
+                else{
+                    $('.Artworks_1053').hide();
+                }                      
+            });
+            // Aluminum Sheets
+            $("#select_469").change(function(){
+                var id=$(this).val();
+                if(id==868) {
+                    $('.Agreement_918').addClass('Addactive');
+                }
+                else{
+                    $('.Agreement_918').removeClass('Addactive');
+                }                      
+            });
+            $("#select_919").change(function(){
+                var id=$(this).val();
+                if(id==1499) {
+                    $('.Artworks_920').show();
+                }
+                else{
+                    $('.Artworks_920').hide();
+                }                      
+            });
+            $("#select_1139").change(function(){
+                var id=$(this).val();
+                if(id==1782) {
+                    $('.Inches_1140').addClass('Addactive');
+                    $('.Inches_1141').addClass('Addactive');
+                    $('.addF_1142').addClass('Addactive');
+                    $('.addF_1142').css('opacity', '0');
+                }
+                else{
+                    $('.Inches_1140').removeClass('Addactive');
+                    $('.Inches_1141').removeClass('Addactive');
+                    $('.addF_1142').removeClass('Addactive');
+                    $(".addF_1142").removeProperty("opacity");
+                }                      
+            });
+            // Arrow Spinner Signs
+            $("#select_747").change(function(){
+                var id=$(this).val();
+                if(id==1226) {
+                    $('.Agreement_871').addClass('Addactive');
+                }
+                else{
+                    $('.Agreement_871').removeClass('Addactive');
+                }                      
+            });
+            $("#select_1054").change(function(){
+                var id=$(this).val();
+                if(id==1744) {
+                    $('.Artworks_1055').show();
+                }
+                else{
+                    $('.Artworks_1055').hide();
+                }                      
+            });
+            // Yard Signs (Coroplast)
+            $("#select_619").change(function(){
+                var id=$(this).val();
+                if(id==1048) {
+                    $('.Agreement_890').addClass('Addactive');
+                }
+                else{
+                    $('.Agreement_890').removeClass('Addactive');
+                }                      
+            });
+            $("#select_927").change(function(){
+                var id=$(this).val();
+                if(id==1515) {
+                    $('.Artworks_928').show();
+                }
+                else{
+                    $('.Artworks_928').hide();
+                }                      
+            });
+            $("#select_615").change(function(){
+                var id=$(this).val();
+                if(id==1037) {
+                    $('.Color_891').addClass('Addactive');
+                    $('.Color_616').removeClass('Addactive');
+                    $("#select_616 option:selected").removeAttr("selected");
+                }
+                else{
+                    $('.Color_616').addClass('Addactive');
+                    $('.Color_891').removeClass('Addactive');
+                    $("#select_891 option:selected").removeAttr("selected");
+                }                      
+            });
+            // Ultra(Gator) Board
+            $("#select_628").change(function(){
+                var id=$(this).val();
+                if(id==1064) {
+                    $('.Agreement_889').addClass('Addactive');
+                }
+                else{
+                    $('.Agreement_889').removeClass('Addactive');
+                }                      
+            });
+            $("#select_625").change(function(){
+                var id=$(this).val();
+                if(id==1052) {
+                    $('.Advised_1073').addClass('Addactive');
+                    $('.Advised_1072').removeClass('Addactive');
+                     $('.Grommets_627').removeClass('Addhidden');
+                } else if(id==1054){
+                     $('.Advised_1072').addClass('Addactive');
+                     $('.Advised_1073').removeClass('Addactive');
+                      $('.Grommets_627').removeClass('Addhidden');
+                } else if(id==1053){
+                    $('.Grommets_627').addClass('Addhidden');
+                } else{
+                    $('.Advised_1073').removeClass('Addactive');
+                    $('.Advised_1072').removeClass('Addactive');
+                    $('.Grommets_627').removeClass('Addhidden');
+                }                      
+            });
+            $("#select_888").change(function(){
+                var id=$(this).val();
+                if(id==1453) {
+                    $('.Advised_1072').addClass('Addactive');
+                    $('.Advised_1073').addClass('Addactive');
+                    $('.Grommets_627').removeClass('Addhidden');
+                }else if(id==1452){
+                    $('.Grommets_627').addClass('Addhidden');
+                } else{
+                    $('.Advised_1073').removeClass('Addactive');
+                    $('.Advised_1072').removeClass('Addactive');
+                    $('.Grommets_627').removeClass('Addhidden');
+                }                      
+            });
+            $("#select_624").change(function(){
+                var id=$(this).val();
+                if(id==1050) {
+                    $('.Side_888').addClass('Addactive');
+                    $('.Side_625').removeClass('Addactive');
+                    $("#select_625 option:selected").removeAttr("selected");
+                }
+                else{
+                    $('.Side_625').addClass('Addactive');
+                    $('.Side_888').removeClass('Addactive');
+                    $("#select_888 option:selected").removeAttr("selected");
+                }                      
+            });
+            $("#select_904").change(function(){
+                var id=$(this).val();
+                if(id==1480) {
+                    $('.Artworks_905').show();
+                }
+                else{
+                    $('.Artworks_905').hide();
+                }                      
+            });
+            // Styrene Boards
+            $("#select_638").change(function(){
+                var id=$(this).val();
+                if(id==1079) {
+                    $('.Agreement_887').addClass('Addactive');
+                }
+                else{
+                    $('.Agreement_887').removeClass('Addactive');
+                }                      
+            });
+            $("#select_1058").change(function(){
+                var id=$(this).val();
+                if(id==1752) {
+                    $('.Artworks_1059').show();
+                }
+                else{
+                    $('.Artworks_1059').hide();
+                }                      
+            });
+            // PVC Sintra Board
+            $("#select_648").change(function(){
+                var id=$(this).val();
+                if(id==1097) {
+                    $('.Agreement_886').addClass('Addactive');
+                }
+                else{
+                    $('.Agreement_886').removeClass('Addactive');
+                }                      
+            });
+            $("#select_925").change(function(){
+                var id=$(this).val();
+                if(id==1511) {
+                    $('.Artworks_926').show();
+                }
+                else{
+                    $('.Artworks_926').hide();
+                }                      
+            });
+            $("#select_643").change(function(){
+                var id=$(this).val();
+                if(id==1081) {
+                    $('.Art_925').addClass('Addactive');
+                    $('.Side_885').addClass('Addactive');
+                    $('.Side_644').removeClass('Addactive');
+                    $("#select_644 option:selected").removeAttr("selected");
+                }
+                else{
+                    $('.Art_925').removeClass('Addactive');
+                    $('.Side_644').addClass('Addactive');
+                    $('.Side_885').removeClass('Addactive');
+                    $("#select_885 option:selected").removeAttr("selected");
+                }                      
+            });
+            // Foam Boards
+            $("#select_657").change(function(){
+                var id=$(this).val();
+                if(id==1112) {
+                    $('.Agreement_884').addClass('Addactive');
+                }
+                else{
+                    $('.Agreement_884').removeClass('Addactive');
+                }                      
+            });
+            $("#select_653").change(function(){
+                var id=$(this).val();
+                if(id==1099) {
+                    $('.Side_883').addClass('Addactive');
+                    $('.Side_654').removeClass('Addactive');
+                    $("#select_654 option:selected").removeAttr("selected");
+                }
+                else{
+                    $('.Side_654').addClass('Addactive');
+                    $('.Side_883').removeClass('Addactive');
+                    $("#select_883 option:selected").removeAttr("selected");
+                }                      
+            });
+            $("#select_923").change(function(){
+                var id=$(this).val();
+                if(id==1507) {
+                    $('.Artworks_924').show();
+                }
+                else{
+                    $('.Artworks_924').hide();
+                }                      
+            });
+            // Eagle Board (Eco Board)
+            $("#select_665").change(function(){
+                var id=$(this).val();
+                if(id==1121) {
+                    $('.Agreement_882').addClass('Addactive');
+                }
+                else{
+                    $('.Agreement_882').removeClass('Addactive');
+                }                      
+            });
+            $("#select_921").change(function(){
+                var id=$(this).val();
+                if(id==1503) {
+                    $('.Artworks_922').show();
+                }
+                else{
+                    $('.Artworks_922').hide();
+                }                      
+            });
+            $("#select_662").change(function(){
+                var id=$(this).val();
+                if(id==1114) {
+                    $('.Side_881').addClass('Addactive');
+                    $('.Side_663').removeClass('Addactive');
+                    $("#select_663 option:selected").removeAttr("selected");
+                }
+                else{
+                    $('.Side_663').addClass('Addactive');
+                    $('.Side_881').removeClass('Addactive');
+                    $("#select_881 option:selected").removeAttr("selected");
+                }                      
+            });
+            // Converd Coated Board
+            $("#select_916").change(function(){
+                var id=$(this).val();
+                if(id==1494) {
+                    $('.Artworks_917').show();
+                }
+                else{
+                    $('.Artworks_917').hide();
+                }                      
+            });
+            $("#select_674").change(function(){
+                var id=$(this).val();
+                if(id==1134) {
+                    $('.Agreement_880').addClass('Addactive');
+                }
+                else{
+                    $('.Agreement_880').removeClass('Addactive');
+                }                      
+            });
+            $("#select_670").change(function(){
+                var id=$(this).val();
+                if(id==1123) {
+                    $('.Material-_879').addClass('Addactive');
+                    $('.Material_671').removeClass('Addactive');
+                    $("#select_671 option:selected").removeAttr("selected");
+                }
+                else{
+                    $('.Material_671').addClass('Addactive');
+                    $('.Material-_879').removeClass('Addactive');
+                    $("#select_879 option:selected").removeAttr("selected");
+                }                      
+            });
+            // Mini Banner Stands
+            $("#select_758").change(function(){
+                var id=$(this).val();
+                if(id==1239) {
+                    $('.Artworks_953').addClass('Addactive');
+                }
+                else{
+                    $('.Artworks_953').removeClass('Addactive');
+                }                      
+            });
+            $("#select_753").change(function(){
+                var id=$(this).val();
+                if(id==1231) {
+                    $('.Material_892').addClass('Addactive');
+                    $('.Material_754').removeClass('Addactive');
+                    $("#select_754 option:selected").removeAttr("selected");
+                }
+                else{
+                    $('.Material_754').addClass('Addactive');
+                    $('.Material_892').removeClass('Addactive');
+                    $("#select_892 option:selected").removeAttr("selected");
+                }                      
+            });
+            // Outdoor Banner Stand
+            $("#select_765").change(function(){
+                var id=$(this).val();
+                if(id==1247) {
+                    $('.Agreement_893').addClass('Addactive');
+                }
+                else{
+                    $('.Agreement_893').removeClass('Addactive');
+                }                      
+            });
+            $("#select_767").change(function(){
+                var id=$(this).val();
+                if(id==1249) {
+                    $('.Artworks_962').addClass('Addactive');
+                }
+                else{
+                    $('.Artworks_962').removeClass('Addactive');
+                }                      
+            });
+            $("#select_761").change(function(){
+                var id=$(this).val();
+                if(id==1241) {
+                    $('.Hemming_763').addClass('Addactive');
+                    $('.Grommets_764').addClass('Addactive');
+                }
+                else{
+                    $('.Hemming_763').removeClass('Addactive');
+                }                      
+            });
+            // Outdoor Double Banner Stand
+            $("#select_774").change(function(){
+                var id=$(this).val();
+                if(id==1257) {
+                    $('.Agreement_894').addClass('Addactive');
+                }
+                else{
+                    $('.Agreement_894').removeClass('Addactive');
+                }                      
+            });
+            $("#select_776").change(function(){
+                var id=$(this).val();
+                if(id==1259) {
+                    $('.Artworks_961').addClass('Addactive');
+                }
+                else{
+                    $('.Artworks_961').removeClass('Addactive');
+                }                      
+            });
+            // X-Frame with Supersmooth 
+            $("#select_808").change(function(){
+                var id=$(this).val();
+                if(id==1300) {
+                    $('.Agreement_902').addClass('Addactive');
+                }
+                else{
+                    $('.Agreement_902').removeClass('Addactive');
+                }                      
+            });
+            $("#select_1060").change(function(){
+                var id=$(this).val();
+                if(id==1756) {
+                    $('.Artworks_1061').show();
+                }
+                else{
+                    $('.Artworks_1061').hide();
+                }                      
+            });
+            $("#select_963").change(function(){
+                var id=$(this).val();
+                if((id==1572) || (id==1573)) {
+                    $('.Inches_965').addClass('Addactive');
+                    $('.Inches_966').addClass('Addactive');
+                }
+                else{
+                    $('.Inches_965').removeClass('Addactive');
+                    $('.Inches_966').removeClass('Addactive');
+                }                      
+            });
+             // X-Frame with Polypropylene (PET)
+            $("#select_801").change(function(){
+                var id=$(this).val();
+                if(id==1290) {
+                    $('.Agreement_901').addClass('Addactive');
+                }
+                else{
+                    $('.Agreement_901').removeClass('Addactive');
+                }                      
+            });
+            $("#select_1062").change(function(){
+                var id=$(this).val();
+                if(id==1760) {
+                    $('.Artworks_1063').show();
+                }
+                else{
+                    $('.Artworks_1063').hide();
+                }                      
+            });
+            $("#select_964").change(function(){
+                var id=$(this).val();
+                if((id==1577) ||(id==1578)) {
+                    $('.Inches_969').addClass('Addactive');
+                    $('.Inches_970').addClass('Addactive');
+
+                } else{
+                    $('.Inches_969').removeClass('Addactive');
+                    $('.Inches_970').removeClass('Addactive');
+                }                      
+            });
+            // X-Frame with Banner
+            $("#select_794").change(function(){
+                var id=$(this).val();
+                if(id==1280) {
+                    $('.Agreement_900').addClass('Addactive');
+                }
+                else{
+                    $('.Agreement_900').removeClass('Addactive');
+                }                      
+            });
+            $("#select_1064").change(function(){
+                var id=$(this).val();
+                if(id==1764) {
+                    $('.Artworks_1065').show();
+                }
+                else{
+                    $('.Artworks_1065').hide();
+                }                      
+            });
+            $("#select_978").change(function(){
+                var id=$(this).val();
+                if((id==1597) ||(id==1598)) {
+                    $('.Inches_979').addClass('Addactive');
+                    $('.Inches_980').addClass('Addactive');
+
+                } else{
+                    $('.Inches_979').removeClass('Addactive');
+                    $('.Inches_980').removeClass('Addactive');
+                }                      
+            });
+            // Step and Repeat Banners
+            $("#select_786").change(function(){
+                var id=$(this).val();
+                if(id==1267) {
+                    $('.Agreement_899').addClass('Addactive');
+                }
+                else{
+                    $('.Agreement_899').removeClass('Addactive');
+                }                      
+            });
+            $("#select_1066").change(function(){
+                var id=$(this).val();
+                if(id==1768) {
+                    $('.Artworks_1067').show();
+                }
+                else{
+                    $('.Artworks_1067').hide();
+                }                      
+            });
+            // Retractable Stand
+            $("#select_698").change(function(){
+                var id=$(this).val();
+                if(id==1173) {
+                    $('.Agreement_898').addClass('Addactive');
+                }
+                else{
+                    $('.Agreement_898').removeClass('Addactive');
+                }                      
+            });
+            $("#select_975").change(function(){
+                var id=$(this).val();
+                if(id==1587) {
+                    $('.Available_897').addClass('Addactive');
+                }
+                else{
+                    $('.Available_897').removeClass('Addactive');
+                }                      
+            });
+            $("#select_1068").change(function(){
+                var id=$(this).val();
+                if(id==1772) {
+                    $('.Artworks_1069').show();
+                }
+                else{
+                    $('.Artworks_1069').hide();
+                }                      
+            });
+            // Custom Sublimation Transfers
+            $("#select_698").change(function(){
+                var id=$(this).val();
+                if(id==1173) {
+                    $('.Agreement_898').addClass('Addactive');
+                }
+                else{
+                    $('.Agreement_898').removeClass('Addactive');
+                }                      
+            });
+             $("#select_981").change(function(){
+                var id=$(this).val();
+                if(id==1600) {
+                    $('.Artworks_982').show();
+                }
+                else{
+                    $('.Artworks_982').hide();
+                }                      
+            });             
+            // Flag Banners (Sublimation) 
+            $("#select_983").change(function(){
+                var id=$(this).val();
+                if(id==1604) {
+                    $('.Artworks_984').show();
+                }
+                else{
+                    $('.Artworks_984').hide();
+                }                      
+            });
+            // 3M Controltac (IJ 180C) Contour
+            $("#select_717").change(function(){
+                var id=$(this).val();
+                if(id==1197) {
+                    $('.Agreement_943').addClass('Addactive');
+                }
+                else{
+                    $('.Agreement_943').removeClass('Addactive');
+                }                      
+            });
+            $("#select_985").change(function(){
+                var id=$(this).val();
+                if(id==1608) {
+                    $('.Artworks_986').show();
+                }
+                else{
+                    $('.Artworks_986').hide();
+                }                      
+            });
+            // Car Magnets Contour
+            $("#select_987").change(function(){
+                var id=$(this).val();
+                if(id==1612) {
+                    $('.Artworks_988').show();
+                }
+                else{
+                    $('.Artworks_988').hide();
+                }                      
+            });
+            $("#select_726").change(function(){
+                var id=$(this).val();
+                if(id==1207) {
+                    $('.Agreement_944').addClass('Addactive');
+                }
+                else{
+                    $('.Agreement_944').removeClass('Addactive');
+                }                      
+            });
+            // Floor Graphics – Contour
+            $("#select_989").change(function(){
+                var id=$(this).val();
+                if(id==1616) {
+                    $('.Artworks_990').show();
+                }
+                else{
+                    $('.Artworks_990').hide();
+                }                      
+            });
+            $("#select_735").change(function(){
+                var id=$(this).val();
+                if(id==1214) {
+                    $('.Agreement_946').addClass('Addactive');
+                }
+                else{
+                    $('.Agreement_946').removeClass('Addactive');
+                }                      
+            });
+            //  Yard Signs (Coroplast) Contour
+            $("#select_959").change(function(){
+                var id=$(this).val();
+                if(id==1562) {
+                    $('.Artworks_960').show();
+                }
+                else{
+                    $('.Artworks_960').hide();
+                }                      
+            });
+            $("#select_552").change(function(){
+                var id=$(this).val();
+                if(id==951) {
+                    $('.Agreement_958').addClass('Addactive');
+                }
+                else{
+                    $('.Agreement_958').removeClass('Addactive');
+                }                      
+            });
+            //  Ultra(Gator) Board Contour
+            $("#select_941").change(function(){
+                var id=$(this).val();
+                if(id==1540) {
+                    $('.Artworks_942').show();
+                }
+                else{
+                    $('.Artworks_942').hide();
+                }                      
+            });
+            $("#select_562").change(function(){
+                var id=$(this).val();
+                if(id==967) {
+                    $('.Agreement_939').addClass('Addactive');
+                }
+                else{
+                    $('.Agreement_939').removeClass('Addactive');
+                }                      
+            });
+            $("#select_557").change(function(){
+                var id=$(this).val();
+                if(id==953) {
+                    $('.Side_938').addClass('Addactive');
+                    $('.Side_558').removeClass('Addactive');
+                    $("#select_558 option:selected").removeAttr("selected");
+                }
+                else{
+                    $('.Side_558').addClass('Addactive');
+                    $('.Side_938').removeClass('Addactive');
+                    $("#select_938 option:selected").removeAttr("selected");
+                }                      
+            });
+            //  Styrene Boards Contour 
+            $("#select_572").change(function(){
+                var id=$(this).val();
+                if(id==982) {
+                    $('.Agreement_936').addClass('Addactive');
+                }
+                else{
+                    $('.Agreement_936').removeClass('Addactive');
+                }                      
+            });
+            $("#select_995").change(function(){
+                var id=$(this).val();
+                if(id==1628) {
+                    $('.Artworks_996').show();
+                }
+                else{
+                    $('.Artworks_996').hide();
+                }                      
+            });
+            //  PVC Sintra Board Contour
+            $("#select_582").change(function(){
+                var id=$(this).val();
+                if(id==998) {
+                    $('.Agreement_932').addClass('Addactive');
+                }
+                else{
+                    $('.Agreement_932').removeClass('Addactive');
+                }                      
+            });
+            $("#select_934").change(function(){
+                var id=$(this).val();
+                if(id==1529) {
+                    $('.Artworks_935').show();
+                }
+                else{
+                    $('.Artworks_935').hide();
+                }                      
+            });
+            //  Foam Boards- Contour
+            $("#select_592").change(function(){
+                var id=$(this).val();
+                if(id==1013) {
+                    $('.Agreement_956').addClass('Addactive');
+                }
+                else{
+                    $('.Agreement_956').removeClass('Addactive');
+                }                      
+            });
+            $("#select_929").change(function(){
+                var id=$(this).val();
+                if(id==1519) {
+                    $('.Artworks_930').show();
+                }
+                else{
+                    $('.Artworks_930').hide();
+                }                      
+            });
+            $("#select_587").change(function(){
+                var id=$(this).val();
+                if(id==1000) {
+                    $('.Side_955').addClass('Addactive');
+                    $('.Side_588').removeClass('Addactive');
+                }
+                else{
+                    $('.Side_588').addClass('Addactive');
+                    $('.Side_955').removeClass('Addactive');
+                }                      
+            });
+            //  Wall Vinyl Decals Contour
+            $("#select_601").change(function(){
+                var id=$(this).val();
+                if(id==1023) {
+                    $('.Agreement_951').addClass('Addactive');
+                }
+                else{
+                    $('.Agreement_951').removeClass('Addactive');
+                }                      
+            });
+            $("#select_997").change(function(){
+                var id=$(this).val();
+                if(id==1632) {
+                    $('.Artworks_998').show();
+                }
+                else{
+                    $('.Artworks_998').hide();
+                }                      
+            });
+            //  Vinyl Stickers (Window Decal) Contour
+            $("#select_610").change(function(){
+                var id=$(this).val();
+                if(id==1035) {
+                    $('.Agreement_949').addClass('Addactive');
+                }
+                else{
+                    $('.Agreement_949').removeClass('Addactive');
+                }                      
+            });
+            $("#select_999").change(function(){
+                var id=$(this).val();
+                if(id==1636) {
+                    $('.Artworks_1000').show();
+                }
+                else{
+                    $('.Artworks_1000').hide();
+                }                      
+            });
+            //  Static Clings (Window Clings) Contour 
+            $("#select_542").change(function(){
+                var id=$(this).val();
+                if(id==938) {
+                    $('.Agreement_948').addClass('Addactive');
+                }
+                else{
+                    $('.Agreement_948').removeClass('Addactive');
+                }                      
+            });
+            $("#select_1001").change(function(){
+                var id=$(this).val();
+                if(id==1640) {
+                    $('.Artworks_1002').show();
+                }
+                else{
+                    $('.Artworks_1002').hide();
+                }                      
+            });
+            //  Retractable Stand (stand ONLY) 
+            $("#select_699").change(function(){
+                var id=$(this).val();
+                if(id==1175) {
+                    $('.Available_1071').addClass('Addactive');
+                }
+                else{
+                    $('.Available_1071').removeClass('Addactive');
+                }                      
+            });
+            $("#select_1004").change(function(){
+                var id=$(this).val();
+                if(id==1644) {
+                    $('.Artworks_1005').show();
+                }
+                else{
+                    $('.Artworks_1005').hide();
+                }                      
+            });
+
+        })
+    })
+</script>
+
+<!-- container -->
+<script>
+require(['jquery', 'jquery/ui'], function ($) {
+    $(document).ready(function () {
+
+        setTimeout(function(){
+            $(".product-custom-option > option").each(function(index, item) {   
+                var op = $(item);
+                var title = op.text();
+
+                if (title.indexOf('$')) {
+                    var ar = title.split('+$');
+                    title = ar[0];
+                }              
+                $(this).text(title);
+
+            })      
+        }, 1000);       
+    });
+});
+</script>

@@ -1,6 +1,19 @@
 <?php $_product = $block->getProduct(); ?>
 
-<p class="finalUnitPrice">Price: <span id="pricePerUnit"></span></p>
+<div class="row">
+    <div class="col-xs-12 col-sm-6"><p class="finalUnitPrice">Unit Price: <span id="pricePerUnit"></span></p></div>
+    <div class="col-xs-12 col-sm-6"><p class="finalUnitPrice">Sub Total: <span id="subTotalPrice"></span></p></div>
+    <div class="col-xs-12 Discount-price">
+	    <div  class="row">
+	    	<div class="col-xs-12"><p class="DiscountPrice">Bulk Discount <span id="ptram"></span>:<span id="discountCustom"></span></p></div>
+		    <div class="col-xs-12"><p class="DiscountPrice">New Total after Bulk Discount: <span id="totalDiscount"></span></p></div>
+	    </div>   
+	</div>
+	<div class="noDiscount">
+		<div class="col-xs-12"><p>Bulk Discount (0%): No discount Applicable</p></div>
+	</div>
+</div>
+
 <div><?= $_product->getNoteAfterPrice() ?></div>
 
 <div class="product-options-bottom">

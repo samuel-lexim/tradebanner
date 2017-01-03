@@ -2,7 +2,7 @@
     display: none;
 }
 .catalog-product-view .tabContentWrap {
-    padding-top: 10px;
+    padding: 10px;
 }
 /************************** FOOTER ******************************/
 #tradeFooter {
@@ -67,9 +67,25 @@
 
 .button-to-top {
     position: fixed;
-    bottom: 10px;
-    right: 10%;
     z-index: 99;
+}
+@media screen and (max-width: 719px) {
+    .button-to-top {
+        bottom: 15%;
+    	right: 5px;
+    }
+}
+@media screen and (min-width: 720px) and (max-width: 1049px) {
+    .button-to-top {
+        bottom: 35px;
+    	right: 15px;
+    }
+}
+@media screen and (min-width: 1050px) {
+    .button-to-top {
+        bottom: 35px;
+    	right: 224px;
+    }
 }
 
 .footer-header img {
@@ -466,8 +482,8 @@
 }
 .custom-title {
     font-size: 30px;
-    height: 100px;
-    margin-bottom: 50px;
+    height: 70px;
+    margin-bottom: 30px;
     background: #1ca1ac;
     color: #fff;
     display: flex;
@@ -483,4 +499,125 @@
 .custom-submit button {
     height: 40px;
     width: 120px;
+}
+
+/************************** PRODUCT DETAIL ******************************/
+.product-info-main .label {
+    font-weight: bold;
+}
+#discount_price {
+    font-weight: bold;
+    text-transform: capitalize;
+}
+#leftMenuUl span.dropLeftMenu {
+    width: 240px !important;
+    height: 30px !important;
+    position: absolute;
+    text-align: right !important;
+    z-index: 5;
+}
+@media screen and (min-width: 720px) and (max-width: 1000px) {
+	#leftMenuUl span.dropLeftMenu {
+		width: 140px !important;
+	}
+}
+@media screen and (min-width: 1001px) and (max-width: 1050px) {
+	#leftMenuUl span.dropLeftMenu {
+		width: 200px !important;
+	}
+}
+/************************** CHECK OUT ******************************/
+.checkout-index-index .fieldset > .field:not(.choice) > .control {
+    width: 100%;
+}
+.checkout-index-index .fieldset > .field:not(.choice) > .label {
+	width: 100%;
+	text-align: left;
+	padding: 5px 0;
+	font-weight: bold !important;
+}
+@media screen and (min-width: 720px) {
+	.checkout-index-index .iwd-opc-form-for-payments .fieldset .opc-payment .payment-method._active > .payment-method-content > form.form fieldset > div.number > label:before {
+		top: 42px;
+		font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+		font-weight: normal;
+	}
+}
+@media screen and (max-width: 719px) {
+	.checkout-index-index .iwd-opc-form-for-payments .fieldset .opc-payment .payment-method._active > .payment-method-content > form.form fieldset > div.number > label:before {
+		top: 67px;
+		font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+		font-weight: normal;
+	}
+}
+@media screen and (min-width: 720px) {
+	.checkout-index-index .iwd-opc-form-for-payments .fieldset .opc-payment .payment-method._active > .payment-method-content > form.form fieldset > div.cvv > label:before {
+		top: 41px;
+		font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+		font-weight: normal;
+	}
+}
+@media screen and (max-width: 719px) {
+	.checkout-index-index .iwd-opc-form-for-payments .fieldset .opc-payment .payment-method._active > .payment-method-content > form.form fieldset > div.cvv > label:before {
+		top: 47px;
+		font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+		font-weight: normal;
+	}
+}
+.checkout-index-index .checkout-payment-method .ccard.fieldset > .field .fields.group.group-2 .field {
+	width: 50% !important;
+}
+.checkout-index-index .checkout-payment-method .ccard .month .select {
+	width: 100%;
+}
+.checkout-index-index .checkout-payment-method .ccard .year .select {
+	width: 100%;
+}
+.checkout-index-index .iwd-opc-form-for-payments .fieldset .opc-payment .payment-method._active > .payment-method-content > form.form .field.number.required > label {
+    margin-top: 0;
+    padding: 5px 0;
+    font-weight: bold;
+}
+/************************** PRODUCT DETAIL ******************************/
+/* Style the list */
+#tab-description-review {
+	width: 100%;
+    height: 40px;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+.descriptionBlock, .sliderDPWrapper {
+	border-top: none !important;
+}
+
+/* Float the list items side by side */
+#tab-description-review li {float: left;}
+
+/* Style the links inside the list items */
+#tab-description-review li{
+    display: inline-block;
+    color: black;
+    text-align: center;
+    padding: 10px 40px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+/* Change background color of links on hover */
+#tab-description-review li:hover {background-color: #ddd;}
+
+/* Create an active/current tablink class */
+#tab-description-review li:focus, #tab-description-review li.active {background-color: #ddd;}
+
+/* Style the tab content */
+#tabDescriptions, #tabReviews {
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+}
+#tabReviews {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
 }

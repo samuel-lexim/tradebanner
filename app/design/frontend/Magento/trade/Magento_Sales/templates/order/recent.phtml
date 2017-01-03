@@ -8,7 +8,7 @@
 
 ?>
 <div class="block block-dashboard-orders">
-    <?php $_orders = $block->getOrders(); ?>
+<?php $_orders = $block->getOrders(); ?>
     <div class="block-title order">
         <strong><?= __('Recent Orders') ?></strong>
         <?php if (sizeof($_orders->getItems()) > 0): ?>
@@ -18,12 +18,12 @@
         <?php endif; ?>
     </div>
     <div class="block-content">
-        <?= $block->getChildHtml()?>
-        <?php if (sizeof($_orders->getItems()) > 0): ?>
-            <div class="table-wrapper orders-recent">
-                <table class="data table table-order-items recent" id="my-orders-table">
-                    <caption class="table-caption"><?= __('Recent Orders') ?></caption>
-                    <thead>
+    <?= $block->getChildHtml()?>
+    <?php if (sizeof($_orders->getItems()) > 0): ?>
+        <div class="table-wrapper orders-recent">
+            <table class="data table table-order-items recent" id="my-orders-table">
+                <caption class="table-caption"><?= __('Recent Orders') ?></caption>
+                <thead>
                     <tr>
                         <th scope="col" class="col id"><?= __('Order #') ?></th>
                         <th scope="col" class="col date"><?= __('Date') ?></th>
@@ -33,25 +33,25 @@
                         <th scope="col" class="col status"><?= __('Job Name') ?></th>
                         <th scope="col" class="col actions"><?= __('Action') ?></th>
                     </tr>
-                    </thead>
-                    <tbody>
+                </thead>
+                <tbody>
                     <?php foreach ($_orders as $_order): ?>
                         <?php // Get Job Name
-                        $job = "";
-                        $items = $_order->getItems();
+                            $job = "";                
+                            $items = $_order->getItems();
 
-                        if (count($items) > 0) {
-                            $firstItem = array_values($items)[0];
-                            $options = $firstItem->getProductOptions();
-                            if (isset($options['options'])) {
-                                foreach ($options['options'] as $itemOption) {
-                                    if ( strtolower($itemOption['label']) == 'job name') {
-                                        $job = $itemOption['value'];
-                                        break;
-                                    }
-                                }
-                            }
-                        }
+                            if (count($items) > 0) {
+                                $firstItem = array_values($items)[0];  
+                                $options = $firstItem->getProductOptions();  
+                                if (isset($options['options'])) {                
+                                    foreach ($options['options'] as $itemOption) {
+                                        if ( strtolower($itemOption['label']) == 'job name') {
+                                            $job = $itemOption['value'];
+                                            break;
+                                        }
+                                    }       
+                                }                 
+                            }                    
                         ?>
 
 
@@ -74,11 +74,11 @@
                             </td>
                         </tr>
                     <?php endforeach; ?>
-                    </tbody>
-                </table>
-            </div>
-        <?php else: ?>
-            <div class="message info empty"><span><?= __('You have placed no orders.'); ?></span></div>
-        <?php endif; ?>
+                </tbody>
+            </table>
+        </div>
+    <?php else: ?>
+        <div class="message info empty"><span><?= __('You have placed no orders.'); ?></span></div>
+    <?php endif; ?>
     </div>
 </div>

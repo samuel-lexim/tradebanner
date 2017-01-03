@@ -499,6 +499,10 @@ a.clickHereHS {
     margin: 0;
 }
 
+#leftHomeMenu li:not(:last-child) {
+    border-bottom: 1px solid #ccc;
+}
+
 #leftHomeMenu .categoryItem > a {
     background: #efefef;
     text-align: center;
@@ -844,12 +848,8 @@ a.clickHereHS {
     padding: 0;
 }
 
-#topMegaMenu li {
-    border-bottom: 2px dotted #bbb;
-    padding: 10px 0;
-}
-
 #topMegaMenu > li {
+    position: relative;
     width: 20%;
     float: left;
     padding: 10px;
@@ -870,7 +870,7 @@ a.clickHereHS {
 
 #topMegaMenu > li li {
     position: relative;
-    border-bottom: 2px dotted #bbb;
+    border-top: 2px dotted #bbb;
     padding: 10px 0 10px 20px;
     margin: 0;
     color: #bbb;
@@ -898,7 +898,7 @@ a.clickHereHS {
 
 #topMegaMenu > li li > a {
     display: block;
-    color: #bbb;
+    color: #5d5d5d;
     padding: 0;
     width: 100%;
 }
@@ -990,7 +990,8 @@ a.clickHereHS {
     #topMegaMenu > li {
         width: 100%;
         margin: 0;
-        padding: 0 10px 10px;
+        padding: 0 10px;
+        border-top: 1px solid #ccc;
     }
 
     #topMenuNav > ul > li > a {
@@ -1593,6 +1594,15 @@ nav.account-nav li.current strong {
     color: #f05624;
 }
 
+.block-collapsible-nav .item a {
+    color: #777;
+}
+
+.block-collapsible-nav .item a:hover {
+    background: #e8e8e8;
+    color: #ed5621;
+}
+
 /* # My Account page */
 
 /* Cart page */
@@ -1809,4 +1819,5 @@ a.showDetailCartCol {
     font-size: 20px;
     font-weight: bold;
 }
+
 /* # Upload page cms */

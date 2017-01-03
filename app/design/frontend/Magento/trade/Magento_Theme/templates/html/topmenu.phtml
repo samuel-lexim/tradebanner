@@ -27,7 +27,7 @@
                 ?>
                 <?php foreach ($categories as $cate) { ?>
                 <li class="item">
-                    <a href="<?= $cate->getUrl() ?>"><?= $cate->getName() ?></a>
+                    <a href="javascript:void(0)" class="clickCateTopMenu"><?= $cate->getName() ?></a>
                     <?php
                     $products = $productFac->create()
                         ->addAttributeToSelect('*')
@@ -35,7 +35,7 @@
                         ->addAttributeToFilter('status', '1')
                         ->load();
                     ?>
-                    <ul>
+                    <ul style="display: none">
                         <?php foreach ($products as $p) { ?>
                             <li><a href="<?= $p->getProductUrl() ?>"><?= $p->getName() ?></a></li>
                         <?php } ?>
@@ -72,6 +72,17 @@
                 }
             });
 
+            // Drop-down sub-menu on top menu
+            $('.clickCateTopMenu').click(function () {
+                var ul = $(this).find('+ ul');
+                if(ul.is(':visible')) {
+                    ul.slideUp('normal');
+                } else {
+                    ul.slideDown('normal');
+                }
+            });
+
+            // Click Search
             $('#clickTopSearchIcon').click(function(){
                 if ($(window).width() < 1024) {
                     $('#topSearchWrap > .block-content').toggle();

@@ -4,7 +4,7 @@ $class = ($_option->getIsRequire()) ? ' required' : '';
 ?>
 
 <div
-    class="col-xs-12 <?= ($_option->getType() == 'area') ? ' textarea col-sm-12 ' : ' col-sm-6 ' ?>
+    class="<?= $_option->getTitle(); ?>_<?= $_option->getId(); ?> col-xs-12 <?= ($_option->getType() == 'area') ? ' textarea col-sm-12 ' : ' col-sm-6 ' ?>
      field <?= $class ?>">
     <label class="label" for="options_<?= $_option->getId() ?>_text">
         <span><?= $block->escapeHtml($_option->getTitle()) ?></span>
