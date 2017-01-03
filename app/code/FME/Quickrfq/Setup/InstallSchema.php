@@ -107,11 +107,11 @@ class InstallSchema implements InstallSchemaInterface
                 ['nullable' => false, 'default' => 'N/A'],
                 'Color 2'
             )
-            ->addColumn('finish_options_02',
+            ->addColumn('finishing_options',
                 \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
                 255,
                 ['nullable' => false, 'default' => 'N/A'],
-                'Finishing Options 2'
+                'Finishing Options'
             )
             ->addColumn('note_options',
                 \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
@@ -125,11 +125,29 @@ class InstallSchema implements InstallSchemaInterface
                 ['nullable' => false, 'default' => 'N/A'],
                 'Die Cut'
             )
-            ->addColumn('finishing_options',
+            ->addColumn('finishing_options_mc01',
                 \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
                 255,
                 ['nullable' => false, 'default' => 'N/A'],
-                'Finish Options'
+                'Finishing Options Multi 1'
+            )
+            ->addColumn('finishing_options_mc02',
+                \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                255,
+                ['nullable' => false, 'default' => 'N/A'],
+                'Finishing Options Multi 2'
+            )
+            ->addColumn('finishing_options_mc03',
+                \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                255,
+                ['nullable' => false, 'default' => 'N/A'],
+                'Finishing Options Multi 3'
+            )
+            ->addColumn('finishing_options_mc04',
+                \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                255,
+                ['nullable' => false, 'default' => 'N/A'],
+                'Finishing Options Multi 4'
             )
             ->addColumn('frame_options',
                 \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
@@ -155,11 +173,23 @@ class InstallSchema implements InstallSchemaInterface
                 ['nullable' => false, 'default' => 'N/A'],
                 'Lamination'
             )
-            ->addColumn('lamination_options_02',
+            ->addColumn('lamination_options_mc01',
                 \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
                 255,
                 ['nullable' => false, 'default' => 'N/A'],
-                'Lamination 2'
+                'Lamination Multi Choice 1'
+            )
+            ->addColumn('lamination_options_mc02',
+                \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                255,
+                ['nullable' => false, 'default' => 'N/A'],
+                'Lamination Multi Choice 2'
+            )
+            ->addColumn('lamination_options_mc03',
+                \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                255,
+                ['nullable' => false, 'default' => 'N/A'],
+                'Lamination Multi Choice 3'
             )
             ->addColumn('round_corners_options',
                 \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
