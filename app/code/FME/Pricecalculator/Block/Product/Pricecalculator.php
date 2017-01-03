@@ -42,16 +42,15 @@ class Pricecalculator extends \Magento\Catalog\Block\Product\View
             
             preg_match_all("/ ([^=]+) = ([^\\s]+) /x", $item, $p);
             $pair = array_combine($p[1], $p[2]);
-            
+
             if (isset($pair['discount'])) {
-                $discountLimit = ['min_limit', 'max_limit'];
-                $pricingRule['discount'] = array_combine($discountLimit, explode(',', $pair['discount']));
-            } 
-            
-            if (isset($pair['size'])) {
-                $discountLimit = ['min_limit', 'max_limit'];
-                $pricingRule['size'] = array_combine($discountLimit, explode(',', $pair['size']));
+                $pricingRule['discount'] = explode(',', $pair['discount']);
             }
+
+            if (isset($pair['size'])) {
+                $pricingRule['size'] = explode(',', $pair['size']);
+            }
+
         }
         //area or volume
         if (in_array('area', $data)) {
