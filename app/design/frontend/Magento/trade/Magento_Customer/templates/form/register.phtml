@@ -18,7 +18,7 @@
             <legend class="legend"><span><?= __('Personal Information') ?></span></legend><br>
             <input type="hidden" name="success_url" value="<?= $block->getSuccessUrl() ?>">
             <input type="hidden" name="error_url" value="<?= $block->getErrorUrl() ?>">
-            
+
             <div class="field required">
                 <label for="email_address" class="label"><span><?= __('Email Address') ?></span></label>
                 <div class="control">
@@ -146,24 +146,24 @@
 
         <fieldset class="fieldset create account" data-hasrequired="<?= __('* Required Fields') ?>">
 
-        	<div class="field website_url">
+            <div class="field website_url">
                 <label for="website_url" class="label"><span><?= __('Website (URL)') ?></span></label>
                 <div class="control">
-                    <input type="text" name="website_url" id="website_url" title="<?= __('Website URL') ?>" class="input-text"
+                    <input type="url" name="website_url" id="website_url" title="<?= __('Website URL') ?>" class="input-text"
                            data-validate="{required:true}" autocomplete="off">
                 </div>
             </div>
             <div class="field seller_permit">
                 <label for="seller_permit" class="label"><span><?= __('Seller\'s Permit') ?></span></label>
                 <div class="control">
-                    <button type="submit" class="action submit primary" id="seller_permit_upload" title="<?= __('Seller\'s Permit') ?>"><span><?= __('Upload File') ?></span></button>
+                    <input type="file" name="seller_file2222" id="seller_permit_upload" title="<?= __('Seller\'s Permit') ?>" />
                 </div>
             </div>
             <div class="field optional_message">
                 <label for="optional_message" class="label"><span><?= __('Optional Message') ?></span></label>
                 <div class="control">
                     <textarea name="optional_message" title="<?= __('Optional Message') ?>" id="optional_message"
-                           class="input-text" data-validate="{required:true}" autocomplete="off" rows="5"></textarea>
+                              class="input-text" data-validate="{required:true}" autocomplete="off" rows="5"></textarea>
                 </div>
             </div>
 
@@ -191,39 +191,39 @@
     </form>
 
     <script>
-    require([
-        'jquery',
-        'mage/mage'
-    ], function($){
+        require([
+            'jquery',
+            'mage/mage'
+        ], function($){
 
-        var dataForm = $('#form-validate');
-        var ignore = <?= $_dob->isEnabled() ? '\'input[id$="full"]\'' : 'null'; ?>;
+            var dataForm = $('#form-validate');
+            var ignore = <?= $_dob->isEnabled() ? '\'input[id$="full"]\'' : 'null'; ?>;
 
-        dataForm.mage('validation', {
-        <?php if ($_dob->isEnabled()): ?>
-            errorPlacement: function(error, element) {
-                if (element.prop('id').search('full') !== -1) {
-                    var dobElement = $(element).parents('.customer-dob'),
-                        errorClass = error.prop('class');
-                    error.insertAfter(element.parent());
-                    dobElement.find('.validate-custom').addClass(errorClass)
-                        .after('<div class="' + errorClass + '"></div>');
-                }
-                else {
-                    error.insertAfter(element);
-                }
-            },
-            ignore: ':hidden:not(' + ignore + ')'
-        <?php else: ?>
-            ignore: ignore ? ':hidden:not(' + ignore + ')' : ':hidden'
-        <?php endif ?>
-        }).find('input:text').attr('autocomplete', 'off');
+            dataForm.mage('validation', {
+                <?php if ($_dob->isEnabled()): ?>
+                errorPlacement: function(error, element) {
+                    if (element.prop('id').search('full') !== -1) {
+                        var dobElement = $(element).parents('.customer-dob'),
+                            errorClass = error.prop('class');
+                        error.insertAfter(element.parent());
+                        dobElement.find('.validate-custom').addClass(errorClass)
+                            .after('<div class="' + errorClass + '"></div>');
+                    }
+                    else {
+                        error.insertAfter(element);
+                    }
+                },
+                ignore: ':hidden:not(' + ignore + ')'
+                <?php else: ?>
+                ignore: ignore ? ':hidden:not(' + ignore + ')' : ':hidden'
+                <?php endif ?>
+            }).find('input:text').attr('autocomplete', 'off');
 
-    });
+        });
     </script>
 
     <?php if ($block->getShowAddressFields()): ?>
-    <script type="text/x-magento-init">
+        <script type="text/x-magento-init">
         {
             "#country": {
                 "regionUpdater": {

@@ -1,9 +1,11 @@
 .page-title-wrapper {
     display: none;
 }
+
 .catalog-product-view .tabContentWrap {
     padding: 10px;
 }
+
 /************************** FOOTER ******************************/
 #tradeFooter {
     position: relative;
@@ -24,10 +26,6 @@
 .footer-logo {
     padding-top: 10px;
     padding-bottom: 10px;
-}
-
-.footer-logo > img {
-    width: 40%;
 }
 
 .footer-detail {
@@ -69,22 +67,25 @@
     position: fixed;
     z-index: 99;
 }
+
 @media screen and (max-width: 719px) {
     .button-to-top {
         bottom: 15%;
-    	right: 5px;
+        right: 5px;
     }
 }
+
 @media screen and (min-width: 720px) and (max-width: 1049px) {
     .button-to-top {
         bottom: 35px;
-    	right: 15px;
+        right: 15px;
     }
 }
+
 @media screen and (min-width: 1050px) {
     .button-to-top {
         bottom: 35px;
-    	right: 224px;
+        right: 224px;
     }
 }
 
@@ -101,17 +102,21 @@
 .page-header .links a {
     color: #fff;
 }
+
 #topRightInfo .tri-item a {
     color: #fff;
 }
+
 .header-cross {
     padding-right: 20px;
     font-size: 15px;
 }
+
 /************************** REGISTER PAGE ******************************/
 .login-container {
     display: none;
 }
+
 #form-validate {
     width: 100%;
     min-width: 10%;
@@ -189,11 +194,13 @@
     font-weight: bold;
     padding: 15px 0;
 }
+
 @media screen and (min-width: 720px) {
     .form.create.account, .block-customer-login {
         width: 80% !important;
     }
 }
+
 /************************** LOGIN PAGE ******************************/
 .action.primary {
     background: #1ca1ac;
@@ -275,6 +282,7 @@
 .blog-post-view .post-info {
     padding: 15px !important;
 }
+
 .post-categories, .dash, .post-posed-date .label {
     display: none;
 }
@@ -466,20 +474,25 @@
     padding: 20px 0;
     border-bottom: 1px #949494 solid;
 }
+
 .estimate-group input, .estimate-group select {
     height: 40px;
     margin: 10px 0;
 }
+
 .estimate-group textarea {
     margin: 10px 0;
 }
+
 .estimate-group .custom-multi-option input {
     height: 12px;
     margin-left: 5%;
 }
+
 .estimate-group label {
     font-weight: bold;
 }
+
 .custom-title {
     font-size: 30px;
     height: 70px;
@@ -490,12 +503,15 @@
     align-items: center;
     justify-content: center;
 }
+
 .custom-title .legend {
     margin: 0;
 }
+
 .custom-submit {
     margin-left: 0 !important;
 }
+
 .custom-submit button {
     height: 40px;
     width: 120px;
@@ -505,10 +521,12 @@
 .product-info-main .label {
     font-weight: bold;
 }
+
 #discount_price {
     font-weight: bold;
     text-transform: capitalize;
 }
+
 #leftMenuUl span.dropLeftMenu {
     width: 240px !important;
     height: 30px !important;
@@ -516,87 +534,103 @@
     text-align: right !important;
     z-index: 5;
 }
+
 @media screen and (min-width: 720px) and (max-width: 1000px) {
-	#leftMenuUl span.dropLeftMenu {
-		width: 140px !important;
-	}
+    #leftMenuUl span.dropLeftMenu {
+        width: 140px !important;
+    }
 }
+
 @media screen and (min-width: 1001px) and (max-width: 1050px) {
-	#leftMenuUl span.dropLeftMenu {
-		width: 200px !important;
-	}
+    #leftMenuUl span.dropLeftMenu {
+        width: 200px !important;
+    }
 }
+
 /************************** CHECK OUT ******************************/
 .checkout-index-index .fieldset > .field:not(.choice) > .control {
     width: 100%;
 }
+
 .checkout-index-index .fieldset > .field:not(.choice) > .label {
-	width: 100%;
-	text-align: left;
-	padding: 5px 0;
-	font-weight: bold !important;
+    width: 100%;
+    text-align: left;
+    padding: 5px 0;
+    font-weight: bold !important;
 }
+
 @media screen and (min-width: 720px) {
-	.checkout-index-index .iwd-opc-form-for-payments .fieldset .opc-payment .payment-method._active > .payment-method-content > form.form fieldset > div.number > label:before {
-		top: 42px;
-		font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-		font-weight: normal;
-	}
+    .checkout-index-index .iwd-opc-form-for-payments .fieldset .opc-payment .payment-method._active > .payment-method-content > form.form fieldset > div.number > label:before {
+        top: 42px;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-weight: normal;
+    }
 }
+
 @media screen and (max-width: 719px) {
-	.checkout-index-index .iwd-opc-form-for-payments .fieldset .opc-payment .payment-method._active > .payment-method-content > form.form fieldset > div.number > label:before {
-		top: 67px;
-		font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-		font-weight: normal;
-	}
+    .checkout-index-index .iwd-opc-form-for-payments .fieldset .opc-payment .payment-method._active > .payment-method-content > form.form fieldset > div.number > label:before {
+        top: 67px;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-weight: normal;
+    }
 }
+
 @media screen and (min-width: 720px) {
-	.checkout-index-index .iwd-opc-form-for-payments .fieldset .opc-payment .payment-method._active > .payment-method-content > form.form fieldset > div.cvv > label:before {
-		top: 41px;
-		font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-		font-weight: normal;
-	}
+    .checkout-index-index .iwd-opc-form-for-payments .fieldset .opc-payment .payment-method._active > .payment-method-content > form.form fieldset > div.cvv > label:before {
+        top: 41px;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-weight: normal;
+    }
 }
+
 @media screen and (max-width: 719px) {
-	.checkout-index-index .iwd-opc-form-for-payments .fieldset .opc-payment .payment-method._active > .payment-method-content > form.form fieldset > div.cvv > label:before {
-		top: 47px;
-		font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-		font-weight: normal;
-	}
+    .checkout-index-index .iwd-opc-form-for-payments .fieldset .opc-payment .payment-method._active > .payment-method-content > form.form fieldset > div.cvv > label:before {
+        top: 47px;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-weight: normal;
+    }
 }
+
 .checkout-index-index .checkout-payment-method .ccard.fieldset > .field .fields.group.group-2 .field {
-	width: 50% !important;
+    width: 50% !important;
 }
+
 .checkout-index-index .checkout-payment-method .ccard .month .select {
-	width: 100%;
+    width: 100%;
 }
+
 .checkout-index-index .checkout-payment-method .ccard .year .select {
-	width: 100%;
+    width: 100%;
 }
+
 .checkout-index-index .iwd-opc-form-for-payments .fieldset .opc-payment .payment-method._active > .payment-method-content > form.form .field.number.required > label {
     margin-top: 0;
     padding: 5px 0;
     font-weight: bold;
 }
+
 /************************** PRODUCT DETAIL ******************************/
 /* Style the list */
 #tab-description-review {
-	width: 100%;
+    width: 100%;
     height: 40px;
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
 }
+
 .descriptionBlock, .sliderDPWrapper {
-	border-top: none !important;
+    border-top: none !important;
 }
 
 /* Float the list items side by side */
-#tab-description-review li {float: left;}
+#tab-description-review li {
+    float: left;
+}
 
 /* Style the links inside the list items */
-#tab-description-review li{
+#tab-description-review li {
     display: inline-block;
     color: black;
     text-align: center;
@@ -606,16 +640,21 @@
 }
 
 /* Change background color of links on hover */
-#tab-description-review li:hover {background-color: #ddd;}
+#tab-description-review li:hover {
+    background-color: #ddd;
+}
 
 /* Create an active/current tablink class */
-#tab-description-review li:focus, #tab-description-review li.active {background-color: #ddd;}
+#tab-description-review li:focus, #tab-description-review li.active {
+    background-color: #ddd;
+}
 
 /* Style the tab content */
 #tabDescriptions, #tabReviews {
     padding: 6px 12px;
     border: 1px solid #ccc;
 }
+
 #tabReviews {
     display: none;
     padding: 6px 12px;

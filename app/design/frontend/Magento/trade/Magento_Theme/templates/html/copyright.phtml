@@ -1,13 +1,3 @@
-<?php
-$_objectManager = \Magento\Framework\App\ObjectManager::getInstance();
-$newsCat = $_objectManager->create('Magefan\Blog\Model\Category')->load('news');
-$news = $_objectManager->create('Magefan\Blog\Model\ResourceModel\Post\Collection')
-    ->addActiveFilter()->addCategoryFilter($newsCat)->setOrder('creation_time', 'DESC')->setPageSize(6);
-
-$rateHelper = $_objectManager->get('Lexim\Override\Helper\Rate');
-$ratedAr = $rateHelper->getTopRateProducts();
-$ratingList = $rateHelper->ratingList;
-?>
 
 <div class="button-to-top">
     <a href="#"><img src="/pub/media/images/button-to-top.png"></a>
@@ -18,7 +8,7 @@ $ratingList = $rateHelper->ratingList;
 <div id="tradeFooter">
     <div class="container">
         <div class="footer-content row">
-            <div class="col-xs-12 col-sm-4">
+            <div class="col-xs-12 col-sm-12">
                 <div class="footer-header">
                     <p>ABOUT US</p>
                     <img src="/pub/media/images/icon/footer-line.png">
@@ -35,10 +25,6 @@ $ratingList = $rateHelper->ratingList;
                     1-888-900-6539
                 </div>
                 <div class="footer-detail">
-                    <img src="/pub/media/images/icon/icon-footer-fax.png">
-                    1-562-381-2114
-                </div>
-                <div class="footer-detail">
                     <img src="/pub/media/images/icon/icon-footer-email.png">
                     info@tradebanner.com
                 </div>
@@ -47,45 +33,8 @@ $ratingList = $rateHelper->ratingList;
                     M-F: 8:30AM-5:00PM PST
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-4">
-                <div class="footer-header">
-                    <p>RECENT SPECIALS</p>
-                    <img src="/pub/media/images/icon/footer-line.png">
-                </div>
-                <?php foreach($news as $item) { ?>
-                <div class="footer-detail">
-                    <a href="<?= $item->getPostUrl() ?>"><p><?= $item->getTitle() ?></p></a>
-                    <?php
-                    $d = "";
-                    if (!is_null($item->getCreationTime())) {
-                        $date = new DateTime($item->getCreationTime());
-                        $d = $date->format('F d, Y');
-                    }
-                    echo $d;
-                    ?>
-                </div>
-                <?php } ?>
-            </div>
-            <div class="col-xs-12 col-sm-4">
-                <div class="footer-header">
-                    <p>TOP RATED PRODUCTS</p>
-                    <img src="/pub/media/images/icon/footer-line.png">
-                </div>
-
-                <?php foreach($ratedAr as $id => $score) { ?>
-                <div class="footer-detail rated">
-                    <a href="<?= $ratingList[$id]['url'] ?>"><p><?= $ratingList[$id]['title'] . $ratingList[$id]['star'] ?></p></a>
-                    <?php for($i = 1; $i <= 5; $i++) {
-                        $starImg = ($i <= $ratingList[$id]['star']) ? '/pub/media/images/icon/icon-footer-star-yellow.png' : '/pub/media/images/icon/icon-footer-star.png';
-                    ?>
-                        <img src="<?= $starImg ?>">
-                    <?php } ?>
-                </div>
-                <?php } ?>
 
 
-
-            </div>
         </div>
     </div>
     <div class="footer-copyright">

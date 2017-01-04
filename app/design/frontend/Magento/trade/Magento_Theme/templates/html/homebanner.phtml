@@ -21,9 +21,11 @@ $collection = $banners->getAllBannerByType($banners::TYPE_HOME_BANNER);
                 <div class="item <?= ($i == 1) ? 'active':'' ?>">
                     <img src="<?= $mediaUrl . $bn['image']?>" />
                     <div class="innerHS">
-                        <p class="titHS"><?= $bn['name'] ?></p>
+                        <p class="titHS"><?= ($bn['name'] == '.') ? "" :  $bn['name'] ?></p>
                         <p class="sumHS"><?= $bn['details'] ?></p>
-                        <a href="<?=$bn['link']?>" class="clickHereHS">CLICK HERE</a>
+                        <?php if ($bn['link'] != '') { ?>
+                            <a href="<?=$bn['link']?>" class="clickHereHS">CLICK HERE</a>
+                        <?php } ?>
                     </div>
                 </div>
                 <?php $i++; ?>

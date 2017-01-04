@@ -507,9 +507,10 @@ a.clickHereHS {
     background: #efefef;
     text-align: center;
     color: #f05624;
-    padding: 20px 0;
+    padding: 16px 0;
     font-weight: bold;
     display: block;
+    font-size: 18px;
 }
 
 #leftHomeMenu .categoryItem li {
@@ -639,8 +640,22 @@ a.clickHereHS {
 
 #minicart-header .action.showcart .counter.qty {
     background: #fff;
-    color: #555;
-    margin: 13px 0 0;
+    color: #00f;
+    margin: 15px 0 0;
+    padding: 0;
+    border-radius: 0;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+#minicart-header .action.showcart .text {
+    width: auto;
+    height: auto;
+    position: relative;
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
 }
 
 .minicart-wrapper .block-minicart {
@@ -1066,9 +1081,18 @@ a.clickHereHS {
     max-width: 100%;
 }
 
+#leftMenuUl li > a {
+    font-weight: bold;
+}
+
+#leftMenuUl li .submenu li > a {
+    font-weight: normal !important;
+}
+
 #leftMenuUl > li > a {
     max-width: calc(100% - 40px);
     text-transform: uppercase;
+    color: #0000FF;
 }
 
 #leftMenuUl .submenu li a {
@@ -1770,6 +1794,10 @@ a.showDetailCartCol {
     padding: 5px 15px;
     float: left;
     color: #fff;
+}
+
+#cart-totals ~ .checkout-methods-items button.action.primary.checkout {
+    background: #f05624;
 }
 
 @media only screen and (max-width: 767px) {

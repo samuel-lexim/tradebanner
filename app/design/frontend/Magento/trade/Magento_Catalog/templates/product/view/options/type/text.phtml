@@ -44,7 +44,7 @@ $class = ($_option->getIsRequire()) ? ' required' : '';
                     data-validate="<?= $block->escapeHtml(json_encode($_textAreaValidate)); ?>"
                 <?php } ?>
                       name="options[<?= $_option->getId() ?>]"
-                      rows="5"
+                      rows="2"
                       cols="25"><?= $block->escapeHtml($block->getDefaultValue()) ?></textarea>
         <?php endif; ?>
         <?php if ($_option->getMaxCharacters()): ?>

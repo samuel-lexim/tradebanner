@@ -109,51 +109,53 @@
         </div>
         <div class="clearfix pad50"></div>
 
+        <!--
         <div id="recent-product">
             <p class="recent-head">Recent News</p>
             <p class="recent-tit">Product & Gift</p>
             <div class="clearfix pad40"></div>
             <div class="recent-list">
-                <?php $i = 0;
+                <php $i = 0;
                 foreach ($news as $newItem) { ?>
-                    <?php if ($i == 0) { ?>
+                    <php if ($i == 0) { ?>
                         <div class="left-recent">
                             <div class="right-rc-item">
                                 <div class="img-resp img100">
-                                    <img src="<?= $newItem->getFeaturedImage() ?>"/>
+                                    <img src="<= $newItem->getFeaturedImage() ?>"/>
                                     <div class="main-rc-info">
-                                        <span><?= $newItem->getTitle() ?></span>
-                                        <a href="<?= $newItem->getPostUrl() ?>">Details</a>
+                                        <span><= $newItem->getTitle() ?></span>
+                                        <a href="<= $newItem->getPostUrl() ?>">Details</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    <?php } else { ?>
+                    <php } else { ?>
 
-                        <?php if ($i == 1) { ?>
+                        <php if ($i == 1) { ?>
                             <div class="right-recent">
-                        <?php } ?>
+                        <php } ?>
 
                         <div class="rc-item">
                             <div class="img-resp img100">
-                                <img src="<?= $newItem->getFeaturedImage() ?>"/>
+                                <img src="<= $newItem->getFeaturedImage() ?>"/>
                             </div>
-                            <p class="tit"><?= $newItem->getTitle() ?></p>
+                            <p class="tit"><= $newItem->getTitle() ?></p>
                             <div class="main-bt">
-                                <a href="<?= $newItem->getPostUrl() ?>"><span>Details</span></a>
+                                <a href="<= $newItem->getPostUrl() ?>"><span>Details</span></a>
                             </div>
                         </div>
 
-                        <?php if ($i == 4 || ($i + 1) == count($newItem)) { ?>
+                        <php if ($i == 4 || ($i + 1) == count($newItem)) { ?>
                             </div>
-                        <?php } ?>
+                        <php } ?>
 
-                    <?php } ?>
-                    <?php $i++;
+                    <php } ?>
+                    <php $i++;
                 } ?>
 
             </div>
         </div>
+        -->
     </div>
 </div>
 

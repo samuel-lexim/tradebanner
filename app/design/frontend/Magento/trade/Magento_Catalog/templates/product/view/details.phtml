@@ -116,6 +116,9 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
 	                $('.Grommets_831').addClass('Addactive');
 	                $('.Hemming_300').addClass('Addhidden');
 	                $('.Grommets_301').addClass('Addhidden');
+                    $("#select_829 option[value='no']").remove();
+                    $("#select_830 option[value='no']").remove();
+                    $("#select_831 option[value='no']").remove();
 		        }
 		        else{
 		        	$('.Size_829').removeClass('Addactive');
@@ -126,9 +129,26 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
         			$("#select_831 option:selected").removeAttr("selected");
         			$('.Hemming_300').removeClass('Addhidden');
         			$('.Grommets_301').removeClass('Addhidden');
+                    $("#select_830").prepend('<option value="0" price="0" selected="selected">No</option>');
+                    $("#select_831").prepend('<option value="0" price="0" selected="selected">No</option>');
+                    $("#select_829").prepend('<option value="0" price="0" selected="selected">No</option>');
 
 		        }				       
 		    });
+            // remove field trung
+            // $('#options_294_text').change(function () {
+            //     $("#select_830").prepend('<option value="0" price="0" selected="selected">No</option>');
+            //     $("#select_831").prepend('<option value="0" price="0" selected="selected">No</option>');
+            //     $("#select_829").prepend('<option value="0" price="0" selected="selected">No</option>');
+            //     $("#select_298").change(function(){
+            //         var id=$(this).val();
+            //         if((id==546) || (id==547) || (id==548) || (id==549) || (id==550) || (id==551) || (id==552)){
+            //             $("#select_830 option[value='no']").remove();
+            //             $("#select_831 option[value='no']").remove();
+            //             $("#select_829 option[value='no']").remove();
+            //         }
+            //     });
+            // });
             $("#select_303").change(function(){
                 var id=$(this).val();
                 if(id==1314) {
