@@ -86,7 +86,7 @@ endforeach;
         child[0].innerHTML = str;
 
         if ($('#calculations').text() === '') {
-            var calculations = '<div id="calculations">' + areaVolLabel + ': <span></span></div>';
+            var calculations = '<div id="calculations" style="color:#0000FF">' + areaVolLabel + ': <span></span></div>';
             var discount_price = '<div id="discount_price">' + discountTitle + ': <span></span></div>';
             var base_price = '<div id="base_price">Base Price: ' + productFinalPrice + '</div>';
             var html_insert = calculations;
@@ -97,7 +97,7 @@ endforeach;
             if (showBasePrice == 1) {
                 html_insert = html_insert + base_price;
             }
-            $('#product-options-wrapper').before(html_insert + '<br>');
+            $('#product-options-wrapper').after(html_insert + '<br>');
         }
 
 
