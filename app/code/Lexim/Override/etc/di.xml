@@ -18,4 +18,7 @@
         <plugin name="" type="\Lexim\Override\Plugin\sortByCreateDate" />
     </type>
 
+    <!-- Override Controller -->
+    <preference for="Magento\Customer\Controller\Account\CreatePost" type="Lexim\Override\Controller\Account\CreatePost" />
+
 </config>

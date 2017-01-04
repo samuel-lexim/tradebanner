@@ -65,7 +65,7 @@
                 <label for="company" class="label"><span><?= __('Company') ?></span></label>
                 <div class="control">
                     <input type="text" name="company" id="company" value="<?php echo $block->escapeHtml($block->getFormData()->getCompany()) ?>"
-                           title="<?= __('Company') ?>" class="input-text <?= $this->helper('Magento\Customer\Helper\Address')->getAttributeValidationClass('company') ?>">
+                           title="<?= __('Company') ?>" class="input-text <?= $this->helper('Magento\Customer\Helper\Address')->getAttributeValidationClass('company') ?>" data-validate="{required:true}">
                 </div>
             </div>
             <div class="field telephone required">
@@ -111,18 +111,16 @@
             <div class="field region required">
                 <label for="region_id" class="label"><span><?= __('State/Province') ?></span></label>
                 <div class="control">
-                    <select id="region_id" name="region_id" title="<?= __('State/Province') ?>" class="validate-select" style="display:none;">
-                        <option value=""><?= __('Please select a region, state or province.') ?></option>
-                    </select>
                     <input type="text" id="region" name="region" value="<?php echo $block->escapeHtml($block->getRegion()) ?>" title="<?= __('State/Province') ?>"
-                           class="input-text <?= $this->helper('Magento\Customer\Helper\Address')->getAttributeValidationClass('region') ?>">
+                           data-validate="{required:true}" class="input-text <?= $this->helper('Magento\Customer\Helper\Address')->getAttributeValidationClass('region') ?>">
                 </div>
             </div>
 
             <div class="field zip required">
                 <label for="zip" class="label"><span><?= __('Zip/Postal Code') ?></span></label>
                 <div class="control">
-                    <input type="text" name="postcode" value="<?php echo $block->escapeHtml($block->getFormData()->getPostcode()) ?>" title="<?= __('Zip/Postal Code') ?>"
+                    <input type="text" name="postcode" value="<?php echo $block->escapeHtml($block->getFormData()->getPostcode()) ?>"
+                           data-validate="{required:true}" title="<?= __('Zip/Postal Code') ?>"
                            id="zip" class="input-text validate-zip-international <?= $this->helper('Magento\Customer\Helper\Address')->getAttributeValidationClass('postcode') ?>">
                 </div>
             </div>
@@ -146,20 +144,20 @@
 
         <fieldset class="fieldset create account" data-hasrequired="<?= __('* Required Fields') ?>">
 
-            <div class="field website_url">
+            <div class="field website_url required">
                 <label for="website_url" class="label"><span><?= __('Website (URL)') ?></span></label>
                 <div class="control">
                     <input type="url" name="website_url" id="website_url" title="<?= __('Website URL') ?>" class="input-text"
                            data-validate="{required:true}" autocomplete="off">
                 </div>
             </div>
-            <div class="field seller_permit">
-                <label for="seller_permit" class="label"><span><?= __('Seller\'s Permit') ?></span></label>
+            <div class="field required">
+                <label for="seller_file" class="label"><span><?= __('Seller\'s Permit') ?></span></label>
                 <div class="control">
-                    <input type="file" name="seller_file2222" id="seller_permit_upload" title="<?= __('Seller\'s Permit') ?>" />
+                    <input type="file" name="seller_file" id="seller_permit_upload" data-validate="{required:true}" title="<?= __('Seller\'s Permit') ?>" />
                 </div>
             </div>
-            <div class="field optional_message">
+            <div class="field optional_message required">
                 <label for="optional_message" class="label"><span><?= __('Optional Message') ?></span></label>
                 <div class="control">
                     <textarea name="optional_message" title="<?= __('Optional Message') ?>" id="optional_message"
