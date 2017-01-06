@@ -641,7 +641,7 @@ a.clickHereHS {
 
 #minicart-header .action.showcart .counter.qty {
     background: #fff;
-    color: #00f;
+    color: #f05624;
     margin: 11px 0 0;
     padding: 0;
     border-radius: 0;
@@ -1095,7 +1095,7 @@ a.clickHereHS {
 #leftMenuUl > li > a {
     max-width: calc(100% - 40px);
     text-transform: uppercase;
-    color: #0000FF;
+    color: #1ca1ac;
 }
 
 #leftMenuUl .submenu li a {
