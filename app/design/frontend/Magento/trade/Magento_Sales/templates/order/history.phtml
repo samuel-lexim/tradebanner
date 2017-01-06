@@ -30,13 +30,15 @@ $opModel = $objectManager->get('Magento\Checkout\Block\Cart\Item\Renderer');
 
                     if (count($items) > 0) {
                         $firstItem = array_values($items)[0];  
-                        $options = $firstItem->getProductOptions();                  
-                        foreach ($options['options'] as $itemOption) {
-                            if ( strtolower($itemOption['label']) == 'job name') {
-                                $job = $itemOption['value'];
-                                break;
+                        $options = $firstItem->getProductOptions();
+                        if (isset($options['options'])) {
+                            foreach ($options['options'] as $itemOption) {
+                                if (strtolower($itemOption['label']) == 'job name') {
+                                    $job = $itemOption['value'];
+                                    break;
+                                }
                             }
-                        }                        
+                        }
                     }                    
                     ?>
 
