@@ -9,21 +9,24 @@
     <update handle="checkout_cart_item_renderers"/>
     <update handle="checkout_shipping_price_renderer"/>
     <body>
-        <referenceContainer name="checkout.cart.items">
-            <container name="checkout.cart.container" htmlTag="div" htmlClass="cart-container2" before="-">
-                <container name="cart.summary" label="Cart Summary Container" htmlTag="div" htmlClass="cart-summary2" after="-" />
-            </container>
-        </referenceContainer>
+        <!--<referenceContainer name="checkout.cart.items">-->
+            <!--<container name="checkout.cart.container" htmlTag="div" htmlClass="cart-container2" before="-">-->
+                <!--<container name="cart.summary" label="Cart Summary Container" htmlTag="div" htmlClass="cart-summary2" after="-" />-->
+            <!--</container>-->
+        <!--</referenceContainer>-->
 
+        <!--<move element="checkout.cart.form.before" destination="checkout.cart.container" before="cart.summary"/>-->
+        <!--<move element="checkout.cart.form" destination="checkout.cart.container" before="-"/>-->
+        <!--<move element="checkout.cart.widget" destination="checkout.cart.container" after="checkout.cart.form"/>-->
+
+
+        <referenceBlock name="checkout.cart.order.actions.gift_options" remove="true" />
+        <referenceBlock name="checkout.cart.summary.title" remove="true" />
+
+        <move element="checkout.cart.shipping" destination="checkout.cart.container" after="checkout.cart.form"/>
+        <move element="checkout.cart.coupon" destination="checkout.cart.container" after="checkout.cart.shipping"/>
         <referenceContainer name="checkout.cart.totals.container" htmlTag="div" htmlClass="col-xs-12 col-sm-4" />
-
-        <move element="checkout.cart.form.before" destination="checkout.cart.container" before="cart.summary"/>
-        <move element="checkout.cart.form" destination="checkout.cart.container" before="-"/>
-        <move element="checkout.cart.widget" destination="checkout.cart.container" after="checkout.cart.form"/>
-
-        <move element="checkout.cart.shipping" destination="cart.summary" before="-"/>
-        <move element="checkout.cart.coupon" destination="cart.summary" after="checkout.cart.shipping"/>
-        <move element="checkout.cart.totals.container" destination="cart.summary" after="-" />
+        <move element="checkout.cart.totals.container" destination="checkout.cart.container" after="-" />
         <move element="checkout.cart.methods.bottom" destination="checkout.cart.totals.container" after="-"/>
 
     </body>

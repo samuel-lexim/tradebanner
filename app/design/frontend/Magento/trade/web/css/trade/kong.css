@@ -546,13 +546,18 @@ a.clickHereHS {
     margin: 0;
 }
 
-.header2.content3 {
-    padding-top: 20px;
+.header.content {
+    width: 1180px;
+    padding: 20px 0 0;
+    margin: 0 auto;
 }
 
-.panel2.header2 {
+.page-header .panel.header {
     text-align: right;
     line-height: 50px;
+    margin: 0 auto;
+    padding: 0;
+    width: 1180px;
 }
 
 .header.links {
@@ -565,11 +570,12 @@ a.clickHereHS {
 .header.links li {
     display: inline-block;
     padding: 0 0 0 15px;
-    margin: 0;
+    margin: 0 !important;
 }
 
 #topRightInfo {
     display: inline-block;
+    float: right;
 }
 
 .tri-item {
@@ -587,6 +593,14 @@ a.clickHereHS {
 
 .nav-toggle {
     display: none;
+}
+
+@media only screen and (max-width: 1199px) {
+    .header.content, .page-header .panel.header {
+        width: 100%;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
 }
 
 /* upload link */
@@ -1686,17 +1700,18 @@ nav.account-nav li.current strong {
     font-weight: bold;
 }
 
-.cart.main.actions {
+.checkout-cart-index .cart.main.actions {
     text-align: right;
     margin: 15px 0 0;
 }
 
-.cart.main.actions > button {
+.checkout-cart-index .cart.main.actions > button {
     background: #1ca1ac;
     color: #fff;
     border-radius: 0;
     border: 0;
-    margin: 0 0 0 7px;
+    margin: 0 0 7px 7px !important;
+    display: inline-block !important;
 }
 
 .checkout-cart-index .block {
@@ -1803,6 +1818,25 @@ a.showDetailCartCol {
     background: #f05624;
 }
 
+#cart-totals {
+    border: none;
+    padding: 0;
+}
+
+.checkout-cart-index #empty_cart_button:before {
+    -webkit-font-smoothing: antialiased;
+    font-size: 33px;
+    line-height: 16px;
+    color: inherit;
+    content: '\e604';
+    font-family: 'icons-blank-theme';
+    margin: 0;
+    vertical-align: middle;
+    font-weight: normal;
+    overflow: hidden;
+    text-align: left;
+}
+
 @media only screen and (max-width: 767px) {
     .colTb.qty {
         width: 70px;
@@ -1828,6 +1862,14 @@ a.showDetailCartCol {
 
     #shopping-cart-table td span {
         font-size: 14px;
+    }
+
+    .checkout-cart-index .cart.main.actions {
+        text-align: center;
+    }
+
+    .checkout-cart-index .cart.main.actions > button {
+        margin: 0 auto 7px !important;
     }
 }
 
