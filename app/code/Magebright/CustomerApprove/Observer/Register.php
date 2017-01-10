@@ -12,16 +12,16 @@ use Magento\Framework\Event\ObserverInterface;
 class Register implements ObserverInterface
 {
     /**
-     * @var \Magebright\All\Helper\Data
+     * @var \Magebright\CustomerApprove\Helper\Data
      */
     protected $helper;
 
     /**
-     * @param \Magebright\All\Helper\Data $helper
-     * @SuppressWarnings(PHPMD.ExcessiveParameterList)
+     * Register constructor.
+     * @param \Magebright\CustomerApprove\Helper\Data $helper
      */
     public function __construct(
-        \Magebright\All\Helper\Data $helper
+        \Magebright\CustomerApprove\Helper\Data $helper
     ) {
         $this->helper = $helper;
     }
@@ -30,6 +30,7 @@ class Register implements ObserverInterface
      * Register extension.
      *
      * @param \Magento\Framework\Event\Observer $observer
+     * @return $this
      */
     public function execute(\Magento\Framework\Event\Observer $observer)
     {

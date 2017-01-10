@@ -11,6 +11,9 @@
         <css src="IWD_Opc::css/iwd_m_onepage.css"/>
     </head>
     <body>
+        <!-- Custom code - Add container class  -->
+        <referenceContainer name="columns" htmlTag="div" htmlClass="columns container" />
+        <!-- # custom code -->
 
         <referenceBlock name="checkout.root" >
             <action method="setTemplate" ifconfig="iwd_opc/general/enable_in_frontend">
