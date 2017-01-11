@@ -13,6 +13,7 @@
     .selectFileGroup select {
         margin: 0 12px 12px 0;
         width: calc(50% - 15px);
+        height: auto;
         float: left;
         clear: both;
     }
@@ -28,6 +29,37 @@
         border-radius: 0;
         color: #fff;
         background: #1ca1ac;
+    }
+
+    #s3Result p {
+        margin: 0 0 15px;
+        color: #0000ff;
+    }
+
+    #s3Result span {
+        font-size: 16px;
+        font-weight: bold;
+        padding: 5px 10px;
+        border-radius: 4px;
+    }
+
+    .success {
+        color: #3c763d;
+        background: #dff0d8;
+        border: 1px solid #d6e9c6;
+
+    }
+
+    .error {
+        color: #a94442;
+        background: #f2dede;
+        border: 1px solid #ebccd1;
+    }
+
+    .warning {
+        color: #8a6d3b;
+        background: #fcf8e3;
+        border: 1px solid #faebcc;
     }
 
     button#s3Submit {
@@ -50,7 +82,7 @@ $_objectManager = \Magento\Framework\App\ObjectManager::getInstance();
     <?php if ($orderId) : ?>
         <?php $oIdHtml = $block->escapeHtml($orderId); ?>
         <?php if ($block->getCanViewOrder()) : ?>
-        <p>Your order number is: <?= $oIdHtml ?> <a href="<?= $block->escapeHtml($block->getViewOrderUrl()) ?>" class="order-number"><strong><?= $oIdHtml ?></strong></a></p>
+        <p>Your order number is: <a href="<?= $block->escapeHtml($block->getViewOrderUrl()) ?>" target="_blank" class="order-number"><strong><?= $oIdHtml ?></strong></a></p>
     <?php else : ?>
         <p>Your order # is: <span><?= $oIdHtml ?></span></p>
     <?php endif; ?>
@@ -63,12 +95,13 @@ $_objectManager = \Magento\Framework\App\ObjectManager::getInstance();
     foreach ($orders as $item) {
         array_push($items, $item->getName());
     }
+    $items = array_unique($items);
     ?>
         <form action="" enctype="multipart/form-data" method="post" id="s3Form">
             <input type="hidden" name="order" value="<?= $orderId ?>">
 
             <div class="selectFileGroup">
-                <select name="upload[0]">
+                <select name="upload[0][]" multiple>
                     <?php foreach ($items as $key => $name) {
                         echo '<option value="' . $name . '">' . $name . '</option>';
                     } ?>
@@ -140,7 +173,7 @@ $_objectManager = \Magento\Framework\App\ObjectManager::getInstance();
                         indexer++;
                         var html = '';
 
-                        html += '<select name="upload[' + indexer + ']">';
+                        html += '<select name="upload[' + indexer + '][]" multiple>';
                         name.forEach(function (s) {
                             html += '<option value="' + s + '">' + s + '</option>';
                         });
