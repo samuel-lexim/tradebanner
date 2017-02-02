@@ -18,7 +18,7 @@ class Buttons extends \Magento\Sales\Block\Order\Info\Buttons
     /**
      * @var string
      */
-    protected $_template = 'Eadesigndev_Invoicepdfgenerator::order/info/buttons.phtml';
+    protected $_template = 'Eadesigndev_Invoicepdfgenerator::Order/Info/buttons.phtml';
 
     /**
      * Core registry

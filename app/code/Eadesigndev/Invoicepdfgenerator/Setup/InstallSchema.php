@@ -40,7 +40,7 @@ class InstallSchema implements InstallSchemaInterface
 
         $pdfGeneratorTable = $setup->getTable(self::PDF_TABLE);
 
-        if (!$setup->getConnection()->isTableExists($pdfGeneratorTable)) {
+        if (!$setup->tableExists($pdfGeneratorTable)) {
             $this->installBefore($setup);
         }
 

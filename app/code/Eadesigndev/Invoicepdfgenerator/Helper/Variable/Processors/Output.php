@@ -63,8 +63,8 @@ class Output extends Pdf
         }
 
         //todo check for header template processing problem width breaking the templates.
-        $pdf->SetHTMLHeader($parts['header']);
-        $pdf->SetHTMLFooter($parts['footer']);
+        $pdf->SetHTMLHeader(html_entity_decode($parts['header']));
+        $pdf->SetHTMLFooter(html_entity_decode($parts['footer']));
 
         $pdf->WriteHTML($templateModel->getTemplateCss(), 1);
 

@@ -21,7 +21,7 @@
                         <item name="urlPath" xsi:type="string">invoicepdfgenerator/order_massaction_invoice/printpdf</item>
                         <item name="paramName" xsi:type="string">template_id</item>
                         <item name="confirm" xsi:type="array">
-                            <item name="title" xsi:type="string" translate="true">Set Order Status</item>
+                            <item name="title" xsi:type="string" translate="true">Print mass pdf?</item>
                             <item name="message" xsi:type="string" translate="true">Are you sure?</item>
                         </item>
                     </argument>

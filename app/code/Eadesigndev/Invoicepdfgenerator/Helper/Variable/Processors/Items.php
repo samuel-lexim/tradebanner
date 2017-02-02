@@ -113,6 +113,10 @@ class Items extends AbstractHelper
                         continue;
                     } else {
                         $item->setData('position', '');
+
+                        if(count($items)+1 == $i){
+                            $item->setData('is_last', 1);
+                        }
                     }
                 }
 
@@ -122,6 +126,11 @@ class Items extends AbstractHelper
                         continue;
                     }
                     $item->setData('position', '');
+
+                    if(count($items)+1 == $i){
+                        $item->setData('is_last', 1);
+                    }
+
                 }
             }
             

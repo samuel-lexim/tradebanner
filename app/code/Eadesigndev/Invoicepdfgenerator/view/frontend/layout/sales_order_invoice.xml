@@ -23,7 +23,7 @@
     <body>
         <referenceBlock name="invoice_items">
             <action method="setTemplate">
-                <argument name="template" xsi:type="string">Eadesigndev_Invoicepdfgenerator::order/invoice/items.phtml</argument>
+                <argument name="template" xsi:type="string">Eadesigndev_Invoicepdfgenerator::Order/Invoice/items.phtml</argument>
             </action>
         </referenceBlock>
     </body>
