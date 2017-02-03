@@ -94,7 +94,10 @@ class Items extends AbstractCustomHelper
         if (!empty($result)) {
 
             foreach ($result as $option => $value) {
-                $data .= $value['label'] . ' - ' . $value['value'] . '<br>';
+                //$data .= $value['label'] . ' - ' . $value['value'] . '<br>';
+                $label = $value['label'];
+                if (strtolower($label) == 'width' || strtolower($label) == 'height') $label .= ' (inch)';
+                $data .= '<tr><td>' . $label . '</td><td>' . $value['value'] . '</td></tr>';
             }
 
             $this->source->setData(

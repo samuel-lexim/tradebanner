@@ -79,10 +79,11 @@ class DefaultVariables extends \Magento\Framework\App\Helper\AbstractHelper
     }
 
     /**
+     * @param $barCodes
      * @return array
      * @throws \Exception
      */
-    public function getBarcodeDefault($barcodes)
+    public function getBarcodeDefault($barCodes)
     {
         if (!$this->source) {
             throw new \Exception(__('The source must be defined.'));
@@ -90,7 +91,7 @@ class DefaultVariables extends \Magento\Framework\App\Helper\AbstractHelper
 
         $data = $this->source->getData();
         $groupName = __('Source Barcode Variables');
-        $sourceVariables = $this->getBarCodeVariables(true, $groupName, $data, 'ea_barcode_', '_' . $this->type . '.', $barcodes);
+        $sourceVariables = $this->getBarCodeVariables(true, $groupName, $data, 'ea_barcode_', '_' . $this->type . '.', $barCodes);
 
         return $sourceVariables;
     }
@@ -379,15 +380,15 @@ class DefaultVariables extends \Magento\Framework\App\Helper\AbstractHelper
      * @param $variables
      * @param $prefix
      * @param $suffix
-     * @param $barcodes
+     * @param $barCodes
      * @return array
      */
-    public function getBarCodeVariables($withGroup = false, $groupLabel, $variables, $prefix, $suffix, $barcodes)
+    public function getBarCodeVariables($withGroup = false, $groupLabel, $variables, $prefix, $suffix, $barCodes)
     {
-
+        $optionArray = [];
         $variablesToOptionArray = [];
 
-        foreach ($barcodes as $code) {
+        foreach ($barCodes as $code) {
             if ($variables) {
                 foreach ($variables as $value => $label) {
                     $variablesToOptionArray[] = [
@@ -399,7 +400,7 @@ class DefaultVariables extends \Magento\Framework\App\Helper\AbstractHelper
             }
 
             if ($withGroup) {
-                $optionArray[] = [
+                $optionArray = [
                     'label' => __($groupLabel) . ' ' . $code,
                     'value' => $variablesToOptionArray
                 ];

@@ -46,6 +46,7 @@ class Items extends AbstractHelper
         \Eadesigndev\Pdfgenerator\Model\Template\Processor $processor,
         \Eadesigndev\Invoicepdfgenerator\Helper\Variable\Formated $formated,
         \Eadesigndev\Invoicepdfgenerator\Helper\Variable\Custom\Items\Items $customData
+
     )
     {
         $this->formated = $formated;
@@ -104,8 +105,11 @@ class Items extends AbstractHelper
 
         $i = 1;
         foreach ($items as $item) {
-
+            $item->setData('shipping', $source->getBaseShippingAmount());
             $item->setData('position', $i++);
+            if(count($items)+1 == $i){
+                $item->setData('is_last_item', 1);
+            }
 
             if ($item instanceof \Magento\Sales\Model\Order\Item) {
                 if ($parentItem = $item->getParentItem()) {
@@ -133,7 +137,7 @@ class Items extends AbstractHelper
 
                 }
             }
-            
+
             $itemBodyParts = new DataObject(['template_body' => $templateBodyParts[1]]);
             $processedItem = $this->variableItemProcessor($item, $itemBodyParts);
             $itemHtml .= $processedItem['body'];

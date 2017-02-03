@@ -81,7 +81,10 @@ class Output extends Pdf
     }
 
     /**
+     * @param bool $templateModel
      * @return string
+     * @throws \Magento\Framework\Exception\FileSystemException
+     * @throws \MpdfException
      */
     public function PDFmerger($templateModel = false)
     {
