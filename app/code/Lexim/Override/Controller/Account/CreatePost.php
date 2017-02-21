@@ -11,6 +11,7 @@ use Magento\Framework\Api\DataObjectHelper;
 use Magento\Framework\App\Action\Context;
 use Magento\Customer\Model\Session;
 use Magento\Framework\App\Config\ScopeConfigInterface;
+use Magento\Framework\Exception\LocalizedException;
 use Magento\Store\Model\StoreManagerInterface;
 use Magento\Customer\Api\AccountManagementInterface;
 use Magento\Customer\Helper\Address;
@@ -63,14 +64,11 @@ class CreatePost extends \Magento\Customer\Controller\Account\CreatePost
         Filesystem $fileSystem
     )
     {
+        parent::__construct($context, $customerSession, $scopeConfig, $storeManager, $accountManagement, $addressHelper, $urlFactory, $formFactory, $subscriberFactory, $regionDataFactory, $addressDataFactory, $customerDataFactory, $customerUrl, $registration, $escape, $customerExtractor, $dataObjectHelper, $accountRedirect);
         $this->fileUploaderFactory = $fileUploaderFactory;
         $this->fileSystem = $fileSystem;
-        parent::__construct($context, $customerSession, $scopeConfig, $storeManager, $accountManagement, $addressHelper, $urlFactory, $formFactory, $subscriberFactory, $regionDataFactory, $addressDataFactory, $customerDataFactory, $customerUrl, $registration, $escape, $customerExtractor, $dataObjectHelper, $accountRedirect);
     }
 
-    /**
-     * @return \Magento\Framework\Controller\Result\Redirect
-     */
     public function execute()
     {
         /** @var \Magento\Framework\Controller\Result\Redirect $resultRedirect */
@@ -101,8 +99,7 @@ class CreatePost extends \Magento\Customer\Controller\Account\CreatePost
 
             $this->checkPasswordConfirmation($password, $confirmation);
 
-            $customer = $this->accountManagement
-                ->createAccount($customer, $password, $redirectUrl);
+            $customer = $this->accountManagement->createAccount($customer, $password, $redirectUrl);
 
             // Upload File
             $uploader = $this->fileUploaderFactory->create(['fileId' => 'seller_file']);
@@ -144,8 +141,20 @@ class CreatePost extends \Magento\Customer\Controller\Account\CreatePost
             } else {
                 $this->session->setCustomerDataAsLoggedIn($customer);
                 $this->messageManager->addSuccess($this->getSuccessMessage());
+                $requestedRedirect = $this->accountRedirect->getRedirectCookie();
+                if (!$this->scopeConfig->getValue('customer/startup/redirect_dashboard') && $requestedRedirect) {
+                    $resultRedirect->setUrl($this->_redirect->success($requestedRedirect));
+                    $this->accountRedirect->clearRedirectCookie();
+                    return $resultRedirect;
+                }
                 $resultRedirect = $this->accountRedirect->getRedirect();
             }
+            if ($this->getCookieManager()->getCookie('mage-cache-sessid')) {
+                $metadata = $this->getCookieMetadataFactory()->createCookieMetadata();
+                $metadata->setPath('/');
+                $this->getCookieManager()->deleteCookie('mage-cache-sessid', $metadata);
+            }
+
             return $resultRedirect;
         } catch (StateException $e) {
             $url = $this->urlModel->getUrl('customer/account/forgotpassword');
@@ -161,6 +170,8 @@ class CreatePost extends \Magento\Customer\Controller\Account\CreatePost
             foreach ($e->getErrors() as $error) {
                 $this->messageManager->addError($this->escaper->escapeHtml($error->getMessage()));
             }
+        } catch (LocalizedException $e) {
+            $this->messageManager->addError($this->escaper->escapeHtml($e->getMessage()));
         } catch (\Exception $e) {
             $this->messageManager->addException($e, __('We can\'t save the customer.'));
         }
