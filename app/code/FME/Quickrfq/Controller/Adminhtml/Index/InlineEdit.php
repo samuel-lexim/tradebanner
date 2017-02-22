@@ -17,31 +17,31 @@ use FME\Quickrfq\Model\Quickrfq as ModelQuickrfq;
 class InlineEdit extends \Magento\Backend\App\Action
 {
     /** @var PostDataProcessor */
-    protected $dataProcessor;    
+    protected $dataProcessor;
     protected $rfqModel;
     protected $jsonFactory;
 
-    
-    
+
     public function __construct(
         Context $context,
         PostDataProcessor $dataProcessor,
-        ModelQuickrfq $rfqModel,    
+        ModelQuickrfq $rfqModel,
         JsonFactory $jsonFactory
-    ) {
+    )
+    {
         parent::__construct($context);
         $this->dataProcessor = $dataProcessor;
-        $this->rfqModel = $rfqModel;        
+        $this->rfqModel = $rfqModel;
         $this->jsonFactory = $jsonFactory;
     }
 
-    
+
     protected function _isAllowed()
     {
         return $this->_authorization->isAllowed('FME_Quickrfq::quickrfq');
     }
-    
-    
+
+
     /**
      * @return \Magento\Framework\Controller\ResultInterface
      */
@@ -63,16 +63,12 @@ class InlineEdit extends \Magento\Backend\App\Action
         foreach (array_keys($postItems) as $rfqId) {
             /** @var \Magento\Cms\Model\Page $page */
             $rfq = $this->rfqModel->load($rfqId);
-            try {                
-                
+            try {
                 $rfqData = $this->filterPost($postItems[$rfqId]);
                 $this->validatePost($rfqData, $rfq, $error, $messages);
                 $extendedPageData = $rfq->getData();
                 $this->setRfqData($rfq, $extendedPageData, $rfqData);
                 $this->rfqModel->save($rfq);
-                
-                
-                
             } catch (\Magento\Framework\Exception\LocalizedException $e) {
                 $messages[] = $this->getErrorWithPageId($rfq, $e->getMessage());
                 $error = true;
@@ -103,7 +99,7 @@ class InlineEdit extends \Magento\Backend\App\Action
     protected function filterPost($postData = [])
     {
         $pageData = $this->dataProcessor->filter($postData);
-       
+
         return $pageData;
     }
 
@@ -111,10 +107,9 @@ class InlineEdit extends \Magento\Backend\App\Action
      * Validate post data
      *
      * @param array $pageData
-     * @param \Magento\Cms\Model\Page $page
-     * @param bool $error
+     * @param ModelQuickrfq $page
+     * @param $error
      * @param array $messages
-     * @return void
      */
     protected function validatePost(array $pageData, ModelQuickrfq $page, &$error, array &$messages)
     {
@@ -129,8 +124,8 @@ class InlineEdit extends \Magento\Backend\App\Action
     /**
      * Add page title to error message
      *
-     * @param PageInterface $page
-     * @param string $errorText
+     * @param ModelQuickrfq $page
+     * @param $errorText
      * @return string
      */
     protected function getErrorWithPageId(ModelQuickrfq $page, $errorText)
@@ -141,7 +136,7 @@ class InlineEdit extends \Magento\Backend\App\Action
     /**
      * Set cms page data
      *
-     * @param \Magento\Cms\Model\Page $page
+     * @param ModelQuickrfq $page
      * @param array $extendedPageData
      * @param array $pageData
      * @return $this

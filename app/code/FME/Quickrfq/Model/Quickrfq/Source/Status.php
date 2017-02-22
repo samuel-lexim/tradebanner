@@ -15,10 +15,10 @@ class Status implements OptionSourceInterface
     
     protected $_rfq_model;
     
-    public function __construct(\FME\Quickrfq\Model\Quickrfq $_rfq_model){
+    public function __construct(\FME\Quickrfq\Model\Quickrfq $_rfq_model)
+    {
         
         $this->_rfq_model = $_rfq_model;
-        
     }
 
     /**

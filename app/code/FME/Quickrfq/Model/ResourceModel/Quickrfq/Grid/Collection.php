@@ -40,7 +40,6 @@ class Collection extends QuoteCollection implements SearchResultInterface
             $logger,
             $fetchStrategy,
             $eventManager,
-            $storeManager,
             $connection,
             $resource
         );

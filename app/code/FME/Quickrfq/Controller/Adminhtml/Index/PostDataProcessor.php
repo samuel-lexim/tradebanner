@@ -22,16 +22,14 @@ class PostDataProcessor
 
     /**
      * @param \Magento\Framework\Stdlib\DateTime\Filter\Date $dateFilter
-     * @param \Magento\Framework\Message\ManagerInterface $messageManager     
+     * @param \Magento\Framework\Message\ManagerInterface $messageManager
      */
     public function __construct(
         \Magento\Framework\Stdlib\DateTime\Filter\Date $dateFilter,
         \Magento\Framework\Message\ManagerInterface $messageManager
-        
     ) {
         $this->dateFilter = $dateFilter;
         $this->messageManager = $messageManager;
-        
     }
 
     
@@ -47,7 +45,7 @@ class PostDataProcessor
     public function validateRequireEntry(array $data)
     {
         $requiredFields = [
-            'contact_name' => __('Contact Name'),            
+            'contact_name' => __('Contact Name'),
             'status' => __('Status')
         ];
         $errorNo = true;

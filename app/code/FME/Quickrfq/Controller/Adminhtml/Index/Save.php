@@ -44,14 +44,19 @@ class Save extends \Magento\Backend\App\Action
         /** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
         $resultRedirect = $this->resultRedirectFactory->create();
         if ($data) {
-            
             $model = $this->_objectManager->create('FME\Quickrfq\Model\Quickrfq');
 
             $id = $this->getRequest()->getParam('quickrfq_id');
             if ($id) {
                 $model->load($id);
             }
-
+            
+            if (isset($data['prd'][0]['name'])) {
+                $data['prd'] =$data['prd'][0]['name'];
+            } else {
+                $data['prd'] = null;
+            }
+            
             $model->setData($data);
 
             $this->_eventManager->dispatch(

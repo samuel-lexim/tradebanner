@@ -31,6 +31,7 @@ use Magento\Framework\App\Filesystem\DirectoryList;
 use Magento\Framework\File\UploaderFactory;
 use Magento\Framework\Filesystem;
 
+
 /**
  * Class CreatePost
  * @package Lexim\Override\Controller\Account
@@ -124,6 +125,22 @@ class CreatePost extends \Magento\Customer\Controller\Account\CreatePost
                 'customer_register_success',
                 ['account_controller' => $this, 'customer' => $customer]
             );
+
+            // Send email 
+            // $store = $this->helper->getStore();
+            // $templateData = [
+            //     'customer' => $customer,
+            //     'store' => $store
+            // ];
+            // $this->helper->sendEmailTemplate(
+            //     $customer->getName(),
+            //     $customer->getEmail(),
+            //     'kong_register_success_customer_template',
+            //     $this->helper->getSender(null, $store->getId()),
+            //     $templateData,
+            //     $store->getId()
+            // );  
+            // # Send email
 
             $confirmationStatus = $this->accountManagement->getConfirmationStatus($customer->getId());
             if ($confirmationStatus === AccountManagementInterface::ACCOUNT_CONFIRMATION_REQUIRED) {

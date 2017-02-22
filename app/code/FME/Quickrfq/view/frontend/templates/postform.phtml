@@ -99,55 +99,6 @@
                         </div>
                     </div>
                 </div>
-                <!--                <div class="finish-options row">-->
-                <!--                    <div class="col-xs-12 col-sm-6">-->
-                <!--                        <div class="field windholes">-->
-                <!--                            <label class="label" for="windholes">Wind Holes</span></label>-->
-                <!--                            <div class="control">-->
-                <!--                                <select name="windholes" id="windholes">-->
-                <!--                                    <option  value="N/A">Choose a selection...</option>-->
-                <!--                                    <option  value="Standard Wind Holes  +$5.00">Standard Wind Holes  +$5.00</option>-->
-                <!--                                    <option  value="No Wind Holes">No Wind Holes</option>-->
-                <!--                                </select>-->
-                <!--                            </div>-->
-                <!--                        </div>-->
-                <!--                        <div class="field hemming">-->
-                <!--                            <label class="label" for="hemming">Hemming</span></label>-->
-                <!--                            <div class="control">-->
-                <!--                                <select name="hemming" id="hemming">-->
-                <!--                                    <option  value="N/A">Choose a selection...</option>-->
-                <!--                                    <option  value="Hemming">Hemming</option>-->
-                <!--                                    <option  value="No Hemming">No Hemming</option>-->
-                <!--                                </select>-->
-                <!--                            </div>-->
-                <!--                        </div>-->
-                <!--                    </div>-->
-                <!--                    <div class="col-xs-12 col-sm-6">-->
-                <!--                        <div class="field grommets">-->
-                <!--                            <label class="label" for="grommets">Grommets</span></label>-->
-                <!--                            <div class="control">-->
-                <!--                                <select name="grommets" id="grommets">-->
-                <!--                                    <option  value="N/A">Choose a selection...</option>-->
-                <!--                                    <option  value="Grommets Every 3 feet">Grommets Every 3 feet</option>-->
-                <!--                                    <option  value="4 Corners Only">4 Corners Only</option>-->
-                <!--                                    <option  value="No Grommets">No Grommets</option>-->
-                <!--                                </select>-->
-                <!--                            </div>-->
-                <!--                        </div>-->
-                <!--                        <div class="field lamination">-->
-                <!--                            <label class="label" for="lamination">Lamination</span></label>-->
-                <!--                            <div class="control">-->
-                <!--                                <select name="lamination" id="lamination">-->
-                <!--                                    <option  value="N/A">Choose a selection...</option>-->
-                <!--                                    <option  value="Dry Erase Lamination  +$15.00">Dry Erase Lamination  +$15.00</option>-->
-                <!--                                    <option  value="Matte Lamination  +$4.81">Matte Lamination  +$4.81</option>-->
-                <!--                                    <option  value="High Gloss Lamination  +$4.80">High Gloss Lamination  +$4.80</option>-->
-                <!--                                    <option  value="FedEx Overnight">No Lamination</option>-->
-                <!--                                </select>-->
-                <!--                            </div>-->
-                <!--                        </div>-->
-                <!--                    </div>-->
-                <!--                </div>-->
 
                 <div class="field delivery">
                     <label class="label" for="delivery">Delivery Method Required</span></label>
@@ -591,7 +542,47 @@
     require(['jquery', 'jquery/ui'], function ($) {
         $(document).ready(function () {
             // Custom Estimate
+            function hoaReset() {
+  				$('#finishing_options_mc01').attr("checked", false);
+  				$('#finishing_options_mc02').attr("checked", false); 
+  				$('#finishing_options_mc03').attr("checked", false); 
+  				$('#finishing_options_mc04').attr("checked", false);
+  				$('#lamination_options_mc01').attr("checked", false);
+  				$('#lamination_options_mc02').attr("checked", false);
+  				$('#lamination_options_mc03').attr("checked", false);
+  				$('#material_01').val("N/A");
+  				$('#material_02').val("N/A");
+  				$('#material_03').val("N/A");
+  				$('#material_04').val("N/A");
+  				$('#material_05').val("N/A");
+  				$('#material_06').val("N/A");
+  				$('#width').val("");
+  				$('#height').val("");
+  				$('#round_corners_options').val("N/A");
+  				$('#lamination_options').val("N/A");
+  				$('#grommet_options').val("N/A");
+  				$('#color_options').val("N/A");
+  				$('#color_options_02').val("");
+  				$('#standtype_options').val("N/A");
+  				$('#size_options').val("N/A");
+  				$('#size_options_02').val("N/A");
+  				$('#diecut_options').val("N/A");
+  				$('#frame_options').val("N/A");
+  				$('#hstake_options').val("N/A");
+  				$('#thickness_options').val("N/A");
+  				$('#thickness_options_02').val("N/A");
+  				$('#thickness_options_03').val("N/A");
+  				$('#thickness_options_04').val("N/A");
+  				$('#carwrapping').val("N/A");
+  				$('#carmodel').val("");
+  				$('#color_options_02').val("");
+  				$('#finishing_options').val("");
+  				$('#note_options').val("");
+  				$('#product_options').val("");
+  			}
+
             $("#category").change(function () {
+            	hoaReset();
                 var id = $(this).val();
                 if (id == "Banners") {
                     $('.material_01').removeClass('hidden');

@@ -35,23 +35,27 @@ class RegistrationSuccess implements ObserverInterface
      */
     protected $customerExtensionFactory;
 
+    protected $logger;
+
     /**
-     * RegistrationSuccess constructor.
-     * @param Data $helper
-     * @param CustomerFactory $customerFactory
+     * Constructor
+     *
+     * @param Data                        $helper
      * @param CustomerRepositoryInterface $customerRepository
-     * @param CustomerExtensionFactory $customerExtensionFactory
+     * @param CustomerExtensionFactory    $customerExtensionFactory
      */
     public function __construct(
         Data $helper,
         CustomerFactory $customerFactory,
         CustomerRepositoryInterface $customerRepository,
-        CustomerExtensionFactory $customerExtensionFactory
+        CustomerExtensionFactory $customerExtensionFactory,
+        \Psr\Log\LoggerInterface $logger
     ) {
         $this->helper = $helper;
         $this->customerFactory = $customerFactory;
         $this->customerRepository = $customerRepository;
         $this->customerExtensionFactory = $customerExtensionFactory;
+        $this->logger = $logger;
     }
 
     /**
@@ -59,14 +63,15 @@ class RegistrationSuccess implements ObserverInterface
      * of the new registration.
      *
      * @param \Magento\Framework\Event\Observer $observer
-     * @return $this
+     *
+     * @return Magebright\CustomerApprove\Observer\RegistrationSuccess
      */
     public function execute(\Magento\Framework\Event\Observer $observer)
     {
         $_customer = $observer->getCustomer();
         if(!$_customer || !$_customer->getId()) {
             return $this;
-        }
+        }        
 
         try {
             $approveStatus = Approve::PENDING;
@@ -90,6 +95,17 @@ class RegistrationSuccess implements ObserverInterface
                 'customer' => $customer,
                 'store' => $store
             ];
+
+            // send email for new user      
+            // $this->helper->sendEmailTemplate(
+            //     $customer->getName(),
+            //     $customer->getEmail(),
+            //     'kong_register_success_customer_template',
+            //     $this->helper->getSender(null, $store->getId()),
+            //     $templateData,
+            //     $store->getId()
+            // );   
+            // End - new user email
 
             $this->helper->sendEmailTemplate(
                 $customer->getName(),

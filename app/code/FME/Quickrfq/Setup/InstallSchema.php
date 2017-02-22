@@ -391,6 +391,4 @@ class InstallSchema implements InstallSchemaInterface
 
     }
 
-
 }
-

@@ -5,7 +5,7 @@
  */
 namespace FME\Quickrfq\Model\ResourceModel\Quickrfq;
 
-use \Magento\Cms\Model\ResourceModel\AbstractCollection;
+use FME\Quickrfq\Model\ResourceModel\AbstractCollection;
 
 /**
  * CMS page collection
@@ -26,7 +26,7 @@ class Collection extends AbstractCollection
     protected function _construct()
     {
         $this->_init('FME\Quickrfq\Model\Quickrfq', 'FME\Quickrfq\Model\ResourceModel\Quickrfq');
-        $this->_map['fields']['quickrfq_id'] = 'main_table.quickrfq_id';        
+        $this->_map['fields']['quickrfq_id'] = 'main_table.quickrfq_id';
     }
 
     
@@ -34,7 +34,4 @@ class Collection extends AbstractCollection
     {
         return $this;
     }
-
-    
-    
 }
