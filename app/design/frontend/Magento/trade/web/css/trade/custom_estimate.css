@@ -28,3 +28,31 @@
 #seller_permit_upload {
     width: 100%;
 }
+/************************** FAQ PAGE ******************************/
+.faq-question {
+	margin: 15px 0;
+	font-size: 16px;
+}
+.faq-answer {
+	padding: 15px;
+	background: #eee;
+	font-size: 16px;
+}
+.faq-section-02 .faq-answer {
+	margin: 0 -25px;
+}
+.faq-column {
+	background: #1da1ad;
+}
+.faq-column-center, .faq-column-center .custom-title {
+	background: #1a919c;
+}
+.faq-column-contain {
+	padding: 15px;
+}
+.faq-column .faq-question a, .faq-column-center .faq-question a {
+	color: #fff;
+}
+.faq_question_second, .faq-column .faq-question a:hover, .faq-column-center .faq-question a:hover {
+	color: #ed5621 !important;
+}

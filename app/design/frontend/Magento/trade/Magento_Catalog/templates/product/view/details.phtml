@@ -108,195 +108,281 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
             }
 
             // 13oz Vinyl Banner
-            $("#select_298").change(function(){
+            $("#select_1622").change(function(){
 		        var id=$(this).val();
-		        if((id==546) || (id==547) || (id==548) || (id==549) || (id==550) || (id==551) || (id==552)){
-		        	$('.Size_829').addClass('Addactive');
-	                $('.Hemming_830').addClass('Addactive');
-	                $('.Grommets_831').addClass('Addactive');
-	                $('.Hemming_300').addClass('Addhidden');
-	                $('.Grommets_301').addClass('Addhidden');
-                    $("#select_829 option[value='no']").remove();
-                    $("#select_830 option[value='no']").remove();
-                    $("#select_831 option[value='no']").remove();
+		        if((id==2787) || (id==2788) || (id==2789) || (id==2790) || (id==2791) || (id==2792) || (id==2793)){
+		        	$('.Size_1624').addClass('Addactive');
+	                $('.Hemming_1626').addClass('Addactive');
+	                $('.Grommets_1628').addClass('Addactive');
+	                $('.Grommets_1627').addClass('Addhidden');
+	                $('.Hemming_1625').addClass('Addhidden');
+
+                    $("#select_1624 option[value='0']").remove(); 
+                    $("#select_1626 option[value='0']").remove();
+                    $("#select_1628 option[value='0']").remove();
+
+                    $("#select_1627").prepend('<option value="0" price="0" selected="selected">No</option>');
+                    $("#select_1625").prepend('<option value="0" price="0" selected="selected">No</option>');
 		        }
 		        else{
-		        	$('.Size_829').removeClass('Addactive');
-   					$('.Hemming_830').removeClass('Addactive');
-   					$('.Grommets_831').removeClass('Addactive');
-        			$("#select_829 option:selected").removeAttr("selected");
-        			$("#select_830 option:selected").removeAttr("selected");
-        			$("#select_831 option:selected").removeAttr("selected");
-        			$('.Hemming_300').removeClass('Addhidden');
-        			$('.Grommets_301').removeClass('Addhidden');
-                    $("#select_830").prepend('<option value="0" price="0" selected="selected">No</option>');
-                    $("#select_831").prepend('<option value="0" price="0" selected="selected">No</option>');
-                    $("#select_829").prepend('<option value="0" price="0" selected="selected">No</option>');
+		        	$('.Size_1624').removeClass('Addactive');
+   					$('.Hemming_1626').removeClass('Addactive');
+   					$('.Grommets_1628').removeClass('Addactive');
+        			$('.Grommets_1627').removeClass('Addhidden');
+        			$('.Hemming_1625').removeClass('Addhidden');
 
+                    $("#select_1624").prepend('<option value="0" price="0" selected="selected">No</option>');
+                    $("#select_1626").prepend('<option value="0" price="0" selected="selected">No</option>');
+                    $("#select_1628").prepend('<option value="0" price="0" selected="selected">No</option>');
+                    $("#select_1627 option[value='0']").remove();
+                    $("#select_1625 option[value='0']").remove();
 		        }				       
 		    });
             // remove field trung
-            // $('#options_294_text').change(function () {
-            //     $("#select_830").prepend('<option value="0" price="0" selected="selected">No</option>');
-            //     $("#select_831").prepend('<option value="0" price="0" selected="selected">No</option>');
-            //     $("#select_829").prepend('<option value="0" price="0" selected="selected">No</option>');
-            //     $("#select_298").change(function(){
-            //         var id=$(this).val();
-            //         if((id==546) || (id==547) || (id==548) || (id==549) || (id==550) || (id==551) || (id==552)){
-            //             $("#select_830 option[value='no']").remove();
-            //             $("#select_831 option[value='no']").remove();
-            //             $("#select_829 option[value='no']").remove();
-            //         }
-            //     });
-            // });
-            $("#select_303").change(function(){
+            $("#select_1624").prepend('<option value="0" price="0" selected="selected">No</option>');
+            $("#select_1626").prepend('<option value="0" price="0" selected="selected">No</option>');
+            $("#select_1628").prepend('<option value="0" price="0" selected="selected">No</option>');
+            $("#select_1627 option[value='0']").remove();
+            $("#select_1625 option[value='0']").remove();
+            $('#options_1619_text').change(function () {
+                $("#select_1622").change(function(){
+                    var id=$(this).val();
+                    if((id==2787) || (id==2788) || (id==2789) || (id==2790) || (id==2791) || (id==2792) || (id==2793)){
+                        $("#select_1624 option[value='0']").remove(); 
+                        $("#select_1626 option[value='0']").remove();
+                        $("#select_1628 option[value='0']").remove();
+
+                        $("#select_1627").prepend('<option value="0" price="0" selected="selected">No</option>');
+                        $("#select_1625").prepend('<option value="0" price="0" selected="selected">No</option>');
+                    }
+                });
+            });
+            $("#select_1630").change(function(){
                 var id=$(this).val();
-                if(id==1314) {
-                    $('.Agreement_907').addClass('Addactive');
+                if(id==2817) {
+                    $('.Agreement_1631').addClass('Addactive');
                 }
                 else{
-                    $('.Agreement_907').removeClass('Addactive');
+                    $('.Agreement_1631').removeClass('Addactive');
                 }                      
             });
-            $("#select_1006").change(function(){
+            $("#select_1633").change(function(){
                 var id=$(this).val();
-                if(id==1648) {
-                    $('.Artworks_1007').show();
+                if(id==2820) {
+                    $('.Artworks_1634').show();
                 }
                 else{
-                    $('.Artworks_1007').hide();
+                    $('.Artworks_1634').hide();
                 }                      
             });
            // 14oz Vinyl Banner
-           $("#select_309").change(function(){
+           $("#select_1430").change(function(){
                 var id=$(this).val();
-                if((id==572) || (id==573) || (id==574) || (id==575) || (id==576) || (id==577) || (id==578)){
-                    $('.Size_845').addClass('Addactive');
-                    $('.Hemming_846').addClass('Addactive');
-                    $('.Grommets_847').addClass('Addactive');
-                    $('.Hemming_311').addClass('Addhidden');
-                    $('.Grommets_312').addClass('Addhidden');
-                }
-                else{
-                    $('.Size_845').removeClass('Addactive');
-                    $('.Hemming_846').removeClass('Addactive');
-                    $('.Grommets_847').removeClass('Addactive');
-                    $("#select_845 option:selected").removeAttr("selected");
-                    $("#select_846 option:selected").removeAttr("selected");
-                    $("#select_847 option:selected").removeAttr("selected");
-                    $('.Hemming_311').removeClass('Addhidden');
-                    $('.Grommets_312').removeClass('Addhidden');
+                if((id==2393) || (id==2394) || (id==2395) || (id==2396) || (id==2397) || (id==2398) || (id==2399)){
+                    $('.Size_1433').addClass('Addactive');
+                    $('.Hemming_1436').addClass('Addactive');
+                    $('.Grommets_1438').addClass('Addactive');
+                    $('.Hemming_1435').addClass('Addhidden');
+                    $('.Grommets_1437').addClass('Addhidden');
 
-                }                      
-            });
-            $("#select_314").change(function(){
-                var id=$(this).val();
-                if(id==593) {
-                    $('.Agreement_906').addClass('Addactive');
+                    $("#select_1433 option[value='0']").remove(); 
+                    $("#select_1436 option[value='0']").remove();
+                    $("#select_1438 option[value='0']").remove();
+
+                    $("#select_1435").prepend('<option value="0" price="0" selected="selected">No</option>');
+                    $("#select_1437").prepend('<option value="0" price="0" selected="selected">No</option>');
                 }
                 else{
-                    $('.Agreement_906').removeClass('Addactive');
+                    $('.Size_1433').removeClass('Addactive');
+                    $('.Hemming_1436').removeClass('Addactive');
+                    $('.Grommets_1438').removeClass('Addactive');
+                    $('.Hemming_1435').removeClass('Addhidden');
+                    $('.Grommets_1437').removeClass('Addhidden');
+
+                    $("#select_1433").prepend('<option value="0" price="0" selected="selected">No</option>');
+                    $("#select_1436").prepend('<option value="0" price="0" selected="selected">No</option>');
+                    $("#select_1438").prepend('<option value="0" price="0" selected="selected">No</option>');
+                    $("#select_1435 option[value='0']").remove();
+                    $("#select_1437 option[value='0']").remove();
                 }                      
             });
-            $("#select_1008").change(function(){
+           // remove field trung khi khong thay doi field
+            $("#select_1433").prepend('<option value="0" price="0" selected="selected">No</option>');                
+            $("#select_1436").prepend('<option value="0" price="0" selected="selected">No</option>');
+            $("#select_1438").prepend('<option value="0" price="0" selected="selected">No</option>');
+            $("#select_1435 option[value='no']").remove();
+            $("#select_1437 option[value='no']").remove();
+            $('#options_1446_text').change(function () {
+                $("#select_1430").change(function(){
+                    var id=$(this).val();
+                    if((id==2393) || (id==2394) || (id==2395) || (id==2396) || (id==2397) || (id==2398) || (id==2399)){
+                        $("#select_1433 option[value='0']").remove();
+                        $("#select_1436 option[value='0']").remove();
+                        $("#select_1438 option[value='0']").remove();
+
+                        $("#select_1435").prepend('<option value="0" price="0" selected="selected">No</option>');
+                        $("#select_1437").prepend('<option value="0" price="0" selected="selected">No</option>');
+                    }
+                });
+            });
+            $("#select_1440").change(function(){
                 var id=$(this).val();
-                if(id==1652) {
-                    $('.Artworks_1009').show();
+                if(id==2424) {
+                    $('.Agreement_1441').addClass('Addactive');
                 }
                 else{
-                    $('.Artworks_1009').hide();
+                    $('.Agreement_1441').removeClass('Addactive');
+                }                      
+            });
+            $("#select_1443").change(function(){
+                var id=$(this).val();
+                if(id==2427) {
+                    $('.Artworks_1444').show();
+                }
+                else{
+                    $('.Artworks_1444').hide();
                 }                      
             });
             // 16 oz Blockout Banner
-            $("#select_320").change(function(){
+            $("#select_1452").change(function(){
                 var id=$(this).val();
-                if((id==597) || (id==598) || (id==599) || (id==600) || (id==601) || (id==602) || (id==603)){
-                    $('.Pocket-Size_680').addClass('Addactive');
-                    $('.Hemming_832').addClass('Addactive');
-                    $('.Grommets_323').addClass('Addactive');
-                    $('.Hemming_322').addClass('Addhidden');
-                    $('.Grommets_833').addClass('Addhidden');
+                if((id==2434) || (id==2435) || (id==2436) || (id==2437) || (id==2438) || (id==2439) || (id==2440)){
+                    $('.Pocket-Size_1454').addClass('Addactive');
+                    $('.Hemming_1456').addClass('Addactive');
+                    $('.Grommets_1458').addClass('Addactive');
+                    $('.Hemming_1455').addClass('Addhidden');
+                    $('.Grommets_1457').addClass('Addhidden');
+
+                    $("#select_1454 option[value='0']").remove(); 
+                    $("#select_1456 option[value='0']").remove();
+                    $("#select_1458 option[value='0']").remove();
+
+                    $("#select_1455").prepend('<option value="0" price="0" selected="selected">No</option>');
+                    $("#select_1457").prepend('<option value="0" price="0" selected="selected">No</option>');
                 }
                 else{
-                    $('.Pocket-Size_680').removeClass('Addactive');
-                    $('.Hemming_832').removeClass('Addactive');
-                    $('.Grommets_323').removeClass('Addactive');
-                    $("#select_680 option:selected").removeAttr("selected");
-                    $("#select_832 option:selected").removeAttr("selected");
-                    $("#select_323 option:selected").removeAttr("selected");
-                    $('.Hemming_322').removeClass('Addhidden');
-                    $('.Grommets_833').removeClass('Addhidden');
+                    $('.Pocket-Size_1454').removeClass('Addactive');
+                    $('.Hemming_1456').removeClass('Addactive');
+                    $('.Grommets_1458').removeClass('Addactive');
+                    $('.Hemming_1455').removeClass('Addhidden');
+                    $('.Grommets_1457').removeClass('Addhidden');
+
+                    $("#select_1454").prepend('<option value="0" price="0" selected="selected">No</option>');
+                    $("#select_1456").prepend('<option value="0" price="0" selected="selected">No</option>');
+                    $("#select_1458").prepend('<option value="0" price="0" selected="selected">No</option>');
+                    $("#select_1455 option[value='0']").remove();
+                    $("#select_1457 option[value='0']").remove();
                 }                      
             });
-            $("#select_325").change(function(){
+            // remove field trung khi khong thay doi field
+            $("#select_1454").prepend('<option value="0" price="0" selected="selected">No</option>');
+            $("#select_1456").prepend('<option value="0" price="0" selected="selected">No</option>');
+            $("#select_1458").prepend('<option value="0" price="0" selected="selected">No</option>');
+            $("#select_1455 option[value='0']").remove();
+            $("#select_1457 option[value='0']").remove();
+            $('#options_1448_text').change(function () {
+                $("#select_1452").change(function(){
+                    var id=$(this).val();
+                    if((id==2434) || (id==2435) || (id==2436) || (id==2437) || (id==2438) || (id==2439) || (id==2440)){
+                        $("#select_1454 option[value='0']").remove(); 
+                        $("#select_1456 option[value='0']").remove();
+                        $("#select_1458 option[value='0']").remove();
+
+                        $("#select_1455").prepend('<option value="0" price="0" selected="selected">No</option>');
+                        $("#select_1457").prepend('<option value="0" price="0" selected="selected">No</option>');
+                    }
+                });
+            });
+            $("#select_1460").change(function(){
                 var id=$(this).val();
-                if(id==618) {
-                    $('.Agreement_908').addClass('Addactive');
+                if(id==2464) {
+                    $('.Agreement_1461').addClass('Addactive');
                 }
                 else{
-                    $('.Agreement_908').removeClass('Addactive');
+                    $('.Agreement_1461').removeClass('Addactive');
                 }                      
             });
-            $("#select_1010").change(function(){
+            $("#select_1463").change(function(){
                 var id=$(this).val();
-                if(id==1656) {
-                    $('.Artworks_1011').show();
+                if(id==2467) {
+                    $('.Artworks_1464').show();
                 }
                 else{
-                    $('.Artworks_1011').hide();
+                    $('.Artworks_1464').hide();
                 }                      
             });
             // Backlit Banner
-            $("#select_334").change(function(){
+            $("#select_1473").change(function(){
                 var id=$(this).val();
-                if(id==633) {
-                    $('.Agreement_909').addClass('Addactive');
+                if(id==2484) {
+                    $('.Agreement_1474').addClass('Addactive');
                 }
                 else{
-                    $('.Agreement_909').removeClass('Addactive');
+                    $('.Agreement_1474').removeClass('Addactive');
                 }                      
             });
-            $("#select_1012").change(function(){
+            $("#select_1476").change(function(){
                 var id=$(this).val();
-                if(id==1660) {
-                    $('.Artworks_1013').show();
+                if(id==2487) {
+                    $('.Artworks_1477').show();
                 }
                 else{
-                    $('.Artworks_1013').hide();
+                    $('.Artworks_1477').hide();
                 }                      
             });
             // Double Sided Banner (Super Smooth)
-            $("#select_340").change(function(){
+            $("#select_1571").change(function(){
                 var id=$(this).val();
-                if((id==638) || (id==639) || (id==640) || (id==641) || (id==642) || (id==643) || (id==644)){
-                    $('.Pocket-Size_834').addClass('Addactive');
-                    $('.Grommets_835').addClass('Addactive');
-                    $('.Grommets_341').addClass('Addhidden');
+                if((id==2675) || (id==2676) || (id==2677) || (id==2678) || (id==2679) || (id==2680) || (id==2681)){
+                    $('.Pocket-Size_1572').addClass('Addactive');
+                    $('.Grommets_1574').addClass('Addactive');
+                    $('.Grommets_1573').addClass('Addhidden');
+                    $("#select_1572 option[value='0']").remove(); 
+                    $("#select_1574 option[value='0']").remove();
+                    $("#select_1573").prepend('<option value="0" price="0" selected="selected">No</option>');
                 }
                 else{
-                    $('.Pocket-Size_834').removeClass('Addactive');
-                    $('.Grommets_835').removeClass('Addactive');
-                    $("#select_834 option:selected").removeAttr("selected");
-                    $("#select_835 option:selected").removeAttr("selected");
-                    $('.Grommets_341').removeClass('Addhidden');
+                    $('.Pocket-Size_1572').removeClass('Addactive');
+                    $('.Grommets_1574').removeClass('Addactive');
+                    $("#select_1572 option:selected").removeAttr("selected");
+                    $("#select_1573 option:selected").removeAttr("selected");
+                    $('.Grommets_1573').removeClass('Addhidden');
+
+                    $("#select_1572").prepend('<option value="0" price="0" selected="selected">No</option>');
+                    $("#select_1574").prepend('<option value="0" price="0" selected="selected">No</option>');
+                    $("#select_1573 option[value='0']").remove();
                 }                      
             });
-            $("#select_345").change(function(){
+            // remove field trung khi khong thay doi field
+            $("#select_1572").prepend('<option value="0" price="0" selected="selected">No</option>');
+            $("#select_1574").prepend('<option value="0" price="0" selected="selected">No</option>');
+            $("#select_1573 option[value='0']").remove();
+            $('#options_1481_text').change(function () {
+                $("#select_1571").change(function(){
+                    var id=$(this).val();
+                if((id==2675) || (id==2676) || (id==2677) || (id==2678) || (id==2679) || (id==2680) || (id==2681)){
+                    $("#select_1572 option[value='0']").remove(); 
+                    $("#select_1574 option[value='0']").remove();
+                    $("#select_1573").prepend('<option value="0" price="0" selected="selected">No</option>');
+                    }
+                });
+            });
+            $("#select_1579").change(function(){
                 var id=$(this).val();
-                if(id==656) {
-                    $('.Artworks_836').show();
+                if(id==2522) {
+                    $('.Artworks_1580').show();
                 }
                 else{
-                    $('.Artworks_836').hide();
+                    $('.Artworks_1580').hide();
                 }                      
             });
-            $("#select_343").change(function(){
+            $("#select_1576").change(function(){
                 var id=$(this).val();
-                if(id==654) {
-                    $('.Agreement_910').addClass('Addactive');
+                if(id==2699) {
+                    $('.Agreement_1577').addClass('Addactive');
                 }
                 else{
-                    $('.Agreement_910').removeClass('Addactive');
+                    $('.Agreement_1577').removeClass('Addactive');
                 }                      
             });
              // Fabric Banner- Premium 
@@ -306,6 +392,10 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
                     $('.Size_837').addClass('Addactive');
                     $('.Grommets_838').addClass('Addactive');
                     $('.Grommets_841').addClass('Addhidden');
+
+                    $("#select_837 option[value='0']").remove();
+                    $("#select_838 option[value='0']").remove();
+                    $("#select_841").prepend('<option value="0" price="0" selected="selected">No</option>');
                 }
                 else{
                     $('.Size_837').removeClass('Addactive');
@@ -314,7 +404,24 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
                     $("#select_837 option:selected").removeAttr("selected");
                     $('.Grommets_841').removeClass('Addhidden');
 
+                    $("#select_837").prepend('<option value="0" price="0" selected="selected">No</option>');
+                    $("#select_838").prepend('<option value="0" price="0" selected="selected">No</option>');
+                    $("#select_841 option[value='0']").remove();
                 }                      
+            });
+            // remove field trung khi khong thay doi field
+            $("#select_837").prepend('<option value="0" price="0" selected="selected">No</option>');
+            $("#select_838").prepend('<option value="0" price="0" selected="selected">No</option>');
+            $("#select_841 option[value='0']").remove();
+            $('#options_347_text').change(function () {
+                $("#select_351").change(function(){
+                    var id=$(this).val();
+                    if((id==660) || (id==661) || (id==662) || (id==663) || (id==664) || (id==665) || (id==666)){
+                        $("#select_837 option[value='0']").remove();
+                        $("#select_838 option[value='0']").remove();
+                        $("#select_841").prepend('<option value="0" price="0" selected="selected">No</option>');
+                    }
+                });
             });
             $("#select_353").change(function(){
                 var id=$(this).val();
@@ -335,113 +442,184 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
                 }                      
             });
             // Mesh Banner
-            $("#select_392").change(function(){
+            $("#select_1500").change(function(){
                 var id=$(this).val();
-                if((id==748) || (id==749) || (id==750) || (id==751) || (id==752) || (id==753)){
-                    $('.Size_839').addClass('Addactive');
-                    $('.Grommets_840').addClass('Addactive');
-                    $('.Grommets_393').addClass('Addhidden');
-                }
-                else{
-                    $('.Size_839').removeClass('Addactive');
-                    $('.Grommets_840').removeClass('Addactive');
-                    $("#select_839 option:selected").removeAttr("selected");
-                    $("#select_840 option:selected").removeAttr("selected");
-                    $('.Grommets_393').removeClass('Addhidden');
+                if((id==2529) || (id==2530) || (id==2531) || (id==2532) || (id==2533) || (id==2534)){
+                    $('.Size_1501').addClass('Addactive');
+                    $('.Grommets_1503').addClass('Addactive');
+                    $('.Grommets_1502').addClass('Addhidden');
 
-                }                      
-            });
-            $("#select_395").change(function(){
-                var id=$(this).val();
-                if(id==764) {
-                    $('.Agreement_912').addClass('Addactive');
+                    $("#select_1501 option[value='0']").remove();
+                    $("#select_1503 option[value='0']").remove();
+                    $("#select_1502").prepend('<option value="0" price="0" selected="selected">No</option>');
                 }
                 else{
-                    $('.Agreement_912').removeClass('Addactive');
+                    $('.Size_1501').removeClass('Addactive');
+                    $('.Grommets_1503').removeClass('Addactive');
+                    $("#select_1501 option:selected").removeAttr("selected");
+                    $("#select_1503 option:selected").removeAttr("selected");
+                    $('.Grommets_1502').removeClass('Addhidden');
+
+                    $("#select_1501").prepend('<option value="0" price="0" selected="selected">No</option>');
+                    $("#select_1503").prepend('<option value="0" price="0" selected="selected">No</option>');
+                    $("#select_1502 option[value='0']").remove();
                 }                      
             });
-            $("#select_1016").change(function(){
+            // remove field trung khi khong thay doi field
+            $("#select_1501").prepend('<option value="0" price="0" selected="selected">No</option>');
+            $("#select_1503").prepend('<option value="0" price="0" selected="selected">No</option>');
+            $("#select_1502 option[value='0']").remove();
+            $('#options_1497_text').change(function () {
+                $("#select_1500").change(function(){
+                    var id=$(this).val();
+                    if((id==2529) || (id==2530) || (id==2531) || (id==2532) || (id==2533) || (id==2534)){
+                        $("#select_1501 option[value='0']").remove();
+                        $("#select_1503 option[value='0']").remove();
+                        $("#select_1502").prepend('<option value="0" price="0" selected="selected">No</option>');
+                    }
+                });
+            });
+            $("#select_1505").change(function(){
                 var id=$(this).val();
-                if(id==1668) {
-                    $('.Artworks_1017').show();
+                if(id==2550) {
+                    $('.Agreement_1506').addClass('Addactive');
                 }
                 else{
-                    $('.Artworks_1017').hide();
+                    $('.Agreement_1506').removeClass('Addactive');
+                }                      
+            });
+            $("#select_1508").change(function(){
+                var id=$(this).val();
+                if(id==2553) {
+                    $('.Artworks_1509').show();
+                }
+                else{
+                    $('.Artworks_1509').hide();
                 }                      
             });
             // Premium Coated Banner
-            $("#select_380").change(function(){
+            $("#select_1536").change(function(){
                 var id=$(this).val();
-                if((id==724) || (id==725) || (id==726) || (id==727) || (id==728) || (id==729)){
-                    $('.Pocket-Size_842').addClass('Addactive');
-                    $('.Hemming_843').addClass('Addactive');
-                    $('.Grommets_844').addClass('Addactive');
-                    $('.Hemming_382').addClass('Addhidden');
-                    $('.Grommets_383').addClass('Addhidden');
+                if((id==2600) || (id==2601) || (id==2602) || (id==2603) || (id==2604) || (id==2605)){
+                    $('.Pocket-Size_1538').addClass('Addactive');
+                    $('.Hemming_1540').addClass('Addactive');
+                    $('.Grommets_1542').addClass('Addactive');
+                    $('.Hemming_1539').addClass('Addhidden');
+                    $('.Grommets_1541').addClass('Addhidden');
+
+                    $("#select_1538 option[value='0']").remove();
+                    $("#select_1540 option[value='0']").remove();
+                    $("#select_1542 option[value='0']").remove();
+                    $("#select_1539").prepend('<option value="0" price="0" selected="selected">No</option>');
+                    $("#select_1541").prepend('<option value="0" price="0" selected="selected">No</option>');
                 }
                 else{
-                    $('.Pocket-Size_842').removeClass('Addactive');
-                    $('.Hemming_843').removeClass('Addactive');
-                    $('.Grommets_844').removeClass('Addactive');
-                    $("#select_842 option:selected").removeAttr("selected");
+                    $('.Pocket-Size_1538').removeClass('Addactive');
+                    $('.Hemming_1540').removeClass('Addactive');
+                    $('.Grommets_1542').removeClass('Addactive');
+                    $("#select_1540 option:selected").removeAttr("selected");
                     $("#select843 option:selected").removeAttr("selected");
                     $("#select_844 option:selected").removeAttr("selected");
-                    $('.Hemming_382').removeClass('Addhidden');
-                    $('.Grommets_383').removeClass('Addhidden');
+                    $('.Hemming_1539').removeClass('Addhidden');
+                    $('.Grommets_1541').removeClass('Addhidden');
 
+                    $("#select_1538").prepend('<option value="0" price="0" selected="selected">No</option>');
+                    $("#select_1540").prepend('<option value="0" price="0" selected="selected">No</option>');
+                    $("#select_1542").prepend('<option value="0" price="0" selected="selected">No</option>');
+                    $("#select_1539 option[value='0']").remove();
+                    $("#select_1541 option[value='0']").remove();
                 }                      
             });
-            $("#select_385").change(function(){
+            // remove field trung khi khong thay doi field
+            $("#select_1538").prepend('<option value="0" price="0" selected="selected">No</option>');
+            $("#select_1540").prepend('<option value="0" price="0" selected="selected">No</option>');
+            $("#select_1542").prepend('<option value="0" price="0" selected="selected">No</option>');
+            $("#select_1539 option[value='0']").remove();
+            $("#select_1541 option[value='0']").remove();
+            $('#options_1531_text').change(function () {
+                $("#select_1536").change(function(){
+                    var id=$(this).val();
+                    if((id==2600) || (id==2601) || (id==2602) || (id==2603) || (id==2604) || (id==2605)){
+                        $("#select_1538 option[value='0']").remove();
+                        $("#select_1540 option[value='0']").remove();
+                        $("#select_1542 option[value='0']").remove();
+                        $("#select_1539").prepend('<option value="0" price="0" selected="selected">No</option>');
+                        $("#select_1541").prepend('<option value="0" price="0" selected="selected">No</option>');
+                    }
+                });
+            });
+            $("#select_1544").change(function(){
                 var id=$(this).val();
-                if(id==744) {
-                    $('.Agreement_913').addClass('Addactive');
+                if(id==2629) {
+                    $('.Agreement_1545').addClass('Addactive');
                 }
                 else{
-                    $('.Agreement_913').removeClass('Addactive');
+                    $('.Agreement_1545').removeClass('Addactive');
                 }                      
             });
-            $("#select_1018").change(function(){
+            $("#select_1547").change(function(){
                 var id=$(this).val();
-                if(id==1672) {
-                    $('.Artworks_1019').show();
+                if(id==2632) {
+                    $('.Artworks_1548').show();
                 }
                 else{
-                    $('.Artworks_1019').hide();
+                    $('.Artworks_1548').hide();
                 }                      
             });
             // Super Smooth Banner
-            $("#select_369").change(function(){
+            $("#select_1587").change(function(){
                 var id=$(this).val();
-                if((id==699) || (id==700) || (id==701) || (id==702) || (id==703) || (id==704) || (id==705)){
-                    $('.Pocket-Size_848').addClass('Addactive');
-                    $('.Grommets_849').addClass('Addactive');
-                    $('.Grommets_372').addClass('Addhidden');
-                }
-                else{
-                    $('.Pocket-Size_848').removeClass('Addactive');
-                    $('.Grommets_849').removeClass('Addactive');
-                    $("#select_848 option:selected").removeAttr("selected");
-                    $("#select_372 option:selected").removeAttr("selected");
-                    $('.Grommets_372').removeClass('Addhidden');
+                if((id==2710) || (id==2711) || (id==2712) || (id==2713) || (id==2714) || (id==2715) || (id==2716)){
+                    $('.Pocket-Size_1589').addClass('Addactive');
+                    $('.Grommets_1591').addClass('Addactive');
+                    $('.Grommets_1590').addClass('Addhidden');
 
-                }                      
-            });
-            $("#select_374").change(function(){
-                var id=$(this).val();
-                if(id==720) {
-                    $('.Agreement_914').addClass('Addactive');
+                    $("#select_1556 option[value='0']").remove();
+                    $("#select_1558 option[value='0']").remove();
+                    $("#select_1557").prepend('<option value="0" price="0" selected="selected">No</option>');
                 }
                 else{
-                    $('.Agreement_914').removeClass('Addactive');
+                    $('.Pocket-Size_1589').removeClass('Addactive');
+                    $('.Grommets_1591').removeClass('Addactive');
+                    $("#select_1589 option:selected").removeAttr("selected");
+                    $("#select_1591 option:selected").removeAttr("selected");
+                    $('.Grommets_1590').removeClass('Addhidden');
+
+                    $("#select_1556").prepend('<option value="0" price="0" selected="selected">No</option>');
+                    $("#select_1558").prepend('<option value="0" price="0" selected="selected">No</option>');
+                    $("#select_1557 option[value='0']").remove();
                 }                      
             });
-            $("#select_1020").change(function(){
+            // remove field trung khi khong thay doi field
+            $("#select_1556").prepend('<option value="0" price="0" selected="selected">No</option>');
+            $("#select_1558").prepend('<option value="0" price="0" selected="selected">No</option>');
+            $("#select_1557 option[value='0']").remove();
+            $('#options_1551_text').change(function () {
+                $("#select_1587").change(function(){
+                    var id=$(this).val();
+                    if((id==2710) || (id==2711) || (id==2712) || (id==2713) || (id==2714) || (id==2715) || (id==2716)){
+                        $("#select_1556 option[value='0']").remove();
+                        $("#select_1558 option[value='0']").remove();
+                        $("#select_1557").prepend('<option value="0" price="0" selected="selected">No</option>');
+                    }
+                });
+            });
+            $("#select_1592").change(function(){
                 var id=$(this).val();
-                if(id==1676) {
-                    $('.Artworks_1021').show();
+                if(id==2735) {
+                    $('.Agreement_1593').addClass('Addactive');
                 }
                 else{
-                    $('.Artworks_1021').hide();
+                    $('.Agreement_1593').removeClass('Addactive');
+                }                      
+            });
+            $("#select_1595").change(function(){
+                var id=$(this).val();
+                if(id==2738) {
+                    $('.Artworks_1596').show();
+                }
+                else{
+                    $('.Artworks_1596').hide();
                 }                      
             });
             // Fabric Banner- Deluxe
@@ -451,6 +629,10 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
                     $('.Size_851').addClass('Addactive');
                     $('.Grommets_852').addClass('Addactive');
                     $('.Grommets_361').addClass('Addhidden');
+
+                    $("#select_851 option[value='0']").remove();
+                    $("#select_852 option[value='0']").remove();
+                    $("#select_361").prepend('<option value="0" price="0" selected="selected">No</option>');
                 }
                 else{
                     $('.Size_851').removeClass('Addactive');
@@ -459,7 +641,24 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
                     $("#select_852 option:selected").removeAttr("selected");
                     $('.Grommets_361').removeClass('Addhidden');
 
+                    $("#select_851").prepend('<option value="0" price="0" selected="selected">No</option>');
+                    $("#select_852").prepend('<option value="0" price="0" selected="selected">No</option>');
+                    $("#select_361 option[value='0']").remove();
                 }                      
+            });
+            // remove field trung khi khong thay doi field
+            $("#select_851").prepend('<option value="0" price="0" selected="selected">No</option>');
+            $("#select_852").prepend('<option value="0" price="0" selected="selected">No</option>');
+            $("#select_361 option[value='0']").remove();
+            $('#options_356_text').change(function () {
+                $("#select_360").change(function(){
+                    var id=$(this).val();
+                    if((id==679) || (id==680) || (id==681) || (id==682) || (id==683) || (id==684) || (id==685)){
+                        $("#select_851 option[value='0']").remove();
+                        $("#select_852 option[value='0']").remove();
+                        $("#select_361").prepend('<option value="0" price="0" selected="selected">No</option>');
+                    }
+                });
             });
             $("#select_362").change(function(){
                 var id=$(this).val();
@@ -770,12 +969,30 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
                 if(id==836) {
                     $('.Material-_870').addClass('Addactive');
                     $('.Material_457').removeClass('Addactive');
+
+                    $("#select_870 option[value='0']").remove();
+                    $("#select_457").prepend('<option value="0" price="0" selected="selected">No</option>');
                 }
                 else{
                     $('.Material-_870').removeClass('Addactive');
                     $('.Material_457').addClass('Addactive');
+
+                    $("#select_457 option[value='0']").remove();
+                    $("#select_870").prepend('<option value="0" price="0" selected="selected">No</option>');
                 }                      
             });
+            // remove field trung khi khong thay doi field
+            $("#select_457 option[value='0']").remove();
+            $("#select_870").prepend('<option value="0" price="0" selected="selected">No</option>');
+            $('#options_338_text').change(function () {
+                 $("#select_456").change(function(){
+                    var id=$(this).val();
+                    if(id==836) {
+                        $("#select_870 option[value='0']").remove();
+                        $("#select_457").prepend('<option value="0" price="0" selected="selected">No</option>');
+                    }                      
+                });
+             });
             $("#select_1052").change(function(){
                 var id=$(this).val();
                 if(id==1740) {
@@ -816,9 +1033,10 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
                     $('.Inches_1140').removeClass('Addactive');
                     $('.Inches_1141').removeClass('Addactive');
                     $('.addF_1142').removeClass('Addactive');
-                    $(".addF_1142").removeProperty("opacity");
+                    $(".addF_1142").removeAttr("style");
                 }                      
             });
+            $("#select_1142").prepend('<option value="0" price="0" selected="selected">No</option>');
             // Arrow Spinner Signs
             $("#select_747").change(function(){
                 var id=$(this).val();
@@ -839,6 +1057,7 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
                 }                      
             });
             // Yard Signs (Coroplast)
+            $('.Color_616').addClass('Addactive');
             $("#select_619").change(function(){
                 var id=$(this).val();
                 if(id==1048) {
@@ -863,12 +1082,29 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
                     $('.Color_891').addClass('Addactive');
                     $('.Color_616').removeClass('Addactive');
                     $("#select_616 option:selected").removeAttr("selected");
+
+                    $("#select_891 option[value='0']").remove();
+                    $("#select_616").prepend('<option value="0" price="0" selected="selected">No</option>');
                 }
                 else{
                     $('.Color_616').addClass('Addactive');
                     $('.Color_891').removeClass('Addactive');
                     $("#select_891 option:selected").removeAttr("selected");
+
+                    $("#select_616 option[value='0']").remove();
+                    $("#select_891").prepend('<option value="0" price="0" selected="selected">No</option>');
                 }                      
+            });
+            $("#select_616 option[value='0']").remove();
+            $("#select_891").prepend('<option value="0" price="0" selected="selected">No</option>');
+            $('#options_613_text').change(function () {
+                $("#select_615").change(function(){
+                    var id=$(this).val();
+                    if(id==1037) {
+                        $("#select_891 option[value='0']").remove();
+                        $("#select_616").prepend('<option value="0" price="0" selected="selected">No</option>');
+                    }                      
+                });
             });
             // Ultra(Gator) Board
             $("#select_628").change(function(){
@@ -885,17 +1121,35 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
                 if(id==1052) {
                     $('.Advised_1073').addClass('Addactive');
                     $('.Advised_1072').removeClass('Addactive');
-                     $('.Grommets_627').removeClass('Addhidden');
+                    $('.Grommets_627').removeClass('Addhidden');
+
+                    $('#options_1073').removeAttr('checked');
+                    $('#options_1073_2').attr('checked', 'checked');  
                 } else if(id==1054){
-                     $('.Advised_1072').addClass('Addactive');
-                     $('.Advised_1073').removeClass('Addactive');
-                      $('.Grommets_627').removeClass('Addhidden');
+                    $('.Advised_1072').addClass('Addactive');
+                    $('.Advised_1073').removeClass('Addactive');
+                    $('.Grommets_627').removeClass('Addhidden');
+                    $('#options_1072').removeAttr('checked');
+                    $('#options_1072_2').attr('checked', 'checked');
                 } else if(id==1053){
                     $('.Grommets_627').addClass('Addhidden');
+                    $('.Advised_1073').removeClass('Addactive');
+                    $('.Advised_1072').removeClass('Addactive');
+
+                    $('#options_1072_2').removeAttr('checked');
+                    $('#options_1072').attr('checked', 'checked');
+                    $('#options_1073_2').removeAttr('checked');
+                    $('#options_1073').attr('checked', 'checked');
+                    $("#select_627").prepend('<option value="0" price="0" selected="selected">No</option>');
                 } else{
                     $('.Advised_1073').removeClass('Addactive');
                     $('.Advised_1072').removeClass('Addactive');
                     $('.Grommets_627').removeClass('Addhidden');
+
+                    $('#options_1072_2').removeAttr('checked');
+                    $('#options_1072').attr('checked', 'checked');
+                    $('#options_1073_2').removeAttr('checked');
+                    $('#options_1073').attr('checked', 'checked');
                 }                      
             });
             $("#select_888").change(function(){
@@ -904,12 +1158,32 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
                     $('.Advised_1072').addClass('Addactive');
                     $('.Advised_1073').addClass('Addactive');
                     $('.Grommets_627').removeClass('Addhidden');
+
+                    $('#options_1073').removeAttr('checked');
+                    $('#options_1073_2').attr('checked', 'checked');
+                    $('#options_1072').removeAttr('checked');
+                    $('#options_1072_2').attr('checked', 'checked');
+                    $("#select_627 option[value='0']").remove();
                 }else if(id==1452){
                     $('.Grommets_627').addClass('Addhidden');
+                    $('.Advised_1073').removeClass('Addactive');
+                    $('.Advised_1072').removeClass('Addactive');
+
+                    $('#options_1072_2').removeAttr('checked');
+                    $('#options_1072').attr('checked', 'checked');
+                    $('#options_1073_2').removeAttr('checked');
+                    $('#options_1073').attr('checked', 'checked');
+                    $("#select_627").prepend('<option value="0" price="0" selected="selected">No</option>');
                 } else{
                     $('.Advised_1073').removeClass('Addactive');
                     $('.Advised_1072').removeClass('Addactive');
                     $('.Grommets_627').removeClass('Addhidden');
+
+                    $('#options_1072_2').removeAttr('checked');
+                    $('#options_1072').attr('checked', 'checked');
+                    $('#options_1073_2').removeAttr('checked');
+                    $('#options_1073').attr('checked', 'checked');
+                    $("#select_627 option[value='0']").remove();
                 }                      
             });
             $("#select_624").change(function(){
@@ -918,13 +1192,26 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
                     $('.Side_888').addClass('Addactive');
                     $('.Side_625').removeClass('Addactive');
                     $("#select_625 option:selected").removeAttr("selected");
+
+                    $("#select_888 option[value='0']").remove();
+                    $("#select_625").prepend('<option value="0" price="0" selected="selected">No</option>');
+                    $('.Advised_1073').removeClass('Addactive');
+                    $('.Advised_1072').removeClass('Addactive');
                 }
                 else{
                     $('.Side_625').addClass('Addactive');
                     $('.Side_888').removeClass('Addactive');
                     $("#select_888 option:selected").removeAttr("selected");
+
+                    $("#select_625 option[value='0']").remove();
+                    $("#select_888").prepend('<option value="0" price="0" selected="selected">No</option>');
+                    $('.Advised_1073').removeClass('Addactive');
+                    $('.Advised_1072').removeClass('Addactive');
                 }                      
             });
+            // remove field trung khi khong thay doi field
+            $("#select_625 option[value='0']").remove();
+            $("#select_888").prepend('<option value="0" price="0" selected="selected">No</option>');
             $("#select_904").change(function(){
                 var id=$(this).val();
                 if(id==1480) {
@@ -963,28 +1250,26 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
                     $('.Agreement_886').removeClass('Addactive');
                 }                      
             });
-            $("#select_925").change(function(){
-                var id=$(this).val();
-                if(id==1511) {
-                    $('.Artworks_926').show();
-                }
-                else{
-                    $('.Artworks_926').hide();
-                }                      
-            });
+           
+            // remove field trung khi khong thay doi field
+            $("#select_644 option[value='0']").remove();
+            $("#select_885").prepend('<option value="0" price="0" selected="selected">No</option>');
             $("#select_643").change(function(){
                 var id=$(this).val();
                 if(id==1081) {
-                    $('.Art_925').addClass('Addactive');
                     $('.Side_885').addClass('Addactive');
                     $('.Side_644').removeClass('Addactive');
                     $("#select_644 option:selected").removeAttr("selected");
+
+                    $("#select_885 option[value='0']").remove();
+                    $("#select_644").prepend('<option value="0" price="0" selected="selected">No</option>');
                 }
                 else{
-                    $('.Art_925').removeClass('Addactive');
                     $('.Side_644').addClass('Addactive');
                     $('.Side_885').removeClass('Addactive');
                     $("#select_885 option:selected").removeAttr("selected");
+                    $("#select_644 option[value='0']").remove();
+                    $("#select_885").prepend('<option value="0" price="0" selected="selected">No</option>');
                 }                      
             });
             // Foam Boards
@@ -997,19 +1282,6 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
                     $('.Agreement_884').removeClass('Addactive');
                 }                      
             });
-            $("#select_653").change(function(){
-                var id=$(this).val();
-                if(id==1099) {
-                    $('.Side_883').addClass('Addactive');
-                    $('.Side_654').removeClass('Addactive');
-                    $("#select_654 option:selected").removeAttr("selected");
-                }
-                else{
-                    $('.Side_654').addClass('Addactive');
-                    $('.Side_883').removeClass('Addactive');
-                    $("#select_883 option:selected").removeAttr("selected");
-                }                      
-            });
             $("#select_923").change(function(){
                 var id=$(this).val();
                 if(id==1507) {
@@ -1017,6 +1289,28 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
                 }
                 else{
                     $('.Artworks_924').hide();
+                }                      
+            });
+            // remove field trung khi khong thay doi field
+            $("#select_654 option[value='0']").remove();
+            $("#select_883").prepend('<option value="0" price="0" selected="selected">No</option>');
+            $("#select_653").change(function(){
+                var id=$(this).val();
+                if(id==1099) {
+                    $('.Side_883').addClass('Addactive');
+                    $('.Side_654').removeClass('Addactive');
+                    $("#select_654 option:selected").removeAttr("selected");
+
+                    $("#select_883 option[value='0']").remove();
+                    $("#select_654").prepend('<option value="0" price="0" selected="selected">No</option>');
+                }
+                else{
+                    $('.Side_654').addClass('Addactive');
+                    $('.Side_883').removeClass('Addactive');
+                    $("#select_883 option:selected").removeAttr("selected");
+
+                    $("#select_654 option[value='0']").remove();
+                    $("#select_883").prepend('<option value="0" price="0" selected="selected">No</option>');
                 }                      
             });
             // Eagle Board (Eco Board)
@@ -1038,17 +1332,26 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
                     $('.Artworks_922').hide();
                 }                      
             });
+            // remove field trung khi khong thay doi field
+            $("#select_663 option[value='0']").remove();
+            $("#select_881").prepend('<option value="0" price="0" selected="selected">No</option>');
             $("#select_662").change(function(){
                 var id=$(this).val();
                 if(id==1114) {
                     $('.Side_881').addClass('Addactive');
                     $('.Side_663').removeClass('Addactive');
                     $("#select_663 option:selected").removeAttr("selected");
+
+                    $("#select_881 option[value='0']").remove();
+                    $("#select_663").prepend('<option value="0" price="0" selected="selected">No</option>');
                 }
                 else{
                     $('.Side_663').addClass('Addactive');
                     $('.Side_881').removeClass('Addactive');
                     $("#select_881 option:selected").removeAttr("selected");
+
+                    $("#select_663 option[value='0']").remove();
+                    $("#select_881").prepend('<option value="0" price="0" selected="selected">No</option>');
                 }                      
             });
             // Converd Coated Board
@@ -1070,17 +1373,27 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
                     $('.Agreement_880').removeClass('Addactive');
                 }                      
             });
+            // remove field trung khi khong thay doi field
+            $('.Material_671').addClass('Addactive');
+            $("#select_671 option[value='0']").remove();
+            $("#select_879").prepend('<option value="0" price="0" selected="selected">No</option>');
             $("#select_670").change(function(){
                 var id=$(this).val();
                 if(id==1123) {
                     $('.Material-_879').addClass('Addactive');
                     $('.Material_671').removeClass('Addactive');
                     $("#select_671 option:selected").removeAttr("selected");
+
+                    $("#select_879 option[value='0']").remove();
+                    $("#select_671").prepend('<option value="0" price="0" selected="selected">No</option>');
                 }
                 else{
                     $('.Material_671').addClass('Addactive');
                     $('.Material-_879').removeClass('Addactive');
                     $("#select_879 option:selected").removeAttr("selected");
+
+                    $("#select_671 option[value='0']").remove();
+                    $("#select_879").prepend('<option value="0" price="0" selected="selected">No</option>');
                 }                      
             });
             // Mini Banner Stands
@@ -1093,17 +1406,25 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
                     $('.Artworks_953').removeClass('Addactive');
                 }                      
             });
+            $("#select_754 option[value='0']").remove();
+            $("#select_892").prepend('<option value="0" price="0" selected="selected">No</option>');
             $("#select_753").change(function(){
                 var id=$(this).val();
                 if(id==1231) {
                     $('.Material_892').addClass('Addactive');
                     $('.Material_754').removeClass('Addactive');
                     $("#select_754 option:selected").removeAttr("selected");
+
+                    $("#select_892 option[value='0']").remove();
+                    $("#select_754").prepend('<option value="0" price="0" selected="selected">No</option>');
                 }
                 else{
                     $('.Material_754').addClass('Addactive');
                     $('.Material_892').removeClass('Addactive');
                     $("#select_892 option:selected").removeAttr("selected");
+
+                    $("#select_754 option[value='0']").remove();
+                    $("#select_892").prepend('<option value="0" price="0" selected="selected">No</option>');
                 }                      
             });
             // Outdoor Banner Stand
@@ -1130,9 +1451,11 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
                 if(id==1241) {
                     $('.Hemming_763').addClass('Addactive');
                     $('.Grommets_764').addClass('Addactive');
+                    $("#select_763 option[value='0']").remove();
                 }
                 else{
                     $('.Hemming_763').removeClass('Addactive');
+                    $("#select_763").prepend('<option value="0" price="0" selected="selected">No</option>');
                 }                      
             });
             // Outdoor Double Banner Stand
@@ -1309,7 +1632,10 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
                 else{
                     $('.Artworks_982').hide();
                 }                      
-            });             
+            });   
+            // remove field trung khi khong thay doi field  
+            $('#options_977').removeAttr('checked');
+            $('#options_977_2').attr('checked', 'checked');      
             // Flag Banners (Sublimation) 
             $("#select_983").change(function(){
                 var id=$(this).val();
@@ -1415,17 +1741,24 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
                     $('.Agreement_939').removeClass('Addactive');
                 }                      
             });
+            $('.Side_558').addClass('Addactive');
+            $("#select_558 option[value='0']").remove();
+            $("#select_938").prepend('<option value="0" price="0" selected="selected">No</option>');
             $("#select_557").change(function(){
                 var id=$(this).val();
                 if(id==953) {
                     $('.Side_938').addClass('Addactive');
                     $('.Side_558').removeClass('Addactive');
                     $("#select_558 option:selected").removeAttr("selected");
+                    $("#select_938 option[value='0']").remove();
+                    $("#select_558").prepend('<option value="0" price="0" selected="selected">No</option>');
                 }
                 else{
                     $('.Side_558').addClass('Addactive');
                     $('.Side_938').removeClass('Addactive');
                     $("#select_938 option:selected").removeAttr("selected");
+                    $("#select_558 option[value='0']").remove();
+                    $("#select_938").prepend('<option value="0" price="0" selected="selected">No</option>');
                 }                      
             });
             //  Styrene Boards Contour 
@@ -1466,7 +1799,26 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
                     $('.Artworks_935').hide();
                 }                      
             });
+            $('.Side_578').addClass('Addactive');
+            $("#select_578 option[value='0']").remove();
+            $("#select_1145").prepend('<option value="0" price="0" selected="selected">No</option>');
+            $("#select_577").change(function(){
+                var id=$(this).val();
+                if(id==984) {
+                    $('.Side_1145').addClass('Addactive');
+                    $('.Side_578').removeClass('Addactive');
+                    $("#select_1145 option[value='0']").remove();
+                    $("#select_578").prepend('<option value="0" price="0" selected="selected">No</option>');
+                }
+                else{
+                    $('.Side_1145').removeClass('Addactive');
+                    $('.Side_578').addClass('Addactive');
+                    $("#select_578 option[value='0']").remove();
+                    $("#select_1145").prepend('<option value="0" price="0" selected="selected">No</option>');
+                }                      
+            });
             //  Foam Boards- Contour
+            $('.Side_588').addClass('Addactive');
             $("#select_592").change(function(){
                 var id=$(this).val();
                 if(id==1013) {
@@ -1485,15 +1837,22 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
                     $('.Artworks_930').hide();
                 }                      
             });
+            $("#select_588 option[value='0']").remove();
+            $("#select_955").prepend('<option value="0" price="0" selected="selected">No</option>');
             $("#select_587").change(function(){
                 var id=$(this).val();
                 if(id==1000) {
                     $('.Side_955').addClass('Addactive');
                     $('.Side_588').removeClass('Addactive');
+
+                    $("#select_955 option[value='0']").remove();
+                    $("#select_588").prepend('<option value="0" price="0" selected="selected">No</option>');
                 }
                 else{
                     $('.Side_588').addClass('Addactive');
                     $('.Side_955').removeClass('Addactive');
+                    $("#select_588 option[value='0']").remove();
+                    $("#select_955").prepend('<option value="0" price="0" selected="selected">No</option>');
                 }                      
             });
             //  Wall Vinyl Decals Contour
@@ -1572,7 +1931,8 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
                     $('.Artworks_1005').hide();
                 }                      
             });
-
+            //  Step and Repeat Stand
+            $('#options_692_2').attr('checked', 'checked');
         })
     })
 </script>
