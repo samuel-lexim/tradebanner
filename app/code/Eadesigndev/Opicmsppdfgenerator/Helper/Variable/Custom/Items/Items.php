@@ -94,11 +94,31 @@ class Items extends AbstractCustomHelper
 
         if (!empty($result)) {
 
+            // Get Order Date
+            $orderDate = $orderItem->getOrder()->getCreatedAt();
+            $date = strtotime($orderDate);
+            $h = intval(date("H", $date));
+            $dueDateTime = ($h < 14) ? $date + 86400 : $date + 172800;
+            $dueDate = date("F d, Y", $dueDateTime);
+            // # end
+
             foreach ($result as $option => $value) {
                 //$data .= $value['label'] . ' - ' . $value['value'] . '<br>';
                 $label = $value['label'];
+                $val = $value['value'];
+
+                // Add inch text
                 if (strtolower($label) == 'width' || strtolower($label) == 'height') $label .= ' (inch)';
-                $data .= '<tr><td>' . $label . '</td><td>' . $value['value'] . '</td></tr>';
+
+                // Insert Due Date
+                if (strtolower($label) == 'turnaround') {
+                    $valTmp = strtolower($val);
+                    if ( !(strpos($valTmp, 'next-day') === false && strpos($valTmp, 'next day') === false) ) {
+                       $val .= ' - (Due Date: ' . $dueDate . ')';
+                    }
+                }
+
+                $data .= '<tr><td>' . $label . '</td><td>' . $val . '</td></tr>';
             }
 
             $this->source->setData(
