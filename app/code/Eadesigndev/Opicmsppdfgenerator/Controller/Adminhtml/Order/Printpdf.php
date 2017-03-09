@@ -65,8 +65,10 @@ class Printpdf extends Abstractpdf
      * @param \Magento\Framework\Controller\Result\JsonFactory $resultJsonFactory
      * @param \Eadesigndev\Opicmsppdfgenerator\Helper\Variable\Processors\Output $helper
      * @param \Magento\Framework\Stdlib\DateTime\DateTime $_dateTime
+     * @param \Magento\Framework\Registry $coreRegistry
      * @param \Magento\Framework\App\Response\Http\FileFactory $fileFactory
      * @param \Magento\Backend\Model\View\Result\ForwardFactory $resultForwardFactory
+     * @param \Magento\Framework\Api\ExtensibleDataObjectConverter $extensibleDataObjectConverter
      */
     public function __construct(
         \Magento\Backend\App\Action\Context $context,
@@ -99,22 +101,18 @@ class Printpdf extends Abstractpdf
         if (!$templateId) {
             return $this->resultForwardFactory->create()->forward('noroute');
         }
-
         $templateModel = $this->_objectManager->create('Eadesigndev\Pdfgenerator\Api\TemplatesRepositoryInterface')->getById($templateId);
         if (!$templateModel) {
             return $this->resultForwardFactory->create()->forward('noroute');
         }
-
         $orderId = $this->getRequest()->getParam('order_id');
         if (!$orderId) {
             return $this->resultForwardFactory->create()->forward('noroute');
         }
-
         $source = $this->_objectManager->create('Magento\Sales\Api\OrderRepositoryInterface')->get($orderId);
         if (!$source) {
             return $this->resultForwardFactory->create()->forward('noroute');
         }
-
         $helper = $this->helper;
 
         $helper->setSource($source);
@@ -132,10 +130,17 @@ class Printpdf extends Abstractpdf
 
         $fileName = $pdfFileData['filename'] . $date . '.pdf';
 
+//        return $this->_fileFactory->create(
+//            $fileName,
+//            $output,
+//            DirectoryList::VAR_DIR,
+//            'application/pdf'
+//        );
+
         return $this->_fileFactory->create(
             $fileName,
             $output,
-            DirectoryList::VAR_DIR,
+            DirectoryList::MEDIA_ORDER_PDF,
             'application/pdf'
         );
     }

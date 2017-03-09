@@ -24,7 +24,7 @@ class PrintPDF extends \Magento\Backend\Block\Widget\Container
     private $lastItem = [];
 
     /**
-     * @var Data
+     * @var \Eadesigndev\Opicmsppdfgenerator\Helper\Data
      */
     private $dataHelper;
 
@@ -68,12 +68,22 @@ class PrintPDF extends \Magento\Backend\Block\Widget\Container
         }
         $this->lastItem = $lastItem;
 
+//        $this->addButton(
+//            'eadesign_print',
+//            [
+//                'label' => 'Print',
+//                'class' => 'print',
+//                'onclick' => 'setLocation(\'' . $this->getPdfPrintUrl() . '\')'
+//            ]
+//        );
+
+        // Samuel Kong
         $this->addButton(
             'eadesign_print',
             [
                 'label' => 'Print',
-                'class' => 'print',
-                'onclick' => 'setLocation(\'' . $this->getPdfPrintUrl() . '\')'
+                'class' => 'print samuel',
+                'onclick' => 'window.open(\'' . $this->getPdfPrintUrl() . '\',\'_blank\')'
             ]
         );
 
