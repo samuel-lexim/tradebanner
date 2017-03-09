@@ -522,7 +522,7 @@
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="dataType" xsi:type="string">text</item>
-                    <item name="label" xsi:type="string" translate="true">Margin left (mm)</item>
+                    <item name="label" xsi:type="string" translate="true">Margin right (mm)</item>
                     <item name="formElement" xsi:type="string">input</item>
                     <item name="source" xsi:type="string">template</item>
                     <item name="sortOrder" xsi:type="number">10</item>
