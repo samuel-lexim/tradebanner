@@ -25,7 +25,7 @@
 
         <move element="checkout.cart.shipping" destination="checkout.cart.container" after="checkout.cart.form"/>
         <move element="checkout.cart.coupon" destination="checkout.cart.container" after="checkout.cart.shipping"/>
-        <referenceContainer name="checkout.cart.totals.container" htmlTag="div" htmlClass="col-xs-12 col-sm-6 col-md-5 col-md-offset-2" />
+        <referenceContainer name="checkout.cart.totals.container" htmlTag="div" htmlClass="col-xs-12 col-sm-4" />
         <move element="checkout.cart.totals.container" destination="checkout.cart.container" after="-" />
         <move element="checkout.cart.methods.bottom" destination="checkout.cart.totals.container" after="-"/>
 
