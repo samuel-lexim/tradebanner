@@ -90,7 +90,7 @@ class Items extends AbstractCustomHelper
             }
         }
 
-        $data = '';
+        $data = ''; $jobName = 'sad asd '; $turnAround = 'as dasd ';
 
         if (!empty($result)) {
 
@@ -110,24 +110,36 @@ class Items extends AbstractCustomHelper
                 // Add inch text
                 if (strtolower($label) == 'width' || strtolower($label) == 'height') $label .= ' (inch)';
 
-                // Insert Due Date
+                // Turn around: Insert Due Date
                 if (strtolower($label) == 'turnaround') {
                     $valTmp = strtolower($val);
-                    if ( !(strpos($valTmp, 'next-day') === false && strpos($valTmp, 'next day') === false) ) {
-                       $val .= ' - (Due Date: ' . $dueDate . ')';
+                    if (!(strpos($valTmp, 'next-day') === false && strpos($valTmp, 'next day') === false)) {
+                        $val .= ' - (Due Date: ' . $dueDate . ')';
                     }
+                    $turnAround = $label . ": " . $val;
+                    $label = '<b>' . $label . '</b>';
+                    $val = '<b>' . $val . '</b>';
+                }
+
+                // Job Name
+                if (strtolower($label) == 'job name') {
+                    $jobName = $label . ": " . $val;
                 }
 
                 $data .= '<tr><td>' . $label . '</td><td>' . $val . '</td></tr>';
             }
-
-            $this->source->setData(
-                'item_options', $data
-            );
         }
 
         $this->source->setData(
             'item_options', $data
+        );
+
+        $this->source->setData(
+            'job_name', $jobName
+        );
+
+        $this->source->setData(
+            'turn_around', $turnAround
         );
     }
 
