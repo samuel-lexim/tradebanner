@@ -44,9 +44,9 @@
     }
 
     .success {
-        color: #3c763d;
-        background: #dff0d8;
-        border: 1px solid #d6e9c6;
+        color: #fff;
+        background: #00909e;
+        border: 1px solid #00909e;
 
     }
 
@@ -96,23 +96,42 @@ $_objectManager = \Magento\Framework\App\ObjectManager::getInstance();
         array_push($items, $item->getName());
     }
     $items = array_unique($items);
+    $total = count($items);
     ?>
         <form action="" enctype="multipart/form-data" method="post" id="s3Form">
             <input type="hidden" name="order" value="<?= $orderId ?>">
 
             <div class="selectFileGroup">
                 <select name="upload[0][]" multiple>
-                    <?php foreach ($items as $key => $name) {
-                        echo '<option value="' . $name . '">' . $name . '</option>';
+                    <?php
+                    $i = 0;
+                    foreach ($items as $key => $name) {
+                        $selected = ($i == 0) ? 'selected' : '';
+                        echo '<option value="' . $name . '" '. $selected . '>' . $name . '</option>';
+                        $i++;
                     } ?>
                 </select>
                 <input type="file" name="file[0]" />
             </div>
 
-            <div id="bodyS3Form" class="selectFileGroup"></div>
+            <div id="bodyS3Form" class="selectFileGroup">
+                <?php
+                for ($j = 1; $j <= $total - 1; $j++) { ?>
+                    <select name="upload[<?= $j ?>][]" multiple>
+                        <?php
+                        $i = 0;
+                        foreach ($items as $key => $name) {
+                            $selected = ($i == $j) ? 'selected' : '';
+                            echo '<option value="' . $name . '" '. $selected . '>' . $name . '</option>';
+                            $i++;
+                        } ?>
+                    </select>
+                    <input type="file" name="file[<?= $j ?>]" />
+                <?php } ?>
+            </div>
 
             <div class="clearfix pad10"></div>
-            <p>Only jpeg, jpg, png, psd, tiff, pdf, aiff files are allowed.<br>Image size should be less than 100MB.</p>
+            <p>Only jpeg, jpg, png, psd, tiff, pdf, aiff files are allowed.<br>Image size should be less than 1GB.</p>
             <div class="clearfix pad20"></div>
 
             <div id="s3ActionBar">
@@ -134,7 +153,7 @@ $_objectManager = \Magento\Framework\App\ObjectManager::getInstance();
         <script type="text/javascript">
             require(['jquery', 'jquery/validate', 'jquery/ui', 'mage/mage'], function ($) {
                 $(document).ready(function ($) {
-                    var indexer = 0;
+                    var indexer = <?= $total - 1 ?>; // the number of select tag
                     var name = [  <?php foreach ($items as $i => $name) {
                         echo '"' . $name . '"';
                         echo (($i + 1) == count($items)) ? '' : ',';
