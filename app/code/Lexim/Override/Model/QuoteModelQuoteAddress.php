@@ -9,12 +9,11 @@ class QuoteModelQuoteAddress extends \Magento\Quote\Model\Quote\Address {
         $rates = [];
         $customer = $this->getQuote()->getCustomer();
         $freeStatus = $customer->getCustomAttribute('free_delivery_kong')->getValue();
-        $freeStatus = intval($freeStatus);
 
         foreach ($this->getShippingRatesCollection() as $rate) {
             if (!$rate->isDeleted() && $this->_carrierFactory->get($rate->getCarrier())) {
 
-                if ($rate->getCarrier() != 'freeshipping' || ($rate->getCarrier() == 'freeshipping' && $freeStatus === 1) ) {
+                if ($rate->getCarrier() != 'freeshipping' || ($rate->getCarrier() == 'freeshipping' && $freeStatus == '1') ) {
 
                     if (!isset($rates[$rate->getCarrier()])) {
                         $rates[$rate->getCarrier()] = [];
@@ -26,6 +25,7 @@ class QuoteModelQuoteAddress extends \Magento\Quote\Model\Quote\Address {
                     )->getSortOrder();
 
                 }
+
             }
         }
         uasort($rates, [$this, '_sortRates']);

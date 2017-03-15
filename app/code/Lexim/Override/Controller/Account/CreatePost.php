@@ -57,7 +57,7 @@ class CreatePost extends \Magento\Customer\Controller\Account\CreatePost
         CustomerInterfaceFactory $customerDataFactory,
         CustomerUrl $customerUrl,
         Registration $registration,
-        Escaper $escape,
+        Escaper $escaper,
         CustomerExtractor $customerExtractor,
         DataObjectHelper $dataObjectHelper,
         AccountRedirect $accountRedirect,
@@ -65,7 +65,7 @@ class CreatePost extends \Magento\Customer\Controller\Account\CreatePost
         Filesystem $fileSystem
     )
     {
-        parent::__construct($context, $customerSession, $scopeConfig, $storeManager, $accountManagement, $addressHelper, $urlFactory, $formFactory, $subscriberFactory, $regionDataFactory, $addressDataFactory, $customerDataFactory, $customerUrl, $registration, $escape, $customerExtractor, $dataObjectHelper, $accountRedirect);
+        parent::__construct($context, $customerSession, $scopeConfig, $storeManager, $accountManagement, $addressHelper, $urlFactory, $formFactory, $subscriberFactory, $regionDataFactory, $addressDataFactory, $customerDataFactory, $customerUrl, $registration, $escaper, $customerExtractor, $dataObjectHelper, $accountRedirect);
         $this->fileUploaderFactory = $fileUploaderFactory;
         $this->fileSystem = $fileSystem;
     }
@@ -100,7 +100,8 @@ class CreatePost extends \Magento\Customer\Controller\Account\CreatePost
 
             $this->checkPasswordConfirmation($password, $confirmation);
 
-            $customer = $this->accountManagement->createAccount($customer, $password, $redirectUrl);
+            $customer = $this->accountManagement
+                ->createAccount($customer, $password, $redirectUrl);
 
             // Upload File
             $uploader = $this->fileUploaderFactory->create(['fileId' => 'seller_file']);
@@ -198,8 +199,5 @@ class CreatePost extends \Magento\Customer\Controller\Account\CreatePost
         $resultRedirect->setUrl($this->_redirect->error($defaultUrl));
         return $resultRedirect;
     }
-
-
-
 
 }

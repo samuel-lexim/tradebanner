@@ -607,13 +607,13 @@ endforeach;
                 Turnaround_1630 = (isNaN(Turnaround_1630)) ? 0 : parseFloat(Turnaround_1630);
                 value_qty = $('#qty').attr('value');
                 if(value_qty > 1){
-                    $('.Art_1614').addClass('Addactive');
-                    $("#select_1614 option[value='0']").remove();
+                    $('.Art_1633').addClass('Addactive');
+                    $("#select_1633 option[value='0']").remove();
                 }else{
-                     $('.Art_1614').removeClass('Addactive');
-                     $('.Artworks_1615').hide();
-                     $("#select_1614 option:selected").removeAttr("selected");
-                     $("#select_1614").prepend('<option value="0" price="0" selected="selected">No</option>');
+                     $('.Art_1633').removeClass('Addactive');
+                     $('.Artworks_1634').hide();
+                     $("#select_1633 option:selected").removeAttr("selected");
+                     $("#select_1633").prepend('<option value="0" price="0" selected="selected">No</option>');
                 }
                 if(Turnaround_1630 ==2817){
                     isTurnaround = 1.7;
@@ -1603,37 +1603,41 @@ endforeach;
                 isDefault = false;
 
             } else if (id == 147) { //  Yard Signs (Coroplast)
-                var Stakes_617 = $('#select_617').find(":selected").attr('price');
-                Stakes_617 = (isNaN(Stakes_617)) ? 0 : parseFloat(Stakes_617);
-                var Grommets_618 = $('#select_618').find(":selected").attr('price');
-                Grommets_618 = (isNaN(Grommets_618)) ? 0 : parseFloat(Grommets_618);
-                var Turnaround_619 = $('#select_619').find(":selected").attr('value');
-                Turnaround_619 = (isNaN(Turnaround_619)) ? 0 : parseFloat(Turnaround_619);
-                var Material_615 = $('#select_615').find(":selected").attr('value');
-                Material_615 = (isNaN(Material_615)) ? 0 : parseFloat(Material_615);
-                var Color_616 = $('#select_616').find(":selected").attr('price');
-                Color_616 = (isNaN(Color_616)) ? 0 : parseFloat(Color_616);
-                var Color_891 = $('#select_891').find(":selected").attr('price');
-                Color_891 = (isNaN(Color_891)) ? 0 : parseFloat(Color_891);
+                var Stakes_1666 = $('#select_1666').find(":selected").attr('price');
+                Stakes_1666 = (isNaN(Stakes_1666)) ? 0 : parseFloat(Stakes_1666);
+                var Grommets_1667 = $('#select_1667').find(":selected").attr('price');
+                Grommets_1667 = (isNaN(Grommets_1667)) ? 0 : parseFloat(Grommets_1667);
+                var Turnaround_1668  = $('#select_1668').find(":selected").attr('value');
+                Turnaround_1668  = (isNaN(Turnaround_1668 )) ? 0 : parseFloat(Turnaround_1668 );
+                var Material_1663 = $('#select_1663').find(":selected").attr('value');
+                Material_1663 = (isNaN(Material_1663)) ? 0 : parseFloat(Material_1663);
+                var Color_1664 = $('#select_1664').find(":selected").attr('price');
+                Color_1664 = (isNaN(Color_1664)) ? 0 : parseFloat(Color_1664);
+                
+                var Color_1665 = $('#select_1665').find(":selected").attr('price');
+                Color_1665 = (isNaN(Color_1665)) ? 0 : parseFloat(Color_1665);
                 value_qty = $('#qty').attr('value');
                 if(value_qty > 1){
-                    $('.Art_927').addClass('Addactive');
-                    $("#select_927 option[value='0']").remove();
+                    $('.Art_1671').addClass('Addactive');
+                    $("#select_1671 option[value='0']").remove();
                 }else{
-                     $('.Art_927').removeClass('Addactive');
-                     $('.Artworks_928').hide();
-                     $("#select_927 option:selected").removeAttr("selected");
-                     $("#select_927").prepend('<option value="0" price="0" selected="selected">No</option>');
+                     $('.Art_1671').removeClass('Addactive');
+                     $('.Artworks_1672').hide();
+                     $("#select_1671 option:selected").removeAttr("selected");
+                     $("#select_1671").prepend('<option value="0" price="0" selected="selected">No</option>');
                 }
-                if((Turnaround_619 ==1048) && (Material_615 == 1037)){
-                    total = (( heso * Color_891 ) + Stakes_617 + Grommets_618 ) * 1.7;
-                } else if((Turnaround_619 ==1048) && (Material_615 == 1036)){
-                    total = (( heso * Color_616 ) + Stakes_617 + Grommets_618 ) * 1.7;
-                } else if((Turnaround_619 ==1047) && (Material_615 == 1037)){
-                    total = ( heso * Color_891 ) + Stakes_617 + Grommets_618 ;
+                if((Turnaround_1668  ==2875) && (Material_1663 == 2862)){
+                    total = (( heso * Color_1664 ) + Stakes_1666 + Grommets_1667 ) * 1.7;
+
+                } else if((Turnaround_1668 ==2875) && (Material_1663 == 2861)){
+                    total = (( heso * Color_1665 ) + Stakes_1666 + Grommets_1667 ) * 1.7;
+
+                } else if((Turnaround_1668 ==2874) && (Material_1663 == 2862)){
+                    total = ( heso * Color_1664 ) + Stakes_1666 + Grommets_1667 ;
+
                 } 
-                else{
-                    total = ( heso * Color_616 ) + Stakes_617 + Grommets_618 ;
+                else if((Turnaround_1668 ==2874) && (Material_1663 == 2861)){
+                    total = ( heso * Color_1665 ) + Stakes_1666 + Grommets_1667 ;
                 }
                 isDefault = false;
 
@@ -2264,81 +2268,81 @@ endforeach;
                 isDefault = false;
 
             } else if (id == 145) { // Retractable Stand
-                var Material_976 = $('#select_976').find(":selected").attr('value');
-                Material_976 = (isNaN(Material_976)) ? 0 : parseFloat(Material_976);
-                var Size_975 = $('#select_975').find(":selected").attr('value');
+                var Material_976 = $('#select_1694').find(":selected").attr('value');
+                Material_976 = (isNaN(Material_976)) ? 0 : parseFloat(Material_976); 
+                var Size_975 = $('#select_1695').find(":selected").attr('value');
                 Size_975 = (isNaN(Size_975)) ? 0 : parseFloat(Size_975);
-                var Turnaround_698 = $('#select_698').find(":selected").attr('value');
+                var Turnaround_698 = $('#select_1698').find(":selected").attr('value');
                 Turnaround_698 = (isNaN(Turnaround_698)) ? 0 : parseFloat(Turnaround_698);
                 value_qty = $('#qty').attr('value');
                 if(value_qty > 1){
-                    $('.Art_1068').addClass('Addactive');
-                    $("#select_1068 option[value='0']").remove();
+                    $('.Art_1701').addClass('Addactive');
+                    $("#select_1701 option[value='0']").remove();
                 }else{
-                     $('.Art_1068').removeClass('Addactive');
-                     $('.Artworks_1069').hide();
-                     $("#select_1068 option:selected").removeAttr("selected");
-                     $("#select_1068").prepend('<option value="0" price="0" selected="selected">No</option>');
+                     $('.Art_1701').removeClass('Addactive');
+                     $('.Artworks_1702').hide();
+                     $("#select_1701 option:selected").removeAttr("selected");
+                     $("#select_1701").prepend('<option value="0" price="0" selected="selected">No</option>');
                 }
                 var Size_price =0;
                 var add_heso = 0;
-                if(Material_976 ==1590){
-                    if(Size_975 == 1586){
+                if(Material_976 ==2913){
+                    if(Size_975 == 2916){
                         Size_price = 75;
                         add_heso =  17.5;                
-                    } else if(Size_975 == 1587){
+                    } else if(Size_975 == 2917){
                         Size_price = 85; 
                         add_heso =  26;  
-                    } else if(Size_975 == 1588){
+                    } else if(Size_975 == 2918){
                         Size_price = 95;
                         add_heso =  27;
-                    } else if(Size_975 == 1589){
+                    } else if(Size_975 == 2919){
                         Size_price = 115.00;
                         add_heso =  36; 
                     }
-                    if(Turnaround_698 == 1173){
+                    if(Turnaround_698 == 2923){
                         total = Size_price + add_heso;
                     } else{
                         total = Size_price;
                     } 
-                }else if(Material_976 ==1591){  
-                    if(Size_975 == 1586){
+                }else if(Material_976 ==2914){  
+                    if(Size_975 == 2916){
                         Size_price = 69.00;
                         add_heso =  14;                 
-                    } else if(Size_975 == 1587){
+                    } else if(Size_975 == 2917){
                         Size_price = 79.00; 
                         add_heso =  19.50;
-                    } else if(Size_975 == 1588){
+                    } else if(Size_975 == 2918){
                         Size_price = 89.00;
                         add_heso =  20.5; 
-                    } else if(Size_975 == 1589){
+                    } else if(Size_975 == 2919){
                         Size_price = 110.00;
                         add_heso =  27.50; 
                     }
-                    if(Turnaround_698 == 1173){
+                    if(Turnaround_698 == 2923){
                         total = Size_price + add_heso;
-                    } else if(Turnaround_698 == 1172){
+                    } else if(Turnaround_698 == 2922){
                         total = Size_price;
                     }else{
                         total = 0;
                     }
-                } else if(Material_976 ==1592){  
-                    if(Size_975 == 1586){
+                } else if(Material_976 ==2915){  
+                    if(Size_975 == 2916){
                         Size_price = 82; 
                         add_heso =  22.5;                 
-                    } else if(Size_975 == 1587){
+                    } else if(Size_975 == 2917){
                         Size_price = 95; 
                         add_heso =  32.50; 
-                    } else if(Size_975 == 1588){
+                    } else if(Size_975 == 2918){
                         Size_price = 105; 
                         add_heso =  34.5; 
-                    } else if(Size_975 == 1589){
+                    } else if(Size_975 == 2919){
                         Size_price = 120; 
                         add_heso =  46; 
                     }
-                    if(Turnaround_698 == 1173){
+                    if(Turnaround_698 == 2923){
                         total = Size_price + add_heso;
-                    } else if(Turnaround_698 == 1172){
+                    } else if(Turnaround_698 == 2922){
                         total = Size_price;
                     } else{
                         total = 0;
@@ -2909,20 +2913,51 @@ endforeach;
             // var subTotal = total * qty; 
 
             // Check 8 USD
-            if (total > 0 && id != 109) {  
+            // if (total > 0 && id != 109) {  
                      
-                if ( (total * qty) > 0 && (total * qty) < 8 ) {
-                    var ava = 8.0 / qty; 
-                    var avb = ava.toString().split("."); 
-                    var vax =  (avb.length == 2) ? avb[1].length : 0;
-                    if (vax > 2) {
-                        ava = parseInt(ava * 100) / 100 + 0.01;
-                    }
-                    total = ava;
-                } 
+            //     if ( (total * qty) > 0 && (total * qty) < 8 ) {
+            //         var ava = 8.0 / qty; 
+            //         var avb = ava.toString().split("."); 
+            //         var vax =  (avb.length == 2) ? avb[1].length : 0;
+            //         if (vax > 2) {
+            //             ava = parseInt(ava * 100) / 100 + 0.01;
+            //         }
+            //         total = ava;
+            //     } 
+            // }
+
+
+                var myArray5 = [102, 115, 117, 118, 135, 138];
+                var mSet5 = new Set(myArray5);
+                var hasId5 = mSet5.has(id);
+
+                var myArray10 = [113, 116, 133, 134, 136, 137, 139, 140];
+                var mSet10 = new Set(myArray10);
+                var hasId10 = mSet10.has(id);
+
+                var myArray8 = [90, 91, 93, 94, 97, 98, 99];
+                var mSet8 = new Set(myArray8);
+                var hasId8 = mSet8.has(id);
+                     
+
+            if(total > 0 && (qty*total <= 5) && hasId5 ){
+                total = 5/qty;
+
+            } else if(total > 0 && (qty*total <= 10) && hasId10 ){
+                total = 10/qty;
+
+            } else if(total > 0 && (total <= 8) && hasId8 ){
+                total = 8; //category banner
+
+            } else if (total > 0 && id ==109) { // sample-kit
+                total = 5;
+
+            } else if((total > 0 && qty*total <= 8)){
+                total = 8/qty;
             }
 
-            total = Number(Math.round(total * 100) / 100); 
+
+            total = Number(Math.round(total * 100) / 100);
             var subTotal = Number(Math.round(total * 100) / 100) * qty; 
 
             totalDiscount = subTotal - subTotal * rateDiscount / 100;
@@ -2930,16 +2965,25 @@ endforeach;
             // Tong ket gia            
             $('#pricePerUnit').text('$' + total.toFixed(2));
             $('#subTotalPrice').text('$' + subTotal.toFixed(2));
+            var cusArea = area/144;
+            cusArea = Number(Math.round(cusArea * 100) / 100);
+            $('#test').text('Area:  '+ cusArea.toFixed(2) + '(Square Feet)');
+
+            var reward_points =  Math.ceil(totalDiscount);
             
+
             $('#ptram').text(rateDiscount + '%');
             $('#discountCustom').text('$' + discountCustom.toFixed(2));
             $('#totalDiscount').text('$' + totalDiscount.toFixed(2));
             if(discountCustom > 0){
                 $('.Discount-price').addClass('hasDiscount');
                 $('.noDiscount').removeClass('hasDiscount');
+                $('#reward_points_c').text('+ '+ reward_points);
             }else{
                 $('.Discount-price').removeClass('hasDiscount');
                 $('.noDiscount').addClass('hasDiscount');
+                var subTotal_c =  Math.ceil(subTotal);
+                $('#reward_points_c').text('+ '+ subTotal_c);
             }
         }
 
@@ -2981,6 +3025,13 @@ endforeach;
             showFinalPrice();
         });
         $('#options_966_text').change(function () {     
+            showFinalPrice(); 
+        });
+        // Yard Signs (Coroplast)
+        $('#options_1661_text').change(function () {     
+            showFinalPrice(); 
+        });
+        $('#options_1662_text').change(function () {     
             showFinalPrice(); 
         });
         

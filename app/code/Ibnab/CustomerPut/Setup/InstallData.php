@@ -115,6 +115,7 @@ class InstallData implements InstallDataInterface
             "frontend" => "",
             "unique" => false,
             "note" => ""
+
         ));
 
         $seller_permit = $customerSetup->getEavConfig()->getAttribute(\Magento\Customer\Model\Customer::ENTITY, 'seller_permit');
