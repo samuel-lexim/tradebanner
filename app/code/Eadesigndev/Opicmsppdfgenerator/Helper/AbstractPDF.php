@@ -178,6 +178,12 @@ abstract class AbstractPDF extends \Magento\Framework\App\Helper\AbstractHelper
      */
     public function setOrder(\Magento\Sales\Model\Order $order)
     {
+        // Samuel Kong
+        $date = strtotime($order->getCreatedAt());
+        $fixedDate = $date - 25200;
+        $order->setCreatedAt(date("Y-m-d H:i:s", $fixedDate));
+        // # Samuel Kong
+
         $this->order = $order;
         return $this;
     }
