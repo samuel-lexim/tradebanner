@@ -156,11 +156,18 @@ abstract class AbstractPDF extends \Magento\Framework\App\Helper\AbstractHelper
     }
 
     /**
+     * For Invoice
      * @param $source
      * @return $this
      */
     public function setSource($source)
     {
+        // Samuel Kong
+        $date = strtotime($source->getCreatedAt());
+        $fixedDate = $date - 25200;
+        $source->setCreatedAt(date("Y-m-d H:i:s", $fixedDate));
+        // # Samuel Kong
+
         $this->source = $source;
 
         if ($source instanceof \Magento\Sales\Model\Order) {
