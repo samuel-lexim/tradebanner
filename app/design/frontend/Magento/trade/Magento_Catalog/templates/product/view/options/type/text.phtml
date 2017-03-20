@@ -1,13 +1,14 @@
 <?php
 $_option = $block->getOption();
 $class = ($_option->getIsRequire()) ? ' required' : '';
+$label = $block->escapeHtml($_option->getTitle());
 ?>
 
 <div
     class="<?= $_option->getTitle(); ?>_<?= $_option->getId(); ?> col-xs-12 <?= ($_option->getType() == 'area') ? ' textarea col-sm-12 ' : ' col-sm-6 ' ?>
      field <?= $class ?>">
     <label class="label" for="options_<?= $_option->getId() ?>_text">
-        <span><?= $block->escapeHtml($_option->getTitle()) ?></span>
+        <span><?= $label ?></span>
         <?= $block->getFormatedPrice() ?>
     </label>
 
@@ -52,4 +53,9 @@ $class = ($_option->getIsRequire()) ? ' required' : '';
                 <strong><?= $_option->getMaxCharacters() ?></strong></p>
         <?php endif; ?>
     </div>
+
+    <?php
+    if (strpos($label, 'Width') !== false || strpos($label, 'Height') !== false) {
+        echo '<p style="color:#1ca1ac; padding: 5px 0 0;font-size: 12px;" id="min_max_' . $_option->getId() . '"></p>';
+    } ?>
 </div>
