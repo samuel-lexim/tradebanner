@@ -119,6 +119,16 @@ class Pdf extends \Eadesigndev\Opicmsppdfgenerator\Helper\AbstractPDF
         $order = $this->order;
         $source = $this->source;
 
+        // Samuel Kong
+        $eaOrder = $this->formated->getFormated($order);
+        $utcDate = $order->getCreatedAt();
+        $UTC = new \DateTimeZone("UTC");
+        $losTZ = new \DateTimeZone("America/Los_Angeles");
+        $date = new \DateTime($utcDate, $UTC );
+        $date->setTimezone( $losTZ );
+        $eaOrder->setData('created_at', $date->format('Y-m-d H:i:s'));
+        // #Samuel Kong
+
         $templateModel = $this->template;
         $templateType = $templateModel->getData('template_type');
 
@@ -136,7 +146,7 @@ class Pdf extends \Eadesigndev\Opicmsppdfgenerator\Helper\AbstractPDF
             'formattedBillingAddress' => $this->getFormattedBillingAddress($order),
 
             'ea_' . $templateTypeName => $this->formated->getFormated($source),
-            'ea_order' => $this->formated->getFormated($order),
+            'ea_order' => $eaOrder,
             $templateTypeName . '_if' => $this->formated->getZeroFormated($source),
             'order_if' => $this->formated->getZeroFormated($order),
 
