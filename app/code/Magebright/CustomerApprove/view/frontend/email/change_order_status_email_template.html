@@ -1,0 +1,22 @@
+<!--@subject Change order status on your Order #{{var order.id}} - {{var order.status}} @-->
+<!--@vars {
+"var this.getUrl($store, 'customer/account/')":"Customer Account URL",
+"var customer.email":"Customer Email",
+"var customer.name":"Customer Name"
+} @-->
+
+{{template config_path="design/email/header_template"}}
+
+<p>{{var order.customer_name}},</p>
+
+<p>Thank you for your order from Trade Banner. Your order status is updated.</p>
+<h1>Order Status #{{var order.id}}: <span style="text-transform: uppercase;">{{var order.status}}</span></h1>
+
+<p>You can check the status of your order by <a href="https://tradebanner.com/customer/account/" style="color:#1979c3;text-decoration:none" target="_blank">logging into your account</a>.</p>
+
+<p>If you have questions about your order, you can email us at <a href="mailto:info@tradebanner.com" style="color:#1979c3;text-decoration:none" target="_blank">info@tradebanner.com</a> or call us at <a href="tel:(888)%20900-6539" style="color:#1979c3;text-decoration:none" target="_blank">(888) 900-6539</a>.
+</p>
+
+<p>Thank you, Trade Banner!</p>
+
+
