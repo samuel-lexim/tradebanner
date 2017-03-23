@@ -29,7 +29,6 @@ LICENSE
 /dev
 /phpserver
 /var
-/vendor
 /setup
 /*.*
 .htaccess
