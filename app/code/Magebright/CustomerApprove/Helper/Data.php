@@ -83,12 +83,12 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     protected $customerExtensionFactory;
 
     /**
-     * Constructor
-     *
-     * @param Context                     $context
-     * @param TransportBuilder            $transportBuilder
+     * Data constructor.
+     * @param Context $context
+     * @param TransportBuilder $transportBuilder
+     * @param StoreManagerInterface $storeManager
      * @param CustomerRepositoryInterface $customerRepository
-     * @param CustomerExtensionFactory    $customerExtensionFactory
+     * @param CustomerExtensionFactory $customerExtensionFactory
      */
     public function __construct(
         Context $context,
@@ -108,6 +108,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     /**
      * Return true if active and false otherwise.
      *
+     * @param null $storeId
      * @return bool
      */
     public function isEnabled($storeId = null)
@@ -122,6 +123,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     /**
      * Check whether auto approve enabled.
      *
+     * @param null $storeId
      * @return bool
      */
     public function canAutoApprove($storeId = null)
@@ -136,6 +138,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     /**
      * Check whether to notify customer.
      *
+     * @param null $storeId
      * @return bool
      */
     public function canNotifyCustomer($storeId = null)
@@ -150,6 +153,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     /**
      * Check whether to notify admin.
      *
+     * @param null $storeId
      * @return bool
      */
     public function canNotifyAdmin($storeId = null)
@@ -164,7 +168,8 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     /**
      * Retrieve store by id or current store if no id is passed.
      *
-     * @return \Mage\Store\Model\Store
+     * @param null $id
+     * @return \Magento\Store\Api\Data\StoreInterface
      */
     public function getStore($id = null)
     {
@@ -181,7 +186,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         if(false === $this->scopeConfig->isSetFlag(
             self::CONFIG_REDIRECT_CUSTOMER, ScopeInterface::SCOPE_STORE
         )) {
-            return $this->_getRequest()->getServer('HTTP_REFERER');;
+            return $this->_getRequest()->getServer('HTTP_REFERER');
         }
 
         if ($url = $this->scopeConfig->getValue(
@@ -201,7 +206,8 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     /**
      * Retrieve approved email template id.
      *
-     * @return string|int
+     * @param null $storeId
+     * @return mixed
      */
     public function getApprovedEmailTemplateId($storeId = null)
     {
@@ -215,7 +221,8 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     /**
      * Retrieve rejected email template id.
      *
-     * @return string|int
+     * @param null $storeId
+     * @return mixed
      */
     public function getRejectedEmailTemplateId($storeId = null)
     {
@@ -229,7 +236,8 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     /**
      * Retrieve admin notification email template id.
      *
-     * @return string|int
+     * @param null $storeId
+     * @return mixed
      */
     public function getAdminNotifyEmailTemplateId($storeId = null)
     {
@@ -330,7 +338,8 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     /**
      * Retrieve admin email notification recipients.
      *
-     * @return array
+     * @param null $storeId
+     * @return array|bool
      */
     public function getAdminEmailRecipients($storeId = null)
     {
@@ -382,16 +391,13 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     /**
      * Send Email
      *
-     * @param string $recipientName
-     * @param string $recipientEmail
-     * @param        $template
-     * @param        $sender
-     * @param array  $templateParams
-     * @param null   $storeId
-     *
+     * @param $recipientName
+     * @param $recipientEmail
+     * @param $template
+     * @param $sender
+     * @param array $templateParams
+     * @param null $storeId
      * @return $this
-     *
-     * @throws Exception
      */
     public function sendEmailTemplate(
         $recipientName, $recipientEmail, $template, $sender, $templateParams = [], $storeId = null
