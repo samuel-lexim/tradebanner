@@ -104,6 +104,7 @@ abstract class Customer extends \Magento\Customer\Controller\AbstractAccount
                 $templateId = $this->helper->getApprovedEmailTemplateId($storeId);
             }
 
+            // $templateId = customer_approve_email_approved_email_template
             $customerModel = $this->customerFactory->create()->load($customer->getId());
             $templateData = [
                 'customer' => $customerModel,
