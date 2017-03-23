@@ -1,0 +1,25 @@
+<div class="clearfix" style="padding-bottom: 120px"></div>
+
+<div style="text-align: center; padding: 20px 0; border-top: 1px solid #D6D6D6; border-bottom: 1px solid #D6D6D6;">
+    <div style="color:#555; font-size: 18px"><b>INVOICE {{var invoice.increment_id}}</b></div>
+    <div>Created Date: {{var invoice.created_at}}</div>
+</div>
+
+<div id="ship-bill" style="width: 100%; padding: 20px 0; border-bottom: 1px solid #D6D6D6;">
+    <div style="float: left; width: 50%;">
+        <div style="color:#555"><b>BILLING ADDRESS</b></div>
+        <div class="name">{{var formattedBillingAddress|raw}}</div>
+    </div>
+
+    <div style="float: left; width: 50%;">
+        <div style="color:#555"><b>SHIPPING ADDRESS</b></div>
+        <div class="name">{{var formattedShippingAddress|raw}}</div>
+    </div>
+</div>
+
+
+<div class="main" style="width: 100%; float: left;">
+    <div id="details" class="clearfix" style="margin-bottom: 50px; color: #aaa; font-family: 'Tahoma', Verdana, Segoe, sans-serif; font-size: 14px;">
+    </div>
+    {{layout area="frontend" handle="sales_email_order_invoice_items" invoice=$invoice order=$order}}
+</div>
