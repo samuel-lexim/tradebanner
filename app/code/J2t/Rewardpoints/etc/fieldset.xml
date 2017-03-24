@@ -1,0 +1,168 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 J2T Design. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:DataObject/etc/fieldset.xsd">
+    <scope id="global">
+        
+        <fieldset id="customer_account">
+            <field name="rewardpoints_referrer">
+                <aspect name="create" />
+                <aspect name="update" />
+                <aspect name="name" />
+            </field>
+            
+            <field name="rewardpoints_accumulated">
+                <aspect name="create" />
+                <aspect name="update" />
+                <aspect name="name" />
+            </field>
+            <field name="rewardpoints_available">
+                <aspect name="create" />
+                <aspect name="update" />
+                <aspect name="name" />
+            </field>
+            <field name="rewardpoints_spent">
+                <aspect name="create" />
+                <aspect name="update" />
+                <aspect name="name" />
+            </field>
+            <field name="rewardpoints_lost">
+                <aspect name="create" />
+                <aspect name="update" />
+                <aspect name="name" />
+            </field>
+            <field name="rewardpoints_waiting">
+                <aspect name="create" />
+                <aspect name="update" />
+                <aspect name="name" />
+            </field>
+            <field name="rewardpoints_not_available">
+                <aspect name="create" />
+                <aspect name="update" />
+                <aspect name="name" />
+            </field>
+        </fieldset>
+        
+        <!--<fieldset id="quote_convert_address">
+            <field name="rewardpoints_description">
+                <aspect name="to_order" />
+            </field>
+            <field name="rewardpoints_quantity">
+                <aspect name="to_order" />
+            </field>
+            <field name="base_rewardpoints">
+                <aspect name="to_order" />
+            </field>
+            <field name="rewardpoints">
+                <aspect name="to_order" />
+            </field>
+            <field name="rewardpoints_referrer">
+                <aspect name="to_order" />
+            </field>
+            <field name="rewardpoints_gathered">
+                <aspect name="to_order" targetField="rewardpoints_gathered" />
+            </field>
+            <field name="rewardpoints_cart_rule_text">
+                <aspect name="to_order" />
+            </field>
+        </fieldset>-->
+        <fieldset id="sales_copy_order">
+            <field name="rewardpoints_description">
+                <aspect name="to_order" />
+            </field>
+            <field name="rewardpoints_quantity">
+                <aspect name="to_order" />
+            </field>
+            <field name="base_rewardpoints">
+                <aspect name="to_order" />
+            </field>
+            <field name="rewardpoints">
+                <aspect name="to_order" />
+            </field>
+            <field name="rewardpoints_referrer">
+                <aspect name="to_order" />
+            </field>
+            <field name="rewardpoints_gathered">
+                <aspect name="to_order" />
+            </field>
+            <field name="rewardpoints_cart_rule_text">
+                <aspect name="to_order" />
+            </field>
+        </fieldset>
+        <fieldset id="sales_convert_quote">
+            <field name="rewardpoints_description">
+                <aspect name="to_order" />
+            </field>
+            <field name="rewardpoints_quantity">
+                <aspect name="to_order" />
+            </field>
+            <field name="base_rewardpoints">
+                <aspect name="to_order" />
+            </field>
+            <field name="rewardpoints">
+                <aspect name="to_order" />
+            </field>
+            <field name="rewardpoints_referrer">
+                <aspect name="to_order" />
+            </field>
+            <field name="rewardpoints_gathered">
+                <aspect name="to_order" />
+            </field>
+            <field name="rewardpoints_cart_rule_text">
+                <aspect name="to_order" />
+            </field>
+        </fieldset>
+        
+        <fieldset id="sales_convert_order">
+            <field name="rewardpoints_description">
+                <aspect name="to_invoice" />
+            </field>
+            <field name="rewardpoints_quantity">
+                <aspect name="to_invoice" />
+            </field>
+            <field name="base_rewardpoints">
+                <aspect name="to_invoice" />
+            </field>
+            <field name="rewardpoints">
+                <aspect name="to_invoice" />
+            </field>
+            <field name="rewardpoints_referrer">
+                <aspect name="to_invoice" />
+            </field>
+            <field name="rewardpoints_gathered">
+                <aspect name="to_invoice" />
+            </field>
+            <field name="rewardpoints_cart_rule_text">
+                <aspect name="to_invoice" />
+            </field>
+        </fieldset>
+        <fieldset id="quote_convert_item">
+            <field name="rewardpoints_gathered">
+                <aspect name="to_order_item" />
+            </field>
+            <field name="rewardpoints_gathered_float">
+                <aspect name="to_order_item" />
+            </field>
+            <field name="base_rewardpoints">
+                <aspect name="to_order_item" />
+            </field>
+            <field name="rewardpoints_used">
+                <aspect name="to_order_item" />
+            </field>
+            <field name="rewardpoints_catalog_rule_text">
+                <aspect name="to_order_item" />
+            </field>
+            <field name="reward_discount_amount">
+                <aspect name="to_order_item" />
+            </field>
+            <field name="base_reward_discount_amount">
+                <aspect name="to_order_item" />
+            </field>
+        </fieldset>
+    </scope>
+</config>

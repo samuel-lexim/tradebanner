@@ -66,6 +66,29 @@
         background: #f05624;
     }
 
+    .progress {
+        height: 30px;
+        line-height: 30px;
+        overflow: hidden;
+        background: #bbb;
+    }
+
+    .progress .bar {
+        float: left;
+        width: 0;
+        height: 100%;
+        font-size: 12px;
+        background: #1da1ad;
+        text-align: right;
+        font-weight: bold;
+        color: #fff;
+        padding-right: 10px;
+        -moz-transition: width 0.6s ease 0s;
+        -webkit-transition: width 0.6s ease 0s;
+        -o-transition: width 0.6s ease 0s;
+        transition: width 0.6s ease 0s;
+    }
+
     @media only screen and (max-width: 680px) {
         .selectFileGroup select, .selectFileGroup input {
             width: 100%;
@@ -147,6 +170,10 @@ $_objectManager = \Magento\Framework\App\ObjectManager::getInstance();
 
         <div style="text-align: center; display: none" id="fedexLoading">
             <img src="/pub/media/images/icon/loading.gif"/>
+            <div class="progress">
+                <div style="width: 0" class="bar" id="progressArchiveFile"></div>
+            </div>
+            <div class="clearfix pad20"></div>
         </div>
         <div id="s3Result"></div>
 
@@ -176,13 +203,31 @@ $_objectManager = \Magento\Framework\App\ObjectManager::getInstance();
                             cache: false,
                             contentType: false,
                             processData: false,
+                            xhr: function() {
+                                var myXhr = $.ajaxSettings.xhr();
+                                myXhr.upload.addEventListener('progress', function(evt){
+                                    if (evt.lengthComputable) {
+                                        var percentComplete = evt.loaded / evt.total * 100;
+                                        var percentFloat = Math.round(percentComplete * 100) / 100;
+                                        var percentVal = (percentFloat >= 100) ? '99.99%' : percentFloat + '%';
+                                        $('#progressArchiveFile').text(percentVal).css("width",percentVal);
+                                    }
+                                }, false);
+
+                                return myXhr;
+                            },
                             success: function (rs) {
-                                $('#fedexLoading').css('display', 'none');
-                                $('#s3Submit').prop('disabled', false);
-                                $('#s3AddMore').prop('disabled', false);
-                                $('#s3Reset').prop('disabled', false);
-                                $('#s3Result').html(rs);
-                                form.reset();
+                                $('#progressArchiveFile').text("100%").css("width","100%");
+                                setTimeout(function(){
+                                    $('#fedexLoading').css('display', 'none');
+                                    $('#s3Submit').prop('disabled', false);
+                                    $('#s3AddMore').prop('disabled', false);
+                                    $('#s3Reset').prop('disabled', false);
+                                    $('#s3Result').html(rs);
+                                    $('#progressArchiveFile').text("0%").css("width","0");
+                                    form.reset();
+                                }, 1000);
+
                             }
                         });
                     });
@@ -193,8 +238,12 @@ $_objectManager = \Magento\Framework\App\ObjectManager::getInstance();
                         var html = '';
 
                         html += '<select name="upload[' + indexer + '][]" multiple>';
+                        var dem = 0;
+                        var selected = '';
                         name.forEach(function (s) {
-                            html += '<option value="' + s + '">' + s + '</option>';
+                            selected = (dem == 0) ? 'selected' : '';
+                            html += '<option value="' + s + '" ' + selected + '>' + s + '</option>';
+                            dem++;
                         });
                         html += '</select><input type="file" name="file[' + indexer + ']" />';
 

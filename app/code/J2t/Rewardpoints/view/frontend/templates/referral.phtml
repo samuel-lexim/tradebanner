@@ -1,0 +1,223 @@
+<?php
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php //echo $this->getChildHtml('customer_account_points') ?>
+
+
+    <?php if($this->getReferrerRegistrationPoints()):?>
+        <?php echo __('For any referred friend\'s registration, you earn: <strong>%1 points</strong>', $this->getReferrerRegistrationPoints());?>
+        <br />
+    <?php endif;?>
+    <?php if($this->getFriendRegistrationPoints()):?>
+        <?php echo __('For any referred friend\'s registration, you friend earn: <strong>%1 points</strong>', $this->getFriendRegistrationPoints());?>
+        <br />
+    <?php endif;?>
+    <?php if($this->getReferrerPoints() && $this->getReferrerCalculationType() == \J2t\Rewardpoints\Model\Config\Source\Calculationtype::STATIC_VALUE):?>
+        <?php echo __('For any first valid order placed by referred friend, you earn: <strong>%1 points</strong>', $this->getReferrerPoints());?>
+        <br />
+        <?php elseif ($this->getReferrerPoints() && $this->getReferrerCalculationType() == \J2t\Rewardpoints\Model\Config\Source\Calculationtype::RATIO_POINTS):?>
+        <?php echo __('For any first valid order placed by referred friend, you earn: <strong>%1 points x product price values</strong>', $this->getReferrerPoints());?>
+        <br />
+        <?php elseif ($this->getReferrerPoints() && $this->getReferrerCalculationType() == \J2t\Rewardpoints\Model\Config\Source\Calculationtype::CART_SUMMARY):?>
+        <?php echo __('For any first valid order placed by referred friend, you earn: <strong>%1 points x cart summary</strong>', $this->getReferrerPoints());?>
+        <br />
+    <?php endif;?>
+    <?php if($this->getFriendPoints() && $this->getFriendCalculationType() == \J2t\Rewardpoints\Model\Config\Source\Calculationtype::STATIC_VALUE):?>
+        <?php echo __('For any first valid order placed by referred friend, your friend gets: <strong>%1 extra points</strong>', $this->getFriendPoints());?>
+        <?php elseif ($this->getFriendPoints() && $this->getFriendCalculationType() == \J2t\Rewardpoints\Model\Config\Source\Calculationtype::RATIO_POINTS):?>
+        <?php echo __('For any first valid order placed by referred friend, you friend gets: <strong>%1 points x product price values</strong>', $this->getFriendPoints());?>
+        <br />
+        <?php elseif ($this->getFriendPoints() && $this->getFriendCalculationType() == \J2t\Rewardpoints\Model\Config\Source\Calculationtype::CART_SUMMARY):?>
+        <?php echo __('For any first valid order placed by referred friend, you friend gets: <strong>%1 points x cart summary</strong>', $this->getFriendPoints());?>
+        <br />
+    <?php endif;?>
+    <?php if ($this->getMinOrderAmount()):?>
+        <div class="min-order-referral-j2t">
+        <?php echo __("Minimum order for referral program to be processed is: <strong>%1</strong>", $this->getMinReferralOrderInCurrency($this->getMinOrderAmount()));?>
+        </div>
+    <?php endif;?>
+
+    <?php if($this->isAddthis() || $this->isPermanentLink() || $this->getReferralCustomCode()):?>
+    <div class="account-box ad-account-info box">
+        <?php if($this->isPermanentLink()):?>
+        <div class="group-select fieldset">
+            <legend class="legend"><span><?php echo __('Permanent Link') ?></span></legend>
+            <label><?php echo __('Share the following link with your friends: %1', '<br /><strong>'.$this->getReferringUrl().'</strong>') ?></label>
+        </div>
+        <?php endif;?>
+
+        <?php if ($custom_code = $this->getReferralCustomCode()):?>
+            <div class="group-select fieldset" style="min-height: 40px;">
+                <legend class="legend"><span><?php echo __('Share with the following') ?></span></legend>
+                <?php echo str_replace("{{referral_url}}", $this->getReferringUrl(), $custom_code);?>
+            </div>
+        <?php endif;?>
+        
+        <?php if($this->isAddthis()):?>
+
+            <div class="group-select fieldset">
+                <legend class="legend"><span><?php echo __('Share referring link') ?></span></legend>
+                
+                
+                        <div class="input-box">
+                            <label for="j2t-share-title"><?php echo __('Sharing title (may not be used)') ?></label><br />
+                            <input onkeyup="j2tReinitializeAddThis();" type="text" name="j2t-share-title" id="j2t-share-title" value="<?php echo __('Great deals here!');?>" class="input-text" />
+                        </div>
+                        <div class="input-box">
+                            <label for="j2t-share-text"><?php echo __('Sharing text (may not be used)') ?></label><br />
+                            <textarea onkeyup="j2tReinitializeAddThis();" id="j2t-share-text" name="j2t-share-text" cols="100" rows="5" class="input-text"><?php echo __('Visit this for great deals!');?></textarea>
+                        </div>
+                    
+                <br />
+                <!-- AddThis Button BEGIN -->
+                <?php echo $this->getAddThisCode();?>
+                <script type="text/javascript">
+                    var addthis_share =
+                    {
+                        url: "<?php echo $this->getReferringUrl();?>",
+                        title: jQuery('#j2t-share-title').val(),
+                        description: jQuery('#j2t-share-text').val()
+                    }
+                </script>
+            </div>
+
+
+            <?php $http = ($this->isUrlSecured()) ? 'https' : 'http';?>
+            <script type="text/javascript" src="<?php echo $http;?>://s7.addthis.com/js/250/addthis_widget.js#pubid=<?php echo $this->getAddThisAccount();?>"></script>
+            <!-- AddThis Button END -->
+
+
+            <?php endif;?>
+
+    </div>
+    <?php endif;?>
+       
+    <form action="<?php echo $this->getUrl('rewardpoints/referral/referralPost') ?>" method="post" id="form-validate" data-hasrequired="<?php echo __('* Required Fields') ?>">
+        <div class="group-select fieldset" id="j2t-referral-lines">
+            <fieldset class="fieldset">
+                <?php echo $this->getBlockHtml('formkey')?>
+                <legend class="legend"><span><?php echo __('Refer a friend') ?></span></legend><br>   
+                <div class="j2t-rewardpoints-referral" id="j2t-rewardpoints-referral-main">
+                    <div class="field j2t-rewardpoints-name required">
+                        <label for="name" class="required" id="label-name"><?php echo __('Friend\'s name') ?></label>
+                        <div class="control">
+                            <input type="text" name="name[]" value="" title="<?php echo __('Friend\' name') ?>" class="required-entry input-text" id="name" data-validate="{required:true}" />
+                        </div>
+                    </div>
+                    <div class="field j2t-rewardpoints-email required">
+                        <label for="email" class="required validate-email" id="label-email"><?php echo __('Friend\'s email address') ?></label><br />
+                        <div class="control">
+                            <input type="text" name="email[]" value="" title="<?php echo __('Friend\'s email address') ?>" class="required-entry input-text" id="email" data-validate="{required:true}" />
+                        </div>
+                    </div>
+                </div>
+
+            </fieldset>
+                <a id="j2t-add-line" href="javascript:j2t_add_line();" title="<?php echo __('Add new line') ?>">
+                    <img src="<?php echo $this->getAddOneImageUrl(); //echo $this->getViewFileUrl('images/j2t_add_one.png') ?>" alt="<?php echo __('Add new line') ?>" />
+                </a>
+
+            <script type="text/javascript">
+                var elmt_id_j2t = 0;
+                function j2t_add_line(){
+                    var form_list_ul = jQuery('#j2t-rewardpoints-referral-main');
+                    var form_list_ul_clone = form_list_ul.clone(true);
+                    
+                    jQuery("#label-name", form_list_ul_clone).attr("id", "label-name-"+elmt_id_j2t);
+                    jQuery("#name", form_list_ul_clone).attr("id", "name-"+elmt_id_j2t).val("");
+                    jQuery("#label-email", form_list_ul_clone).attr("id", "label-email-"+elmt_id_j2t);
+                    jQuery("#email", form_list_ul_clone).attr("id", "email-"+elmt_id_j2t).val("");
+                    
+                    var del_img = jQuery('<img src="<?php echo $this->getMinusOneImageUrl(); //$this->getViewFileUrl('images/j2t_minus_one.png') ?>" />');
+                    //form_list_ul_clone.children(".j2t-rewardpoints-email").append(del_img);
+                    form_list_ul_clone.append(del_img);
+
+                    del_img.click(function (){
+                        jQuery(this).parent("div.j2t-rewardpoints-referral").remove();
+                    });
+                    //form_list_ul_clone.prepend( jQuery('#j2t-add-line') );
+                    jQuery( "fieldset.fieldset" ).append( form_list_ul_clone );
+                    
+                    
+                    elmt_id_j2t++;
+                }
+            </script>
+            
+            <div class="actions-toolbar">
+                <div class="primary">
+                    <button type="submit" class="action save primary" data-action="save-address" title="<?php echo __('Send') ?>">
+                        <span><?php echo __('Send') ?></span>
+                    </button>
+                </div>
+                <div class="secondary">
+                    <a class="action back" href="<?php echo $block->escapeUrl($block->getBackUrl()) ?>"><span><?php echo __('Go back') ?></span></a>
+                </div>
+            </div>
+            
+            
+        </div>
+    </form>
+    <script type="text/javascript">
+        //var dataForm = new VarienForm('form-validate', true);
+        
+    </script>
+
+<div class="page-title">
+    <h1 class="title"><span class="base" data-ui-id="page-title"><?php echo __('My Referred Friends');?></span></h1>
+    </div>      
+    
+<?php if ($block->getCollection() && $block->count()): ?>
+    <div class="table-wrapper reviews">
+        <table class="data table table-rewardpoints" id="my-referred-friend-table">
+            <caption class="table-caption"><?php echo __('Referred Friends') ?></caption>
+            <thead>
+                <tr>
+                    <th scope="col" class="col date"><?php echo __('Full Name') ?></th>
+                    <th scope="col" class="col item"><?php echo __('Email') ?></th>
+                    <!--<th scope="col" class="col item"><?php echo __('Registered?') ?></th>-->
+                    <th scope="col" class="col summary"><?php echo __('First order?') ?></th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($block->getCollection() as $_friend): ?>
+                <tr>
+                    <td data-th="<?php echo $block->escapeHtml(__('Full Name')) ?>" class="col item">
+                        <strong class="product-name">
+                            <?php echo $block->escapeHtml($_friend->getRewardpointsReferralName()) ?>
+                        </strong>
+                    </td>
+                    <td data-th="<?php echo $block->escapeHtml(__('Email')) ?>" class="col summary">
+                        <?php echo $block->escapeHtml($_friend->getRewardpointsReferralEmail()) ?>
+                    </td>
+                    <!--<td data-th="<?php echo $block->escapeHtml(__('Registered?')) ?>" class="col summary">
+                        <?php echo $_friend->getRewardpointsReferralChildId() ? __('yes') : __('no') ?>
+                    </td>-->
+                    <td data-th="<?php echo $block->escapeHtml(__('First order?')) ?>" class="col summary">
+                        <?php echo $_friend->getRewardpoints_referral_status() ? __('yes') : __('no') ?>
+                    </td>
+                </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+    <?php if ($block->getToolbarHtml()): ?>
+        <div class="toolbar client-loyaltypoints-toolbar bottom">
+            <?php echo $block->getToolbarHtml() ?>
+        </div>
+    <?php endif; ?>
+<?php else: ?>
+    <div class="message info empty"><span><?php echo __('You haven\'t invited any friend.') ?></span></div>
+<?php endif; ?>
+<div class="actions-toolbar">
+    <div class="secondary">
+        <a class="action back" href="<?php echo $block->escapeUrl($block->getBackUrl()) ?>">
+            <span><?php echo __('Back') ?></span>
+        </a>
+    </div>
+</div>

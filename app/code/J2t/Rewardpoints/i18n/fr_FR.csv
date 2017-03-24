@@ -1,0 +1,332 @@
+Set appropriate point action,Définition d’une action point appropriée
+Type Of Action,Type d'action
+Rule Name,Nom de la règle
+Status,Etat
+Active,Actif
+Inactive,Inactif
+Customer Groups,Groupes clients
+From Date,Date de début
+To Date,Date de fin
+Reward Points Cart Point Rule,Règles de points panier
+ID,Id
+Catalog Point Rules,Règles de points catalogue
+Catalog Point Rule,Règle de points catalogue
+Customer ID,Id Client
+Customer Email,Email client
+Order ID,Id Commande
+Points type,Type de points
+Accumulated points,Points accumulés
+Spent points,Points utilisés
+Reward Points,Points fidélité
+%1 points available on %2,%1 points disponibles sur%2
+%1 points available,%1 points disponibles
+User Points (%1),Points client (%1)
+Points,Points
+Use negative value in order to remove points.,Utiliser une valeur négative pour retirer des points.
+Description,Description
+Description will be shown within user account as well as on notification email.,La description sera visible depuis le compte client mais aussi lors des notifications par email.
+Send Notification Email,Envoi de notification par email
+No Points Found,Pas de points
+Point Type,Type de point
+Accumulated Points,Points accumulés
+Spent Points,Points utilisés
+Store input %1,Points Magasin %1
+Referral registration points (%1),Points parrainage création de compte  (%1)
+Required point usage for order #%1 (%2),Points requis commande #%1 (%2)
+Points related to order #%1 (%2),Points commande #%1 (%2)
+- not relevant -,- optionnel -
+Adjustment Reward Points,Ajustement points fidélité
+%1 - including usage of %2 point(s),%1 – incluant l’utilisation de %2 points
+Parent Email,Email parrain
+Referred Email,Email filleul
+Referred Name,Nom filleul
+Has ordered,A commandé
+Waiting for order,En attente de commande
+Customer First Name,Prénom client
+Customer Last Name,Nom client
+Available points,Points disponibles
+Lost,Perdu
+Calculation date,Date de calcul
+Min value,Valeur min.
+Max value,Valeur max.
+Duration (in days),Durée (en jours)
+Email sender,Email expéditeur
+Email template,Template email
+Add Custom Point Value,Ajout valeur point personnalisée
+Min Cart,Panier min.
+Max Cart,Panier max.
+From,De
+Until,Jusqu'au
+Group,Groupe
+Default,Par défaut
+Serial defined for store domain '%1',Numéro de série définie pour le domaine '%1'
+Event Points,Points par actions
+Referral registration points,Points d'inscription programme fidélité
+Referral points (%1),Points parrainage (%1)
+Referral order (#%1) state: %2,"Parrainage commande (#%1),  statut : %2"
+Review points,Points avis client
+Newsletter points,Points Newsletter
+Poll participation points,Points participation sondage
+Tag points,Points Tags
+Birthday points,Points anniversaire
+Registration points,Points création de compte
+Gift,Cadeau
+Order: %1,Commande : %1
+Order state: %1,Statut commande : %1
+Gift (shared points),Cadeau (partage de points)
+%1 points = %2.,%1 points = %2.
+Cart Point Rule,Règle de points panier
+Cart Point Rules,Règles de points panier
+Rewardpoints,Points fidélité
+Client Points,Points clients
+Referred Client List,Liste des clients parrainés
+Statistics,Statistiques
+You've successfully applied %1 point(s).,Vous avez utilisé %1 points avec succès.
+Points usage cancelled.,Utilisation de points annulée.
+Unable to use your points.,Impossible d’utiliser vos points.
+My Loyalty Points,Mes points fidélité
+Review Details,Analyse en détail
+My Referral Program,Mon programme fidélité
+Wrong email address (%1).,Adresse email incorrecte (%1).
+Friend name is required for email: %1 on line %2.,Le nom est requis pour l'e-mail : %1 pour la ligne %2.
+Email %1 has been already submitted.,L'adresse e-mail %1 a déjà été utilisée.
+Email %1 was successfully invited.,L'adresse e-mail %1 à bien été ajoutée.
+There was a problem with the invitation email %1.,Il y a eu un problème lors de l'invitation de l'adresse email %1.
+There was a problem with the invitation.,Il y a eu un problème lors de l'invitation.
+Cart rule removes point(s) from cart.,La rèles panier à supprimer les points du panier.
+%1 point(s) added to total.,%1 points ajoutés au total.
+%1 point(s) removed to total.,%1 points supprimés du total.
+Total multiplied by %1. New total is %2.,Total multiplié par %1. Nouveau total = %2
+Total divided by %1. New total is %2.,Total divisé par %1. Nouveau total = %2
+No points for this product.,Pas de points pour ce produit
+%1 extra point(s) added.,%1 points supplémentaires ajoutés.
+%1 point(s) removed.,%1 points retirés.
+"Points multiplied by %1, %2 extra point(s) added.","Points multipliés par %1, %2 points supplémentaires ajoutés."
+"Points divided by %1, %2 point(s) removed.","Points divisés par %1, %2 points retirés."
+Add / remove points,Ajout ou suppression de points
+Don\'t gather points,Annuler les gains de points
+Forbid point usage,Annuler l’utilisation de points
+Multiply By,Multiplié par
+Divide By,Divisé par
+Overlap issues. Please verify Customer Point Notifications values.,Problème temporel. Veuillez vérifier les valeurs concernant les notifications points clients.
+Custom point values issue. Point value must be an integer.,Problème valeurs de points personnalisées. La valeur de points doit être un entier.
+Static value,Valeur statique
+Ratio points,Valeur ratio
+Cart summary Ratio points,Total panier en valeur ratio
+Floor,Entier inférieur
+Round,Arrondie
+Ceil,Entier supérieur ou égal
+Store input,Saisie manuelle
+Points cannot be redeemed within multiple shipping orders.,Vous ne pouvez utiliser vos points lors des commandes vers plusieurs adresses.
+Related to Order ID,Lié à la un id commande
+Not related to Order ID,Non lié à un id commande
+Facebook Like points,Points like Facebook
+Pinterest points,Points Pinterest
+Twitter points,Points twitter
+Google Plus points,Points Google Plus
+Required points usage,Points usage obligatoire
+Event points,Points par actions
+Poll points,Points sondages
+Admin gift,Points dons admin
+Points used on products,Points utilisé pour achat produits
+Reward Points (%1 points),Points fidélité (%1 points)
+Unable to redeem points,Impossible d’utiliser vos points.
+Could not remove points,Impossible de supprimer les points
+%s %s,%s %s
+Apply Reward Points,Utiliser les points fidélité
+%1 Points Used,%1 points utilisés
+Remove Points,Suppression points
+Remove,Supprimer
+This client is gathering %1 points with this order.,Ce client accumule%1 points avec cette commande.
+This client has %1 points.,Ce client a %1 points.
+Used Points (%1),Points utilisés (%1)
+Gathered Points,Points accumulés
+%1 point(s),%1 point(s)
+Used Points,Points utilisés
+Your Points,Vos points
+Points Spent,Points utilisés
+Unvalidated Points,Points non validés
+Expired/Delayed Points,Points expirés/en attente
+%1 (no delayed points),%1 (pas de points en attente)
+%1 (%2 delayed points),%1 (%1 points en attente)
+"With this product, you earn from <span class='j2t-pts-from'>%1</span> to <span class='j2t-pts-to'>%2</span> loyalty points.","Avec ce produit, vous gagnez de <span class='j2t-pts-from'>%1</span> à <span class='j2t-pts-to'>%2</span> points fidélité."
+"With this product, you earn up to <span class='j2t-pts'>%1</span> loyalty points.","Avec ce produit, vous gagnez jusqu’à <span class='j2t-pts'>%1</span> points fidélité."
+"With this product, you earn <span class='j2t-pts'>%1</span> loyalty points.","Avec ce produit, vous gagnez <span class='j2t-pts'>%1</span> points fidélité."
+"With this product, you earn <span class='j2t-pts'>%1</span> loyalty point.","Avec ce produit, vous gagnez <span class='j2t-pts'>%1</span> point fidélité."
+"With this product, you earn <span class='j2t-pts'>%1</span> loyalty point(s).","Avec ce produit, vous gagnez <span class='j2t-pts'>%1</span> point(s) fidélité."
+%1 points = %2 and %3 points = %4.,%1 points = %2 and %3 points = %4.
+History,Historique
+Loyalty Points,Points fidélité
+Type Of Points,Type de points
+Insertion Date,Date d’insertion
+Available From,Début disponibilité
+Available Until,Fin disponibilité
+You have no points.,Pas de points.
+"For any referred friend's registration, you earn: <strong>%1 points</strong>","Pour toute inscription de vos ami(e)s, recevez <strong>%1 points</strong>"
+"For any referred friend's registration, you friend earn: <strong>%1 points</strong>","Pour toute inscription de vos ami(e)s, ils/elles reçoivent <strong>%1 points</strong>"
+"For any first valid order placed by referred friend, you earn: <strong>%1 points</strong>","Pour tout première commande valide passée par votre filleul, vous remportez : <strong>%1 points</strong>"
+"For any first valid order placed by referred friend, you earn: <strong>%1 points x product price values</strong>","Pour tout première commande valide passée par votre filleul, vous remportez : <strong>%1 points x prix produits</strong>"
+"For any first valid order placed by referred friend, you earn: <strong>%1 points x cart summary</strong>","Pour tout première commande valide passée par votre filleul, vous remportez : <strong>%1 points x sous-total panier</strong>"
+"For any first valid order placed by referred friend, your friend gets: <strong>%1 extra points</strong>","Pour tout première commande valide passée par votre filleul, il remporte : <strong>%1 points supplémentaires</strong>"
+"For any first valid order placed by referred friend, you friend gets: <strong>%1 points x product price values</strong>","Pour tout première commande valide passée par votre filleul, il remporte : <strong>%1 points x prix produits</strong>"
+"For any first valid order placed by referred friend, you friend gets: <strong>%1 points x cart summary</strong>","Pour tout première commande valide passée par votre filleul, il remporte : <strong>%1 points x sous-total panier</strong>"
+Minimum order for referral program to be processed is: <strong>%1</strong>,Montant minimum pour une commande programme fidélité : <strong>%1</strong>
+Permanent Link,Lien permanent
+Share the following link with your friends: %1,Partagez le lien suivant avec vos ami(e)(s) :%1
+Share with the following,Partagez avec
+Share referring link,Partage lien référencement
+Sharing title (may not be used),Titre (non utilisé selon le réseau)
+Great deals here!,Profitez des nos offres exceptionnelles !
+Sharing text (may not be used),Texte (non utilisé selon le réseau)
+Visit this for great deals!,Visitez notre site pour des offres exceptionnelles !
+Refer a friend,Partagez avec un(e) ami(e)
+Friend's name,Nom ami(e)
+Friend's email address,Adresse email de votre ami(e)
+Add new line,Ajout nouvelle ligne
+Send,Envoyer
+My Referred Friends,Mes filleuls
+Referred Friends,Filleuls
+Full Name,Nom complet
+Email,Email
+Registered?,Déjà client ?
+First order?,Déjà commandé ?
+yes,oui
+no,non
+You haven't invited any friend.,Vous n’avez pas envoyé d’invitations
+Show Extra Details,Montrer plus de détails
+Hide Extra Details,Cache les détails
+Extra details,Détails supplémentaires
+You must be %1 order to be able to redeem points.,Vous devez être %1 afin de pouvoir utiliser vos points.
+Minimum balance is %1 in order to be able to redeem points.,Le montant minimum de commande doit est %1 afin de pouvoir utiliser vos points.
+%1 points,%1 points
+Enter Point Value,Enter une valeur de point
+Apply Points,Utilisation de points
+Update Points,Mise à jour points
+This shopping cart is worth %1 loyalty point(s).,Ce panier vous rapporte %1 points fidélité.
+You currently have %1 loyalty point(s).,Vous disposez actuellement %1 point(s) fidélité.
+You don\'t have any points available.,Vous ne disposez pas de points
+You are using %1 loyalty point(s) on this shopping cart.,Vous utilisez %1 point(s) fidélité avec ce panier.
+(%1 point(s)),(%1 point(s))
+"%name,",%name
+Here is your new point update.,Voici une nouvelle mise à jour de vos points.
+You\'ve just have new point entry.,Vous venez de recevoir une mise à jour de points.
+%points points injected into your point history.,%points points ont été injecté dans votre historique de points.
+ (%description)., (%description)
+Visit us on our store in order to use your points.,Rendez-vous sue notre site afin d'utiliser vos points.
+Please find in this email important information regarding your available points.,Veuillez trouver dans cet email des informations concernant la disponibilité de vos points.
+Your points on our store.,Vos points dans notre boutique en ligne.
+We are pleased to inform you that you currently have %points points.,Nous sommes heureux de vous informer que vous disposez actuellement de %points points.
+Some of your points will expire soon!,Vous avez des points qui vont bientôt expirer!
+Hurry up and use your points before expiry date.,Dépêchez-vous d'utilisez vos points avant la date d'expiration.
+Some of your points (%points points) will expire soon.,Certain de vos points (%s points) vont bientôt expirer.
+"You have %days day(s) to use your points, otherwise you will loose them.","Vous disposez de %days jours pour les utiliser, au cas contraire, ils seront perdus"
+Good News! Your friend placed an order!,Bonne nouvelle! Votre ami(e) vient de passer commande!
+Your Referral Program.,Votre programme parrainage.
+Your friend just placed an order.,Votre ami(e) vient de passer commande.
+Friend\'s Name: %friend_name.,Nom de votre ami(e) : %friend_name.
+Friend\'s email address: %friend_email.,Adresse email de votre ami(e) : %friend_email.
+Congratulations! You\'ve just received an invitation!,Félicitations! Vous venez tout juste de recevoir une invitation!
+Referral Program Invitation.,Invitation à participer au programme fidélité.
+Your friend invites you to discover our store and enjoy our loyalty scheme.,Votre ami(e) vous invite à découvrir notre boutique et à bénéficier de notre programme fidélité.
+"For more details regarding our referral program, please <a href='%our_store_url'>visit our store</a>.","Pour plus de détails, veuillez vous rendre sur <a href='%our_store_url'>notre boutique en ligne</a>."
+Your registration email address must be: %email_address,Veillez à utiliser l'adresse email suivante lors de la création de votre compte : %email_address
+J2T Modules,J2T Modules
+Module Serial,Numéro de série
+Enabled,Activé
+Key,Clé
+This is the module serial key linked to your server IP address. This information is available on your user account page on <a href='http://www.j2t-design.net' target='blank'>http://www.j2t-design.net</a>.,"La clé de ce module est liée à votre adresse IP de serveur. Cette information est disponible depuis <a href='http://www.j2t-design.net' target='blank'>http://www.j2t-design.net</a> ,dans votre espace personnel. "
+Point Values,Valeurs Points
+Points gathered / unit of money spent,Points accumulés / unité de monnaie dépensée
+"Points gathered for 1 unit of money spent. (e.g. if set to 2, you will obtain 100 points for $50 spent).","Points accumulés pour une unité de monnaie dépensée (ex : si 2 est utilisé, vous obtiendrez 100 points pour $50 dépensé)"
+Points to obtain 1 unit of money,Points nécessaires pour l’obtention d’une unité de monnaie
+Amount of points required to obtain a discount.,Quantité de points requis pour l’obtention de remise.
+Maximum Points On Order,Max points commande
+Maximum points to be collected per order (use 0 for unlimited).,Maximum de points collectés par commande.
+Registration Points,Points création de compte
+Points earned upon customer registration (points are allocated when customer logs into the system for the first time).,Points acquis lors de la création de compte (les points sont acquis une seule fois lorsque le client se connecte)
+Custom Point Values,Valeurs de points pésonalisés
+Custom Point Worthing Values,Valeurs personnalisée de points
+"Setup custom point worthing values according to cart <strong>min/max</strong> values (use 0 for no min or max value), <strong>groups</strong> and <strong>date range</strong> (date is optional value). <strong>Value</strong> is point value that will worth 1 unit of money (e.g. if set to 2, $100 spent will give 200 points - 100 x 2 - if unit of money is '$'). <strong>Important:</strong> if always recalculate is set to yes, make sure that the above rules are still available when updating an order.","Mise en place valeur de points personnalisées grace à la valeur panier <strong>min/max</strong> (0 = pas de limites), <strong>groupes</strong> et <strong>dates</strong> (date optionnelle). <strong>Valeur</strong> et la valeur de points utilisés (ex : si 2, $100 dépensés donneront 200 points - 100 x 2)."
+Custom Point Usage Values,Valeurs personnalisées utilisation
+"Setup custom point usage values according to cart <strong>min/max</strong> values (use 0 for no min or max value), <strong>groups</strong> and <strong>date range</strong> (date is optional value). <strong>Value</strong> is the point required in order to get 1 unit of money discount (e.g. if set to 100, 200 points will give $2 discount - 200 / 100 - if unit of money is '$'). <strong>Important:</strong> if always recalculate is set to yes, make sure that the above rules are still available when updating an order.","Mise en place valeur utilisation de points personnalisées grace à la valeur panier <strong>min/max</strong> (0 = pas de limites), <strong>groupes</strong> et <strong>dates</strong> (date optionnelle). <strong>Valeur</strong> et la valeur de points utilisés (ex : si 2, $100 dépensés donneront 200 points - 100 x 2)."
+Point Usage Specificities,Spécificités utilisation de points
+Step Value,Valeur palier
+Specify a value greater than 0 in order to show select box or slider.,Spécifier une valeur supérieure à 0 pour permettre l’utilisation de champs select ou du slider.
+Step Multiplier,Multiplicateur palier
+"Multiplier for the step value. e.g. if the multiplier is 10 and step value 20, the steps will be: 20, 200, 2000, etc. Default value is 1.","Multiplicateur palier. Ex : si le multiplicateur est 10 et le palier 20, les paliers seront : 20, 200, 2000, etc. Valeur par défaut : 1."
+Use Slider,Utilisation de slider
+Minimum Points Balance,Minimum de points acquis
+The minimum amount of points a customer must have to be able to use at checkout (use 0 for no-limit).,Valeur minimum de points qu’un client doit avoir pour permettre l’utilisation dans le panier (0 = pas de limites).
+Maximum On Order,Maximum par commande
+Maximum points to be used per order (use 0 for unlimited).,Valeur maximale de points utilisable dans le panier (0 = pas de limites)
+Percent On Order,Pourcentage commande
+"Order total amount percent value of maximum point usage (e.g. for a total cart amount of $400, if this value is set to 50, maximum point discount will not be higher than $200).","Utilisation maximale ne pourcentage de valeur panier (ex : panier = 400$, si la valeur configurée est 50, un maximum de 200 points pourront être utilisé)"
+Show Remove Link,Montrer le lien de suppression
+Calculation Configuration,Configuration méthode de calcul
+Include Tax On Discounts,Inclure la TVA aux remises
+Exclude Tax When Gathering Points,Exclure la TVA lors du calcul
+Remove Discounts When Gathering Points,Suppression de la valeur de remise lors de l’utilisation de points
+Total Gathered Math,Méthode de calcul total
+Catalog Pages Math,Méthode de calcul catalogue
+Points Validity,Validité points
+Valid Gathering Statuses,Statuts valides pour l’utlisation de points
+Valid Used Statuses,Validité status utilisation points
+Apply Store Scope,Limite de porté par boutique
+Points Availability Delay,Délai de validité de points
+Delaying the points availability (use 0 for no-delay).,Décalé la date de début de validité de points (0 = pas de limites)
+Points Validity Duration,Durée de validité de points
+Points validity duration in days (use 0 for unlimited).,Donner une date de validité aux points (0 = pas de limites)
+Remove Cancelled Orders,Suppression des commande annulées.
+Referral Program,Programme parrainage
+Show Referral Link,Montrer le lien programme parrainage
+Referral Points Or Ratio,Points ou ratio parrainage
+Points earned when referred friend orders.,Points acquis lorsque le filleul commande.
+Calculation Type (Referral Points),Type de calcul (points parrainage)
+Referral Child Points Or Ratio,Points ou ratio filleuls
+Points earned by referred friend for first order.,Points acquis par le filleul lors de la première commande.
+Referral Min. Order,Minimum commande filleul
+Referral minimum order amount (base subtotal amount without shipping fees) in order to process referral actions (0 for no minimum amount).,"Minimum commande du filleul (sous total de base utilisé, sans la valeur des frais de port, 0 = pas de limites)"
+Show Referral Permanent Link,Montrer le lien permanent
+Referral Redirection,Redirection filleul
+"Redirection path for permanent link, excluding domain name and index.php/ part (e.g. electronics/cell-phones.html). Leave blank to use default redirection.",Redirection filleul après click sur le lien parrainage
+Share With addthis,Partage avec addthis
+Allow customers to share permanent link using addthis. Visit addthis.com to create an account.,Permettre le partage avec l’outil addthis. Allez sur addthis.com pour créer un compte.
+addthis Account Name,Nom de compte addthis
+addthis Code,Code addthis
+Addthis buttons code without javascript element.,addthis code boutons (sans javascript)
+Custom Social Share Code,Code personnalisé partage réseaux sociaux
+"Custom social share code. You can integrate any other social network sharing tool (such as jiathis, sharethis, addinto, etc.) in order to share referral url. Referral url must be integrated to the code with the following: {{referral_url}}.","Code personnalisé partage réseaux sociaux. Vous pouvez utiliser tout service alternatif à addthis (jiathis, sharethis, addinto, etc.), permettant ainsi le partage d’url parrainage. Veullez utiliser la variable suivante pour utiliser les liens parrainage dans votre script : {{referral_url}}."
+Referred Registration Points,Points création de compte filleul
+Extra points earned by referred customer upon registration (points are allocated when customer logs into the system for the first time).,Points supplémentaires pour la création de nouveaux comptes filleuls (acquis lors de la première connexion du filleul)
+Disable guest orders,Désactiver les commandes invités
+Subscription Email Sender,Expéditeur email enregistrement
+Subscription Email Template,Gabarit email enregistrement
+Confirmation Email Sender,Expéditeur email confirmation
+Confirmation Email Template,Gabarit email confirmation
+Display Settings,Configuration affichage
+Show Product Page Points,Montrer sur les pages produits
+Show Product List Points,Montrer sur les pages listes
+Show Money Point Equivalence,Montrer l’équivalence de points en valeur monétaire
+Show Details,Montrer le détail
+Graphic Elements,Eléments graphiques
+Show Small Image,Montrer la petite image
+Small Inline Image,Petite image
+"Allowed file types: jpeg, gif, png.","Types de fichier autorisés : jpeg, gif, png."
+Small Inline Image Size,Taille petite image
+Define the small inline image size. The value inserted will be used as: value x value.,Permet de définir les taille de la petite image. La valeur insérée sera utilisé comme suit : valeur x valeur.
+Show Big Image,Montrer la grande image
+Big Inline Image,Grande image
+Big Inline Image Size,Taille grande image
+Define the big inline image size. The value inserted will be used as: value x value.,Permet de définir les taille de la grande image. La valeur insérée sera utilisé comme suit : valeur x valeur.
+Point Expiry Notification Through Email,Emails de notification de points avant expiration
+Email Sender,Expéditeur de l’email
+Email Template,Gabarit de l’email
+Number of Days Before Points Expiring,Nombre de jours avant la date d’expiration des points
+This value will be used to define how many days would be observed before point expiry in order to send notification email.,"Cette valeur sera utilisée afin de définir le nombre de jour à observer avant date d’expiration de points, afin de pouvoir expédier les emails."
+Point Status Notification Through Email,Notification de points clients par email
+Customer Point Status,Statut de points clients
+Email Sent For Customer Notifications,Notifications par email de points clients
+Admin Email notifications,Notification points clients depuis admin
+Action Type,Type d’action
+"Reward Points (%1 points used)","Points fidélités (%1 points utilisés)"
+"%1 points used","%1 points utilisés"

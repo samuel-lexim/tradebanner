@@ -1,0 +1,58 @@
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<!-- ko if: isActive() -->
+<div class="payment-option _collapsible opc-payment-additional rewardpoints"
+     data-bind="mageInit: {'collapsible':{'openedState': '_active'}}">
+    <div class="payment-option-title field choice" data-role="title">
+        <span class="action action-toggle" id="block-rewardpoints-heading" role="heading" aria-level="2">
+            <!-- ko text: $t('Redeem Loyalty Points')--><!-- /ko -->
+        </span>
+    </div>
+    <div class="payment-option-content" data-role="content">
+        <form class="form form-rewardpoints form-discount" id="rewardpoints-form" data-bind="blockLoader: isLoading">
+            <!-- ko if: isRewardCustomerLogged() -->
+            <div class="payment-option-inner rewardpoints-inner" data-bind="afterRender: loadSteps">
+                <div class="field">
+                    <label class="label" for="rewardpoints-quantity">
+                        <span data-bind="text: $t('Enter point quantity')"></span>
+                    </label>
+                    <div class="control">
+                        <!-- ko if: showSelectField() -->
+                        <select data-bind="visible: showSelectField, options: window.rewardStepConfig, value: rewardpointsQuantity"></select>
+                        <!-- /ko -->
+                        <input class="input-text"
+                               type="text"
+                               id="rewardpoints-quantity"
+                               name="rewardpoints_quantity"
+                               data-validate="{'required-entry':true}"
+                               data-bind="visible: shouldShowField, value: rewardpointsQuantity, attr:{placeholder: $t('Enter point quantity')} " />
+                    </div>
+                    <div id="slider"></div>
+                </div>
+            </div>
+            <div class="actions-toolbar">
+                <div class="primary">
+                    <button class="action action-apply applyPointsBtn" type="submit" data-bind="'value': $t('Apply'), click: apply">
+                        <span><!-- ko text: $t('Apply')--><!-- /ko --></span>
+                    </button>
+                    <!-- ko ifnot: isApplied() -->
+                    <!-- /ko -->
+                    <!-- ko if: isApplied() -->
+                    <button class="action action-cancel" type="submit" data-bind="'value': $t('Cancel'), click: cancel">
+                        <span><!-- ko text: $t('Cancel point usage')--><!-- /ko --></span>
+                    </button>
+                    <!-- /ko -->
+                </div>
+            </div>
+            <!-- /ko -->
+        </form>
+        <!-- ko ifnot: isRewardCustomerLogged() -->
+        <!-- ko text: $t('Please Sign In in order to be able to use points.')--><!-- /ko -->
+        <!-- /ko -->
+    </div>
+</div>
+<!-- /ko -->

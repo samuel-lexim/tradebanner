@@ -1,0 +1,17 @@
+.j2t-loyalty-points img.reward-icon-image {display: inline; vertical-align: middle;}
+#discount-point-form #slider {margin: 8px;}
+#discount-point-form {margin-bottom: 15px;}
+.cart-reward-icon-image {vertical-align: middle;}
+.cart-reward-icon-image.cart-reward-icon-image-inline { display: inline; float: left; margin-right: 20px; }
+.block.rewardpoints .field-rewards-slider-img {width: 100%;}
+
+.form-rewardpoints .payment-option-inner.rewardpoints-inner #slider {
+    margin: 0 0 35px;
+}
+
+.payment-option.opc-payment-additional.rewardpoints {
+    overflow: hidden;
+    margin: 0;
+    padding: 20px 0 40px;
+    clear: both;
+}

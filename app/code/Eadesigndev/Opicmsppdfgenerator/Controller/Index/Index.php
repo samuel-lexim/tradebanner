@@ -157,7 +157,7 @@ class Index extends \Magento\Framework\App\Action\Action
         return $this->fileFactory->create(
             $fileName,
             $output,
-            DirectoryList::VAR_DIR,
+            DirectoryList::MEDIA_ORDER_PDF,
             'application/pdf'
         );
     }

@@ -142,7 +142,7 @@ class Printpdf extends \Magento\Sales\Controller\Adminhtml\Order\AbstractMassAct
         return $this->fileFactory->create(
             $fileName,
             $output,
-            DirectoryList::VAR_DIR,
+            DirectoryList::MEDIA_ORDER_PDF,
             'application/pdf'
         );
 

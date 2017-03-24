@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 J2T-Design. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+    <update handle="customer_account"/>
+    <body>
+        <referenceContainer name="content">
+            <block class="J2t\Rewardpoints\Block\Referral" name="referral_customer_list" template="referral.phtml" cacheable="false">
+                <!--<block class="J2t\Rewardpoints\Block\Dashboard" name="customer_account_points" template="dashboard_points.phtml" cacheable="false" />-->
+            </block>
+        </referenceContainer>
+        <referenceContainer name="page.messages">
+            <block class="Magento\Framework\View\Element\Messages" name="messages" as="messages"/>
+        </referenceContainer>
+    </body>
+</page>

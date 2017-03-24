@@ -1,0 +1,170 @@
+<?php $pts = $this->getCartPoints(); ?>
+<?php $usedPoints = $this->getCartUsedPoints(); ?>
+
+<?php $customerPoints = $this->getCurrentCustomerPoints(); ?>
+
+<?php $details_items = ''; ?>
+<?php if ($this->showDetails() && ($rule_lines = $this->getQuoteCartRuleText())): ?>
+    <?php
+    $show_hide = '<div>'
+            . '<a id="j2t-show-rewards-details" onclick="jQuery(this).hide(); jQuery(\'#j2t-hide-rewards-details\').show(); jQuery(\'#item-details-rewardpoints\').show(); jQuery(\'#content-details-rewardpoints\').show(); " href="javascript:jQuery(this).hide(); jQuery(\'#j2t-hide-rewards-details\').show(); jQuery(\'#item-details-rewardpoints\').show(); jQuery(\'#content-details-rewardpoints\').show(); void(0)" alt="' . __('Show Extra Details') . '">' . __('Show Extra Details') . '</a>'
+            . '<a id="j2t-hide-rewards-details" style="display:none;" onclick="jQuery(\'#j2t-show-rewards-details\').show(); jQuery(this).hide(); jQuery(\'#content-details-rewardpoints\').hide();" href="javascript:jQuery(\'#j2t-show-rewards-details\').show(); jQuery(this).hide(); jQuery(\'#content-details-rewardpoints\').hide(); void(0);" alt="' . __('Hide Extra Details') . '">' . __('Hide Extra Details') . '</a>
+    </div>';
+    ?>
+    <?php $details_items = '<div id="content-details-rewardpoints" style="display:none;">'; ?>
+    <?php /* if (($items_line = $this->getItemPoints()) && sizeof($this->getItemPoints())):?>
+      <?php $details_items .= '<div class="item-details-rewardpoints" id="item-details-rewardpoints">';?>
+      <?php foreach($items_line as $point_line):?>
+      <?php $details_items .= '<div class="innner-item-points">'.$point_line.'</div>';?>
+      <?php endforeach;?>
+      <?php $details_items .= '</div>';?>
+      <?php endif; */ ?>
+
+    <?php if ($rule_lines): ?>
+        <?php $details_items .= '<div class="item-details-rewardpoints-cartrule" id="item-details-rewardpoints-cartrule"><h4>' . __("Extra details") . '</h4>'; ?>
+        <?php foreach ($rule_lines as $point_line): ?>
+            <?php $details_items .= '<div class="innner-item-points">' . $point_line . '</div>'; ?>
+        <?php endforeach; ?>
+        <?php $details_items .= '</div>'; ?>
+    <?php endif; ?>
+    <?php $details_items .= '</div>'; ?>
+    <?php $details_items = $show_hide . $details_items; ?>
+
+<?php endif; ?>
+
+<div class="block rewardpoints col-xs-12 col-sm-4" id="block-rewardpoints">
+    <!-- data-mage-init='{"collapsible":{"openedState": "active", "saveState": true}}' -->
+    <div class="title" data-role="title">
+        <strong id="block-discount-heading" role="heading" aria-level="2"><?php echo __('Reward Points') ?></strong>
+    </div>
+    <div class="content" data-role="content" aria-labelledby="block-discount-heading">
+        <?php if (!$this->isCustomerLogged()): ?>
+            <?php if ($this->showImage() && ($size = $this->sizeImage()) && ($url = $this->getImageUrl())): ?>
+                <img class="cart-reward-icon-image cart-reward-icon-image-inline" src="<?php echo $url; ?>" alt="<?php echo __("Reward Points"); ?>" width="<?php echo $size; ?>" />
+            <?php endif; ?>
+            <div class="rewards_customer_not_connected login-area-reward-form">
+                <?php echo __("You must be %1 order to be able to redeem points.", '<a href="' . $this->getUrl('rewardpoints/cart/rewardLogin') . '" title="' . __('logged in') . '">' . __('logged in') . '</a>'); ?>
+            </div>
+        <?php elseif (( $minPoints = $this->getMinCustomerPointsBalance()) && ($minPoints > $customerPoints) && $minPoints): ?>
+            <?php if ($this->showImage() && ($size = $this->sizeImage()) && ($url = $this->getImageUrl())): ?>
+                <img class="cart-reward-icon-image cart-reward-icon-image-inline" src="<?php echo $url; ?>" alt="<?php echo __("Reward Points"); ?>" width="<?php echo $size; ?>" />
+            <?php endif; ?>
+            <div class="rewards_customer_points_min">
+                <?php echo __("Minimum balance is %1 in order to be able to redeem points.", $minPoints); ?>
+            </div>
+        <?php else: ?>
+            <form id="discount-point-form"
+                  action="<?php echo $block->getUrl('rewardpoints/cart/rewardPost') ?>"
+                  method="post">
+                <div class="fieldset">
+                    <?php if ($this->showImage() && ($size = $this->sizeImage()) && ($url = $this->getImageUrl())): ?>
+                        <img class="cart-reward-icon-image" src="<?php echo $url; ?>" alt="<?php echo __("Reward Points"); ?>" width="<?php echo $size; ?>" />
+                    <?php endif; ?>
+                    <input type="hidden" name="remove" id="remove-points" value="0" />
+                    <div class="field">
+                        <label for="rewardpoints_value" class="label"><span><?php echo __('Points') ?></span></label>
+                        <div class="control">
+
+                            <?php if (!$this->getStepSlider() && $this->getStepValue() && $customerPoints >= $this->getStepValue()): ?>
+                                <select onchange="$('.applyPointsBtn').removeAttr('disabled');" class="selectpicker" id="rewardpoints_value" name="rewardpoints_value">
+                                    <?php $values = $this->getStepValues(true) ?>
+                                    <?php foreach ($values as $value): ?>
+                                        <option value="<?php echo $value; ?>" <?php if ($usedPoints == $value): ?>selected="selected"<?php endif; ?>><?php echo __('%1 points', $value); ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            <?php elseif ($this->getStepSlider() && $this->getStepValue() && $customerPoints >= $this->getStepValue()): ?>
+                                <input type="hidden" class="input-text" id="rewardpoints_value" name="rewardpoints_value" value="<?php if ($usedPoints) echo $usedPoints; ?>" placeholder="<?php echo $block->escapeHtml(__('Enter Point Value')); ?>" />
+                                <div id="slider"></div>
+                                <script>
+                                    require([
+                                        "jquery",
+                                        "jquery/ui",
+                                        "J2t_Rewardpoints/js/jquery-ui-slider-pips"
+                                    ], function ($) {
+                                        $("#discount-point-form .field").addClass('field-rewards-slider-img');
+                                        var values = <?php echo $this->getStepValues() ?>;
+                                        var defaultLocation = jQuery.inArray(<?php echo ($usedPoints) ? $usedPoints : $this->getStepValue() ?>, values);
+                                        $("#slider").slider({
+                                            value: defaultLocation,
+                                            min: 0,
+                                            max: values.length - 1,
+                                            /*create: function( event, ui ) {
+                                             $( "#rewardpoints_value" ).val(values[ui.value]);
+                                             },*/
+                                            slide: function (event, ui) {
+                                                $("#rewardpoints_value").val(values[ui.value]);
+                                                $(".applyPointsBtn").removeAttr("disabled");
+                                            }
+                                        }).slider("pips", {
+                                            labels: values
+                                        }).slider("float", {
+                                            labels: values
+                                        });
+                                        //$( "#slider" ).slider( "disable" );
+                                    });
+                                </script>
+
+                            <?php else: ?>
+                                <input onkeyup="$('.applyPointsBtn').removeAttr('disabled');" type="text" class="input-text" id="rewardpoints_value" name="rewardpoints_value" value="<?php if ($usedPoints) echo $usedPoints; ?>" placeholder="<?php echo $block->escapeHtml(__('Enter Point Value')); ?>" />
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                    <div class="actions-toolbar">
+                        <?php /* if (!$usedPoints): */ ?><div class="primary">
+                            <button <?php /* if ($usedPoints):?>disabled="disabled"<?php endif; */ ?> class="action applyPoints applyPointsBtn primary" type="button" value="<?php if (!$usedPoints): echo __('Apply Points');
+                    else: echo __('Update Points');
+                    endif; ?>">
+                                <span><?php if (!$usedPoints): echo __('Apply Points');
+                    else: echo __('Update Points');
+                    endif; ?></span>
+                            </button>
+                        </div>
+    <?php /* else:?>
+      <div class="primary">
+      <button  type="button" class="action cancelPoints primary" value="<?php echo __('Remove Points') ?>"><span><?php echo __('Remove Points') ?></span></button>
+      </div><?php endif; */ ?>
+                    </div>
+                </div>
+                <?php if ($usedPoints): ?>
+                    <div class="primary">
+                        <button  type="button" class="action cancelPoints primary" value="<?php echo __('Remove Points') ?>"><span><?php echo __('Remove Points') ?></span></button>
+                    </div>
+                <?php endif; ?>
+            </form>
+            <?php endif; ?>
+        <div class="rewards_point_cart">
+        <?php echo __("This shopping cart is worth %1 loyalty point(s).", $pts); ?>
+        <?php if ($this->showEquivalence() && ($eq = $this->getPointsEquivalence($pts))): ?>
+                <span class="j2t-point-equivalence"><?php echo __("%1 points = %2.", $pts, $eq) ?></span>
+            <?php endif; ?>
+        </div>
+            <?php if ($this->isCustomerLogged()): ?>
+            <div class="rewards_customer_points">
+                <?php if ($customerPoints): ?>
+                    <?php echo __("You currently have %1 loyalty point(s).", $customerPoints); ?>
+                    <?php if ($this->showEquivalence() && ($eq = $this->getPointsEquivalence($customerPoints))): ?>
+                        <span class="j2t-point-equivalence"><?php echo __("%1 points = %2.", $customerPoints, $eq) ?></span>
+                <?php endif; ?>
+            <?php else: ?>
+                <?php echo __("You don't have any points available."); ?>
+                <?php endif; ?>
+            </div>
+        <?php endif; ?>
+        <?php if ($usedPoints): ?>
+            <div class="rewards_customer_points_usage">
+                <?php echo __("You are using %1 loyalty point(s) on this shopping cart.", $usedPoints); ?>
+            </div>
+        <?php endif; ?>
+        <?php if ($details_items): ?>
+            <div class="rewards_points_details">
+    <?php echo $details_items; ?>
+            </div>
+<?php endif; ?>
+    </div>
+</div>
+
+<script>
+    require(["jquery", "J2t_Rewardpoints/js/discount-points"], function ($) {
+        $('#discount-point-form').discountPoint({"rewardPointSelector": "#rewardpoints_value", "removePointSelector": "#remove-points", "applyButton": "button.action.applyPoints", "cancelButton": "button.action.cancelPoints"});
+    });
+</script>

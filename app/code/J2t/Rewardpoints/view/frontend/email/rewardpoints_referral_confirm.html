@@ -1,0 +1,27 @@
+<!--@subject Referral program confirmation @-->
+{{template config_path="design/email/header_template"}}
+<table>
+    <tr class="email-intro">
+        <td>
+            <p class="greeting">{{trans "%name," name=$parent.getName()}}</p>
+            <p>
+                {{trans "Good News! Your friend placed an order!"}}
+            </p>
+        </td>
+    </tr>
+    <tr class="email-summary">
+        <td>
+            <h1>{{trans "Your Referral Program."}}</h1>
+        </td>
+    </tr>
+    <tr class="email-information">
+        <td>
+            {{trans "Your friend just placed an order."}}<br />
+            {{trans "Friend's Name: %friend_name." friend_name=$child.getName() |raw}}<br />
+            {{trans "Friend's email address: %friend_email." friend_email=$child.getEmail() |raw}}<br />
+        </td>
+    </tr>
+</table>
+
+{{template config_path="design/email/footer_template"}}
+

@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="adminhtml_sales_order_create_process_data_before">
+        <observer name="j2t_rewardpoints_on_admin_ordercreate" instance="J2t\Rewardpoints\Observer\ProcessAdminOrderCreate" />
+    </event>
+    
+    <event name="config_data_save_before">
+        <observer name="j2t_rewardpoints_on_admin_configuration" instance="J2t\Rewardpoints\Observer\ProcessAdminConfiguration" />
+    </event>
+    
+    <!--
+    
+    <core_config_data_save_before>
+                <observers>
+                    <rewardpoints_admin_configuration>
+                        <type>model</type>
+                        <class>J2t_Rewardpoints_Model_Observer</class>
+                        <method>adminConfiguration</method>
+                    </rewardpoints_admin_configuration>
+                </observers>
+            </core_config_data_save_before>
+    
+    -->
+    
+    
+	<!--
+	<event name="adminhtml_sales_order_create_process_data_before">
+        <observer
+            name="j2t_rewardpoints_on_admin_ordercreate"
+            instance="J2t\Rewardpoints\Model\Observer"
+            method="addRewardPointsAdmin" />
+    </event>-->
+	
+	<event name="adminhtml_block_html_before">
+        <observer name="j2t_rewardpoints_form_on_admin_page" instance="J2t\Rewardpoints\Observer\ProcessAdminFormPage" />
+    </event>
+	
+	<!--<event name="adminhtml_block_html_before">
+        <observer
+            name="j2t_rewardpoints_form_on_admin_page"
+            instance="J2t\Rewardpoints\Model\Observer"
+            method="addRewardFormAdmin" />
+    </event>-->
+	
+	<event name="adminhtml_customer_prepare_save">
+        <observer name="j2t_rewardpoints_customer_admin_save" instance="J2t\Rewardpoints\Observer\ProcessAdminCustomerSave" />
+    </event>
+	
+	<!--<event name="adminhtml_customer_prepare_save">
+		<observer name="j2t_rewardpoints_customer_admin_save" instance="J2t\Rewardpoints\Model\Observer" method="recordPointsAdminEvent" />
+	</event>-->
+	
+	<event name="sales_order_creditmemo_refund">
+        <observer name="j2t_rewardpoints_refund" instance="J2t\Rewardpoints\Observer\ProcessAdminCreditmemoRefund" />
+    </event>
+	
+	<!--<event name="sales_order_creditmemo_refund">
+		<observer
+            name="j2t_rewardpoints_refund"
+            instance="J2t\Rewardpoints\Model\Observer"
+            method="addRewardRefund" />
+	</event>-->
+</config>

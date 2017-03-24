@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <!-- action="adminhtml/system_variable" -->
+        <add id="J2t_Rewardpoints::system_rewardpoints_stats" title="Statistics" module="J2t_Rewardpoints" sortOrder="10" parent="J2t_Rewardpoints::system_rewardpoints_settings" action="rewardpoints_admin/stats/index" resource="J2t_Rewardpoints::system_rewardpoints_stats"/>
+        
+        
+        <add id="J2t_Rewardpoints::system_rewardpoints_points" title="Client Points" module="J2t_Rewardpoints" sortOrder="20" parent="J2t_Rewardpoints::system_rewardpoints_settings" action="rewardpoints_admin/clientpoints/index" resource="J2t_Rewardpoints::system_rewardpoints_points"/>
+        <add id="J2t_Rewardpoints::system_rewardpoints_referrals" title="Referrals" module="J2t_Rewardpoints" sortOrder="30" parent="J2t_Rewardpoints::system_rewardpoints_settings" action="rewardpoints_admin/referrals/index" resource="J2t_Rewardpoints::system_rewardpoints_referrals"/>
+        <add id="J2t_Rewardpoints::system_rewardpoints_catalog_rule" title="Catalog Point Rules" module="J2t_Rewardpoints" sortOrder="40" parent="J2t_Rewardpoints::system_rewardpoints_settings" action="rewardpoints_admin/catalogpointrules/index" resource="J2t_Rewardpoints::system_rewardpoints_catalog_rule"/>
+        <add id="J2t_Rewardpoints::system_rewardpoints_cart_rule" title="Cart Point Rules" module="J2t_Rewardpoints" sortOrder="50" parent="J2t_Rewardpoints::system_rewardpoints_settings" action="rewardpoints_admin/cartpointrules_quote" resource="J2t_Rewardpoints::system_rewardpoints_cart_rule"/>
+        
+        <add id="J2t_Rewardpoints::system_rewardpoints_configuration" title="Configuration" module="J2t_Rewardpoints" sortOrder="60" parent="J2t_Rewardpoints::system_rewardpoints_settings" action="adminhtml/system_config/edit/section/rewardpoints" resource="J2t_Rewardpoints::system_rewardpoints_configuration"/>
+        <add id="J2t_Rewardpoints::system_rewardpoints_settings" title="Reward Points" module="J2t_Rewardpoints" sortOrder="30" parent="Magento_Backend::marketing" resource="J2t_Rewardpoints::system_rewardpoints_settings"/>
+    </menu>
+</config>

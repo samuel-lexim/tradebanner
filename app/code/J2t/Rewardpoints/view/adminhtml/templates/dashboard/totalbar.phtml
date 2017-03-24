@@ -1,0 +1,41 @@
+<?php
+/**
+ * Copyright © 2016 J2T Design. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php $randVal = rand(0,99999)?>
+<script>
+    require(['jquery', 'jquery/ui'], function($){ 
+        $( ".rewardpoints-totals" ).each(function( index ) {
+            if(!$( this ).hasClass('rewardpoints-totals-<?php echo $randVal;?>')){
+                $( this ).remove();
+            }
+        });
+    });
+</script>
+
+<?php $maxPerLine = 4;?>
+<?php $currentCount = 0;?>
+<?php if (sizeof($block->getTotals()) > 0): ?>
+<div class="dashboard-totals rewardpoints-totals rewardpoints-totals-<?php echo $randVal;?>" id="rewardpoints_dashboard_diagram_totals">
+    <div class="dashboard-item-title"><span class="rewardpoints-icon">&#9733;</span><?php echo __("Reward Engine");?></div>
+        <?php foreach ($block->getTotals() as $_total): ?>
+        <?php if ($currentCount%$maxPerLine==0):?><ul class="dashboard-totals-list rewardpoints-dashboard-totals-list"><?php endif; ?>
+            <li class="dashboard-totals-item rewardpoints-dashboard-totals-item">
+                <span class="dashboard-totals-label"><?php /* @escapeNotVerified */ echo $_total['label'] ?></span>
+                <strong class="dashboard-totals-value">
+                    <?php /* @escapeNotVerified */ echo $_total['value'] ?>
+                    <span class="dashboard-totals-decimals"><?php /* @escapeNotVerified */ echo $_total['decimals'] ?></span>
+                </strong>
+            </li>
+        <?php if ($currentCount%$maxPerLine==($maxPerLine-1)):?></ul><?php endif; ?>
+            <?php $currentCount++;?>
+        <?php endforeach; ?>
+        <?php if ($currentCount!=0 && $currentCount%$maxPerLine!=0): ?></ul><?php endif; ?>
+    
+</div>
+<?php endif; ?>

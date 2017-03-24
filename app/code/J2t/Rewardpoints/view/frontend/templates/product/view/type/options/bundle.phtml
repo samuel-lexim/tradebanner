@@ -1,0 +1,37 @@
+<?php
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+
+<?php
+$product = $block->getProduct();
+$helper = $this->helper('Magento\Catalog\Helper\Output');
+?>
+<?php $options = $block->decorateArray($block->getOptions()); ?>
+<?php if ($product->isSaleable()):?>
+    <?php if (count($options)): ?>
+<script>
+	
+	
+		require([
+			'jquery',
+			'mage/mage',
+			'J2t_Rewardpoints/js/bundle'
+		], function($){
+			$(function() {
+				$('#product_addtocart_form').pointsBundle({
+					optionConfig:<?php echo $block->getJsonConfig()?>,
+					controlContainer: '.field.option',
+					qtyFieldSelector: '.input-text.qty'
+				});
+			});
+		});
+
+</script>
+	<?php endif;?>
+<?php endif;?>

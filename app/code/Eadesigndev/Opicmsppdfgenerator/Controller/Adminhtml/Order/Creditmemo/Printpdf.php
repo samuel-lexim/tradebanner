@@ -134,7 +134,7 @@ class Printpdf extends Abstractpdf
         return $this->_fileFactory->create(
             $fileName,
             $output,
-            DirectoryList::VAR_DIR,
+            DirectoryList::MEDIA_ORDER_PDF,
             'application/pdf'
         );
     }

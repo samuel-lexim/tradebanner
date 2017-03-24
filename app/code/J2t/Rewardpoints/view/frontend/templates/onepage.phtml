@@ -1,0 +1,21 @@
+<?php $customerPoints = $this->getCurrentCustomerPoints(); ?>
+<?php $usedPoints = $this->getCartUsedPoints(); ?>
+<script>
+    window.isRewardCustomerLogged = window.checkoutConfig.isCustomerLoggedIn;
+    window.isRewardpointsActive = <?php echo $block->isActive(); ?>;
+    window.rewardStepConfig = <?php echo $block->getStepValues(); ?>;
+    window.isPointSteps = <?php echo $block->getStepValue(); ?>;
+    window.usedPoints = <?php echo $usedPoints; ?>;
+    window.defaultSlider = <?php echo ($usedPoints) ? $usedPoints : $this->getStepValue() ?>;
+
+<?php if (!$this->getStepSlider() && $this->getStepValue() && $customerPoints >= $this->getStepValue()): ?>
+        window.isSlider = false;
+<?php elseif ($this->getStepSlider() && $this->getStepValue() && $customerPoints >= $this->getStepValue()): ?>
+        window.isSlider = true;
+<?php endif; ?>
+    window.stepValue = <?php echo $block->getStepValue(); ?>;
+    window.showSelectField = <?php if ($block->getStepValue() > 0): ?>true<?php else: ?>false<?php endif; ?>;
+    window.stepMultiplier = <?php echo $block->getStepMultiplier(); ?>;
+    window.buttonRemove = <?php echo $block->getButtonRemove(); ?>;
+
+</script>

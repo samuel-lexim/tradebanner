@@ -1,0 +1,30 @@
+<!--@subject Referral program subscription ({{var parent.name}} invites you to visit {{var store_name}}) @-->
+
+{{template config_path="design/email/header_template"}}
+
+<table>
+    <tr class="email-intro">
+        <td>
+            <p class="greeting">{{trans "%name," name=$referral.getRewardpointsReferralName()}}</p>
+            <p>
+                {{trans "Congratulations! You've just received an invitation!"}}
+            </p>
+        </td>
+    </tr>
+    <tr class="email-summary">
+        <td>
+            <h1>{{trans "Referral Program Invitation."}}</h1>
+        </td>
+    </tr>
+    <tr class="email-information">
+        <td>
+            {{trans "Your friend invites you to discover our store and enjoy our loyalty scheme."}}<br />
+            {{trans "Friend's Name: %friend_name." friend_name=$parent.getName() |raw}}<br />
+            {{trans "Friend's email address: %friend_email." friend_email=$parent.getEmail() |raw}}<br />
+            {{trans "For more details regarding our referral program, please <a href='%our_store_url'>visit our store</a>." our_store_url=$referral_url |raw}}<br />
+            {{trans "Your registration email address must be: %email_address" email_address=$referral.getRewardpointsReferralEmail() |raw}}.<br />
+        </td>
+    </tr>
+</table>
+
+{{template config_path="design/email/footer_template"}}

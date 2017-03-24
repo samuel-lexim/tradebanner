@@ -1,0 +1,14 @@
+<?php
+/**
+ * Copyright © 2015 J2T Design. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+?>
+<?php $_source  = $block->getSource() ?>
+<?php if ($_source): ?>
+    <tr>
+        <td class="label"><?php echo $block->getPointGatheredLabel() ?><div id="gathered_points_adv"></div></td>
+        <td><input type="text" name="creditmemo[gathered_points]" value="<?php echo $block->getPointsGathered()?>" class="input-text admin__control-text not-negative-amount" id="gathered_points" /></td>
+    </tr>
+<?php endif; ?>

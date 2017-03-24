@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 J2T Design All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Api/etc/extension_attributes.xsd">
+    <!--<extension_attributes for="Magento\Quote\Api\Data\TotalsAdditionalDataInterface">
+        <attribute code="rewardpoints" type="J2t\Rewardpoints\Api\Data\RewardpointsInterface[]" />
+    </extension_attributes>-->
+	
+    <!--<extension_attributes for="Magento\Quote\Api\Data\TotalsInterface">
+        <attribute code="base_rewardpoints" type="J2t\Rewardpoints\Api\Data\BaseRewardpointsInterface[]" />
+    </extension_attributes>-->
+	
+    <extension_attributes for="Magento\Quote\Api\Data\TotalsAdditionalDataInterface">
+        <attribute code="base_rewardpoints" type="J2t\Rewardpoints\Api\Data\BaseRewardpointsInterface[]" />
+    </extension_attributes>
+	
+	
+	
+    <!--<extension_attributes for="Magento\Quote\Api\Data\TotalsAdditionalDataInterface">
+        <attribute code="base_rewardpoints" type="J2t\Rewardpoints\Api\Data\BaseRewardpointsInterface[]" />
+    </extension_attributes>-->
+	
+	
+	
+    <!-- NEW -->
+    <!--<extension_attributes for="Magento\Quote\Api\Data\TotalSegmentInterface">
+        <attribute code="tax_grandtotal_details" type="Magento\Tax\Api\Data\GrandTotalDetailsInterface[]" />
+    </extension_attributes>-->
+	
+    <!-- OLD -->
+    <!--<extension_attributes for="Magento\Quote\Api\Data\TotalsInterface">
+        <attribute code="tax_grandtotal_details" type="Magento\Tax\Api\Data\GrandTotalDetailsInterface[]" />
+    </extension_attributes>-->
+	
+	
+	
+</config>
