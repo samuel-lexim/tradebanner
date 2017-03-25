@@ -10,11 +10,13 @@ namespace J2t\Rewardpoints\Observer;
 
 use Magento\Framework\Event\ObserverInterface;
 
-class ProcessAdminCustomerSave implements ObserverInterface {
+class ProcessAdminCustomerSave implements ObserverInterface
+{
 
     protected $_objectManager;
 
-    public function execute(\Magento\Framework\Event\Observer $observer) {
+    public function execute(\Magento\Framework\Event\Observer $observer)
+    {
         $event = $observer->getEvent();
         $customer = $event->getCustomer();
         $request = $event->getRequest();
@@ -23,7 +25,8 @@ class ProcessAdminCustomerSave implements ObserverInterface {
 
         if ($data = $request->getPost()) {
 
-            $data_array = array('points_current' => $data->points_current,
+            $data_array = array(
+                'points_current' => $data->points_current,
                 'rewardpoints_description' => $data->rewardpoints_description,
                 'date_start' => $data->date_start,
                 'date_end' => $data->date_end,
@@ -38,7 +41,7 @@ class ProcessAdminCustomerSave implements ObserverInterface {
                     /*$inputFilter = new \Zend_Filter_Input(
                             ['date_start' => $dateFilter, 'date_end' => $dateFilter], [], $data_array
                     );*/
-                    
+
                     $filterRules = [];
                     foreach (['date_start', 'date_end'] as $dateField) {
                         if (!empty($data_array[$dateField])) {
@@ -47,8 +50,8 @@ class ProcessAdminCustomerSave implements ObserverInterface {
                     }
 
                     $data = (new \Zend_Filter_Input($filterRules, [], $data_array))->getUnescaped();
-                    
-                    
+
+
                     //$data = $inputFilter->getUnescaped();
 
                     if (($points = trim($data['points_current'])) && $points < 0) {
@@ -72,7 +75,7 @@ class ProcessAdminCustomerSave implements ObserverInterface {
                     $data['customer_id'] = $customer_data['id'];
                     $data['order_id'] = \J2t\Rewardpoints\Model\Point::TYPE_POINTS_ADMIN;
 
-                    
+
                     $model->addData($data)->save();
 
                     $description = $data['rewardpoints_description'];
@@ -80,7 +83,7 @@ class ProcessAdminCustomerSave implements ObserverInterface {
                         $description = __('Store input');
                     }
 
-                    if (!empty($data['rewardpoints_notification'])) { 
+                    if (!empty($data['rewardpoints_notification'])) {
                         $helper = $this->_objectManager->get('J2t\Rewardpoints\Helper\Data');
                         $customerModel = $this->_objectManager->get('\Magento\Customer\Model\Customer')->load($customer->getId());
                         $helper->sendAdminNotification($model, $customerModel, $customer->getStoreId(), $data['points_current'], $description);
