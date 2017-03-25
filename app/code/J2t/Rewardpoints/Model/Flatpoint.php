@@ -17,7 +17,8 @@ namespace J2t\Rewardpoints\Model;
  * @method \Magento\Customer\Model\Group setTaxClassId(int $value)
  * @method Group setTaxClassName(string $value)
  */
-class Flatpoint extends \Magento\Framework\Model\AbstractModel {
+class Flatpoint extends \Magento\Framework\Model\AbstractModel
+{
 
     protected $points_current;
     protected $points_collected;
@@ -35,42 +36,48 @@ class Flatpoint extends \Magento\Framework\Model\AbstractModel {
     protected $customerFactory;
 
     public function __construct(
-    \Magento\Framework\Model\Context $context, 
-            \Magento\Framework\Registry $registry, 
-            \J2t\Rewardpoints\Helper\Data $pointHelper, 
-            \Magento\Store\Model\StoreManagerInterface $storeManager, 
-            \Magento\Customer\Model\Customer $customer = null, 
-            \Magento\Framework\Model\ResourceModel\AbstractResource $resource = null, 
-            \Magento\Framework\Data\Collection\AbstractDb $resourceCollection = null, 
-            //\Magento\Customer\Model\CustomerFactory $customerFactory,
-            array $data = []
-    ) {
+        \Magento\Framework\Model\Context $context,
+        \Magento\Framework\Registry $registry,
+        \J2t\Rewardpoints\Helper\Data $pointHelper,
+        \Magento\Store\Model\StoreManagerInterface $storeManager,
+        \Magento\Customer\Model\Customer $customer = null,
+        \Magento\Framework\Model\ResourceModel\AbstractResource $resource = null,
+        \Magento\Framework\Data\Collection\AbstractDb $resourceCollection = null,
+        //\Magento\Customer\Model\CustomerFactory $customerFactory,
+        array $data = []
+    )
+    {
         parent::__construct($context, $registry, $resource, $resourceCollection, $data);
         $this->_pointData = $pointHelper;
         //$this->customerFactory = $customerFactory;
     }
 
-    protected function _construct() {
+    protected function _construct()
+    {
         $this->_init('J2t\Rewardpoints\Model\Resource\Flatpoint');
     }
 
-    public function sendCustomerNotification($customer, $store, $points, $pointModel, $sender, $emailTemplate = null) {
+    public function sendCustomerNotification($customer, $store, $points, $pointModel, $sender, $emailTemplate = null)
+    {
         return $this->_pointData->sendCustomerNotification($customer, $store, $points, $pointModel, $sender);
     }
 
-    public function loadByCustomerStore($customerId, $storeId, $date = null) {
+    public function loadByCustomerStore($customerId, $storeId, $date = null)
+    {
         $this->getResource()->loadByCustomerStore($this, $customerId, $storeId, $date);
         return $this;
     }
 
-    public function loadByCustomerId($customer_id) {
+    public function loadByCustomerId($customer_id)
+    {
         $collection = $this->getCollection();
         $collection->getSelect()->where('user_id = ?', $customer_id);
 
         return $collection;
     }
 
-    protected function collectVariablesValues($customer_id, $storeId) {
+    protected function collectVariablesValues($customer_id, $storeId)
+    {
         $this->loadByCustomerStore($customer_id, $storeId);
         $this->points_current = $this->getPointsCurrent();
         $this->points_collected = $this->getPointsCollected();
@@ -79,7 +86,8 @@ class Flatpoint extends \Magento\Framework\Model\AbstractModel {
         $this->points_lost = $this->getPointsLost();
     }
 
-    public function collectPointsCurrent($customer_id, $storeId) {
+    public function collectPointsCurrent($customer_id, $storeId)
+    {
         if ($this->points_current != null) {
             return $this->points_current;
         }
@@ -87,7 +95,8 @@ class Flatpoint extends \Magento\Framework\Model\AbstractModel {
         return $this->points_current;
     }
 
-    public function collectPointsReceived($customer_id, $storeId) {
+    public function collectPointsReceived($customer_id, $storeId)
+    {
         if ($this->points_collected != null) {
             return $this->points_collected;
         }
@@ -95,7 +104,8 @@ class Flatpoint extends \Magento\Framework\Model\AbstractModel {
         return $this->points_collected;
     }
 
-    public function collectPointsSpent($customer_id, $storeId) {
+    public function collectPointsSpent($customer_id, $storeId)
+    {
         if ($this->points_spent != null) {
             return $this->points_spent;
         }
@@ -103,7 +113,8 @@ class Flatpoint extends \Magento\Framework\Model\AbstractModel {
         return $this->points_spent;
     }
 
-    public function collectPointsWaitingValidation($customer_id, $storeId) {
+    public function collectPointsWaitingValidation($customer_id, $storeId)
+    {
         if ($this->points_waiting != null) {
             return $this->points_waiting;
         }
@@ -111,7 +122,8 @@ class Flatpoint extends \Magento\Framework\Model\AbstractModel {
         return $this->points_waiting;
     }
 
-    public function collectPointsLost($customer_id, $storeId) {
+    public function collectPointsLost($customer_id, $storeId)
+    {
         if ($this->points_lost != null) {
             return $this->points_lost;
         }
@@ -130,7 +142,8 @@ class Flatpoint extends \Magento\Framework\Model\AbstractModel {
       return $this;
       } */
 
-    public function processRecordFlat($customerId, $storeId, $checkDate = false, $forceProcess = false) {
+    public function processRecordFlat($customerId, $storeId, $checkDate = false, $forceProcess = false)
+    {
         if ($customerId) {
             $points_received = $this->_pointData->getCustomerGatheredPoints($customerId, $storeId);
             $points_spent = $this->_pointData->getCustomerSpentPoints($customerId, $storeId);
@@ -144,13 +157,14 @@ class Flatpoint extends \Magento\Framework\Model\AbstractModel {
             //$this->_customerModel = $objectManager->get('\Magento\Customer\Model\Customer');
             $this->customerFactory = $objectManager->get('\Magento\Customer\Model\CustomerFactory');
             $this->_storeManager = $objectManager->get('\Magento\Store\Model\StoreManagerInterface');
-            
-            
+
+
             $this->loadByCustomerStore($customerId, $storeId);
-            if ((!$points_received && !$points_spent && !$points_awaiting_validation && !$points_current && !$points_lost) 
-                    || ($points_received == $this->getPointsCollected() && $points_spent == $this->getPointsUsed() 
-                            && $points_awaiting_validation == $this->getPointsWaiting() 
-                            && $points_current == $this->getPointsCurrent() && $points_lost == $this->getPointsLost())) {
+            if ((!$points_received && !$points_spent && !$points_awaiting_validation && !$points_current && !$points_lost)
+                || ($points_received == $this->getPointsCollected() && $points_spent == $this->getPointsUsed()
+                    && $points_awaiting_validation == $this->getPointsWaiting()
+                    && $points_current == $this->getPointsCurrent() && $points_lost == $this->getPointsLost())
+            ) {
                 if ($this->getId() && !$points_received && !$points_spent && !$points_awaiting_validation && !$points_current && !$points_lost) {
                     //remove line
                     $this->delete();
@@ -165,7 +179,7 @@ class Flatpoint extends \Magento\Framework\Model\AbstractModel {
                             $customer->setRewardpointsLost(0);
                             $customer->setRewardpointsWaiting(0);
                             $customer->setRewardpointsNotAvailable(0);
-                            
+
                             $customerData = $customer->getDataModel();
                             $customerData->setCustomAttribute('rewardpoints_accumulated', 0);
                             $customerData->setCustomAttribute('rewardpoints_available', 0);
@@ -174,7 +188,7 @@ class Flatpoint extends \Magento\Framework\Model\AbstractModel {
                             $customerData->setCustomAttribute('rewardpoints_waiting', 0);
                             $customerData->setCustomAttribute('rewardpoints_not_available', 0);
                             $customer->updateData($customerData);
-                            
+
                             $customer->save();
                         }
                     }
@@ -219,7 +233,7 @@ class Flatpoint extends \Magento\Framework\Model\AbstractModel {
                     $customer->setRewardpointsLost($points_lost);
                     $customer->setRewardpointsWaiting($points_awaiting_validation);
                     $customer->setRewardpointsNotAvailable($points_not_available);
-                    
+
                     $customerData = $customer->getDataModel();
                     $customerData->setCustomAttribute('rewardpoints_accumulated', $points_received);
                     $customerData->setCustomAttribute('rewardpoints_available', $points_current);
@@ -228,8 +242,8 @@ class Flatpoint extends \Magento\Framework\Model\AbstractModel {
                     $customerData->setCustomAttribute('rewardpoints_waiting', $points_awaiting_validation);
                     $customerData->setCustomAttribute('rewardpoints_not_available', $points_not_available);
                     $customer->updateData($customerData);
-                    
-                    
+
+
                     $customer->save();
                 }
             }
