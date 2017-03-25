@@ -30,7 +30,9 @@ class ProcessAdminCustomerSave implements ObserverInterface
                 'rewardpoints_description' => $data->rewardpoints_description,
                 'date_start' => $data->date_start,
                 'date_end' => $data->date_end,
-                'rewardpoints_notification' => $data->rewardpoints_notification);
+                'rewardpoints_notification' => $data->rewardpoints_notification
+            );
+
             if (isset($data['points_current'])) {
                 if ($data['points_current'] > 0 || $data['points_current'] < 0) {
 
