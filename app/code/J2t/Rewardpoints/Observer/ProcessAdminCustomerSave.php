@@ -57,7 +57,7 @@ class ProcessAdminCustomerSave implements ObserverInterface
                     //$data = $inputFilter->getUnescaped();
 
                     if (($points = trim($data['points_current'])) && $points < 0) {
-                        $data['points_spent'] = $data['points_current'];
+                        $data['points_spent'] = abs($data['points_current']);
                         unset($data['points_current']);
                     }
 
