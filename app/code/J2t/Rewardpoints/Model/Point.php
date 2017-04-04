@@ -10,11 +10,14 @@ namespace J2t\Rewardpoints\Model;
 /**
  * Customer group model
  *
- * Class Point
- * @package J2t\Rewardpoints\Model
+ * @method \Magento\Customer\Model\Resource\Group _getResource()
+ * @method \Magento\Customer\Model\Resource\Group getResource()
+ * @method string getCustomerGroupCode()
+ * @method \Magento\Customer\Model\Group setCustomerGroupCode(string $value)
+ * @method \Magento\Customer\Model\Group setTaxClassId(int $value)
+ * @method Group setTaxClassName(string $value)
  */
-class Point extends \Magento\Framework\Model\AbstractModel
-{
+class Point extends \Magento\Framework\Model\AbstractModel {
 
     const TARGET_PER_ORDER = 1;
     const TARGET_FREE = 2;
@@ -46,33 +49,15 @@ class Point extends \Magento\Framework\Model\AbstractModel
     protected $_scopeConfig;
     protected $_transportBuilder;
 
-    /**
-     * Point constructor.
-     * @param \Magento\Framework\Model\Context $context
-     * @param \Magento\Framework\Registry $registry
-     * @param \J2t\Rewardpoints\Helper\Data $pointHelper
-     * @param \Magento\Framework\Model\ResourceModel\AbstractResource|null $resource
-     * @param \Magento\Framework\Data\Collection\AbstractDb|null $resourceCollection
-     * @param Flatpoint|null $flatPoint
-     * @param array $data
-     */
     public function __construct(
-        \Magento\Framework\Model\Context $context,
-        \Magento\Framework\Registry $registry,
-        \J2t\Rewardpoints\Helper\Data $pointHelper,
-        \Magento\Framework\Model\ResourceModel\AbstractResource $resource = null,
-        \Magento\Framework\Data\Collection\AbstractDb $resourceCollection = null,
-        \J2t\Rewardpoints\Model\Flatpoint $flatPoint = null,
-        array $data = []
-    )
-    {
+    \Magento\Framework\Model\Context $context, \Magento\Framework\Registry $registry, \J2t\Rewardpoints\Helper\Data $pointHelper, \Magento\Framework\Model\ResourceModel\AbstractResource $resource = null, \Magento\Framework\Data\Collection\AbstractDb $resourceCollection = null, \J2t\Rewardpoints\Model\Flatpoint $flatPoint = null, array $data = []
+    ) {
         parent::__construct($context, $registry, $resource, $resourceCollection, $data);
         $this->_pointData = $pointHelper;
 
     }
 
-    protected function _construct()
-    {
+    protected function _construct() {
         $this->_init('J2t\Rewardpoints\Model\Resource\Point');
 
         $this->_targets = array(
@@ -81,13 +66,11 @@ class Point extends \Magento\Framework\Model\AbstractModel
         );
     }
 
-    public function sendNotification($customer, $store, $points, $days)
-    {
+    public function sendNotification($customer, $store, $points, $days) {
         return $this->_pointData->sendNotification($customer, $store, $points, $days);
     }
 
-    public function getOnlyPointsTypesArray()
-    {
+    public function getOnlyPointsTypesArray() {
         $arr = array();
         foreach ($this->getPointsDefaultTypeToArray() as $key => $value) {
             $arr[] = $key;
@@ -95,8 +78,7 @@ class Point extends \Magento\Framework\Model\AbstractModel
         return $arr;
     }
 
-    public function getPointsDefaultTypeToArray()
-    {
+    public function getPointsDefaultTypeToArray() {
         $return_value = array(self::TYPE_POINTS_FB => __('Facebook Like points'), //OK
             self::TYPE_POINTS_PIN => __('Pinterest points'), //OK
             self::TYPE_POINTS_TT => __('Twitter points'), //OK
@@ -118,8 +100,7 @@ class Point extends \Magento\Framework\Model\AbstractModel
         return $return_value;
     }
 
-    public function getPointsTypeToArray()
-    {
+    public function getPointsTypeToArray() {
         $return_value = array(self::TYPE_POINTS_FB => __('Facebook Like points'), //OK
             self::TYPE_POINTS_GP => __('Google Plus points'), //OK
             self::TYPE_POINTS_PIN => __('Pinterest points'), //OK
@@ -141,18 +122,15 @@ class Point extends \Magento\Framework\Model\AbstractModel
         return $return_value;
     }
 
-    public function getTargetsArray()
-    {
+    public function getTargetsArray() {
         return $this->_targets;
     }
 
-    public function targetsToOptionArray()
-    {
+    public function targetsToOptionArray() {
         return $this->_toOptionArray($this->_targets);
     }
 
-    protected function _toOptionArray($array)
-    {
+    protected function _toOptionArray($array) {
         $res = array();
         foreach ($array as $value => $label) {
             $res[] = array('value' => $value, 'label' => $label);
@@ -160,39 +138,33 @@ class Point extends \Magento\Framework\Model\AbstractModel
         return $res;
     }
 
-    public function loadByIncrementId($incrementId, $customerId)
-    {
+    public function loadByIncrementId($incrementId, $customerId) {
         //return $this->_getResource()->loadByOrderIncrementId($this, $incrementId, $customerId);
         $this->getResource()->loadByOrderIncrementId($this, $incrementId, $customerId);
         return $this;
     }
 
-    public function loadGatheredPoints($customerId, $storeId)
-    {
+    public function loadGatheredPoints($customerId, $storeId) {
         $this->getResource()->getPointsGathered($this, $customerId, $storeId);
         return $this;
     }
 
-    public function loadSpentPoints($customerId, $storeId)
-    {
+    public function loadSpentPoints($customerId, $storeId) {
         $this->getResource()->getPointsSpent($this, $customerId, $storeId);
         return $this;
     }
 
-    public function loadNotAvailableYetPoints($customerId, $storeId)
-    {
+    public function loadNotAvailableYetPoints($customerId, $storeId) {
         $this->getResource()->getNotAvailableYetPoints($this, $customerId, $storeId);
         return $this;
     }
 
-    public function loadPointsWaitingValidation($customerId, $storeId)
-    {
+    public function loadPointsWaitingValidation($customerId, $storeId) {
         $this->getResource()->getPointsWaitingValidation($this, $customerId, $storeId);
         return $this;
     }
 
-    public function constructSqlPointsType($tablePrefix, $specificTypes = array())
-    {
+    public function constructSqlPointsType($tablePrefix, $specificTypes = array()) {
         $arr_sql = array();
         foreach ($this->getPointsDefaultTypeToArray() as $key => $value) {
             if ($specificTypes == array()) {
@@ -205,24 +177,25 @@ class Point extends \Magento\Framework\Model\AbstractModel
     }
 
     /**
-     * @param $used_points - all points that have been used
-     * @param $list_points - list of all gathered points ordered by date
-     * @return int
+     * 
+     * @param type $used_point: all points that have been used
+     * @param type $list_points: list of all gathered points ordered by date
+     * @param type $left_over: quantity that is left over
+     * @param type $left_over_datestamp: date of quantity that is left over
      */
-    protected function calculateLostPointsLeft($used_points, $list_points)
-    {
+    protected function calculateLostPointsLeft($used_points, $list_points) {
         $expired_unused_points = 0;
         $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
         //$object = $objectManager->get('\Magento\Framework\Stdlib\DateTime');
         //$today_stamp = $object->toTimestamp($object->now());
         $today_stamp = (new \DateTime())->format(\Magento\Framework\Stdlib\DateTime::DATETIME_PHP_FORMAT);
-
-        if (!is_numeric($today_stamp)) {
+        
+        if (!is_numeric($today_stamp)){
             $today_stamp = (new \Zend_Date($today_stamp, \Zend_Date::ISO_8601))->getTimestamp();
         }
-
+        
         //$today_stamp = time();
-
+        
         /*echo $today_stamp;
         echo ' '.time();
         die;*/
@@ -246,18 +219,19 @@ class Point extends \Magento\Framework\Model\AbstractModel
                         //and check if order is different / point gathered through the same order cannot be used
                         $date_form_iso = new \Zend_Date($point['date_from'], \Zend_Date::ISO_8601);
                         $from_datestamp = $date_form_iso->getTimestamp();
-
+                        
                         $date_to_iso = new \Zend_Date($point['date_end'], \Zend_Date::ISO_8601);
                         $end_datestamp = $date_to_iso->getTimestamp();
 
-                        if ($point['points'] > 0 && $date_used_stamp >= $from_datestamp && $date_used_stamp <= $end_datestamp && (($point['order_id'] != null && isset($valid_points[$point['order_id']])) || ($used_point['order_id'] != $point['order_id'] || $point['order_id'] == null))) {
+                        if ($point['points'] > 0 && $date_used_stamp >= $from_datestamp && $date_used_stamp <= $end_datestamp && ( ( $point['order_id'] != null && isset($valid_points[$point['order_id']]) ) || ($used_point['order_id'] != $point['order_id'] || $point['order_id'] == null) )) {
                             $points_left = $point['points'] - $used_point['value'];
                             //if user has used more points that he has collected > set 0 in point gathered value for this date and modify used points value according to what's left
                             if ($points_left < 0) {
                                 $used_point['value'] = $used_point['value'] - $point['points'];
                                 //echo "New used point value {$used_point['value']} ({$used_point['value']} - {$point['points']}) <br />";
                                 $point['points'] = 0;
-                            } //if still have point's left (or 0), modify used point value
+                            }
+                            //if still have point's left (or 0), modify used point value
                             else {
                                 $point['points'] = $points_left;
                                 $used_point['value'] = 0;
@@ -301,15 +275,14 @@ class Point extends \Magento\Framework\Model\AbstractModel
         return -$expired_unused_points;
     }
 
-    public function getPointsReceivedReajustment($customerId, $storeId)
-    {
+    public function getPointsReceivedReajustment($customerId, $storeId) {
         $points = $this
-            ->getResourceCollection()
-            ->addUsedpointsbydate($storeId, $customerId);
+                ->getResourceCollection()
+                ->addUsedpointsbydate($storeId, $customerId);
 
-
+        
         $valid_points = $this->getResourceCollection()->loadallpointsbydate($storeId, $customerId);
-
+        
         $arr_points_collection = array();
 
         /*
@@ -326,7 +299,7 @@ class Point extends \Magento\Framework\Model\AbstractModel
                 );
             }
         }
-
+        
         /*
          * $points : all used points groupped by used dates (date_insertion used instead of date_order, 
          * in order to avoid any issues related to missing dates - e.g. missing date_order when inserting points through admin)
@@ -344,7 +317,7 @@ class Point extends \Magento\Framework\Model\AbstractModel
                 );
             }
         }
-
+       
         return $this->calculateLostPointsLeft($used_points, $arr_points_collection);
     }
 
@@ -359,8 +332,7 @@ class Point extends \Magento\Framework\Model\AbstractModel
       return $this;
       } */
 
-    protected function updateFlatRecords()
-    {
+    protected function updateFlatRecords() {
         $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
         $this->_flatPoint = $objectManager->get('\J2t\Rewardpoints\Model\Flatpoint');
         $this->_storeManager = $objectManager->get('\Magento\Store\Model\StoreManagerInterface');
@@ -381,26 +353,23 @@ class Point extends \Magento\Framework\Model\AbstractModel
         }
     }
 
-    public function beforeSave()
-    {
+    public function beforeSave() {
         //$this->updateFlatRecords();
-        if (!$this->hasDateInsertion() || !$this->getDateInsertion()) {
+        if (!$this->hasDateInsertion() || !$this->getDateInsertion()){
             $this->setDateInsertion(date("Y-m-d"));
         }
-        if (!$this->hasPeriod() || !$this->getPeriod()) {
+        if (!$this->hasPeriod() || !$this->getPeriod()){
             $this->setPeriod(date("Y-m-d"));
         }
         return parent::beforeSave();
     }
-
-    public function afterSave()
-    {
+    
+    public function afterSave() {
         $this->updateFlatRecords();
         return parent::afterSave();
     }
 
-    public function afterDelete()
-    {
+    public function afterDelete() {
         $this->updateFlatRecords();
         return parent::afterDelete();
     }

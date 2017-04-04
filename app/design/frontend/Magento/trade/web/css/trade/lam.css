@@ -146,7 +146,10 @@
 }
 
 /* Yard Signs (Coroplast) */
-.Agreement_890, .Color_891, .Color_616, .Artworks_928, .Art_927  {
+/* .Agreement_890, .Color_891, .Color_616, .Artworks_928, .Art_927  {
+    display: none;
+} */
+.Agreement_1669, .Color_1664 , .Color_1665, .Artworks_1672, .Art_1671  {
     display: none;
 }
 /* Ultra(Gator) Board */
@@ -163,7 +166,7 @@
 }
 
 /* PVC Sintra Board */
-.Agreement_886, .Side_885, .Side_644, .Artworks_926, .Art_925{
+.Agreement_886, .Side_885, .Side_644, .Artworks_926, .Art_925, #select_648 option:nth-child(2){
     display: none;
 }
 
@@ -208,7 +211,7 @@
     display: none;
 }
 /* Retractable Stand */
-.Agreement_898, .Available_897, .Artworks_1069, .Art_1068 {
+.Agreement_1699, .Available_1696, .Artworks_1702, .Art_1701 {
     display: none;
 }
 /* Custom Sublimation Transfers */
@@ -291,7 +294,7 @@
     display: block !important;
 }
 .DiscountPrice{
-    font-weight: bold;
+    font-size: 24px;
 }
 #discountCustom, #totalDiscount {
     color: #ed5621;
@@ -301,4 +304,99 @@
 }
 .catalog-product-view #product_addtocart_form #discount_price{
     display: none;
+}
+ .catalog-product-view #calculations {
+    display: none;
+ }
+ #test {
+    font-weight: bold;
+ }
+
+/*  #padding-top-box {
+    margin-top: -30px;
+ } */
+ 
+ .DiscountBulk {
+    font-weight: bold;
+ }
+.checkout-cart-index #discount-point-form{
+    display: none;
+}
+.checkout-cart-index  .rewards_point_cart, .checkout-cart-index .rewards_customer_points{
+    font-weight: bold;
+}
+.checkout-cart-index .j2t-point-equivalence {
+    display: block;
+    font-weight: normal;
+}
+.checkout-index-index #block-rewardpoints-heading {
+    font-weight: lighter;
+    color: #404040;
+    font-size: 24px;
+    border-bottom: 2px solid #1da1ad;
+    padding-bottom: 7px;
+    line-height: 1;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    padding-top: 0;
+}
+.checkout-index-index #rewardpoints-form .applyPointsBtn {
+    background-color: #00909e;
+    border: none;
+    border-radius: 0;
+    color: #fff;
+    width: 102px;
+    height: 40px;
+    text-transform: uppercase;
+    font: bold 14px 'Open Sans';
+}
+.checkout-index-index #rewardpoints-form .action-cancel {
+    background-color: #00909e;
+    border: none;
+    border-radius: 0;
+    color: #fff;
+    width: 200px;
+    height: 40px;
+    text-transform: uppercase;
+    font: bold 14px 'Open Sans';
+}
+.checkout-index-index .checkout-payment-method .payment-option-content {
+    padding: 10px 20px 0 18px;
+}
+@media (min-width: 768px) {
+    .checkout-payment-method .payment-option-title {
+        padding-left: 0;
+    }
+}
+#box_point img {
+    margin-top: -6px;
+}
+#box_point{
+    padding-top: 5px;
+}
+#box_point #reward_points_c {
+    font-size: 20px;
+    font-weight: bold;
+    color: #ed5621;
+    padding-right: 8px;
+}
+.page-layout-checkout .payment-methods .payment-group .step-title{
+    display: none;
+}
+
+/* fix css home menu */
+.cms-home #leftMenuUl > li > a {
+    color: #1ca1ac;
+}
+.cms-home #leftMenuUl > li {
+    border-bottom: none;
+}
+.cms-home #leftMenuUl{
+    background: #fafafa;
+}
+.cms-home #leftMenuUl a {
+    color: #000;
+}
+.cms-home #leftMenuUl li:hover > a {
+    color: #f05624;
 }

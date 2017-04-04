@@ -327,6 +327,7 @@ a.clickHereHS {
     text-align: center;
     margin: 0;
     padding: 0 0 25px;
+    height: 65px;
 }
 
 #promotionHome .sum p, #promotionHome .sum span {
@@ -866,7 +867,7 @@ a.clickHereHS {
 #topMegaMenu {
     display: none;
     position: absolute;
-    z-index: 9;
+    z-index: 100;
     background: #fff;
     width: 100%;
     margin: 0;
@@ -1069,9 +1070,9 @@ a.clickHereHS {
     clear: both;
 }
 
-#leftMenuUl ul.submenu {
+/* #leftMenuUl ul.submenu {
     display: none;
-}
+} */
 
 #leftMenuUl li.open ul.submenu {
     display: block;
@@ -1555,6 +1556,9 @@ a.clickHereHS {
 #product-options-wrapper .field {
     margin-bottom: 20px;
 }
+#product-options-wrapper .textarea {
+    margin-bottom: 0;
+}
 
 .finalUnitPrice {
     font-size: 24px;
@@ -1660,26 +1664,30 @@ nav.account-nav li.current strong {
 .topSectionCP {
     color: #444;
     font-size: 16px;
-    padding: 0 0 20px;
+    /*padding: 0 0 10px;*/
     overflow: hidden;
 }
 
 .topSectionCP > b {
     float: left;
+    padding-top: 25px;
 }
 
 .topSectionCP > a {
     float: right;
-    color: #444;
+    font-size: 18px;
+    font-family: 'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+    color: #fff;
+    background-color: #ed5621;
     position: relative;
-    padding: 0 30px 0 0;
+    padding: 12px 105px;
 }
 
 .topSectionCP a > span {
     position: absolute;
-    width: 20px;
+    /*width: 20px;
     height: 20px;
-    background: url(/pub/media/images/icon/right_arrow_cart.png) no-repeat center;
+    background: url(/pub/media/images/icon/right_arrow_cart.png) no-repeat center;*/
     top: 0;
     right: 0;
     bottom: 0;
@@ -1689,6 +1697,10 @@ nav.account-nav li.current strong {
     -o-border-radius: 50%;
     -ms-border-radius: 50%;
     border-radius: 50%;
+}
+
+.checkout-success .order-number {
+    font-size: 25px;
 }
 
 .headingCartPage {

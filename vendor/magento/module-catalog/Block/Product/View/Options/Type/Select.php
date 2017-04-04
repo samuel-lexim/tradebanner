@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2016 Magento. All rights reserved.
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -45,7 +45,10 @@ class Select extends \Magento\Catalog\Block\Product\View\Options\AbstractOptions
             );
             if ($_option->getType() == \Magento\Catalog\Model\Product\Option::OPTION_TYPE_DROP_DOWN) {
                 //$select->setName('options[' . $_option->getid() . ']')->addOption('', __('-- Please Select --'));
-                $select->setName('options[' . $_option->getid() . ']'); // Samuel Kong - remove 'please select' option
+
+                // Samuel Kong
+                $select->setName('options[' . $_option->getid() . ']');
+                // # Samuel Kong
             } else {
                 $select->setName('options[' . $_option->getid() . '][]');
                 $select->setClass('multiselect admin__control-multiselect' . $require . ' product-custom-option');

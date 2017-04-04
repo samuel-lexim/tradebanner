@@ -7,7 +7,7 @@
 ?>
 
 <div class="col-xs-12 col-sm-6 col-md-5">
-
+    <?php $block->setShowAddressFields(true); ?>
     <?php echo $block->getChildHtml('form_fields_before')?>
     <?php /* Extensions placeholder */ ?>
     <?php echo $block->getChildHtml('customer.form.register.extra')?>
@@ -58,7 +58,6 @@
             <?php endif ?>
         </fieldset>
 
-        <?php $block->setShowAddressFields(true); ?>
         <fieldset class="fieldset address">
             <legend class="legend"><span><?= __('Address Information') ?></span></legend><br>
             <input type="hidden" name="create_address" value="1" />
@@ -147,11 +146,10 @@
 
         <fieldset class="fieldset create account" data-hasrequired="<?= __('* Required Fields') ?>">
 
-            <div class="field website_url required">
+            <div class="field website_url">
                 <label for="website_url" class="label"><span><?= __('Website (URL)') ?></span></label>
                 <div class="control">
-                    <input type="url" name="website_url" id="website_url" title="<?= __('Website URL') ?>" class="input-text"
-                           data-validate="{required:true}" autocomplete="off">
+                    <input type="text" name="website_url" id="website_url" title="<?= __('Website URL') ?>" class="input-text" />
                 </div>
             </div>
             <div class="field required">

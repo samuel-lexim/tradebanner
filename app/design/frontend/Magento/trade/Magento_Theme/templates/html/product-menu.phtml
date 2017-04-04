@@ -36,7 +36,7 @@ if (!is_null($product)) {
                 ->load();
             ?>
             <?php if (count($products) > 0) { ?>
-                <span class="dropLeftMenu"><?= ( in_array($cate->getId(), $catArray) ) ? '-' : '+' ?></span>
+                <span class="dropLeftMenu"></span>
             <?php } ?>
             <a href="<?= $cate->getUrl() ?>"><?= $cate->getName() ?></a>
             <ul class="submenu">
@@ -61,16 +61,16 @@ if (!is_null($product)) {
 //                $(this).prepend('<span class="dropLeftMenu">' + data + '</span>');
 //            });
 
-            $('#leftMenuUl .dropLeftMenu').click(function () {
-                var selectCt = $(this).parent().find('ul.submenu').first();
-                if (selectCt.is(':visible')) {
-                    $(this).text("+");
-                    selectCt.slideUp('normal');
-                } else {
-                    $(this).text("-");
-                    selectCt.slideDown('normal');
-                }
-            });
+            // $('#leftMenuUl .dropLeftMenu').click(function () {
+            //     var selectCt = $(this).parent().find('ul.submenu').first();
+            //     if (selectCt.is(':visible')) {
+            //         $(this).text("+");
+            //         selectCt.slideUp('normal');
+            //     } else {
+            //         $(this).text("-");
+            //         selectCt.slideDown('normal');
+            //     }
+            // });
         })
     });
 </script>

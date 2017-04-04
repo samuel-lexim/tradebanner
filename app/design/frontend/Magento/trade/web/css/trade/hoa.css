@@ -84,9 +84,8 @@
 
 @media screen and (min-width: 1050px) {
     .button-to-top {
-        bottom: 35px;
-        right: 224px;
-    }
+        bottom: 39px;
+    	right: 287px;
 }
 
 .footer-header img {
@@ -660,3 +659,5 @@
     padding: 6px 12px;
     border: 1px solid #ccc;
 }
+
+/************************** CHANGE LEFT MENU HOME PAGE ******************************/

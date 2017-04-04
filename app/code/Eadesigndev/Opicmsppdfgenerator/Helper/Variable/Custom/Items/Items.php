@@ -101,11 +101,11 @@ class Items extends AbstractCustomHelper
             $UTC = new \DateTimeZone("UTC");
             $losTZ = new \DateTimeZone("America/Los_Angeles");
             $date2 = new \DateTime($utcDate, $UTC);
-            $date2->setTimezone($losTZ);
-
+            $date2->setTimezone($losTZ);   
+   
             $h = intval($date2->format('H'));
             if ($h < 14) $date2->modify('+1 day');
-            else $date2->modify('+2 day');
+            else $date2->modify('+2 day'); 
             $dueDate = $date2->format('F d, Y');
             // # end
 

@@ -194,12 +194,12 @@ $this->defaultfooterfontsize = 8; // pt
 $this->defaultfooterfontstyle = 'BI'; // '', or 'B' or 'I' or 'BI'
 $this->defaultfooterline = 1; // 1 or 0 - line over the footer
 $this->header_line_spacing = 0.25; // spacing between bottom of header and line (if present) - function of fontsize
-$this->footer_line_spacing = 0.25; // 0.25; // spacing between bottom of header and line (if present) - function of fontsize
+$this->footer_line_spacing = 0.25; // spacing between bottom of header and line (if present) - function of fontsize
 // If 'pad' margin-top sets fixed distance in mm (padding) between bottom of header and top of text.
 // If 'stretch' margin-top sets a minimum distance in mm between top of page and top of text, which expands if header is too large to fit.
-$this->setAutoTopMargin = false; // false;
-$this->setAutoBottomMargin = false; // false
-$this->autoMarginPadding = 2; // 2; // distance in mm used as padding if 'stretch' mode is used
+$this->setAutoTopMargin = false;
+$this->setAutoBottomMargin = false;
+$this->autoMarginPadding = 2; // distance in mm used as padding if 'stretch' mode is used
 
 // TABLES
 $this->simpleTables = false; // Forces all cells to have same border, background etc. Improves performance
@@ -334,7 +334,7 @@ $this->defaultCSS = array(
 		'FONT-SIZE' => '11pt',
 		'TEXT-INDENT' => '0pt',
 		'LINE-HEIGHT' => 'normal',
-		'MARGIN-COLLAPSE' => 'collapse', /* 'collapse', Custom property to collapse top/bottom margins at top/bottom of page - ignored in tables/lists */
+		'MARGIN-COLLAPSE' => 'collapse', /* Custom property to collapse top/bottom margins at top/bottom of page - ignored in tables/lists */
 		'HYPHENS' => 'manual', /* mPDF 5.6.08 */
 		'FONT-KERNING' => 'auto', /* mPDF 6 */
 	),

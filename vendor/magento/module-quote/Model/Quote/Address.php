@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2016 Magento. All rights reserved.
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Quote\Model\Quote;
@@ -398,7 +398,7 @@ class Address extends \Magento\Customer\Model\Address\AbstractAddress implements
     protected function _isSameAsBilling()
     {
         return $this->getAddressType() == \Magento\Quote\Model\Quote\Address::TYPE_SHIPPING &&
-        ($this->_isNotRegisteredCustomer() ||
+            ($this->_isNotRegisteredCustomer() ||
             $this->_isDefaultShippingNullOrSameAsBillingAddress());
     }
 
@@ -435,9 +435,9 @@ class Address extends \Magento\Customer\Model\Address\AbstractAddress implements
         }
 
         return !$defaultShippingAddress
-        || $defaultBillingAddress
-        && $defaultShippingAddress
-        && $defaultBillingAddress == $defaultShippingAddress;
+            || $defaultBillingAddress
+            && $defaultShippingAddress
+            && $defaultBillingAddress == $defaultShippingAddress;
     }
 
     /**
@@ -815,30 +815,23 @@ class Address extends \Magento\Customer\Model\Address\AbstractAddress implements
      *
      * @return array
      */
-//    public function getGroupedAllShippingRates()
-//    {
-//        $rates = [];
-//        foreach ($this->getShippingRatesCollection() as $rate) {
-//            if (!$rate->isDeleted() && $this->_carrierFactory->get($rate->getCarrier())) {
-//                if (!isset($rates[$rate->getCarrier()])) {
-//                    $rates[$rate->getCarrier()] = [];
-//                }
-//
-//                $rates[$rate->getCarrier()][] = $rate;
-//                $rates[$rate->getCarrier()][0]->carrier_sort_order = $this->_carrierFactory->get(
-//                    $rate->getCarrier()
-//                )->getSortOrder();
-//            }
-//        }
-//        uasort($rates, [$this, '_sortRates']);
-//
-//        return $rates;
-//    }
-
-// Samuel Kong
-
     public function getGroupedAllShippingRates()
     {
+        // $rates = [];
+        // foreach ($this->getShippingRatesCollection() as $rate) {
+        //     if (!$rate->isDeleted() && $this->_carrierFactory->get($rate->getCarrier())) {
+        //         if (!isset($rates[$rate->getCarrier()])) {
+        //             $rates[$rate->getCarrier()] = [];
+        //         }
+
+        //         $rates[$rate->getCarrier()][] = $rate;
+        //         $rates[$rate->getCarrier()][0]->carrier_sort_order = $this->_carrierFactory->get(
+        //             $rate->getCarrier()
+        //         )->getSortOrder();
+        //     }
+        // }
+
+    	// Samuel Kong
         $rates = [];
         $customer = $this->getQuote()->getCustomer();
         $freeStatus = $customer->getCustomAttribute('free_delivery_kong')->getValue();
@@ -852,16 +845,16 @@ class Address extends \Magento\Customer\Model\Address\AbstractAddress implements
                     if (!isset($rates[$rate->getCarrier()])) {
                         $rates[$rate->getCarrier()] = [];
                     }
-
+                    
                     $rates[$rate->getCarrier()][] = $rate;
                     $rates[$rate->getCarrier()][0]->carrier_sort_order = $this->_carrierFactory->get(
                         $rate->getCarrier()
                     )->getSortOrder();
-
                 }
-
             }
         }
+        // # Samuel Kong
+
         uasort($rates, [$this, '_sortRates']);
         return $rates;
     }

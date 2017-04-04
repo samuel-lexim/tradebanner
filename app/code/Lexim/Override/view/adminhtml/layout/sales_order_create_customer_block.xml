@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="styles"/>
+
+    <body>
+        <block class="Magento\Framework\View\Element\Text" name="bootstrap">
+            <arguments>
+                <argument name="text" xsi:type="string">
+                    <![CDATA[<script type="text/javascript" src="/pub/js/add-order.js"></script>]]></argument>
+            </arguments>
+        </block>
+        <move element="bootstrap" destination="before.body.end"/>
+    </body>
+
+</page>

@@ -76,7 +76,7 @@ class PrintInvoiceAction extends Column
                                 $viewUrlPath,
                                 [
                                     $invoiceIdParamName  => $item['entity_id'],
-                                    $templateIdParamName => 6,
+                                    $templateIdParamName => 5,
                                     $orderIdParamName =>$invoice->getOrder()->getId()
                                 ]
                             ),

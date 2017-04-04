@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2016 Magento. All rights reserved.
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -9,15 +9,16 @@
 namespace Magento\Fedex\Model;
 
 use Magento\Framework\Module\Dir;
+use Magento\Framework\Xml\Security;
 use Magento\Quote\Model\Quote\Address\RateRequest;
 use Magento\Shipping\Model\Carrier\AbstractCarrierOnline;
 use Magento\Shipping\Model\Rate\Result;
-use Magento\Framework\Xml\Security;
+use Magento\Shipping\Model\Tracking\Result as TrackingResult;
 
 /**
  * Fedex shipping implementation
  *
- * @author     Magento Core Team <core@magentocommerce.com>
+ * @author Magento Core Team <core@magentocommerce.com>
  * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
  * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
@@ -77,7 +78,7 @@ class Carrier extends AbstractCarrierOnline implements \Magento\Shipping\Model\C
     /**
      * Rate result data
      *
-     * @var Result|null
+     * @var Result|TrackingResult
      */
     protected $_result = null;
 
@@ -125,6 +126,18 @@ class Carrier extends AbstractCarrierOnline implements \Magento\Shipping\Model\C
     protected $_debugReplacePrivateDataKeys = [
         'Key', 'Password', 'MeterNumber'
     ];
+
+    /**
+     * Version of tracking service
+     * @var int
+     */
+    private static $trackServiceVersion = 10;
+
+    /**
+     * List of TrackReply errors
+     * @var array
+     */
+    private static $trackingErrors = ['FAILURE', 'ERROR'];
 
     /**
      * @param \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
@@ -193,7 +206,7 @@ class Carrier extends AbstractCarrierOnline implements \Magento\Shipping\Model\C
         $wsdlBasePath = $configReader->getModuleDir(Dir::MODULE_ETC_DIR, 'Magento_Fedex') . '/wsdl/';
         $this->_shipServiceWsdl = $wsdlBasePath . 'ShipService_v10.wsdl';
         $this->_rateServiceWsdl = $wsdlBasePath . 'RateService_v10.wsdl';
-        $this->_trackServiceWsdl = $wsdlBasePath . 'TrackService_v5.wsdl';
+        $this->_trackServiceWsdl = $wsdlBasePath . 'TrackService_v' . self::$trackServiceVersion . '.wsdl';
     }
 
     /**
@@ -338,6 +351,10 @@ class Carrier extends AbstractCarrierOnline implements \Magento\Shipping\Model\C
         } else {
         }
 
+        if ($request->getDestCity()) {
+            $r->setDestCity($request->getDestCity());
+        }
+
         $weight = $this->getTotalNumOfBoxes($request->getPackageWeight());
         $r->setWeight($weight);
         if ($request->getFreeMethodWeight() != $request->getPackageWeight()) {
@@ -363,10 +380,13 @@ class Carrier extends AbstractCarrierOnline implements \Magento\Shipping\Model\C
     /**
      * Get result of request
      *
-     * @return Result|null
+     * @return Result|TrackingResult
      */
     public function getResult()
     {
+        if (!$this->_result) {
+            $this->_result = $this->_rateFactory->create();
+        }
         return $this->_result;
     }
 
@@ -431,6 +451,10 @@ class Carrier extends AbstractCarrierOnline implements \Magento\Shipping\Model\C
                 ],
             ],
         ];
+
+        if ($r->getDestCity()) {
+            $ratesRequest['RequestedShipment']['Recipient']['Address']['City'] = $r->getDestCity();
+        }
 
         if ($purpose == self::RATE_REQUEST_GENERAL) {
             $ratesRequest['RequestedShipment']['RequestedPackageLineItems'][0]['InsuredValue'] = [
@@ -557,6 +581,28 @@ class Carrier extends AbstractCarrierOnline implements \Magento\Shipping\Model\C
             }
         }
 
+        // $result = $this->_rateFactory->create();
+        // if (empty($priceArr)) {
+        //     $error = $this->_rateErrorFactory->create();
+        //     $error->setCarrier($this->_code);
+        //     $error->setCarrierTitle($this->getConfigData('title'));
+        //     $error->setErrorMessage($errorTitle);
+        //     $error->setErrorMessage($this->getConfigData('specificerrmsg'));
+        //     $result->append($error);
+        // } else {
+        //     foreach ($priceArr as $method => $price) {
+        //         $rate = $this->_rateMethodFactory->create();
+        //         $rate->setCarrier($this->_code);
+        //         $rate->setCarrierTitle($this->getConfigData('title'));
+        //         $rate->setMethod($method);
+        //         $rate->setMethodTitle($this->getCode('method', $method));
+        //         $rate->setCost($costArr[$method]);
+        //         $rate->setPrice($price);
+        //         $result->append($rate);
+        //     }
+        // }
+
+        //  Samuel Kong
         $result = $this->_rateFactory->create();
         if (empty($priceArr)) {
             $error = $this->_rateErrorFactory->create();
@@ -573,10 +619,28 @@ class Carrier extends AbstractCarrierOnline implements \Magento\Shipping\Model\C
                 $rate->setMethod($method);
                 $rate->setMethodTitle($this->getCode('method', $method));
                 $rate->setCost($costArr[$method]);
-                $rate->setPrice($price);
+                if($method == 'FEDEX_GROUND')               
+                    $rate->setPrice($price*1.3 + 4.00);          
+                else if ($method == 'GROUND_HOME_DELIVERY')
+                    $rate->setPrice($price*1.3);
+                else if ($method == 'FEDEX_EXPRESS_SAVER')
+                    $rate->setPrice($price*1.28+8.00);
+                else if ($method == 'FEDEX_2_DAY')
+                    $rate->setPrice($price*1.3+5.00);
+                else if ($method == 'FEDEX_2_DAY_AM')
+                    $rate->setPrice($price*1.3+8.00);
+                else if ($method == 'STANDARD_OVERNIGHT')
+                    $rate->setPrice($price*1.35+10.00);
+                else if ($method == 'PRIORITY_OVERNIGHT')
+                    $rate->setPrice($price*1.35+10.00);
+                else if ($method == 'FIRST_OVERNIGHT')
+                    $rate->setPrice($price*1.4+10.00);
+                else 
+                    $rate->setPrice($price);
                 $result->append($rate);
             }
         }
+        // # Samuel Kong
 
         return $result;
     }
@@ -792,27 +856,51 @@ class Carrier extends AbstractCarrierOnline implements \Magento\Shipping\Model\C
     {
         $codes = [
             'method' => [
+                // Samuel Kong
                 'EUROPE_FIRST_INTERNATIONAL_PRIORITY' => __('Europe First Priority'),
                 'FEDEX_1_DAY_FREIGHT' => __('1 Day Freight'),
                 'FEDEX_2_DAY_FREIGHT' => __('2 Day Freight'),
-                'FEDEX_2_DAY' => __('2 Day'),
-                'FEDEX_2_DAY_AM' => __('2 Day AM'),
+                'FEDEX_2_DAY' => __('FedEx 2 Day'),
+                'FEDEX_2_DAY_AM' => __('FedEx 2 Day AM'),
                 'FEDEX_3_DAY_FREIGHT' => __('3 Day Freight'),
-                'FEDEX_EXPRESS_SAVER' => __('Express Saver'),
-                'FEDEX_GROUND' => __('Ground'),
-                'FIRST_OVERNIGHT' => __('First Overnight'),
-                'GROUND_HOME_DELIVERY' => __('Home Delivery'),
+                'FEDEX_EXPRESS_SAVER' => __('FedEx Express Saver (3 days)'),
+                'FEDEX_GROUND' => __('FedEx Ground'),
+                'FIRST_OVERNIGHT' => __('FedEx First Overnight'),
+                'GROUND_HOME_DELIVERY' => __('FedEx Ground1'),
                 'INTERNATIONAL_ECONOMY' => __('International Economy'),
                 'INTERNATIONAL_ECONOMY_FREIGHT' => __('Intl Economy Freight'),
                 'INTERNATIONAL_FIRST' => __('International First'),
                 'INTERNATIONAL_GROUND' => __('International Ground'),
                 'INTERNATIONAL_PRIORITY' => __('International Priority'),
                 'INTERNATIONAL_PRIORITY_FREIGHT' => __('Intl Priority Freight'),
-                'PRIORITY_OVERNIGHT' => __('Priority Overnight'),
+                'PRIORITY_OVERNIGHT' => __('FedEx Priority Overnight'),
                 'SMART_POST' => __('Smart Post'),
-                'STANDARD_OVERNIGHT' => __('Standard Overnight'),
+                'STANDARD_OVERNIGHT' => __('FedEx Standard Overnight'),
                 'FEDEX_FREIGHT' => __('Freight'),
                 'FEDEX_NATIONAL_FREIGHT' => __('National Freight'),
+                // # Samuel Kong
+
+                // 'EUROPE_FIRST_INTERNATIONAL_PRIORITY' => __('Europe First Priority'),
+                // 'FEDEX_1_DAY_FREIGHT' => __('1 Day Freight'),
+                // 'FEDEX_2_DAY_FREIGHT' => __('2 Day Freight'),
+                // 'FEDEX_2_DAY' => __('2 Day'),
+                // 'FEDEX_2_DAY_AM' => __('2 Day AM'),
+                // 'FEDEX_3_DAY_FREIGHT' => __('3 Day Freight'),
+                // 'FEDEX_EXPRESS_SAVER' => __('Express Saver'),
+                // 'FEDEX_GROUND' => __('Ground'),
+                // 'FIRST_OVERNIGHT' => __('First Overnight'),
+                // 'GROUND_HOME_DELIVERY' => __('Home Delivery'),
+                // 'INTERNATIONAL_ECONOMY' => __('International Economy'),
+                // 'INTERNATIONAL_ECONOMY_FREIGHT' => __('Intl Economy Freight'),
+                // 'INTERNATIONAL_FIRST' => __('International First'),
+                // 'INTERNATIONAL_GROUND' => __('International Ground'),
+                // 'INTERNATIONAL_PRIORITY' => __('International Priority'),
+                // 'INTERNATIONAL_PRIORITY_FREIGHT' => __('Intl Priority Freight'),
+                // 'PRIORITY_OVERNIGHT' => __('Priority Overnight'),
+                // 'SMART_POST' => __('Smart Post'),
+                // 'STANDARD_OVERNIGHT' => __('Standard Overnight'),
+                // 'FEDEX_FREIGHT' => __('Freight'),
+                // 'FEDEX_NATIONAL_FREIGHT' => __('National Freight'),
             ],
             'dropoff' => [
                 'REGULAR_PICKUP' => __('Regular Pickup'),
@@ -1015,6 +1103,7 @@ class Carrier extends AbstractCarrierOnline implements \Magento\Shipping\Model\C
      */
     protected function _getXMLTracking($tracking)
     {
+        $this->_result = $this->_trackFactory->create();
         $trackRequest = [
             'WebAuthenticationDetail' => [
                 'UserCredential' => [
@@ -1026,9 +1115,16 @@ class Carrier extends AbstractCarrierOnline implements \Magento\Shipping\Model\C
                 'AccountNumber' => $this->getConfigData('account'),
                 'MeterNumber' => $this->getConfigData('meter_number'),
             ],
-            'Version' => ['ServiceId' => 'trck', 'Major' => '5', 'Intermediate' => '0', 'Minor' => '0'],
-            'PackageIdentifier' => ['Type' => 'TRACKING_NUMBER_OR_DOORTAG', 'Value' => $tracking],
-            'IncludeDetailedScans' => 1,
+            'Version' => [
+                'ServiceId' => 'trck',
+                'Major' => self::$trackServiceVersion,
+                'Intermediate' => '0',
+                'Minor' => '0',
+            ],
+            'SelectionDetails' => [
+                'PackageIdentifier' => ['Type' => 'TRACKING_NUMBER_OR_DOORTAG', 'Value' => $tracking],
+            ],
+            'ProcessingOptions' => 'INCLUDE_DETAILED_SCANS'
         ];
         $requestString = serialize($trackRequest);
         $response = $this->_getCachedQuotes($requestString);
@@ -1055,114 +1151,48 @@ class Carrier extends AbstractCarrierOnline implements \Magento\Shipping\Model\C
     /**
      * Parse tracking response
      *
-     * @param string[] $trackingValue
+     * @param string $trackingValue
      * @param \stdClass $response
      * @return void
-     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
-     * @SuppressWarnings(PHPMD.NPathComplexity)
-     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
      */
     protected function _parseTrackingResponse($trackingValue, $response)
     {
-        if (is_object($response)) {
-            if ($response->HighestSeverity == 'FAILURE' || $response->HighestSeverity == 'ERROR') {
-                $errorTitle = (string)$response->Notifications->Message;
-            } elseif (isset($response->TrackDetails)) {
-                $trackInfo = $response->TrackDetails;
-                $resultArray['status'] = (string)$trackInfo->StatusDescription;
-                $resultArray['service'] = (string)$trackInfo->ServiceInfo;
-                $timestamp = isset(
-                    $trackInfo->EstimatedDeliveryTimestamp
-                ) ? $trackInfo->EstimatedDeliveryTimestamp : $trackInfo->ActualDeliveryTimestamp;
-                $timestamp = strtotime((string)$timestamp);
-                if ($timestamp) {
-                    $resultArray['deliverydate'] = date('Y-m-d', $timestamp);
-                    $resultArray['deliverytime'] = date('H:i:s', $timestamp);
-                }
-
-                $deliveryLocation = isset(
-                    $trackInfo->EstimatedDeliveryAddress
-                ) ? $trackInfo->EstimatedDeliveryAddress : $trackInfo->ActualDeliveryAddress;
-                $deliveryLocationArray = [];
-                if (isset($deliveryLocation->City)) {
-                    $deliveryLocationArray[] = (string)$deliveryLocation->City;
-                }
-                if (isset($deliveryLocation->StateOrProvinceCode)) {
-                    $deliveryLocationArray[] = (string)$deliveryLocation->StateOrProvinceCode;
-                }
-                if (isset($deliveryLocation->CountryCode)) {
-                    $deliveryLocationArray[] = (string)$deliveryLocation->CountryCode;
-                }
-                if ($deliveryLocationArray) {
-                    $resultArray['deliverylocation'] = implode(', ', $deliveryLocationArray);
-                }
-
-                $resultArray['signedby'] = (string)$trackInfo->DeliverySignatureName;
-                $resultArray['shippeddate'] = date('Y-m-d', (int)$trackInfo->ShipTimestamp);
-                if (isset($trackInfo->PackageWeight) && isset($trackInfo->Units)) {
-                    $weight = (string)$trackInfo->PackageWeight;
-                    $unit = (string)$trackInfo->Units;
-                    $resultArray['weight'] = "{$weight} {$unit}";
-                }
-
-                $packageProgress = [];
-                if (isset($trackInfo->Events)) {
-                    $events = $trackInfo->Events;
-                    if (isset($events->Address)) {
-                        $events = [$events];
-                    }
-                    foreach ($events as $event) {
-                        $tempArray = [];
-                        $tempArray['activity'] = (string)$event->EventDescription;
-                        $timestamp = strtotime((string)$event->Timestamp);
-                        if ($timestamp) {
-                            $tempArray['deliverydate'] = date('Y-m-d', $timestamp);
-                            $tempArray['deliverytime'] = date('H:i:s', $timestamp);
-                        }
-                        if (isset($event->Address)) {
-                            $addressArray = [];
-                            $address = $event->Address;
-                            if (isset($address->City)) {
-                                $addressArray[] = (string)$address->City;
-                            }
-                            if (isset($address->StateOrProvinceCode)) {
-                                $addressArray[] = (string)$address->StateOrProvinceCode;
-                            }
-                            if (isset($address->CountryCode)) {
-                                $addressArray[] = (string)$address->CountryCode;
-                            }
-                            if ($addressArray) {
-                                $tempArray['deliverylocation'] = implode(', ', $addressArray);
-                            }
-                        }
-                        $packageProgress[] = $tempArray;
-                    }
-                }
-
-                $resultArray['progressdetail'] = $packageProgress;
-            }
+        if (!is_object($response) || empty($response->HighestSeverity)) {
+            $this->appendTrackingError($trackingValue, __('Invalid response from carrier'));
+            return;
+        } elseif (in_array($response->HighestSeverity, self::$trackingErrors)) {
+            $this->appendTrackingError($trackingValue, (string) $response->Notifications->Message);
+            return;
+        } elseif (empty($response->CompletedTrackDetails) || empty($response->CompletedTrackDetails->TrackDetails)) {
+            $this->appendTrackingError($trackingValue, __('No available tracking items'));
+            return;
         }
 
-        if (!$this->_result) {
-            $this->_result = $this->_trackFactory->create();
+        $trackInfo = $response->CompletedTrackDetails->TrackDetails;
+
+        // Fedex can return tracking details as single object instead array
+        if (is_object($trackInfo)) {
+            $trackInfo = [$trackInfo];
         }
 
-        if (isset($resultArray)) {
+        $result = $this->getResult();
+        $carrierTitle = $this->getConfigData('title');
+        $counter = 0;
+        foreach ($trackInfo as $item) {
             $tracking = $this->_trackStatusFactory->create();
-            $tracking->setCarrier('fedex');
-            $tracking->setCarrierTitle($this->getConfigData('title'));
+            $tracking->setCarrier(self::CODE);
+            $tracking->setCarrierTitle($carrierTitle);
             $tracking->setTracking($trackingValue);
-            $tracking->addData($resultArray);
-            $this->_result->append($tracking);
-        } else {
-            $error = $this->_trackErrorFactory->create();
-            $error->setCarrier('fedex');
-            $error->setCarrierTitle($this->getConfigData('title'));
-            $error->setTracking($trackingValue);
-            $error->setErrorMessage(
-                $errorTitle ? $errorTitle : __('For some reason we can\'t retrieve tracking info right now.')
+            $tracking->addData($this->processTrackingDetails($item));
+            $result->append($tracking);
+            $counter ++;
+        }
+
+        // no available tracking details
+        if (!$counter) {
+            $this->appendTrackingError(
+                $trackingValue, __('For some reason we can\'t retrieve tracking info right now.')
             );
-            $this->_result->append($error);
         }
     }
 
@@ -1585,5 +1615,172 @@ class Carrier extends AbstractCarrierOnline implements \Magento\Shipping\Model\C
             }
         }
         return $data;
+    }
+
+    /**
+     * Parse track details response from Fedex
+     * @param \stdClass $trackInfo
+     * @return array
+     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+    +  @SuppressWarnings(PHPMD.NPathComplexity)
+     */
+    private function processTrackingDetails(\stdClass $trackInfo)
+    {
+        $result = [
+            'shippeddate' => null,
+            'deliverydate' => null,
+            'deliverytime' => null,
+            'deliverylocation' => null,
+            'weight' => null,
+            'progressdetail' => [],
+        ];
+
+        if (!empty($trackInfo->ShipTimestamp) &&
+            ($datetime = \DateTime::createFromFormat(\DateTime::ISO8601, $trackInfo->ShipTimestamp)) !== false
+        ) {
+            $result['shippeddate'] = $datetime->format('Y-m-d');
+        }
+
+        $result['signedby'] = !empty($trackInfo->DeliverySignatureName) ?
+            (string) $trackInfo->DeliverySignatureName :
+            null;
+
+        $result['status'] = (!empty($trackInfo->StatusDetail) && !empty($trackInfo->StatusDetail->Description)) ?
+            (string) $trackInfo->StatusDetail->Description :
+            null;
+        $result['service'] = (!empty($trackInfo->Service) && !empty($trackInfo->Service->Description)) ?
+            (string) $trackInfo->Service->Description :
+            null;
+
+        $datetime = $this->getDeliveryDateTime($trackInfo);
+        if ($datetime) {
+            $result['deliverydate'] = $datetime->format('Y-m-d');
+            $result['deliverytime'] = $datetime->format('H:i:s');
+        }
+
+        $address = null;
+        if (!empty($trackInfo->EstimatedDeliveryAddress)) {
+            $address = $trackInfo->EstimatedDeliveryAddress;
+        } elseif (!empty($trackInfo->ActualDeliveryAddress)) {
+            $address = $trackInfo->ActualDeliveryAddress;
+        }
+
+        if (!empty($address)) {
+            $result['deliverylocation'] = $this->getDeliveryAddress($address);
+        }
+
+        if (!empty($trackInfo->PackageWeight)) {
+            $result['weight'] = sprintf(
+                '%s %s',
+                (string) $trackInfo->PackageWeight->Value,
+                (string) $trackInfo->PackageWeight->Units
+            );
+        }
+
+        if (!empty($trackInfo->Events)) {
+            $events = $trackInfo->Events;
+            if (is_object($events)) {
+                $events = [$trackInfo->Events];
+            }
+            $result['progressdetail'] = $this->processTrackDetailsEvents($events);
+        }
+
+        return $result;
+    }
+
+    /**
+     * Parse delivery datetime from tracking details
+     * @param \stdClass $trackInfo
+     * @return \Datetime|null
+     */
+    private function getDeliveryDateTime(\stdClass $trackInfo)
+    {
+        $timestamp = null;
+        if (!empty($trackInfo->EstimatedDeliveryTimestamp)) {
+            $timestamp = $trackInfo->EstimatedDeliveryTimestamp;
+        } elseif (!empty($trackInfo->ActualDeliveryTimestamp)) {
+            $timestamp = $trackInfo->ActualDeliveryTimestamp;
+        }
+
+        return $timestamp ? \DateTime::createFromFormat(\DateTime::ISO8601, $timestamp) : null;
+    }
+
+    /**
+     * Get delivery address details in string representation
+     * Return City, State, Country Code
+     *
+     * @param \stdClass $address
+     * @return string
+     */
+    private function getDeliveryAddress(\stdClass $address)
+    {
+        $details = [];
+
+        if (!empty($address->City)) {
+            $details[] = (string) $address->City;
+        }
+
+        if (!empty($address->StateOrProvinceCode)) {
+            $details[] = (string) $address->StateOrProvinceCode;
+        }
+
+        if (!empty($address->CountryCode)) {
+            $details[] = (string) $address->CountryCode;
+        }
+
+        return implode(', ', $details);
+    }
+
+    /**
+     * Parse tracking details events from response
+     * Return list of items in such format:
+     * ['activity', 'deliverydate', 'deliverytime', 'deliverylocation']
+     *
+     * @param array $events
+     * @return array
+     */
+    private function processTrackDetailsEvents(array $events)
+    {
+        $result = [];
+        /** @var \stdClass $event */
+        foreach ($events as $event) {
+            $item = [
+                'activity' => (string) $event->EventDescription,
+                'deliverydate' => null,
+                'deliverytime' => null,
+                'deliverylocation' => null
+            ];
+
+            if (!empty($event->Timestamp)) {
+                $datetime = \DateTime::createFromFormat(\DateTime::ISO8601, $event->Timestamp);
+                $item['deliverydate'] = $datetime->format('Y-m-d');
+                $item['deliverytime'] = $datetime->format('H:i:s');
+            }
+
+            if (!empty($event->Address)) {
+                $item['deliverylocation'] = $this->getDeliveryAddress($event->Address);
+            }
+
+            $result[] = $item;
+        }
+
+        return $result;
+    }
+
+    /**
+     * Append error message to rate result instance
+     * @param string $trackingValue
+     * @param string $errorMessage
+     * @return void
+     */
+    private function appendTrackingError($trackingValue, $errorMessage)
+    {
+        $error = $this->_trackErrorFactory->create();
+        $error->setCarrier(self::CODE);
+        $error->setCarrierTitle($this->getConfigData('title'));
+        $error->setTracking($trackingValue);
+        $error->setErrorMessage($errorMessage);
+        $result = $this->getResult();
+        $result->append($error);
     }
 }

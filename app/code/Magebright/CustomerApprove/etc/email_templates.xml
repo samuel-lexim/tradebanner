@@ -4,7 +4,7 @@
     <template area="frontend" file="magebright_customer_rejected.html" id="customer_approve_email_rejected_email_template" label="Customer Rejected" module="Magebright_CustomerApprove" type="html"/>
     <template area="frontend" file="magebright_admin_notify_registration.html" id="customer_approve_admin_email_settings_email_template" label="Account registration admin notification" module="Magebright_CustomerApprove" type="html"/>
 
-    <!-- Samuel Kong -->
+	<!-- Samuel Kong -->
     <template area="frontend" file="change_order_status_email_template.html" id="change_order_status_email_template" label="Change order status notification" module="Magebright_CustomerApprove" type="html"/>
     <!-- # Samuel Kong -->
 

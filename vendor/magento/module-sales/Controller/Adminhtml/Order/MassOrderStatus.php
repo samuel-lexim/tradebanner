@@ -103,6 +103,7 @@ class MassOrderStatus extends \Magento\Sales\Controller\Adminhtml\Order\Abstract
             $countExecution++;
 
             // Send email
+
             $storeId = $order->getStoreId();
             $templateId = 'change_order_status_email_template';
             $customerId = $order->getCustomerId();
@@ -123,14 +124,14 @@ class MassOrderStatus extends \Magento\Sales\Controller\Adminhtml\Order\Abstract
                 'order' => $orderObj
             ];
 
-//            $this->helper->sendEmailTemplate(
-//                $order->getCustomerName(),
-//                $order->getCustomerEmail(),
-//                $templateId,
-//                $this->helper->getSender(null, $storeId),
-//                $templateData,
-//                $storeId
-//            );
+            $this->helper->sendEmailTemplate(
+               $order->getCustomerName(),
+               $order->getCustomerEmail(),
+               $templateId,
+               $this->helper->getSender(null, $storeId),
+               $templateData,
+               $storeId
+            );
             // # Send email
         }
 

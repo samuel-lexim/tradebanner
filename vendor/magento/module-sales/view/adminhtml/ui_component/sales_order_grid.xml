@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 /**
- * Copyright © 2016 Magento. All rights reserved.
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 -->
@@ -63,7 +63,8 @@
                 </argument>
             </filterSelect>
         </filters>
-        <massaction name="listing_massaction">
+        <massaction name="listing_massaction">  
+            <!-- Samuel Kong -->
             <action name="ves_delete_orders">
                 <argument name="data" xsi:type="array">
                     <item name="config" xsi:type="array">
@@ -78,7 +79,6 @@
                 </argument>
             </action>
 
-            <!-- Samuel Kong -->
             <action name="cs_pending">
                 <argument name="data" xsi:type="array">
                     <item name="config" xsi:type="array">
@@ -222,7 +222,7 @@
                     </item>
                 </argument>
             </action>
-            <!-- # Kong -->
+            <!-- # Samuel Kong -->
 
 
             <action name="cancel">
@@ -300,7 +300,6 @@
         </massaction>
         <paging name="listing_paging"/>
     </listingToolbar>
-
     <columns name="sales_order_columns">
         <argument name="data" xsi:type="array">
             <item name="config" xsi:type="array">
@@ -348,7 +347,7 @@
                     <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/date</item>
                     <item name="dataType" xsi:type="string">date</item>
                     <item name="label" xsi:type="string" translate="true">Purchase Date</item>
-                    <item name="dateFormat" xsi:type="string">MMM dd, YYYY, H:MM:SS A</item>
+                    <item name="dateFormat" xsi:type="string">MMM dd, YYYY, H:mm:ss A</item>
                 </item>
             </argument>
         </column>

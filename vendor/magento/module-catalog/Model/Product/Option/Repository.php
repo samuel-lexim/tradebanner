@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2016 Magento. All rights reserved.
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -15,7 +15,6 @@ use Magento\Framework\EntityManager\HydratorPool;
 /**
  * Class Repository
  * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
- * @package Magento\Catalog\Model\Product\Option
  */
 class Repository implements \Magento\Catalog\Api\ProductCustomOptionRepositoryInterface
 {
@@ -64,16 +63,14 @@ class Repository implements \Magento\Catalog\Api\ProductCustomOptionRepositoryIn
         \Magento\Catalog\Api\ProductRepositoryInterface $productRepository,
         \Magento\Catalog\Model\ResourceModel\Product\Option $optionResource,
         \Magento\Catalog\Model\Product\Option\Converter $converter
-    )
-    {
+    ) {
         $this->productRepository = $productRepository;
         $this->optionResource = $optionResource;
         $this->converter = $converter;
     }
 
     /**
-     * @param string $sku
-     * @return array
+     * {@inheritdoc}
      */
     public function getList($sku)
     {
@@ -81,11 +78,8 @@ class Repository implements \Magento\Catalog\Api\ProductCustomOptionRepositoryIn
         return $product->getOptions() ?: [];
     }
 
-
     /**
-     * @param ProductInterface $product
-     * @param bool $requiredOnly
-     * @return \Magento\Catalog\Api\Data\ProductCustomOptionInterface[]
+     * {@inheritdoc}
      */
     public function getProductOptions(ProductInterface $product, $requiredOnly = false)
     {
@@ -97,10 +91,7 @@ class Repository implements \Magento\Catalog\Api\ProductCustomOptionRepositoryIn
     }
 
     /**
-     * @param string $sku
-     * @param int $optionId
-     * @return mixed
-     * @throws NoSuchEntityException
+     * {@inheritdoc}
      */
     public function get($sku, $optionId)
     {
@@ -113,9 +104,7 @@ class Repository implements \Magento\Catalog\Api\ProductCustomOptionRepositoryIn
     }
 
     /**
-     * @param \Magento\Catalog\Api\Data\ProductCustomOptionInterface $entity
-     * @return bool
-     * @throws \Exception
+     * {@inheritdoc}
      */
     public function delete(\Magento\Catalog\Api\Data\ProductCustomOptionInterface $entity)
     {
@@ -124,16 +113,12 @@ class Repository implements \Magento\Catalog\Api\ProductCustomOptionRepositoryIn
     }
 
     /**
-     * @param ProductInterface $product
-     * @param ProductInterface $duplicate
-     * @return \Magento\Catalog\Model\Product\Option
-     * @throws \Exception
+     * {@inheritdoc}
      */
     public function duplicate(
         \Magento\Catalog\Api\Data\ProductInterface $product,
         \Magento\Catalog\Api\Data\ProductInterface $duplicate
-    )
-    {
+    ) {
         $hydrator = $this->getHydratorPool()->getHydrator(ProductInterface::class);
         $metadata = $this->getMetadataPool()->getMetadata(ProductInterface::class);
         return $this->optionResource->duplicate(
@@ -144,11 +129,7 @@ class Repository implements \Magento\Catalog\Api\ProductCustomOptionRepositoryIn
     }
 
     /**
-     * @param \Magento\Catalog\Api\Data\ProductCustomOptionInterface $option
-     * @return \Magento\Catalog\Api\Data\ProductCustomOptionInterface
-     * @throws CouldNotSaveException
-     * @throws NoSuchEntityException
-     * @throws \Exception
+     * {@inheritdoc}
      */
     public function save(\Magento\Catalog\Api\Data\ProductCustomOptionInterface $option)
     {
@@ -159,10 +140,9 @@ class Repository implements \Magento\Catalog\Api\ProductCustomOptionRepositoryIn
         $product = $this->productRepository->get($productSku);
         $metadata = $this->getMetadataPool()->getMetadata(ProductInterface::class);
         $option->setData('product_id', $product->getData($metadata->getLinkField()));
-        // $option->setOptionId(null);
-        // Kong - Fix bug change option id
+        //$option->setOptionId(null); // Samuel Kong
+        // Samuel Kong
         $option->setData('store_id', $product->getStoreId());
-
         if ($option->getOptionId()) {
             $persistedOption = $product->getOptionById($option->getOptionId());
             if (!$persistedOption) {
@@ -175,17 +155,13 @@ class Repository implements \Magento\Catalog\Api\ProductCustomOptionRepositoryIn
                 $option->setData('values', $newValues);
             }
         }
-        // # Kong
+        // # Samuel Kong
         $option->save();
         return $option;
     }
 
     /**
-     * @param string $sku
-     * @param int $optionId
-     * @return bool
-     * @throws CouldNotSaveException
-     * @throws NoSuchEntityException
+     * {@inheritdoc}
      */
     public function deleteByIdentifier($sku, $optionId)
     {
@@ -235,7 +211,8 @@ class Repository implements \Magento\Catalog\Api\ProductCustomOptionRepositoryIn
     }
 
     /**
-     * @return \Magento\Catalog\Model\Product\OptionFactory|mixed
+     * @return \Magento\Catalog\Model\Product\OptionFactory
+     * @deprecated
      */
     private function getOptionFactory()
     {

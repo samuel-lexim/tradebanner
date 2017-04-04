@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2016 Magento. All rights reserved.
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Catalog\Test\Unit\Controller\Adminhtml\Product\Initialization;
@@ -198,12 +198,8 @@ class HelperTest extends \PHPUnit_Framework_TestCase
     {
         $this->customOptionMock->expects($this->once())
             ->method('setProductSku');
-
-        // Kong
-//        $this->customOptionMock->expects($this->once())
-//            ->method('setOptionId');
-        // # kong
-
+        $this->customOptionMock->expects($this->once())
+            ->method('setOptionId');
 
         $optionsData = [
             'option1' => ['is_delete' => true, 'name' => 'name1', 'price' => 'price1'],

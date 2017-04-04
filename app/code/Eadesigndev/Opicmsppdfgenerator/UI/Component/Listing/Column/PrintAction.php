@@ -66,7 +66,7 @@ class PrintAction extends Column
                                 $viewUrlPath,
                                 [
                                     $urlEntityParamName => $item['entity_id'],
-                                    $templateIdParamName => 9
+                                    $templateIdParamName => 8
                                 ]
                             ),
                             'label' => __('Print')

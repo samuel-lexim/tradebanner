@@ -28,7 +28,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
 
     public function execute(\Magento\Framework\Event\Observer $observer)
     {
-        $this->logger->debug("================== Start debug kong ====================");
+        // $this->logger->debug("================== Start debug kong ====================");
         $quoteItem = $observer->getEvent()->getQuoteItem();
         $_product = $observer->getProduct();
         $customOptions = $_product->getOptions();
@@ -145,7 +145,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             if (is_array($turn)) $turn = $turn[0];
             if ($turn == 2550) $has17 = true;
 
-        } else if ($id == 972) { // Premium Coated Banner
+        } else if ($id == 97) { // Premium Coated Banner
             
             $areaPrice = $area * 1.39 / 144;
 
@@ -619,15 +619,15 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
         } else if ($id == 147) { // Yard Signs (Coroplast)
             
 
-            $matOpId = $posted_options[615];
+            $matOpId = $posted_options[1663];
             if (is_array($matOpId)) $matOpId = $matOpId[0];
 
-            if ($matOpId == 1036) {
-                $colorId = $posted_options[616];
-                $colorObj = $opsAr[616]->getValues();
+            if ($matOpId == 2861) {
+                $colorId = $posted_options[1665];
+                $colorObj = $opsAr[1665]->getValues();
             } else {
-                $colorId = $posted_options[891];
-                $colorObj = $opsAr[891]->getValues();
+                $colorId = $posted_options[1664];
+                $colorObj = $opsAr[1664]->getValues();
             }
 
             $colorPrice = $colorObj[$colorId]->getPrice();
@@ -635,9 +635,9 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
 
             $areaPrice = ($unitPrice * $area * $colorPrice) - $colorPrice;
 
-            $turn = $posted_options[619];
+            $turn = $posted_options[1668];
             if (is_array($turn)) $turn = $turn[0];
-            if ($turn == 1048) $has17 = true;
+            if ($turn == 2875) $has17 = true;
 
         } else if ($id == 148) { // Ultra(Gator) Board
             
@@ -977,29 +977,29 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
         } else if ($id == 145) { // Retractable Stand
             
 
-            $matId = $posted_options[976];
+            $matId = $posted_options[1694];
             if (is_array($matId)) $matId = $matId[0];
-            $sizeId = $posted_options[975];
+            $sizeId = $posted_options[1695];
             if (is_array($sizeId)) $sizeId = $sizeId[0];
 
-            $isSameDay = $posted_options[698];
+            $isSameDay = $posted_options[1698];
             if (is_array($isSameDay)) $isSameDay = $isSameDay[0];
-            $isSameDay = ($isSameDay == 1173);
+            $isSameDay = ($isSameDay == 2923);
 
-            if ($matId == 1590) {
-                if ($sizeId == 1586) $areaPrice = ($isSameDay) ? 92.5 : 75;
-                else if ($sizeId == 1587) $areaPrice = ($isSameDay) ? 111 : 85;
-                else if ($sizeId == 1588) $areaPrice = ($isSameDay) ? 122 : 95;
+            if ($matId == 2913) {
+                if ($sizeId == 2916) $areaPrice = ($isSameDay) ? 92.5 : 75;
+                else if ($sizeId == 2917) $areaPrice = ($isSameDay) ? 111 : 85;
+                else if ($sizeId == 2918) $areaPrice = ($isSameDay) ? 122 : 95;
                 else $areaPrice = ($isSameDay) ? 151 : 115;
-            } else if ($matId == 1591) {
-                if ($sizeId == 1586) $areaPrice = ($isSameDay) ? 83 : 69;
-                else if ($sizeId == 1587) $areaPrice = ($isSameDay) ? 98.5 : 79;
-                else if ($sizeId == 1588) $areaPrice = ($isSameDay) ? 109.5 : 89;
+            } else if ($matId == 2914) {
+                if ($sizeId == 2916) $areaPrice = ($isSameDay) ? 83 : 69;
+                else if ($sizeId == 2917) $areaPrice = ($isSameDay) ? 98.5 : 79;
+                else if ($sizeId == 2918) $areaPrice = ($isSameDay) ? 109.5 : 89;
                 else $areaPrice = ($isSameDay) ? 137.5 : 110;
             } else {
-                if ($sizeId == 1586) $areaPrice = ($isSameDay) ? 104.5 : 82;
-                else if ($sizeId == 1587) $areaPrice = ($isSameDay) ? 127.5 : 95;
-                else if ($sizeId == 1588) $areaPrice = ($isSameDay) ? 139.5 : 105;
+                if ($sizeId == 2916) $areaPrice = ($isSameDay) ? 104.5 : 82;
+                else if ($sizeId == 2917) $areaPrice = ($isSameDay) ? 127.5 : 95;
+                else if ($sizeId == 2918) $areaPrice = ($isSameDay) ? 139.5 : 105;
                 else $areaPrice = ($isSameDay) ? 166 : 120;
             }
 
@@ -1321,11 +1321,11 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
 
         // Default Calc
         $final_price = $quoteItem->getProduct()->getFinalPrice(); //base-price + selected options
-        $this->logger->debug('$final_price: ' . $final_price);
+        //$this->logger->debug('$final_price: ' . $final_price);
         // if ($notFixAreaPrice)  $areaPrice = $this->_calculatePrice($_product, $posted_options); // Default
 
         $total = $areaPrice + $final_price;
-        $this->logger->debug('$areaPrice: ' . $areaPrice);
+        //$this->logger->debug('$areaPrice: ' . $areaPrice);
 
         if ($has15) $total *= 1.5;
         else if ($has17) $total *= 1.7;
@@ -1336,25 +1336,55 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
         // Start Discount
         $item = ($quoteItem->getParentItem() ? $quoteItem->getParentItem() : $quoteItem);
         $qty = $item->getQty();
-        $this->logger->debug('$total before discount: ' . $total);
+        //$this->logger->debug('$total before discount: ' . $total);
 
         // Get Discount
         $percentRate = $hasDiscount ? $this->getDiscountRate(($area * $qty), $_product) : 0;
-        $this->logger->debug('$Rate discount ' . $percentRate);
+        //$this->logger->debug('$Rate discount ' . $percentRate);
 
         $total = $total - $total * $percentRate / 100;
         // End Discount
 
-        // Check min price is 8$
-        if (($qty * $total) < 8) $total = $this->checkEightUsd($qty);
+        // Check min price for total price
+        //        minimum 5$: http://tradebanner.com/shop/bumper-stickers/
+        //        minimum 5$: http://tradebanner.com/shop/3m-controltac-ij-180c-contour/
+        //        minimum 5$: http://tradebanner.com/shop/floor-graphics-contour-cut/
+        //        minimum 5$: http://tradebanner.com/shop/wall-vinyl-decals-contour-cut/
+        //        minimum 5$: http://tradebanner.com/shop/styrene-boards-contour-cut/
+        //        minimum 5$: http://tradebanner.com/shop/easel-back/
+        //
+        //        minimum 10$: http://tradebanner.com/shop/custom-sublimation-transfers/
+        //        minimum 10$; http://tradebanner.com/shop/car-magnets-contour-cut/
+        //        minimum: 10$: http://tradebanner.com/shop/static-clings-contour-cut/
+        //        minimum 10$ : http://tradebanner.com/shop/contour-cut-vinyl-stickers/
+        //        minimum 10$: http://tradebanner.com/shop/foam-boards-contour-cut/
+        //        minimum 10$: http://tradebanner.com/shop/pvc-sintra-board-countour-copy/
+        //        minimum 10$: http://tradebanner.com/shop/ultragator-board-countour/
+        //        minimum 10$ : http://tradebanner.com/shop/yard-signs-coroplast-contour-cut/
+
+        // Except: min 8$ for unit price
+        //  Banner category: 90, 91, 92, 93, 94, 95, 96, 97, 98, 99
+
+        // minimum 5$ for unit price: http://dev.tradebanner.com/sample-kit.html 109
+
+        $banner = [90, 91, 92, 93, 94, 95, 96, 97, 98, 99];
+        $min5 = [102, 115, 117, 138, 135, 118];
+        $min10 = [113, 116, 140, 139, 137, 136, 134, 133];
+
+        if ($id == 109) $total = 5; // sample-kit
+        else if ( ($qty * $total) <= 10 && in_array($id, $min10) ) $total = $this->checkMinPriceForTotal($qty, 10.0);
+        else if ( ($qty * $total) <= 5 && in_array($id, $min5) ) $total = $this->checkMinPriceForTotal($qty, 5.0);
+        else if ( $total <= 8 && in_array($id, $banner) ) $total = 8;
+        else if ( ($qty * $total) <= 8 ) $total = $this->checkMinPriceForTotal($qty, 8.0);
+
 
         // Update Price
         $item->setCustomPrice($total);
         $item->setOriginalCustomPrice($total);
         $item->getProduct()->setIsSuperMode(true);
 
-        $this->logger->debug('$total final: ' . $total);
-        $this->logger->debug("================== End debug kong ====================");
+        //$this->logger->debug('$total final: ' . $total);
+        //$this->logger->debug("================== End debug kong ====================");
     }
 
     /**
@@ -1394,6 +1424,23 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
     public function checkEightUsd($qty)
     {
         $rs = 8.0 / $qty;
+        $digit = strlen(substr(strrchr(strval($rs), "."), 1));
+
+        if ($digit > 2) {
+            $rs = intval($rs * 100);
+            $rs = $rs / 100 + 0.01;
+        }
+        return $rs;
+    }
+
+    /**
+     * @param $qty
+     * @param int $usd
+     * @return float|int
+     */
+    public function checkMinPriceForTotal($qty, $usd = 8)
+    {
+        $rs = $usd / $qty;
         $digit = strlen(substr(strrchr(strval($rs), "."), 1));
 
         if ($digit > 2) {

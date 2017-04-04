@@ -169,7 +169,7 @@ $_objectManager = \Magento\Framework\App\ObjectManager::getInstance();
         <div class="clearfix pad20"></div>
 
         <div style="text-align: center; display: none" id="fedexLoading">
-            <img src="/pub/media/images/icon/loading.gif"/>
+            <!-- <img "/pub/media/images/icon/loading.gif"/> -->
             <div class="progress">
                 <div style="width: 0" class="bar" id="progressArchiveFile"></div>
             </div>
@@ -202,23 +202,23 @@ $_objectManager = \Magento\Framework\App\ObjectManager::getInstance();
                             data: data,
                             cache: false,
                             contentType: false,
-                            processData: false,
+                            processData: false,                     
                             xhr: function() {
-                                var myXhr = $.ajaxSettings.xhr();
+                                var myXhr = $.ajaxSettings.xhr();                               
                                 myXhr.upload.addEventListener('progress', function(evt){
                                     if (evt.lengthComputable) {
                                         var percentComplete = evt.loaded / evt.total * 100;
-                                        var percentFloat = Math.round(percentComplete * 100) / 100;
-                                        var percentVal = (percentFloat >= 100) ? '99.99%' : percentFloat + '%';
-                                        $('#progressArchiveFile').text(percentVal).css("width",percentVal);
+                                        var percentFloat = Math.round(percentComplete * 100) / 100;                          
+                                        var percentVal = (percentFloat >= 100) ? '99.99%' : percentFloat + '%'; 
+                                        $('#progressArchiveFile').text(percentVal).css("width",percentVal);                                     
                                     }
                                 }, false);
-
+                               
                                 return myXhr;
                             },
                             success: function (rs) {
                                 $('#progressArchiveFile').text("100%").css("width","100%");
-                                setTimeout(function(){
+                                setTimeout(function(){ 
                                     $('#fedexLoading').css('display', 'none');
                                     $('#s3Submit').prop('disabled', false);
                                     $('#s3AddMore').prop('disabled', false);
@@ -227,7 +227,7 @@ $_objectManager = \Magento\Framework\App\ObjectManager::getInstance();
                                     $('#progressArchiveFile').text("0%").css("width","0");
                                     form.reset();
                                 }, 1000);
-
+                                
                             }
                         });
                     });

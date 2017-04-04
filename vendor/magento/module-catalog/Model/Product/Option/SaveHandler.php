@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2016 Magento. All rights reserved.
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Catalog\Model\Product\Option;
@@ -19,13 +19,12 @@ class SaveHandler implements ExtensionInterface
     protected $optionRepository;
 
     /**
-     * SaveHandler constructor.
      * @param OptionRepository $optionRepository
+     * @param MetadataPool $metadataPool
      */
     public function __construct(
         OptionRepository $optionRepository
-    )
-    {
+    ) {
         $this->optionRepository = $optionRepository;
     }
 
@@ -37,7 +36,7 @@ class SaveHandler implements ExtensionInterface
      */
     public function execute($entity, $arguments = [])
     {
-        // Kong
+        // Samuel Kong
         $options = $entity->getOptions();
         $optionIds = [];
 
@@ -47,33 +46,31 @@ class SaveHandler implements ExtensionInterface
                 return $option->getOptionId();
             }, $entity->getOptions());
         }
-        // # Kong
+        // # Samuel Kong
 
         /** @var \Magento\Catalog\Api\Data\ProductInterface $entity */
         foreach ($this->optionRepository->getProductOptions($entity) as $option) {
-            // $this->optionRepository->delete($option);
-
-            // Kong
+            //$this->optionRepository->delete($option); // Samuel Kong
+            // Samuel Kong
             if (!in_array($option->getOptionId(), $optionIds)) {
                 $this->optionRepository->delete($option);
             }
-            // # Kong
+            // # Samuel Kong
         }
 
+        // if ($entity->getOptions()) {
+        //     foreach ($entity->getOptions() as $option) {
+        //         $this->optionRepository->save($option);
+        //     }
+        // }
 
-//        if ($entity->getOptions()) {
-//            foreach ($entity->getOptions() as $option) {
-//                $this->optionRepository->save($option);
-//            }
-//        }
-
-        // Kong
+        // Samuel Kong
         if ($options) {
             foreach ($options as $option) {
                 $this->optionRepository->save($option);
             }
         }
-        // # Kong
+        // # Samuel Kong
 
         return $entity;
     }

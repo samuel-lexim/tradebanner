@@ -156,12 +156,11 @@ abstract class AbstractPDF extends \Magento\Framework\App\Helper\AbstractHelper
     }
 
     /**
-     * For Invoice
      * @param $source
      * @return $this
      */
     public function setSource($source)
-    {
+    {        
         $this->source = $source;
 
         if ($source instanceof \Magento\Sales\Model\Order) {
@@ -178,7 +177,15 @@ abstract class AbstractPDF extends \Magento\Framework\App\Helper\AbstractHelper
      * @return $this
      */
     public function setOrder(\Magento\Sales\Model\Order $order)
-    {
+    {     
+        // Samuel Kong
+        $utcDate = $order->getCreatedAt();
+        $UTC = new \DateTimeZone("UTC");
+        $losTZ = new \DateTimeZone("America/Los_Angeles");
+        $date = new \DateTime($utcDate, $UTC );
+        $date->setTimezone( $losTZ );
+        //$order->setCreatedAt( $date->format('Y-m-d H:i:s') );
+        // # Samuel Kong
         $this->order = $order;
         return $this;
     }
