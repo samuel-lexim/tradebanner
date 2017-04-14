@@ -91,7 +91,8 @@ class Helper
         \Magento\Catalog\Model\Product\Initialization\Helper\ProductLinks $productLinks,
         \Magento\Backend\Helper\Js $jsHelper,
         \Magento\Framework\Stdlib\DateTime\Filter\Date $dateFilter
-    ) {
+    )
+    {
         $this->request = $request;
         $this->storeManager = $storeManager;
         $this->stockFilter = $stockFilter;
@@ -199,6 +200,12 @@ class Helper
             $customOptions = [];
             foreach ($options as $customOptionData) {
                 if (empty($customOptionData['is_delete'])) {
+                    // bug change id option
+                    if (empty($customOptionData['option_id'])) {
+                        $customOptionData['option_id'] = null;
+                    }
+                    // # bug change id option
+
                     if (isset($customOptionData['values'])) {
                         $customOptionData['values'] = array_filter($customOptionData['values'], function ($valueData) {
                             return empty($valueData['is_delete']);
@@ -206,7 +213,7 @@ class Helper
                     }
                     $customOption = $this->getCustomOptionFactory()->create(['data' => $customOptionData]);
                     $customOption->setProductSku($product->getSku());
-                    // $customOption->setOptionId(null); // Samuel Kong
+                    // $customOption->setOptionId(null); // samuel kong: bug change id option
                     $customOptions[] = $customOption;
                 }
             }
@@ -315,21 +322,76 @@ class Helper
             return $productOptions;
         }
 
-        foreach ($productOptions as $index => $option) {
-            $optionId = $option['option_id'];
+//        foreach ($productOptions as $index => $option) {
+//            $optionId = $option['option_id'];
+//
+//            if (!isset($overwriteOptions[$optionId])) {
+//                continue;
+//            }
+//
+//            foreach ($overwriteOptions[$optionId] as $fieldName => $overwrite) {
+//                if ($overwrite && isset($option[$fieldName]) && isset($option['default_' . $fieldName])) {
+//                    $productOptions[$index][$fieldName] = $option['default_' . $fieldName];
+//                }
+//            }
+//        }
 
-            if (!isset($overwriteOptions[$optionId])) {
-                continue;
+        // Fix bug change options id
+        foreach ($productOptions as $optionIndex => $option) {
+            $optionId = $option['option_id'];
+            $option = $this->overwriteValue(
+                $optionId,
+                $option,
+                $overwriteOptions
+            );
+
+            if (isset($option['values']) && isset($overwriteOptions[$optionId]['values'])) {
+                foreach ($option['values'] as $valueIndex => $value) {
+                    if (isset($value['option_type_id'])) {
+                        $valueId = $value['option_type_id'];
+                        $value = $this->overwriteValue(
+                            $valueId,
+                            $value,
+                            $overwriteOptions[$optionId]['values']
+                        );
+
+                        $option['values'][$valueIndex] = $value;
+                    }
+                }
             }
 
+            $productOptions[$optionIndex] = $option;
+        }
+        // # Fix bug change options id
+
+        return $productOptions;
+    }
+
+    /**
+     * Fix bug change options id
+     * Overwrite values of fields to default, if there are option id and field
+     * name in array overwriteOptions
+     *
+     * @param int $optionId
+     * @param array $option
+     * @param array $overwriteOptions
+     *
+     * @return array
+     */
+    private function overwriteValue($optionId, $option, $overwriteOptions)
+    {
+        if (isset($overwriteOptions[$optionId])) {
             foreach ($overwriteOptions[$optionId] as $fieldName => $overwrite) {
                 if ($overwrite && isset($option[$fieldName]) && isset($option['default_' . $fieldName])) {
-                    $productOptions[$index][$fieldName] = $option['default_' . $fieldName];
+                    $option[$fieldName] = $option['default_' . $fieldName];
+                    if ('title' == $fieldName) {
+                        $option['is_delete_store_title'] = 1;
+                    }
                 }
             }
         }
 
-        return $productOptions;
+        return $option;
     }
 
     /**
@@ -339,7 +401,8 @@ class Helper
     {
         if (null === $this->customOptionFactory) {
             $this->customOptionFactory = \Magento\Framework\App\ObjectManager::getInstance()
-                ->get('Magento\Catalog\Api\Data\ProductCustomOptionInterfaceFactory');
+                ->get(\Magento\Catalog\Api\Data\ProductCustomOptionInterfaceFactory::class);
+                // ->get('Magento\Catalog\Api\Data\ProductCustomOptionInterfaceFactory'); // Fix bug change options id
         }
         return $this->customOptionFactory;
     }
@@ -351,7 +414,8 @@ class Helper
     {
         if (null === $this->productLinkFactory) {
             $this->productLinkFactory = \Magento\Framework\App\ObjectManager::getInstance()
-                ->get('Magento\Catalog\Api\Data\ProductLinkInterfaceFactory');
+                ->get(\Magento\Catalog\Api\Data\ProductLinkInterfaceFactory::class);
+//                ->get('Magento\Catalog\Api\Data\ProductLinkInterfaceFactory');
         }
         return $this->productLinkFactory;
     }
@@ -363,7 +427,8 @@ class Helper
     {
         if (null === $this->productRepository) {
             $this->productRepository = \Magento\Framework\App\ObjectManager::getInstance()
-                ->get('Magento\Catalog\Api\ProductRepositoryInterface\Proxy');
+                ->get(\Magento\Catalog\Api\ProductRepositoryInterface\Proxy::class);
+//                ->get('Magento\Catalog\Api\ProductRepositoryInterface\Proxy');
         }
         return $this->productRepository;
     }
