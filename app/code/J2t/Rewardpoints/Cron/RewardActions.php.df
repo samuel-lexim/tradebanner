@@ -186,7 +186,7 @@ class RewardActions
                 }
                 //}
                 // CUSTOMER NOTIFICATIONS
-                //$this->customerPointsNotifications($store);
+                $this->customerPointsNotifications($store);
             }
         }
     }
