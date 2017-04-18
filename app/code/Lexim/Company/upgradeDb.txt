@@ -4,6 +4,7 @@
 
 3. Update company for old order
 
+// old sql
 update sales_order_grid g
 inner join (
  select a.customer_id, a.increment_id, c.company
@@ -12,3 +13,15 @@ inner join (
  on a.customer_id = c.parent_id
 ) h on g.customer_id = h.customer_id
 set g.company_customer = h.company
+
+// new update sql
+update sales_order_grid g
+inner join (
+    select o.entity_id, a.company
+    from sales_order o
+    inner join sales_order_address a
+    on o.entity_id = a.parent_id
+    where a.company is not null
+    group by o.entity_id
+) j on g.entity_id = j.entity_id
+set g.company_customer = j.company
