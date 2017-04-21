@@ -1,0 +1,393 @@
+sudo composer require eadesignro/module-eacore; sudo composer require eadesignro/module-pdfgenerator;
+
+sudo php bin/magento setup:upgrade; sudo php bin/magento setup:static-content:deploy; sudo chmod -R 777 var/ pub/;
+
+
+Eadesigndev_Opicmsppdfgenerator
+
+6012 Clara St. Bell Gardens, CA 90201
+1-888-900-6539
+1-562-381-2114
+info@tradebanner.com
+M-F: 8:30AM-5:00PM PST
+
+Demo:
+http://demo.eadesign.ro/index.php/admin
+User: demo
+Passwords: demo1234
+
+http://demoinv.eadesign.ro/index.php/admin
+User: demo
+Passwords: demo1234
+
+
+<!-- Template Portrait -->
+<!-- Body -->
+<div>
+    <div class="body" style="width: 100%; height: 29.7cm; margin: 0 auto; color: #555555; background: #FFFFFF; font-family: Arial; font-size: 14px;">
+        <div class="main">
+            <div id="details" class="clearfix" style="margin-bottom: 50px;">
+                <div id="client" style="padding-left: 6px; border-left: 6px solid #000; float: left; width: 49%;">
+                    <div class="to" style="color: #777777;">INVOICE TO:</div>
+                    <div class="name">{{var formattedBillingAddress|raw}}</div>
+                </div>
+                <div id="invoice" style="float: right; text-align: right; width: 49%;">
+                    <h1 style="color: #000; font-size: 2.4em; line-height: 1em; font-weight: normal; margin: 0  0 10px 0;">
+                        INVOICE {{var invoice.increment_id}}</h1>
+                    <div class="date" style="font-size: 1.1em; color: #777777;">Date of Invoice:{{var
+                        invoice.created_at}}
+                    </div>
+                    <div class="date" style="font-size: 1.1em; color: #777777;">Status: {{var order.status}}</div>
+                </div>
+            </div>
+            {{layout area="frontend" handle="sales_email_order_invoice_items" invoice=$invoice order=$order}}
+            <div id="thanks" style="font-size: 2em; margin-bottom: 50px;">Thank you!</div>
+        </div>
+    </div>
+</div>
+
+<!-- Header -->
+<div class="clearfix header" style="padding: 10px 0; margin-bottom: 15px; border-bottom: 1px solid #AAAAAA;">
+    <div id="logo" style="float: left; margin-top: 8px; width: 49%;">
+        <img style="height: 70px;" src="/pub/media/images/logo-text.png" />
+    </div>
+    <div id="company" style="float: right; font-family: 'Tahoma', sans-serif; text-align: right; width: 49%;">
+        <h2 class="name" style="font-size: 1.4em; font-weight: normal; margin: 0;">Trade Banner</h2>
+        <div>6012 Clara St. Bell Gardens, CA 90201</div>
+        <div>1-888-900-6539 <br>1-562-381-2114</div>
+        <div><a href="mailto:info@tradebanner.com">info@tradebanner.com</a></div>
+    </div>
+</div>
+
+<!-- Footer -->
+
+
+<!-- CSS -->
+<style type="text/css">
+    @font-face {
+        font-family: Arial;
+    }
+
+    * {
+        border-box: ;
+    }
+
+    .clearfix:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    a {
+        color: #000;
+        text-decoration: none;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        border-spacing: 0;
+        margin-bottom: 20px;
+    }
+
+    table th, table td {
+        background: #EEEEEE;
+        text-align: center;
+        border-bottom: 1px solid #FFFFFF;
+    }
+
+    table thead th {
+        font-weight: normal;
+        text-transform: uppercase;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+
+    table thead th.item-info, table thead th.item-subtotal {
+        border: none;
+        background: #ff8b00;
+        color: #fff;
+    }
+
+    table thead th.item-info {
+        text-align: left;
+        padding-left: 10px;
+    }
+
+    table thead th.item-qty {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    table thead th.item-subtotal {
+        text-align: right;
+        padding-right: 10px;
+    }
+
+    table tfoot {
+        background: #FFFFFF;
+        text-align: right;
+    }
+
+    table tfoot td, table tfoot th {
+        padding: 10px 20px;
+        background: #FFFFFF;
+        border-bottom: none;
+        font-size: 1em;
+        white-space: nowrap;
+        border-top: 1px solid #AAAAAA;
+        text-align: right;
+        text-transform: uppercase;
+        font-weight: normal;
+    }
+
+    table tbody tr td:nth-child(1) {
+        text-align: left;
+        background: #ff8b00;
+        color: #000;
+        padding-left: 10px;
+        border-top: 1px solid #AAAAAA;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+
+    table tbody tr td:nth-child(3) {
+        text-align: right;
+        background: #ff8b00;
+        color: #fff;
+        padding-right: 10px;
+        border-top: 1px solid #AAAAAA;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+</style>
+
+
+<!-- Template setting -->
+Template file name: invoice {{var ea_invoice_id}} {{var ea_invoice_date}} {{var ea_invoice_status}}
+
+<!-- ================================================================================================= -->
+
+
+<!-- body -->
+<style>
+    .clearfix:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+    a {
+        color: #000;
+        text-decoration: none;
+    }
+    table thead .desc, table thead .qty, table thead .unit {
+        color: #f26522;
+        text-align: center;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        border-spacing: 0;
+        margin-bottom: 20px;
+    }
+    table thead th {
+        font-weight: bold;
+        text-transform: uppercase;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    table tfoot {
+        background: #f2f8ee;
+        text-align: right;
+    }
+    table tfoot td, table tfoot th {
+        padding: 10px 20px;
+        background: #f2f8ee;
+        border-bottom: none;
+        font-size: 1em;
+        white-space: nowrap;
+        border-top: 1px solid #AAAAAA;
+        text-align: right;
+        text-transform: uppercase;
+        font-weight: normal;
+        font-family: 'Oswald', sans-serif;
+    }
+    .no {
+        text-align: left;
+        background: #f26522;
+        color: #f2f8ee;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        width: 5%;
+        padding-left: 10px;
+    }
+    .qty{
+        width: 10%;
+        background: #f2f8ee;
+        text-align: center;
+    }
+    .unit{
+        width: 15%;
+        background: #f2f8ee;
+        text-align: center;
+
+    }
+    .desc{
+        width: 40%;
+        background: #f2f8ee;
+        text-align: left;
+        padding-left: 10px;
+
+    }
+    .total {
+        text-align: right;
+        background: #f26522;
+        color: #f2f8ee;
+        padding-right: 10px;
+        border-top: 1px solid #AAAAAA;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        width: 30%;
+    }
+</style>
+
+<body>
+<div>
+    <div class="body"
+         style="position: relative; width: 21cm; height: 29.7cm; margin: 0 auto; color: #555555; background: #FFFFFF; font-size: 14px;">
+        <div class="main">
+            <div id="details" class="clearfix" style="margin-bottom: 20px; font-family: 'Libre Franklin', sans-serif;">
+                <table id="client" style="width: 100%;">
+                    <tr>
+                        <td style="width:25%; padding-left: 6px; border-left: 6px solid #000; color: #777777;" class="to">INVOICE TO:</td>
+                        <td style="width:25%; padding-left: 6px; border-left: 6px solid #000; color: #777777;" class="to">BILLING TO:</td>
+                        <td id="invoice" style="font-family: 'Oswald', sans-serif; text-align: right; width: 50%; "><h1 style="color: #000; font-size: 2.4em; line-height: 1em; font-weight: normal; margin: 0  0 10px 0;">
+                            INVOICE {{var invoice.increment_id}}</h1></td>
+                    </tr>
+                    <tr>
+                        <td class="name" style="padding-left: 6px; border-left: 6px solid #000;">{{var formattedBillingAddress|raw}}</td>
+                        <td class="name" style="padding-left: 6px; border-left: 6px solid #000;">{{var formattedBillingAddress|raw}}</td>
+                        <td style="text-align: right;" >
+                            <div>{{var ea_barcode_c39_invoice.increment_id}}</div>
+                            <div class="date" style="font-size: 1.1em; color: #777777;">Date of Invoice:{{var
+                                invoice.created_at}}
+                            </div>
+                            <div class="date" style="font-size: 1.1em; color: #777777;">Status:{{var order.status}}</div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <table style="width: 100%; font-family: 'Frank Ruhl Libre', sans-serif; border-collapse: collapse; border-spacing: 0; margin-bottom: 20px;" border="0">
+                <thead>
+                <tr>
+                    <th class="no">#</th>
+                    <th class="desc">DESCRIPTION</th>
+                    <th class="unit">PRICE</th>
+                    <th class="qty">QTY</th>
+                    <th class="total">TOTAL</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td colspan="5">##productlist_start##</td>
+                </tr>
+                <tr>
+                    <td class="no">
+                        <p>{{var item.position}}</p>
+                    </td>
+                    <td class="desc">
+                        <p>{{var item.name}}</p>
+                        <p>{{var item.sku}}</p>
+                        <p>{{var ea_barcode_c39_item.sku}}</p>
+                        <p>{{var item.options}}</p>
+                        <p>{{var item.additional_options}}</p>
+                        <p>{{var item.attributes_info}}</p>
+                    </td>
+                    <td class="unit">
+                        <p>{{var ea_item.price}}</p>
+                    </td>
+                    <td class="qty">
+                        <p>{{var ea_item.qty}}</p>
+                    </td>
+                    <td class="total">{{var ea_item.row_total}}</td>
+                </tr>
+                <tr>
+                    <td colspan="5">##productlist_end##</td>
+                </tr>
+                </tbody>
+                <tfoot>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td colspan="3">SUBTOTAL</td>
+                    <td>{{var ea_invoice.subtotal}}</td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td colspan="3">SHIPPING TAX</td>
+                    <td>{{var ea_invoice.base_shipping_amount}}{{depend invoice_if.base_shipping_amount}}</td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td colspan="3">DEPEND SHIPPING TAX</td>
+                    <td>{{var invoice.base_shipping_amount}}{{/depend}}</td>
+                </tr>
+                <tr>
+                    <td style="border-top: 1px solid #f26522;" >&nbsp;</td>
+                    <td class="grandtotal" style="color: #f26522; font-weight: bold; font-size: 1.6em; border-top: 1px solid #f26522;"
+                        colspan="3">GRAND TOTAL
+                    </td>
+                    <td class="grandtotal" style="color: #f26522;  font-weight: bold; font-size: 1.6em; border-top: 1px solid #f26522;">
+                        {{var ea_invoice.grand_total}}
+                    </td>
+                </tr>
+                </tfoot>
+            </table>
+            <div id="thanks" style="font-size: 2em; margin-top: 100px; font-family: 'Libre Franklin', sans-serif;">Thank you!</div>
+        </div>
+    </div>
+</div>
+</body>
+
+
+<!-- Header  -->
+<div class="clearfix header" style="padding: 10px 0; margin-bottom: 15px; border-bottom: 1px solid #AAAAAA;">
+    <div id="logo" style="float: left; margin-top: 8px; width: 49%;">
+        <img src="/pub/media/images/logo-text.png" />
+    </div>
+    <div id="company" style="float: right; font-family: 'Tahoma', sans-serif; text-align: right; width: 49%;">
+        <h2 class="name" style="font-size: 1.4em; font-weight: normal; margin: 0;">Trade Banner</h2>
+        <div>6012 Clara St. Bell Gardens, CA 90201</div>
+        <div>1-888-900-6539 <br>1-562-381-2114</div>
+        <div><a href="mailto:info@tradebanner.com">info@tradebanner.com</a></div>
+    </div>
+</div>
+
+<div>This is the header<div>
+    <div class="body" style="position: fixed; width: 100%; height: 29.7cm; margin: 0 auto; color: #555555; background: #FFFFFF; font-family: Arial; font-size: 14px;">
+        <div class="clearfix header" style="padding: 10px 0; margin-bottom: 20px; border-bottom: 1px solid #AAAAAA;">
+            <div id="company" style="float: right; text-align: right; width: 49%;">
+                <h2 class="name" style="font-size: 1.4em; font-weight: normal; margin: 0;">EaDesign Web Development</h2>
+                <div>6012 Clara St. Bell Gardens, CA 90201</div>
+                <div>0232 272221</div>
+                <div><a href="mailto:office@eadesign.ro">office@eadesign.ro</a></div>
+            </div>
+        </div>
+        <div class="main">
+            <div id="details" class="clearfix" style="margin-bottom: 50px;">
+                <div id="client" style="padding-left: 6px; border-left: 6px solid #000; float: left; width: 49%;">
+                    <div class="to" style="color: #777777;">INVOICE TO:</div>
+                    <div class="name">{{var formattedBillingAddress|raw}}</div>
+                </div>
+                <div id="invoice" style="float: right; text-align: right; width: 49%;">
+                    <h1 style="color: #000; font-size: 2.4em; line-height: 1em; font-weight: normal; margin: 0  0 10px 0;">INVOICE {{var invoice.increment_id}}</h1>
+                    <div class="date" style="font-size: 1.1em; color: #777777;">Date of Invoice:{{var invoice.created_at}}</div>
+                    <div class="date" style="font-size: 1.1em; color: #777777;">Status: {{var order.status}}</div>
+                </div>
+            </div>
+            {{layout area="frontend" handle="sales_email_order_invoice_items" invoice=$invoice order=$order}}
+
+        </div>
+    </div>
+</div>
+
+
