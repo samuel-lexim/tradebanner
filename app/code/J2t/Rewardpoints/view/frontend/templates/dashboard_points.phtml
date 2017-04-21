@@ -1,0 +1,50 @@
+<?php
+/**
+ * J2T RewardsPoint
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@j2t-design.com so we can send you a copy immediately.
+ *
+ * @category   Magento extension
+ * @package    RewardsPoint
+ * @copyright  Copyright (c) 2015 J2T DESIGN. (http://www.j2t-design.com)
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+ ?>
+<table class="data table" id="my-rewardpoints-table">
+    <thead>
+        <tr>
+            <th scope="col" class="col"><?php echo __('Your Points') ?></th>
+            <th scope="col" class="col"><?php echo __('Accumulated Points') ?></th>
+            <th scope="col" class="col"><?php echo __('Points Spent') ?></th>
+            <th scope="col" class="col"><?php echo __('Unvalidated Points') ?></th>
+            <th scope="col" class="col"><?php echo __('Expired/Delayed Points') ?></th>
+            <?php /*?><th scope="col" class="col"><?php echo __('Not Yet Available Points') ?></th><?php */?>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="col" data-theme-label="<?php echo __('Your Points') ?>"><?php echo $this->getPointsCurrent(); ?></td>
+            <td class="col" data-theme-label="<?php echo __('Accumulated Points') ?>">
+                <?php echo $this->getGatheredPoints();?>
+                <?php /*if ($points_lost = (int)$this->getPointsLost()):?>
+                <div class="j2t-point-lost"><?php echo __("You also have %s expired points.", (int)$points_lost);?></div>
+                <?php endif;*/?>
+            </td>
+            <td class="col" data-theme-label="<?php echo __('Points Spent') ?>"><?php echo $this->getSpentPoints(); ?></td>
+            <td class="col" data-theme-label="<?php echo __('Unvalidated Points') ?>"><?php echo $this->getPointsWaitingValidation(); ?></td>
+            <?php if (!$this->getNotAvailableYetPoints()):?>
+            <td class="col" data-theme-label="<?php echo __('Expired/Delayed Points') ?>"><?php echo __("%1 (no delayed points)",$this->getExpiredPoints()); ?></td>
+            <?php else:?>
+            <td class="col" data-theme-label="<?php echo __('Expired/Delayed Points') ?>"><?php echo __("%1 (%2 delayed points)",$this->getExpiredPoints(), $this->getNotAvailableYetPoints()); ?></td>
+            <?php endif;?>
+            <?php /*?><td class="col" data-theme-label="<?php echo __('Not Yet Available Points') ?>"><?php echo $this->getNotAvailableYetPoints(); ?></td><?php */?>
+        </tr>
+    </tbody>
+</table>

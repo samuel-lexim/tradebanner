@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+    <head>
+        <link src="J2t_Rewardpoints::js/j2t-rewardpoints.js"/>
+        <css src="J2t_Rewardpoints::css/j2t-rewardpoints.css"/>
+    </head>
+    <body>
+        <referenceContainer name="header">
+            <block class="Magento\Framework\View\Element\Template" before="search" name="j2t_rewardpoints_launcher_toolbar_entry" 
+                   template="J2t_Rewardpoints::toolbar_entry.phtml" />
+        </referenceContainer>
+    </body>
+</page>

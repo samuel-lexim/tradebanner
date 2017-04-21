@@ -1,0 +1,75 @@
+<?php
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php echo $this->getChildHtml('customer_account_points') ?>
+
+<div class="page-title">
+    <h1 class="title"><span class="base" data-ui-id="page-title"><?php echo __('History');?></span></h1>
+</div>
+
+<?php if ($block->getCollection() && $block->count()): ?>
+    <div class="table-wrapper reviews">
+        <table class="data table table-rewardpoints" id="my-loyalty-points-table">
+            <caption class="table-caption"><?php echo __('Loyalty Points') ?></caption>
+            <thead>
+                <tr>
+                    <th scope="col" class="col date"><?php echo __('Type Of Points') ?></th>
+                    <th scope="col" class="col item"><?php echo __('Gathered Points') ?></th>
+                    <th scope="col" class="col item"><?php echo __('Used Points') ?></th>
+                    <th scope="col" class="col summary"><?php echo __('Insertion Date') ?></th>
+                    <th scope="col" class="col description"><?php echo __('Available From') ?></th>
+                    <th scope="col" class="col description"><?php echo __('Available Until') ?></th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($block->getCollection() as $_point): ?>
+                <tr>
+                    <td data-th="<?php echo $block->escapeHtml(__('Type Of Points')) ?>" class="col item">
+                        <strong class="product-name">
+                            <?php //echo $block->escapeHtml($_point->getOrderId()) ?>
+                            <?php echo $this->getTypeOfPoint($_point);?>
+                        </strong>
+                    </td>
+                    <td data-th="<?php echo $block->escapeHtml(__('Gathered Points')) ?>" class="col summary">
+                    <?php if ($_point->getPointsCurrent()): ?>
+                        <?php echo $block->escapeHtml($_point->getPointsCurrent()) ?>
+                    <?php else:?>
+                        0
+                    <?php endif; ?>
+                    </td>
+                    <td data-th="<?php echo $block->escapeHtml(__('Used Points')) ?>" class="col summary">
+                    <?php if ($_point->getPointsSpent()): ?>
+                        <?php echo $block->escapeHtml($_point->getPointsSpent()) ?>
+                    <?php else:?>
+                        0
+                    <?php endif; ?>
+                    </td>
+                    <td data-th="<?php echo $block->escapeHtml(__('Insertion Date')) ?>" class="col date"><?php if ($_point->getDateInsertion()): echo $block->dateFormat($_point->getDateInsertion()); else: echo "-"; endif; ?></td>
+                    <td data-th="<?php echo $block->escapeHtml(__('Available From')) ?>" class="col date"><?php if ($_point->getDateStart()): echo $block->dateFormat($_point->getDateStart()); else: echo "-"; endif; ?></td>
+                    <td data-th="<?php echo $block->escapeHtml(__('Available Until')) ?>" class="col date"><?php if ($_point->getDateEnd()): echo $block->dateFormat($_point->getDateEnd()); else: echo "-"; endif; ?></td>
+                </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+    <?php if ($block->getToolbarHtml()): ?>
+        <div class="toolbar client-loyaltypoints-toolbar bottom">
+            <?php echo $block->getToolbarHtml() ?>
+        </div>
+    <?php endif; ?>
+<?php else: ?>
+    <div class="message info empty"><span><?php echo __('You have no points.') ?></span></div>
+<?php endif; ?>
+<div class="actions-toolbar">
+    <div class="secondary">
+        <a class="action back" href="<?php echo $block->escapeUrl($block->getBackUrl()) ?>">
+            <span><?php echo __('Back') ?></span>
+        </a>
+    </div>
+</div>

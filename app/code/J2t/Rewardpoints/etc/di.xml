@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!--<type name="Magento\Framework\Module\Updater\SetupFactory">
+        <arguments>
+            <argument name="resourceTypes" xsi:type="array">
+                <item name="rewardpoints_setup" xsi:type="string">\J2t\Rewardpoints\Model\Resource\Setup</item>
+            </argument>
+        </arguments>
+    </type>-->
+    
+    
+    <type name="Magento\Multishipping\Controller\Checkout">
+        <plugin name="remove_points_on_multishipping" type="J2t\Rewardpoints\Model\Plugin\MultishippingRestriction" />
+    </type>
+    
+    <type name="Magento\Checkout\Api\TotalsInformationManagementInterface">
+        <plugin name="append_reward_data_cart_totals_info" type="J2t\Rewardpoints\Model\Plugin\TotalsInformation" />
+    </type>
+	
+    <type name="Magento\Quote\Model\Cart\CartTotalRepository">
+        <plugin name="append_reward_data_cart_repository" type="J2t\Rewardpoints\Model\Plugin\CartTotal" />
+    </type>
+	
+    <type name="Magento\Checkout\Model\DefaultConfigProvider">
+        <plugin name="append_reward_data_to_cart_quote" type="J2t\Rewardpoints\Model\Plugin\ConfigProvider" />
+    </type>
+    <type name="Magento\Quote\Model\Quote\Item\ToOrderItem">
+        <plugin name="append_reward_data_to_order" type="J2t\Rewardpoints\Model\Plugin\QuoteItem"/>
+    </type>
+    <type name="Magento\Quote\Model\Quote\Address\ToOrder">
+        <plugin name="append_reward_data_to_order" type="J2t\Rewardpoints\Model\Plugin\PointOrder"/>
+    </type>
+    <type name="Magento\Catalog\Block\Product\AbstractProduct">
+        <plugin name="append_reward_data_product_price" type="J2t\Rewardpoints\Model\Plugin\PointInfo"/>
+    </type>
+    
+    <type name="\Magento\Framework\View\Element\AbstractBlock">
+        <plugin name="rewardpoints_block_injection" type="J2t\Rewardpoints\Model\Plugin\Block" />
+    </type>
+    
+    <type name="\Magento\Backend\Controller\Adminhtml\Dashboard\AjaxBlock">
+        <plugin name="rewardpoints_ajax_block_injection" type="J2t\Rewardpoints\Model\Plugin\AjaxBlock" />
+    </type>
+    <!--<type name="Magento\Backend\Model\Menu\Item">
+        <plugin name="append_reward_menu" type="J2t\Rewardpoints\Model\Plugin\PointOrder" sortOrder="100" />
+    </type>-->
+	
+    <!--<preference for="Magento\Tax\Api\Data\GrandTotalDetailsInterface" type="Magento\Tax\Model\Calculation\GrandTotalDetails" />-->
+    <!--<preference for="Magento\Quote\Api\Data\TotalsInterface" type="\Magento\Quote\Model\Cart\Totals" />-->
+    
+    <preference for="J2t\Rewardpoints\Api\Data\BaseRewardpointsInterface" type="J2t\Rewardpoints\Model\Cart\BaseRewardpoints" />
+    <preference for="J2t\Rewardpoints\Api\RewardpointsManagementInterface" type="J2t\Rewardpoints\Model\RewardpointsManagement" />
+    
+</config>

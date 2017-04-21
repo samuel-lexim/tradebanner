@@ -6,8 +6,6 @@
 
 namespace FME\Quickrfq\Block\Widget;
 
-
-
 class AbstractWidget extends \Magento\Framework\View\Element\Template
 {
 
@@ -19,13 +17,13 @@ class AbstractWidget extends \Magento\Framework\View\Element\Template
     public function __construct(
         \Magento\Framework\View\Element\Template\Context $context,
         array $data = []
-    ) {
-        
+    )
+    {
+
         parent::__construct($context, $data);
         $this->_isScopePrivate = true;
     }
 
-   
 
     /**
      * @return string
@@ -66,6 +64,4 @@ class AbstractWidget extends \Magento\Framework\View\Element\Template
     {
         return sprintf($this->getFieldNameFormat(), $field);
     }
-
-    
 }

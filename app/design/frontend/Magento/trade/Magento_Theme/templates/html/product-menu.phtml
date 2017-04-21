@@ -14,10 +14,11 @@ $categories = $categoryFac->create()
 $productFac = $objectManager->create('Magento\Catalog\Model\ResourceModel\Product\CollectionFactory');
 
 $product = $objectManager->get('Magento\Framework\Registry')->registry('current_product');//get current product
-$pId = 0; $catId = 0;
+$pId = 0; 
+$catArray = [];
 if (!is_null($product)) {
     $pId = intval($product->getId());
-    if (count($product->getCategoryIds()) == 1) $catId = intval($product->getCategoryIds()[0]);
+    $catArray = $product->getCategoryIds();
 }
 
 ?>
@@ -26,8 +27,8 @@ if (!is_null($product)) {
     <ul id="leftMenuUl">
         <div class="titleLeftSidebar">CATEGORIES</div>
 
-        <?php foreach($categories as $cate ) { ?>
-        <li class="<?= ($catId > 0 && $catId == $cate->getId()) ? 'open' : '' ?>">
+        <?php foreach($categories as $cate ) { ?>  
+        <li class="<?= ( in_array($cate->getId(), $catArray) )  ? 'open' : '' ?>">
             <?php $products = $productFac->create()
                 ->addAttributeToSelect('*')
                 ->addCategoryFilter($cate)
@@ -35,7 +36,7 @@ if (!is_null($product)) {
                 ->load();
             ?>
             <?php if (count($products) > 0) { ?>
-                <span class="dropLeftMenu"><?= ($catId > 0 && $catId == $cate->getId()) ? '-' : '+' ?></span>
+                <span class="dropLeftMenu"></span>
             <?php } ?>
             <a href="<?= $cate->getUrl() ?>"><?= $cate->getName() ?></a>
             <ul class="submenu">
@@ -60,16 +61,16 @@ if (!is_null($product)) {
 //                $(this).prepend('<span class="dropLeftMenu">' + data + '</span>');
 //            });
 
-            $('#leftMenuUl .dropLeftMenu').click(function () {
-                var selectCt = $(this).parent().find('ul.submenu').first();
-                if (selectCt.is(':visible')) {
-                    $(this).text("+");
-                    selectCt.slideUp('normal');
-                } else {
-                    $(this).text("-");
-                    selectCt.slideDown('normal');
-                }
-            });
+            // $('#leftMenuUl .dropLeftMenu').click(function () {
+            //     var selectCt = $(this).parent().find('ul.submenu').first();
+            //     if (selectCt.is(':visible')) {
+            //         $(this).text("+");
+            //         selectCt.slideUp('normal');
+            //     } else {
+            //         $(this).text("-");
+            //         selectCt.slideDown('normal');
+            //     }
+            // });
         })
     });
 </script>

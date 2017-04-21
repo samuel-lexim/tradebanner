@@ -79,7 +79,7 @@ class Actions extends Column
                             'message' => __('Are you sure you wan\'t to delete a ${ $.$data.contact_name } record?')
                         ]
                     ];
-                }                
+                }
             }
         }
 

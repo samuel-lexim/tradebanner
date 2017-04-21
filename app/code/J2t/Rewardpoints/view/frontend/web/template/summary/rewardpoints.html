@@ -1,0 +1,17 @@
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<!-- ko if: isDisplayed() -->
+<tr class="totals rewardpoints">
+    <th class="mark" scope="row">
+        <span class="title" data-bind="text: title"></span>
+        <span class="rewardpoints qty-used value" data-bind="text: $t('%1 points used').replace('%1', getRewardpointsQty())"></span>
+    </th>
+    <td class="amount">
+        <span class="price" data-bind="text: getValue(), attr: {'data-th': $t(name) }"></span>
+    </td>
+</tr>
+<!-- /ko -->

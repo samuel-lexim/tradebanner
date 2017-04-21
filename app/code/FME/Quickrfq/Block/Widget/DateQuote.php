@@ -5,14 +5,12 @@
  */
 namespace FME\Quickrfq\Block\Widget;
 
-
 use Magento\Framework\Api\ArrayObjectSearch;
 use Magento\Framework\Stdlib\DateTime\TimezoneInterface;
 
-
 class DateQuote extends AbstractWidget
 {
-    
+
     /**
      * Date inputs
      *
@@ -26,6 +24,7 @@ class DateQuote extends AbstractWidget
     protected $dateElement;
 
     /**
+     * DateQuote constructor.
      * @param \Magento\Framework\View\Element\Template\Context $context
      * @param \Magento\Framework\View\Element\Html\Date $dateElement
      * @param array $data
@@ -34,9 +33,10 @@ class DateQuote extends AbstractWidget
         \Magento\Framework\View\Element\Template\Context $context,
         \Magento\Framework\View\Element\Html\Date $dateElement,
         array $data = []
-    ) {
+    )
+    {
         $this->dateElement = $dateElement;
-        parent::__construct($context,$data);
+        parent::__construct($context, $data);
     }
 
     /**
@@ -181,6 +181,4 @@ class DateQuote extends AbstractWidget
 
         return sprintf($dateFormat, $this->_dateInputs['m'], $this->_dateInputs['d'], $this->_dateInputs['y']);
     }
-
-    
 }

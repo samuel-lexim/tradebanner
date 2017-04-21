@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+    <body>		
+		<referenceBlock name="invoice_totals">
+		   <block class="J2t\Rewardpoints\Block\Sales\Order\Points" name="rewardpoints" template="order/totals/summary.phtml">
+                <action method="setAfterCondition">
+                    <argument name="condition" xsi:type="string">discount</argument>
+                </action>
+			</block>
+        </referenceBlock>
+		
+		
+		
+    </body>
+</page>

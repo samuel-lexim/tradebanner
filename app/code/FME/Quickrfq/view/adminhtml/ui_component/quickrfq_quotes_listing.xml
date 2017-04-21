@@ -261,7 +261,7 @@
                             <item name="required-entry" xsi:type="boolean">true</item>
                         </item>
                     </item>
-                    <item name="label" xsi:type="string" translate="true">Contact Name</item>
+                    <item name="label" xsi:type="string" translate="true">Custom Quote Name</item>
                     <item name="sortOrder" xsi:type="number">10</item>
                 </item>
             </argument>
@@ -276,8 +276,38 @@
                             <item name="required-entry" xsi:type="boolean">true</item>
                         </item>
                     </item>
-                    <item name="label" xsi:type="string" translate="true">Company</item>
+                    <item name="label" xsi:type="string" translate="true">Company Name</item>
                     <item name="sortOrder" xsi:type="number">20</item>
+                </item>
+            </argument>
+        </column>
+        <column name="category">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="editor" xsi:type="array">
+                        <item name="editorType" xsi:type="string">text</item>
+                        <item name="validation" xsi:type="array">
+                            <item name="required-entry" xsi:type="boolean">true</item>
+                        </item>
+                    </item>
+                    <item name="label" xsi:type="string" translate="true">Category</item>
+                    <item name="sortOrder" xsi:type="number">22</item>
+                </item>
+            </argument>
+        </column>
+        <column name="quantity">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="editor" xsi:type="array">
+                        <item name="editorType" xsi:type="string">text</item>
+                        <item name="validation" xsi:type="array">
+                            <item name="required-entry" xsi:type="boolean">true</item>
+                        </item>
+                    </item>
+                    <item name="label" xsi:type="string" translate="true">Quantity</item>
+                    <item name="sortOrder" xsi:type="number">24</item>
                 </item>
             </argument>
         </column>
@@ -296,37 +326,6 @@
                 </item>
             </argument>
         </column>
-        <column name="category">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="filter" xsi:type="string">text</item>
-                    <item name="editor" xsi:type="string">text</item>
-                    <item name="label" xsi:type="string" translate="true">Category</item>
-                    <item name="sortOrder" xsi:type="number">40</item>
-                </item>
-            </argument>
-        </column>
-        <column name="material">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="filter" xsi:type="string">text</item>
-                    <item name="editor" xsi:type="string">text</item>                        
-                    <item name="label" xsi:type="string" translate="true">Material</item>
-                    <item name="sortOrder" xsi:type="number">50</item>
-                </item>
-            </argument>
-        </column>
-        <column name="quantity">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="filter" xsi:type="string">text</item>
-                    <item name="editor" xsi:type="string">text</item>
-                    <item name="label" xsi:type="string" translate="true">Quantity</item>
-                    <item name="sortOrder" xsi:type="number">60</item>
-                </item>
-            </argument>
-        </column>
-
         <column name="status">
             <argument name="data" xsi:type="array">
                 <item name="options" xsi:type="object">FME\Quickrfq\Model\Quickrfq\Source\Status</item>

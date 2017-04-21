@@ -1,0 +1,21 @@
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<!-- ko if: isDisplayed() -->
+<tr class="totals totals-rewards">
+    <th colspan="1" style="" class="mark" scope="row">
+        <span class="title" data-bind="text: $t('Reward Points (%1 points used)').replace('%1', getRewardpointsQty())"></span>
+        <!-- ko if: isButtonRemoveAvailable() -->
+        <a href="javascript:jQuery('.cancelPoints').click();" class="action delete rewardpoints-delete">
+            <span data-bind="text: $t('Remove')"></span>
+        </a>
+        <!-- /ko -->
+    </th>
+    <td class="amount" data-bind="attr: {'data-th': title}">
+        <span><span class="price" data-bind="text: getValue()"></span></span>
+    </td>
+</tr>
+<!-- /ko -->

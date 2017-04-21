@@ -1,0 +1,86 @@
+<?php
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<div class="block block-dashboard-orders">
+<?php $_orders = $block->getOrders(); ?>
+    <div class="block-title order">
+        <strong><?= __('Recent Orders') ?></strong>
+        <?php if (sizeof($_orders->getItems()) > 0): ?>
+            <a class="action view" href="<?= $block->getUrl('sales/order/history') ?>">
+                <span><?= __('View All') ?></span>
+            </a>
+        <?php endif; ?>
+    </div>
+    <div class="block-content">
+    <?= $block->getChildHtml()?>
+    <?php if (sizeof($_orders->getItems()) > 0): ?>
+        <div class="table-wrapper orders-recent">
+            <table class="data table table-order-items recent" id="my-orders-table">
+                <caption class="table-caption"><?= __('Recent Orders') ?></caption>
+                <thead>
+                    <tr>
+                        <th scope="col" class="col id"><?= __('Order #') ?></th>
+                        <th scope="col" class="col date"><?= __('Date') ?></th>
+                        <th scope="col" class="col shipping"><?= __('Ship To') ?></th>
+                        <th scope="col" class="col total"><?= __('Order Total') ?></th>
+                        <th scope="col" class="col status"><?= __('Status') ?></th>
+                        <th scope="col" class="col status"><?= __('Job Name') ?></th>
+                        <th scope="col" class="col actions"><?= __('Action') ?></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($_orders as $_order): ?>
+                        <?php // Get Job Name
+                            $job = "";                
+                            $items = $_order->getItems();
+
+                            if (count($items) > 0) {
+                                $firstItem = array_values($items)[0];  
+                                $options = $firstItem->getProductOptions();  
+                                if (isset($options['options'])) {                
+                                    foreach ($options['options'] as $itemOption) {
+                                        if ( strtolower($itemOption['label']) == 'job name') {
+                                            $job = $itemOption['value'];
+                                            break;
+                                        }
+                                    }       
+                                }                 
+                            }                    
+                        ?>
+                        
+                        <tr>
+                            <td data-th="<?= $block->escapeHtml(__('Order #')) ?>" class="col id"><?= $_order->getRealOrderId() ?></td>
+                            <td data-th="<?= $block->escapeHtml(__('Date')) ?>" class="col date"><?= $block->formatDate($_order->getCreatedAt()) ?></td>
+                            <td data-th="<?= $block->escapeHtml(__('Ship To')) ?>" class="col shipping"><?= $_order->getShippingAddress() ? $block->escapeHtml($_order->getShippingAddress()->getName()) : '&nbsp;' ?></td>
+                            <td data-th="<?= $block->escapeHtml(__('Order Total')) ?>" class="col total"><?= $_order->formatPrice($_order->getGrandTotal()) ?></td>
+                            <td data-th="<?= $block->escapeHtml(__('Status')) ?>" class="col status"><?= $_order->getStatusLabel() ?></td>
+                            <td class="col jobName"><?= $job ?></td>
+                            <td data-th="<?= $block->escapeHtml(__('Actions')) ?>" class="col actions">
+                                <a href="<?= $block->getViewUrl($_order) ?>" class="action view">
+                                    <span><?= __('View Order') ?></span>
+                                </a>
+                                <?php if ($this->helper('Magento\Sales\Helper\Reorder')->canReorder($_order->getEntityId())) : ?>
+                                    <a href="#" data-post='<?=
+                                    $this->helper(\Magento\Framework\Data\Helper\PostHelper::class)
+                                        ->getPostData($block->getReorderUrl($_order))
+                                    ?>' class="action order">
+                                        <span><?= __('Reorder') ?></span>
+                                    </a>
+                                <?php endif ?>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+    <?php else: ?>
+        <div class="message info empty"><span><?= __('You have placed no orders.'); ?></span></div>
+    <?php endif; ?>
+    </div>
+</div>

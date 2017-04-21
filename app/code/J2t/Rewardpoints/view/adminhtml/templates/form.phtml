@@ -1,0 +1,30 @@
+<?php
+/**
+ * Copyright © 2015 J2T Design. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+// @codingStandardsIgnoreFile
+?>
+<div class="box-left admin__field field-apply-rewardpoints">
+    <label class="admin__field-label"><span><?php /* @escapeNotVerified */ echo __('Apply Reward Points') ?></span></label>
+    <div class="admin__field-control">
+        <input type="text" class="input-text validate-digitst admin__control-text" id="rewards:point" value="<?php echo $this->getPointsUsed(); ?>" name="rewardpoints_qty" />
+        <?php echo $block->getButtonHtml(__('Apply'), 'order.applyReward($F(\'rewards:point\'))') ?>
+        <?php if ($this->getPointsUsed()): ?>
+            <p><strong><?php echo __('%1 Points Used', $this->getPointsUsed()) ?></strong> [<a href="#" onclick="order.applyReward('0'); return false;" title="<?php echo __('Remove Points') ?>"><?php echo __('Remove') ?></a>]</p>
+        <?php endif; ?>
+        <p><?php echo __('This client is gathering %1 points with this order.', $this->getPointsOnOrder()); ?></p>
+        <p><?php echo __('This client has %1 points.', $this->getClientPoints()); ?></p>
+        <script>
+            var orderIntervalCheck = setInterval(function () {
+                if (typeof order != "undefined") {
+                    order.applyReward = function (points) {
+                        order.loadArea(['items', 'shipping_method', 'totals', 'billing_method'], true, {'order[rewardpoints][qty]': points, reset_shipping: true});
+                    }
+                    clearInterval(orderIntervalCheck);
+                }
+            }, 500);
+
+        </script>
+    </div>
+</div>

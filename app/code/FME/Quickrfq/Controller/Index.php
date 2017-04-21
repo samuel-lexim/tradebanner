@@ -9,7 +9,6 @@ use Magento\Framework\Exception\NotFoundException;
 use Magento\Framework\App\RequestInterface;
 use Magento\Store\Model\ScopeInterface;
 
-
 /**
  * Quickrfq index controller
  */

@@ -58,25 +58,30 @@
                         </comment>
                     </field>
             </group>
-            <!--<group id="google_options" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">-->
-                <!--<label>Google Captcha Keys</label>-->
-                <!--<field id="captchastatus" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">-->
-                    <!--<label>Enable</label>-->
-                    <!--<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>                    -->
-                <!--</field>-->
-                <!--<field id="theme" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">-->
-                    <!--<label>Theme</label>-->
-                    <!--<source_model>FME\Quickrfq\Model\Config\Source\GoogleCaptcha\Theme</source_model>-->
-                <!--</field>-->
-                <!--<field id="googleprivatekey" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">-->
-                    <!--<label>Google Captcha Private Key</label>-->
-                    <!--<comment>Private Key provied by Google Captcha</comment>-->
-                <!--</field>-->
-                <!--<field id="googlepublickey" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">-->
-                    <!--<label>Google Captcha Public Key</label>-->
-                    <!--<comment>Public Key provied by Google Captcha</comment>-->
-                <!--</field>-->
-            <!--</group>-->
+            <group id="google_options" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Google Captcha Keys</label>
+                <field id="captchastatus" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>                    
+                </field>
+                
+                <field id="googleprivatekey" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Google Captcha Secret Key</label>
+                    <validate>required-entry</validate>  
+                    <comment>Get Key From https://www.google.com/recaptcha/admin</comment>
+                    <depends>
+                        <field id="captchastatus">1</field>
+                    </depends>
+                </field>
+                <field id="googlepublickey" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Google Captcha Site Key</label>
+                    <validate>required-entry</validate>  
+                    <comment>Get Key From https://www.google.com/recaptcha/admin</comment>
+                    <depends>
+                        <field id="captchastatus">1</field>
+                    </depends>
+                </field>
+            </group>
         </section>
     </system>
 </config>

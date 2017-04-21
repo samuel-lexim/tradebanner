@@ -1,0 +1,113 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <!-- rewardpoints_point_configuration_money_points -->
+    <default>
+        <rewardpoints>
+            <module_serial>
+                <active>0</active>
+            </module_serial>
+            <point_configuration>
+                <money_points>1</money_points>
+                <points_money>50</points_money>
+                <max_point_collect_order>0</max_point_collect_order>
+                <registration_points>0</registration_points>
+            </point_configuration>
+            <usage_specificities>
+                <step_value>0</step_value>
+                <step_multiplier>1</step_multiplier>
+                <step_slide>0</step_slide>
+                <min_use>0</min_use>
+                <max_point_used_order>0</max_point_used_order>
+                <max_point_percent_order>100</max_point_percent_order>
+                <show_remove_totals>1</show_remove_totals>
+            </usage_specificities>
+            <calculation_configuration>
+                <process_tax>0</process_tax>
+                <exclude_tax>0</exclude_tax>
+                <process_shipping>0</process_shipping>
+                <remove_discount>1</remove_discount>
+                <math_total_earn>ceil</math_total_earn>
+                <math_catalog_pages>ceil</math_catalog_pages>
+            </calculation_configuration>
+            <design>
+                <small_inline_image_show>0</small_inline_image_show>
+                <small_inline_image><![CDATA[j2t_image_small.png]]></small_inline_image>
+                <small_inline_image_size>16</small_inline_image_size>
+                <big_inline_image_show>0</big_inline_image_show>
+                <big_inline_image><![CDATA[j2t_image_big.png]]></big_inline_image>
+                <big_inline_image_size>32</big_inline_image_size>
+            </design>
+            <points_validity>
+                <status_used>state</status_used>
+                <valid_statuses>complete,processing</valid_statuses>
+                <valid_used_statuses>new,pending,complete,processing,holded</valid_used_statuses>
+                <store_scope>0</store_scope>
+                <points_delay>0</points_delay>
+                <points_duration>0</points_duration>
+            </points_validity>
+            <events>
+                <review>0</review>
+                <newsletter>0</newsletter>
+            </events>
+            <display_settings>
+                <show_view_points>1</show_view_points>
+                <show_list_points>1</show_list_points>
+                <point_equivalence>0</point_equivalence>
+                <show_details>0</show_details>
+                <show_dashboard>0</show_dashboard>
+            </display_settings>
+            <referral>
+                <show_registration_points>0</show_registration_points>
+                <referral_show>1</referral_show>
+                <referral_addthis_code>
+                    <![CDATA[<div class="addthis_toolbox addthis_default_style addthis_32x32_style">
+<a class="addthis_button_preferred_1"></a>
+<a class="addthis_button_preferred_2"></a>
+<a class="addthis_button_preferred_3"></a>
+<a class="addthis_button_preferred_4"></a>
+<a class="addthis_button_compact"></a>
+<a class="addthis_counter addthis_bubble_style"></a>
+</div>]]>
+                </referral_addthis_code>
+                <subscription_email_template>rewardpoints_registration_subscription_email_template</subscription_email_template>
+                <subscription_email_identity>support</subscription_email_identity>
+                <confirmation_email_template>rewardpoints_registration_confirmation_email_template</confirmation_email_template>
+                <confirmation_email_identity>support</confirmation_email_identity>
+                <referral_points>0</referral_points>
+                <referral_min_order>0</referral_min_order>
+                <referral_child_points>0</referral_child_points>
+                <registration_points>0</registration_points>
+                <referrer_registration_points>0</referrer_registration_points>
+                <referred_registration_points>0</referred_registration_points>
+                <registration_points_customer_id>0</registration_points_customer_id>
+                <referral_permanent>0</referral_permanent>
+                <referral_addthis>0</referral_addthis>
+                <referral_guestallow>1</referral_guestallow>
+                <referral_side></referral_side>
+                <referral_points_method>0</referral_points_method>
+                <referral_child_points_method>0</referral_child_points_method>
+                <copy_method>bcc</copy_method>
+            </referral>
+            <notifications>
+                <notification_email_template>rewardpoints_notifications_notification_email_template</notification_email_template>
+                <notification_email_identity>support</notification_email_identity>
+                <notification_days>5</notification_days>
+                <expiry_notification_active>0</expiry_notification_active>
+            </notifications>
+            <status_notification>
+                <points_notification_email_template>rewardpoints_status_notification_customer_point_status_email_template</points_notification_email_template>
+            </status_notification>
+            
+            <admin_notifications>
+                <notification_email_template>rewardpoints_admin_notifications_notification_email_template</notification_email_template>
+                <notification_email_identity>support</notification_email_identity>
+            </admin_notifications>
+        </rewardpoints>
+    </default>
+</config>

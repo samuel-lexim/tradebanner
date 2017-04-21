@@ -1,7 +1,7 @@
 <?php /** @var $block \Magento\Checkout\Block\Cart\Shipping */ ?>
 
-<div class="col-xs-12 col-sm-4">
-    <div id="block-shipping" class="block shipping">
+<div class="col-xs-12 col-sm-4 hidden" >
+    <div id="block-shipping" class="block shipping hidden" data-mage-init='{"collapsible":{"openedState": "active", "saveState": true}}'>
         <div class="title" data-role="title">
             <strong id="block-shipping-heading" role="heading" aria-level="2">
                 <?= $block->getQuote()->isVirtual() ? __('ESTIMATE TAX') : 'ESTIMATE SHIPPING AND TAX' ?>
@@ -31,4 +31,5 @@
             </script>
         </div>
     </div>
+    <div class="clearfix pad20"></div>
 </div>

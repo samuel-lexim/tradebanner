@@ -1,0 +1,26 @@
+#j2t-rewardpoints-launcher-toolbar {
+    display: inline-block;
+    font-weight: bold;
+    font-size: 31px;
+    vertical-align: top;
+}
+#j2t-rewardpoints-launcher-toolbar > a {
+    color: #fff;
+}
+#j2t-rewardpoints-launcher-toolbar > a:hover {
+    color: #ccc;
+    text-decoration: none;
+}
+#j2t-rewardpoints-launcher-dialog {
+    display: none;
+}
+#j2t-rewardpoints-launcher-input {
+    width: 100%;
+}
+
+.control input#_rewardpointsdate_start.hasDatepicker,
+.control input#_rewardpointsdate_end.hasDatepicker
+{
+  width: 160px;
+  border-width: 1px;
+}

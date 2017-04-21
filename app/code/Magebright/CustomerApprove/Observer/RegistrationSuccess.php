@@ -35,6 +35,8 @@ class RegistrationSuccess implements ObserverInterface
      */
     protected $customerExtensionFactory;
 
+    protected $logger;
+
     /**
      * Constructor
      *
@@ -46,12 +48,14 @@ class RegistrationSuccess implements ObserverInterface
         Data $helper,
         CustomerFactory $customerFactory,
         CustomerRepositoryInterface $customerRepository,
-        CustomerExtensionFactory $customerExtensionFactory
+        CustomerExtensionFactory $customerExtensionFactory,
+        \Psr\Log\LoggerInterface $logger
     ) {
         $this->helper = $helper;
         $this->customerFactory = $customerFactory;
         $this->customerRepository = $customerRepository;
         $this->customerExtensionFactory = $customerExtensionFactory;
+        $this->logger = $logger;
     }
 
     /**
@@ -67,7 +71,7 @@ class RegistrationSuccess implements ObserverInterface
         $_customer = $observer->getCustomer();
         if(!$_customer || !$_customer->getId()) {
             return $this;
-        }
+        }        
 
         try {
             $approveStatus = Approve::PENDING;
@@ -91,6 +95,17 @@ class RegistrationSuccess implements ObserverInterface
                 'customer' => $customer,
                 'store' => $store
             ];
+
+            // send email for new user      
+            // $this->helper->sendEmailTemplate(
+            //     $customer->getName(),
+            //     $customer->getEmail(),
+            //     'kong_register_success_customer_template',
+            //     $this->helper->getSender(null, $store->getId()),
+            //     $templateData,
+            //     $store->getId()
+            // );   
+            // End - new user email
 
             $this->helper->sendEmailTemplate(
                 $customer->getName(),

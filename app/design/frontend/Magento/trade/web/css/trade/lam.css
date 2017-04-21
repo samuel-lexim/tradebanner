@@ -1,0 +1,421 @@
+.catalog-product-view .price-final_price{
+    display: none;
+}
+.Different .changeSelectOp .options-list .choice:nth-child(1) {
+    display: none;
+}
+/* server */
+#product-options-wrapper .Addactive {
+    display: block !important;
+}
+/* 13oz Vinyl Banner */
+/* .Artworks_1634, .Art_1633, .Addhidden, .Size_1624, .Hemming_1626, .Grommets_1628, .Agreement_1631, .Notice_1621 {
+    display: none
+} */
+.Artworks_1746 , .Art_1745, .Addhidden, .Size_1736, .Hemming_1738, .Grommets_1740 , .Agreement_1743, .Notice_1733 {
+    display: none
+}
+#options-1733-list .admin__field-option:nth-child(1){
+    display: none;
+}
+/* 14oz Vinyl Banner */
+/* .Agreement_1441, .Artworks_1444, .Art_1443, .Size_1433, .Hemming_1436, .Grommets_1438, .Notice_1434 {
+    display: none;
+} */
+.Agreement_1762, .Artworks_1765, .Art_1764, .Size_1755, .Hemming_1757, .Grommets_1759, .Notice_1752 {
+    display: none;
+}
+#options-1752-list .admin__field-option:nth-child(1){
+    display: none;
+}
+
+/* 16 oz Blockout Banner */
+.Agreement_1461, .Artworks_1464, .Art_1463, .Hemming_1456, .Grommets_1458, .Pocket-Size_1454, .Notice_1449 {
+    display: none;
+}
+#options-1449-list .admin__field-option:nth-child(1){
+    display: none;
+}
+/* Backlit Banner */
+.Agreement_1474, .Artworks_1477, .Art_1476, .Notice_1479 {
+    display: none;
+}
+/* Double Sided Banner (Super Smooth) */
+.Agreement_1577, .Grommets_1574, .Pocket-Size_1572, .Artworks_1580, .Art_1579, .Notice_1568 {
+    display: none;
+}
+#options-1568-list .admin__field-option:nth-child(1){
+    display: none;
+}
+/* Fabric Banner- Premium  */
+.Agreement_911, .Artworks_1015, .Art_1014, .Size_837, .Grommets_838 {
+    display: none;
+}
+/* Mesh Banner */
+.Agreement_1506, .Artworks_1509, .Art_1508, .Size_1501, .Grommets_1503, .Notice_1511 {
+    display: none;
+} 
+#options-1511-list .admin__field-option:nth-child(1){
+    display: none;
+}
+/* Premium Coated Banner */
+.Agreement_1545, .Artworks_1548, .Art_1547, .Pocket-Size_1538, .Hemming_1540, .Grommets_1542, .Notice_1533 {
+    display: none;
+} 
+#options-1533-list .admin__field-option:nth-child(1){
+    display: none;
+}
+/* Super Smooth Banner */
+.Agreement_1593, .Artworks_1596, .Art_1595, .Pocket-Size_1589, .Grommets_1591, .Notice_1584 {
+    display: none;
+}
+#options-1584-list .admin__field-option:nth-child(1){
+    display: none;
+}
+/* Fabric Banner- Deluxe */
+.Artworks_1023, .Art_1022, .Size_851, .Grommets_852, .Agreement_853 {
+    display: none;
+}
+/* 3M Controltac (IJ 180C) */
+.Agreement_915, .Artworks_1025, .Art_1024 {
+    display: none;
+}
+/* 3M IJ35 Adhesive Vinyl */
+.Artworks_1027, .Agreement_855, .Art_1026  {
+    display: none;
+}
+/* Bumper Stickers */
+.Agreement_856, .Artworks_857 {
+    display: none;
+}
+/* Floor Graphics */
+.Agreement_858, .Artworks_1029, .Art_1028  {
+    display: none;
+}
+/* Perforated Stickers (One-Way Vision) */
+.Agreement_859, .Artworks_1031, .Art_1030 {
+    display: none;
+}
+/* Static Clings (Window Clings) */
+.Agreement_860, .Artworks_1033, .Art_1032 {
+    display: none;
+}
+/* Vinyl Stickers (Window Decal) */
+.Agreement_1842, .Artworks_1845, .Art_1844 {
+    display: none;
+}
+.Artworks_1845 .changeSelectOp .options-list .choice:nth-child(1) {
+    display: none !important;
+}
+/* Wall Vinyl Decals */
+.Agreement_862, .Artworks_1037, .Art_1036 {
+    display: none;
+}
+/* Backlit Film */
+.Agreement_863, .Artworks_1039, .Art_1038 {
+    display: none;
+}
+/* Canvas Roll */
+.Agreement_864, .Artworks_1041, .Art_1040 {
+    display: none;
+}
+/* Framed Canvas */
+.Agreement_865, .Artworks_1045, .Art_1044   {
+    display: none;
+}
+/* Car Magnets */
+.Agreement_866, .Artworks_1049, .Art_1048 {
+    display: none;
+}
+
+/* Polypropylene (PET) */
+.Agreement_867, .Artworks_1043, .Art_1042 {
+    display: none;
+}
+/* Digital Poster  */
+.Agreement_1864, .Artworks_1047, .Art_1046 {
+    display: none;
+} 
+/* Acrylic Boards */
+.Agreement_868, .Artworks_1051, .Art_1050 {
+    display: none;
+}
+/* Aluminum Sandwich Board “Dibond” */
+.Agreement_869, .Material-_870, .Material_457, .Artworks_1053, .Art_1052 {
+    display: none;
+}
+/* Aluminum Sheets */
+.Agreement_918, .Artworks_920, .Art_919, .Inches_1141, .Inches_1140, .addF_1142  {
+    display: none;
+}
+
+/* Arrow Spinner Signs */
+.Agreement_871, .Artworks_1055, .Art_1054 {
+    display: none;
+}
+
+/* Yard Signs (Coroplast) */
+/* .Agreement_890, .Color_891, .Color_616, .Artworks_928, .Art_927  {
+    display: none;
+} */
+.Agreement_1669, .Color_1664 , .Color_1665, .Artworks_1672, .Art_1671  {
+    display: none;
+}
+/* Ultra(Gator) Board */
+.Agreement_889, .Side_888, .Side_625, .Artworks_905, .Advised_1072 , .Advised_1073, .Art_904 {
+    display: none;
+} 
+#options-1073-list .admin__field-option:nth-child(1), #options-1072-list .admin__field-option:nth-child(1){
+    display: none;
+}
+
+/* Styrene Boards */
+.Agreement_887, .Artworks_1059, .Art_1058 {
+    display: none;
+}
+
+/* PVC Sintra Board */
+.Agreement_886, .Side_885, .Side_644, .Artworks_926, .Art_925, #select_648 option:nth-child(2){
+    display: none;
+}
+
+/* Foam Boards */
+.Agreement_884, .Side_654, .Side_883, .Artworks_924, .Art_923 {
+    display: none;
+}  
+/* Eagle Board (Eco Board) */
+.Agreement_882, .Side_881, .Side_663, .Artworks_922, .Art_921 {
+    display: none;
+}
+.Artworks_922 .changeSelectOp .options-list .choice:nth-child(2) {
+    display: none !important;
+}
+
+/* Converd Coated Board */
+.Agreement_880, .Material-_879, .Material_671, .Artworks_917, .Art_916 {
+    display: none;
+}
+/* Mini Banner Stands */
+.Agreement_1866, .Artworks_953, .Material_892, .Material_754 {
+    display: none;
+}
+/* Outdoor Banner Stand */
+.Agreement_893, .Artworks_962, .Hemming_763, .Grommets_764  {
+    display: none;
+}
+/* Outdoor Double Banner Stand */
+.Agreement_894, .Artworks_961, .Hemming_772, .Grommets_773 {
+    display: none;
+}
+/* X-Frame with Supersmooth */
+.Agreement_902, .Inches_965, .Inches_966, .Inches_967, .Inches_968, .Art_1060, .Artworks_1061 {
+    display: none;
+}
+/* X-Frame with Polypropylene (PET) */
+.Agreement_901, .Inches_969, .Inches_970, .Inches_971, .Inches_972, .Artworks_1063, .Art_1062 {
+    display: none;
+}
+/* X-Frame with Banner */
+.Inches_980, .Inches_979, .Agreement_900, .Artworks_1065, .Art_1064  {
+    display: none;
+} 
+/* Step and Repeat Banners */
+.Agreement_899, .Artworks_1067, .Art_1066 {
+    display: none;
+}
+/* Retractable Stand */
+.Agreement_1699, .Available_1696, .Artworks_1702, .Art_1701 {
+    display: none;
+}
+/* Custom Sublimation Transfers */
+.Agreement_1865, .Art_981, .Artworks_982 {
+    display: none;
+}
+#options-977-list .admin__field-option:nth-child(1){
+    display: none;
+}
+/* Flag Banners (Sublimation) */
+.Artworks_984, .Art_983 {
+    display: none;
+}
+
+/* 3M Controltac (IJ 180C) Contour */
+.Artworks_986, .Art_985, .Agreement_943 {
+    display: none;
+} 
+/* Car Magnets Contour */
+.Artworks_988, .Art_987, .Agreement_944 {
+    display: none;
+} 
+/* Floor Graphics – Contour */
+.Agreement_946, .Artworks_990, .Art_989 {
+    display: none;
+}  
+/* Yard Signs (Coroplast) Contour Cut */
+.Agreement_958, .Artworks_960, .Art_959 {
+    display: none;
+} 
+/* Ultra(Gator) Board Contour */
+.Agreement_939, .Artworks_942, .Art_941, .Side_558, .Side_938, .Advised_1070  {
+    display: none;
+} 
+/* Styrene Boards Contour */
+.Agreement_936, .Artworks_996, .Art_995 {
+    display: none;
+}  
+/* PVC Sintra Board Contour */
+.Agreement_932, .Artworks_935, .Art_934, .Side_1145, .Side_578 {
+    display: none;
+}  
+/* Foam Boards- Contour */
+.Agreement_956, .Artworks_930, .Art_929, .Side_588, .Side_955 {
+    display: none;
+}   
+/* Wall Vinyl Decals Contour */
+.Agreement_951, .Artworks_998, .Art_997 {
+    display: none;
+}  
+/* Vinyl Stickers (Window Decal) Contour */
+.Agreement_949, .Artworks_1000, .Art_999 {
+    display: none;
+}  
+/* Static Clings (Window Clings) Contour */
+.Agreement_948, .Artworks_1002, .Art_1001 {
+    display: none;
+}  
+/* Retractable Stand (stand ONLY) */
+.Artworks_1005, .Art_1004, .Available_1071  {
+    display: none;
+}
+
+/* css check out */
+.iwd-actions-toolbar{
+    margin-left: 0 !important;
+}
+.control{
+    margin-left: 0 !important;
+}
+.iwd-opc-form-for-payments .fieldset .opc-payment .payment-method._active > .payment-method-content > form.form .field.number.required > label{
+    text-align: left !important;
+}
+
+/* css Discount */
+.Discount-price, .noDiscount {
+    display: none
+}
+.hasDiscount{
+    display: block !important;
+}
+.DiscountPrice{
+    font-size: 24px;
+}
+#discountCustom, #totalDiscount {
+    color: #ed5621;
+}
+.catalog-product-view .empty .reviews-actions, .catalog-product-view .product-info-stock-sku, .catalog-product-view .product-reviews-summary {
+    display: none;
+}
+.catalog-product-view #product_addtocart_form #discount_price{
+    display: none;
+}
+ .catalog-product-view #calculations {
+    display: none;
+ }
+ #test {
+    font-weight: bold;
+ }
+
+/*  #padding-top-box {
+    margin-top: -30px;
+ } */
+ 
+ .DiscountBulk {
+    font-weight: bold;
+ }
+.checkout-cart-index #discount-point-form{
+    display: none;
+}
+.checkout-cart-index  .rewards_point_cart, .checkout-cart-index .rewards_customer_points{
+    font-weight: bold;
+}
+.checkout-cart-index .j2t-point-equivalence {
+    display: block;
+    font-weight: normal;
+}
+.checkout-index-index #block-rewardpoints-heading {
+    font-weight: lighter;
+    color: #404040;
+    font-size: 24px;
+    border-bottom: 2px solid #1da1ad;
+    padding-bottom: 7px;
+    line-height: 1;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    padding-top: 0;
+}
+.checkout-index-index #rewardpoints-form .applyPointsBtn {
+    background-color: #00909e;
+    border: none;
+    border-radius: 0;
+    color: #fff;
+    width: 102px;
+    height: 40px;
+    text-transform: uppercase;
+    font: bold 14px 'Open Sans';
+}
+.checkout-index-index #rewardpoints-form .action-cancel {
+    background-color: #00909e;
+    border: none;
+    border-radius: 0;
+    color: #fff;
+    width: 200px;
+    height: 40px;
+    text-transform: uppercase;
+    font: bold 14px 'Open Sans';
+}
+.checkout-index-index .checkout-payment-method .payment-option-content {
+    padding: 10px 20px 0 18px;
+}
+@media (min-width: 768px) {
+    .checkout-payment-method .payment-option-title {
+        padding-left: 0;
+    }
+}
+#box_point img {
+    margin-top: -6px;
+}
+#box_point{
+    padding-top: 5px;
+}
+#box_point #reward_points_c {
+    font-size: 20px;
+    font-weight: bold;
+    color: #ed5621;
+    padding-right: 8px;
+}
+.page-layout-checkout .payment-methods .payment-group .step-title{
+    display: none;
+}
+
+/* fix css home menu */
+.cms-home #leftMenuUl > li > a {
+    color: #1ca1ac;
+}
+.cms-home #leftMenuUl > li {
+    border-bottom: none;
+}
+.cms-home #leftMenuUl{
+    background: #fafafa;
+}
+.cms-home #leftMenuUl a {
+    color: #000;
+}
+.cms-home #leftMenuUl li:hover > a {
+    color: #f05624;
+}
+.order-links .item{
+    display: none;
+}
+/* #maincontent .order-links .item:nth-child(1)  {
+    display: block;
+} */

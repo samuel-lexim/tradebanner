@@ -41,7 +41,7 @@ class LoginCheck extends Action implements LoginCheckInterface
      * @var string
      */
     protected $targetUrl;
-
+    protected $urlEncoder;
     /**
      * Creates a new {@link \bitExpert\ForceCustomerLogin\Controller\LoginCheck}.
      *
@@ -54,11 +54,13 @@ class LoginCheck extends Action implements LoginCheckInterface
         Context $context,
         DeploymentConfig $deploymentConfig,
         WhitelistRepositoryInterface $whitelistRepository,
+        \Magento\Framework\Url\EncoderInterface $urlEncoder,
         $targetUrl
     ) {
         $this->deploymentConfig = $deploymentConfig;
         $this->whitelistRepository = $whitelistRepository;
         $this->targetUrl = $targetUrl;
+        $this->urlEncoder = $urlEncoder;
         parent::__construct($context);
     }
 
@@ -86,8 +88,10 @@ class LoginCheck extends Action implements LoginCheckInterface
                 return;
             }
         }
+        $referrer = $this->urlEncoder->encode($url);
+        $this->_redirect($this->targetUrl, ['referer' => $referrer])->sendResponse();
 
-        $this->_redirect($this->targetUrl)->sendResponse();
+        //$this->_redirect($this->targetUrl)->sendResponse();
     }
 
     /**

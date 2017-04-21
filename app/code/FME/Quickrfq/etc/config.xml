@@ -24,7 +24,7 @@
                 <body>Quote Received ...</body>
             </email_reply>
             <upload>
-                <allow>jpg,jpeg,png,pdf</allow>
+                <allow>jpg,jpeg,png,gif</allow>
             </upload>
         </quickrfq>
     </default>

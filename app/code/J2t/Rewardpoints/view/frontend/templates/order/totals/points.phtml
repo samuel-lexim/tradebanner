@@ -1,0 +1,29 @@
+<?php
+/**
+ * Copyright © 2015 J2T Design. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+?>
+<?php $_source  = $block->getSource() ?>
+
+<?php if ($_source && (float) $_source->getRewardpointsQuantity()): ?>
+	<tr class="col-rewardpoints_used">
+        <td <?php echo $block->getParentBlock()->getLabelProperties()?> class="label">
+			<?php echo __('Used Points (%1)', $block->getRewardpointsUsedText()) ?>
+        </td>
+        <td <?php echo $block->getParentBlock()->getValueProperties()?>>
+			<?php echo $block->getPointsUsed() ?>
+		</td>
+    </tr>
+<?php endif; ?>
+
+	<?php if ($_source && (float) $_source->getRewardpointsGathered()): ?>
+    <tr class="col-rewardpoints_gathered">
+        <td <?php echo $block->getParentBlock()->getLabelProperties()?> class="label">
+			<?php echo __('Gathered Points') ?>
+        </td>
+        <td <?php echo $block->getParentBlock()->getValueProperties()?>>
+			<?php echo __('%1 point(s)', $block->getPointsGathered()) ?>
+		</td>
+    </tr>
+<?php endif; ?>

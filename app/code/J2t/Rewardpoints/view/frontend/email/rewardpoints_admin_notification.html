@@ -1,0 +1,27 @@
+<!--@subject Points update for {{var customer.name}}! @-->
+
+{{template config_path="design/email/header_template"}}
+
+<table>
+    <tr class="email-intro">
+        <td>
+            <p class="greeting">{{trans "%name," name=$customer.getName()}}</p>
+            <p>
+                {{trans "Here is your new point update."}}
+            </p>
+        </td>
+    </tr>
+    <tr class="email-summary">
+        <td>
+            <h1>{{trans "You've just have new point entry."}}</h1>
+        </td>
+    </tr>
+    <tr class="email-information">
+        <td>
+            {{trans "%points points injected into your point history." points=$points |raw}}{{trans " (%description)." description=$description |raw}}<br />
+            {{trans "Visit us on our store in order to use your points."}}
+        </td>
+    </tr>
+</table>
+
+{{template config_path="design/email/footer_template"}}

@@ -1188,8 +1188,8 @@ tr.grand.totals {
 }
 
 .payment-option._active span.action-toggle:after {
-    font-family: FontAwesome;
-    content: '\f146';
+    /*font-family: FontAwesome;*/
+    /*content: '\f146';*/
 }
 
 .iwd-action-toggle {

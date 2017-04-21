@@ -1,0 +1,14 @@
+1. Create company_customer column in sales_order_grid
+
+2. Install extension
+
+3. Update company for old order
+
+update sales_order_grid g
+inner join (
+ select a.customer_id, a.increment_id, c.company
+ from sales_order a
+ inner join customer_address_entity c
+ on a.customer_id = c.parent_id
+) h on g.customer_id = h.customer_id
+set g.company_customer = h.company

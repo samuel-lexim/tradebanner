@@ -48,9 +48,9 @@ class Index extends \Magento\Backend\App\Action
         /** @var \Magento\Backend\Model\View\Result\Page $resultPage */
         $resultPage = $this->resultPageFactory->create();
         $resultPage->setActiveMenu('FME_Quickrfq::quickrfq');
-        $resultPage->addBreadcrumb(__('RFQ'), __('RFQ'));
-        $resultPage->addBreadcrumb(__('Manage Quotes'), __('Manage Quotes'));
-        $resultPage->getConfig()->getTitle()->prepend(__('Manage RFQ\'s'));
+        $resultPage->addBreadcrumb(__('Custom Estimate'), __('Custom Estimate'));
+        $resultPage->addBreadcrumb(__('Manage Custom Estimate'), __('Manage Custom Estimate'));
+        $resultPage->getConfig()->getTitle()->prepend(__('Manage Custom Estimate'));
 
         return $resultPage;
     }

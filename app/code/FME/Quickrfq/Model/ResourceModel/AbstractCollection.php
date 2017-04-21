@@ -5,7 +5,6 @@
  */
 namespace FME\Quickrfq\Model\ResourceModel;
 
-
 abstract class AbstractCollection extends \Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection
 {
     
@@ -18,7 +17,7 @@ abstract class AbstractCollection extends \Magento\Framework\Model\ResourceModel
         \Magento\Framework\DB\Adapter\AdapterInterface $connection = null,
         \Magento\Framework\Model\ResourceModel\Db\AbstractDb $resource = null
     ) {
-        parent::__construct($entityFactory, $logger, $fetchStrategy, $eventManager, $connection, $resource);        
+        parent::__construct($entityFactory, $logger, $fetchStrategy, $eventManager, $connection, $resource);
     }
 
     
@@ -35,8 +34,4 @@ abstract class AbstractCollection extends \Magento\Framework\Model\ResourceModel
      * @return $this
      */
     abstract public function addStoreFilter($store, $withAdmin = true);
-
-    
-    
-    
 }

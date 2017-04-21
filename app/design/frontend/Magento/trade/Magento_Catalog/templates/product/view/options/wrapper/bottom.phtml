@@ -1,5 +1,31 @@
+<?php 
 
-<p class="finalUnitPrice">Price: <span id="pricePerUnit"></span></p>
+$_objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$storeManager = $_objectManager->get('Magento\Store\Model\StoreManagerInterface');
+$currentStore = $storeManager->getStore();
+$baseUrl = $currentStore->getBaseUrl();
+$mediaUrl = $currentStore->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
+
+$_product = $block->getProduct(); ?>
+
+<div class="row" id="padding-top-box">
+    <div class="col-xs-12 col-sm-6"><p class="finalUnitPrice">Unit Price: <span id="pricePerUnit"></span></p></div>
+    <div class="col-xs-12 col-sm-6"><p class="finalUnitPrice">Sub Total: <span id="subTotalPrice"></span></p></div>
+    
+    <div class="col-xs-12 col-sm-12"><span id="test"></span></div>
+    <div class="col-xs-12 Discount-price">
+	    <div  class="row">
+	    	<div class="col-xs-12"><p class="DiscountBulk">Bulk Discount <span id="ptram"></span>:<span id="discountCustom"></span></p></div>
+		    <div class="col-xs-12"><p class="DiscountPrice">New Total after Bulk Discount: <span id="totalDiscount"></span></p></div>
+	    </div>   
+	</div>
+	<div class="noDiscount">
+		<div class="col-xs-12"><p>Bulk Discount (0%): No discount Applicable</p></div>
+	</div>
+	<div class="col-xs-12 col-sm-12" id="box_point"><img src="<?= $mediaUrl.'images/gift-box.jpg' ?>" alt=""><span id="reward_points_c"></span><span id="text-reward_points">Reward Points</span></div>
+</div>
+
+<div><?= $_product->getNoteAfterPrice() ?></div>
 
 <div class="product-options-bottom">
     <?php echo $block->getChildHtml('', true);?>

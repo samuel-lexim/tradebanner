@@ -1,0 +1,413 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 J2T Design All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config/etc/system_file.xsd">
+    <system>
+        <tab id="j2t_all" translate="label" sortOrder="100" class="j2t-all-area">
+            <label>Reward Points</label>
+            <!--<class>j2t-all-area</class>-->
+        </tab>
+        <section id="rewardpoints" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Reward Points</label>
+            <class>j2t-rewardpoints-module</class>
+            <tab>j2t_all</tab>
+            <resource>J2t_Rewardpoints::config_rewardpoints</resource>
+			
+            <group id="module_serial" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Module Activation</label>
+                <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <!--<field id="key" translate="label comment" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Key</label>
+                    <frontend_model>J2t\Rewardpoints\Block\Config\Serialtext</frontend_model>
+                    <backend_model>J2t\Rewardpoints\Model\Config\Backend\Serialverification</backend_model>
+                    <comment><![CDATA[This is the module serial key linked to your server IP address. This information is available on your user account page on <a href='http://www.j2t-design.net' target='blank'>http://www.j2t-design.net</a>.]]></comment>
+                </field>-->
+                
+            </group>
+            <group id="point_configuration" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Point Values</label>
+                <field id="money_points" translate="label comment" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Points gathered / unit of money spent</label>
+                    <validate>validate-zero-or-greater</validate>
+                    <comment><![CDATA[Points gathered for 1 unit of money spent. (e.g. if set to 2, you will obtain 100 points for $50 spent).]]></comment>
+                </field>
+                <field id="points_money" translate="label comment" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Points to obtain 1 unit of money</label>
+                    <validate>validate-greater-than-zero validate-number required-entry</validate>
+                    <comment><![CDATA[Amount of points required to obtain a discount.]]></comment>
+                </field>
+                <field id="max_point_collect_order" translate="label comment" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Maximum Points On Order</label>
+                    <validate>validate-zero-or-greater validate-number required-entry</validate>
+                    <comment><![CDATA[Maximum points to be collected per order (use 0 for unlimited).]]></comment>
+                </field>
+                <field id="registration_points" translate="label comment" type="text" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Registration Points</label>
+                    <validate>validate-zero-or-greater validate-number required-entry</validate>
+                    <comment><![CDATA[Points earned upon customer registration (points are allocated when customer logs into the system for the first time).]]></comment>
+                </field>
+            </group>
+            <group id="point_custom" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Custom Point Values</label>
+                <field id="custom_point_value" translate="label comment" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Custom Point Worthing Values</label>
+                    <frontend_model>J2t\Rewardpoints\Block\Config\Mapfieldspoints</frontend_model>
+                    <backend_model>J2t\Rewardpoints\Model\Config\Serialized\Arraypoints</backend_model>
+                    <comment><![CDATA[Setup custom point worthing values according to cart <strong>min/max</strong> values (use 0 for no min or max value), <strong>groups</strong> and <strong>date range</strong> (date is optional value). <strong>Value</strong> is point value that will worth 1 unit of money (e.g. if set to 2, $100 spent will give 200 points - 100 x 2 - if unit of money is '$'). <strong>Important:</strong> if always recalculate is set to yes, make sure that the above rules are still available when updating an order.]]></comment>
+                </field>
+                <field id="custom_point_usage" translate="label comment" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Custom Point Usage Values</label>
+                    <frontend_model>J2t\Rewardpoints\Block\Config\Mapfieldspoints</frontend_model>
+                    <backend_model>J2t\Rewardpoints\Model\Config\Serialized\Arraypointsusage</backend_model>
+                    <comment><![CDATA[Setup custom point usage values according to cart <strong>min/max</strong> values (use 0 for no min or max value), <strong>groups</strong> and <strong>date range</strong> (date is optional value). <strong>Value</strong> is the point required in order to get 1 unit of money discount (e.g. if set to 100, 200 points will give $2 discount - 200 / 100 - if unit of money is '$'). <strong>Important:</strong> if always recalculate is set to yes, make sure that the above rules are still available when updating an order.]]></comment>
+                </field>
+            </group>
+			
+            <group id="usage_specificities" translate="label" type="text" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Point Usage Specificities</label>
+                <field id="step_value" translate="label comment" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Step Value</label>
+                    <validate>validate-zero-or-greater</validate>
+                    <comment><![CDATA[Specify a value greater than 0 in order to show select box or slider.]]></comment>
+                </field>
+                <field id="step_multiplier" translate="label comment" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Step Multiplier</label>
+                    <validate>validate-greater-than-zero</validate>
+                    <comment><![CDATA[Multiplier for the step value. e.g. if the multiplier is 10 and step value 20, the steps will be: 20, 200, 2000, etc. Default value is 1.]]></comment>
+                </field>
+                <field id="step_slide" translate="label" type="select" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Use Slider</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[Use Javascript Slider in order to specify points.]]></comment>
+                </field>
+                <field id="min_use" translate="label comment" type="text" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Minimum Points Balance</label>
+                    <validate>validate-zero-or-greater</validate>
+                    <comment><![CDATA[The minimum amount of points a customer must have to be able to use at checkout (use 0 for no-limit).]]></comment>
+                </field>
+                <field id="max_point_used_order" translate="label comment" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Maximum On Order</label>
+                    <validate>validate-zero-or-greater</validate>
+                    <comment><![CDATA[Maximum points to be used per order (use 0 for unlimited).]]></comment>
+                </field>
+                <field id="max_point_percent_order" translate="label comment" type="text" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Percent On Order</label>
+                    <validate>validate-zero-or-greater</validate>
+                    <comment><![CDATA[Order total amount percent value of maximum point usage (e.g. for a total cart amount of $400, if this value is set to 50, maximum point discount will not be higher than $200).]]></comment>
+                </field>
+                <field id="show_remove_totals" translate="label" type="select" sortOrder="7" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Remove Link</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[Show remove link from cart total's area.]]></comment>
+                </field>
+            </group>
+			
+			
+            <group id="calculation_configuration" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Calculation Configuration</label>
+                <field id="process_tax" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Include Tax On Discounts</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="exclude_tax" translate="label" type="select" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Exclude Tax When Gathering Points</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="remove_discount" translate="label" type="select" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Remove Discounts When Gathering Points</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <!--<field id="process_shipping" translate="label" type="select" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Include Shipping</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[Include shipping price in discount.]]></comment>
+                </field>-->
+                
+                <field id="math_total_earn" translate="label" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Total Gathered Math</label>
+                    <source_model>J2t\Rewardpoints\Model\Config\Source\Mathmethod</source_model>
+                    <comment><![CDATA[Apply math action on total gathered points on current customer cart. Note that no modifications will be done on item point calculation but only on total earning points.]]></comment>
+                </field>
+                <field id="math_catalog_pages" translate="label" type="select" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Catalog Pages Math</label>
+                    <source_model>J2t\Rewardpoints\Model\Config\Source\Mathmethod</source_model>
+                    <comment><![CDATA[Apply math action on points calculation of catalog pages. Note that this will only affect product catalog view.]]></comment>
+                </field>
+            </group>
+            <group id="points_validity" translate="label" type="text" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Points Validity</label>
+                <field id="valid_statuses" translate="label" type="multiselect" sortOrder="2" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Valid Gathering Statuses</label>
+                    <source_model>Magento\Sales\Model\Config\Source\Order\Status</source_model>
+                    <can_be_empty>0</can_be_empty>
+                    <comment><![CDATA[Order statuses used to validate points (modify this only if you know what you are doing).]]></comment>
+                </field>
+                <field id="valid_used_statuses" translate="label" type="multiselect" sortOrder="3" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Valid Used Statuses</label>
+                    <source_model>Magento\Sales\Model\Config\Source\Order\Status</source_model>
+                    <can_be_empty>0</can_be_empty>
+                    <comment><![CDATA[Order statuses used to validate used points (modify this only if you know what you are doing).]]></comment>
+                </field>
+                <field id="store_scope" translate="label" type="select" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Apply Store Scope</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[If yes, the points collected will be available only for the store where the points were earned.]]></comment>
+                </field>
+                <field id="points_delay" translate="label comment" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Points Availability Delay</label>
+                    <validate>validate-zero-or-greater validate-number</validate>
+                    <comment><![CDATA[Delaying the points availability (use 0 for no-delay).]]></comment>
+                </field>
+                <field id="points_duration" translate="label comment" type="text" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Points Validity Duration</label>
+                    <validate>validate-number</validate>
+                    <comment><![CDATA[Points validity duration in days (use 0 for unlimited).]]></comment>
+                </field>
+                <field id="cron_remove" translate="label" type="select" sortOrder="1" showInDefault="7" showInWebsite="1" showInStore="1">
+                    <label>Remove Cancelled Orders</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[Remove points linked to cancel orders - automated task (Magento cron needs to be active).]]></comment>
+                </field>
+            </group>
+            
+            <group id="events" translate="label" type="text" sortOrder="7" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Points On Events</label>
+                <field id="review" translate="label comment" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Review</label>
+                    <validate>validate-zero-or-greater</validate>
+                    <comment><![CDATA[Points earned on valid review (review must be validated by store admin). Use 0 for no point review value.]]></comment>
+                </field>
+                <field id="newsletter" translate="label comment" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Newsletter Subscription</label>
+                    <validate>validate-zero-or-greater</validate>
+                    <comment><![CDATA[Points earned on newsletter subscription (note that unsubscribing will not remove points). Use 0 for no point review value.]]></comment>
+                </field>
+            </group>
+            
+            
+            <group id="referral" translate="label" type="text" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Referral Program</label>
+                <field id="referral_show" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Referral Link</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[Show refer a friend link in user account.]]></comment>
+                </field>
+                <field id="referral_points" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Referral Points Or Ratio</label>
+                    <validate>validate-zero-or-greater</validate>
+                    <comment><![CDATA[Points earned when referred friend orders.]]></comment>
+                </field>
+                <field id="referral_points_method" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Calculation Type (Referral Points)</label>
+                    <source_model>J2t\Rewardpoints\Model\Config\Source\Calculationtype</source_model>
+                    <comment><![CDATA[Calculation type used. "Cart summary Ratio points" multiplies cart subtotal by inserted value, "Ratio points" uses inserted value to calculate points and "static value" uses configuration value without any calculation. Note that any configured rules or points on product page will override Ratio points calculation.]]></comment>
+                </field>
+                <field id="referral_child_points" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Referral Child Points Or Ratio</label>
+                    <validate>validate-zero-or-greater</validate>
+                    <comment><![CDATA[Points earned by referred friend for first order.]]></comment>
+                </field>
+                
+                <field id="referral_child_points_method" translate="label" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Calculation Type (Referral Points)</label>
+                    <source_model>J2t\Rewardpoints\Model\Config\Source\Calculationtype</source_model>
+                    <comment><![CDATA[Calculation type used. "Cart summary Ratio points" multiplies cart subtotal by inserted value, "Ratio points" uses inserted value to calculate points and "static value" uses configuration value without any calculation. Note that any configured rules or points on product page will override Ratio points calculation.]]></comment>
+                </field>
+                
+                <field id="referral_min_order" translate="label comment" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Referral Min. Order</label>
+                    <validate>validate-zero-or-greater</validate>
+                    <comment><![CDATA[Referral minimum order amount (base subtotal amount without shipping fees) in order to process referral actions (0 for no minimum amount).]]></comment>
+                </field>
+                
+                <field id="referral_permanent" translate="label" type="select" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Referral Permanent Link</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[This will allow customers to share permanent their permanent link to refer friends.]]></comment>
+                </field>
+                
+                <field id="referral_redirection" translate="label comment" type="text" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Referral Redirection</label>
+                    <comment><![CDATA[Redirection path for permanent link, excluding domain name and index.php/ part (e.g. electronics/cell-phones.html). Leave blank to use default redirection.]]></comment>
+                </field>
+                
+                <field id="referral_addthis" translate="label comment" type="select" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Share With addthis</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[Allow customers to share permanent link using addthis. Visit addthis.com to create an account.]]></comment>
+                </field>
+                <field id="referral_addthis_account" translate="label comment" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>addthis Account Name</label>
+                </field>
+                <field id="referral_addthis_code" translate="label comment" type="textarea" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>addthis Code</label>
+                    <comment><![CDATA[Addthis buttons code without javascript element.]]></comment>
+                </field>
+                <field id="referral_custom_code" translate="label comment" type="textarea" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Custom Social Share Code</label>
+                    <comment><![CDATA[Custom social share code. You can integrate any other social network sharing tool (such as jiathis, sharethis, addinto, etc.) in order to share referral url. Referral url must be integrated to the code with the following: {{referral_url}}.]]></comment>
+                </field>
+                
+                <field id="referred_registration_points" translate="label comment" type="text" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Referred Registration Points</label>
+                    <validate>validate-zero-or-greater</validate>
+                    <comment><![CDATA[Extra points earned by referred customer upon registration (points are allocated when customer logs into the system for the first time).]]></comment>
+                </field>
+                <field id="referral_guestallow" translate="label" type="select" sortOrder="140" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Disable guest orders</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[Disable guest orders when customer orders from referral url/email.]]></comment>
+                </field>
+                
+                <field id="subscription_email_identity" translate="label" type="select" sortOrder="150" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Subscription Email Sender</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Identity</source_model>
+                </field>
+                <field id="subscription_email_template" translate="label" type="select" sortOrder="160" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Subscription Email Template</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+                
+                <field id="confirmation_email_identity" translate="label" type="select" sortOrder="170" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Confirmation Email Sender</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Identity</source_model>
+                </field>
+                <field id="confirmation_email_template" translate="label" type="select" sortOrder="180" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Confirmation Email Template</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+            </group>
+			
+            <group id="display_settings" translate="label" type="text" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Display Settings</label>
+                <field id="show_view_points" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Product Page Points</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[Show points on product view pages.]]></comment>
+                </field>
+                <field id="show_list_points" translate="label" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Product List Points</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[Show points on product lists.]]></comment>
+                </field>
+                <field id="point_equivalence" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Money Point Equivalence</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[Show to the customer point value in unit of money as well as amout of points.]]></comment>
+                </field>
+                <field id="show_details" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Details</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[Show point gathering details on cart review page, within reward point area. This is only shown when rule is applied to point calculation.]]></comment>
+                </field>
+                <field id="show_dashboard" translate="label" type="select" sortOrder="11" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Show Admin Dashboard</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[Show Point Information on Admin Dashboard.]]></comment>
+                </field>
+            </group>
+            
+            <group id="design" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Graphic Elements</label>
+                <field id="small_inline_image_show" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Small Image</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="small_inline_image" translate="label comment" type="image" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Small Inline Image</label>
+                    <backend_model>J2t\Rewardpoints\Model\Config\Backend\Image\Logo</backend_model>
+                    <upload_dir config="system/filesystem/media" scope_info="1">rewardpoints/small</upload_dir>
+                    <base_url type="media" scope_info="1">rewardpoints/small</base_url>
+                    <comment><![CDATA[Allowed file types: jpeg, gif, png.]]></comment>
+                </field>
+                <field id="small_inline_image_size" translate="label comment" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Small Inline Image Size</label>
+                    <validate>validate-zero-or-greater</validate>
+                    <comment><![CDATA[Define the small inline image size. The value inserted will be used as: value x value.]]></comment>
+                </field>
+                <field id="big_inline_image_show" translate="label" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Big Image</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="big_inline_image" translate="label comment" type="image" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Big Inline Image</label>
+                    <backend_model>J2t\Rewardpoints\Model\Config\Backend\Image\Logo</backend_model>
+                    <upload_dir config="system/filesystem/media" scope_info="1">rewardpoints/big</upload_dir>
+                    <base_url type="media" scope_info="1">rewardpoints/big</base_url>
+                    <comment><![CDATA[Allowed file types: jpeg, gif, png.]]></comment>
+                </field>
+                <field id="big_inline_image_size" translate="label comment" type="text" sortOrder="7" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Big Inline Image Size</label>
+                    <validate>validate-zero-or-greater</validate>
+                    <comment><![CDATA[Define the big inline image size. The value inserted will be used as: value x value.]]></comment>
+                </field>
+            </group>
+			
+            <group id="notifications" translate="label" type="text" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Point Expiry Notification Through Email</label>
+                <field id="expiry_notification_active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+				
+                <field id="notification_email_identity" translate="label" type="select" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Email Sender</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Identity</source_model>
+                </field>
+                
+                <field id="notification_email_template" translate="label" type="select" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Email Template</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+                <field id="notification_days" translate="label comment" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Number of Days Before Points Expiring</label>
+                    <comment><![CDATA[This value will be used to define how many days would be observed before point expiry in order to send notification email.]]></comment>
+                </field>
+            </group>
+            
+            
+			
+            <group id="status_notification" translate="label" type="text" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Point Status Notification Through Email</label>
+                <!--<field id="points_notifications" translate="label comment" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Customer Point Status</label>
+                    <frontend_model>J2t\Rewardpoints\Block\Config\Mapfields</frontend_model>
+                                        <backend_model>J2t\Rewardpoints\Model\Config\Serialized\Arraydefault</backend_model>
+                    <comment><![CDATA[Setup point value used to notify customers of their accumuated point value. Min and Max value must be defined. Duration is the gap in days between two same customer's notifications.]]></comment>
+                </field>-->
+                <field id="points_notifications" translate="label" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="1">
+                    <label>Customer Point Status</label>
+                    <frontend_model>J2t\Rewardpoints\Block\Config\Mapfields</frontend_model>
+                    <backend_model>J2t\Rewardpoints\Model\Config\Serialized\Arraydefault</backend_model>
+                    <comment><![CDATA[Setup point value used to notify customers of their accumulated point value. Min and Max value must be defined. Duration is the gap in days between two same customer's notifications.]]></comment>
+                </field>
+                		
+                <field id="customer_point_status_email_template" translate="label" type="select" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Email Sent For Customer Notifications</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+            </group>
+            
+            <group id="admin_notifications" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Admin Email notifications</label>
+                <field id="notification_email_identity" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Email Sender</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Identity</source_model>
+                </field>
+                
+                <field id="notification_email_template" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Email Template</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+            </group>
+			
+        </section>
+    </system>
+</config>

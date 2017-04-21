@@ -1,0 +1,266 @@
+#product_composite_configure_fields_options .Addactive {
+    display: block !important;
+}
+/* 13oz Vinyl Banner */
+.Artworks_1634, .Art_1633, .Addhidden, .Size_1624, .Hemming_1626, .Grommets_1628, .Agreement_1631, .Notice_1621 {
+    display: none
+}
+#options-1621-list .admin__field-option:nth-child(1){
+    display: none;
+}
+/* 14oz Vinyl Banner */
+.Agreement_1441, .Artworks_1444, .Art_1443, .Size_1433, .Hemming_1436, .Grommets_1438, .Notice_1434 {
+    display: none;
+}
+#options-1434-list .admin__field-option:nth-child(1){
+    display: none;
+}
+
+/* 16 oz Blockout Banner */
+.Agreement_1461, .Artworks_1464, .Art_1463, .Hemming_1456, .Grommets_1458, .Pocket-Size_1454, .Notice_1449 {
+    display: none;
+}
+#options-1449-list .admin__field-option:nth-child(1){
+    display: none;
+}
+/* Backlit Banner */
+.Agreement_1474, .Artworks_1477, .Art_1476, .Notice_1479 {
+    display: none;
+}
+/* Double Sided Banner (Super Smooth) */
+.Agreement_1577, .Grommets_1574, .Pocket-Size_1572, .Artworks_1580, .Art_1579, .Notice_1568 {
+    display: none;
+}
+#options-1568-list .admin__field-option:nth-child(1){
+    display: none;
+}
+/* Fabric Banner- Premium  */
+.Agreement_911, .Artworks_1015, .Art_1014, .Size_837, .Grommets_838 {
+    display: none;
+}
+/* Mesh Banner */
+.Agreement_1506, .Artworks_1509, .Art_1508, .Size_1501, .Grommets_1503, .Notice_1511 {
+    display: none;
+} 
+#options-1511-list .admin__field-option:nth-child(1){
+    display: none;
+}
+/* Premium Coated Banner */
+.Agreement_1545, .Artworks_1548, .Art_1547, .Pocket-Size_1589, .Hemming_1540, .Grommets_1542, .Notice_1533 {
+    display: none;
+} 
+#options-1533-list .admin__field-option:nth-child(1){
+    display: none;
+}
+/* Super Smooth Banner */
+.Agreement_1593, .Artworks_1596, .Art_1595, .Pocket-Size_1589, .Grommets_1591, .Notice_1584 {
+    display: none;
+}
+#options-1584-list .admin__field-option:nth-child(1){
+    display: none;
+}
+/* Fabric Banner- Deluxe */
+.Artworks_1023, .Art_1022, .Size_851, .Grommets_852, .Agreement_853 {
+    display: none;
+}
+/* 3M Controltac (IJ 180C) */
+.Agreement_915, .Artworks_1025, .Art_1024 {
+    display: none;
+}
+/* 3M IJ35 Adhesive Vinyl */
+.Artworks_1027, .Agreement_855, .Art_1026  {
+    display: none;
+}
+/* Bumper Stickers */
+.Agreement_856, .Artworks_857 {
+    display: none;
+}
+/* Floor Graphics */
+.Agreement_858, .Artworks_1029, .Art_1028  {
+    display: none;
+}
+/* Perforated Stickers (One-Way Vision) */
+.Agreement_859, .Artworks_1031, .Art_1030 {
+    display: none;
+}
+/* Static Clings (Window Clings) */
+.Agreement_860, .Artworks_1033, .Art_1032 {
+    display: none;
+}
+/* Vinyl Stickers (Window Decal) */
+.Agreement_861, .Artworks_1035, .Art_1034 {
+    display: none;
+}
+/* Wall Vinyl Decals */
+.Agreement_862, .Artworks_1037, .Art_1036 {
+    display: none;
+}
+/* Backlit Film */
+.Agreement_863, .Artworks_1039, .Art_1038 {
+    display: none;
+}
+/* Canvas Roll */
+.Agreement_864, .Artworks_1041, .Art_1040 {
+    display: none;
+}
+/* Framed Canvas */
+.Agreement_865, .Artworks_1045, .Art_1044   {
+    display: none;
+}
+/* Car Magnets */
+.Agreement_866, .Artworks_1049, .Art_1048 {
+    display: none;
+}
+
+/* Polypropylene (PET) */
+.Agreement_867, .Artworks_1043, .Art_1042 {
+    display: none;
+}
+/* Digital Poster  */
+.Artworks_1047, .Art_1046 {
+    display: none;
+} 
+/* Acrylic Boards */
+.Agreement_868, .Artworks_1051, .Art_1050 {
+    display: none;
+}
+/* Aluminum Sandwich Board “Dibond” */
+.Agreement_869, .Material-_870, .Material_457, .Artworks_1053, .Art_1052 {
+    display: none;
+}
+/* Aluminum Sheets */
+.Agreement_918, .Artworks_920, .Art_919, .Inches_1141, .Inches_1140, .addF_1142  {
+    display: none;
+}
+
+/* Arrow Spinner Signs */
+.Agreement_871, .Artworks_1055, .Art_1054 {
+    display: none;
+}
+
+/* Yard Signs (Coroplast) */
+.Agreement_890, .Color_891, .Color_616, .Artworks_928, .Art_927  {
+    display: none;
+}
+/* Ultra(Gator) Board */
+.Agreement_889, .Side_888, .Side_625, .Artworks_905, .Advised_1072 , .Advised_1073, .Art_904 {
+    display: none;
+} 
+#options-1073-list .admin__field-option:nth-child(1), #options-1072-list .admin__field-option:nth-child(1){
+    display: none;
+}
+
+/* Styrene Boards */
+.Agreement_887, .Artworks_1059, .Art_1058 {
+    display: none;
+}
+
+/* PVC Sintra Board */
+.Agreement_886, .Side_885, .Side_644, .Artworks_926, .Art_925{
+    display: none;
+}
+
+/* Foam Boards */
+.Agreement_884, .Side_654, .Side_883, .Artworks_924, .Art_923 {
+    display: none;
+}  
+/* Eagle Board (Eco Board) */
+.Agreement_882, .Side_881, .Side_663, .Artworks_922, .Art_921 {
+    display: none;
+}
+/* Converd Coated Board */
+.Agreement_880, .Material-_879, .Material_671, .Artworks_917, .Art_916 {
+    display: none;
+}
+/* Mini Banner Stands */
+.Artworks_953, .Material_892, .Material_754 {
+    display: none;
+}
+/* Outdoor Banner Stand */
+.Agreement_893, .Artworks_962, .Hemming_763, .Grommets_764  {
+    display: none;
+}
+/* Outdoor Double Banner Stand */
+.Agreement_894, .Artworks_961, .Hemming_772, .Grommets_773 {
+    display: none;
+}
+/* X-Frame with Supersmooth */
+.Agreement_902, .Inches_965, .Inches_966, .Inches_967, .Inches_968, .Art_1060, .Artworks_1061 {
+    display: none;
+}
+/* X-Frame with Polypropylene (PET) */
+.Agreement_901, .Inches_969, .Inches_970, .Inches_971, .Inches_972, .Artworks_1063, .Art_1062 {
+    display: none;
+}
+/* X-Frame with Banner */
+.Inches_980, .Inches_979, .Agreement_900, .Artworks_1065, .Art_1064  {
+    display: none;
+} 
+/* Step and Repeat Banners */
+.Agreement_899, .Artworks_1067, .Art_1066 {
+    display: none;
+}
+/* Retractable Stand */
+.Agreement_898, .Available_897, .Artworks_1069, .Art_1068 {
+    display: none;
+}
+/* Custom Sublimation Transfers */
+.Art_981, .Artworks_982 {
+    display: none;
+}
+#options-977-list .admin__field-option:nth-child(1){
+    display: none;
+}
+/* Flag Banners (Sublimation) */
+.Artworks_984, .Art_983 {
+    display: none;
+}
+
+/* 3M Controltac (IJ 180C) Contour */
+.Artworks_986, .Art_985, .Agreement_943 {
+    display: none;
+} 
+/* Car Magnets Contour */
+.Artworks_988, .Art_987, .Agreement_944 {
+    display: none;
+} 
+/* Floor Graphics – Contour */
+.Agreement_946, .Artworks_990, .Art_989 {
+    display: none;
+}  
+/* Yard Signs (Coroplast) Contour Cut */
+.Agreement_958, .Artworks_960, .Art_959 {
+    display: none;
+} 
+/* Ultra(Gator) Board Contour */
+.Agreement_939, .Artworks_942, .Art_941, .Side_558, .Side_938, .Advised_1070  {
+    display: none;
+} 
+/* Styrene Boards Contour */
+.Agreement_936, .Artworks_996, .Art_995 {
+    display: none;
+}  
+/* PVC Sintra Board Contour */
+.Agreement_932, .Artworks_935, .Art_934, .Side_1145, .Side_578 {
+    display: none;
+}  
+/* Foam Boards- Contour */
+.Agreement_956, .Artworks_930, .Art_929, .Side_588, .Side_955 {
+    display: none;
+}   
+/* Wall Vinyl Decals Contour */
+.Agreement_951, .Artworks_998, .Art_997 {
+    display: none;
+}  
+/* Vinyl Stickers (Window Decal) Contour */
+.Agreement_949, .Artworks_1000, .Art_999 {
+    display: none;
+}  
+/* Static Clings (Window Clings) Contour */
+.Agreement_948, .Artworks_1002, .Art_1001 {
+    display: none;
+}  
+/* Retractable Stand (stand ONLY) */
+.Artworks_1005, .Art_1004, .Available_1071  {
+    display: none;
+}

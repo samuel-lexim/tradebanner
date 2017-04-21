@@ -29,7 +29,6 @@ LICENSE
 /dev
 /phpserver
 /var
-/vendor
 /setup
 /*.*
 .htaccess
@@ -39,3 +38,6 @@ update
 
 /app/code/MagePsycho
 /app/code/LitExtension
+
+!S3.php
+!upload.php

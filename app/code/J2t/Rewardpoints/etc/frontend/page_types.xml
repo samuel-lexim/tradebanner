@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page_types xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Core/etc/page_types.xsd">
+    <type id="rewardpoints_points_index" label="Customer My Loyalty Points"/>
+    <type id="rewardpoints_referral_index" label="Customer Referral Page"/>
+</page_types>

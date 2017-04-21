@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 J2T Design. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <block class="J2t\Rewardpoints\Block\Adminhtml\Referrals\Grid" name="admin.rewardpoints.referrals.grid"/>
+        </referenceContainer>
+    </body>
+</page>

@@ -215,6 +215,7 @@ define(
              */
             onAddressChange: function (address) {
                 this.isAddressFormVisible(address == newAddressOption);
+                jQuery('#billing-address-same-as-shipping-authnetcim').prop("checked",false);
             },
 
             /**

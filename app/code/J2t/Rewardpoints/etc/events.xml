@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    
+    <event name="controller_action_predispatch">
+        <observer name="j2t_rewardpoints_predispatch" instance="J2t\Rewardpoints\Observer\ProcessPredispatch" />
+    </event>
+	
+    <event name="core_layout_render_element">
+        <observer name="j2t_rewardpoints_html_after" instance="J2t\Rewardpoints\Observer\ProcessLayoutRenderElement" />
+    </event>
+	
+    <event name="customer_login">
+        <observer name="j2t_rewardpoints_customer_login" instance="J2t\Rewardpoints\Observer\ProcessCustomerLogin" />
+    </event>
+    
+    <event name="customer_save_before">
+        <observer name="j2t_rewardpoints_customer_save" instance="J2t\Rewardpoints\Observer\ProcessSaveCustomer" />
+    </event>
+    
+    <event name="model_save_after">
+        <observer name="j2t_rewardpoints_model_save" instance="J2t\Rewardpoints\Observer\ProcessSaveModel" />
+    </event>
+	
+    <event name="sales_order_save_after">
+        <observer name="j2t_rewardpoints_order_save" instance="J2t\Rewardpoints\Observer\ProcessSaveOrder" />
+    </event>
+	
+    <event name="sales_model_service_quote_submit_before">
+        <observer name="j2t_rewardpoints_quote_save" instance="J2t\Rewardpoints\Observer\ProcessQuoteSave" />
+    </event>
+	
+    
+</config>
