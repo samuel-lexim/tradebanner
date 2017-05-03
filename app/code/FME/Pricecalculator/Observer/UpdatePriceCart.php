@@ -28,7 +28,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
 
     public function execute(\Magento\Framework\Event\Observer $observer)
     {
-        // $this->logger->debug("================== Start debug kong ====================");
+
         $quoteItem = $observer->getEvent()->getQuoteItem();
         $_product = $observer->getProduct();
         $customOptions = $_product->getOptions();
@@ -49,7 +49,6 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
                 }
             }
         }
-
 
 
         // if ($totalOp == 0) return; // If not exists width, height then break
@@ -76,7 +75,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
 
         /** Banner */
         if ($id == 90) { // 13oz Vinyl Banner
-            
+
             $turn = $posted_options[1742];
             if (is_array($turn)) $turn = $turn[0];
             if ($turn == 3027) $has17 = true;
@@ -88,7 +87,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             if ($matOpId == 2993) $hasDiscount = false;
 
         } else if ($id == 91) { // 14oz Vinyl Banner
-            
+
             $turn = $posted_options[1761];
             if (is_array($turn)) $turn = $turn[0];
             if ($turn == 3068) $has17 = true;
@@ -100,7 +99,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             if ($matOpId == 3034) $hasDiscount = false;
 
         } else if ($id == 92) { // 16 oz Blockout Banner
-            
+
             $areaPrice = $area * 1.5 / 144;
 
             $turn = $posted_options[1460];
@@ -108,7 +107,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             if ($turn == 2464) $has17 = true;
 
         } else if ($id == 93) { // Backlit Banner
-            
+
             $areaPrice = $area * 3.99 / 144;
 
             $turn = $posted_options[1473];
@@ -116,21 +115,21 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             if ($turn == 2484) $has17 = true;
 
         } else if ($id == 94) { // Double Sided Banner (Super Smooth)
-            
+
             $matOpId = $posted_options[1569];
             if (is_array($matOpId)) $matOpId = $matOpId[0];
             $matObj = $opsAr[1569]->getValues();
             $matPrice = $matObj[$matOpId]->getPrice();
             $matPrice = is_null($matPrice) ? 0 : $matPrice;
 
-            $areaPrice = ($area / 144* $matPrice) - $matPrice;
+            $areaPrice = ($area / 144 * $matPrice) - $matPrice;
 
             $turn = $posted_options[1576];
             if (is_array($turn)) $turn = $turn[0];
             if ($turn == 2699) $has17 = true;
 
         } else if ($id == 95) { // Fabric Banner- Premium
-            
+
             $areaPrice = $area * 1.49 / 144;
 
             $turn = $posted_options[353];
@@ -138,7 +137,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             if ($turn == 675) $has17 = true;
 
         } else if ($id == 96) { // Mesh Banner
-            
+
             $areaPrice = $area * 1.5 / 144;
 
             $turn = $posted_options[1505];
@@ -146,7 +145,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             if ($turn == 2550) $has17 = true;
 
         } else if ($id == 97) { // Premium Coated Banner
-            
+
             $areaPrice = $area * 1.39 / 144;
 
             $turn = $posted_options[1544];
@@ -154,7 +153,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             if ($turn == 2629) $has17 = true;
 
         } else if ($id == 98) { // Super Smooth Banner
-            
+
             $matOpId = $posted_options[1585];
             if (is_array($matOpId)) $matOpId = $matOpId[0];
             $matObj = $opsAr[1585]->getValues();
@@ -168,7 +167,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             if ($turn == 2735) $has17 = true;
 
         } else if ($id == 99) { // Fabric Banner- Deluxe
-            
+
             $areaPrice = $area * 3.49 / 144;
 
             $turn = $posted_options[362];
@@ -177,7 +176,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
 
         } else if ($id == 100) {
             /** Adhesives */ // 3M Controltac (IJ 180C)
-            
+
             $laminationId = $posted_options[402];
             if (is_array($laminationId)) $laminationId = $laminationId[0];
             $lamObj = $opsAr[402]->getValues();
@@ -191,7 +190,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             if ($turn == 770) $has17 = true;
 
         } else if ($id == 101) { // 3M IJ35 Adhesive Vinyl
-            
+
             $laminationId = $posted_options[410];
             if (is_array($laminationId)) $laminationId = $laminationId[0];
             $lamObj = $opsAr[410]->getValues();
@@ -211,7 +210,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             if ($turn == 778) $has17 = true;
 
         } else if ($id == 102) { // Bumper Stickers
-            
+
             // $areaPrice = 0; dont need $areaPrice
 
             $turn = $posted_options[418];
@@ -219,7 +218,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             if ($turn == 788) $has17 = true;
 
         } else if ($id == 123) { // Floor Graphics
-            
+
 
             $matOpId = $posted_options[505];
             if (is_array($matOpId)) $matOpId = $matOpId[0];
@@ -227,14 +226,14 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             $matPrice = $matObj[$matOpId]->getPrice();
             $matPrice = is_null($matPrice) ? 0 : $matPrice;
 
-            $areaPrice = ($area / 144 * $matPrice ) - $matPrice;
+            $areaPrice = ($area / 144 * $matPrice) - $matPrice;
             $turn = $posted_options[508];
             if (is_array($turn)) $turn = $turn[0];
 
             if ($turn == 901) $has17 = true;
 
         } else if ($id == 126) { // Perforated Stickers (One-Way Vision)
-            
+
             $matOpId = $posted_options[498];
             if (is_array($matOpId)) $matOpId = $matOpId[0];
             $matObj = $opsAr[498]->getValues();
@@ -248,7 +247,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             if ($turn == 896) $has17 = true;
 
         } else if ($id == 127) { // Static Clings (Window Clings)
-            
+
             $matOpId = $posted_options[491];
             if (is_array($matOpId)) $matOpId = $matOpId[0];
             $matObj = $opsAr[491]->getValues();
@@ -262,7 +261,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             if ($turn == 892) $has17 = true;
 
         } else if ($id == 128) { // Vinyl Stickers (Window Decal)
-            
+
             $matOpId = $posted_options[1838];
             if (is_array($matOpId)) $matOpId = $matOpId[0];
             $matObj = $opsAr[1838]->getValues();
@@ -282,7 +281,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             if ($turn == 3176) $has17 = true;
 
         } else if ($id == 129) { // Wall Vinyl Decals
-            
+
             $matOpId = $posted_options[475];
             if (is_array($matOpId)) $matOpId = $matOpId[0];
             $matObj = $opsAr[475]->getValues();
@@ -303,7 +302,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
 
         } else if ($id == 103) {
             /** Digital Prints */ // Backlit Film
-            
+
             $laminationId = $posted_options[426];
             if (is_array($laminationId)) $laminationId = $laminationId[0];
             $lamObj = $opsAr[426]->getValues();
@@ -317,7 +316,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             if ($turn == 796) $has17 = true;
 
         } else if ($id == 104) { // Canvas Roll
-            
+
             $matOpId = $posted_options[430];
             if (is_array($matOpId)) $matOpId = $matOpId[0];
             $matObj = $opsAr[430]->getValues();
@@ -334,7 +333,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             if ($matOpId == 798) $hasDiscount = false;
 
         } else if ($id == 130) { // Polypropylene (PET)
-            
+
             $laminationId = $posted_options[516];
             if (is_array($laminationId)) $laminationId = $laminationId[0];
             $lamObj = $opsAr[516]->getValues();
@@ -348,7 +347,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             if ($turn == 905) $has17 = true;
 
         } else if ($id == 131) { // Digital Poster
-            
+
             $laminationId = $posted_options[524];
             if (is_array($laminationId)) $laminationId = $laminationId[0];
             $lamObj = $opsAr[524]->getValues();
@@ -362,26 +361,21 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             if ($turn == 921) $has17 = true;
 
         } else if ($id == 132) { // Car Magnets
-            
+
             $laminationId = $posted_options[532];
             if (is_array($laminationId)) $laminationId = $laminationId[0];
             $lamObj = $opsAr[532]->getValues();
             $lamPrice = $lamObj[$laminationId]->getPrice();
             $lamPrice = is_null($lamPrice) ? 0 : $lamPrice;
 
-            $roundId = $posted_options[533];
-            $roundObj = $opsAr[533]->getValues();
-            $roundPrice = $roundObj[$roundId]->getPrice();
-            $roundPrice = is_null($roundPrice) ? 0 : $roundPrice;
-
-            $areaPrice = ($area / 144 * ($lamPrice + $roundPrice)) - $lamPrice - $roundPrice;
+            $areaPrice = ($area / 144 * $lamPrice) - $lamPrice;
 
             $turn = $posted_options[534];
             if (is_array($turn)) $turn = $turn[0];
             if ($turn == 931) $has17 = true;
 
         } else if ($id == 155) { // Framed Canvas
-            
+
 
             $widthVal = $posted_options[811];
             $widthVal = is_null($widthVal) ? 0 : $widthVal;
@@ -405,7 +399,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
 
         } else if ($id == 106) {
             /** SIGNS & BOARDS */ // Acrylic Boards
-            
+
 
             $laminationId = $posted_options[448];
             if (is_array($laminationId)) $laminationId = $laminationId[0];
@@ -432,7 +426,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             if ($turn == 834) $areaPrice = ($area / 144 * ($lamPrice + $matPrice) + $drillPrice) * 1.7 - $lamPrice - $matPrice - $drillPrice;
 
         } else if ($id == 107) { // Aluminum Sandwich Board “Dibond”
-            
+
 
             $laminationId = $posted_options[458];
             if (is_array($laminationId)) $laminationId = $laminationId[0];
@@ -548,7 +542,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             if (!$normal) $areaPrice = $size + $lamPrice;
 
         } else if ($id == 146) { // Arrow Spinner Signs
-            
+
             $colorId = $posted_options[744];
             if (is_array($colorId)) $colorId = $colorId[0];
             $sizeId = $posted_options[973];
@@ -617,7 +611,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             if ($turn == 1226) $has17 = true;
 
         } else if ($id == 147) { // Yard Signs (Coroplast)
-            
+
 
             $matOpId = $posted_options[1663];
             if (is_array($matOpId)) $matOpId = $matOpId[0];
@@ -639,10 +633,10 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             if (is_array($turn)) $turn = $turn[0];
             if ($turn == 2875) $has17 = true;
 
-        } else if ($id == 148) { // Ultra(Gator) Board            
+        } else if ($id == 148) { // Ultra(Gator) Board
 
             $laminationId = $posted_options[626];
-        
+
             if (is_array($laminationId)) $laminationId = $laminationId[0];
             $lamObj = $opsAr[626]->getValues();
 
@@ -683,7 +677,6 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
                 $areaPrice = ($area / 144 * ($lamPrice * 2 + $matPrice)) - $lamPrice - $matPrice;
             }
 
-    
 
             if ($matOpId == 1053 || $matOpId == 1452) $areaPrice -= $groPrice;
 
@@ -694,7 +687,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             if ($turn == 1064) $has17 = true;
 
         } else if ($id == 149) { // Styrene Boards
-            
+
 
             $laminationId = $posted_options[635];
             if (is_array($laminationId)) $laminationId = $laminationId[0];
@@ -723,7 +716,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             }
 
         } else if ($id == 150) { // PVC Sintra Board
-            
+
 
             $laminationId = $posted_options[645];
             if (is_array($laminationId)) $laminationId = $laminationId[0];
@@ -762,7 +755,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             }
 
         } else if ($id == 151) { // Foam Boards
-            
+
 
             $laminationId = $posted_options[655];
             if (is_array($laminationId)) $laminationId = $laminationId[0];
@@ -795,7 +788,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             if ($turn == 1112) $has17 = true;
 
         } else if ($id == 152) { // Eagle Board (Eco Board)
-            
+
 
             $laminationId = $posted_options[664];
             if (is_array($laminationId)) $laminationId = $laminationId[0];
@@ -828,7 +821,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             if ($turn == 1121) $has17 = true;
 
         } else if ($id == 153) { // Converd Coated Board
-            
+
 
             $laminationId = $posted_options[672];
             if (is_array($laminationId)) $laminationId = $laminationId[0];
@@ -862,7 +855,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
 
         } else if ($id == 110) {
             /** Banner stands */  // Mini Banner Stands
-            
+
             $areaPrice = 0;
 
             $turn = $posted_options[1869];
@@ -870,7 +863,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             if ($turn == 3234) $has17 = true;
 
         } else if ($id == 111) { // Outdoor Banner Stand
-            
+
             $areaPrice = 0;
 
             $turn = $posted_options[765];
@@ -878,7 +871,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             if ($turn == 1247) $has17 = true;
 
         } else if ($id == 112) { // Outdoor Double Banner Stand
-            
+
 
             $matOpId = $posted_options[770];
             if (is_array($matOpId)) $matOpId = $matOpId[0];
@@ -895,7 +888,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             }
 
         } else if ($id == 141) { // X-Frame with Supersmooth
-            
+
 
             $sizeId = $posted_options[963];
             if (is_array($sizeId)) $sizeId = $sizeId[0];
@@ -923,7 +916,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             else if ($sizeId == 1573) $areaPrice += 23;
 
         } else if ($id == 142) { // X-Frame with Polypropylene (PET)
-            
+
 
             $sizeId = $posted_options[964];
             if (is_array($sizeId)) $sizeId = $sizeId[0];
@@ -951,7 +944,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             else if ($sizeId == 1578) $areaPrice += 23;
 
         } else if ($id == 143) { // X-Frame with Banner
-            
+
 
             $sizeId = $posted_options[978];
             if (is_array($sizeId)) $sizeId = $sizeId[0];
@@ -979,7 +972,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             else if ($sizeId == 1598) $areaPrice += 23;
 
         } else if ($id == 144) { // Step and Repeat Banners
-            
+
 
             $turn = $posted_options[786];
             if (is_array($turn)) $turn = $turn[0];
@@ -989,7 +982,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
 
         } else if ($id == 145) { // Retractable Stand
 
-            $premiumStand = isset($posted_options[1696]) ? true : false;   
+            $premiumStand = isset($posted_options[1696]) ? true : false;
 
             $matId = $posted_options[1694];
             if (is_array($matId)) $matId = $matId[0];
@@ -1021,7 +1014,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
 
         } else if ($id == 113) {
             /** Sublimation */  // Custom Sublimation Transfers
-            
+
             $areaPrice = $area / 144 * 0.79;
 
             $turn = $posted_options[709];
@@ -1030,7 +1023,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
 
         } else if ($id == 115) {
             /** Contour Cut */  // 3M Controltac (IJ 180C) Contour
-            
+
 
             $laminationId = $posted_options[716];
             if (is_array($laminationId)) $laminationId = $laminationId[0];
@@ -1047,7 +1040,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             else if ($turn == 1196) $has15 = true;
 
         } else if ($id == 116) {  // Car Magnets Contour
-            
+
 
             $laminationId = $posted_options[724];
             if (is_array($laminationId)) $laminationId = $laminationId[0];
@@ -1064,7 +1057,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             else if ($turn == 1205) $has15 = true;
 
         } else if ($id == 117) {  // Floor Graphics – Contour
-            
+
 
             $areaPrice = $area / 144 * 5.88;
 
@@ -1075,7 +1068,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             else if ($turn == 1212) $has15 = true;
 
         } else if ($id == 133) {  // Yard Signs (Coroplast) Contour
-            
+
 
             $matId = $posted_options[548];
             if (is_array($matId)) $matId = $matId[0];
@@ -1099,7 +1092,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             else if ($turn == 949) $has15 = true;
 
         } else if ($id == 134) {  // Ultra(Gator) Board Contour
-            
+
 
             $laminationId = $posted_options[559];
             if (is_array($laminationId)) $laminationId = $laminationId[0];
@@ -1143,7 +1136,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             else if ($turn == 965) $has15 = true;
 
         } else if ($id == 135) {  // Styrene Boards Contour
-            
+
 
             $laminationId = $posted_options[569];
             if (is_array($laminationId)) $laminationId = $laminationId[0];
@@ -1167,7 +1160,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             else if ($turn == 981) $has15 = true;
 
         } else if ($id == 136) {  // PVC Sintra Board Contour
-            
+
 
             $laminationId = $posted_options[579];
             if (is_array($laminationId)) $laminationId = $laminationId[0];
@@ -1218,7 +1211,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             else if ($turn == 996) $has15 = true;
 
         } else if ($id == 137) {  // Foam Boards- Contour
-            
+
 
             $laminationId = $posted_options[589];
             if (is_array($laminationId)) $laminationId = $laminationId[0];
@@ -1257,7 +1250,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             else if ($turn == 1011) $has15 = true;
 
         } else if ($id == 138) {  // Wall Vinyl Decals Contour
-            
+
 
             $laminationId = $posted_options[599];
             if (is_array($laminationId)) $laminationId = $laminationId[0];
@@ -1280,7 +1273,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             else if ($turn == 1021) $has15 = true;
 
         } else if ($id == 139) {  // Vinyl Stickers (Window Decal) Contour
-            
+
             $laminationId = $posted_options[609];
             if (is_array($laminationId)) $laminationId = $laminationId[0];
             $lamObj = $opsAr[609]->getValues();
@@ -1302,7 +1295,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             else if ($turn == 1034) $has15 = true;
 
         } else if ($id == 140) {  // Static Clings (Window Clings) Contour
-            
+
             $matId = $posted_options[539];
             if (is_array($matId)) $matId = $matId[0];
             $matObj = $opsAr[539]->getValues();
@@ -1356,8 +1349,9 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
 
         // Get Discount
         $percentRate = $hasDiscount ? $this->getDiscountRate(($area * $qty), $_product) : 0;
-        //$this->logger->debug('$Rate discount ' . $percentRate);
-   
+         $this->logger->debug("Discount percentRate : ". $percentRate);
+         $this->logger->debug("total : ". $total);
+
         $total = $total - $total * $percentRate / 100;
         if ($qty * $total < 8) $total = $this->checkMinPriceForTotal($qty, 8.0);
         // End Discount
@@ -1389,10 +1383,10 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
         $min10 = [113, 116, 140, 139, 137, 136, 134, 133];
 
         if ($id == 109) $total = 5; // sample-kit
-        else if ( ($qty * $total) <= 10 && in_array($id, $min10) ) $total = $this->checkMinPriceForTotal($qty, 10.0);
-        else if ( ($qty * $total) <= 5 && in_array($id, $min5) ) $total = $this->checkMinPriceForTotal($qty, 5.0);
-        else if ( $total <= 8 && in_array($id, $banner) ) $total = 8;
-        else if ( ($qty * $total) <= 8 ) $total = $this->checkMinPriceForTotal($qty, 8.0);
+        else if (($qty * $total) <= 10 && in_array($id, $min10)) $total = $this->checkMinPriceForTotal($qty, 10.0);
+        else if (($qty * $total) <= 5 && in_array($id, $min5)) $total = $this->checkMinPriceForTotal($qty, 5.0);
+        else if ($total <= 8 && in_array($id, $banner)) $total = 8;
+        else if (($qty * $total) <= 8) $total = $this->checkMinPriceForTotal($qty, 8.0);
 
 
         // Update Price
@@ -1422,13 +1416,11 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
                 if ($i < ($c_size - 1) && intval($size) <= $area && $area < intval($config['size'][$i + 1])) {
                     if (isset($config['discount'][$i])) {
                         $rate = $config['discount'][$i];
-                        //$this->logger->debug(' binh thuong ');
                         break;
                     }
                 } else if ($i == ($c_size - 1) && intval($size) <= $area) {
                     if (isset($config['discount'][$i])) {
                         $rate = $config['discount'][$i];
-                        //$this->logger->debug(' cuoi cung ');
                         break;
                     }
                 }
