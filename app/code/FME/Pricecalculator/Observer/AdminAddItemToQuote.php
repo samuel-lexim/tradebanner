@@ -1153,8 +1153,8 @@ class AdminAddItemToQuote implements ObserverInterface
 
             // Get Discount
             $percentRate = $hasDiscount ? $this->getDiscountRate(($area * $qty), $_product) : 0;
-            $this->logger->debug("Discount percentRate 2222 : " . $percentRate);
-            $this->logger->debug("total : " . $total);
+            //$this->logger->debug("Discount percentRate 2222 : " . $percentRate);
+            //$this->logger->debug("total : " . $total);
 
             $total = $total - $total * $percentRate / 100;
             // $this->logger->debug("Discount total : ". $total);
@@ -1170,6 +1170,10 @@ class AdminAddItemToQuote implements ObserverInterface
             else if (($qty * $total) <= 8) $total = $this->checkMinPriceForTotal($qty, 8.0);
 
             $total = round($total * 100) / 100;
+
+            // Check custom Price
+            $customPrice = $item->getCustomPrice();
+            if (!is_null($customPrice) && $customPrice > 0) $total = $customPrice;
 
             $item->setPrice($total);
             $item->setCustomPrice($total);
