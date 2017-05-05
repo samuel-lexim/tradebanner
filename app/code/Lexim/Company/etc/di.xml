@@ -15,8 +15,8 @@
                     <item name="origin_column" xsi:type="string">customer_id</item>
                     <item name="target_column" xsi:type="string">parent_id</item>
                 </item>
-            </argument>      
-         
+            </argument>
+
             <argument name="columns" xsi:type="array">
                 <item name="company_customer" xsi:type="string">company.company</item>
             </argument>

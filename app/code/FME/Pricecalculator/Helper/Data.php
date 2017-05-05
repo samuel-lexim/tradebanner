@@ -9,7 +9,6 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
 
     protected $_scopeConfig;
     protected $productFactory;
-    protected $logger;
 
     const XML_PATH_ENABLED = 'pricecalculator/general/enable_in_frontend';
     const XML_PATH_FIELDS_LABEL = 'pricecalculator/basic/fields_label';
@@ -23,13 +22,11 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
 
     public function __construct(
         \Magento\Framework\App\Helper\Context $context,
-        \Magento\Catalog\Model\ProductFactory $productFactory,
-        \Psr\Log\LoggerInterface $logger
+        \Magento\Catalog\Model\ProductFactory $productFactory
     )
     {
         $this->_scopeConfig = $context->getScopeConfig();
         $this->productFactory = $productFactory;
-        $this->logger = $logger;
         parent::__construct($context);
     }
 

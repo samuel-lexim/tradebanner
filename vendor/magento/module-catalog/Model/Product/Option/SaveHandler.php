@@ -54,7 +54,7 @@ class SaveHandler implements ExtensionInterface
         /** @var \Magento\Catalog\Api\Data\ProductInterface $entity */
         foreach ($this->optionRepository->getProductOptions($entity) as $option) {
             //$this->optionRepository->delete($option);
-            
+
             // Fix bug change option id
             if (!in_array($option->getOptionId(), $optionIds)) {
                 $this->optionRepository->delete($option);
