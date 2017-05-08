@@ -1649,6 +1649,10 @@ nav.account-nav li.current strong {
     color: #ed5621;
 }
 
+.account.sales-order-view .page-title-wrapper {
+    display: block;
+}
+
 /* # My Account page */
 
 /* Cart page */

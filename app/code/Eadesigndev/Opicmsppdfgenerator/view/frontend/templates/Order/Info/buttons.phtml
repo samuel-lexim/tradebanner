@@ -10,23 +10,18 @@
 <div class="actions">
     <?php  $_order = $block->getOrder() ?>
     <?php if ($this->helper('Magento\Sales\Helper\Reorder')->canReorder($_order->getEntityId())) : ?>
-        <a href="#" data-post='<?php /* @escapeNotVerified */ echo
-        $this->helper(\Magento\Framework\Data\Helper\PostHelper::class)
+        <a href="#" data-post='<?= $this->helper(\Magento\Framework\Data\Helper\PostHelper::class)
             ->getPostData($block->getReorderUrl($_order))
         ?>' class="action order">
-            <span><?php /* @escapeNotVerified */ echo __('Reorder') ?></span>
+            <span><?= __('Reorder') ?></span>
         </a>
     <?php endif ?>
-    <a class="action print"
-       href="<?php /* @escapeNotVerified */ echo $block->getPrintUrl($_order) ?>"
-       onclick="this.target='_blank';">
-        <span><?php /* @escapeNotVerified */ echo __('Print Order') ?></span>
-    </a>
+
     <?php if($block->addPDFLink($_order)):?>
-        <a href="<?php /* @escapeNotVerified */ echo  $block->getPrintPDFUrl($_order) ?>"
+        <a href="<?=  $block->getPrintPDFUrl($_order) ?>"
            onclick="this.target='_blank'"
            class="action print">
-            <span> <?php /* @escapeNotVerified */ echo __('Print PDF order') ?>&nbsp; </span>
+            <span> <?= __('Print PDF order') ?>&nbsp; </span>
         </a>
     <?php endif?>
     <?php echo $block->getChildHtml(); ?>

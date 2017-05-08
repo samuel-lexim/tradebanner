@@ -14,5 +14,8 @@
                 </action>
             </block>
         </referenceBlock>
+
+        <move element="page.main.title" destination="main" before="-"/>
+
     </body>
 </page>
