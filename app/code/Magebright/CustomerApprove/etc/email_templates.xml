@@ -6,6 +6,7 @@
 
 	<!-- Samuel Kong -->
     <template area="frontend" file="change_order_status_email_template.html" id="change_order_status_email_template" label="Change order status notification" module="Magebright_CustomerApprove" type="html"/>
+    <template area="frontend" file="custom_estimate_email_template.html" id="custom_estimate_email_template" label="Custom Estimate notification" module="Magebright_CustomerApprove" type="html"/>
     <!-- # Samuel Kong -->
 
 </config>

@@ -1,0 +1,16 @@
+<!--@subject [Custom Estimate] You have a request - {{var data.custom_quote_name}} - {{var data.customer_email}} - {{var data.company}} @-->
+
+
+{{template config_path="design/email/header_template"}}
+
+<p>Hello admin,</p>
+<p>You received a request from: </p>
+<h2>Custom Quote Name: <span>{{var data.custom_quote_name}}</span></h2>
+<h2>Customer Email: <span>{{var data.customer_email}}</span></h2>
+<h2>Customer Company: <span>{{var data.company}}</span></h2>
+
+
+<p>Please go to admin page -> CUSTOM ESTIMATE to see more detail.</p>
+<p>Thank you, Trade Banner!</p>
+
+
