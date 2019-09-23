@@ -58,33 +58,33 @@ endforeach;
     ], function ($, priceBox, $t, priceUtils) {
 
         priceBox = new priceBox();
-        let productFinalPrice = "<?= $this->helper('Magento\Framework\Pricing\Helper\Data')->currency(number_format($productFinalPrice, 2), true, false); ?>";
+        var productFinalPrice = "<?= $this->helper('Magento\Framework\Pricing\Helper\Data')->currency(number_format($productFinalPrice, 2), true, false); ?>";
 
-        let fields = [];
-        let nof_options = 0;
-        let total_options = "<?= $totalOp; ?>";
-        let showBasePrice = "<?= $showBasePrice; ?>";
-        let showDiscountPrice = "<?= $showDiscountPrice; ?>";
-        let discountTitle = "<?= $discountTitle; ?>";
-        let areaVolLabel = "<?= $areaVolLabel; ?>";
-        let first_load = 0;
-        let current_url = window.location.href;
-        let is_edit = current_url.indexOf('checkout/cart/configure/id');
+        var fields = [];
+        var nof_options = 0;
+        var total_options = "<?= $totalOp; ?>";
+        var showBasePrice = "<?= $showBasePrice; ?>";
+        var showDiscountPrice = "<?= $showDiscountPrice; ?>";
+        var discountTitle = "<?= $discountTitle; ?>";
+        var areaVolLabel = "<?= $areaVolLabel; ?>";
+        var first_load = 0;
+        var current_url = window.location.href;
+        var is_edit = current_url.indexOf('checkout/cart/configure/id');
 
 
         <?php foreach ($customOptions as $option): ?>
         <?php if (isset($fieldOptions[$option->getTitle()])): ?>
 
-        let opId = "<?= $option->getId() ?>";
-        let opIdName = '#options_<?= $option->getId() ?>_text';
-        let opJid = $('#options_<?= $option->getId() ?>_text');
+        var opId = "<?= $option->getId() ?>";
+        var opIdName = '#options_<?= $option->getId() ?>_text';
+        var opJid = $('#options_<?= $option->getId() ?>_text');
 
         //change field title/label for input/output
-        let parent = $('#options_<?= $option->getId() ?>_text').parent().parent();
-        let child = parent.find('label span');
+        var parent = $('#options_<?= $option->getId() ?>_text').parent().parent();
+        var child = parent.find('label span');
         // console.log(child);
         // if (child.length > 0) {
-        let str = child[0].innerHTML + ' (' + '<?= $inputUnit ?>' + ')';
+        var str = child[0].innerHTML + ' (' + '<?= $inputUnit ?>' + ')';
         child[0].innerHTML = str;
         // }
 
@@ -369,6 +369,7 @@ endforeach;
             let discountCustom = 0;
             let Ptram = 0;
             let isTurnaround = 1;
+            let rateDiscount = 0;
             // area: dien tich, unitAreaPrice: gia cho 1 don vi dien tich
 
 
@@ -1283,7 +1284,6 @@ endforeach;
                 }
 
                 if (Color_456 === 835) {
-
                     Material_870 = 0;
                     // $('#select_457 option[value=837]').attr('selected', 'selected');
                     Material_457 = $('#select_457').find(":selected").attr('price');
@@ -1291,7 +1291,6 @@ endforeach;
                     isMaterial = Material_457;
 
                 } else if (Color_456 === 836) {
-
                     Material_457 = 0;
                     // $('#select_870 option[value=1416]').attr('selected', 'selected');
                     Material_870 = $('#select_870').find(":selected").attr('price');
@@ -1299,6 +1298,7 @@ endforeach;
                     isMaterial = Material_870;
 
                 }
+                console.log('isMaterial ' + isMaterial);
                 isDefault = false;
                 total = ((heso * ((Lamination_458 * isNumber) + isMaterial)) + Holes_459) * isTurnaround;
 
