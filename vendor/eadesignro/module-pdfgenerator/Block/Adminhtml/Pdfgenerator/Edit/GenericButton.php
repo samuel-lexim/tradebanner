@@ -20,7 +20,6 @@
 namespace Eadesigndev\Pdfgenerator\Block\Adminhtml\Pdfgenerator\Edit;
 
 use Magento\Backend\Block\Widget\Context;
-use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\Registry;
 
 /**
@@ -39,19 +38,21 @@ abstract class GenericButton
      * @var \Magento\Framework\Registry
      */
     private $coreRegistry = null;
+
     /**
      * @var Context
      */
     private $context;
 
     /**
+     * GenericButton constructor.
      * @param Context $context
+     * @param Registry $registry
      */
     public function __construct(
         Context $context,
         Registry $registry
-    )
-    {
+    ) {
         $this->coreRegistry = $registry;
         $this->context = $context;
         $this->authorization = $context->getAuthorization();
@@ -64,13 +65,7 @@ abstract class GenericButton
      */
     public function getTemplateId()
     {
-        try {
-            return $this->coreRegistry->registry('pdfgenerator_template')->getData('template_id');
-        } catch (NoSuchEntityException $e) {
-
-        }
-
-        return null;
+        return $this->coreRegistry->registry('pdfgenerator_template')->getData('template_id');
     }
 
     /**
@@ -91,6 +86,7 @@ abstract class GenericButton
      * @param string $resourceId
      * @return bool
      */
+    //@codingStandardsIgnoreLine
     protected function _isAllowedAction($resourceId)
     {
         return $this->authorization->isAllowed($resourceId);

@@ -24,17 +24,12 @@ use Magento\Framework\View\Model\PageLayout\Config\BuilderInterface;
 /**
  * Class PageLayout
  */
-class TemplatePaperForm extends \Eadesigndev\Pdfgenerator\Model\Source\AbstractSource
+class TemplatePaperForm extends AbstractSource
 {
     /**
      * @var \Magento\Framework\View\Model\PageLayout\Config\BuilderInterface
      */
     private $pageLayoutBuilder;
-
-    /**
-     * @var array
-     */
-    private $options;
 
     /**
      * Constructor
@@ -72,5 +67,4 @@ class TemplatePaperForm extends \Eadesigndev\Pdfgenerator\Model\Source\AbstractS
             self::TEMAPLATE_PAPER_FORMAT_LEGAL => __('Legal'),
         ];
     }
-
 }

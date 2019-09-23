@@ -20,7 +20,11 @@
 
 namespace Eadesigndev\Pdfgenerator\Controller\Adminhtml;
 
-abstract class Templates extends \Magento\Backend\App\Action
+use Magento\Backend\App\Action;
+use Magento\Backend\App\Action\Context;
+use Magento\Framework\Registry;
+
+abstract class Templates extends Action
 {
 
     const ADMIN_RESOURCE_VIEW = 'Eadesigndev_Pdfgenerator::templates';
@@ -29,19 +33,18 @@ abstract class Templates extends \Magento\Backend\App\Action
     /**
      * Core registry
      *
-     * @var \Magento\Framework\Registry
+     * @var Registry
      */
-    protected $coreRegistry;
+    public $coreRegistry;
 
     /**
-     * @param \Magento\Backend\App\Action\Context $context
-     * @param \Magento\Framework\Registry $coreRegistry
+     * @param Context $context
+     * @param Registry $coreRegistry
      */
     public function __construct(
-        \Magento\Backend\App\Action\Context $context,
-        \Magento\Framework\Registry $coreRegistry
-    )
-    {
+        Context $context,
+        Registry $coreRegistry
+    ) {
         $this->coreRegistry = $coreRegistry;
         parent::__construct($context);
     }
@@ -52,7 +55,7 @@ abstract class Templates extends \Magento\Backend\App\Action
      * @param \Magento\Backend\Model\View\Result\Page $resultPage
      * @return \Magento\Backend\Model\View\Result\Page
      */
-    protected function initPage($resultPage)
+    public function initPage($resultPage)
     {
         $resultPage->setActiveMenu('Eadesigndev_Pdfgenerator::template_list')
             ->addBreadcrumb(__('EaDesign PDF Generator Templates'), __('EaDesign PDF Generator Templates'));
@@ -65,6 +68,7 @@ abstract class Templates extends \Magento\Backend\App\Action
      *
      * @return boolean
      */
+    //@codingStandardsIgnoreLine
     protected function _isAllowed()
     {
         return $this->_authorization->isAllowed(self::ADMIN_RESOURCE_VIEW);

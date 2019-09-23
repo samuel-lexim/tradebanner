@@ -111,23 +111,33 @@ class AdminAddItemToQuote implements ObserverInterface
             /** Banner */
             if ($id == 90) { // 13oz Vinyl Banner
 
+                $turn = $posted_options[1742];
+                if ($turn == 3026) $has17 = true;
+
+
+/*
                 $turn = $posted_options[1630];
-                if ($turn == 2817) $has17 = true;
-
+                if ($turn == 3068) $has17 = true;
+*/
                 $areaPrice = $area * 0.89 / 144;
+				
 
+                $matOpId = $posted_options[1729];
+                if ($matOpId == 2992) $hasDiscount = false;
+				
+/*
                 $matOpId = $posted_options[1617];
                 if ($matOpId == 2783) $hasDiscount = false;
-
+*/
             } else if ($id == 91) { // 14oz Vinyl Banner
 
-                $turn = $posted_options[1440];
+                $turn = $posted_options[1761];
                 if ($turn == 2424) $has17 = true;
 
                 $areaPrice = $area * 0.99 / 144;
 
-                $matOpId = $posted_options[1428];
-                if ($matOpId == 2389) $hasDiscount = false;
+                $matOpId = $posted_options[1748];
+                if ($matOpId == 3033) $hasDiscount = false;
 
             } else if ($id == 92) { // 16 oz Blockout Banner
 
@@ -171,8 +181,8 @@ class AdminAddItemToQuote implements ObserverInterface
 
                 $areaPrice = $area * 1.39 / 144;
 
-                $turn = $posted_options[1544];
-                if ($turn == 2629) $has17 = true;
+                $turn = $posted_options[1883];
+                if ($turn == 3254) $has17 = true;
 
             } else if ($id == 98) { // Super Smooth Banner
 
@@ -263,17 +273,17 @@ class AdminAddItemToQuote implements ObserverInterface
 
             } else if ($id == 128) { // Vinyl Stickers (Window Decal)
 
-                $matOpId = $posted_options[483];
+                $matOpId = $posted_options[1838];
                 $matPrice = isset($opPrice[$matOpId]) ? $opPrice[$matOpId] : 0;
 
-                $laminationId = $posted_options[485];
+                $laminationId = $posted_options[1840];
                 $lamPrice = isset($opPrice[$laminationId]) ? $opPrice[$laminationId] : 0;
 
                 $areaPrice = ($area / 144 * ($matPrice + $lamPrice)) - $matPrice - $lamPrice;
 
-                $turn = $posted_options[486];
+                $turn = $posted_options[1841];
                 if (is_array($turn)) $turn = $turn[0];
-                if ($turn == 887) $has17 = true;
+                if ($turn == 3176) $has17 = true;
 
             } else if ($id == 129) { // Wall Vinyl Decals
 
@@ -341,8 +351,8 @@ class AdminAddItemToQuote implements ObserverInterface
 
                 $laminationId = $posted_options[532];
                 $lamPrice = isset($opPrice[$laminationId]) ? $opPrice[$laminationId] : 0;
-
-                $areaPrice = ($area / 144 * $lamPrice) - $lamPrice;
+               
+                $areaPrice = ($area / 144 * $lamPrice ) - $lamPrice;
 
                 $turn = $posted_options[534];
                 if (is_array($turn)) $turn = $turn[0];
@@ -615,15 +625,22 @@ class AdminAddItemToQuote implements ObserverInterface
                 $groId = $posted_options[636];
                 $groPrice = isset($opPrice[$groId]) ? $opPrice[$groId] : 0;
 
-                $matOpId = $posted_options[634];
+                $colorId = $posted_options[633];
+                if ($colorId == 1065) {
+                    $matOpId = $posted_options[634];
+                    $lam2Price = $lamPrice;
+                } else {
+                    $matOpId = $posted_options[1879];
+                    $lam2Price = $lamPrice * 2;
+                }
                 $matPrice = isset($opPrice[$matOpId]) ? $opPrice[$matOpId] : 0;
 
                 $turn = $posted_options[638];
                 if (is_array($turn)) $turn = $turn[0];
                 if ($turn == 1079) {
-                    $areaPrice = ($area / 144 * ($lamPrice + $matPrice) + $groPrice) * 1.7 - $groPrice - $lamPrice - $matPrice;
+                    $areaPrice = ($area / 144 * ($lam2Price + $matPrice) + $groPrice) * 1.7 - $groPrice - $lamPrice - $matPrice;
                 } else {
-                    $areaPrice = ($area / 144 * ($lamPrice + $matPrice)) - $lamPrice - $matPrice;
+                    $areaPrice = ($area / 144 * ($lam2Price + $matPrice)) - $lamPrice - $matPrice;
                 }
 
             } else if ($id == 150) { // PVC Sintra Board
@@ -652,12 +669,12 @@ class AdminAddItemToQuote implements ObserverInterface
 
             } else if ($id == 151) { // Foam Boards
 
-                $laminationId = $posted_options[655];
+                $laminationId = $posted_options[1889];
                 $lamPrice = isset($opPrice[$laminationId]) ? $opPrice[$laminationId] : 0;
 
                 $colorId = $posted_options[653];
                 if (is_array($colorId)) $colorId = $colorId[0];
-                $matOpId = ($colorId == 1098) ? $posted_options[654] : $posted_options[883];
+                $matOpId = ($colorId == 1098) ? $posted_options[654] : $posted_options[1888];
 
                 $matPrice = isset($opPrice[$matOpId]) ? $opPrice[$matOpId] : 0;
 
@@ -667,9 +684,9 @@ class AdminAddItemToQuote implements ObserverInterface
                     $areaPrice = $area / 144 * ($lamPrice * 2 + $matPrice) - $lamPrice - $matPrice;
                 }
 
-                $turn = $posted_options[657];
+                $turn = $posted_options[1891];
                 if (is_array($turn)) $turn = $turn[0];
-                if ($turn == 1112) $has17 = true;
+                if ($turn == 3272) $has17 = true;
 
             } else if ($id == 152) { // Eagle Board (Eco Board)
 
@@ -718,9 +735,9 @@ class AdminAddItemToQuote implements ObserverInterface
 
                 $areaPrice = 0;
 
-                $turn = $posted_options[756];
+                $turn = $posted_options[1871];
                 if (is_array($turn)) $turn = $turn[0];
-                if ($turn == 1237) $has17 = true;
+                if ($turn == 3234) $has17 = true;
 
             } else if ($id == 111) { // Outdoor Banner Stand
 
@@ -749,13 +766,12 @@ class AdminAddItemToQuote implements ObserverInterface
 
                 $sizeId = $posted_options[963];
                 if (is_array($sizeId)) $sizeId = $sizeId[0];
-
-                $w = $h = 1;
-                if (!in_array($sizeId, [1569, 1570, 1571])) {
+          
+                if(!in_array($sizeId, [1569, 1570, 1571])) {
                     $w = floatval($posted_options[965]);
                     $h = floatval($posted_options[966]);
                 }
-
+                
                 $turn = $posted_options[808];
                 if (is_array($turn)) $turn = $turn[0];
                 if ($turn == 1300) { // Same day
@@ -775,10 +791,9 @@ class AdminAddItemToQuote implements ObserverInterface
 
 
                 $sizeId = $posted_options[964];
-                if (is_array($sizeId)) $sizeId = $sizeId[0];
+                if (is_array($sizeId)) $sizeId = $sizeId[0];          
 
-                $w = $h = 1;
-                if (!in_array($sizeId, [1574, 1575, 1576])) {
+                if(!in_array($sizeId, [1574, 1575, 1576])) {
                     $w = floatval($posted_options[969]);
                     $h = floatval($posted_options[970]);
                 }
@@ -804,8 +819,14 @@ class AdminAddItemToQuote implements ObserverInterface
                 $sizeId = $posted_options[978];
                 if (is_array($sizeId)) $sizeId = $sizeId[0];
 
-                $w = $h = 1;
-                if (!in_array($sizeId, [1594, 1595, 1596])) {
+                // $w = $posted_options[979];
+                // if (is_array($w)) $w = $w[0];
+                // $h = $posted_options[980];
+                // if (is_array($h)) $h = $h[0];
+                // $w = is_null($w) ? 0 : floatval($w);
+                // $h = is_null($h) ? 0 : floatval($h);
+
+                if(!in_array($sizeId, [1594, 1595, 1596])) {
                     $w = floatval($posted_options[979]);
                     $h = floatval($posted_options[980]);
                 }
@@ -836,8 +857,8 @@ class AdminAddItemToQuote implements ObserverInterface
 
             } else if ($id == 145) { // Retractable Stand
 
-
-                $matId = $posted_options[1694];
+                $premiumStand = isset($posted_options[1696]) ? true : false;  
+                $matId = $posted_options[1897];
                 if (is_array($matId)) $matId = $matId[0];
                 $sizeId = $posted_options[1695];
                 if (is_array($sizeId)) $sizeId = $sizeId[0];
@@ -846,22 +867,41 @@ class AdminAddItemToQuote implements ObserverInterface
                 if (is_array($isSameDay)) $isSameDay = $isSameDay[0];
                 $isSameDay = ($isSameDay == 2923);
 
-                if ($matId == 2913) {
-                    if ($sizeId == 2916) $areaPrice = ($isSameDay) ? 92.5 : 75;
-                    else if ($sizeId == 2917) $areaPrice = ($isSameDay) ? 111 : 85;
-                    else if ($sizeId == 2918) $areaPrice = ($isSameDay) ? 122 : 95;
-                    else $areaPrice = ($isSameDay) ? 151 : 115;
-                } else if ($matId == 2914) {
-                    if ($sizeId == 2916) $areaPrice = ($isSameDay) ? 83 : 69;
-                    else if ($sizeId == 2917) $areaPrice = ($isSameDay) ? 98.5 : 79;
-                    else if ($sizeId == 2918) $areaPrice = ($isSameDay) ? 109.5 : 89;
-                    else $areaPrice = ($isSameDay) ? 137.5 : 110;
+                // if ($matId == 2913) {
+                //     if ($sizeId == 2916) $areaPrice = ($isSameDay) ? 92.5 : 75;
+                //     else if ($sizeId == 2917) $areaPrice = ($isSameDay) ? 111 : 85;
+                //     else if ($sizeId == 2918) $areaPrice = ($isSameDay) ? 122 : 95;
+                //     else $areaPrice = ($isSameDay) ? 151 : 115;
+                // } else if ($matId == 2914) {
+                //     if ($sizeId == 2916) $areaPrice = ($isSameDay) ? 83 : 69;
+                //     else if ($sizeId == 2917) $areaPrice = ($isSameDay) ? 98.5 : 79;
+                //     else if ($sizeId == 2918) $areaPrice = ($isSameDay) ? 109.5 : 89;
+                //     else $areaPrice = ($isSameDay) ? 137.5 : 110;
+                // } else {
+                //     if ($sizeId == 2916) $areaPrice = ($isSameDay) ? 104.5 : 82;
+                //     else if ($sizeId == 2917) $areaPrice = ($isSameDay) ? 127.5 : 95;
+                //     else if ($sizeId == 2918) $areaPrice = ($isSameDay) ? 139.5 : 105;
+                //     else $areaPrice = ($isSameDay) ? 166 : 120;
+                // }
+                if ($sizeId == 2916){
+                    $areaPrice = 47;
+                } 
+                else if($sizeId == 2917) {
+                    $areaPrice = 49;
+                } else if ($sizeId == 2918) {
+                    $areaPrice = 52;
+                } else if ($sizeId == 2919) {
+                    $areaPrice = 69; 
                 } else {
-                    if ($sizeId == 2916) $areaPrice = ($isSameDay) ? 104.5 : 82;
-                    else if ($sizeId == 2917) $areaPrice = ($isSameDay) ? 127.5 : 95;
-                    else if ($sizeId == 2918) $areaPrice = ($isSameDay) ? 139.5 : 105;
-                    else $areaPrice = ($isSameDay) ? 166 : 120;
+                    $areaPrice = 0;
                 }
+                
+                if ($premiumStand){
+                    $areaPrice = $areaPrice + 29;
+                } 
+
+            } else if ($id == 161) { // Economic Retractable Stand
+                $areaPrice = 39;   
 
             } else if ($id == 113) {
                 /** Sublimation */  // Custom Sublimation Transfers
@@ -983,10 +1023,25 @@ class AdminAddItemToQuote implements ObserverInterface
                 $laminationId = $posted_options[569];
                 $lamPrice = isset($opPrice[$laminationId]) ? $opPrice[$laminationId] : 0;
 
-                $matId = $posted_options[568];
-                $matPrice = isset($opPrice[$matId]) ? $opPrice[$matId] : 0;
+                $colorId = $posted_options[567];
+                if (is_array($colorId)) $colorId = $colorId[0];
 
-                $areaPrice = $area / 144 * ($matPrice + $lamPrice) - $lamPrice - $matPrice;
+                if ($colorId == 968) {
+                    $matId = $posted_options[568];
+                    if ($matId == 969) $matPrice = 3.89;
+                    else {
+                        $matPrice = 4.14;
+                    }
+
+                } else {
+                    $matId = $posted_options[1880];
+                    if ($matId == 3246) $matPrice = 5.2515;
+                    else {
+                        $matPrice = 5.589;
+                    }
+                }
+
+                $areaPrice = $area / 144 * ($matPrice + 1.89 + $lamPrice) - $lamPrice - $matPrice;
 
                 $turn = $posted_options[572];
                 if (is_array($turn)) $turn = $turn[0];
@@ -999,7 +1054,7 @@ class AdminAddItemToQuote implements ObserverInterface
 
                 $laminationId = $posted_options[579];
                 $lamPrice = isset($opPrice[$laminationId]) ? $opPrice[$laminationId] : 0;
-
+                
                 $dieCut = 1.89;
 
                 $colorId = $posted_options[577];
@@ -1030,7 +1085,7 @@ class AdminAddItemToQuote implements ObserverInterface
                     }
                 }
 
-                $areaPrice = $area / 144 * ($matPrice + $lamPrice + $dieCut) - $lamPrice;
+                $areaPrice = $area / 144 * ($matPrice + $lamPrice + $dieCut) - $lamPrice;      
 
                 $turn = $posted_options[582];
                 if (is_array($turn)) $turn = $turn[0];
@@ -1049,16 +1104,15 @@ class AdminAddItemToQuote implements ObserverInterface
                 $colorId = $posted_options[587];
                 if (is_array($colorId)) $colorId = $colorId[0];
 
-                if ($colorId == 999) $matId = $posted_options[588];
+                if ($colorId == 999) $matId = $posted_options[1895];
                 else $matId = $posted_options[955];
 
                 if (is_array($matId)) $matId = $matId[0];
 
-                if ($matId == 1001) {
+                if ($matId == 3279) {
                     $matPrice = 2.49;
                     $dieCut = 1.89;
-                } else if ($matId == 1002) $matPrice = 4;
-                else if ($matId == 1003) $matPrice = 4.5;
+                } else if ($matId == 3280) $matPrice = 4;
                 else if ($matId == 1556) {
                     $matPrice = 3.3;
                     $dieCut = 1.89;
@@ -1152,9 +1206,54 @@ class AdminAddItemToQuote implements ObserverInterface
             $qty = $item->getQty();
 
             // Get Discount
-            $percentRate = $hasDiscount ? $this->getDiscountRate(($area * $qty), $_product) : 0;
-            //$this->logger->debug("Discount percentRate 2222 : " . $percentRate);
-            //$this->logger->debug("total : " . $total);
+        if ($id == 145 || $id == 161) {
+                if($qty <= 5){
+                    $percentRate = 0;
+                } else if($qty >= 6 && $qty <= 10){
+                    $percentRate = 1;
+                } else if($qty >= 11 && $qty <= 20){
+                    $percentRate = 2;
+                } else if($qty >= 21 && $qty <= 30){
+                    $percentRate = 3;
+                } else if($qty >= 31 && $qty <= 40){
+                    $percentRate = 4;
+                } else if($qty >= 41 && $qty <= 50){
+                    $percentRate = 5;
+                } else if($qty >= 51 && $qty <= 60){
+                    $percentRate = 6;
+                } else if($qty >= 61 && $qty <= 70){
+                    $percentRate = 7;
+                } else if($qty >= 71 && $qty <= 80){
+                    $percentRate = 8;
+                } else if($qty >= 81 && $qty <= 90){
+                    $percentRate = 9;
+                } else if($qty >= 91 && $qty <= 100){
+                    $percentRate = 10;
+                } else if($qty >= 101 && $qty <= 110){
+                    $percentRate = 10;
+                } else if($qty >= 111 && $qty <= 120){
+                    $percentRate = 10;
+                } else if($qty >= 121 && $qty <= 130){
+                    $percentRate = 10;
+                } else if($qty >= 131 && $qty <= 140){
+                    $percentRate = 10;
+                } else if($qty >= 141 && $qty <= 150){
+                    $percentRate = 10;
+                } else if($qty >= 151 && $qty <= 160){
+                    $percentRate = 10;
+                } else if($qty >= 161 && $qty <= 170){
+                    $percentRate = 10;
+                } else if($qty >= 171 && $qty <= 180){
+                    $percentRate = 10;
+                } else if($qty >= 181){
+                    $percentRate = 10;
+                }
+
+            } else{
+                $percentRate = $hasDiscount ? $this->getDiscountRate(($area * $qty), $_product) : 0;
+            }
+            //$this->logger->debug("Discount percentRate 222 : ". $percentRate);
+            //$this->logger->debug("total : ". $total);
 
             $total = $total - $total * $percentRate / 100;
             // $this->logger->debug("Discount total : ". $total);
@@ -1198,6 +1297,7 @@ class AdminAddItemToQuote implements ObserverInterface
     {
         $config = $this->_pcHelper->getProductPricingRule($_product);
         $rate = 0;
+
         if (isset($config['size']) && isset($config['discount'])) {
             $c_size = count($config['size']);
             //$c_discount = count($config['discount']);
@@ -1206,11 +1306,13 @@ class AdminAddItemToQuote implements ObserverInterface
                 if ($i < ($c_size - 1) && intval($size) <= $area && $area < intval($config['size'][$i + 1])) {
                     if (isset($config['discount'][$i])) {
                         $rate = $config['discount'][$i];
+
                         break;
                     }
                 } else if ($i == ($c_size - 1) && intval($size) <= $area) {
                     if (isset($config['discount'][$i])) {
                         $rate = $config['discount'][$i];
+
                         break;
                     }
                 }
@@ -1282,9 +1384,12 @@ class AdminAddItemToQuote implements ObserverInterface
     {
         $customOptions = $_product->getOptions();
         $area = 1;
-        foreach ($customOptions as $option) {
-            $getTitle = trim(strtolower($option->getTitle()));
+        $this->logger->debug(" kkkkkkkkkkkkkkkkkk " . json_encode($posted_options));
+        foreach ($customOptions as $option) {   
+            $getTitle = trim(strtolower($option->getTitle()));            
             if (in_array($getTitle, ['width', 'height'])) {
+                $this->logger->debug(" width height: " . json_encode($option->getId()));
+
                 $posted_val = $posted_options[$option->getId()];
                 $area = $area * (float)$posted_val;
             }

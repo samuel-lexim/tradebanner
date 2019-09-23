@@ -178,6 +178,24 @@ class FedexModelCarrier extends \Magento\Fedex\Model\Carrier
             $fedex = [];
             foreach ($priceArr as $method => $price) {
                 $title = $this->getFedexMethodByCode($method);
+                if($title=='FedEx Ground'){
+                    $price = $price*1.3 + 4.00;
+                } else if ($title=='FedEx Ground1'){
+                    $price = $price*1.3;
+                } else if ($title=='FedEx Express Saver (3 days)'){
+                    $price = $price*1.28+8.00;
+                } else if ($title=='FedEx 2 Day'){
+                    $price = $price*1.3+5.00;
+                } else if ($title=='FedEx 2 Day AM'){
+                    $price = $price*1.3+8.00;
+                } else if ($title=='FedEx Standard Overnight'){
+                    $price = $price*1.35+10.00;
+                } else if ($title=='FedEx Priority Overnight'){
+                    $price = $price*1.35+10.00;
+                } else if ($title=='FedEx First Overnight'){
+                    $price = $price*1.4+10.00;
+                }
+                $price= round($price, 2);
                 if ($title && $title != '') {
                     $fedex[$method] = [
                         'name' => $this->getFedexMethodByCode($method),

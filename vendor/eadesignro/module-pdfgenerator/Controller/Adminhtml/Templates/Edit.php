@@ -19,21 +19,29 @@
 
 namespace Eadesigndev\Pdfgenerator\Controller\Adminhtml\Templates;
 
-use Magento\Backend\App\Action;
+use Eadesigndev\Pdfgenerator\Controller\Adminhtml\Templates;
 use Eadesigndev\Pdfgenerator\Model\PdfgeneratorRepository as TemplateRepository;
 use Eadesigndev\Pdfgenerator\Model\PdfgeneratorFactory;
+use Magento\Backend\App\Action\Context;
+use Magento\Framework\Registry;
+use Magento\Framework\View\Result\PageFactory;
+use Magento\Backend\Model\Session;
 
-class Edit extends \Eadesigndev\Pdfgenerator\Controller\Adminhtml\Templates
+/**
+ * Class Edit
+ * @package Eadesigndev\Pdfgenerator\Controller\Adminhtml\Templates
+ */
+class Edit extends Templates
 {
     /**
      * Core registry
      *
-     * @var \Magento\Framework\Registry
+     * @var Registry
      */
-    protected $coreRegistry = null;
+    public $coreRegistry = null;
 
     /**
-     * @var \Magento\Framework\View\Result\PageFactory
+     * @var PageFactory
      */
     private $resultPageFactory;
 
@@ -48,29 +56,36 @@ class Edit extends \Eadesigndev\Pdfgenerator\Controller\Adminhtml\Templates
     private $pdfgeneratorFactory;
 
     /**
+     * @var Session
+     */
+    private $session;
+
+    /**
      * Edit constructor.
-     * @param Action\Context $context
-     * @param \Magento\Framework\View\Result\PageFactory $resultPageFactory
-     * @param \Magento\Framework\Registry $registry
+     * @param Context $context
+     * @param PageFactory $resultPageFactory
+     * @param Registry $registry
      * @param TemplateRepository $templateRepository
+     * @param PdfgeneratorFactory $pdfgeneratorFactory
      */
     public function __construct(
-        Action\Context $context,
-        \Magento\Framework\View\Result\PageFactory $resultPageFactory,
-        \Magento\Framework\Registry $registry,
+        Context $context,
+        PageFactory $resultPageFactory,
+        Registry $registry,
         TemplateRepository $templateRepository,
         PdfgeneratorFactory $pdfgeneratorFactory
-    )
-    {
+    ) {
         $this->resultPageFactory = $resultPageFactory;
         $this->templateRepository = $templateRepository;
         $this->pdfgeneratorFactory = $pdfgeneratorFactory;
+        $this->session = $context->getSession();
         parent::__construct($context, $registry);
     }
 
     /**
-     * {@inheritdoc}
+     * @return bool
      */
+    //@codingStandardsIgnoreLine
     protected function _isAllowed()
     {
         return $this->_authorization->isAllowed(self::ADMIN_RESOURCE);
@@ -79,8 +94,9 @@ class Edit extends \Eadesigndev\Pdfgenerator\Controller\Adminhtml\Templates
     /**
      * Init actions
      *
-     * @return \Magento\Backend\Model\View\Result\Page
+     * @return object
      */
+    //@codingStandardsIgnoreLine
     protected function _initAction()
     {
         $resultPage = $this->resultPageFactory->create();
@@ -94,7 +110,7 @@ class Edit extends \Eadesigndev\Pdfgenerator\Controller\Adminhtml\Templates
     /**
      * Edit PDF Templates
      *
-     * @return \Magento\Backend\Model\View\Result\Page|\Magento\Backend\Model\View\Result\Redirect
+     * @return \Magento\Framework\Controller\Result\Redirect|object
      * @SuppressWarnings(PHPMD.NPathComplexity)
      */
     public function execute()
@@ -115,7 +131,8 @@ class Edit extends \Eadesigndev\Pdfgenerator\Controller\Adminhtml\Templates
             $model = $this->pdfgeneratorFactory->create();
         }
 
-        $data = $this->_objectManager->get('Magento\Backend\Model\Session')->getFormData(true);
+        /** @var Session $data */
+        $data = $this->session->getFormData(true);
 
         if (!empty($data)) {
             $model->setData($data);
@@ -137,5 +154,4 @@ class Edit extends \Eadesigndev\Pdfgenerator\Controller\Adminhtml\Templates
 
         return $resultPage;
     }
-
 }

@@ -19,47 +19,57 @@
 
 namespace Eadesigndev\Pdfgenerator\Model\ResourceModel\Pdfgenerator;
 
+use Magento\Framework\Data\Collection\Db\FetchStrategyInterface;
+use Magento\Framework\Data\Collection\EntityFactoryInterface;
+use Magento\Framework\DB\Adapter\AdapterInterface;
+use Magento\Framework\DB\Select;
+use Magento\Framework\EntityManager\MetadataPool;
+use Magento\Framework\Event\ManagerInterface;
+use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
+use Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection as MagentoAbstractCollection;
 use Magento\Store\Model\Store;
+use Magento\Store\Model\StoreManagerInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Abstract collection of PDF templates
+ * @SuppressWarnings("CouplingBetweenObjects")
  */
-abstract class AbstractCollection extends \Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection
+abstract class AbstractCollection extends MagentoAbstractCollection
 {
 
     /**
      * Store manager
      *
-     * @var \Magento\Store\Model\StoreManagerInterface
+     * @var StoreManagerInterface
      */
     private $storeManager;
 
     /**
-     * @var \Magento\Framework\EntityManager\MetadataPool
+     * @var MetadataPool
      */
     private $metadataPool;
 
     /**
-     * @param \Magento\Framework\Data\Collection\EntityFactoryInterface $entityFactory
-     * @param \Psr\Log\LoggerInterface $logger
-     * @param \Magento\Framework\Data\Collection\Db\FetchStrategyInterface $fetchStrategy
-     * @param \Magento\Framework\Event\ManagerInterface $eventManager
-     * @param \Magento\Store\Model\StoreManagerInterface $storeManager
-     * @param \Magento\Framework\EntityManager\MetadataPool $metadataPool
-     * @param \Magento\Framework\DB\Adapter\AdapterInterface|null $connection
-     * @param \Magento\Framework\Model\ResourceModel\Db\AbstractDb|null $resource
+     * @param EntityFactoryInterface $entityFactory
+     * @param LoggerInterface $logger
+     * @param FetchStrategyInterface $fetchStrategy
+     * @param ManagerInterface $eventManager
+     * @param StoreManagerInterface $storeManager
+     * @param MetadataPool $metadataPool
+     * @param AdapterInterface|null $connection
+     * @param AbstractDb|null $resource
      */
     public function __construct(
-        \Magento\Framework\Data\Collection\EntityFactoryInterface $entityFactory,
-        \Psr\Log\LoggerInterface $logger,
-        \Magento\Framework\Data\Collection\Db\FetchStrategyInterface $fetchStrategy,
-        \Magento\Framework\Event\ManagerInterface $eventManager,
-        \Magento\Store\Model\StoreManagerInterface $storeManager,
-        \Magento\Framework\EntityManager\MetadataPool $metadataPool,
-        \Magento\Framework\DB\Adapter\AdapterInterface $connection = null,
-        \Magento\Framework\Model\ResourceModel\Db\AbstractDb $resource = null
-    )
-    {
+        EntityFactoryInterface $entityFactory,
+        LoggerInterface $logger,
+        FetchStrategyInterface $fetchStrategy,
+        ManagerInterface $eventManager,
+        StoreManagerInterface $storeManager,
+        MetadataPool $metadataPool,
+        AdapterInterface $connection = null,
+        AbstractDb $resource = null
+    ) {
         $this->storeManager = $storeManager;
         $this->metadataPool = $metadataPool;
         parent::__construct($entityFactory, $logger, $fetchStrategy, $eventManager, $connection, $resource);
@@ -71,15 +81,20 @@ abstract class AbstractCollection extends \Magento\Framework\Model\ResourceModel
      * @param string $tableName
      * @param string|null $linkField
      * @return void
+     * @SuppressWarnings("Performance.InefficientMethods")
      */
     public function performAfterLoad($tableName, $linkField)
     {
         $linkedIds = $this->getColumnValues($linkField);
-        if (count($linkedIds)) {
+
+        if (!empty($linkedIds)) {
             $connection = $this->getConnection();
             $select = $connection->select()->from(['eadesign_pdf_store' => $this->getTable($tableName)])
                 ->where('eadesign_pdf_store.' . $linkField . ' IN (?)', $linkedIds);
+
+            //@codingStandardsIgnoreStart
             $result = $connection->fetchAll($select);
+            //@codingStandardsIgnoreEnd
 
             if ($result) {
                 $storesData = [];
@@ -116,7 +131,7 @@ abstract class AbstractCollection extends \Magento\Framework\Model\ResourceModel
      *
      * @param array|string $field
      * @param string|int|array|null $condition
-     * @return $this
+     * @return \Magento\Framework\Data\Collection\AbstractDb
      */
     public function addFieldToFilter($field, $condition = null)
     {
@@ -143,7 +158,7 @@ abstract class AbstractCollection extends \Magento\Framework\Model\ResourceModel
      * @param bool $withAdmin
      * @return void
      */
-    protected function performAddStoreFilter($store, $withAdmin = true)
+    public function performAddStoreFilter($store, $withAdmin = true)
     {
         if ($store instanceof Store) {
             $store = [$store->getId()];
@@ -166,17 +181,21 @@ abstract class AbstractCollection extends \Magento\Framework\Model\ResourceModel
      * @param string $tableName
      * @param string|null $linkField
      * @return void
+     * @SuppressWarnings("MEQP1.SlowQuery")
      */
-    protected function joinStoreRelationTable($tableName, $linkField)
+    public function joinStoreRelationTable($tableName, $linkField)
     {
         if ($this->getFilter('store')) {
             $this->getSelect()->join(
                 ['store_table' => $this->getTable($tableName)],
                 'main_table.' . $linkField . ' = store_table.' . $linkField,
                 []
-            )->group(
-                'main_table.' . $linkField
-            );
+            )
+                //@codingStandardsIgnoreStart
+                ->group(
+                    'main_table.' . $linkField
+                );
+                //@codingStandardsIgnoreEnd
         }
 
         parent::_renderFiltersBefore();
@@ -187,12 +206,12 @@ abstract class AbstractCollection extends \Magento\Framework\Model\ResourceModel
      *
      * Extra GROUP BY strip added.
      *
-     * @return \Magento\Framework\DB\Select
+     * @return Select
      */
     public function getSelectCountSql()
     {
         $countSelect = parent::getSelectCountSql();
-        $countSelect->reset(\Magento\Framework\DB\Select::GROUP);
+        $countSelect->reset(Select::GROUP);
 
         return $countSelect;
     }

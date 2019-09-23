@@ -32,7 +32,6 @@ class Buttons extends \Magento\Sales\Block\Order\Info\Buttons
      */
     protected $httpContext;
 
-    protected $helper;
     /**
      * @param \Magento\Framework\View\Element\Template\Context $context
      * @param \Magento\Framework\Registry $registry

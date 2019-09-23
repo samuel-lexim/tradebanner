@@ -89,13 +89,13 @@ define([
          */
         bind: function () {
             // Global callback and param is necessary for the vendor JS library.
-            if( typeof window['acceptJs_' + this.options.method + '_callback'] == 'undefined' ) {
-                window['acceptJs_' + this.options.method + '_callback'] = function(response) {
-                    this.handlePaymentResponse(response);
-                }.bind(this);
+            window['acceptJs_' + this.options.method + '_callback'] = function(response) {
+                this.handlePaymentResponse(response);
+            }.bind(this);
 
-                window.isReady = true;
-            }
+            window.isReady = true;
+
+            this.nonceConcat = null;
 
             if (this.element) {
                 this.element.on(
@@ -188,7 +188,8 @@ define([
                 cardData: {
                     cardNumber: form.find('#' + this.options.method + '-cc-number').val().replace(/\D/g, ''),
                     month: form.find('#' + this.options.method + '-cc-exp-month').val(),
-                    year: form.find('#' + this.options.method + '-cc-exp-year').val()
+                    year: form.find('#' + this.options.method + '-cc-exp-year').val(),
+                    cardCode: ''
                 },
                 authData: {
                     clientKey: this.options.clientKey,
@@ -196,7 +197,7 @@ define([
                 }
             };
 
-            if (typeof form.find('#' + this.options.method + '-cc-cid') != 'undefined') {
+            if (form.find('#' + this.options.method + '-cc-cid').length > 0) {
                 paymentData['cardData']['cardCode'] = form.find('#' + this.options.method + '-cc-cid').val();
             }
 
@@ -223,15 +224,25 @@ define([
                     messages += $.mage.__(response.messages.message[i].text + ' (' + response.messages.message[i].code + ')');
                 }
 
+                // Unset data
+                $(this.element).find('#' + this.options.method + '-acceptjs-key').val('').trigger('change');
+                $(this.element).find('#' + this.options.method + '-acceptjs-value').val('').trigger('change');
+                $(this.element).find('#' + this.options.method + '-cc-last4').val('').trigger('change');
+
                 this.stopLoadWaiting(messages);
             }
             else {
-                var cc_no = $(this.element).find('#' + this.options.method + '-cc-number').val();
+                var cc_no = $(this.element).find('#' + this.options.method + '-cc-number').val().replace(/\D/g,'');
 
                 // Set data
                 $(this.element).find('#' + this.options.method + '-acceptjs-key').val(response.opaqueData.dataDescriptor).trigger('change');
                 $(this.element).find('#' + this.options.method + '-acceptjs-value').val(response.opaqueData.dataValue).trigger('change');
                 $(this.element).find('#' + this.options.method + '-cc-last4').val(cc_no.substring(cc_no.length - 4)).trigger('change');
+
+                var binField = $(this.element).find('#' + this.options.method + '-cc-bin');
+                if (binField.length > 0) {
+                    binField.val(cc_no.substring(0, 6)).trigger('change');
+                }
 
                 // Remove fields from request
                 $(this.protectedFields).each(function (i, elemIndex) {

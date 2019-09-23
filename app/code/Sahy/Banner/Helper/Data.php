@@ -17,6 +17,7 @@ class Data extends AbstractHelper
     /**
      * @var \Magento\Framework\App\Config\ScopeConfigInterface
      */
+    protected $_scopeConfig;
     protected $httpFactory;
     protected $filesystem;
 
@@ -26,16 +27,19 @@ class Data extends AbstractHelper
      * @param Context $context
      * @param \Magento\Framework\HTTP\Adapter\FileTransferFactory $httpFactory
      * @param \Magento\Framework\Filesystem $filesystem
+     * @param ScopeConfigInterface $scopeConfig
      */
     public function __construct(
         Context $context,
         \Magento\Framework\HTTP\Adapter\FileTransferFactory $httpFactory,
-        \Magento\Framework\Filesystem $filesystem
+        \Magento\Framework\Filesystem $filesystem,
+        ScopeConfigInterface $scopeConfig
     )
     {
         parent::__construct($context);
         $this->httpFactory = $httpFactory;
         $this->filesystem = $filesystem;
+        $this->_scopeConfig = $scopeConfig;
     }
 
 
@@ -46,7 +50,7 @@ class Data extends AbstractHelper
      */
     public function getHeadTitle()
     {
-        return $this->scopeConfig->getValue(
+        return $this->_scopeConfig->getValue(
             self::XML_PATH_HEAD_TITLE,
             ScopeInterface::SCOPE_STORE
         );

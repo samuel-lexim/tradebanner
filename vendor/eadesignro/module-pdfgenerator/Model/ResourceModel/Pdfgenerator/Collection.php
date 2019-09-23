@@ -19,19 +19,20 @@
 
 namespace Eadesigndev\Pdfgenerator\Model\ResourceModel\Pdfgenerator;
 
-class Collection extends \Eadesigndev\Pdfgenerator\Model\ResourceModel\Pdfgenerator\AbstractCollection
+class Collection extends AbstractCollection
 {
 
     /**
      * @var string
      */
+    //@codingStandardsIgnoreLine
     protected $_idFieldName = 'template_id';
 
     /**
      * Init resource model
      * @return void
      */
-    protected function _construct()
+    public function _construct()
     {
 
         $this->_init(
@@ -42,7 +43,6 @@ class Collection extends \Eadesigndev\Pdfgenerator\Model\ResourceModel\Pdfgenera
         $this->_map['fields']['template_id'] = 'main_table.template_id';
         $this->_map['fields']['store'] = 'store_table.store_id';
     }
-
 
     /**
      * Add filter by store
@@ -63,12 +63,11 @@ class Collection extends \Eadesigndev\Pdfgenerator\Model\ResourceModel\Pdfgenera
     /**
      * Perform operations after collection load
      *
-     * @return $this
+     * @return \Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection
      */
-    protected function _afterLoad()
+    public function _afterLoad()
     {
         $this->performAfterLoad('eadesign_pdf_store', 'template_id');
-        $this->_previewFlag = false;
 
         return parent::_afterLoad();
     }
@@ -78,7 +77,7 @@ class Collection extends \Eadesigndev\Pdfgenerator\Model\ResourceModel\Pdfgenera
      *
      * @return void
      */
-    protected function _renderFiltersBefore()
+    public function _renderFiltersBefore()
     {
         $this->joinStoreRelationTable('eadesign_pdf_store', 'template_id');
     }

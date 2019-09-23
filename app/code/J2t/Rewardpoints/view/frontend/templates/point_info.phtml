@@ -8,20 +8,20 @@
 		<img class="reward-icon-image" src="<?php echo $url;?>" alt="<?php echo __("Reward Points");?>" width="<?php echo $size;?>" />
     <?php endif;?>
 <?php if (count($pts_range) == 2):?>
-	<?php echo __("With this product, you earn from <span class='j2t-pts-from'>%1</span> to <span class='j2t-pts-to'>%2</span> loyalty points.", $this->mathActionOnCatalogPages($pts_range[0]), $this->mathActionOnCatalogPages($pts_range[1])); ?>
+	<?php echo __("With this product, you earn from <span class='j2t-pts-from'>%1</span> to <span class='j2t-pts-to'>%2</span> reward points.", $this->mathActionOnCatalogPages($pts_range[0]), $this->mathActionOnCatalogPages($pts_range[1])); ?>
 <?php elseif (count($pts_range) == 1):?>
 	<?php if ($this->isUpTo()):?>
-		<?php echo __("With this product, you earn up to <span class='j2t-pts'>%1</span> loyalty points.", $this->mathActionOnCatalogPages($pts_range[0])); ?>
+		<?php echo __("With this product, you earn up to <span class='j2t-pts'>%1</span> reward points.", $this->mathActionOnCatalogPages($pts_range[0])); ?>
 	<?php else:?>
-		<?php echo __("With this product, you earn <span class='j2t-pts'>%1</span> loyalty points.", $this->mathActionOnCatalogPages($pts_range[0])); ?>
+		<?php echo __("With this product, you earn <span class='j2t-pts'>%1</span> reward points.", $this->mathActionOnCatalogPages($pts_range[0])); ?>
 	<?php endif;?>
 <?php else:?>
 <?php if ($pts > 1):?>
-<?php echo __("With this product, you earn <span class='j2t-pts'>%1</span> loyalty points.", $this->mathActionOnCatalogPages($pts)); ?>
+<?php echo __("With this product, you earn <span class='j2t-pts'>%1</span> reward points.", $this->mathActionOnCatalogPages($pts)); ?>
 <?php elseif($pts == 1):?>
-<?php echo __("With this product, you earn <span class='j2t-pts'>%1</span> loyalty point.", $this->mathActionOnCatalogPages($pts)); ?>
+<?php echo __("With this product, you earn <span class='j2t-pts'>%1</span> reward point.", $this->mathActionOnCatalogPages($pts)); ?>
 <?php else:?>
-<?php echo __("With this product, you earn <span class='j2t-pts'>%1</span> loyalty point(s).", $this->mathActionOnCatalogPages($pts)); ?>
+<?php echo __("With this product, you earn <span class='j2t-pts'>%1</span> reward point(s).", $this->mathActionOnCatalogPages($pts)); ?>
 <?php endif;?>
 <?php endif;?>
 <?php if ($this->showEquivalence() && count($pts_range) == 2 && ($eq1 = $this->getPointsEquivalence($this->mathActionOnCatalogPages($pts_range[0]))) && ($eq2 = $this->getPointsEquivalence($this->mathActionOnCatalogPages($pts_range[1])))):?>

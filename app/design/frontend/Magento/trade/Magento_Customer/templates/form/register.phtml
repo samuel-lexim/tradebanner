@@ -11,7 +11,7 @@
     <?php echo $block->getChildHtml('form_fields_before')?>
     <?php /* Extensions placeholder */ ?>
     <?php echo $block->getChildHtml('customer.form.register.extra')?>
-    <form class="form create account form-create-account" action="<?= $block->getPostActionUrl() ?>" method="post" id="form-validate"
+    <form class="form create account form-create-account" action="<?= $block->getPostActionUrl() ?>" onsubmit="return validateForm()" method="post" id="form-validate"
           enctype="multipart/form-data" autocomplete="off">
         <fieldset class="fieldset create info">
             <div class="login-register-title"><?= __('Create an Account') ?></div>
@@ -167,7 +167,21 @@
             </div>
 
             <?php echo $block->getChildHtml('form_additional_info'); ?>
-
+            <!-- dev lam -->
+            <script src='https://www.google.com/recaptcha/api.js'></script>
+            <div class="g-recaptcha" data-sitekey="6LeWb0sUAAAAADM2RJayBwgBFAvGlCgWwDClJgtl"  data-callback="recaptchaCallback" data-expired-callback="recaptchaExpired"></div>
+            <input type="hidden" name="recaptcha" data-rule-recaptcha="true">
+        
+            <script type="text/javascript">
+                function validateForm() {   
+                    var recaptcha = document.forms["form-validate"]["g-recaptcha-response"].value;
+                    if (recaptcha == "") {
+                        alert("Please fill reCAPTCHA");
+                        return false;
+                    }
+                }
+            </script>
+            <!-- End dev lam -->
             <?php if ($block->isNewsletterEnabled()): ?>
                 <div class="field choice newsletter">
                     <input type="checkbox" name="is_subscribed" title="<?= __('Sign Up for Newsletter') ?>"

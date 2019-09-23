@@ -21,9 +21,23 @@ namespace Eadesigndev\Pdfgenerator\Controller\Adminhtml\Order\Invoice;
 
 use Eadesigndev\Pdfgenerator\Controller\Adminhtml\Order\Abstractpdf;
 use Eadesigndev\Pdfgenerator\Helper\Pdf;
+use Magento\Backend\App\Action\Context;
+use Magento\Backend\Model\View\Result\ForwardFactory;
+use Magento\Email\Model\Template\Config;
 use Magento\Framework\App\Filesystem\DirectoryList;
+use Magento\Framework\App\Response\Http\FileFactory;
+use Magento\Framework\Controller\Result\JsonFactory;
+use Magento\Framework\Registry;
 use Magento\Framework\Stdlib\DateTime\DateTime;
+use Eadesigndev\Pdfgenerator\Model\PdfgeneratorRepository;
+use Magento\Sales\Model\Order\InvoiceRepository;
 
+/**
+ * Class Printpdf
+ * @package Eadesigndev\Pdfgenerator\Controller\Adminhtml\Order\Invoice
+ * @SuppressWarnings("CouplingBetweenObjects")
+ * @SuppressWarnings("ExcessiveParameterList")
+ */
 class Printpdf extends Abstractpdf
 {
 
@@ -40,12 +54,12 @@ class Printpdf extends Abstractpdf
     private $dateTime;
 
     /**
-     * @var \Magento\Framework\App\Response\Http\FileFactory
+     * @var FileFactory
      */
 
     private $fileFactory;
     /**
-     * @var \Magento\Backend\Model\View\Result\ForwardFactory
+     * @var ForwardFactory
      */
 
     private $resultForwardFactory;
@@ -56,64 +70,77 @@ class Printpdf extends Abstractpdf
     private $helper;
 
     /**
+     * @var PdfgeneratorRepository
+     */
+    private $pdfGeneratorRepository;
+
+    /**
+     * @var InvoiceRepository
+     */
+    private $invoiceRepository;
+
+    /**
      * Printpdf constructor.
-     * @param \Magento\Backend\App\Action\Context $context
-     * @param \Magento\Framework\Registry $coreRegistry
-     * @param \Magento\Email\Model\Template\Config $emailConfig
-     * @param \Magento\Framework\Controller\Result\JsonFactory $resultJsonFactory
+     * @param Context $context
+     * @param Registry $coreRegistry
+     * @param Config $emailConfig
+     * @param JsonFactory $resultJsonFactory
      * @param Pdf $helper
      * @param DateTime $dateTime
-     * @param \Magento\Framework\App\Response\Http\FileFactory $fileFactory
-     * @param \Magento\Backend\Model\View\Result\ForwardFactory $resultForwardFactory
+     * @param FileFactory $fileFactory
+     * @param ForwardFactory $resultForwardFactory
+     * @param PdfgeneratorRepository $pdfGeneratorRepository
+     * @param InvoiceRepository $invoiceRepository
      */
     public function __construct(
-        \Magento\Backend\App\Action\Context $context,
-        \Magento\Framework\Registry $coreRegistry,
-        \Magento\Email\Model\Template\Config $emailConfig,
-        \Magento\Framework\Controller\Result\JsonFactory $resultJsonFactory,
+        Context $context,
+        Registry $coreRegistry,
+        Config $emailConfig,
+        JsonFactory $resultJsonFactory,
         Pdf $helper,
         DateTime $dateTime,
-        \Magento\Framework\App\Response\Http\FileFactory $fileFactory,
-        \Magento\Backend\Model\View\Result\ForwardFactory $resultForwardFactory
-
-    )
-    {
+        FileFactory $fileFactory,
+        ForwardFactory $resultForwardFactory,
+        PdfgeneratorRepository $pdfGeneratorRepository,
+        InvoiceRepository $invoiceRepository
+    ) {
         $this->fileFactory = $fileFactory;
         $this->helper = $helper;
         parent::__construct($context, $coreRegistry, $emailConfig, $resultJsonFactory);
         $this->resultForwardFactory = $resultForwardFactory;
         $this->dateTime = $dateTime;
+        $this->pdfGeneratorRepository = $pdfGeneratorRepository;
+        $this->invoiceRepository = $invoiceRepository;
     }
 
     /**
-     * @return \Magento\Framework\App\ResponseInterface
+     * @return object
      */
     public function execute()
     {
 
         $templateId = $this->getRequest()->getParam('template_id');
+
         if (!$templateId) {
-            return $this->resultForwardFactory->create()->forward('noroute');
+            return $this->returnNoRoute();
         }
 
-        $templateModel = $this->_objectManager
-            ->create('Eadesigndev\Pdfgenerator\Api\TemplatesRepositoryInterface')
+        $templateModel = $this->pdfGeneratorRepository
             ->getById($templateId);
 
         if (!$templateModel) {
-            return $this->resultForwardFactory->create()->forward('noroute');
+            return $this->returnNoRoute();
         }
 
         $invoiceId = $this->getRequest()->getParam('invoice_id');
         if (!$invoiceId) {
-            return $this->resultForwardFactory->create()->forward('noroute');
+            return $this->returnNoRoute();
         }
 
-        $invoice = $this->_objectManager
-            ->create('Magento\Sales\Api\InvoiceRepositoryInterface')
+        $invoice = $this->invoiceRepository
             ->get($invoiceId);
         if (!$invoice) {
-            return $this->resultForwardFactory->create()->forward('noroute');
+            return $this->returnNoRoute();
         }
 
         $helper = $this->helper;
@@ -133,5 +160,13 @@ class Printpdf extends Abstractpdf
             DirectoryList::VAR_DIR,
             'application/pdf'
         );
+    }
+
+    /**
+     * @return $this
+     */
+    private function returnNoRoute()
+    {
+        return $this->resultForwardFactory->create()->forward('noroute');
     }
 }

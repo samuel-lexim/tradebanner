@@ -19,18 +19,20 @@
 
 namespace Eadesigndev\Pdfgenerator\Model\Plugin;
 
+use Magento\Backend\Model\UrlInterface;
+use Magento\Framework\Registry;
+
 class Config
 {
     /**
      * Config constructor.
-     * @param \Magento\Backend\Model\UrlInterface $url
-     * @param \Magento\Framework\Registry $registry
+     * @param UrlInterface $url
+     * @param Registry $registry
      */
     public function __construct(
-        \Magento\Backend\Model\UrlInterface $url,
-        \Magento\Framework\Registry $registry
-    )
-    {
+        UrlInterface $url,
+        Registry $registry
+    ) {
         $this->_url = $url;
         $this->registry = $registry;
     }
@@ -39,7 +41,9 @@ class Config
      * @param $subject
      * @param $result
      * @return string
+     * @SuppressWarnings("unused")
      */
+    //@codingStandardsIgnoreLine
     public function afterGetVariablesWysiwygActionUrl($subject, $result)
     {
 

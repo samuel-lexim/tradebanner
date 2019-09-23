@@ -1,5 +1,5 @@
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 /*global define,alert*/
@@ -32,9 +32,9 @@ define(
             saveShippingInformation: function () {
                 var payload;
 
-                //if (!quote.billingAddress()) {
-                //    selectBillingAddressAction(quote.shippingAddress());
-                //}
+                if (!quote.billingAddress()) {
+                    selectBillingAddressAction(quote.shippingAddress());
+                }
 
                 payload = {
                     addressInformation: {

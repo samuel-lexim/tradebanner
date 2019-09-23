@@ -133,7 +133,7 @@
             </form>
             <?php endif; ?>
         <div class="rewards_point_cart">
-        <?php echo __("This shopping cart is worth %1 loyalty point(s).", $pts); ?>
+        <?php echo __("This shopping cart is worth %1 reward point(s).", $pts); ?>
         <?php if ($this->showEquivalence() && ($eq = $this->getPointsEquivalence($pts))): ?>
                 <span class="j2t-point-equivalence"><?php echo __("%1 points = %2.", $pts, $eq) ?></span>
             <?php endif; ?>
@@ -141,7 +141,7 @@
             <?php if ($this->isCustomerLogged()): ?>
             <div class="rewards_customer_points">
                 <?php if ($customerPoints): ?>
-                    <?php echo __("You currently have %1 loyalty point(s).", $customerPoints); ?>
+                    <?php echo __("You currently have %1 reward point(s).", $customerPoints); ?>
                     <?php if ($this->showEquivalence() && ($eq = $this->getPointsEquivalence($customerPoints))): ?>
                         <span class="j2t-point-equivalence"><?php echo __("%1 points = %2.", $customerPoints, $eq) ?></span>
                 <?php endif; ?>
@@ -152,7 +152,7 @@
         <?php endif; ?>
         <?php if ($usedPoints): ?>
             <div class="rewards_customer_points_usage">
-                <?php echo __("You are using %1 loyalty point(s) on this shopping cart.", $usedPoints); ?>
+                <?php echo __("You are using %1 reward point(s) on this shopping cart.", $usedPoints); ?>
             </div>
         <?php endif; ?>
         <?php if ($details_items): ?>

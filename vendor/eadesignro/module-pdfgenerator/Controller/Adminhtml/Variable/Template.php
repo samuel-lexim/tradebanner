@@ -19,8 +19,25 @@
 
 namespace Eadesigndev\Pdfgenerator\Controller\Adminhtml\Variable;
 
+use Eadesigndev\Pdfgenerator\Controller\Adminhtml\Templates;
+use Exception;
+use Magento\Backend\App\Action\Context;
+use Magento\Email\Model\Template\Config;
 use Magento\Framework\App\Action\Action;
+use Magento\Framework\Controller\Result\Json;
+use Magento\Framework\Controller\Result\JsonFactory;
+use Magento\Framework\Registry;
+use Magento\Framework\Json\Helper\Data as JsonHelperData;
+use Magento\Variable\Model\Variable as VariableModel;
+use Magento\Email\Model\Source\Variables as EmailVariables;
+use Magento\Email\Model\BackendTemplate as EmailBackendTemplate;
+use Zend_Json;
 
+/**
+ * Class Template
+ * @package Eadesigndev\Pdfgenerator\Controller\Adminhtml\Variable
+ * @SuppressWarnings("CouplingBetweenObjects")
+ */
 class Template extends Action
 {
 
@@ -28,45 +45,81 @@ class Template extends Action
     const ADMIN_RESOURCE_VIEW = 'Eadesigndev_Pdfgenerator::templates';
 
     /**
-     * @var \Magento\Framework\Registry
+     * @var Registry
      */
     private $coreRegistry;
 
     /**
-     * @var \Magento\Email\Model\Template\Config
+     * @var Config
      */
     private $emailConfig;
 
     /**
-     * @var \Magento\Framework\Controller\Result\JsonFactory
+     * @var JsonFactory
      */
     private $resultJsonFactory;
 
     /**
+     * @var \Magento\Framework\AuthorizationInterface
+     */
+    private $authorization;
+
+    /**
+     * @var JsonHelperData
+     */
+    private $jsonHelperData;
+
+    /**
+     * @var VariableModel
+     */
+    private $variableModel;
+
+    /**
+     * @var EmailVariables
+     */
+    private $emailVariables;
+
+    /**
+     * @var EmailBackendTemplate
+     */
+    private $emailBackendTemplate;
+
+    /**
      * Template constructor.
-     * @param \Magento\Backend\App\Action\Context $context
-     * @param \Magento\Framework\Registry $coreRegistry
-     * @param \Magento\Email\Model\Template\Config $emailConfig
-     * @param \Magento\Framework\Controller\Result\JsonFactory $resultJsonFactory
+     * @param Context $context
+     * @param Registry $coreRegistry
+     * @param Config $emailConfig
+     * @param JsonFactory $resultJsonFactory
+     * @param JsonHelperData $jsonHelperData
+     * @param VariableModel $variableModel
+     * @param EmailVariables $emailVariables
+     * @param EmailBackendTemplate $emailBackendTemplate
      */
     public function __construct(
-        \Magento\Backend\App\Action\Context $context,
-        \Magento\Framework\Registry $coreRegistry,
-        \Magento\Email\Model\Template\Config $emailConfig,
-        \Magento\Framework\Controller\Result\JsonFactory $resultJsonFactory
-    )
-    {
+        Context $context,
+        Registry $coreRegistry,
+        Config $emailConfig,
+        JsonFactory $resultJsonFactory,
+        JsonHelperData $jsonHelperData,
+        VariableModel $variableModel,
+        EmailVariables $emailVariables,
+        EmailBackendTemplate $emailBackendTemplate
+    ) {
 
         $this->emailConfig = $emailConfig;
         parent::__construct($context);
         $this->coreRegistry = $coreRegistry;
         $this->resultJsonFactory = $resultJsonFactory;
+        $this->jsonHelperData = $jsonHelperData;
+        $this->variableModel = $variableModel;
+        $this->emailVariables = $emailVariables;
+        $this->emailBackendTemplate = $emailBackendTemplate;
     }
 
     /**
      * WYSIWYG Plugin Action
      *
-     * @return \Magento\Framework\Controller\Result\Json
+     * @return Json
      */
     public function execute()
     {
@@ -88,8 +141,8 @@ class Template extends Action
             $template->setData('orig_template_code', $templateId);
             $template->setData(
                 'template_variables',
-                \Zend_Json::encode($template->getVariablesOptionArray(true)
-                ));
+                Zend_Json::encode($template->getVariablesOptionArray(true))
+            );
 
             $templateBlock = $this->_view->getLayout()->createBlock(
                 'Magento\Email\Block\Adminhtml\Template\Edit'
@@ -100,22 +153,17 @@ class Template extends Action
             );
 
             $this->getResponse()->representJson(
-                $this->_objectManager
-                    ->get('Magento\Framework\Json\Helper\Data')
-                    ->jsonEncode($template->getData()
-                    ));
-        } catch (\Exception $e) {
-            $this->_objectManager->get('Psr\Log\LoggerInterface')->critical($e);
+                $this->jsonHelperData
+                    ->jsonEncode($template->getData())
+            );
+        } catch (Exception $e) {
+            $this->messageManager->addErrorMessage($e, 'There was a problem:' . $e->getMessage());
         }
 
-        $customVariables = $this->_objectManager->create('Magento\Variable\Model\Variable')
+        $customVariables = $this->variableModel
             ->getVariablesOptionArray(true);
-        $storeContactVariables = $this->_objectManager->create(
-            'Magento\Email\Model\Source\Variables'
-        )->toOptionArray(
-            true
-        );
-        /** @var \Magento\Framework\Controller\Result\Json $resultJson */
+        $storeContactVariables = $this->emailVariables->toOptionArray(true);
+        /** @var Json $resultJson */
         $resultJson = $this->resultJsonFactory->create();
         return $resultJson->setData([
             $storeContactVariables,
@@ -129,10 +177,11 @@ class Template extends Action
      *
      * @return \Magento\Email\Model\BackendTemplate $model
      */
+    //@codingStandardsIgnoreLine
     protected function _initTemplate()
     {
 
-        $model = $this->_objectManager->create('Magento\Email\Model\BackendTemplate');
+        $model = $this->emailBackendTemplate;
 
         if (!$this->coreRegistry->registry('email_template')) {
             $this->coreRegistry->register('email_template', $model);
@@ -150,10 +199,11 @@ class Template extends Action
      *
      * @return boolean
      */
+    //@codingStandardsIgnoreLine
     protected function _isAllowed()
     {
-        return $this->_authorization->isAllowed(
-            \Eadesigndev\Pdfgenerator\Controller\Adminhtml\Templates::ADMIN_RESOURCE_VIEW
+        return $this->authorization->isAllowed(
+            Templates::ADMIN_RESOURCE_VIEW
         );
     }
 }

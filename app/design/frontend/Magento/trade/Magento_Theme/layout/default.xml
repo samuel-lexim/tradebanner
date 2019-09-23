@@ -42,7 +42,8 @@
         <move element="file.toplink" destination="header-wrapper" after="minicart"/>
         <block class="Magento\Framework\View\Element\Template" name="top.right.info"
                template="Magento_Theme::html/topRightInfo.phtml"/>
-        <move element="top.right.info" destination="header.panel" before="-"/>
+        <move element="top.right.info" destination="header.panel" after="top.left.info"/>
+
 
         <!-- Message -->
         <referenceContainer name="page.messages" htmlTag="div" htmlClass="page messages container" />

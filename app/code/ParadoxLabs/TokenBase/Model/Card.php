@@ -8,16 +8,35 @@
  *  http://support.paradoxlabs.com
  *
  * @author        Ryan Hoerr <support@paradoxlabs.com>
- * @license        http://store.paradoxlabs.com/license.html
+ * @license       http://store.paradoxlabs.com/license.html
  */
 
 namespace ParadoxLabs\TokenBase\Model;
 
 /**
+ * Soft dependency: Supporting 2.1 Vault without breaking 2.0 compatibility.
+ * The 2.1+ version implements \Magento\Vault; 2.0 does not.
+ *
+ * If PaymentTokenInterface exists, we want to implement it. If not, skip.
+ */
+if (interface_exists('\Magento\Vault\Api\Data\PaymentTokenInterface')) {
+    class_alias(
+        '\Magento\Vault\Api\Data\PaymentTokenInterface',
+        '\ParadoxLabs\TokenBase\Api\Data\TokenInterface'
+    );
+} else {
+    class_alias(
+        '\ParadoxLabs\TokenBase\Api\Data\FauxTokenInterface',
+        '\ParadoxLabs\TokenBase\Api\Data\TokenInterface'
+    );
+}
+
+/**
  * Payment record storage
  */
-class CardImp extends \Magento\Framework\Model\AbstractExtensibleModel implements
-    \ParadoxLabs\TokenBase\Api\Data\CardInterface
+class Card extends \Magento\Framework\Model\AbstractExtensibleModel implements
+    \ParadoxLabs\TokenBase\Api\Data\CardInterface,
+    \ParadoxLabs\TokenBase\Api\Data\TokenInterface
 {
     /**
      * Prefix of model events names
@@ -117,9 +136,14 @@ class CardImp extends \Magento\Framework\Model\AbstractExtensibleModel implement
     protected $dateProcessor;
 
     /**
-     * @var \Magento\Framework\Unserialize\Unserialize
+     * @var \ParadoxLabs\TokenBase\Api\Data\CardAdditionalInterfaceFactory
      */
-    protected $unserialize;
+    protected $cardAdditionalFactory;
+
+    /**
+     * @var \Magento\Framework\Api\DataObjectHelper
+     */
+    protected $dataObjectHelper;
 
     /**
      * @param \Magento\Framework\Model\Context $context
@@ -154,6 +178,7 @@ class CardImp extends \Magento\Framework\Model\AbstractExtensibleModel implement
         $this->helper                   = $cardContext->getHelper();
         $this->methodFactory            = $cardContext->getMethodFactory();
         $this->cardFactory              = $cardContext->getCardFactory();
+        $this->cardAdditionalFactory    = $cardContext->getCardAdditionalFactory();
         $this->customerFactory          = $cardContext->getCustomerFactory();
         $this->customerRepository       = $cardContext->getCustomerRepository();
         $this->addressFactory           = $cardContext->getAddressFactory();
@@ -164,7 +189,7 @@ class CardImp extends \Magento\Framework\Model\AbstractExtensibleModel implement
         $this->remoteAddress            = $cardContext->getRemoteAddress();
         $this->dataProcessor            = $cardContext->getDataObjectProcessor();
         $this->dateProcessor            = $cardContext->getDateProcessor();
-        $this->unserialize              = $cardContext->getUnserialize();
+        $this->dataObjectHelper         = $cardContext->getDataObjectHelper();
     }
 
     /**
@@ -180,10 +205,10 @@ class CardImp extends \Magento\Framework\Model\AbstractExtensibleModel implement
     /**
      * Set the method instance for this card. This is often necessary to route card data properly.
      *
-     * @param \ParadoxLabs\TokenBase\Api\MethodInterface $method
+     * @param \ParadoxLabs\TokenBase\Api\MethodInterface|\Magento\Payment\Model\MethodInterface $method
      * @return $this
      */
-    public function setMethodInstance(\ParadoxLabs\TokenBase\Api\MethodInterface $method)
+    public function setMethodInstance($method)
     {
         $this->method = $method;
 
@@ -193,7 +218,8 @@ class CardImp extends \Magento\Framework\Model\AbstractExtensibleModel implement
     /**
      * Get the arbitrary method instance.
      *
-     * @return \ParadoxLabs\TokenBase\Api\MethodInterface Gateway-specific payment method
+     * @return \ParadoxLabs\TokenBase\Api\MethodInterface|\Magento\Payment\Model\MethodInterface Gateway-specific
+     * payment method
      * @throws \Magento\Framework\Exception\LocalizedException
      */
     public function getMethodInstance()
@@ -340,6 +366,11 @@ class CardImp extends \Magento\Framework\Model\AbstractExtensibleModel implement
                 $this->setAdditional('cc_last4', $payment->getData('cc_last4'));
             }
 
+            if (!empty($payment->getAdditionalInformation('cc_bin'))
+                && $this->getMethodInstance()->getConfigData('can_store_bin') == 1) {
+                $this->setAdditional('cc_bin', $payment->getAdditionalInformation('cc_bin'));
+            }
+
             if ($payment->getData('cc_exp_year') > date('Y')
                 || ($payment->getData('cc_exp_year') == date('Y') && $payment->getData('cc_exp_month') >= date('n'))) {
                 $yr  = $payment->getData('cc_exp_year');
@@ -385,12 +416,19 @@ class CardImp extends \Magento\Framework\Model\AbstractExtensibleModel implement
      */
     public function isInUse()
     {
-        $orders    = $this->orderCollectionFactory->create();
-        $orders->addAttributeToSelect('*')
-               ->addAttributeToFilter('customer_id', $this->getData('customer_id'))
-               ->addAttributeToFilter('status', ['like' => 'pending%']);
+        $registryKey = 'tokenbase_customer_orders_' . $this->getData('customer_id');
 
-        if (!empty($orders)) {
+        $orders = $this->_registry->registry($registryKey);
+        if ($orders === null) {
+            $orders = $this->orderCollectionFactory->create();
+            $orders->addAttributeToSelect('*')
+                   ->addAttributeToFilter('customer_id', $this->getData('customer_id'))
+                   ->addAttributeToFilter('status', ['like' => 'pending%']);
+
+            $this->_registry->register($registryKey, $orders);
+        }
+
+        if ($orders instanceof \Magento\Sales\Model\ResourceModel\Order\Collection && $orders->getSize() > 0) {
             foreach ($orders as $order) {
                 /** @var \Magento\Sales\Model\Order $order */
                 $payment = $order->getPayment();
@@ -441,7 +479,7 @@ class CardImp extends \Magento\Framework\Model\AbstractExtensibleModel implement
     public function getAddress($key = '')
     {
         if ($this->address === null && parent::getData('address')) {
-            $this->address = $this->unserialize->unserialize(parent::getData('address'));
+            $this->address = json_decode(parent::getData('address'), 1);
         }
 
         if ($key !== '') {
@@ -506,7 +544,7 @@ class CardImp extends \Magento\Framework\Model\AbstractExtensibleModel implement
     public function getAdditional($key = null)
     {
         if ($this->additional === null) {
-            $this->additional = $this->unserialize->unserialize(parent::getData('additional'));
+            $this->additional = json_decode(parent::getData('additional'), 1);
         }
 
         if ($key !== null) {
@@ -519,25 +557,36 @@ class CardImp extends \Magento\Framework\Model\AbstractExtensibleModel implement
     /**
      * Set additional card data.
      * Can pass in a key-value pair to set one value,
-     * or a single parameter (associative array) to overwrite all data.
+     * or a single parameter (associative array or CardAdditional instance) to overwrite all data.
      *
-     * @param string|array $key
+     * @param string|array|\ParadoxLabs\TokenBase\Api\Data\CardAdditionalInterface $key
      * @param string|null $value
      * @return $this
      */
     public function setAdditional($key, $value = null)
     {
-        if ($value !== null) {
-            if ($this->additional === null) {
-                $this->getAdditional();
-            }
+        if ($this->additional === null) {
+            $this->getAdditional();
+        }
 
+        if ($value !== null) {
             $this->additional[ $key ] = $value;
         } elseif (is_array($key)) {
             $this->additional = $key;
+        } elseif ($key instanceof \ParadoxLabs\TokenBase\Api\Data\CardAdditionalInterface) {
+            $values = $this->dataProcessor->buildOutputDataArray(
+                $key,
+                \ParadoxLabs\TokenBase\Api\Data\CardAdditionalInterface::class
+            );
+
+            foreach ($values as $k => $v) {
+                if ($v !== null) {
+                    $this->additional[ $k ] = $v;
+                }
+            }
         }
 
-        parent::setData('additional', serialize($this->additional));
+        parent::setData('additional', json_encode($this->additional));
 
         return $this;
     }
@@ -553,7 +602,7 @@ class CardImp extends \Magento\Framework\Model\AbstractExtensibleModel implement
         // Convert address to array
         $addressData = $this->dataProcessor->buildOutputDataArray(
             $address,
-            '\Magento\Customer\Api\Data\AddressInterface'
+            \Magento\Customer\Api\Data\AddressInterface::class
         );
 
         $addressData['region_code'] = $address->getRegion()->getRegionCode();
@@ -569,7 +618,7 @@ class CardImp extends \Magento\Framework\Model\AbstractExtensibleModel implement
         $this->address = null;
 
         // Store
-        parent::setData('address', serialize($addressData));
+        parent::setData('address', json_encode($addressData));
 
         return $this;
     }
@@ -908,6 +957,7 @@ class CardImp extends \Magento\Framework\Model\AbstractExtensibleModel implement
             $collection->addFieldToFilter('method', $this->getData('method'))
                        ->addFieldToFilter('profile_id', $this->getData('profile_id'))
                        ->addFieldToFilter('payment_id', $this->getData('payment_id'))
+                       ->addFieldToFilter('customer_id', $this->getData('customer_id'))
                        ->setPageSize(1)
                        ->setCurPage(1);
             
@@ -976,7 +1026,7 @@ class CardImp extends \Magento\Framework\Model\AbstractExtensibleModel implement
     /**
      * Retrieve existing extension attributes object or create a new one.
      *
-     * @return \Magento\Framework\Api\ExtensionAttributesInterface|null
+     * @return \ParadoxLabs\TokenBase\Api\Data\CardExtensionInterface|null
      */
     public function getExtensionAttributes()
     {
@@ -986,11 +1036,11 @@ class CardImp extends \Magento\Framework\Model\AbstractExtensibleModel implement
     /**
      * Set an extension attributes object.
      *
-     * @param \Magento\Framework\Api\ExtensionAttributesInterface $extensionAttributes
+     * @param \ParadoxLabs\TokenBase\Api\Data\CardExtensionInterface $extensionAttributes
      * @return $this
      */
     public function setExtensionAttributes(
-        \Magento\Framework\Api\ExtensionAttributesInterface $extensionAttributes
+        \ParadoxLabs\TokenBase\Api\Data\CardExtensionInterface $extensionAttributes
     ) {
         return $this->_setExtensionAttributes($extensionAttributes);
     }
@@ -1168,14 +1218,22 @@ class CardImp extends \Magento\Framework\Model\AbstractExtensibleModel implement
     {
         return $this->setActive($isVisible);
     }
-}
 
-/**
- * This is messy. Sorry. Supporting 2.1 Vault without breaking 2.0 compatibility.
- * The 2.1+ version implements \Magento\Vault; 2.0 does not.
- */
-if (interface_exists('\Magento\Vault\Api\Data\PaymentTokenInterface')) {
-    require_once 'Card/Card210.php';
-} else {
-    require_once 'Card/Card200.php';
+    /**
+     * Get additional card data, in object form. Used to expose keys to API.
+     *
+     * @return \ParadoxLabs\TokenBase\Api\Data\CardAdditionalInterface
+     */
+    public function getAdditionalObject()
+    {
+        $additional = $this->cardAdditionalFactory->create();
+
+        $this->dataObjectHelper->populateWithArray(
+            $additional,
+            $this->getAdditional() ?: [],
+            \ParadoxLabs\TokenBase\Api\Data\CardAdditionalInterface::class
+        );
+
+        return $additional;
+    }
 }

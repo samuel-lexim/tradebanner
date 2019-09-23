@@ -19,13 +19,23 @@
 
 namespace Eadesigndev\Pdfgenerator\Helper;
 
+use Eadesigndev\Pdfgenerator\Model\Pdfgenerator;
+use Eadesigndev\Pdfgenerator\Model\Source\TemplatePaperOrientation;
 use Eadesigndev\Pdfgenerator\Model\Template\Processor;
 use Magento\Payment\Helper\Data as PaymentHelper;
+use Magento\Sales\Model\Order;
 use Magento\Sales\Model\Order\Email\Container\InvoiceIdentity;
 use Magento\Sales\Model\Order\Address\Renderer;
 use Magento\Framework\App\Helper\Context;
 use Magento\Framework\App\Helper\AbstractHelper;
+use Magento\Sales\Model\Order\Invoice;
+use mPDF;
 
+/**
+ * Class Pdf
+ * @package Eadesigndev\Pdfgenerator\Helper
+ * @SuppressWarnings("CouplingBetweenObjects")
+ */
 class Pdf extends AbstractHelper
 {
     /**
@@ -48,42 +58,42 @@ class Pdf extends AbstractHelper
         6 => 'LEGAL-'
     ];
 
-    protected $order;
+    public $order;
 
     /**
      * @var invoice;
      */
-    protected $invoice;
+    public $invoice;
 
     /**
      * @var template
      */
-    protected $template;
+    public $template;
 
     /**
      * @var IdentityInterface
      */
-    protected $identityContainer;
+    public $identityContainer;
 
     /**
      * @var
      */
-    public $_mPDF;
+    public $mPDF;
 
     /**
      * @var PaymentHelper
      */
-    protected $paymentHelper;
+    public $paymentHelper;
 
     /**
      * @var Renderer
      */
-    protected $addressRenderer;
+    public $addressRenderer;
 
     /**
      * @var Processor
      */
-    protected $processor;
+    public $processor;
 
     /**
      * Pdf constructor.
@@ -99,8 +109,7 @@ class Pdf extends AbstractHelper
         PaymentHelper $paymentHelper,
         InvoiceIdentity $identityContainer,
         Processor $templateFactory
-    )
-    {
+    ) {
         $this->processor = $templateFactory;
         $this->paymentHelper = $paymentHelper;
         $this->identityContainer = $identityContainer;
@@ -109,10 +118,10 @@ class Pdf extends AbstractHelper
     }
 
     /**
-     * @param \Magento\Sales\Model\Order\Invoice $invoice
+     * @param Invoice $invoice
      * @return $this
      */
-    public function setInvoice(\Magento\Sales\Model\Order\Invoice $invoice)
+    public function setInvoice(Invoice $invoice)
     {
         $this->invoice = $invoice;
         $this->setOrder($invoice->getOrder());
@@ -120,20 +129,20 @@ class Pdf extends AbstractHelper
     }
 
     /**
-     * @param \Magento\Sales\Model\Order $order
+     * @param Order $order
      * @return $this
      */
-    public function setOrder(\Magento\Sales\Model\Order $order)
+    public function setOrder(Order $order)
     {
         $this->order = $order;
         return $this;
     }
 
     /**
-     * @param \Eadesigndev\Pdfgenerator\Model\Pdfgenerator $template
+     * @param Pdfgenerator $template
      * @return $this
      */
-    public function setTemplate(\Eadesigndev\Pdfgenerator\Model\Pdfgenerator $template)
+    public function setTemplate(Pdfgenerator $template)
     {
         $this->template = $template;
         $this->processor->setPDFTemplate($template);
@@ -147,8 +156,6 @@ class Pdf extends AbstractHelper
      */
     public function template2Pdf()
     {
-        $templateModel = $this->template;
-
         /**transport use to get the variables $order object, $invoice object and the template model object*/
         $parts = $this->_transport();
 
@@ -169,7 +176,7 @@ class Pdf extends AbstractHelper
      *
      * @return string
      */
-    protected function _transport()
+    public function _transport()
     {
 
         $invoice = $this->invoice;
@@ -198,15 +205,18 @@ class Pdf extends AbstractHelper
      * @param $parts
      * @return string
      */
-    protected function _eaPDFSettings($parts)
+    public function _eaPDFSettings($parts)
     {
 
         $templateModel = $this->template;
 
         if (!$templateModel->getTemplateCustomForm()) {
-            $pdf = new \mPDF(
-                $mode = '',
-                $format = $this->paperFormat(
+
+            /** @var mPDF $pdf */
+            //@codingStandardsIgnoreLine
+            $pdf = new mPDF(
+                '',
+                $this->paperFormat(
                     $templateModel->getTemplatePaperForm(),
                     $templateModel->getTemplatePaperOri()
                 ),
@@ -222,7 +232,8 @@ class Pdf extends AbstractHelper
         }
 
         if ($templateModel->getTemplateCustomForm()) {
-            $pdf = new \mPDF(
+            //@codingStandardsIgnoreLine
+            $pdf = new mPDF(
                 '',
                 [
                     $templateModel->getTemplateCustomW(),
@@ -239,12 +250,12 @@ class Pdf extends AbstractHelper
             );
         }
 
-        //todo check for header template processing problem width breaking the templates.
         $pdf->SetHTMLHeader($parts['header']);
         $pdf->SetHTMLFooter($parts['footer']);
 
         $pdf->WriteHTML($templateModel->getTemplateCss(), 1);
 
+        //@codingStandardsIgnoreLine
         $pdf->WriteHTML('<body>' . html_entity_decode($parts['body']) . '</body>');
         $pdfToOutput = $pdf->Output('', 'S');
 
@@ -262,7 +273,7 @@ class Pdf extends AbstractHelper
         $size = self::PAPER_SIZE;
         $oris = self::PAPER_ORI;
 
-        if ($ori == \Eadesigndev\Pdfgenerator\Model\Source\TemplatePaperOrientation::TEMAPLATE_PAPER_PORTRAIT) {
+        if ($ori == TemplatePaperOrientation::TEMAPLATE_PAPER_PORTRAIT) {
             return str_replace('-', '', $size[$form]);
         }
 
@@ -271,12 +282,11 @@ class Pdf extends AbstractHelper
         return $format;
     }
 
-
     /**
-     * @param \Magento\Sales\Model\Order $order
+     * @param Order $order
      * @return mixed
      */
-    protected function getPaymentHtml(\Magento\Sales\Model\Order $order)
+    public function getPaymentHtml(Order $order)
     {
         return $this->paymentHelper->getInfoBlockHtml(
             $order->getPayment(),
@@ -285,10 +295,10 @@ class Pdf extends AbstractHelper
     }
 
     /**
-     * @param \Magento\Sales\Model\Order $order
+     * @param Order $order
      * @return null
      */
-    protected function getFormattedShippingAddress(\Magento\Sales\Model\Order $order)
+    public function getFormattedShippingAddress(Order $order)
     {
         return $order->getIsVirtual()
             ? null
@@ -296,12 +306,14 @@ class Pdf extends AbstractHelper
     }
 
     /**
-     * @param \Magento\Sales\Model\Order $order
-     * @return mixed
+     * @param Order $order
+     * @return null|string
      */
-    protected function getFormattedBillingAddress(\Magento\Sales\Model\Order $order)
+    public function getFormattedBillingAddress(Order $order)
     {
-        return $this->addressRenderer->format($order->getBillingAddress(), 'html');
+        /** @var \Magento\Sales\Model\Order\Address $billing */
+        $billing = $order->getBillingAddress();
+        $address = $this->addressRenderer->format($billing, 'html');
+        return $address;
     }
-
 }

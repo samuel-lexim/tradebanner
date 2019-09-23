@@ -16,5 +16,6 @@
         <css src="css/trade/kong.css" media="all" />
         <css src="css/trade/custom_estimate.css" media="all" />
         <css src="css/trade/lam.css" media="all" />
+        <link src="js/trade/override.js" />
     </head>
 </page>

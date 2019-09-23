@@ -119,6 +119,11 @@ class Card extends \ParadoxLabs\TokenBase\Model\Card
             $this->setAdditional('cc_last4', $payment->getData('cc_last4'));
         }
 
+        if (!empty($payment->getAdditionalInformation('cc_bin'))
+            && $this->getMethodInstance()->getConfigData('can_store_bin') == 1) {
+            $this->setAdditional('cc_bin', $payment->getAdditionalInformation('cc_bin'));
+        }
+
         if ($payment->getData('cc_exp_year') > date('Y')
             || ($payment->getData('cc_exp_year') == date('Y') && $payment->getData('cc_exp_month') >= date('n'))) {
             $yr  = $payment->getData('cc_exp_year');
@@ -136,7 +141,7 @@ class Card extends \ParadoxLabs\TokenBase\Model\Card
     /**
      * Finalize before saving.
      *
-     * return $this
+     * @return $this
      */
     public function beforeSave()
     {
@@ -152,6 +157,31 @@ class Card extends \ParadoxLabs\TokenBase\Model\Card
         }
 
         parent::beforeSave();
+
+        return $this;
+    }
+
+    /**
+     * Finalize after saving.
+     *
+     * @return $this
+     */
+    public function afterSave()
+    {
+        // On card save, store the token/ID in the registry (if any) to avoid token reuse.
+        if ($this->hasData('info_instance')) {
+            $acceptJsValue = $this->getMethodInstance()->gateway()->getParameter('dataValue');
+
+            if (!empty($acceptJsValue)) {
+                $this->_registry->register(
+                    'authnetcim-acceptjs-' . $acceptJsValue,
+                    $this->getId(),
+                    true
+                );
+            }
+        }
+
+        parent::afterSave();
 
         return $this;
     }
@@ -356,6 +386,14 @@ class Card extends \ParadoxLabs\TokenBase\Model\Card
 
             if (!empty($profileId)) {
                 $this->getCustomer()->setCustomAttribute('authnetcim_profile_id', '');
+
+                /**
+                 * We know the authnetcim_profile_id is invalid, so get rid of it. Except we're in the middle
+                 * of a transaction... so any change will just be rolled back. Save it for a little later.
+                 * @see \ParadoxLabs\Authnetcim\Observer\CheckoutFailureClearProfileIdObserver::execute()
+                 */
+                $this->_registry->unregister('queue_profileid_deletion');
+                $this->_registry->register('queue_profileid_deletion', $this->getCustomer());
             }
 
             return $this->syncCustomerPaymentProfile(false);
@@ -500,6 +538,13 @@ class Card extends \ParadoxLabs\TokenBase\Model\Card
             if (isset($profile['paymentProfile'], $profile['paymentProfile']['payment']['creditCard'])) {
                 $gateway->setParameter('cardNumber', $profile['paymentProfile']['payment']['creditCard']['cardNumber']);
             } else {
+                $this->helper->log(
+                    $this->getMethod(),
+                    'Authorize.Net CIM Gateway: Could not load payment record.'
+                );
+
+                $gateway->logLogs();
+
                 throw new LocalizedException(__('Authorize.Net CIM Gateway: Could not load payment record.'));
             }
         }

@@ -11,7 +11,7 @@
             <block class="Magento\Framework\View\Element\Html\Link\Current" name="customer-account-navigation-reward-points-link">
                 <arguments>
                     <argument name="path" xsi:type="string">rewardpoints/points</argument>
-                    <argument name="label" xsi:type="string">My Loyalty Points</argument>
+                    <argument name="label" xsi:type="string">My Reward Points</argument>
                 </arguments>
             </block>
             <!--<block class="Magento\Framework\View\Element\Html\Link\Current" name="customer-account-navigation-reward-referral-link">-->

@@ -24,17 +24,12 @@ use Magento\Framework\View\Model\PageLayout\Config\BuilderInterface;
 /**
  * Class PageLayout
  */
-class TemplatePaperOrientation extends \Eadesigndev\Pdfgenerator\Model\Source\AbstractSource
+class TemplatePaperOrientation extends AbstractSource
 {
     /**
      * @var \Magento\Framework\View\Model\PageLayout\Config\BuilderInterface
      */
     private $pageLayoutBuilder;
-
-    /**
-     * @var array
-     */
-    private $options;
 
     /**
      * Constructor
@@ -64,5 +59,4 @@ class TemplatePaperOrientation extends \Eadesigndev\Pdfgenerator\Model\Source\Ab
             self::TEMAPLATE_PAPER_LANDSCAPE => __('Landscape'),
         ];
     }
-
 }

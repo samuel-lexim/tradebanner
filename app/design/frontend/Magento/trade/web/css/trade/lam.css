@@ -48,7 +48,10 @@
     display: none;
 }
 /* Fabric Banner- Premium  */
-.Agreement_911, .Artworks_1015, .Art_1014, .Size_837, .Grommets_838 {
+.Agreement_911, .Artworks_1015, .Art_1014, .Size_837, .Grommets_838, .Notice_1886 {
+    display: none;
+}
+#options-1886-list .admin__field-option:nth-child(1){
     display: none;
 }
 /* Mesh Banner */
@@ -59,7 +62,10 @@
     display: none;
 }
 /* Premium Coated Banner */
-.Agreement_1545, .Artworks_1548, .Art_1547, .Pocket-Size_1538, .Hemming_1540, .Grommets_1542, .Notice_1533 {
+/* .Agreement_1545, .Artworks_1548, .Art_1547, .Pocket-Size_1538, .Hemming_1540, .Grommets_1542, .Notice_1533 {
+    display: none;
+}  */
+.Agreement_1882, .Artworks_1885, .Art_1881, .Pocket-Size_1538, .Hemming_1540, .Grommets_1542, .Notice_1533 {
     display: none;
 } 
 #options-1533-list .admin__field-option:nth-child(1){
@@ -73,7 +79,10 @@
     display: none;
 }
 /* Fabric Banner- Deluxe */
-.Artworks_1023, .Art_1022, .Size_851, .Grommets_852, .Agreement_853 {
+.Artworks_1023, .Art_1022, .Size_851, .Grommets_852, .Agreement_853, .Notice_1887 {
+    display: none;
+}
+#options-1887-list .admin__field-option:nth-child(1){
     display: none;
 }
 /* 3M Controltac (IJ 180C) */
@@ -170,7 +179,7 @@
 }
 
 /* Styrene Boards */
-.Agreement_887, .Artworks_1059, .Art_1058 {
+.Agreement_887, .Artworks_1059, .Art_1058, .Side_634, .Side_1879 {
     display: none;
 }
 
@@ -180,7 +189,7 @@
 }
 
 /* Foam Boards */
-.Agreement_884, .Side_654, .Side_883, .Artworks_924, .Art_923 {
+.Agreement_1892, .Side_654, .Side_1888, .Artworks_1894, .Art_1893 {
     display: none;
 }  
 /* Eagle Board (Eco Board) */
@@ -196,7 +205,7 @@
     display: none;
 }
 /* Mini Banner Stands */
-.Agreement_1866, .Artworks_953, .Material_892, .Material_754 {
+.Agreement_1866, .Artworks_1873, .Material_892, .Material_754 {
     display: none;
 }
 /* Outdoor Banner Stand */
@@ -225,6 +234,10 @@
 }
 /* Retractable Stand */
 .Agreement_1699, .Available_1696, .Artworks_1702, .Art_1701 {
+    display: none;
+}
+/* Economic Retractable Stand */
+.Artworks_1905, .Art_1904 {
     display: none;
 }
 /* Custom Sublimation Transfers */
@@ -260,7 +273,7 @@
     display: none;
 } 
 /* Styrene Boards Contour */
-.Agreement_936, .Artworks_996, .Art_995 {
+.Agreement_936, .Artworks_996, .Art_995, .Side_568, .Side_1880 {
     display: none;
 }  
 /* PVC Sintra Board Contour */
@@ -268,9 +281,12 @@
     display: none;
 }  
 /* Foam Boards- Contour */
-.Agreement_956, .Artworks_930, .Art_929, .Side_588, .Side_955 {
+.Agreement_956, .Artworks_930, .Art_929, .Side_1895, .Side_955 {
     display: none;
 }   
+/* .Agreement_1902, .Artworks_1907, .Art_1905, .Side_1896, .Side_1897 {
+    display: none;
+}   */ 
 /* Wall Vinyl Decals Contour */
 .Agreement_951, .Artworks_998, .Art_997 {
     display: none;
@@ -413,9 +429,179 @@
 .cms-home #leftMenuUl li:hover > a {
     color: #f05624;
 }
-.order-links .item{
-    display: none;
-}
+
 /* #maincontent .order-links .item:nth-child(1)  {
     display: block;
 } */
+#topLeftInfo{
+    display: inline-block;
+    float: left;
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+    text-transform: uppercase;
+}
+#topLeftInfo span .small-text-header {
+    font-size: 12px;
+}
+#topLeftInfo span {
+    font-size: 14px;
+}
+#topLeftInfo p {
+    text-align: left;
+    line-height: 2;
+}
+@media only screen and (min-width: 768px) and (max-width: 1199px) {
+    #topLeftInfo{
+        color: #555;
+    }
+    #topRightInfo .tri-item span{
+        color: #555;
+    }
+}
+.link-account-mobile {
+    display: none;
+}
+@media screen and (max-width: 768px) {
+    .link-account-mobile {
+        display: inline-block !important;
+        clear: both;
+        float: right;
+        margin: 0;
+        padding: 11px 0;
+        z-index: 60;
+        font-size: 13px;
+    }
+    .page-wrapper #minicart-header {
+        padding-right: 5px;
+    }
+    .page-wrapper .header.content {
+        padding: 0 10px !important;
+    }
+    .main-bt span {
+        width: 80px;
+        height: 35px;
+        line-height: 38px;
+    }
+    #topSearchWrap {
+        display: none;
+    }
+    .login-container {
+        display: none;
+    }
+    .customer-account-login .action.primary {
+        background: #1ca1ac;
+        border-radius: 0;
+        padding: 10px 30px;
+    }
+}
+#checkout-step-shipping .addresses .iwd-step-title-list-of-addresses {
+    display: none;
+}
+.text-popup .first-content {
+    display: block;
+}
+
+#leftMenuUl li:nth-child(6) .submenu li:nth-child(7) > a::before,
+#leftMenuUl li:nth-child(3) .submenu li:nth-child(4) > a::before {
+    background-image: url('https://tradebanner.com/pub/media/images/price-down-concept.png');
+    height: 30px;
+    width: 30px;
+    content: '' !important;
+    margin: 0;
+    display: inline-block;
+    background-repeat: round;
+    z-index: 999;
+    margin-bottom: -11px;
+}
+#leftMenuUl li:nth-child(6) .submenu li:nth-child(7) > a,
+#leftMenuUl li:nth-child(6) .submenu li:nth-child(8) > a,
+#leftMenuUl li:nth-child(3) .submenu li:nth-child(4) > a{
+    margin-left: -34px;
+    margin-top: -5px;
+}
+#leftMenuUl li:nth-child(6) .submenu li:nth-child(8) > a::before{
+    background-image: url('https://tradebanner.com/pub/media/images/sale_tradebanner.png');
+    height: 30px;
+    width: 30px;
+    content: '' !important;
+    margin: 0;
+    display: inline-block;
+    background-repeat: round;
+    z-index: 999;
+    margin-bottom: -7px;
+}
+
+
+
+
+.cms-index-index #leftMenuUl li:nth-child(5) .submenu li:nth-child(7) > a::before,
+.cms-index-index #leftMenuUl li:nth-child(2) .submenu li:nth-child(4) > a::before  {
+    background-image: url('https://tradebanner.com/pub/media/images/price-down-concept.png');
+    height: 30px;
+    width: 30px;
+    content: '' !important;
+    margin: 0;
+    display: inline-block;
+    background-repeat: round;
+    z-index: 999;
+    margin-bottom: -11px;
+}
+.cms-index-index #leftMenuUl li:nth-child(5) .submenu li:nth-child(7) > a,
+.cms-index-index #leftMenuUl li:nth-child(5) .submenu li:nth-child(8) > a,
+.cms-index-index #leftMenuUl li:nth-child(2) .submenu li:nth-child(4) > a{
+    margin-left: -34px;
+    margin-top: -5px;
+}
+.cms-index-index #leftMenuUl li:nth-child(5) .submenu li:nth-child(8) > a::before{
+    background-image: url('https://tradebanner.com/pub/media/images/sale_tradebanner.png');
+    height: 30px;
+    width: 30px;
+    content: '' !important;
+    margin: 0;
+    display: inline-block;
+    background-repeat: round;
+    z-index: 999;
+    margin-bottom: -7px;
+}
+.cms-index-index #leftMenuUl li:nth-child(4) .submenu li:nth-child(4) > a::before,
+.cms-index-index #leftMenuUl li:nth-child(3) .submenu li:nth-child(4) > a::before {
+    display: none;
+}
+.cms-index-index #leftMenuUl li:nth-child(4) .submenu li:nth-child(4) > a,
+.cms-index-index #leftMenuUl li:nth-child(3) .submenu li:nth-child(4) > a {
+    margin-left: 0;
+    margin-top: 0;
+}
+.menuLeftSidebar #leftMenuUl li {
+    overflow: visible;
+}
+@media only screen and (max-width: 767px) {
+    #topMegaMenu > li li > a {
+        display: inline-block;
+        width: auto;
+    }
+    #topMegaMenu > li:nth-child(2) li:nth-child(4):after,
+    #topMegaMenu > li:nth-child(5) li:nth-child(7):after {
+        background-image: url('/pub/media/images/price-down-concept.png');
+        height: 30px;
+        width: 30px;
+        content: '' !important;
+        margin: 0;
+        background-repeat: round;
+        display: inline-block;
+        margin-bottom: -11px;
+        margin-left: 10px;
+    } 
+    #topMegaMenu > li:nth-child(5) li:nth-child(8):after {
+        background-image: url('/pub/media/images/sale_tradebanner.png');
+        height: 30px;
+        width: 30px;
+        content: '' !important;
+        margin: 0;
+        background-repeat: round;
+        display: inline-block;
+        margin-bottom: -7px;
+        margin-left: 10px;
+    }    
+}

@@ -20,7 +20,9 @@
 
 namespace Eadesigndev\Pdfgenerator\Model\Source;
 
-abstract class AbstractSource implements \Magento\Framework\Data\OptionSourceInterface
+use Magento\Framework\Data\OptionSourceInterface;
+
+abstract class AbstractSource implements OptionSourceInterface
 {
 
     /**
@@ -46,5 +48,4 @@ abstract class AbstractSource implements \Magento\Framework\Data\OptionSourceInt
 
         return $options;
     }
-
 }

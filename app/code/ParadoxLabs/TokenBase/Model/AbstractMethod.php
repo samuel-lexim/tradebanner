@@ -51,7 +51,7 @@ abstract class AbstractMethod extends \Magento\Framework\DataObject implements M
     protected $card;
 
     /**
-     * @var \ParadoxLabs\TokenBase\Helper\Address\Proxy
+     * @var \ParadoxLabs\TokenBase\Helper\Address
      */
     protected $addressHelper;
 
@@ -86,7 +86,7 @@ abstract class AbstractMethod extends \Magento\Framework\DataObject implements M
      * @param \ParadoxLabs\TokenBase\Model\AbstractGateway $gateway
      * @param \ParadoxLabs\TokenBase\Api\Data\CardInterfaceFactory $cardFactory
      * @param \ParadoxLabs\TokenBase\Api\CardRepositoryInterface $cardRepository
-     * @param \ParadoxLabs\TokenBase\Helper\Address\Proxy $addressHelper
+     * @param \ParadoxLabs\TokenBase\Helper\Address $addressHelper *Proxy
      * @param \Magento\Payment\Gateway\ConfigInterface $config
      * @param \Magento\Framework\Registry $registry
      * @param string $methodCode
@@ -99,7 +99,7 @@ abstract class AbstractMethod extends \Magento\Framework\DataObject implements M
         \ParadoxLabs\TokenBase\Model\AbstractGateway $gateway,
         \ParadoxLabs\TokenBase\Api\Data\CardInterfaceFactory $cardFactory,
         \ParadoxLabs\TokenBase\Api\CardRepositoryInterface $cardRepository,
-        \ParadoxLabs\TokenBase\Helper\Address\Proxy $addressHelper,
+        \ParadoxLabs\TokenBase\Helper\Address $addressHelper,
         \Magento\Payment\Gateway\ConfigInterface $config,
         \Magento\Framework\Registry $registry,
         $methodCode = '',
@@ -221,7 +221,7 @@ abstract class AbstractMethod extends \Magento\Framework\DataObject implements M
             $this->gateway->init([
                 'login'      => $this->getConfigData('login'),
                 'password'   => $this->getConfigData('trans_key'),
-                'secret_key' => $this->getConfigData('secrey_key'),
+                'secret_key' => $this->getConfigData('secret_key'),
                 'test_mode'  => $this->getConfigData('test'),
                 'verify_ssl' => $this->getConfigData('verify_ssl'),
             ]);
@@ -300,6 +300,10 @@ abstract class AbstractMethod extends \Magento\Framework\DataObject implements M
                                 ->setData('cc_exp_month', $card->getAdditional('cc_exp_month'))
                                 ->setData('cc_exp_year', $card->getAdditional('cc_exp_year'));
 
+        if ($this->getConfigData('can_store_bin') == 1) {
+            $this->getInfoInstance()->setAdditionalInformation('cc_bin', $card->getAdditional('cc_bin'));
+        }
+
         return $this;
     }
 
@@ -374,7 +378,7 @@ abstract class AbstractMethod extends \Magento\Framework\DataObject implements M
         $priorAuth = $payment->getAuthorizationTransaction();
         if ($priorAuth != false) {
             $parentTransactionId = $payment->getParentTransactionId();
-            $payment->setData('parent_transaction_id', $priorAuth->getTransactionId());
+            $payment->setData('parent_transaction_id', $priorAuth->getTxnId());
 
             $this->void($payment);
 
@@ -444,7 +448,10 @@ abstract class AbstractMethod extends \Magento\Framework\DataObject implements M
          * Check for existing auth code.
          */
         $authTxn = $payment->getAuthorizationTransaction();
-        if ($authTxn != false && $authTxn->getIsClosed() == 0) {
+        if ($authTxn instanceof \Magento\Sales\Api\Data\TransactionInterface
+            && $authTxn->getIsClosed() == 0
+            && !empty($authTxn->getTxnId())
+            && substr($authTxn->getTxnId(), -5) !== '-auth') {
             $this->gateway()->setHaveAuthorized(true);
 
             $authTxnInfo = $authTxn->getAdditionalInformation(
@@ -458,7 +465,7 @@ abstract class AbstractMethod extends \Magento\Framework\DataObject implements M
             if ($payment->getParentTransactionId() != '') {
                 $this->gateway()->setTransactionId($payment->getParentTransactionId());
             } else {
-                $this->gateway()->setTransactionId($authTxn->getTransactionId());
+                $this->gateway()->setTransactionId($authTxn->getTxnId());
             }
         } else {
             $this->gateway()->setHaveAuthorized(false);

@@ -3,17 +3,23 @@
     display: block !important;
 }
 /* 13oz Vinyl Banner */
-.Artworks_1634, .Art_1633, .Addhidden, .Size_1624, .Hemming_1626, .Grommets_1628, .Agreement_1631, .Notice_1621 {
+/* .Artworks_1634, .Art_1633, .Addhidden, .Size_1624, .Hemming_1626, .Grommets_1628, .Agreement_1631, .Notice_1621 {
+    display: none
+} */
+.Artworks_1746 , .Art_1745, .Addhidden, .Size_1736, .Hemming_1738, .Grommets_1740 , .Agreement_1743, .Notice_1733 {
     display: none
 }
-#options-1621-list .admin__field-option:nth-child(1){
+#options-1733-list .admin__field-option:nth-child(1){
     display: none;
 }
 /* 14oz Vinyl Banner */
-.Agreement_1441, .Artworks_1444, .Art_1443, .Size_1433, .Hemming_1436, .Grommets_1438, .Notice_1434 {
+/* .Agreement_1441, .Artworks_1444, .Art_1443, .Size_1433, .Hemming_1436, .Grommets_1438, .Notice_1434 {
+    display: none;
+} */
+.Agreement_1762, .Artworks_1765, .Art_1764, .Size_1755, .Hemming_1757, .Grommets_1759, .Notice_1752 {
     display: none;
 }
-#options-1434-list .admin__field-option:nth-child(1){
+#options-1752-list .admin__field-option:nth-child(1){
     display: none;
 }
 
@@ -47,7 +53,10 @@
     display: none;
 }
 /* Premium Coated Banner */
-.Agreement_1545, .Artworks_1548, .Art_1547, .Pocket-Size_1589, .Hemming_1540, .Grommets_1542, .Notice_1533 {
+/* .Agreement_1545, .Artworks_1548, .Art_1547, .Pocket-Size_1538, .Hemming_1540, .Grommets_1542, .Notice_1533 {
+    display: none;
+}  */
+.Agreement_1882, .Artworks_1885, .Art_1881, .Pocket-Size_1538, .Hemming_1540, .Grommets_1542, .Notice_1533 {
     display: none;
 } 
 #options-1533-list .admin__field-option:nth-child(1){
@@ -89,8 +98,11 @@
     display: none;
 }
 /* Vinyl Stickers (Window Decal) */
-.Agreement_861, .Artworks_1035, .Art_1034 {
+.Agreement_1842, .Artworks_1845, .Art_1844 {
     display: none;
+}
+.Artworks_1845 .changeSelectOp .options-list .choice:nth-child(1) {
+    display: none !important;
 }
 /* Wall Vinyl Decals */
 .Agreement_862, .Artworks_1037, .Art_1036 {
@@ -118,7 +130,7 @@
     display: none;
 }
 /* Digital Poster  */
-.Artworks_1047, .Art_1046 {
+.Agreement_1864, .Artworks_1047, .Art_1046 {
     display: none;
 } 
 /* Acrylic Boards */
@@ -130,8 +142,14 @@
     display: none;
 }
 /* Aluminum Sheets */
-.Agreement_918, .Artworks_920, .Art_919, .Inches_1141, .Inches_1140, .addF_1142  {
+.Agreement_918, .Artworks_920, .Art_919, .Inches_1141, .Inches_1140, .addF_1142, .addF_1142 + .admin__field, .addF_1142 + .admin__field + .admin__field  {
     display: none;
+}
+.addF_1142.Addactive + .admin__field {
+    display: block;
+}
+.addF_1142.Addactive + .admin__field + .admin__field {
+    display: block;
 }
 
 /* Arrow Spinner Signs */
@@ -155,7 +173,7 @@
 }
 
 /* Styrene Boards */
-.Agreement_887, .Artworks_1059, .Art_1058 {
+.Agreement_887, .Artworks_1059, .Art_1058, .Side_634, .Side_1879 {
     display: none;
 }
 
@@ -165,19 +183,29 @@
 }
 
 /* Foam Boards */
-.Agreement_884, .Side_654, .Side_883, .Artworks_924, .Art_923 {
+.Agreement_1892, .Side_654, .Side_1888, .Artworks_1894, .Art_1893 {
     display: none;
 }  
+#options-1894-list .admin__field-option:nth-child(1){
+    display: none;
+}
 /* Eagle Board (Eco Board) */
 .Agreement_882, .Side_881, .Side_663, .Artworks_922, .Art_921 {
     display: none;
 }
+#options-922-list .choice:nth-child(1), #options-922-list .choice:nth-child(2) {
+    display: none !important;
+}
+.Artworks_922 .changeSelectOp .options-list .choice:nth-child(2) {
+    display: none !important;
+}
+
 /* Converd Coated Board */
 .Agreement_880, .Material-_879, .Material_671, .Artworks_917, .Art_916 {
     display: none;
 }
 /* Mini Banner Stands */
-.Artworks_953, .Material_892, .Material_754 {
+.Agreement_1866, .Artworks_1873, .Material_892, .Material_754 {
     display: none;
 }
 /* Outdoor Banner Stand */
@@ -189,17 +217,26 @@
     display: none;
 }
 /* X-Frame with Supersmooth */
-.Agreement_902, .Inches_965, .Inches_966, .Inches_967, .Inches_968, .Art_1060, .Artworks_1061 {
+.Agreement_902, .Inches_965, .Inches_966, .Inches_967, .Inches_968, .Art_1060, .Artworks_1061, .Material_804 + .admin__field, .Material_804  + .admin__field + .admin__field {
     display: none;
+}
+.Material_804.Addactive +  .admin__field, .Material_804.Addactive +  .admin__field + .admin__field {
+    display: block !important;
 }
 /* X-Frame with Polypropylene (PET) */
-.Agreement_901, .Inches_969, .Inches_970, .Inches_971, .Inches_972, .Artworks_1063, .Art_1062 {
+.Agreement_901, .Inches_969, .Inches_970, .Inches_971, .Inches_972, .Artworks_1063, .Art_1062, .Material_797 + .admin__field, .Material_797 + .admin__field + .admin__field {
     display: none;
 }
+.Material_797.Addactive +  .admin__field, .Material_797.Addactive +  .admin__field + .admin__field {
+    display: block !important;
+}
 /* X-Frame with Banner */
-.Inches_980, .Inches_979, .Agreement_900, .Artworks_1065, .Art_1064  {
+.Inches_980, .Inches_979, .Agreement_900, .Artworks_1065, .Art_1064, .Material_789 + .admin__field, .Material_789 + .admin__field + .admin__field{
     display: none;
 } 
+.Material_789.Addactive +  .admin__field, .Material_789.Addactive +  .admin__field + .admin__field {
+    display: block !important;
+}
 /* Step and Repeat Banners */
 .Agreement_899, .Artworks_1067, .Art_1066 {
     display: none;
@@ -208,8 +245,15 @@
 .Agreement_1699, .Available_1696, .Artworks_1702, .Art_1701 {
     display: none;
 }
+/* Economic Retractable Stand */
+.Artworks_1905, .Art_1904 {
+    display: none;
+}
+#options-1905-list .admin__field-option:nth-child(1){
+    display: none;
+}
 /* Custom Sublimation Transfers */
-.Art_981, .Artworks_982 {
+.Agreement_1865, .Art_981, .Artworks_982 {
     display: none;
 }
 #options-977-list .admin__field-option:nth-child(1){
@@ -241,7 +285,7 @@
     display: none;
 } 
 /* Styrene Boards Contour */
-.Agreement_936, .Artworks_996, .Art_995 {
+.Agreement_936, .Artworks_996, .Art_995, .Side_568, .Side_1880 {
     display: none;
 }  
 /* PVC Sintra Board Contour */
@@ -249,9 +293,12 @@
     display: none;
 }  
 /* Foam Boards- Contour */
-.Agreement_956, .Artworks_930, .Art_929, .Side_588, .Side_955 {
+.Agreement_956, .Artworks_930, .Art_929, .Side_1895, .Side_955 {
     display: none;
-}   
+}
+/* .Agreement_1902, .Artworks_1907, .Art_1905, .Side_1896, .Side_1897 {
+    display: none;
+}  */ 
 /* Wall Vinyl Decals Contour */
 .Agreement_951, .Artworks_998, .Art_997 {
     display: none;

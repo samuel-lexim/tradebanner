@@ -10,8 +10,8 @@
 if (!class_exists('S3')) require_once('S3.php');
 
 //AWS access info
-if (!defined('awsAccessKey')) define('awsAccessKey', 'AKIAJGKTM67FZFIX3CEAK');
-if (!defined('awsSecretKey')) define('awsSecretKey', 'VdJqlC5tBKqDwMWRSLfg39gInSxF1buKueGUZv/1K');
+if (!defined('awsAccessKey')) define('awsAccessKey', 'AKIAJGKTM67FZFIX3CEA');
+if (!defined('awsSecretKey')) define('awsSecretKey', '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');
 $s3 = new S3(awsAccessKey, awsSecretKey);
 //print_r($s3->listBuckets());
 

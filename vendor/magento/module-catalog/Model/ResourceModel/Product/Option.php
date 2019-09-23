@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Catalog\Model\ResourceModel\Product;
@@ -248,13 +248,6 @@ class Option extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
         $titleTableName = $this->getTable('catalog_product_option_title');
         foreach ([Store::DEFAULT_STORE_ID, $object->getStoreId()] as $storeId) {
             $existInCurrentStore = $this->getColFromOptionTable($titleTableName, (int)$object->getId(), (int)$storeId);
-
-//            $existInDefaultStore = $this->getColFromOptionTable(
-//                $titleTableName,
-//                (int)$object->getId(),
-//                \Magento\Store\Model\Store::DEFAULT_STORE_ID
-//            );
-
             $existInDefaultStore = (int)$storeId == Store::DEFAULT_STORE_ID ?
                 $existInCurrentStore :
                 $this->getColFromOptionTable($titleTableName, (int)$object->getId(), Store::DEFAULT_STORE_ID);
@@ -583,8 +576,8 @@ class Option extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
         if (null === $this->metadataPool) {
             $this->metadataPool = \Magento\Framework\App\ObjectManager::getInstance()
                 ->get(\Magento\Framework\EntityManager\MetadataPool::class);
-//                ->get('Magento\Framework\EntityManager\MetadataPool');
         }
+
         return $this->metadataPool;
     }
 }

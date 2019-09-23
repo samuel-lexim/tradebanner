@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Catalog\Ui\DataProvider\Product\Form\Modifier;
@@ -145,8 +145,7 @@ class CustomOptions extends AbstractModifier
         ProductOptionsPrice $productOptionsPrice,
         UrlInterface $urlBuilder,
         ArrayManager $arrayManager
-    )
-    {
+    ) {
         $this->locator = $locator;
         $this->storeManager = $storeManager;
         $this->productOptionsConfig = $productOptionsConfig;
@@ -165,7 +164,6 @@ class CustomOptions extends AbstractModifier
 
         /** @var \Magento\Catalog\Model\Product\Option $option */
         foreach ($productOptions as $index => $option) {
-            //$options[$index] = $this->formatPriceByPath(static::FIELD_PRICE_NAME, $option->getData());
             $optionData = $option->getData();
             $optionData[static::FIELD_IS_USE_DEFAULT] = !$option->getData(static::FIELD_STORE_TITLE_NAME);
             $options[$index] = $this->formatPriceByPath(static::FIELD_PRICE_NAME, $optionData);
@@ -993,11 +991,15 @@ class CustomOptions extends AbstractModifier
                 'data' => [
                     'config' => [
                         'label' => __('Compatible File Extensions'),
+                        'notice' => __('Enter separated extensions, like: png, jpg, gif.'),
                         'componentType' => Field::NAME,
                         'formElement' => Input::NAME,
                         'dataScope' => static::FIELD_FILE_EXTENSION_NAME,
                         'dataType' => Text::NAME,
                         'sortOrder' => $sortOrder,
+                        'validation' => [
+                            'required-entry' => true,
+                        ],
                     ],
                 ],
             ],

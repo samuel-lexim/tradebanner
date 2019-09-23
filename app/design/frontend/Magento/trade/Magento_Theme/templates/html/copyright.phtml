@@ -11,10 +11,13 @@
         <div class="footer-content row" style="padding: 20px 0 10px 0">
             <div class="col-xs-12 col-sm-12">
                 <div class="footer-header">
-                    <p>ABOUT US</p>
-                    <img src="/pub/media/images/icon/footer-line.png">
+				<p><a href="/terms-and-conditions"><span>Terms and Conditions</span></a></p>
+				<img src="/pub/media/images/icon/footer-line.png">
                 </div>
 
+				
+				
+				
                 <div class="row">
                     <div class="col-xs-12 col-sm-3">
                         <div class="footer-logo">
@@ -51,7 +54,7 @@
                             <div class="col-xs-12 col-sm-6">
                                 <div class="footer-detail">
                                     <img src="/pub/media/images/icon/icon-footer-clock.png">
-                                    M-F: 8:30AM-5:00PM PST
+                                    M-F: 8:00AM-5:00PM PST
                                 </div>
                             </div>
                         </div>                          
@@ -66,8 +69,166 @@
     <div class="footer-copyright">
         <div class="container">
             <div class="copyright-text">
-                All rights reserved 2017, Tradebanner.com
+                All rights reserved 2019, Tradebanner.com
             </div>
         </div>
     </div>
 </div>
+<div id="popup-mpdal" style="display:none;">
+    <div  class="text-popup">
+        <span class="first-content">We cover with exactly same turnaround and shipping speed as ordered</span>
+        <span class="second-content">Need extra rush shipping customer cover that</span>
+    </div>
+</div> 
+
+<script type="text/javascript">
+    require(['jquery', 'Magento_Ui/js/modal/modal'],function($, modal) {
+           $(document).ready(function($) {
+            var options = {
+                type: 'popup',
+                responsive: true,
+                innerScroll: true,
+                title: '',
+                buttons: [{
+                    text: $.mage.__('Ok'),
+                    class: '',
+                    click: function () {
+                        this.closeModal();
+                    }
+                }]
+            };
+            var popup = modal(options, $('#popup-mpdal'));
+            setTimeout(
+            secondFunction =  function() 
+            { 
+                if($('#checkout-shipping-method-load tbody tr label').prop('id')=='label_method_freeshipping_freeshipping'){
+                    $('#checkout-shipping-method-load tbody tr').click(function() {
+
+                        var nth_child = $(this).parent().children().length - $(this).nextAll().length;
+                        if(nth_child  > 4){
+                            
+                            $("#popup-mpdal").modal("openModal");
+                        }
+                    });
+                }else{ 
+                    $('#checkout-shipping-method-load tbody tr').click(function() {
+
+                        var nth_child = $(this).parent().children().length - $(this).nextAll().length;
+                        if(nth_child  > 3){
+                            
+                            $("#popup-mpdal").modal("openModal");
+                        }
+                    });
+                }
+            }, 4000);
+
+            $("#select_1698 option[value='2923']").each(function() {
+                    $(this).remove();
+                });
+
+        });
+    });
+</script>
+
+<style type="text/css">
+/*
+.Agreement_1915, .Artworks_1917, .Art_1916, .Inches_1919, .Inches_1920, .addF_1921 {
+    display: none;
+}*/
+
+.Agreement_1945, .Material-_1941, .Material_1940, .Artworks_1948, .Art_1947 {
+    display: none;
+}
+.cms-index-index #leftMenuUl li:nth-child(7) .submenu li:nth-child(12) > a,
+.cms-index-index #leftMenuUl li:nth-child(7) .submenu li:nth-child(13) > a{
+    margin-top: -5px;
+}
+.cms-index-index #leftMenuUl li:nth-child(7) .submenu li:nth-child(12) > a::before,
+.cms-index-index #leftMenuUl li:nth-child(7) .submenu li:nth-child(13) > a::before{
+    background-image: url('/pub/media/images/price-new.png');
+    height: 30px;
+    width: 30px;
+    content: '' !important;
+    margin: 0;
+    display: inline-block;
+    background-repeat: round;
+    z-index: 999;
+    margin-bottom: -10px;
+    margin-left: -30px;
+}
+#leftMenuUl li:nth-child(8) .submenu li:nth-child(12) > a,
+#leftMenuUl li:nth-child(8) .submenu li:nth-child(13) > a{
+    margin-top: -5px;
+}
+#leftMenuUl li:nth-child(8) .submenu li:nth-child(12) > a::before,
+#leftMenuUl li:nth-child(8) .submenu li:nth-child(13) > a::before{
+    background-image: url('/pub/media/images/price-new.png');
+    height: 30px;
+    width: 30px;
+    content: '' !important;
+    margin: 0;
+    display: inline-block;
+    background-repeat: round;
+    z-index: 999;
+    margin-bottom: -10px;
+    margin-left: -30px;
+}
+
+
+
+#leftMenuUl li:nth-child(2) .submenu li:nth-child(2) > a::before{
+    background-image: url('https://tradebanner.com/pub/media/images/price-down-concept.png');
+    height: 30px;
+    width: 30px;
+    content: '' !important;
+    margin: 0;
+    display: inline-block;
+    background-repeat: round;
+    z-index: 999;
+    margin-bottom: -11px;
+}
+#leftMenuUl li:nth-child(2) .submenu li:nth-child(2) > a{
+    margin-left: -34px;
+    margin-top: -5px;
+}
+
+.cms-index-index #leftMenuUl li:nth-child(1) .submenu li:nth-child(2) > a::before {
+    background-image: url('https://tradebanner.com/pub/media/images/price-down-concept.png');
+    height: 30px;
+    width: 30px;
+    content: '' !important;
+    margin: 0;
+    display: inline-block;
+    background-repeat: round;
+    z-index: 999;
+    margin-bottom: -11px;
+}
+.cms-index-index #leftMenuUl li:nth-child(1) .submenu li:nth-child(2) > a{
+    margin-left: -34px;
+    margin-top: -5px;
+}
+
+
+
+</style>
+
+<style type="text/css">
+    
+.Notice_1950,.Notice_1951,.Notice_1952,.Notice_1953,.Notice_1954,.Notice_1955,.Notice_1956,.Notice_1957,.Notice_1958,.Notice_1959{
+    display: none;
+}
+#options-1950-list .admin__field-option:nth-child(1),
+#options-1951-list .admin__field-option:nth-child(1),
+#options-1952-list .admin__field-option:nth-child(1),
+#options-1953-list .admin__field-option:nth-child(1),
+#options-1954-list .admin__field-option:nth-child(1),
+#options-1955-list .admin__field-option:nth-child(1),
+#options-1956-list .admin__field-option:nth-child(1),
+#options-1957-list .admin__field-option:nth-child(1),
+#options-1958-list .admin__field-option:nth-child(1),
+#options-1959-list .admin__field-option:nth-child(1)
+{
+    display: none;
+}
+
+</style>

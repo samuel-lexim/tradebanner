@@ -20,7 +20,7 @@
 
 namespace Eadesigndev\Pdfgenerator\Model\Source;
 
-class TemplateActive extends \Eadesigndev\Pdfgenerator\Model\Source\AbstractSource
+class TemplateActive extends AbstractSource
 {
     /**
      * Statuses

@@ -2,6 +2,10 @@
 /** @var $block \Magento\Framework\View\Element\Template */
 /** @var $helper \Magento\Search\Helper\Data */
 $helper = $this->helper('Magento\Search\Helper\Data');
+$_objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$storeManager = $_objectManager->get('Magento\Store\Model\StoreManagerInterface');
+$currentStore = $storeManager->getStore();
+$baseUrl = $currentStore->getBaseUrl();
 ?>
 
 <div class="block block-search" id="topSearchWrap">
@@ -42,4 +46,7 @@ $helper = $this->helper('Magento\Search\Helper\Data');
             </div>
         </form>
     </div>
+</div>
+<div class="link-account-mobile">
+  <a href="<?= $baseUrl; ?>/customer/account" title="">My Account</a>
 </div>

@@ -11,6 +11,7 @@
 
 <form class="form contact row"
       action="<?= $block->getFormAction(); ?>"
+      onsubmit="return validateForm2()"
       id="contact-form"
       method="post"
       data-hasrequired="<?= __('* Required Fields') ?>"
@@ -24,17 +25,17 @@
                 <img src="/pub/media/images/icon/icon-footer-phone.png">
                 1-888-900-6539
             </div>
-            <div class="footer-detail">
+            <!-- <div class="footer-detail">
                 <img src="/pub/media/images/icon/icon-footer-fax.png">
                 1-562-381-2114
-            </div>
+            </div> -->
             <div class="footer-detail">
                 <img src="/pub/media/images/icon/icon-footer-email.png">
                 info@tradebanner.com
             </div>
             <div class="footer-detail">
                 <img src="/pub/media/images/icon/icon-footer-clock.png">
-                M-F: 8:30AM-5:00PM PST
+                M-F: 8:00AM-5:00PM PST
             </div>
         </div>
     </div>
@@ -68,6 +69,21 @@
                     </div>
                 </div>
                 <?php echo $block->getChildHtml('form.additional.info'); ?>
+                <!-- dev lam -->
+	            <script src='https://www.google.com/recaptcha/api.js'></script>
+	            <div class="g-recaptcha" data-sitekey="6LeWb0sUAAAAADM2RJayBwgBFAvGlCgWwDClJgtl"  data-callback="recaptchaCallback" data-expired-callback="recaptchaExpired" style="transform:scale(0.86);-webkit-transform:scale(0.86);transform-origin:0 0;-webkit-transform-origin:0 0; margin-top: 15px;"></div>
+	            <input type="hidden" name="recaptcha" data-rule-recaptcha="true">
+	        
+	            <script type="text/javascript">
+	                function validateForm2() {   
+	                    var recaptcha = document.forms["contact-form"]["g-recaptcha-response"].value;
+	                    if (recaptcha == "") {
+	                        alert("Please fill reCAPTCHA");
+	                        return false;
+	                    }
+	                }
+	            </script>
+            	<!-- End dev lam -->
                 <div class="actions-toolbar">
                     <div class="primary">
                         <input type="hidden" name="hideit" id="hideit" value="" />

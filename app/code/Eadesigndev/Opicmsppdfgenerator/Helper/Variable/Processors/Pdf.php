@@ -126,7 +126,9 @@ class Pdf extends \Eadesigndev\Opicmsppdfgenerator\Helper\AbstractPDF
         $losTZ = new \DateTimeZone("America/Los_Angeles");
         $date = new \DateTime($utcDate, $UTC );
         $date->setTimezone( $losTZ );
-        $eaOrder->setData('created_at', $date->format('Y-m-d H:i:s'));
+        // #Lampk49
+        $eaOrder->setData('created_at', $date->format('Y-m-d h:i:s A'));
+        // #Lampk49
         // #Samuel Kong
 
         $templateModel = $this->template;

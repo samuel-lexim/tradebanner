@@ -19,6 +19,8 @@
 
 namespace Eadesigndev\Pdfgenerator\Controller\Adminhtml\Templates;
 
+use Eadesigndev\Pdfgenerator\Controller\Adminhtml\Templates;
+use Eadesigndev\Pdfgenerator\Model\Pdfgenerator;
 use Magento\Backend\App\Action;
 use Magento\Framework\App\Request\DataPersistorInterface;
 use Magento\Framework\Exception\LocalizedException;
@@ -26,7 +28,12 @@ use Eadesigndev\Pdfgenerator\Model\Source\TemplateActive;
 use Eadesigndev\Pdfgenerator\Model\PdfgeneratorRepository as TemplateRepository;
 use Eadesigndev\Pdfgenerator\Model\PdfgeneratorFactory;
 
-class Save extends \Magento\Backend\App\Action
+/**
+ * Class Save
+ * @package Eadesigndev\Pdfgenerator\Controller\Adminhtml\Templates
+ * @SuppressWarnings("CouplingBetweenObjects")
+ */
+class Save extends Action
 {
     /**
      * Authorization level of a basic admin session
@@ -69,8 +76,7 @@ class Save extends \Magento\Backend\App\Action
         DataPersistorInterface $dataPersistor,
         TemplateRepository $templateRepository,
         PdfgeneratorFactory $pdfgeneratorFactory
-    )
-    {
+    ) {
         $this->dataProcessor = $dataProcessor;
         $this->dataPersistor = $dataPersistor;
         $this->templateRepository = $templateRepository;
@@ -101,13 +107,15 @@ class Save extends \Magento\Backend\App\Action
                 $data['template_id'] = null;
             }
 
-            /** @var \Eadesigndev\Pdfgenerator\Model\Pdfgenerator $model */
+            /** @var Pdfgenerator $model */
 
             $id = $this->getRequest()->getParam('template_id');
             if ($id) {
+                /** @var Pdfgenerator $model */
                 $model = $this->templateRepository->getById($id);
             } else {
                 unset($data['template_id']);
+                /** @var Pdfgenerator $model */
                 $model = $this->pdfgeneratorFactory->create();
             }
 
@@ -138,7 +146,7 @@ class Save extends \Magento\Backend\App\Action
                 $this->messageManager->addErrorMessage($e->getMessage());
             } catch (\Exception $e) {
                 $this->messageManager->addExceptionMessage(
-                    $e->getMessage(),
+                    $e,
                     __('Something went wrong while saving the template.')
                 );
             }
@@ -157,10 +165,11 @@ class Save extends \Magento\Backend\App\Action
      *
      * @return boolean
      */
+    //@codingStandardsIgnoreLine
     protected function _isAllowed()
     {
         return $this->_authorization->isAllowed(
-            \Eadesigndev\Pdfgenerator\Controller\Adminhtml\Templates::ADMIN_RESOURCE_VIEW
+            Templates::ADMIN_RESOURCE_VIEW
         );
     }
 }

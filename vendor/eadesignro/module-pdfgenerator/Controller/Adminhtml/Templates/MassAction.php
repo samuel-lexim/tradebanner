@@ -19,21 +19,23 @@
 
 namespace Eadesigndev\Pdfgenerator\Controller\Adminhtml\Templates;
 
+use Eadesigndev\Pdfgenerator\Controller\Adminhtml\Templates;
+use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
 use Magento\Ui\Component\MassAction\Filter;
 use Eadesigndev\Pdfgenerator\Model\ResourceModel\Pdfgenerator\CollectionFactory as templateCollectionFactory;
 
-abstract class MassAction  extends \Magento\Backend\App\Action
+abstract class MassAction extends Action
 {
     /**
      * @var Filter
      */
-    protected $filter;
+    public $filter;
 
     /**
      * @var CollectionFactory
      */
-    protected $templateCollectionFactory;
+    public $templateCollectionFactory;
     
     /**
      * @param Context $context
@@ -44,8 +46,7 @@ abstract class MassAction  extends \Magento\Backend\App\Action
         Context $context,
         Filter $filter,
         templateCollectionFactory $templateCollectionFactory
-    )
-    {
+    ) {
         $this->filter = $filter;
         $this->templateCollectionFactory = $templateCollectionFactory;
         parent::__construct($context);
@@ -56,10 +57,11 @@ abstract class MassAction  extends \Magento\Backend\App\Action
      *
      * @return boolean
      */
+    //@codingStandardsIgnoreLine
     protected function _isAllowed()
     {
         return $this->_authorization->isAllowed(
-            \Eadesigndev\Pdfgenerator\Controller\Adminhtml\Templates::ADMIN_RESOURCE_SAVE);
+            Templates::ADMIN_RESOURCE_SAVE
+        );
     }
-
 }

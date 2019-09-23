@@ -1,0 +1,15 @@
+1. Create company_name column in sales_order_grid
+
+2. Install extension
+
+3. Update company for old order
+
+
+
+update sales_order_grid a
+
+inner join customer_grid_flat b
+
+on a.customer_id = b.entity_id
+
+set a.company_name = b.billing_company

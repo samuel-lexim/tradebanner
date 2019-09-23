@@ -63,9 +63,18 @@
     $collection1 = $banners->getAllBannerByType($banners::TYPE_HOME_BANNER);
 ?>
 <?php if (isset($collection1) && count($collection1) > 0) { ?>
-    <?php $size = count($collection1); ?>
+    <?php $size = count($collection1);
+         $collection1_tam = array();   
+         $count_collection=count($collection1);
+         $k = $count_collection;
+         while($k > 0) {
+              array_push($collection1_tam, $collection1[$k-1]);
+              $k--;
+        }
+        $collection1 = $collection1_tam;
+     ?>
     <div class="clearfix"></div>
-    <div id="bannerHS" class="carousel slide" data-ride="carousel" data-interval="false">
+    <div id="bannerHS" class="carousel slide" data-ride="carousel" data-interval="3000">
         <!-- Wrapper for slides -->
         <div class="carousel-inner" role="listbox">
             <?php $i = 1; ?>
@@ -73,7 +82,9 @@
                 <div class="item <?= ($i == 1) ? 'active':'' ?>">
                     <img src="<?= $mediaUrl . $bn['image']?>" />
                     <div class="innerHS">
-                        <p class="titHS"><?= ($bn['name'] == '.') ? "" :  $bn['name'] ?></p>
+                        <p class="titHS">
+                            <?//= ($bn['name'] == '.') ? "" :  $bn['name'] ?>    
+                        </p>
                         <p class="sumHS"><?= $bn['details'] ?></p>
                         <?php if ($bn['link'] != '') { ?>
                             <a href="<?=$bn['link']?>" class="clickHereHS">CLICK HERE</a>
@@ -131,7 +142,7 @@
                         <img src="/pub/media/images/home/icon-broker.png"/>
                     </div>
                     <div class="tit">Broker Friendly</div>
-                    <p class="sum">Our biggest vision is to support broken & wholesalers. When you succeed, we succeed.
+                    <p class="sum">Our biggest vision is to support broker & wholesalers. When you succeed, we succeed.
                         Not only we will have best price and quality, but we give 100% support for any of your custom
                         job.<br>Just talk to us.</p>
                 </div>
@@ -159,6 +170,8 @@
             ->addActiveFilter()->addCategoryFilter($newsCat)->setOrder('creation_time', 'DESC')->setPageSize(5);
         $promotions = $_objectManager->create('Magefan\Blog\Model\ResourceModel\Post\Collection')
             ->addActiveFilter()->addCategoryFilter($proCat)->setOrder('creation_time', 'DESC')->setPageSize(3);
+//             $magentoDateObject = $_objectManager->create('Magento\Framework\Stdlib\DateTime\DateTime');
+// echo $magentoDate = $magentoDateObject->gmtDate();
         ?>
 
         <div class="row" id="promotionHome">

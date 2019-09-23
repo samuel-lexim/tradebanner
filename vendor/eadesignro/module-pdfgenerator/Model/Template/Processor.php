@@ -20,6 +20,7 @@
 namespace Eadesigndev\Pdfgenerator\Model\Template;
 
 use Magento\Email\Model\Template;
+use Magento\Framework\App\Area;
 use Magento\Framework\DataObject;
 
 /**
@@ -91,7 +92,6 @@ class Processor extends Template
             ->setIsChildTemplate($this->isChildTemplate())
             ->setTemplateProcessor([$this, 'getTemplateContent']);
 
-
         $processor->setVariables($this->getVariables());
         $this->setUseAbsoluteLinks(true);
         $html = $this->html($processor);
@@ -145,8 +145,9 @@ class Processor extends Template
         $this->storeId = $templates[0];
 
         if ($this->designConfig === null) {
+            //@codingStandardsIgnoreLine
             $this->designConfig = new DataObject(
-                ['area' => \Magento\Framework\App\Area::AREA_FRONTEND, 'store' => $this->storeId]
+                ['area' => Area::AREA_FRONTEND, 'store' => $this->storeId]
             );
         }
 

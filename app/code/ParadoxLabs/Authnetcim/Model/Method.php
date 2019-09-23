@@ -61,6 +61,17 @@ class Method extends \ParadoxLabs\TokenBase\Model\AbstractMethod
     {
         /** @var \Magento\Sales\Model\Order\Payment $payment */
 
+        // Check for stale Accept.js token
+        $acceptJsValue = $this->getInfoInstance()->getAdditionalInformation('acceptjs_value');
+        $acceptCardId  = $this->registry->registry('authnetcim-acceptjs-' . $acceptJsValue);
+        if (!empty($acceptJsValue) && $acceptCardId !== null) {
+            // If we already stored the current token as a card and recorded it as such (via arbitrary registry key),
+            // we can't reuse it -- swap the card ID in and use that instead.
+            $payment->setData('tokenbase_id', $acceptCardId);
+            $payment->unsAdditionalInformation('acceptjs_key');
+            $payment->unsAdditionalInformation('acceptjs_value');
+        }
+
         if ($this->card !== null) {
             $this->log(sprintf('loadOrCreateCard(%s %s)', get_class($payment), $payment->getId()));
 
@@ -201,6 +212,7 @@ class Method extends \ParadoxLabs\TokenBase\Model\AbstractMethod
 
                     $this->gateway()->clearParameters();
                     $this->gateway()->setCard($this->gateway()->getCard());
+                    $this->handleShippingAddress($payment);
                     $this->gateway()->setHaveAuthorized(true);
 
                     $authResponse    = $this->gateway()->authorize($payment, $outstanding);
@@ -208,47 +220,47 @@ class Method extends \ParadoxLabs\TokenBase\Model\AbstractMethod
                     // Reauth failed: Take no action
                     $this->log('afterCapture(): Reauthorization not successful. Continuing with original transaction.');
                 }
+            }
 
-                /**
-                 * Even if the auth didn't go through, we need to create a new 'transaction'
-                 * so we can still do an online capture for the remainder.
-                 */
-                if ($authResponse !== null) {
-                    $payment->setTransactionId(
-                        $this->getValidTransactionId($payment, $authResponse->getTransactionId())
-                    );
-
-                    $payment->setTransactionAdditionalInfo(
-                        \Magento\Sales\Model\Order\Payment\Transaction::RAW_DETAILS,
-                        $authResponse->getData()
-                    );
-
-                    $message = __(
-                        'Reauthorized outstanding amount of %1.',
-                        $payment->formatPrice($outstanding)
-                    );
-                } else {
-                    $payment->setTransactionId(
-                        $this->getValidTransactionId($payment, $response->getTransactionId() . '-auth')
-                    );
-                }
-
-                $payment->setData('parent_transaction_id', null);
-                $payment->setIsTransactionClosed(0);
-
-                $transaction = $payment->addTransaction(
-                    \Magento\Sales\Model\Order\Payment\Transaction::TYPE_AUTH,
-                    $payment->getOrder(),
-                    false
+            /**
+             * Even if the auth didn't go through, we need to create a new 'transaction'
+             * so we can still do an online capture for the remainder.
+             */
+            if ($authResponse !== null) {
+                $payment->setTransactionId(
+                    $this->getValidTransactionId($payment, $authResponse->getTransactionId())
                 );
 
-                if ($message !== null) {
-                    $payment->addTransactionCommentsToOrder($transaction, $message);
-                }
+                $payment->setTransactionAdditionalInfo(
+                    \Magento\Sales\Model\Order\Payment\Transaction::RAW_DETAILS,
+                    $authResponse->getData()
+                );
 
-                $payment->setTransactionId($wasTransId);
-                $payment->setData('parent_transaction_id', $wasParentId);
+                $message = __(
+                    'Reauthorized outstanding amount of %1.',
+                    $payment->formatPrice($outstanding)
+                );
+            } else {
+                $payment->setTransactionId(
+                    $this->getValidTransactionId($payment, $response->getTransactionId() . '-auth')
+                );
             }
+
+            $payment->setData('parent_transaction_id', null);
+            $payment->setIsTransactionClosed(0);
+
+            $transaction = $payment->addTransaction(
+                \Magento\Sales\Model\Order\Payment\Transaction::TYPE_AUTH,
+                $payment->getOrder(),
+                false
+            );
+
+            if ($message !== null) {
+                $payment->addTransactionCommentsToOrder($transaction, $message);
+            }
+
+            $payment->setTransactionId($wasTransId);
+            $payment->setData('parent_transaction_id', $wasParentId);
         }
 
         $payment = $this->fixLegacyCcType($payment, $response);

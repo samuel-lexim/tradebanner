@@ -24,18 +24,13 @@ use Magento\Framework\View\Model\PageLayout\Config\BuilderInterface;
 /**
  * Class PageLayout
  */
-class TemplateType extends \Eadesigndev\Pdfgenerator\Model\Source\AbstractSource
+class TemplateType extends AbstractSource
 {
     
     /**
      * @var \Magento\Framework\View\Model\PageLayout\Config\BuilderInterface
      */
     private $pageLayoutBuilder;
-
-    /**
-     * @var array
-     */
-    private $options;
 
     /**
      * Constructor
@@ -61,5 +56,4 @@ class TemplateType extends \Eadesigndev\Pdfgenerator\Model\Source\AbstractSource
     {
         return [self::TYPE_INVOICE => __('Invoice')];
     }
-
 }

@@ -92,6 +92,7 @@ class Gateway extends \ParadoxLabs\TokenBase\Model\AbstractGateway
         'email'                     => ['maxLength' => 255],
         'emailCustomer'             => ['enum' => ['true', 'false']],
         'expirationDate'            => ['maxLength' => 7],
+        'includeIssuerInfo'         => ['enum' => ['true', 'false']],
         'invoiceNumber'             => ['maxLength' => 20, 'noSymbols' => true],
         'itemName'                  => ['maxLength' => 31, 'noSymbols' => true],
         'loginId'                   => ['maxLength' => 20],
@@ -139,6 +140,7 @@ class Gateway extends \ParadoxLabs\TokenBase\Model\AbstractGateway
             ],
         ],
         'transId'                   => ['charMask' => '\d'],
+        'unmaskExpirationDate'      => ['enum' => ['true', 'false']],
         'validationMode'            => ['enum' => ['liveMode', 'testMode', 'none']],
     ];
 
@@ -218,7 +220,7 @@ class Gateway extends \ParadoxLabs\TokenBase\Model\AbstractGateway
      *
      * @param string $request
      * @param array $params
-     * @return string
+     * @return array|string
      * @throws LocalizedException
      * @throws PaymentException
      */
@@ -248,6 +250,8 @@ class Gateway extends \ParadoxLabs\TokenBase\Model\AbstractGateway
                 CURLOPT_CAINFO         => $this->moduleDir->getDir('ParadoxLabs_Authnetcim') . '/authorizenet-cert.pem',
                 CURLOPT_SSL_VERIFYPEER => false,
             ],
+            'verifypeer' => false,
+            'verifyhost' => 0,
         ];
 
         // If we are running a money transaction, we don't want to cut it off even if it takes too long.
@@ -259,6 +263,8 @@ class Gateway extends \ParadoxLabs\TokenBase\Model\AbstractGateway
         if ($this->verifySsl === true) {
             $clientConfig['curloptions'][CURLOPT_SSL_VERIFYPEER] = true;
             $clientConfig['curloptions'][CURLOPT_SSL_VERIFYHOST] = 2;
+            $clientConfig['verifypeer'] = true;
+            $clientConfig['verifyhost'] = 2;
         }
 
         $httpClient->setUri($this->endpoint);
@@ -373,7 +379,7 @@ class Gateway extends \ParadoxLabs\TokenBase\Model\AbstractGateway
     /**
      * Turn transaction results and directResponse into a usable object.
      *
-     * @param string $transactionResult
+     * @param array $transactionResult
      * @return \ParadoxLabs\TokenBase\Model\Gateway\Response
      * @throws LocalizedException
      * @throws PaymentException
@@ -384,18 +390,18 @@ class Gateway extends \ParadoxLabs\TokenBase\Model\AbstractGateway
          * Check for not-found error first. If that error makes it here, that means they attempted to use a stored card
          * that could not be found (deleted, or account change, or such). Any way about it the card is no longer valid.
          */
-        if ($transactionResult['messages']['resultCode'] != 'Ok') {
+        if ($transactionResult['messages']['resultCode'] !== 'Ok') {
             $errorCode = $transactionResult['messages']['message']['code'];
             $errorText = $transactionResult['messages']['message']['text'];
 
-            if ($errorCode == 'E00040'
-                && $errorText == 'Customer Profile ID or Customer Payment Profile ID not found.'
+            if ($errorCode === 'E00040'
+                && $errorText === 'Customer Profile ID or Customer Payment Profile ID not found.'
             ) {
                 if ($this->hasData('card')) {
                     /**
                      * We know the card is not valid, so hide and get rid of it. Except we're in the middle
                      * of a transaction... so any change will just be rolled back. Save it for a little later.
-                     * @see \ParadoxLabs\TokenBase\Observer\CardLoadProcessDeleteQueueObserver::checkQueuedForDeletion()
+                     * @see \ParadoxLabs\TokenBase\Observer\CardLoadProcessDeleteQueueObserver::execute()
                      */
                     $this->registry->unregister('queue_card_deletion');
                     $this->registry->register('queue_card_deletion', $this->getData('card'));
@@ -410,7 +416,7 @@ class Gateway extends \ParadoxLabs\TokenBase\Model\AbstractGateway
                     __('Sorry, we were unable to find your payment record. '
                         . 'Please re-enter your payment info and try again.')
                 );
-            } elseif ($errorCode == 'E00040' && $errorText == 'Customer Shipping Address ID not found.') {
+            } elseif ($errorCode === 'E00040' && $errorText === 'Customer Shipping Address ID not found.') {
                 /**
                  * Invalid shipping ID. We should retry, but that's hard to do with this architecture.
                  * In a transaction, no events, ...
@@ -455,37 +461,39 @@ class Gateway extends \ParadoxLabs\TokenBase\Model\AbstractGateway
         }
 
         /**
-         * Response 54 is 'can't refund; txn has not settled.' 16 is 'cannot find txn' (expired). We deal with them.
+         * Response 54 is 'can't refund; txn has not settled.' 16 is 'cannot find txn' (expired).
+         * Allow those through; they're handled elsewhere.
          */
-        if (!in_array($response->getResponseReasonCode(), [16, 54])) {
-            /**
-             * Fail if:
-             * Error result
-             * OR error/decline response code
-             * OR no transID or auth code on a charge txn
-             */
-            if ($transactionResult['messages']['resultCode'] != 'Ok'
-                || in_array($response->getResponseCode(), [2, 3])
-                || (!in_array($response->getTransactionType(), ['credit', 'void'])
-                    && ($response->getTransactionId() == ''
-                        || ($response->getAuthCode() == '' && $response->getMethod() != 'ECHECK')))
-            ) {
-                $response->setIsError(true);
+        if (in_array($response->getResponseReasonCode(), [16, 54])) {
+            return $response;
+        }
 
-                $this->helper->log(
-                    $this->code,
-                    sprintf(
-                        "Transaction error: %s\n%s\n%s",
-                        $response->getResponseReasonText(),
-                        json_encode($response->getData()),
-                        $this->log
-                    )
-                );
+        /**
+         * Fail if:
+         * Error result
+         * OR error/decline response code
+         * OR no transID on a charge txn
+         */
+        if ($transactionResult['messages']['resultCode'] !== 'Ok'
+            || $response->getResponseCode() === 2
+            || $response->getResponseCode() === 3
+            || (empty($response->getTransactionId()) && !in_array($response->getTransactionType(), ['credit', 'void']))
+        ) {
+            $response->setIsError(true);
 
-                throw new PaymentException(
-                    __('Authorize.Net CIM Gateway: Transaction failed. ' . $response->getResponseReasonText())
-                );
-            }
+            $this->helper->log(
+                $this->code,
+                sprintf(
+                    "Transaction error: %s\n%s\n%s",
+                    $response->getResponseReasonText(),
+                    json_encode($response->getData()),
+                    $this->log
+                )
+            );
+
+            throw new PaymentException(
+                __('Authorize.Net CIM Gateway: Transaction failed. ' . $response->getResponseReasonText())
+            );
         }
 
         return $response;
@@ -562,10 +570,12 @@ class Gateway extends \ParadoxLabs\TokenBase\Model\AbstractGateway
 
             if ($transactionId !== null) {
                 $this->setParameter('transId', $transactionId);
-            } elseif ($payment->getData('transaction_id') != '') {
+            } else {
                 $this->setParameter('transId', $payment->getData('transaction_id'));
             }
-        } else {
+        }
+
+        if ($this->getHaveAuthorized() === false || empty($this->getTransactionId())) {
             $this->setParameter('transactionType', 'authCaptureTransaction');
         }
 
@@ -591,6 +601,7 @@ class Gateway extends \ParadoxLabs\TokenBase\Model\AbstractGateway
             );
 
             $this->clearParameters()
+                 ->setHaveAuthorized(false)
                  ->setCard($this->getData('card'));
 
             $response = $this->capture($payment, $amount, '');
@@ -616,12 +627,14 @@ class Gateway extends \ParadoxLabs\TokenBase\Model\AbstractGateway
         $this->setParameter('amount', $amount);
         $this->setParameter('invoiceNumber', $payment->getOrder()->getIncrementId());
 
-        if ($payment->getCreditmemo()->getBaseTaxAmount()) {
-            $this->setParameter('taxAmount', $payment->getCreditmemo()->getBaseTaxAmount());
-        }
+        if ($payment->getCreditmemo() instanceof \Magento\Sales\Api\Data\CreditmemoInterface) {
+            if ($payment->getCreditmemo()->getBaseTaxAmount()) {
+                $this->setParameter('taxAmount', $payment->getCreditmemo()->getBaseTaxAmount());
+            }
 
-        if ($payment->getCreditmemo()->getBaseShippingAmount()) {
-            $this->setParameter('shipAmount', $payment->getCreditmemo()->getBaseShippingAmount());
+            if ($payment->getCreditmemo()->getBaseShippingAmount()) {
+                $this->setParameter('shipAmount', $payment->getCreditmemo()->getBaseShippingAmount());
+            }
         }
 
         if ($transactionId !== null) {
@@ -640,7 +653,8 @@ class Gateway extends \ParadoxLabs\TokenBase\Model\AbstractGateway
             /**
              * Is this a full refund? If so, just void it. Nobody will see the difference.
              */
-            if ($amount == $payment->getCreditmemo()->getInvoice()->getBaseGrandTotal()) {
+            if ($payment->getCreditmemo() instanceof \Magento\Sales\Api\Data\CreditmemoInterface
+                && $amount == $payment->getCreditmemo()->getInvoice()->getBaseGrandTotal()) {
                 $transactionId = $this->getParameter('transId');
 
                 return $this->clearParameters()
@@ -885,13 +899,15 @@ class Gateway extends \ParadoxLabs\TokenBase\Model\AbstractGateway
                 $this->setParameter('customerPaymentProfileId', $paymentId);
 
                 // Handle Accept.js nonce (which would now be expired). Card number won't have changed, but exp might.
-                // TODO: This will need to be adjusted when Accept.js adds ACH support.
                 if ($this->hasParameter('dataValue')) {
                     $this->setParameter('cardNumber', 'XXXX' . $this->getCard()->getAdditional('cc_last4'));
                     $this->setParameter('expirationDate', date('Y-m', strtotime($this->getCard()->getExpires())));
                 }
 
-                $this->updateCustomerPaymentProfile();
+                if ($this->getParameter('cardNumber') !== 'XXXX'
+                    && $this->getParameter('expirationDate') !== '1970-01') {
+                    $this->updateCustomerPaymentProfile();
+                }
             }
         }
 
@@ -1213,7 +1229,9 @@ class Gateway extends \ParadoxLabs\TokenBase\Model\AbstractGateway
     public function getCustomerProfile()
     {
         $params = [
-            'customerProfileId' => $this->getParameter('customerProfileId'),
+            'customerProfileId'    => $this->getParameter('customerProfileId'),
+            'unmaskExpirationDate' => $this->getParameter('unmaskExpirationDate', 'false'),
+            'includeIssuerInfo'    => $this->getParameter('includeIssuerInfo', 'false'),
         ];
 
         return $this->runTransaction('getCustomerProfileRequest', $params);
@@ -1229,6 +1247,8 @@ class Gateway extends \ParadoxLabs\TokenBase\Model\AbstractGateway
         $params = [
             'customerProfileId'        => $this->getParameter('customerProfileId'),
             'customerPaymentProfileId' => $this->getParameter('customerPaymentProfileId'),
+            'unmaskExpirationDate'     => $this->getParameter('unmaskExpirationDate', 'false'),
+            'includeIssuerInfo'        => $this->getParameter('includeIssuerInfo', 'false'),
         ];
 
         return $this->runTransaction('getCustomerPaymentProfileRequest', $params);
@@ -1869,7 +1889,9 @@ class Gateway extends \ParadoxLabs\TokenBase\Model\AbstractGateway
             $qty = $item->getData('qty_ordered');
         }
 
+        // We're sending SKU and name through parameters to filter characters and length.
         $sku = $this->setParameter('itemName', $item->getSku())->getParameter('itemName');
+        $name = $this->setParameter('itemName', $item->getName())->getParameter('itemName');
 
         if ($qty < 1 || $item->getPrice() <= 0 || empty($sku)) {
             return false;
@@ -1878,13 +1900,14 @@ class Gateway extends \ParadoxLabs\TokenBase\Model\AbstractGateway
         // Discount amount is per-line, not per-unit (???). Math it out.
         $unitPrice = max(0, $item->getPrice() - ($item->getDiscountAmount() / $qty));
 
-        return [
-            // We're sending SKU and name through parameters to filter characters and length.
+        $itemData = [
             'itemId'    => $sku,
-            'name'      => $this->setParameter('itemName', $item->getName())->getParameter('itemName'),
+            'name'      => !empty($name) ? $name : $sku,
             'quantity'  => static::formatAmount($qty),
             'unitPrice' => static::formatAmount($unitPrice),
         ];
+        
+        return $itemData;
     }
 
     /**

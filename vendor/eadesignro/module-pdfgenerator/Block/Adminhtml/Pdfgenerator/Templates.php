@@ -20,13 +20,15 @@
 
 namespace Eadesigndev\Pdfgenerator\Block\Adminhtml\Pdfgenerator;
 
-class Templates extends \Magento\Backend\Block\Widget\Grid\Container
+use Magento\Backend\Block\Widget\Grid\Container;
+
+class Templates extends Container
 {
 
     /**
      * @return void;
      */
-    protected function _construct()
+    public function _construct()
     {
 
         $this->_controller = 'adminhtml_pdfgenerator';
@@ -49,7 +51,7 @@ class Templates extends \Magento\Backend\Block\Widget\Grid\Container
      * @param $resourceId
      * @return bool
      */
-    protected function _isAllowedAction($resourceId)
+    public function _isAllowedAction($resourceId)
     {
         return $this->_authorization->isAllowed($resourceId);
     }

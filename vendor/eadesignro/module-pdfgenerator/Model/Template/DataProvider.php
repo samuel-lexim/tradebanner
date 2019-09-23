@@ -21,16 +21,17 @@ namespace Eadesigndev\Pdfgenerator\Model\Template;
 
 use Eadesigndev\Pdfgenerator\Model\ResourceModel\Pdfgenerator\CollectionFactory as templateCollectionFactory;
 use Magento\Framework\App\Request\DataPersistorInterface;
+use Magento\Ui\DataProvider\AbstractDataProvider;
 
 /**
  * Class DataProvider
  */
-class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
+class DataProvider extends AbstractDataProvider
 {
     /**
      * @var \Eadesigndev\Pdfgenerator\Model\ResourceModel\Pdfgenerator\Collection
      */
-    protected $collection;
+    public $collection;
 
     /**
      * @var DataPersistorInterface
@@ -59,8 +60,7 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
         DataPersistorInterface $dataPersistor,
         array $meta = [],
         array $data = []
-    )
-    {
+    ) {
         $this->collection = $templateCollectionFactory->create();
         $this->dataPersistor = $dataPersistor;
         parent::__construct($name, $primaryFieldName, $requestFieldName, $meta, $data);
@@ -105,5 +105,4 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
 
         return $this->loadedData;
     }
-
 }

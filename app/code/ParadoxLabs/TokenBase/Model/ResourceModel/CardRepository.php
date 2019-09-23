@@ -97,15 +97,39 @@ class CardRepository implements CardRepositoryInterface
      * @return \ParadoxLabs\TokenBase\Api\Data\CardInterface
      * @throws CouldNotSaveException
      */
-    public function save(Data\CardInterface $card)
+    public function save(\ParadoxLabs\TokenBase\Api\Data\CardInterface $card)
     {
         try {
+            if (get_class($card) === \ParadoxLabs\TokenBase\Model\Card::class) {
+                /** @var \ParadoxLabs\TokenBase\Model\Card $card */
+                $card = $card->getTypeInstance();
+            }
+
             $this->resource->save($card);
         } catch (\Exception $exception) {
             throw new CouldNotSaveException(__($exception->getMessage()));
         }
 
         return $card;
+    }
+
+    /**
+     * Save card with extended objects.
+     *
+     * @param \ParadoxLabs\TokenBase\Api\Data\CardInterface $card
+     * @param \Magento\Customer\Api\Data\AddressInterface $address
+     * @param \ParadoxLabs\TokenBase\Api\Data\CardAdditionalInterface $additional
+     * @return \ParadoxLabs\TokenBase\Api\Data\CardInterface
+     */
+    public function saveExtended(
+        \ParadoxLabs\TokenBase\Api\Data\CardInterface $card,
+        \Magento\Customer\Api\Data\AddressInterface $address,
+        \ParadoxLabs\TokenBase\Api\Data\CardAdditionalInterface $additional
+    ) {
+        $card->setAddress($address);
+        $card->setAdditional($additional);
+
+        return $this->save($card);
     }
 
     /**
@@ -210,6 +234,10 @@ class CardRepository implements CardRepositoryInterface
     /**
      * Delete Card
      *
+     * Two-mode operation:
+     * - If the card is active, this will mark it inactive and queue for later removal (typically 120 days later).
+     * - If the card is already inactive, this will delete it entirely.
+     *
      * @param \ParadoxLabs\TokenBase\Api\Data\CardInterface $card
      * @return bool
      * @throws CouldNotDeleteException
@@ -217,7 +245,17 @@ class CardRepository implements CardRepositoryInterface
     public function delete(Data\CardInterface $card)
     {
         try {
-            $this->resource->delete($card);
+            if ((int)$card->getActive() === 0) {
+                if (get_class($card) === \ParadoxLabs\TokenBase\Model\Card::class) {
+                    /** @var \ParadoxLabs\TokenBase\Model\Card $card */
+                    $card = $card->getTypeInstance();
+                }
+
+                $this->resource->delete($card);
+            } else {
+                $card->queueDeletion();
+                $this->resource->save($card);
+            }
         } catch (\Exception $exception) {
             throw new CouldNotDeleteException(__($exception->getMessage()));
         }

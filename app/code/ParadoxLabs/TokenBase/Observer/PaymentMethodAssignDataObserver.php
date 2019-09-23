@@ -21,12 +21,12 @@ class PaymentMethodAssignDataObserver implements \Magento\Framework\Event\Observ
     /**
      * @var \ParadoxLabs\TokenBase\Helper\Data
      */
-    private $helper;
+    protected $helper;
 
     /**
      * @var \ParadoxLabs\TokenBase\Api\CardRepositoryInterface
      */
-    private $cardRepository;
+    protected $cardRepository;
 
     /**
      * @param \ParadoxLabs\TokenBase\Helper\Data $helper
@@ -75,7 +75,7 @@ class PaymentMethodAssignDataObserver implements \Magento\Framework\Event\Observ
             }
         }
 
-        $this->assignStandardData($payment, $data);
+        $this->assignStandardData($payment, $data, $method);
 
         $this->assignTokenbaseData($payment, $data, $method);
     }
@@ -83,11 +83,13 @@ class PaymentMethodAssignDataObserver implements \Magento\Framework\Event\Observ
     /**
      * @param \Magento\Payment\Model\InfoInterface $payment
      * @param \Magento\Framework\DataObject $data
+     * @param \Magento\Payment\Model\MethodInterface $method
      * @return void
      */
-    private function assignStandardData(
+    protected function assignStandardData(
         \Magento\Payment\Model\InfoInterface $payment,
-        \Magento\Framework\DataObject $data
+        \Magento\Framework\DataObject $data,
+        \Magento\Payment\Model\MethodInterface $method
     ) {
         /** @var \Magento\Sales\Model\Order\Payment $payment */
 
@@ -101,6 +103,10 @@ class PaymentMethodAssignDataObserver implements \Magento\Framework\Event\Observ
         $payment->setData('cc_ss_issue', $data->getData('cc_ss_issue'));
         $payment->setData('cc_ss_start_month', $data->getData('cc_ss_start_month'));
         $payment->setData('cc_ss_start_year', $data->getData('cc_ss_start_year'));
+
+        if ($method->getConfigData('can_store_bin') == 1) {
+            $payment->setAdditionalInformation('cc_bin', substr($data->getData('cc_number'), 0, 6));
+        }
     }
 
     /**
@@ -109,7 +115,7 @@ class PaymentMethodAssignDataObserver implements \Magento\Framework\Event\Observ
      * @param \Magento\Payment\Model\MethodInterface $method
      * @return void
      */
-    private function assignTokenbaseData(
+    protected function assignTokenbaseData(
         \Magento\Payment\Model\InfoInterface $payment,
         \Magento\Framework\DataObject $data,
         \Magento\Payment\Model\MethodInterface $method
@@ -139,6 +145,10 @@ class PaymentMethodAssignDataObserver implements \Magento\Framework\Event\Observ
                 $payment->setData('cc_last_4', $data->getData('cc_last4'));
             }
 
+            if (!empty($data->getData('cc_bin')) && $method->getConfigData('can_store_bin') == 1) {
+                $payment->setAdditionalInformation('cc_last_4', $data->getData('cc_bin'));
+            }
+
             if ($data->getData('cc_exp_year') != '' && $data->getData('cc_exp_month') != '') {
                 $payment->setData('cc_exp_year', $data->getData('cc_exp_year'));
                 $payment->setData('cc_exp_month', $data->getData('cc_exp_month'));
@@ -161,7 +171,7 @@ class PaymentMethodAssignDataObserver implements \Magento\Framework\Event\Observ
      * @return \ParadoxLabs\TokenBase\Api\Data\CardInterface
      * @throws \Magento\Framework\Exception\PaymentException
      */
-    private function loadAndSetCard(
+    protected function loadAndSetCard(
         \Magento\Payment\Model\InfoInterface $payment,
         $cardId,
         $byHash = false
@@ -205,7 +215,7 @@ class PaymentMethodAssignDataObserver implements \Magento\Framework\Event\Observ
      * @param \ParadoxLabs\TokenBase\Api\Data\CardInterface $card
      * @return $this
      */
-    private function setCardOnPayment(
+    protected function setCardOnPayment(
         \Magento\Payment\Model\InfoInterface $payment,
         \ParadoxLabs\TokenBase\Api\Data\CardInterface $card
     ) {
@@ -222,6 +232,10 @@ class PaymentMethodAssignDataObserver implements \Magento\Framework\Event\Observ
                 ->setData('cc_exp_month', $card->getAdditional('cc_exp_month'))
                 ->setData('cc_exp_year', $card->getAdditional('cc_exp_year'))
                 ->setData('tokenbase_card', $card);
+
+        if (!empty($card->getAdditional('cc_bin'))) {
+            $payment->setAdditionalInformation('cc_bin', $card->getAdditional('cc_bin'));
+        }
 
         return $this;
     }

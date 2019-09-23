@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -39,7 +39,8 @@ class Validator extends \Magento\Framework\Validator\AbstractValidator
     {
         $messages = [];
         $email = $value->getEmail();
-        if (!empty($email) && !\Zend_Validate::is($email, 'EmailAddress')) {
+        $validator = new \Zend\Validator\EmailAddress();
+        if (!empty($email) && !$validator->isValid($email)) {
             $messages['invalid_email_format'] = 'Invalid email format';
         }
 

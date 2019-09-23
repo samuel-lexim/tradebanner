@@ -20,44 +20,51 @@
 namespace Eadesigndev\Pdfgenerator\Controller\Adminhtml\Order;
 
 use \Magento\Backend\App\Action;
+use Magento\Backend\App\Action\Context;
+use Magento\Email\Model\Template\Config;
+use Magento\Framework\Controller\Result\JsonFactory;
+use Magento\Framework\Registry;
 
+/**
+ * Class Abstractpdf
+ * @package Eadesigndev\Pdfgenerator\Controller\Adminhtml\Order
+ * @SuppressWarnings("FoundProtected")
+ */
 abstract class Abstractpdf extends Action
 {
 
     /**
-     * @var \Magento\Framework\Registry
+     * @var Registry
      */
     private $coreRegistry;
 
     /**
-     * @var \Magento\Email\Model\Template\Config
+     * @var Config
      */
     private $emailConfig;
 
     /**
-     * @var \Magento\Framework\Controller\Result\JsonFactory
+     * @var JsonFactory
      */
-    protected $resultJsonFactory;
+    public $resultJsonFactory;
 
     /**
      * Abstractpdf constructor.
-     * @param Action\Context $context
-     * @param \Magento\Framework\Registry $coreRegistry
-     * @param \Magento\Email\Model\Template\Config $emailConfig
-     * @param \Magento\Framework\Controller\Result\JsonFactory $resultJsonFactory
+     * @param Context $context
+     * @param Registry $coreRegistry
+     * @param Config $emailConfig
+     * @param JsonFactory $resultJsonFactory
      */
     public function __construct(
-        \Magento\Backend\App\Action\Context $context,
-        \Magento\Framework\Registry $coreRegistry,
-        \Magento\Email\Model\Template\Config $emailConfig,
-        \Magento\Framework\Controller\Result\JsonFactory $resultJsonFactory
-    )
-    {
+        Context $context,
+        Registry $coreRegistry,
+        Config $emailConfig,
+        JsonFactory $resultJsonFactory
+    ) {
 
         $this->emailConfig = $emailConfig;
         parent::__construct($context);
         $this->coreRegistry = $coreRegistry;
         $this->resultJsonFactory = $resultJsonFactory;
     }
-
 }

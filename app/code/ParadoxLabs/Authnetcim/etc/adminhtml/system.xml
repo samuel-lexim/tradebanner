@@ -42,7 +42,7 @@
                 </field>
                 <field id="order_status" translate="label comment" type="select" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>New Order Status</label>
-                    <source_model>Magento\Sales\Model\Config\Source\Order\Status</source_model>
+                    <source_model>ParadoxLabs\TokenBase\Model\Source\OrderStatus</source_model>
                     <comment>Normally 'Pending' if 'Authorize Only' above; 'Processing' if not.</comment>
                 </field>
                 <field id="validation_mode" translate="label comment" type="select" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="0">
@@ -75,10 +75,6 @@
                     <label>Allow cards to not be stored</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <comment>If yes, customers can choose whether to save their credit card during checkout.</comment>
-                </field>
-                <field id="currency" translate="label" type="select" sortOrder="117" showInDefault="1" showInWebsite="1" showInStore="0">
-                    <label>Accepted Currency</label>
-                    <source_model>Magento\Config\Model\Config\Source\Locale\Currency</source_model>
                 </field>
                 <field id="allowspecific" translate="label" type="allowspecific" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Payment from Applicable Countries</label>
@@ -138,9 +134,6 @@
                     <label>Reauthorize on Partial Invoice</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <comment>If yes, when you create a partial invoice, we will reauthorize any outstanding balance on the order. This helps guarantee funds, but can cause multiple holds on the card until transactions settle.</comment>
-                    <depends>
-                        <field id="payment_action">authorize</field>
-                    </depends>
                 </field>
                 <field id="savecard_opt_out" translate="label comment" type="select" sortOrder="220" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Auto-select 'save for next time'</label>
@@ -196,7 +189,7 @@
                 </field>
                 <field id="order_status" translate="label comment" type="select" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>New Order Status</label>
-                    <source_model>Magento\Sales\Model\Config\Source\Order\Status</source_model>
+                    <source_model>ParadoxLabs\TokenBase\Model\Source\OrderStatus</source_model>
                     <comment>Normally 'Pending' if 'Authorize Only' above; 'Processing' if not.</comment>
                 </field>
                 <field id="validation_mode" translate="label comment" type="select" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="0">
@@ -219,10 +212,6 @@
                     <label>Allow cards to not be stored</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <comment>If yes, customers can choose whether to save their data during checkout.</comment>
-                </field>
-                <field id="currency" translate="label" type="select" sortOrder="117" showInDefault="1" showInWebsite="1" showInStore="0">
-                    <label>Accepted Currency</label>
-                    <source_model>Magento\Config\Model\Config\Source\Locale\Currency</source_model>
                 </field>
                 <field id="allowspecific" translate="label" type="allowspecific" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Payment from Applicable Countries</label>
@@ -265,9 +254,6 @@
                     <label>Reauthorize on Partial Invoice</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <comment>If yes, when you create a partial invoice, we will reauthorize any outstanding balance on the order. This helps guarantee funds, but can cause multiple holds on the card until transactions settle.</comment>
-                    <depends>
-                        <field id="payment_action">authorize</field>
-                    </depends>
                 </field>
                 <field id="savecard_opt_out" translate="label comment" type="select" sortOrder="220" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Auto-select 'save for next time'</label>

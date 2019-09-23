@@ -76,14 +76,13 @@ endforeach;
         <?php if (isset($fieldOptions[$option->getTitle()])): ?>
 
         var opId = "<?= $option->getId() ?>";
-     
         var opIdName = '#options_<?= $option->getId() ?>_text';
         var opJid = $('#options_<?= $option->getId() ?>_text');
 
         //change field title/label for input/output
         var parent = $('#options_<?= $option->getId() ?>_text').parent().parent();
         var child = parent.find('label span');
-     
+        // console.log(child);
         // if (child.length > 0) {
         var str = child[0].innerHTML + ' (' + '<?= $inputUnit ?>' + ')';
         child[0].innerHTML = str;
@@ -110,14 +109,14 @@ endforeach;
             fields[opId] = "options[" + opId + "]";
             //fields.push("options[" + opId + "]");
         }
-      
+
         var min_<?= $option->getId() ?> = <?= $fieldOptions[$option->getTitle()]['min'] ?>;
         var max_<?= $option->getId() ?> = <?= $fieldOptions[$option->getTitle()]['max'] ?>;
 
         $.validator.addMethod('pricecalculator-minmax-<?= $option->getTitle() ?>', function (value) {
             return !(value < min_<?= $option->getId() ?> || value > max_<?= $option->getId() ?>);
         }, $.mage.__('Please enter between ' + min_<?= $option->getId() ?> + ' and ' + max_<?= $option->getId() ?>));
-  
+
         $('#min_max_<?= $option->getId() ?>').text('Please enter between ' + min_<?= $option->getId() ?> + ' and ' + max_<?= $option->getId() ?>);
 
         var dataId<?= $option->getId() ?> = $('#options_<?= $option->getId() ?>_text').data("validate");
@@ -200,12 +199,11 @@ endforeach;
 
                 if (val !== undefined) {
                     if (parseFloat($('#options_' + key + '_text').val()) !== 0.1) {
-                        var option_val = parseFloat($('#options_' + key + '_text').val());                      
+                        var option_val = parseFloat($('#options_' + key + '_text').val());
                         area = area * option_val;
-                        nof_options++;                            
+                        nof_options++;
                     }
                 }
-
             });
 
             var unitConv = parseFloat(<?= $unitCoversion ?>);
@@ -300,8 +298,8 @@ endforeach;
         }
 
 
-      //  function updatePriceOnChange(fp = 0, opid) {
-         function updatePriceOnChange(opid) {    
+       // function updatePriceOnChange(fp = 0, opid) {
+          function updatePriceOnChange(opid) {  
             var additionalPriceObj = priceBox.cache.additionalPriceObject;
             var rowOpKey = "options[" + opid + "]";
 
@@ -384,7 +382,8 @@ endforeach;
                 // hide Corners_1472
                 $('.Corners_1472').hide();
                 $('.Corners_1472').attr('disabled', 'disabled');
-              
+                $('#select_1472').attr('disabled', 'disabled');
+             
 
                 value_qty = $('#qty').attr('value');
                 if(value_qty > 1){
@@ -414,16 +413,14 @@ endforeach;
                 // hide Corners_1459 
                 $('.Corners_1459').hide();
                 $('.Corners_1459').attr('disabled', 'disabled');
-            
+                $('#select_1459').attr('disabled', 'disabled');
 
-                if((widthVal_1448 > 46) || (HeightVal_1447 > 46)){
+                if((widthVal_1448 > 96) && (HeightVal_1447 > 96)){
                     $('.Notice_1449').addClass('Addactive');
                     $('#options_1449').removeAttr('checked');
                     $('#options_1449_2').attr('checked', 'checked');
-                    $('#options_1449_2').removeAttr('disabled');
                 } else{
-                    $('.Notice_1449').removeClass('Addactive');
-                    $('#options_1449_2').attr('disabled', 'disabled');
+                    $('.Notice_1408').removeClass('Addactive');
                 }
                 var Wind_1453 = $('#select_1453').find(":selected").attr('price');
                 Wind_1453 = (isNaN(Wind_1453)) ? 0 : parseFloat(Wind_1453);
@@ -461,14 +458,12 @@ endforeach;
                 // get height
                 var HeightVal_1566 = $('#options_1566_text').attr('value');
                 HeightVal_1566 = (isNaN(HeightVal_1566)) ? 0 : parseFloat(HeightVal_1566);
-                if((widthVal_1567 > 46) || (HeightVal_1566 > 46)){
+                if((widthVal_1567 > 96) && (HeightVal_1566 > 96)){
                     $('.Notice_1568').addClass('Addactive');
                     $('#options_1568').removeAttr('checked');
                     $('#options_1568_2').attr('checked', 'checked');
-                    $('#options_1568_2').removeAttr('disabled');
                 } else{
                     $('.Notice_1568').removeClass('Addactive');
-                    $('#options_1568_2').attr('disabled', 'disabled');
                 }
                 var Material_1569 = $('#select_1569').find(":selected").attr('price');
                 Material_1569 = (isNaN(Material_1569)) ? 0 : parseFloat(Material_1569);
@@ -506,14 +501,12 @@ endforeach;
                 // get height
                 var HeightVal_348 = $('#options_348_text').attr('value');
                 HeightVal_348 = (isNaN(HeightVal_348)) ? 0 : parseFloat(HeightVal_348);
-                if((widthVal_347 > 46) || (HeightVal_348 > 46)){
+                if((widthVal_347 > 96) && (HeightVal_348 > 96)){
                     $('.Notice_1886').addClass('Addactive');
                     $('#options_1886').removeAttr('checked');
                     $('#options_1886_2').attr('checked', 'checked');
-                    $('#options_1886_2').removeAttr('disabled');
                 } else{
                     $('.Notice_1886').removeClass('Addactive');
-                    $('#options_1886_2').attr('disabled', 'disabled');
                 }
                 var Pole_351 = $('#select_351').find(":selected").attr('price');
                 Pole_351 = (isNaN(Pole_351)) ? 0 : parseFloat(Pole_351);
@@ -547,14 +540,12 @@ endforeach;
                 // get height
                 var HeightVal_1496 = $('#options_1496_text').attr('value');
                 HeightVal_1496 = (isNaN(HeightVal_1496)) ? 0 : parseFloat(HeightVal_1496);
-                if((widthVal_1497 > 46) || (HeightVal_1496 > 46)){
+                if((widthVal_1497 > 96) && (HeightVal_1496 > 96)){
                     $('.Notice_1511').addClass('Addactive');
                     $('#options_1511').removeAttr('checked');
                     $('#options_1511_2').attr('checked', 'checked');
-                    $('#options_1511_2').removeAttr('disabled');
                 } else{
                     $('.Notice_1511').removeClass('Addactive');
-                    $('#options_1511_2').attr('disabled', 'disabled');
                 }
                 var Pole_1500 = $('#select_1500').find(":selected").attr('price');
                 Pole_1500 = (isNaN(Pole_1500)) ? 0 : parseFloat(Pole_1500);
@@ -590,16 +581,15 @@ endforeach;
                 // hide Corners_1884
                 $('.Corners_1884').hide();
                 $('.Corners_1884').attr('disabled', 'disabled');
-       
+                $('#select_1884').attr('disabled', 'disabled');
+            
 
-                if((widthVal_1531 > 46) || (HeightVal_1532 > 46)){
+                if((widthVal_1531 > 96) && (HeightVal_1532 > 96)){
                     $('.Notice_1533').addClass('Addactive');
                     $('#options_1533').removeAttr('checked');
                     $('#options_1533_2').attr('checked', 'checked');
-                    $('#options_1533_2').removeAttr('disabled');
                 } else{
                     $('.Notice_1533').removeClass('Addactive');
-                    $('#options_1533_2').attr('disabled', 'disabled');
                 }
                 var Pole_1536 = $('#select_1536').find(":selected").attr('price');
                 Pole_1536 = (isNaN(Pole_1536)) ? 0 : parseFloat(Pole_1536);
@@ -637,25 +627,24 @@ endforeach;
                     rateDiscount =0;
 
                 }
-                // hide Corners_1741
-                $('.Corners_1741').hide();
-                $('.Corners_1741').attr('disabled', 'disabled');
-                $('#select_1741').attr('disabled', 'disabled');
-         
                 // get width
                 var widthVal_1731 = $('#options_1731_text').attr('value');
                 widthVal_1731 = (isNaN(widthVal_1731)) ? 0 : parseFloat(widthVal_1731);
                 // get height
                 var HeightVal_1732 = $('#options_1732_text').attr('value');
                 HeightVal_1732 = (isNaN(HeightVal_1732)) ? 0 : parseFloat(HeightVal_1732);
-                if((widthVal_1731 > 46) || (HeightVal_1732 > 46)){
+                // hide Corners_1741
+                $('.Corners_1741').hide();
+                $('.Corners_1741').attr('disabled', 'disabled');
+                $('#select_1741').attr('disabled', 'disabled');
+          
+
+                if((widthVal_1731 > 96) && (HeightVal_1732 > 96)){
                     $('.Notice_1733').addClass('Addactive');
                     $('#options_1733').removeAttr('checked');
                     $('#options_1733_2').attr('checked', 'checked');
-                    $('#options_1733_2').removeAttr('disabled');
                 } else{
                     $('.Notice_1733').removeClass('Addactive');
-                    $('#options_1733_2').attr('disabled', 'disabled');
                 }
                 var Pole_1734 = $('#select_1734').find(":selected").attr('price');
                 Pole_1734 = (isNaN(Pole_1734)) ? 0 : parseFloat(Pole_1734);
@@ -695,15 +684,15 @@ endforeach;
                 // hide Corners_1760
                 $('.Corners_1760').hide();
                 $('.Corners_1760').attr('disabled', 'disabled');
+                $('#select_1760').attr('disabled', 'disabled');
               
-                if((widthVal_1750 > 46) || (HeightVal_1751 > 46)){
+                
+                if((widthVal_1750 > 96) && (HeightVal_1751 > 96)){
                     $('.Notice_1752').addClass('Addactive');
                     $('#options_1752').removeAttr('checked');
                     $('#options_1752_2').attr('checked', 'checked');
-                    $('#options_1752_2').removeAttr('disabled');
                 } else{
                     $('.Notice_1752').removeClass('Addactive');
-                    $('#options_1752_2').attr('disabled', 'disabled');
                 }
 
                 var Pole_1753 = $('#select_1753').find(":selected").attr('price');
@@ -744,14 +733,12 @@ endforeach;
                 // get height
                 var HeightVal_1583 = $('#options_1583_text').attr('value');
                 HeightVal_1583 = (isNaN(HeightVal_1583)) ? 0 : parseFloat(HeightVal_1583);
-                if((widthVal_1582 > 46) || (HeightVal_1583 > 46)){
+                if((widthVal_1582 > 96) && (HeightVal_1583 > 96)){
                     $('.Notice_1584').addClass('Addactive');
                     $('#options_1584').removeAttr('checked');
                     $('#options_1584_2').attr('checked', 'checked');
-                    $('#options_1584_2').removeAttr('disabled');
                 } else{
                     $('.Notice_1584').removeClass('Addactive');
-                    $('#options_1584_2').attr('disabled', 'disabled');
                 }
                 var Material_1585 = $('#select_1585').find(":selected").attr('price');
                 Material_1585 = (isNaN(Material_1585)) ? 0 : parseFloat(Material_1585);
@@ -788,14 +775,12 @@ endforeach;
                 // get height
                 var HeightVal_357 = $('#options_357_text').attr('value');
                 HeightVal_357 = (isNaN(HeightVal_357)) ? 0 : parseFloat(HeightVal_357);
-                if((widthVal_356 > 46) || (HeightVal_357 > 46)){
+                if((widthVal_356 > 96) && (HeightVal_357 > 96)){
                     $('.Notice_1887').addClass('Addactive');
                     $('#options_1887').removeAttr('checked');
                     $('#options_1887_2').attr('checked', 'checked');
-                    $('#options_1887_2').removeAttr('disabled');
                 } else{
                     $('.Notice_1887').removeClass('Addactive');
-                    $('#options_1887_2').attr('disabled', 'disabled');
                 }
                 var Pole_360 = $('#select_360').find(":selected").attr('price');
                 Pole_360 = (isNaN(Pole_360)) ? 0 : parseFloat(Pole_360);
@@ -1183,13 +1168,13 @@ endforeach;
                 var HeightVal_445 = $('#options_445_text').attr('value');
                 HeightVal_445 = (isNaN(HeightVal_445)) ? 0 : parseFloat(HeightVal_445);
                 if((widthVal_444 > 46) || (HeightVal_445 > 46)){
-                    $('.Notice_2112').addClass('Addactive');
-                    $('#options_2112').removeAttr('checked');
-                    $('#options_2112_2').attr('checked', 'checked');
-                    $('#options_2112_2').removeAttr('disabled');
+                    $('.Notice_1950').addClass('Addactive');
+                    $('#options_1950').removeAttr('checked');
+                    $('#options_1950_2').attr('checked', 'checked');
+                    $('#options_1950_2').removeAttr('disabled');
                 } else{
-                    $('.Notice_2112').removeClass('Addactive');
-                    $('#options_2112_2').attr('disabled', 'disabled');
+                    $('.Notice_1950').removeClass('Addactive');
+                    $('#options_1950_2').attr('disabled', 'disabled');
                 }
 
                 var Lamination_448 = $('#select_448').find(":selected").attr('price');
@@ -1212,7 +1197,6 @@ endforeach;
                     $("#select_1050 option:selected").removeAttr("selected");
                     $("#select_1050").prepend('<option value="0" price="0" selected="selected">No</option>');
                 }
-
                 if(Turnaround_451 ==834){
                     isTurnaround = 1.7 ;
                 } else{
@@ -1221,7 +1205,7 @@ endforeach;
                 isDefault = false;
                 total = (heso * (Lamination_448 + Material_447 ) + Drill_449) * isTurnaround  + Rounded_450;
 
-            } else if (id == 107) { //  Aluminum Sandwich Board â€œDibondâ€
+            } else if (id == 107) { //  Aluminum Sandwich Board “Dibond”
 
                 // get width
                 var widthVal_454 = $('#options_454_text').attr('value');
@@ -1230,13 +1214,13 @@ endforeach;
                 var HeightVal_455 = $('#options_455_text').attr('value');
                 HeightVal_455 = (isNaN(HeightVal_455)) ? 0 : parseFloat(HeightVal_455);
                 if((widthVal_454 > 46) || (HeightVal_455 > 46)){
-                    $('.Notice_2113').addClass('Addactive');
-                    $('#options_2113').removeAttr('checked');
-                    $('#options_2113_2').attr('checked', 'checked');
-                    $('#options_2113_2').removeAttr('disabled');
+                    $('.Notice_1951').addClass('Addactive');
+                    $('#options_1951').removeAttr('checked');
+                    $('#options_1951_2').attr('checked', 'checked');
+                    $('#options_1951_2').removeAttr('disabled');
                 } else{
-                    $('.Notice_2113').removeClass('Addactive');
-                    $('#options_2113_2').attr('disabled', 'disabled');
+                    $('.Notice_1951').removeClass('Addactive');
+                    $('#options_1951_2').attr('disabled', 'disabled');
                 }
 
                 var Lamination_458 = $('#select_458').find(":selected").attr('price');
@@ -1259,7 +1243,7 @@ endforeach;
                     $("#select_1052 option[value='0']").remove();
                 }else{
                     $('.Art_1052').removeClass('Addactive');
-                    // fix err show ie 
+                     // fix err show ie 
                     $('select[name="options[1052]"]').attr('disabled', 'disabled');
                     $('.Artworks_1053').hide();
                     $("#select_1052 option:selected").removeAttr("selected");
@@ -1321,217 +1305,198 @@ endforeach;
                 total = ((heso * ((Lamination_458 * isNumber) + isMaterial)) + Holes_459) * isTurnaround;
 
             }  else if (id == 108) { // Aluminum Sheets
+                var Lamination_468 = $('#select_468').find(":selected").attr('value');
+                Lamination_468 = (isNaN(Lamination_468)) ? 0 : parseFloat(Lamination_468);
 
-                $('#select_2093 option[value=3640]').attr('selected','selected'); 
-            	$('.Size_2093').hide();
+                $('#min_max_1140').text("Please enter between 12 and 48");
+                $('#min_max_1141').text("Please enter between 12 and 96");
 
-                var Lamination_2036 = $('#select_2036').find(":selected").attr('value');
-                Lamination_2036 = (isNaN(Lamination_2036)) ? 0 : parseFloat(Lamination_2036);
-
-                $('#min_max_1969').text("Please enter between 12 and 46");
-                $('#min_max_1970').text("Please enter between 12 and 94");
-
-                var Grommets_2034 = $('#select_2034').find(":selected").attr('price');
-                Grommets_2034 = (isNaN(Grommets_2034)) ? 0 : parseFloat(Grommets_2034);
-                var Rounded_2035  = $('#select_2035').find(":selected").attr('price');
-                Rounded_2035 = (isNaN(Rounded_2035)) ? 0 : parseFloat(Rounded_2035);
+                var Grommets_466 = $('#select_466').find(":selected").attr('price');
+                Grommets_466 = (isNaN(Grommets_466)) ? 0 : parseFloat(Grommets_466);
+                var Rounded_467  = $('#select_467').find(":selected").attr('price');
+                Rounded_467 = (isNaN(Rounded_467)) ? 0 : parseFloat(Rounded_467);
 
                 // get width
-                var widthVal_1969 = $('#options_1969_text').attr('value');
-                widthVal_1969 = (isNaN(widthVal_1969)) ? 0 : parseFloat(widthVal_1969);
+
+                var widthVal_1140 = $('#options_1140_text').attr('value');
+                widthVal_1140 = (isNaN(widthVal_1140)) ? 0 : parseFloat(widthVal_1140);
                 // get height
-                var HeightVal_1970 = $('#options_1970_text').attr('value');
-                HeightVal_1970 = (isNaN(HeightVal_1970)) ? 0 : parseFloat(HeightVal_1970);             
-                if((widthVal_1969 > 46) || (HeightVal_1970 > 46)){
-                    $('.Notice_2114').addClass('Addactive');
-                    $('#options_2114').removeAttr('checked');
-                    $('#options_2114_2').attr('checked', 'checked');
-                    $('#options_2114_2').removeAttr('disabled');
+                var HeightVal_1141 = $('#options_1141_text').attr('value');
+                HeightVal_1141 = (isNaN(HeightVal_1141)) ? 0 : parseFloat(HeightVal_1141);                          
+                if((widthVal_1140 > 46) || (HeightVal_1141 > 46)){
+                    $('.Notice_1952').addClass('Addactive');
+                    $('#options_1952').removeAttr('checked');
+                    $('#options_1952_2').attr('checked', 'checked');
+                    $('#options_1952_2').removeAttr('disabled');
                 } else{
-                    $('.Notice_2114').removeClass('Addactive');
-                    $('#options_2114_2').attr('disabled', 'disabled');
+                    $('.Notice_1952').removeClass('Addactive');
+                    $('#options_1952_2').attr('disabled', 'disabled');
                 }
 
-
                 // get value size
-                var size_2093 = $('#select_2093').find(":selected").attr('value');
-                size_2093 = (isNaN(size_2093)) ? 0 : parseFloat(size_2093);
+                var size_1139 = $('#select_1139').find(":selected").attr('value');
+                size_1139 = (isNaN(size_1139)) ? 0 : parseFloat(size_1139);
 
-                var Turnaround_2037 = $('#select_2037').find(":selected").attr('value');
-                Turnaround_2037 = (isNaN(Turnaround_2037)) ? 0 : parseFloat(Turnaround_2037);
-                var Color_1965 = $('#select_1965').find(":selected").attr('value');
-                Color_1965 = (isNaN(Color_1965)) ? 0 : parseFloat(Color_1965);
+                var Turnaround_469 = $('#select_469').find(":selected").attr('value');
+                Turnaround_469 = (isNaN(Turnaround_469)) ? 0 : parseFloat(Turnaround_469);
+                var Color_464 = $('#select_464').find(":selected").attr('value');
+                Color_464 = (isNaN(Color_464)) ? 0 : parseFloat(Color_464);
                 value_qty = $('#qty').attr('value');
-                if((value_qty > 1) || (Color_1965 == 3393)){
-                    $('.Art_2040').addClass('Addactive');
-                    $('.Art_2040').show();
-                    $("#select_2040 option[value='0']").remove();
+                if((value_qty > 1) || (Color_464 == 851)){
+                    $('.Art_919').addClass('Addactive');
+                    $("#select_919 option[value='0']").remove();
 
-                     // fix err show ie
+                    // fix err show ie
                     $('select[name="options[2040]"]').removeAttr('disabled'); 
                     $('.Artworks_2041').removeAttr('disabled');
 
                 }else{
-                    $('.Art_2040').removeClass('Addactive');
-                    $('.Art_2040').hide();
-                    $('.Artworks_2041').hide();                 
-                    $("#select_2040 option:selected").removeAttr("selected");
-                    $("#select_2040").prepend('<option value="0" price="0" selected="selected">No</option>');
+                    $('.Art_919').removeClass('Addactive');
+                    $('.Artworks_920').hide();
+                    $("#select_919 option:selected").removeAttr("selected");
+                    $("#select_919").prepend('<option value="0" price="0" selected="selected">No</option>');
 
                     // fix err show ie
                     $('select[name="options[2040]"]').attr('disabled', 'disabled'); 
                     $('.Artworks_2041').attr('disabled', 'disabled');
                 }
-                // set 18 Inches x 12 Inches
-                if ((widthVal_1969 == 18) && (HeightVal_1970 == 12)){
-                	size_2093 =3637;
-                }
-                // set 18 Inches x 24 Inches
-                if ((widthVal_1969 == 18) && (HeightVal_1970 == 24)){
-                	size_2093 =3638;
-                }
-                // set 24 Inches x 36 Inches
-                if ((widthVal_1969 == 24) && (HeightVal_1970 == 36)){
-                	size_2093 =3639;
-                }
-
                 var sizeC = 0;
                 var TurnaroundC = 1;
                 var addC = 0;
                 var hesoC = 1;
                 var Lamination_price = 0;
-                if(Color_1965 == 3392){
-                   	if(size_2093 == 3637){
+                if(Color_464 == 850){
+                    if(size_1139 == 1779){
                         sizeC = 7.50; addC = 0;
-                        if(Lamination_2036 == 3553 ){
+                        if(Lamination_468 == 862 ){
                             Lamination_price = 0;
 
-                        } else if(Lamination_2036 == 3554){
+                        } else if(Lamination_468 == 863){
                             Lamination_price = 1.20;
-                        } else if(Lamination_2036 == 3555){
+                        } else if(Lamination_468 == 864){
                             Lamination_price = 1.21;
                         } else{
                             Lamination_price = 3.75;
                         }
-                    } else if(size_2093 == 3638){
+                    } else if(size_1139 == 1780){
                         sizeC = 15; addC = 0;
-                        if(Lamination_2036 == 3553 ){
+                        if(Lamination_468 == 862 ){
                             Lamination_price = 0;
 
-                        } else if(Lamination_2036 == 3554){
+                        } else if(Lamination_468 == 863){
                             Lamination_price = 2.40;
-                        } else if(Lamination_2036 == 3555){
+                        } else if(Lamination_468 == 864){
                             Lamination_price = 2.41;
                         } else{
                             Lamination_price = 7.50;
                         }
-                    } else if(size_2093 == 3639){
+                    } else if(size_1139 == 1781){
                         sizeC = 30; addC = 0;
-                        if(Lamination_2036 == 3553 ){
+                        if(Lamination_468 == 862 ){
                             Lamination_price = 0;
 
-                        } else if(Lamination_2036 == 3554){
+                        } else if(Lamination_468 == 863){
                             Lamination_price = 4.80;
-                        } else if(Lamination_2036 == 3555){
+                        } else if(Lamination_468 == 864){
                             Lamination_price = 4.81;
                         } else{
                             Lamination_price = 15.00;
                         }
-                    } else{                     
-
-                         //if ((widthVal_1969 < 12) || (widthVal_1969 > 46)) { alert("Please enter a value Width: between 12 and 46."); }
-                         //if ((HeightVal_1970 < 12) || (HeightVal_1970 > 94)) { alert("Please enter a value Height:  between 12 and 94."); }
-                        if(Lamination_2036 == 3553 ){
+                    } else{
+                        if ((widthVal_1140 < 12) || (widthVal_1140 > 48)) { alert("Please enter a value Width: between 12 and 48."); }
+                        if ((HeightVal_1141 < 12) || (HeightVal_1141 > 96)) { alert("Please enter a value Height:  between 12 and 96."); }
+                        if(Lamination_468 == 862 ){
                             Lamination_price = 0;
 
-                        } else if(Lamination_2036 == 3554){
+                        } else if(Lamination_468 == 863){
                             Lamination_price = 0.80;
-                        } else if(Lamination_2036 == 3555){
+                        } else if(Lamination_468 == 864){
                             Lamination_price = 0.81;
                         } else{
                             Lamination_price = 2.50;
                         }
                         // tinh custom gia
-                        hesoC = (widthVal_1969 * HeightVal_1970)/144; addC = 6;
+                        hesoC = (widthVal_1140 * HeightVal_1141)/144; addC = 6;
                         hesoC = (isNaN(hesoC)) ? 0 : parseFloat(hesoC);
+
+
                     }
-                     
-               
-                } else if(Color_1965 == 3393){
-                	if(size_2093 == 3637){
+
+                } else if(Color_464 == 851){
+                    if(size_1139 == 1779){
                         sizeC = 11.25; addC = 0;
-                        if(Lamination_2036 == 3553 ){
+                        if(Lamination_468 == 862 ){
                             Lamination_price = 0;
-                        } else if(Lamination_2036 == 3554){
+                        } else if(Lamination_468 == 863){
                             Lamination_price = 2.40;
-                        } else if(Lamination_2036 == 3555){
+                        } else if(Lamination_468 == 864){
                             Lamination_price = 2.41;
                         } else{
                             Lamination_price = 7.50;
                         }
-                    } else if(size_2093 == 3638){
+                    } else if(size_1139 == 1780){
                         sizeC = 22.5; addC = 0;
 
-                        if(Lamination_2036 == 3553 ){
+                        if(Lamination_468 == 862 ){
                             Lamination_price = 0;
 
-                        } else if(Lamination_2036 == 3554){
+                        } else if(Lamination_468 == 863){
                             Lamination_price = 4.80;
-                        } else if(Lamination_2036 == 3555){
+                        } else if(Lamination_468 == 864){
                             Lamination_price = 4.81;
                         } else{
                             Lamination_price = 15;
                         }
-                    } else if(size_2093 == 3639){
+                    } else if(size_1139 == 1781){
                         sizeC = 45; addC = 0;
-                        if(Lamination_2036 == 3553 ){
+                        if(Lamination_468 == 862 ){
                             Lamination_price = 0;
 
-                        } else if(Lamination_2036 == 3554){
+                        } else if(Lamination_468 == 863){
                             Lamination_price = 9.60;
-                        } else if(Lamination_2036 == 3555){
+                        } else if(Lamination_468 == 864){
                             Lamination_price = 9.61;
                         } else{
                             Lamination_price = 30;
                         }
-                    } else{                     
-
-                         //if ((widthVal_1969 < 12) || (widthVal_1969 > 46)) { alert("Please enter a value Width: between 12 and 46."); }
-                         //if ((HeightVal_1970 < 12) || (HeightVal_1970 > 94)) { alert("Please enter a value Height:  between 12 and 94."); }
-                        if(Lamination_2036 == 3553 ){
+                    } else{
+                        if ((widthVal_1140 < 12) || (widthVal_1140 > 48)) { alert("Please enter a value Width: between 12 and 48."); }
+                        if ((HeightVal_1141 < 12) || (HeightVal_1141 > 96)) { alert("Please enter a value Height:  between 12 and 96."); }
+                        if(Lamination_468 == 862 ){
                             Lamination_price = 0;
 
-                        } else if(Lamination_2036 == 3554){
+                        } else if(Lamination_468 == 863){
                             Lamination_price = 0.80 * 2;
-                        } else if(Lamination_2036 == 3555){
+                        } else if(Lamination_468 == 864){
                             Lamination_price = 0.81 * 2;
                         } else{
                             Lamination_price = 2.50 * 2;
                         }
                         // tinh custom gia
 
-                        hesoC = (widthVal_1969 * HeightVal_1970)/144; addC = 10;
+                        hesoC = (widthVal_1140 * HeightVal_1141)/144; addC = 10;
                         hesoC = (isNaN(hesoC)) ? 0 : parseFloat(hesoC);
-                        if(Turnaround_2037 == 3559){
+                        if(Turnaround_469 == 868){
                             addC = 6;
                         }
-                    }                                                             
+                    }
                 }
-                if(Turnaround_2037 == 3557){
+                if(Turnaround_469 == 866){
                     TurnaroundC = 1;
 
-                } else if(Turnaround_2037 == 3558){
+                } else if(Turnaround_469 == 867){
                     TurnaroundC = 1.5;
-                } else if(Turnaround_2037 == 3559){
+                } else if(Turnaround_469 == 868){
                     TurnaroundC = 1.75;
                 }
-                isDefault = false;           
-
-               	if(size_2093 == 3640){
-                    total = ((hesoC * (sizeC + (addC + Lamination_price))) + Grommets_2034 + Rounded_2035) * TurnaroundC;
+                isDefault = false;
+                if(size_1139 == 1782){
+                    total = ((hesoC * (sizeC + (addC + Lamination_price))) + Grommets_466 + Rounded_467) * TurnaroundC;
                 } else{
-                    total = hesoC * (sizeC + (addC + Lamination_price) + Grommets_2034 + Rounded_2035) * TurnaroundC;
+                    total = hesoC * (sizeC + (addC + Lamination_price) + Grommets_466 + Rounded_467) * TurnaroundC;
                 }
+
+
 
             } else if (id == 146) { //  Arrow Spinner Signs
                 var Size_973 = $('#select_973').find(":selected").attr('value');
@@ -1793,13 +1758,13 @@ endforeach;
                 var HeightVal_1661 = $('#options_1661_text').attr('value');
                 HeightVal_1661 = (isNaN(HeightVal_1661)) ? 0 : parseFloat(HeightVal_1661);
                 if((widthVal_1662 > 46) || (HeightVal_1661 > 46)){
-                    $('.Notice_2115').addClass('Addactive');
-                    $('#options_2115').removeAttr('checked');
-                    $('#options_2115_2').attr('checked', 'checked');
-                    $('#options_2115_2').removeAttr('disabled');
+                    $('.Notice_1953').addClass('Addactive');
+                    $('#options_1953').removeAttr('checked');
+                    $('#options_1953_2').attr('checked', 'checked');
+                    $('#options_1953_2').removeAttr('disabled');
                 } else{
-                    $('.Notice_2115').removeClass('Addactive');
-                    $('#options_2115_2').attr('disabled', 'disabled');
+                    $('.Notice_1953').removeClass('Addactive');
+                    $('#options_1953_2').attr('disabled', 'disabled');
                 }
 
                 var Stakes_1666 = $('#select_1666').find(":selected").attr('price');
@@ -1827,7 +1792,7 @@ endforeach;
                     $('.Art_1671').addClass('Addactive');
                     $("#select_1671 option[value='0']").remove();
 
-                      // fix err show ie
+                    // fix err show ie
                     $('select[name="options[1671]"]').removeAttr('disabled');  
                     $('.Artworks_1672').removeAttr('disabled');
                 }else{
@@ -1836,7 +1801,7 @@ endforeach;
                     $("#select_1671 option:selected").removeAttr("selected");
                     $("#select_1671").prepend('<option value="0" price="0" selected="selected">No</option>');
 
-                      // fix err show ie
+                    // fix err show ie
                     $('select[name="options[1671]"]').attr('disabled', 'disabled');  
                     $('.Artworks_1672').attr('disabled', 'disabled'); 
                 }
@@ -1901,13 +1866,13 @@ endforeach;
                 var HeightVal_623 = $('#options_623_text').attr('value');
                 HeightVal_623 = (isNaN(HeightVal_623)) ? 0 : parseFloat(HeightVal_623);
                 if((widthVal_622 > 46) || (HeightVal_623 > 46)){
-                    $('.Notice_2116').addClass('Addactive');
-                    $('#options_2116').removeAttr('checked');
-                    $('#options_2116_2').attr('checked', 'checked');
-                    $('#options_2116_2').removeAttr('disabled');
+                    $('.Notice_1954').addClass('Addactive');
+                    $('#options_1954').removeAttr('checked');
+                    $('#options_1954_2').attr('checked', 'checked');
+                    $('#options_1954_2').removeAttr('disabled');
                 } else{
-                    $('.Notice_2116').removeClass('Addactive');
-                    $('#options_2116_2').attr('disabled', 'disabled');
+                    $('.Notice_1954').removeClass('Addactive');
+                    $('#options_1954_2').attr('disabled', 'disabled');
                 }
 
                 var Lamination_626 = $('#select_626').find(":selected").attr('price');
@@ -2048,20 +2013,20 @@ endforeach;
 
             } else if (id == 149) { // Styrene Boards
 
-                // get width
+                 // get width
                 var widthVal_631 = $('#options_631_text').attr('value');
                 widthVal_631 = (isNaN(widthVal_631)) ? 0 : parseFloat(widthVal_631);
                 // get height
                 var HeightVal_632 = $('#options_632_text').attr('value');
                 HeightVal_632 = (isNaN(HeightVal_632)) ? 0 : parseFloat(HeightVal_632);
                 if((widthVal_631 > 46) || (HeightVal_632 > 46)){
-                    $('.Notice_2117').addClass('Addactive');
-                    $('#options_2117').removeAttr('checked');
-                    $('#options_2117_2').attr('checked', 'checked');
-                    $('#options_2117_2').removeAttr('disabled');
+                    $('.Notice_1955').addClass('Addactive');
+                    $('#options_1955').removeAttr('checked');
+                    $('#options_1955_2').attr('checked', 'checked');
+                    $('#options_1955_2').removeAttr('disabled');
                 } else{
-                    $('.Notice_2117').removeClass('Addactive');
-                    $('#options_2117_2').attr('disabled', 'disabled');
+                    $('.Notice_1955').removeClass('Addactive');
+                    $('#options_1955_2').attr('disabled', 'disabled');
                 }
 
                 var Material_Single_634 = $('#select_634').find(":selected").attr('price');
@@ -2163,15 +2128,15 @@ endforeach;
                 var HeightVal_642 = $('#options_642_text').attr('value');
                 HeightVal_642 = (isNaN(HeightVal_642)) ? 0 : parseFloat(HeightVal_642);
                 if((widthVal_641 > 46) || (HeightVal_642 > 46)){
-                    $('.Notice_2118').addClass('Addactive');
-                    $('#options_2118').removeAttr('checked');
-                    $('#options_2118_2').attr('checked', 'checked');
-                    $('#options_2118_2').removeAttr('disabled');
+                    $('.Notice_1956').addClass('Addactive');
+                    $('#options_1956').removeAttr('checked');
+                    $('#options_1956_2').attr('checked', 'checked');
+                    $('#options_1956_2').removeAttr('disabled');
                 } else{
-                    $('.Notice_2118').removeClass('Addactive');
-                    $('#options_2118_2').attr('disabled', 'disabled');
+                    $('.Notice_1956').removeClass('Addactive');
+                    $('#options_1956_2').attr('disabled', 'disabled');
                 }
-
+                
                 var Lamination_645 = $('#select_645').find(":selected").attr('price');
                 Lamination_645 = (isNaN(Lamination_645)) ? 0 : parseFloat(Lamination_645);
                 var Grommets_646 = $('#select_646').find(":selected").attr('price');
@@ -2179,12 +2144,12 @@ endforeach;
 
              	var Material_Single_644 = $('#select_644').find(":selected").attr('price');
                 Material_Single_644 = (isNaN(Material_Single_644)) ? 0 : parseFloat(Material_Single_644);
-                 var Material_Double_885 = $('#select_885').find(":selected").attr('price');
-                Material_Double_885 = (isNaN(Material_Double_885)) ? 0 : parseFloat(Material_Double_885);
-
                 var Material_Single_value = $('#select_644').find(":selected").attr('value');
                 Material_Single_value = (isNaN(Material_Single_value)) ? 0 : parseFloat(Material_Single_value);           
-                var Material_Double_value = $('#select_885').find(":selected").attr('value');
+ 
+                var Material_Double_885 = $('#select_885').find(":selected").attr('price');
+                Material_Double_885 = (isNaN(Material_Double_885)) ? 0 : parseFloat(Material_Double_885);
+				var Material_Double_value = $('#select_885').find(":selected").attr('value');
                 Material_Double_value = (isNaN(Material_Double_value)) ? 0 : parseFloat(Material_Double_value);
 
                 var Rounded_647 = $('#select_647').find(":selected").attr('price');
@@ -2281,7 +2246,6 @@ endforeach;
                 isDefault = false;
 
             } else if (id == 151) { //  Foam Boards
-
                 // get width
                 var widthVal_651 = $('#options_651_text').attr('value');
                 widthVal_651 = (isNaN(widthVal_651)) ? 0 : parseFloat(widthVal_651);
@@ -2289,13 +2253,13 @@ endforeach;
                 var HeightVal_652 = $('#options_652_text').attr('value');
                 HeightVal_652 = (isNaN(HeightVal_652)) ? 0 : parseFloat(HeightVal_652);
                 if((widthVal_651 > 46) || (HeightVal_652 > 46)){
-                    $('.Notice_2119').addClass('Addactive');
-                    $('#options_2119').removeAttr('checked');
-                    $('#options_2119_2').attr('checked', 'checked');
-                    $('#options_2119_2').removeAttr('disabled');
+                    $('.Notice_1957').addClass('Addactive');
+                    $('#options_1957').removeAttr('checked');
+                    $('#options_1957_2').attr('checked', 'checked');
+                    $('#options_1957_2').removeAttr('disabled');
                 } else{
-                    $('.Notice_2119').removeClass('Addactive');
-                    $('#options_2119_2').attr('disabled', 'disabled');
+                    $('.Notice_1957').removeClass('Addactive');
+                    $('#options_1957_2').attr('disabled', 'disabled');
                 }
 
                 var Lamination_1889 = $('#select_1889').find(":selected").attr('price');
@@ -2305,11 +2269,11 @@ endforeach;
 
                 var Material_Single_654 = $('#select_654').find(":selected").attr('price');
                 Material_Single_654 = (isNaN(Material_Single_654)) ? 0 : parseFloat(Material_Single_654);
-                var Material_Double_1888 = $('#select_1888').find(":selected").attr('price');
-                Material_Double_1888 = (isNaN(Material_Double_1888)) ? 0 : parseFloat(Material_Double_1888);
-
                 var Material_Single_value = $('#select_654').find(":selected").attr('value');
                 Material_Single_value = (isNaN(Material_Single_value)) ? 0 : parseFloat(Material_Single_value);           
+
+                var Material_Double_1888 = $('#select_1888').find(":selected").attr('price');
+                Material_Double_1888 = (isNaN(Material_Double_1888)) ? 0 : parseFloat(Material_Double_1888);
                 var Material_Double_value = $('#select_1888').find(":selected").attr('value');
                 Material_Double_value = (isNaN(Material_Double_value)) ? 0 : parseFloat(Material_Double_value);
 
@@ -2323,7 +2287,7 @@ endforeach;
                     $('.Art_1893').addClass('Addactive');
                     // fix err show ie 
                     $('select[name="options[1893]"]').removeAttr('disabled');
-                    $("#select_1893 option[value='0']").remove();                 
+                    $("#select_1893 option[value='0']").remove();
                 }else{
                     $('.Art_1893').removeClass('Addactive');
                     // fix err show ie 
@@ -2337,11 +2301,10 @@ endforeach;
                     $('.Side_1888').removeClass('Addactive');
                 }
 
-                if(Color_653 == 1098){                 
-
+                if(Color_653 == 1098){
                 	Material_Double_1888= 0;
                     Material_Double_value=0;
-                    
+              
                 	switch (Material_Single_value) {
 					    case 0:					     
 					        $('#select_654 option[value=1100]').attr('selected','selected');
@@ -2359,7 +2322,6 @@ endforeach;
                		var Material_Single_654 = $('#select_654').find(":selected").attr('price');
                 	Material_Single_654 = (isNaN(Material_Single_654)) ? 0 : parseFloat(Material_Single_654);
                 }else if(Color_653 == 1099){
-                                      
                 	Material_Single_654= 0;
                 	Material_Single_value=0;
                 
@@ -2393,6 +2355,7 @@ endforeach;
                 isDefault = false;
 
             } else if (id == 152) { //  Eagle Board (Eco Board)
+
                 // get width
                 var widthVal_660 = $('#options_660_text').attr('value');
                 widthVal_660 = (isNaN(widthVal_660)) ? 0 : parseFloat(widthVal_660);
@@ -2400,13 +2363,13 @@ endforeach;
                 var HeightVal_661 = $('#options_661_text').attr('value');
                 HeightVal_661 = (isNaN(HeightVal_661)) ? 0 : parseFloat(HeightVal_661);
                 if((widthVal_660 > 46) || (HeightVal_661 > 46)){
-                    $('.Notice_2120').addClass('Addactive');
-                    $('#options_2120').removeAttr('checked');
-                    $('#options_2120_2').attr('checked', 'checked');
-                    $('#options_2120_2').removeAttr('disabled');
+                    $('.Notice_1958').addClass('Addactive');
+                    $('#options_1958').removeAttr('checked');
+                    $('#options_1958_2').attr('checked', 'checked');
+                    $('#options_1958_2').removeAttr('disabled');
                 } else{
-                    $('.Notice_2120').removeClass('Addactive');
-                    $('#options_2120_2').attr('disabled', 'disabled');
+                    $('.Notice_1958').removeClass('Addactive');
+                    $('#options_1958_2').attr('disabled', 'disabled');
                 }
 
                 var Lamination_664 = $('#select_664').find(":selected").attr('price');
@@ -2487,7 +2450,6 @@ endforeach;
                 isDefault = false;
 
             } else if (id == 153) { //  Converd Coated Board
-
                 // get width
                 var widthVal_668 = $('#options_668_text').attr('value');
                 widthVal_668 = (isNaN(widthVal_668)) ? 0 : parseFloat(widthVal_668);
@@ -2495,13 +2457,13 @@ endforeach;
                 var HeightVal_669 = $('#options_669_text').attr('value');
                 HeightVal_669 = (isNaN(HeightVal_669)) ? 0 : parseFloat(HeightVal_669);
                 if((widthVal_668 > 46) || (HeightVal_669 > 46)){
-                    $('.Notice_2121').addClass('Addactive');
-                    $('#options_2121').removeAttr('checked');
-                    $('#options_2121_2').attr('checked', 'checked');
-                    $('#options_2121_2').removeAttr('disabled');
+                    $('.Notice_1959').addClass('Addactive');
+                    $('#options_1959').removeAttr('checked');
+                    $('#options_1959_2').attr('checked', 'checked');
+                    $('#options_1959_2').removeAttr('disabled');
                 } else{
-                    $('.Notice_2121').removeClass('Addactive');
-                    $('#options_2121_2').attr('disabled', 'disabled');
+                    $('.Notice_1959').removeClass('Addactive');
+                    $('#options_1959_2').attr('disabled', 'disabled');
                 }
 
                 var Lamination_672 = $('#select_672').find(":selected").attr('price');
@@ -2658,11 +2620,11 @@ endforeach;
                     $('.Hemming_772').removeClass('Addactive');
                     $("#select_772").prepend('<option value="0" price="0" selected="selected">No</option>');
 
-                     // fix err show ie
+                    // fix err show ie
                     $('select[name="options[772]"]').attr('disabled', 'disabled'); 
                 }
 
-                if((Turnaround_774 ==1257) && (Material_770 == 1252)){
+               if((Turnaround_774 ==1257) && (Material_770 == 1252)){
                     total = (74 * 1.7) + 80;
 
                 } else if((Turnaround_774 ==1257) && (Material_770 == 1251)){
@@ -2759,93 +2721,7 @@ endforeach;
                 isDefault = false;
                 total = Size1 + Coso;
 
-            }else if (id == 174) { // X-Frame with Supersmooth test
-
-            	 $('#select_2088 option[value=3631]').attr('selected','selected'); 
-            	  $('.Size_2088').hide();
-
-                $('#min_max_2090').text("Please enter between 60 and 78");
-
-                var Size_2088 = $('#select_2088').find(":selected").attr('value');
-                Size_2088 = (isNaN(Size_2088)) ? 0 : parseFloat(Size_2088);
-                var Turnaround_2084 = $('#select_2084').find(":selected").attr('value');
-                Turnaround_2084 = (isNaN(Turnaround_2084)) ? 0 : parseFloat(Turnaround_2084);
-                // get width
-                var widthVal_2089 = $('#options_2089_text').attr('value');
-                widthVal_2089 = (isNaN(widthVal_2089)) ? 0 : parseFloat(widthVal_2089);
-
-                var HeightVal_2090 = $('#options_2090_text').attr('value');
-                HeightVal_2090 = (isNaN(HeightVal_2090)) ? 0 : parseFloat(HeightVal_2090);
-                value_qty = $('#qty').attr('value');
-                if(value_qty > 1){
-                    $('.Art_2091').addClass('Addactive');
-                    $("#select_2091 option[value='0']").remove();
-                }else{
-                    $('.Art_2091').removeClass('Addactive');
-                    $('.Art_2091').hide();
-                    $('.Artworks_2092').hide();
-                    $("#select_2091 option:selected").removeAttr("selected");
-                    $("#select_2091").prepend('<option value="0" price="0" selected="selected">No</option>');
-                }
-                var Size1 = 0;
-                var Coso = 0;
-                if(Size_2088 == 3628){
-                    Size1 = 29.62;
-                    if(Turnaround_2084 ==3626){
-                        Coso = 15.35;
-                    } else{
-                        Coso = 0;
-                    }
-                } else if(Size_2088 == 3629){
-                    Size1 = 40.40;
-                    if(Turnaround_2084 ==3626){
-                        Coso = 21.94;
-                    }else{
-                        Coso = 0;
-                    }
-                } else if(Size_2088 == 3630){
-                    Size1 = 60.47;
-                    if(Turnaround_2084 ==3626){
-                        Coso = 31.69;
-                    }else{
-                        Coso = 0;
-                    }
-                } else if(Size_2088 == 3631){
-                    $('#min_max_2089').text("Please enter between 24 and 33");
-
-                    if ((widthVal_2089 < 24) || (widthVal_2089 > 33)) { alert("Please enter a value Width: between 24 and 33."); }
-                    if ((HeightVal_2090 < 60) || (HeightVal_2090 > 78)) { alert("Please enter a value Height:  between 60 and 78."); }
-                    Size1 = 15;
-                    if(Turnaround_2084 ==3625){
-
-                        Coso = ((widthVal_2089 * HeightVal_2090)/ 144) * 1.95;
-                        Coso = (isNaN(Coso)) ? 0 : parseFloat(Coso);
-                        // if(Coso ==0){
-                        //      Size1 = 0;
-                        // }
-                    } else{
-                        Coso = ((widthVal_2089 * HeightVal_2090)/ 144) * 3.41;
-                        Coso = (isNaN(Coso)) ? 0 : parseFloat(Coso);
-                    }
-                } else{
-                    $('#min_max_2089').text("Please enter between 24 and 35");
-                    if ((widthVal_2089 < 24) || (widthVal_2089 > 35)) {
-                        alert("Please enter a value Width: between 24 and 35.");
-                    }
-                    if ((HeightVal_2090 < 60) || (HeightVal_2090 > 78)) { alert("Please enter a value Height:  between 60 and 78."); }
-                    Size1 = 23;
-                    if(Turnaround_2084 ==3625){
-                        Coso = ((widthVal_2089 * HeightVal_2090)/ 144) * 1.95;
-                        Coso = (isNaN(Coso)) ? 0 : parseFloat(Coso);
-                    } else{
-                        Coso = ((widthVal_2089 * HeightVal_2090)/ 144) * 3.41;
-                        Coso = (isNaN(Coso)) ? 0 : parseFloat(Coso);
-                    }
-                }
-                isDefault = false;
-                total = Size1 + Coso;
-
-            }  else if (id == 142) { // X-Frame with Polypropylene (PET)
+            } else if (id == 142) { // X-Frame with Polypropylene (PET)
                 $('#min_max_970').text("Please enter between 60 and 78");
 
                 var Size_964 = $('#select_964').find(":selected").attr('value');
@@ -3185,7 +3061,7 @@ endforeach;
                 isDefault = false;
                 total = (heso * (Die_725 + Lamination_724)) * isTurnaround;
 
-            } else if (id == 117) { // Floor Graphics â€“ Contour
+            } else if (id == 117) { // Floor Graphics – Contour
                 value_qty = $('#qty').attr('value');
                 if(value_qty > 1){
                     $('.Art_989').addClass('Addactive');
@@ -3436,7 +3312,7 @@ endforeach;
                 value_qty = $('#qty').attr('value');
                 if((value_qty > 1) || (Color_577 == 984)){
                     $('.Art_934').addClass('Addactive');
-                       // fix err show ie 
+                      // fix err show ie 
                     $('select[name="options[934]"]').removeAttr('disabled');
                     $("#select_934 option[value='0']").remove();
                 }else{
@@ -3447,8 +3323,6 @@ endforeach;
                     $("#select_934 option:selected").removeAttr("selected");
                     $("#select_934").prepend('<option value="0" price="0" selected="selected">No</option>');
                 }
-
-             
                 var Material_Single_price = 0;
                 var Material_Double_price = 0;
                 var Die_cut = 0;
@@ -3478,22 +3352,22 @@ endforeach;
                     if(Material_1145 == 1784){
                         Material_Double_price = 3.50;
                         Die_cut = 1.89;
-                         $('#select_1145 option[value=1784]').attr('selected','selected');
+                        $('#select_1145 option[value=1784]').attr('selected','selected');
                     } else if(Material_1145 == 1785){
                         Material_Double_price = 3.99;
                         Die_cut = 1.89;
-                         $('#select_1145 option[value=1785]').attr('selected','selected');
+                        $('#select_1145 option[value=1785]').attr('selected','selected');
                     } else if(Material_1145 == 1786){
                         Material_Double_price = 5.95;
                         Die_cut = 1.99;
-                         $('#select_1145 option[value=1786]').attr('selected','selected');
+                        $('#select_1145 option[value=1786]').attr('selected','selected');
                     } else if(Material_1145 == 1787){
                         Material_Double_price = 9.00;
                         Die_cut = 1.99;
-                         $('#select_1145 option[value=1787]').attr('selected','selected');
+                        $('#select_1145 option[value=1787]').attr('selected','selected');
                     } else{
                         Material_Double_price = 0;
-                         $('#select_1145 option[value=1784]').attr('selected','selected');
+                        $('#select_1145 option[value=1784]').attr('selected','selected');
                     }
 
                 } else{
@@ -3511,101 +3385,7 @@ endforeach;
                 isDefault = false;
                 total = (heso * (Lamination_579 + Die_cut + Material_Double_price + Material_Single_price)) * isTurnaround;
 
-            } else if (id == 176) { // PVC Sintra Board Contour test
-                var Material_2100 = $('#select_2100').find(":selected").attr('value');
-                Material_2100 = (isNaN(Material_2100)) ? 0 : parseFloat(Material_2100);
-
-                var Material_2101 = $('#select_2101').find(":selected").attr('value');
-                Material_2101 = (isNaN(Material_2101)) ? 0 : parseFloat(Material_2101);
-
-                var Color_2099 = $('#select_2099').find(":selected").attr('value');
-                Color_2099 = (isNaN(Color_2099)) ? 0 : parseFloat(Color_2099);
-
-                var Lamination_2102 = $('#select_2102').find(":selected").attr('price');
-                Lamination_2102 = (isNaN(Lamination_2102)) ? 0 : parseFloat(Lamination_2102);
-
-
-                var Turnaround_2105 = $('#select_2105').find(":selected").attr('value');
-                Turnaround_2105 = (isNaN(Turnaround_2105)) ? 0 : parseFloat(Turnaround_2105);
-                value_qty = $('#qty').attr('value');
-                if((value_qty > 1) || (Color_2099 == 3648)){
-                    $('.Art_2109').addClass('Addactive');
-                       // fix err show ie 
-                    $('select[name="options[2109]"]').removeAttr('disabled');
-                    $("#select_2109 option[value='0']").remove();
-                }else{
-                    $('.Art_2109').removeClass('Addactive');
-                    // fix err show ie 
-                    $('select[name="options[2109]"]').attr('disabled', 'disabled');
-                    $('.Artworks_2110').hide();
-                    $("#select_2109 option:selected").removeAttr("selected");
-                    $("#select_2109").prepend('<option value="0" price="0" selected="selected">No</option>');
-                }
-
-             
-                var Material_Single_price = 0;
-                var Material_Double_price = 0;
-                var Die_cut = 0;
-                if(Color_2099 == 3647){
-                    if(Material_2100 == 3649){
-                        Material_Single_price = 2.49;
-                        Die_cut = 1.89;
-                        $('#select_2100 option[value=3649]').attr('selected','selected');
-                    } else if(Material_2100 == 3650){
-                        Material_Single_price = 2.99;
-                        Die_cut = 1.89;
-                        $('#select_2100 option[value=3650]').attr('selected','selected');
-                    } else if(Material_2100 == 3651){
-                        Material_Single_price = 4.25;
-                        Die_cut = 1.99;
-                        $('#select_2100 option[value=3651]').attr('selected','selected');
-                    } else if(Material_2100 == 3652){
-                        Material_Single_price = 6.50;
-                        Die_cut = 1.99;
-                        $('#select_2100 option[value=3652]').attr('selected','selected');
-                    }else{
-                        Material_Single_price = 0;
-                        Die_cut = 0;
-                        $('#select_2100 option[value=3649]').attr('selected','selected');
-                    }
-                } else if(Color_2099 ==3648){
-                    if(Material_2101 == 3653){
-                        Material_Double_price = 3.50;
-                        Die_cut = 1.89;
-                         $('#select_2101 option[value=3653]').attr('selected','selected');
-                    } else if(Material_2101 == 3654){
-                        Material_Double_price = 3.99;
-                        Die_cut = 1.89;
-                         $('#select_2101 option[value=3654]').attr('selected','selected');
-                    } else if(Material_2101 == 3655){
-                        Material_Double_price = 5.95;
-                        Die_cut = 1.99;
-                         $('#select_2101 option[value=3655]').attr('selected','selected');
-                    } else if(Material_2101 == 3656){
-                        Material_Double_price = 9.00;
-                        Die_cut = 1.99;
-                         $('#select_2101 option[value=3656]').attr('selected','selected');
-                    } else{
-                        Material_Double_price = 0;
-                         $('#select_2101 option[value=3653]').attr('selected','selected');
-                    }
-
-                } else{
-                    total = 0;
-                }
-                if(Turnaround_2105 == 3665){
-                    isTurnaround =  1.5;
-                } else if(Turnaround_2105 == 3664){
-                    isTurnaround = 1;
-                } else if(Turnaround_2105 == 3666){
-                    isTurnaround =  1.7;
-                } else{
-                    isTurnaround = 1;
-                }
-                isDefault = false;
-                total = (heso * (Lamination_2102 + Die_cut + Material_Double_price + Material_Single_price)) * isTurnaround;
-
-            }  else if (id == 137) { // Foam Boards- Contour
+            } else if (id == 137) { // Foam Boards- Contour
                 var Material_Single_1895 = $('#select_1895').find(":selected").attr('value');
                 Material_Single_1895 = (isNaN(Material_Single_1895)) ? 0 : parseFloat(Material_Single_1895);
                 var Material_Double_955 = $('#select_955').find(":selected").attr('value');
@@ -3623,7 +3403,7 @@ endforeach;
                 value_qty = $('#qty').attr('value');
                 if((value_qty > 1) || (Color_587 == 1000)){
                     $('.Art_929').addClass('Addactive');
-                     // fix err show ie 
+                    // fix err show ie 
                     $('select[name="options[929]"]').removeAttr('disabled');
                     $("#select_929 option[value='0']").remove();
                 }else{
@@ -3753,57 +3533,57 @@ endforeach;
                 }
                 isDefault = false;
 
-            } else if (id == 164) { //  Aluminum Sandwich Board â€œDibondâ€ Contour Cut
-                var Lamination_1927 = $('#select_1927').find(":selected").attr('price');
-                Lamination_1927 = (isNaN(Lamination_1927)) ? 0 : parseFloat(Lamination_1927);
-                var Material_1925 = $('#select_1925').find(":selected").attr('price');
-                Material_1925 = (isNaN(Material_1925)) ? 0 : parseFloat(Material_1925);
-                var Material_1926 = $('#select_1926').find(":selected").attr('price');
-                Material_1926 = (isNaN(Material_1926)) ? 0 : parseFloat(Material_1926);
-                var Holes_1928 = $('#select_1928').find(":selected").attr('price');
-                Holes_1928 = (isNaN(Holes_1928)) ? 0 : parseFloat(Holes_1928);
-                var Turnaround_1929 = $('#select_1929').find(":selected").attr('value');
-                Turnaround_1929 = (isNaN(Turnaround_1929)) ? 0 : parseFloat(Turnaround_1929);
-                var Color_1924 = $('#select_1924').find(":selected").attr('value');
-                Color_1924 = (isNaN(Color_1924)) ? 0 : parseFloat(Color_1924);
+             }  else if (id == 166) { //  Aluminum Sandwich Board “Dibond” Contour Cut
+                var Lamination_1942  = $('#select_1942').find(":selected").attr('price');
+                Lamination_1942  = (isNaN(Lamination_1942)) ? 0 : parseFloat(Lamination_1942);
+                var Material_1940 = $('#select_1940').find(":selected").attr('price');
+                Material_1940 = (isNaN(Material_1940)) ? 0 : parseFloat(Material_1940);
+                var Material_1941 = $('#select_1941').find(":selected").attr('price');
+                Material_1941 = (isNaN(Material_1941)) ? 0 : parseFloat(Material_1941);
+                var Holes_1943 = $('#select_1943').find(":selected").attr('price');
+                Holes_1943 = (isNaN(Holes_1943)) ? 0 : parseFloat(Holes_1943);
+                var Turnaround_1944 = $('#select_1944').find(":selected").attr('value');
+                Turnaround_1944 = (isNaN(Turnaround_1944)) ? 0 : parseFloat(Turnaround_1944);
+                var Color_1939 = $('#select_1939').find(":selected").attr('value');
+                Color_1939 = (isNaN(Color_1939)) ? 0 : parseFloat(Color_1939);
                 value_qty = $('#qty').attr('value');
-                if((value_qty > 1) || (Color_1924 == 3321)){
-                    $('.Art_1932').addClass('Addactive');
-                    $("#select_1932 option[value='0']").remove();
+                if((value_qty > 1) || (Color_1939 == 3347)){
+                    $('.Art_1947').addClass('Addactive');
+                    $("#select_1947 option[value='0']").remove();
                 }else{
-                    $('.Art_1932').removeClass('Addactive');
-                    $('.Artworks_1933').hide();
-                    $("#select_1932 option:selected").removeAttr("selected");
-                    $("#select_1932").prepend('<option value="0" price="0" selected="selected">No</option>');
+                    $('.Art_1947').removeClass('Addactive');
+                    $('.Artworks_1948').hide();
+                    $("#select_1947 option:selected").removeAttr("selected");
+                    $("#select_1947").prepend('<option value="0" price="0" selected="selected">No</option>');
                 }
-                if(Color_1924 == 3320){
-                    $('.Material-_1926').removeClass('Addactive');
-                    $('.Material_1925').addClass('Addactive');
+                if(Color_1939 == 3346){
+                    $('.Material-_1941').removeClass('Addactive');
+                    $('.Material_1940').addClass('Addactive');
                 }
-                if((Turnaround_1929 ==3334) && (Color_1924 == 3321)){
+                if((Turnaround_1944 ==3360) && (Color_1939 == 3347)){
                     isTurnaround = 1.7;
                     var isNumber = 2;
-                    var isMaterial = Material_1926;
-                } else if((Turnaround_1929 ==3334) && (Color_1924 == 3320)){
+                    var isMaterial = Material_1941;
+                } else if((Turnaround_1944 ==3360) && (Color_1939 == 3346)){
                     isTurnaround = 1.7;
                     var isNumber = 1;
-                    var isMaterial = Material_1925;
-                } else if((Turnaround_1929 ==3332) && (Color_1924 == 3321)){
+                    var isMaterial = Material_1940;
+                } else if((Turnaround_1944 ==3358) && (Color_1939 == 3347)){
                     isTurnaround = 1;
                     var isNumber = 2;
-                    var isMaterial = Material_1926;
-                } else if((Turnaround_1929 ==3332) && (Color_1924 == 3320)){
+                    var isMaterial = Material_1941;
+                } else if((Turnaround_1944 ==3358) && (Color_1939 == 3346)){
                     isTurnaround = 1;
                     var isNumber = 1;
-                    var isMaterial = Material_1925;
-                } else if((Turnaround_1929 ==3333) && (Color_1924 == 3321)){
+                    var isMaterial = Material_1940;
+                } else if((Turnaround_1944 ==3359) && (Color_1939 == 3347)){
                     isTurnaround = 1.5;
                     var isNumber = 2;
-                    var isMaterial = Material_1926;
-                } else if((Turnaround_1929 ==3333) && (Color_1924 == 3320)){
+                    var isMaterial = Material_1941;
+                } else if((Turnaround_1944 ==3359) && (Color_1939 == 3346)){
                     isTurnaround = 1.5;
                     var isNumber = 1;
-                    var isMaterial = Material_1925;
+                    var isMaterial = Material_1940;
 
                 } else{
                     isTurnaround = 1;
@@ -3811,234 +3591,233 @@ endforeach;
                     var isMaterial = 0;
                 }
 
-                if(Color_1924 == 3320){
+                if(Color_1939 == 3346){
 
-                    Material_1926=0;             
-                    $('#select_1925 option[value=3322]').attr('selected','selected'); 
-                    var Material_1925 = $('#select_1925').find(":selected").attr('price');
-                    Material_1925 = (isNaN(Material_1925)) ? 0 : parseFloat(Material_1925);
-                    var isMaterial = Material_1925;
+                    Material_1941=0;             
+                    $('#select_1940 option[value=3322]').attr('selected','selected'); 
+                    var Material_1940 = $('#select_1940').find(":selected").attr('price');
+                    Material_1940 = (isNaN(Material_1940)) ? 0 : parseFloat(Material_1940);
+                    var isMaterial = Material_1940;
 
-                }else if(Color_1924 == 3321){
+                }else if(Color_1939 == 3347){
 
-                    Material_1925= 0;
-                    $('#select_1926 option[value=3323]').attr('selected','selected');
-                     var Material_1926 = $('#select_1926').find(":selected").attr('price');
-                     Material_1926 = (isNaN(Material_1926)) ? 0 : parseFloat(Material_1926);
-                     var isMaterial = Material_1926;
+                    Material_1940= 0;
+                    $('#select_1941 option[value=3323]').attr('selected','selected');
+                     var Material_1941 = $('#select_1941').find(":selected").attr('price');
+                     Material_1941 = (isNaN(Material_1941)) ? 0 : parseFloat(Material_1941);
+                     var isMaterial = Material_1941;
 
                 }
                 isDefault = false;
                
                  // add $2
-                total =  ((heso * ((Lamination_1927 * isNumber) + isMaterial)) + Holes_1928) * isTurnaround;
+                total =  ((heso * ((Lamination_1942 * isNumber) + isMaterial)) + Holes_1943) * isTurnaround;
 
-            } else if (id == 162) { // Aluminum Sheets Contour
+            }  else if (id == 164) { // Aluminum Sheets Contour
 
-            	$('#select_2095 option[value=3645]').attr('selected','selected'); 
-            	$('.Size_2095').hide();
+                $('#select_1933 option[value=3344]').attr('selected','selected'); 
+                $('.Size_1933').hide();
 
-                var Lamination_2061 = $('#select_2061').find(":selected").attr('value');
-                Lamination_2061 = (isNaN(Lamination_2061)) ? 0 : parseFloat(Lamination_2061);
+                var Lamination_1926 = $('#select_1926').find(":selected").attr('value');
+                Lamination_1926 = (isNaN(Lamination_1926)) ? 0 : parseFloat(Lamination_1926);
 
-                $('#min_max_2057').text("Please enter between 12 and 46");
-                $('#min_max_2058').text("Please enter between 12 and 94");
+                $('#min_max_1934').text("Please enter between 12 and 46");
+                $('#min_max_1935').text("Please enter between 12 and 94");
 
-                var Grommets_2059 = $('#select_2059').find(":selected").attr('price');
-                Grommets_2059 = (isNaN(Grommets_2059)) ? 0 : parseFloat(Grommets_2059);
-                var Rounded_2060  = $('#select_2060').find(":selected").attr('price');
-                Rounded_2060 = (isNaN(Rounded_2060)) ? 0 : parseFloat(Rounded_2060);
+                var Grommets_1924 = $('#select_1924').find(":selected").attr('price');
+                Grommets_1924 = (isNaN(Grommets_1924)) ? 0 : parseFloat(Grommets_1924);
+                var Rounded_1925  = $('#select_1925').find(":selected").attr('price');
+                Rounded_1925 = (isNaN(Rounded_1925)) ? 0 : parseFloat(Rounded_1925);
 
                 // get width
 
-                var widthVal_2057 = $('#options_2057_text').attr('value');
-                widthVal_2057 = (isNaN(widthVal_2057)) ? 0 : parseFloat(widthVal_2057);
+                var widthVal_1934 = $('#options_1934_text').attr('value');
+                widthVal_1934 = (isNaN(widthVal_1934)) ? 0 : parseFloat(widthVal_1934);
                 // get height
-                var HeightVal_2058 = $('#options_2058_text').attr('value');
-                HeightVal_2058 = (isNaN(HeightVal_2058)) ? 0 : parseFloat(HeightVal_2058);
+                var HeightVal_1935 = $('#options_1935_text').attr('value');
+                HeightVal_1935 = (isNaN(HeightVal_1935)) ? 0 : parseFloat(HeightVal_1935);
 
                 // get value size
-                var size_2095 = $('#select_2095').find(":selected").attr('value');
-                size_2095 = (isNaN(size_2095)) ? 0 : parseFloat(size_2095);
+                var size_1933 = $('#select_1933').find(":selected").attr('value');
+                size_1933 = (isNaN(size_1933)) ? 0 : parseFloat(size_1933);
                    
                             
-                var Turnaround_2067 = $('#select_2067').find(":selected").attr('value');
-                Turnaround_2067 = (isNaN(Turnaround_2067)) ? 0 : parseFloat(Turnaround_2067);
-                var Color_2055 = $('#select_2055').find(":selected").attr('value');
-                Color_2055 = (isNaN(Color_2055)) ? 0 : parseFloat(Color_2055);
+                var Turnaround_1927 = $('#select_1927').find(":selected").attr('value');
+                Turnaround_1927 = (isNaN(Turnaround_1927)) ? 0 : parseFloat(Turnaround_1927);
+                var Color_1923 = $('#select_1923').find(":selected").attr('value');
+                Color_1923 = (isNaN(Color_1923)) ? 0 : parseFloat(Color_1923);
           
                 value_qty = $('#qty').attr('value');
-                if((value_qty > 1) || (Color_2055 == 3581)){
-                    $('.Art_2064').addClass('Addactive');
-                    $('.Art_2064').show();
-                    $("#select_2064 option[value='0']").remove();
+                if((value_qty > 1) || (Color_1923 == 3322)){
+                    $('.Art_1931').addClass('Addactive');
+                    $('.Art_1931').show();
+                    $("#select_1931 option[value='0']").remove();
 
                     // fix err show ie
-                    $('select[name="options[2064]"]').removeAttr('disabled'); 
-                    $('.Artworks_2065').removeAttr('disabled'); 
+                    $('select[name="options[1931]"]').removeAttr('disabled'); 
+                    $('.Artworks_1932').removeAttr('disabled'); 
                 }else{
-                    $('.Art_2064').removeClass('Addactive');
-                    $('.Art_2064').hide();
-                    $('.Artworks_2065').hide();
-                    $("#select_2064 option:selected").removeAttr("selected");
-                    $("#select_2064").prepend('<option value="0" price="0" selected="selected">No</option>');
+                    $('.Art_1931').removeClass('Addactive');
+                    $('.Art_1931').hide();
+                    $('.Artworks_1932').hide();
+                    $("#select_1931 option:selected").removeAttr("selected");
+                    $("#select_1931").prepend('<option value="0" price="0" selected="selected">No</option>');
 
                     // fix err show ie
-                    $('select[name="options[2064]"]').attr('disabled', 'disabled'); 
-                    $('.Artworks_2065').attr('disabled', 'disabled');
+                    $('select[name="options[1931]"]').attr('disabled', 'disabled'); 
+                    $('.Artworks_1932').attr('disabled', 'disabled');
                 }
                 // set 18 Inches x 12 Inches
-                if ((widthVal_2057 == 18) && (HeightVal_2058 == 12)){
-                	size_2095 =3642;
+                if ((widthVal_1934 == 18) && (HeightVal_1935 == 12)){
+                    size_1933 =3341;
                 }
                 // set 18 Inches x 24 Inches
-                if ((widthVal_2057 == 18) && (HeightVal_2058 == 24)){
-                	size_2095 =3643;
+                if ((widthVal_1934 == 18) && (HeightVal_1935 == 24)){
+                    size_1933 =3342;
                 }
                 // set 24 Inches x 36 Inches
-                if ((widthVal_2057 == 24) && (HeightVal_2058 == 36)){
-                	size_2095 =3644;
+                if ((widthVal_1934 == 24) && (HeightVal_1935 == 36)){
+                    size_1933 =3343;
                 }
                 var sizeC = 0;
                 var TurnaroundC = 1;
                 var addC = 0;
                 var hesoC = 1;
                 var Lamination_price = 0;
-                if(Color_2055 == 3580){
-                   	if(size_2095 == 3642){
+                if(Color_1923 == 3321){
+                    if(size_1933 == 3341){
                         sizeC = 7.50; addC = 0;
-                        if(Lamination_2061 == 3589 ){
+                        if(Lamination_1926 == 3329 ){
                             Lamination_price = 0;
 
-                        } else if(Lamination_2061 == 3590){
+                        } else if(Lamination_1926 == 3330){
                             Lamination_price = 1.20;
-                        } else if(Lamination_2061 == 3591){
+                        } else if(Lamination_1926 == 3331){
                             Lamination_price = 1.21;
                         } else{
                             Lamination_price = 3.75;
                         }
-                    } else if(size_2095 == 3643){
+                    } else if(size_1933 == 3342){
                         sizeC = 15; addC = 0;
-                        if(Lamination_2061 == 3589 ){
+                        if(Lamination_1926 == 3329 ){
                             Lamination_price = 0;
 
-                        } else if(Lamination_2061 == 3590){
+                        } else if(Lamination_1926 == 3330){
                             Lamination_price = 2.40;
-                        } else if(Lamination_2061 == 3591){
+                        } else if(Lamination_1926 == 3331){
                             Lamination_price = 2.41;
                         } else{
                             Lamination_price = 7.50;
                         }
-                    } else if(size_2095 == 3644){
+                    } else if(size_1933 == 3343){
                         sizeC = 30; addC = 0;
-                        if(Lamination_2061 == 3589 ){
+                        if(Lamination_1926 == 3329 ){
                             Lamination_price = 0;
 
-                        } else if(Lamination_2061 == 3590){
+                        } else if(Lamination_1926 == 3330){
                             Lamination_price = 4.80;
-                        } else if(Lamination_2061 == 3591){
+                        } else if(Lamination_1926 == 3331){
                             Lamination_price = 4.81;
                         } else{
                             Lamination_price = 15.00;
                         }
                     } else{                     
                     
-                        //if ((widthVal_2057 < 12) || (widthVal_2057 > 48)) { alert("Please enter a value Width: between 12 and 48."); }
-                        //if ((HeightVal_2058 < 12) || (HeightVal_2058 > 96)) { alert("Please enter a value Height:  between 12 and 96."); }
-                        if(Lamination_2061 == 3589 ){
+                        //if ((widthVal_1934 < 12) || (widthVal_1934 > 48)) { alert("Please enter a value Width: between 12 and 48."); }
+                        //if ((HeightVal_1935 < 12) || (HeightVal_1935 > 96)) { alert("Please enter a value Height:  between 12 and 96."); }
+                        if(Lamination_1926 == 3329 ){
                             Lamination_price = 0;
 
-                        } else if(Lamination_2061 == 3590){
+                        } else if(Lamination_1926 == 3330){
                             Lamination_price = 0.80;
-                        } else if(Lamination_2061 == 3591){
+                        } else if(Lamination_1926 == 3331){
                             Lamination_price = 0.81;
                         } else{
                             Lamination_price = 2.50;
                         }
                         // tinh custom gia
-                        hesoC = (widthVal_2057 * HeightVal_2058)/144; addC = 9;
+                        hesoC = (widthVal_1934 * HeightVal_1935)/144; addC = 9;
                         hesoC = (isNaN(hesoC)) ? 0 : parseFloat(hesoC);
                     }
 
                      
-                } else if(Color_2055 == 3581){
-                   	if(size_2095 == 3642){
+                } else if(Color_1923 == 3322){
+                    if(size_1933 == 3341){
                         sizeC = 11.25; addC = 0;
-                        if(Lamination_2061 == 3589 ){
+                        if(Lamination_1926 == 3329 ){
                             Lamination_price = 0;
-                        } else if(Lamination_2061 == 3590){
+                        } else if(Lamination_1926 == 3330){
                             Lamination_price = 2.40;
-                        } else if(Lamination_2061 == 3591){
+                        } else if(Lamination_1926 == 3331){
                             Lamination_price = 2.41;
                         } else{
                             Lamination_price = 7.50;
                         }
-                    } else if(size_2095 == 3643){
+                    } else if(size_1933 == 3342){
                         sizeC = 22.5; addC = 0;
 
-                        if(Lamination_2061 == 3589 ){
+                        if(Lamination_1926 == 3329 ){
                             Lamination_price = 0;
 
-                        } else if(Lamination_2061 == 3590){
+                        } else if(Lamination_1926 == 3330){
                             Lamination_price = 4.80;
-                        } else if(Lamination_2061 == 3591){
+                        } else if(Lamination_1926 == 3331){
                             Lamination_price = 4.81;
                         } else{
                             Lamination_price = 15;
                         }
-                    } else if(size_2095 == 3644){
+                    } else if(size_1933 == 3343){
                         sizeC = 45; addC = 0;
-                        if(Lamination_2061 == 3589 ){
+                        if(Lamination_1926 == 3329 ){
                             Lamination_price = 0;
 
-                        } else if(Lamination_2061 == 3590){
+                        } else if(Lamination_1926 == 3330){
                             Lamination_price = 9.60;
-                        } else if(Lamination_2061 == 3591){
+                        } else if(Lamination_1926 == 3331){
                             Lamination_price = 9.61;
                         } else{
                             Lamination_price = 30;
                         }
                     } else{                     
 
-                        //if ((widthVal_2057 < 12) || (widthVal_2057 > 48)) { alert("Please enter a value Width: between 12 and 48."); }
-                        //if ((HeightVal_2058 < 12) || (HeightVal_2058 > 96)) { alert("Please enter a value Height:  between 12 and 96."); }
-                        if(Lamination_2061 == 3589 ){
+                        //if ((widthVal_1934 < 12) || (widthVal_1934 > 48)) { alert("Please enter a value Width: between 12 and 48."); }
+                        //if ((HeightVal_1935 < 12) || (HeightVal_1935 > 96)) { alert("Please enter a value Height:  between 12 and 96."); }
+                        if(Lamination_1926 == 3329 ){
                             Lamination_price = 0;
 
-                        } else if(Lamination_2061 == 3590){
+                        } else if(Lamination_1926 == 3330){
                             Lamination_price = 0.80 * 2;
-                        } else if(Lamination_2061 == 3591){
+                        } else if(Lamination_1926 == 3331){
                             Lamination_price = 0.81 * 2;
                         } else{
                             Lamination_price = 2.50 * 2;
                         }
                         // tinh custom gia
 
-                        hesoC = (widthVal_2057 * HeightVal_2058)/144; addC = 13;
+                        hesoC = (widthVal_1934 * HeightVal_1935)/144; addC = 13;
                         hesoC = (isNaN(hesoC)) ? 0 : parseFloat(hesoC);
                     
-                        if(Turnaround_2067 == 3600){
+                        if(Turnaround_1927 == 3335){
                             addC = 6;
                         }
                     }                                             
                 }
-                if(Turnaround_2067 == 3598){
+                if(Turnaround_1927 == 3333){
                     TurnaroundC = 1;
 
-                } else if(Turnaround_2067 == 3599){
+                } else if(Turnaround_1927 == 3334){
                     TurnaroundC = 1.5;
-                } else if(Turnaround_2067 == 3600){
+                } else if(Turnaround_1927 == 3335){
                     TurnaroundC = 1.75;
                 }
                 isDefault = false;
                  // add $2
-                if(size_2095 == 3645){
-                    total = ((hesoC * (sizeC + (addC + Lamination_price))) + Grommets_2059 + Rounded_2060) * TurnaroundC;
+                if(size_1933 == 3344){
+                    total = ((hesoC * (sizeC + (addC + Lamination_price))) + Grommets_1924 + Rounded_1925) * TurnaroundC;
                 } else{
-                    total = hesoC * (sizeC + (addC + Lamination_price) + Grommets_2059 + Rounded_2060) * TurnaroundC;
+                    total = hesoC * (sizeC + (addC + Lamination_price) + Grommets_1924 + Rounded_1925) * TurnaroundC;
                 }
-                          
-
+                            
             } else if (id == 119) { // Retractable Stand (stand ONLY)
 				var Size_699_val = $('#select_699').find(":selected").attr('value');
                 Size_699_val = (isNaN(Size_699_val)) ? 0 : parseFloat(Size_699_val);
@@ -4139,7 +3918,6 @@ endforeach;
                 } else if(qty >= 181){
                     rateDiscount = 10;
                 }
-
             } else if (id == 111 || id == 112 || id == 120) {
                 if(qty <= 10){
                     rateDiscount = 0;
@@ -4153,16 +3931,7 @@ endforeach;
                     rateDiscount = 20;
 			
 				}
-            }
-			
-			
-			
-			
-			
-			
-			
-			
-			else {
+            } else {
 
                 var rateDiscount = getDiscountRate(qty * area);
                 // console.log(rateDiscount);
@@ -4229,7 +3998,6 @@ endforeach;
             // Tong ket gia
             $('#pricePerUnit').text('$' + total.toFixed(2));
             $('#subTotalPrice').text('$' + subTotal.toFixed(2));
-           
             var cusArea = area/144;
             cusArea = Number(Math.round(cusArea * 100) / 100);
             $('#test').text('Area:  '+ cusArea.toFixed(2) + '(Square Feet)');
@@ -4271,17 +4039,17 @@ endforeach;
             showFinalPrice();
         });
         // REQUEST: Aluminum Sheets
-        $('#options_1969_text').change(function () {
+        $('#options_1140_text').change(function () {
             showFinalPrice();
         });
-        $('#options_1970_text').change(function () {
+        $('#options_1141_text').change(function () {
             showFinalPrice();
         });
-           // REQUEST: Aluminum Sheets Contour
-        $('#options_2057_text').change(function () {
+         // REQUEST: Aluminum Sheets Contour
+        $('#options_1934_text').change(function () {
             showFinalPrice();
         });
-        $('#options_2058_text').change(function () {
+        $('#options_1935_text').change(function () {
             showFinalPrice();
         });
         // REQUEST: X-Frame with Banner
@@ -4291,18 +4059,11 @@ endforeach;
         $('#options_980_text').change(function () {
             showFinalPrice();
         });
-        // REQUEST: X-Frame with Supersmooth
+
         $('#options_965_text').change(function () {
             showFinalPrice();
         });
         $('#options_966_text').change(function () {
-            showFinalPrice();
-        });
-         // REQUEST: X-Frame with Supersmooth test
-        $('#options_2089_text').change(function () {
-            showFinalPrice();
-        });
-        $('#options_2090_text').change(function () {
             showFinalPrice();
         });
         // Yard Signs (Coroplast)
@@ -4326,10 +4087,6 @@ endforeach;
         });
         // PVC Sintra Board Contour
         $('#select_577').change(function () {
-            showFinalPrice();
-        });
-        // PVC Sintra Board Contour test
-        $('#select_2099').change(function () {
             showFinalPrice();
         });
         // Styrene Boards Contour

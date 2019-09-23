@@ -9,7 +9,7 @@ define(
         return Component.extend({
             defaults: {
                 template: 'ParadoxLabs_Authnetcim/payment/cc',
-                save: config ? config.canSaveCard : false,
+                save: config ? config.canSaveCard && config.defaultSaveCard : false,
                 selectedCard: config ? config.selectedCard : '',
                 storedCards: config ? config.storedCards : {},
                 availableCardTypes: config ? config.availableCardTypes : {},
@@ -21,7 +21,9 @@ define(
                 sandbox: config ? config.sandbox : false,
                 acceptJsKey: '',
                 acceptJsValue: '',
-                creditCardLast4: ''
+                creditCardLast4: '',
+                canStoreBin: config ? config.canStoreBin : false,
+                creditCardBin: ''
             },
             initVars: function() {
                 this.canSaveCard     = config ? config.canSaveCard : false;
@@ -38,7 +40,9 @@ define(
                     .observe([
                         'acceptJsKey',
                         'acceptJsValue',
-                        'creditCardLast4'
+                        'creditCardLast4',
+                        'canStoreBin',
+                        'creditCardBin'
                     ]);
 
                 return this;
@@ -59,6 +63,7 @@ define(
                             'cc_exp_month': this.creditCardExpMonth(),
                             'cc_cid': this.creditCardVerificationNumber(),
                             'cc_last4': this.creditCardLast4(),
+                            'cc_bin': this.creditCardBin(),
                             'card_id': this.selectedCard()
                         }
                     }
@@ -70,13 +75,13 @@ define(
                 return 'authnetcim';
             },
             getApiLoginId: function () {
-                return this.apiLoginId;
+                return this.apiLoginId !== null ? this.apiLoginId : '';
             },
             getClientKey: function () {
-                return this.clientKey;
+                return this.clientKey !== null ? this.clientKey : '';
             },
             getSandbox: function () {
-                return this.sandbox;
+                return this.sandbox !== null ? this.sandbox : false;
             },
             useAcceptJs: function () {
                 return this.getApiLoginId().length > 0 && this.getClientKey().length > 0;

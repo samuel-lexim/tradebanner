@@ -17,7 +17,7 @@ namespace ParadoxLabs\TokenBase\Api\Data;
  *
  * @api
  */
-interface CardInterface
+interface CardInterface extends \Magento\Framework\Api\ExtensibleDataInterface
 {
     /**
      * Get ID
@@ -37,10 +37,10 @@ interface CardInterface
     /**
      * Set the method instance for this card. This is often necessary to route card data properly.
      *
-     * @param \ParadoxLabs\TokenBase\Api\MethodInterface $method
+     * @param \ParadoxLabs\TokenBase\Api\MethodInterface|\Magento\Payment\Model\MethodInterface $method
      * @return $this
      */
-    public function setMethodInstance(\ParadoxLabs\TokenBase\Api\MethodInterface $method);
+    public function setMethodInstance($method);
 
     /**
      * Set the customer account (if any) for the card.
@@ -104,13 +104,20 @@ interface CardInterface
     /**
      * Set additional card data.
      * Can pass in a key-value pair to set one value,
-     * or a single parameter (associative array) to overwrite all data.
+     * or a single parameter (associative array or CardAdditional instance) to overwrite all data.
      *
-     * @param string|array $key
+     * @param string|array|\ParadoxLabs\TokenBase\Api\Data\CardAdditionalInterface $key
      * @param string|null $value
      * @return $this
      */
     public function setAdditional($key, $value = null);
+
+    /**
+     * Get additional card data, in object form. Used to expose keys to API.
+     *
+     * @return \ParadoxLabs\TokenBase\Api\Data\CardAdditionalInterface
+     */
+    public function getAdditionalObject();
 
     /**
      * Get billing address or some part thereof.
@@ -334,17 +341,15 @@ interface CardInterface
     /**
      * Retrieve existing extension attributes object or create a new one.
      *
-     * @return \Magento\Framework\Api\ExtensionAttributesInterface|null
+     * @return \ParadoxLabs\TokenBase\Api\Data\CardExtensionInterface|null
      */
     public function getExtensionAttributes();
 
     /**
      * Set an extension attributes object.
      *
-     * @param \Magento\Framework\Api\ExtensionAttributesInterface $extensionAttributes
+     * @param \ParadoxLabs\TokenBase\Api\Data\CardExtensionInterface $extensionAttributes
      * @return $this
      */
-    public function setExtensionAttributes(
-        \Magento\Framework\Api\ExtensionAttributesInterface $extensionAttributes
-    );
+    public function setExtensionAttributes(\ParadoxLabs\TokenBase\Api\Data\CardExtensionInterface $extensionAttributes);
 }

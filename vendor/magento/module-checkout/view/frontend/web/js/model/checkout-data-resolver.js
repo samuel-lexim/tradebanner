@@ -1,5 +1,5 @@
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 /*jshint browser:true*/
@@ -215,7 +215,6 @@ define(
                 }
             },
 
-
             /**
              * Apply resolved billing address to quote
              */
@@ -229,13 +228,13 @@ define(
                 }
                 shippingAddress = quote.shippingAddress();
 
-                //if (shippingAddress &&
-                //    shippingAddress.canUseForBilling() &&
-                //    (shippingAddress.isDefaultShipping() || !quote.isVirtual())
-                //) {
-                //    //set billing address same as shipping by default if it is not empty
-                //    selectBillingAddress(quote.shippingAddress());
-                //}
+                if (shippingAddress &&
+                    shippingAddress.canUseForBilling() &&
+                    (shippingAddress.isDefaultShipping() || !quote.isVirtual())
+                ) {
+                    //set billing address same as shipping by default if it is not empty
+                    selectBillingAddress(quote.shippingAddress());
+                }
             }
         };
     }

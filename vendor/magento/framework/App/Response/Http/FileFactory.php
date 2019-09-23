@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Framework\App\Response\Http;
@@ -73,21 +73,12 @@ class FileFactory
             }
         }
 
+
         //  Samuel kong
         $isPdf = ($baseDir == "order_pdf") ? true : false;
         $orderPdfPath = 'http://tradebanner.com/pub/media/order_pdf/';
-        $orderPdfPath = 'http://tradeserver.com/pub/media/order_pdf/';
-        // # Samuel kong
+        $orderPdfPath = 'http://34.217.10.208/pub/media/order_pdf/';
 
-        // $this->_response->setHttpResponseCode(200)
-        //     ->setHeader('Pragma', 'public', true)
-        //     ->setHeader('Cache-Control', 'must-revalidate, post-check=0, pre-check=0', true)
-        //     ->setHeader('Content-type', $contentType, true)
-        //     ->setHeader('Content-Length', $contentLength === null ? strlen($content) : $contentLength, true)
-        //     ->setHeader('Content-Disposition', 'attachment; filename="' . $fileName . '"', true)
-        //     ->setHeader('Last-Modified', date('r'), true);
-
-        // Samuel Kong
         if ($isPdf && !$isFile) {
             $this->_response->setHttpResponseCode(200)
                 ->setHeader("Location", $orderPdfPath . $fileName);
@@ -101,6 +92,16 @@ class FileFactory
                 ->setHeader('Last-Modified', date('r'), true);
         }
         // # Samuel Kong
+
+        // Default code - Samuel Kong
+//        $this->_response->setHttpResponseCode(200)
+//            ->setHeader('Pragma', 'public', true)
+//            ->setHeader('Cache-Control', 'must-revalidate, post-check=0, pre-check=0', true)
+//            ->setHeader('Content-type', $contentType, true)
+//            ->setHeader('Content-Length', $contentLength === null ? strlen($content) : $contentLength, true)
+//            ->setHeader('Content-Disposition', 'attachment; filename="' . $fileName . '"', true)
+//            ->setHeader('Last-Modified', date('r'), true);
+        // # Default code - Samuel Kong
 
         if ($content !== null) {
             $this->_response->sendHeaders();
@@ -121,19 +122,7 @@ class FileFactory
             if (!empty($content['rm'])) {
                 $dir->delete($file);
             }
-            $this->callExit();
         }
         return $this->_response;
-    }
-
-    /**
-     * Call exit
-     *
-     * @return void
-     * @SuppressWarnings(PHPMD.ExitExpression)
-     */
-    protected function callExit()
-    {
-        exit(0);
     }
 }
