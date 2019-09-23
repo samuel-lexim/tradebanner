@@ -852,6 +852,31 @@ endforeach;
                 isDefault = false;
                 total = (heso * (Material_408 + Lamination_410)) * isTurnaround;
 
+            } else if (id === 168) { // 3M IJ35 Adhesive Vinyl Contour Cut
+                let Material_1983 = $('#select_1983').find(":selected").attr('price');
+                Material_1983 = (isNaN(Material_1983)) ? 0 : parseFloat(Material_1983);
+                let Lamination_1993 = $('#select_1993').find(":selected").attr('price');
+                Lamination_1993 = (isNaN(Lamination_1993)) ? 0 : parseFloat(Lamination_1993);
+                let Turnaround_1994 = $('#select_1994').find(":selected").attr('value');
+                Turnaround_1994 = (isNaN(Turnaround_1994)) ? 0 : parseFloat(Turnaround_1994);
+                value_qty = $('#qty').attr('value');
+                if (value_qty > 1) {
+                    $('.Art_1997').addClass('Addactive');
+                    $("#select_1997 option[value='0']").remove();
+                } else {
+                    $('.Art_1997').removeClass('Addactive');
+                    $('.Artworks_1998').hide();
+                    $("#select_1997 option:selected").removeAttr("selected");
+                    $("#select_1997").prepend('<option value="0" price="0" selected="selected">No</option>');
+                }
+                if (Turnaround_1994 === 3399) {
+                    isTurnaround = 1.7;
+                } else {
+                    isTurnaround = 1;
+                }
+                isDefault = false;
+                total = (heso * (Material_1983 + Lamination_1993)) * isTurnaround;
+
             } else if (id === 102) { // Bumper Stickers
                 let Size_416 = $('#select_416').find(":selected").attr('price');
                 Size_416 = (isNaN(Size_416)) ? 0 : parseFloat(Size_416);

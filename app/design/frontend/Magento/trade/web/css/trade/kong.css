@@ -1553,7 +1553,7 @@ a.clickHereHS {
 }
 
 /* simple product */
-#product-options-wrapper .field {
+#product-options-wrapper .field:not(.choice) {
     margin-bottom: 20px;
 }
 #product-options-wrapper .textarea {

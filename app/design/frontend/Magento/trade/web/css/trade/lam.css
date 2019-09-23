@@ -93,6 +93,10 @@
 .Artworks_1027, .Agreement_855, .Art_1026  {
     display: none;
 }
+/* 3M IJ35 Adhesive Vinyl Contour Cut */
+.Artworks_1998, .Agreement_1995, .Art_1997  {
+    display: none;
+}
 /* Bumper Stickers */
 .Agreement_856, .Artworks_857 {
     display: none;
