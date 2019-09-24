@@ -3549,6 +3549,7 @@ endforeach;
             } else if (id === 137) { // Foam Boards- Contour
                 let Material_Single_1895 = $('#select_1895').find(":selected").attr('value');
                 Material_Single_1895 = (isNaN(Material_Single_1895)) ? 0 : parseFloat(Material_Single_1895);
+
                 let Material_Double_955 = $('#select_955').find(":selected").attr('value');
                 Material_Double_955 = (isNaN(Material_Double_955)) ? 0 : parseFloat(Material_Double_955);
 
@@ -3558,9 +3559,28 @@ endforeach;
                 let Lamination_589 = $('#select_589').find(":selected").attr('price');
                 Lamination_589 = (isNaN(Lamination_589)) ? 0 : parseFloat(Lamination_589);
 
-
                 let Turnaround_592 = $('#select_592').find(":selected").attr('value');
                 Turnaround_592 = (isNaN(Turnaround_592)) ? 0 : parseFloat(Turnaround_592);
+
+                // get width
+                let widthVal_585 = $('#options_585_text').attr('value');
+                widthVal_585 = (isNaN(widthVal_585)) ? 0 : parseFloat(widthVal_585);
+
+                // get height
+                let HeightVal_586 = $('#options_586_text').attr('value');
+                HeightVal_586 = (isNaN(HeightVal_586)) ? 0 : parseFloat(HeightVal_586);
+
+                // over size 46
+                $('#options_2003').hide();
+                $('#options_2003 + label').hide();
+                if ((widthVal_585 > 46) || (HeightVal_586 > 46)) {
+                    $('#options_2003').removeAttr('checked');
+                    $('#options_2003_2').removeAttr('disabled').prop('checked', true);
+                } else {
+                    $('#options_2003').prop('checked', true);
+                    $('#options_2003_2').attr('disabled', 'disabled').prop('checked', false);
+                }
+
                 value_qty = $('#qty').attr('value');
                 if ((value_qty > 1) || (Color_587 === 1000)) {
                     $('.Art_929').addClass('Addactive');
