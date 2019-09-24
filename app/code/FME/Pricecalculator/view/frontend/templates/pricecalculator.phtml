@@ -3355,15 +3355,37 @@ endforeach;
                 let Material_Double_1880 = $('#select_1880').find(":selected").attr('price');
                 Material_Double_1880 = (isNaN(Material_Double_1880)) ? 0 : parseFloat(Material_Double_1880);
 
-
                 let Lamination_569 = $('#select_569').find(":selected").attr('price');
                 Lamination_569 = (isNaN(Lamination_569)) ? 0 : parseFloat(Lamination_569);
+
                 let Grommets_570 = $('#select_570').find(":selected").attr('price');
                 Grommets_570 = (isNaN(Grommets_570)) ? 0 : parseFloat(Grommets_570);
+
                 let Color_567 = $('#select_567').find(":selected").attr('value');
                 Color_567 = (isNaN(Color_567)) ? 0 : parseFloat(Color_567);
+
                 let Turnaround_572 = $('#select_572').find(":selected").attr('value');
                 Turnaround_572 = (isNaN(Turnaround_572)) ? 0 : parseFloat(Turnaround_572);
+
+                // get width
+                let widthVal_565 = $('#options_565_text').attr('value');
+                widthVal_565 = (isNaN(widthVal_565)) ? 0 : parseFloat(widthVal_565);
+
+                // get height
+                let HeightVal_566 = $('#options_566_text').attr('value');
+                HeightVal_566 = (isNaN(HeightVal_566)) ? 0 : parseFloat(HeightVal_566);
+
+                // over size 46
+                $('#options_2001').hide();
+                $('#options_2001 + label').hide();
+                if ((widthVal_565 > 46) || (HeightVal_566 > 46)) {
+                    $('#options_2001').removeAttr('checked');
+                    $('#options_2001_2').removeAttr('disabled').prop('checked', true);
+                } else {
+                    $('#options_2001').prop('checked', true);
+                    $('#options_2001_2').attr('disabled', 'disabled').prop('checked', false);
+                }
+
                 value_qty = $('#qty').attr('value');
                 if ((value_qty > 1) || (Color_567 === 3245)) {
                     $('.Art_995').addClass('Addactive');
