@@ -3448,9 +3448,28 @@ endforeach;
                 let Lamination_579 = $('#select_579').find(":selected").attr('price');
                 Lamination_579 = (isNaN(Lamination_579)) ? 0 : parseFloat(Lamination_579);
 
-
                 let Turnaround_582 = $('#select_582').find(":selected").attr('value');
                 Turnaround_582 = (isNaN(Turnaround_582)) ? 0 : parseFloat(Turnaround_582);
+
+                // get width
+                let widthVal_575 = $('#options_575_text').attr('value');
+                widthVal_575 = (isNaN(widthVal_575)) ? 0 : parseFloat(widthVal_575);
+
+                // get height
+                let HeightVal_576 = $('#options_576_text').attr('value');
+                HeightVal_576 = (isNaN(HeightVal_576)) ? 0 : parseFloat(HeightVal_576);
+
+                // over size 46
+                $('#options_2002').hide();
+                $('#options_2002 + label').hide();
+                if ((widthVal_575 > 46) || (HeightVal_576 > 46)) {
+                    $('#options_2002').removeAttr('checked');
+                    $('#options_2002_2').removeAttr('disabled').prop('checked', true);
+                } else {
+                    $('#options_2002').prop('checked', true);
+                    $('#options_2002_2').attr('disabled', 'disabled').prop('checked', false);
+                }
+
                 value_qty = $('#qty').attr('value');
                 if ((value_qty > 1) || (Color_577 === 984)) {
                     $('.Art_934').addClass('Addactive');
