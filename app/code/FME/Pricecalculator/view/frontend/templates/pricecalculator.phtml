@@ -2,12 +2,15 @@
 if (!$block->pricecalculatorHelper->isEnabledInFrontend()) {
     return;
 }
+
+/** @var FME\Pricecalculator\Helper\Data $helper */
 $helper = $block->pricecalculatorHelper;
 $isFrontSecure = $block->storeManager->getStore()
     ->isCurrentlySecure();
 $currencySymbol = $block->storeManager->getStore()
     ->getCurrentCurrency()->getCurrencySymbol();
 
+/** @var Magento\Catalog\Model\Product $_product */
 $_product = $block->getProduct();
 $productFinalPrice = $_product->getFinalPrice();
 $customOptions = $_product->getOptions();
@@ -25,27 +28,24 @@ $outputUnitLabel = $outputUnit;
 if ($pricingRule['by'] === 'volume') {
     $outputUnitLabel = 'Cubic ' . $outputUnit;
     $areaVolLabel = __('Volume');
-} else
-    if ($pricingRule['by'] === 'area') {
-        $outputUnitLabel = 'Square ' . $outputUnit;
-        $areaVolLabel = __('Area');
-    } else {
-        $outputUnitLabel = $outputUnit;
-        $areaVolLabel = $pricingRule['by']; //length or width or depth
-    }
+} else if ($pricingRule['by'] === 'area') {
+    $outputUnitLabel = 'Square ' . $outputUnit;
+    $areaVolLabel = __('Area');
+} else {
+    $outputUnitLabel = $outputUnit;
+    $areaVolLabel = $pricingRule['by']; //length or width or depth
+}
 
-
-$unitCoversion = $helper->unitConversion($inputUnit, $outputUnit);
-
+$unitConversion = $helper->unitConversion($inputUnit, $outputUnit);
 
 $fields = [];
 $totalOp = 0;
 
-foreach ($customOptions as $option):
+foreach ($customOptions as $option) {
     if (isset($fieldOptions[$option->getTitle()])) {
         $totalOp++;
     }
-endforeach;
+}
 
 ?>
 <script type="text/javascript">
@@ -149,6 +149,25 @@ endforeach;
         <?php endif; ?>
         <?php endforeach; ?>
 
+        /**
+         * allow only numeric for width and height input
+         */
+        function validateNumberWidthHeight() {
+            $('#product-options-wrapper > .row > .field[class*="Width_"] input[type="text"]').keypress(function(e){
+                // 8 = BackSpace button, 46 = delete button
+                if (!(/\d/.test(e.key) || e.keyCode === 8 || e.keyCode === 46)) {
+                    return false;
+                }
+            });
+
+            $('#product-options-wrapper > .row > .field[class*="Height_"] input[type="text"]').keypress(function(e){
+                // 8 = BackSpace button, 46 = delete button
+                if (!(/\d/.test(e.key) || e.keyCode === 8 || e.keyCode === 46)) {
+                    return false;
+                }
+            });
+        }
+
         function calculatePrice(elemObj) {
             let elemName = elemObj.attr('name');
             let additionalPriceObj = priceBox.cache.additionalPriceObject;
@@ -205,7 +224,7 @@ endforeach;
                 }
             });
 
-            let unitConv = parseFloat(<?= $unitCoversion ?>);
+            let unitConv = parseFloat(<?= $unitConversion ?>);
             area = area * unitConv;
 
             let Cover = area / 144;
@@ -213,7 +232,6 @@ endforeach;
             $('#calculations span').text(Cover + ' (Square Feet)');
             return area;
         }
-
 
         function calculateDiscount(area, unitPrice) {
             let rules = <?= json_encode($pricingRule) ?>;
@@ -267,7 +285,7 @@ endforeach;
                     }
                 }
             }
-            // chek 13oz Vinyl Banner
+            // check 13oz Vinyl Banner
             let Material_1729 = $('#select_1729').find(":selected").attr('value');
             Material_1729 = (isNaN(Material_1729)) ? 0 : parseFloat(Material_1729);
             if (Material_1729 === 2993) {
@@ -282,7 +300,7 @@ endforeach;
             if (Material_430 === 798) {
                 discount = 0;
             }
-            // chek 14oz Vinyl Banner
+            // check 14oz Vinyl Banner
             let Material_1748 = $('#select_1748').find(":selected").attr('value');
             Material_1748 = (isNaN(Material_1748)) ? 0 : parseFloat(Material_1748);
             if (Material_1748 === 3034) {
@@ -295,7 +313,6 @@ endforeach;
 
             return parseFloat(discount);
         }
-
 
         // function updatePriceOnChange(fp = 0, opid) {
         function updatePriceOnChange(opid) {
@@ -4282,6 +4299,8 @@ endforeach;
         $('#options_1071_2').change(function () {
             showFinalPrice();
         });
+
+        validateNumberWidthHeight();
 
         showFinalPrice();
 
