@@ -153,16 +153,16 @@ foreach ($customOptions as $option) {
          * allow only numeric for width and height input
          */
         function validateNumberWidthHeight() {
-            $('#product-options-wrapper > .row > .field[class*="Width_"] input[type="text"]').keypress(function(e){
+            $('#product-options-wrapper > .row > .field[class*="Width"] input[type="text"]').keypress(function (e) {
                 // 8 = BackSpace button, 46 = delete button
-                if (!(/\d/.test(e.key) || e.keyCode === 8 || e.keyCode === 46)) {
+                if (!((48 <= e.keyCode && e.keyCode <= 57) || e.keyCode === 8 || e.keyCode === 46)) {
                     return false;
                 }
             });
 
-            $('#product-options-wrapper > .row > .field[class*="Height_"] input[type="text"]').keypress(function(e){
+            $('#product-options-wrapper > .row > .field[class*="Height"] input[type="text"]').keypress(function (e) {
                 // 8 = BackSpace button, 46 = delete button
-                if (!(/\d/.test(e.key) || e.keyCode === 8 || e.keyCode === 46)) {
+                if (!((48 <= e.keyCode && e.keyCode <= 57) || e.keyCode === 8 || e.keyCode === 46)) {
                     return false;
                 }
             });
@@ -1352,6 +1352,7 @@ foreach ($customOptions as $option) {
 
                 let Grommets_466 = $('#select_466').find(":selected").attr('price');
                 Grommets_466 = (isNaN(Grommets_466)) ? 0 : parseFloat(Grommets_466);
+
                 let Rounded_467 = $('#select_467').find(":selected").attr('price');
                 Rounded_467 = (isNaN(Rounded_467)) ? 0 : parseFloat(Rounded_467);
 
@@ -1363,14 +1364,15 @@ foreach ($customOptions as $option) {
                 let HeightVal_1141 = $('#options_1141_text').attr('value');
                 HeightVal_1141 = (isNaN(HeightVal_1141)) ? 0 : parseFloat(HeightVal_1141);
 
+                // over size 46
+                $('#options_1952').hide();
+                $('#options_1952 + label').hide();
                 if ((widthVal_1140 > 46) || (HeightVal_1141 > 46)) {
-                    $('.Notice_1952').addClass('Addactive');
                     $('#options_1952').removeAttr('checked');
-                    $('#options_1952_2').attr('checked', 'checked');
-                    $('#options_1952_2').removeAttr('disabled');
+                    $('#options_1952_2').removeAttr('disabled').prop('checked', true);
                 } else {
-                    $('.Notice_1952').removeClass('Addactive');
-                    $('#options_1952_2').attr('disabled', 'disabled');
+                    $('#options_1952').prop('checked', true);
+                    $('#options_1952_2').attr('disabled', 'disabled').prop('checked', false);
                 }
 
                 // get value size
