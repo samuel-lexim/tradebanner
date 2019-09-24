@@ -16,24 +16,28 @@
       data-hasrequired="* Required Fields"
       data-mage-init='{"validation":{}}'>
 
-
     <fieldset class="fieldset">
         <div class="custom-title">
-            <legend class="legend"><span>Custom Estimate</span></legend><br />
+            <legend class="legend"><span>Custom Estimate</span></legend>
+            <br/>
         </div>
         <div class="estimate-group row">
             <div class="col-xs-12 col-sm-6">
                 <div class="field name required">
                     <label class="label" for="contact_name">Custom Quote Name</label>
                     <div class="control">
-                        <input name="contact_name" id="contact_name" title="Contact Name" value="<?= $block->escapeHtml($this->helper('Magento\Contact\Helper\Data')->getUserName()) ?>" class="input-text" type="text" data-validate="{required:true}"/>
+                        <input name="contact_name" id="contact_name" title="Contact Name"
+                               value="<?= $block->escapeHtml($this->helper('Magento\Contact\Helper\Data')->getUserName()) ?>"
+                               class="input-text" type="text" data-validate="{required:true}"/>
                     </div>
                 </div>
 
                 <div class="field email required">
                     <label class="label" for="email"><span>Email - Your User Name</span></label>
                     <div class="control">
-                        <input name="email" id="email" title="Email" value="<?= $block->escapeHtml($this->helper('Magento\Contact\Helper\Data')->getUserEmail()) ?>" class="input-text" type="email" data-validate="{required:true, 'validate-email':true}"/>
+                        <input name="email" id="email" title="Email"
+                               value="<?= $block->escapeHtml($this->helper('Magento\Contact\Helper\Data')->getUserEmail()) ?>"
+                               class="input-text" type="email" data-validate="{required:true, 'validate-email':true}"/>
                     </div>
                 </div>
             </div>
@@ -41,7 +45,8 @@
                 <div class="field contact_name required">
                     <label class="label" for="company"><span>Company Name</span></label>
                     <div class="control">
-                        <input name="company" id="company" value="" class="input-text" type="text" data-validate="{required:true}"/>
+                        <input name="company" id="company" value="" class="input-text" type="text"
+                               data-validate="{required:true}"/>
                     </div>
                 </div>
             </div>
@@ -59,7 +64,8 @@
                             <option value="Signs and Boards">Signs and Boards</option>
                             <option value="Banner Stands">Banner Stands</option>
                             <option value="Car Wraps">Car Wraps</option>
-                            <option value="Lettering (Die Cut Vinyl - Plotter)">Lettering (Die Cut Vinyl - Plotter)</option>
+                            <option value="Lettering (Die Cut Vinyl - Plotter)">Lettering (Die Cut Vinyl - Plotter)
+                            </option>
                             <option value="Others">Others</option>
                         </select>
                     </div>
@@ -71,8 +77,6 @@
                     </div>
                 </div>
 
-
-                <!-- zo day -->
                 <div class="size-options row">
                     <div class="col-xs-12 col-sm-4">
                         <div class="field width">
@@ -86,7 +90,8 @@
                         <div class="field height">
                             <label class="label" for="height"><span>Height</span></label>
                             <div class="control">
-                                <input name="height" id="height" title="Height" value="" class="input-text" type="text"/>
+                                <input name="height" id="height" title="Height" value="" class="input-text"
+                                       type="text"/>
                             </div>
                         </div>
                     </div>
@@ -94,7 +99,8 @@
                         <div class="field quantity">
                             <label class="label" for="quantity"><span>Quantity</span></label>
                             <div class="control">
-                                <input name="quantity" id="quantity" title="Quantity" value="" class="input-text" type="number" min="1" data-validate="{required:true}"/>
+                                <input name="quantity" id="quantity" title="Quantity" value="" class="input-text"
+                                       type="number" min="1" data-validate="{required:true}"/>
                             </div>
                         </div>
                     </div>
@@ -104,12 +110,12 @@
                     <label class="label" for="delivery">Delivery Method Required</span></label>
                     <div class="control">
                         <select name="delivery" id="delivery">
-                            <option  value="Pick-Up">Pick-Up</option>
-                            <option  value="Free-Delivery">Free-Delivery</option>
-                            <option  value="FedEx-Ground">FedEx Ground</option>
-                            <option  value="FedEx-Overnight">FedEx Overnight</option>
-                            <option  value="FedEx-2nd-Day">FedEx 2nd Day</option>
-                            <option  value="FedEx-Express-Saver">FedEx Express Saver</option>
+                            <option value="Pick-Up">Pick-Up</option>
+                            <option value="Free-Delivery">Free-Delivery</option>
+                            <option value="FedEx-Ground">FedEx Ground</option>
+                            <option value="FedEx-Overnight">FedEx Overnight</option>
+                            <option value="FedEx-2nd-Day">FedEx 2nd Day</option>
+                            <option value="FedEx-Express-Saver">FedEx Express Saver</option>
                         </select>
                     </div>
                     <p>* Only Certain LA County (California) locations qualify for Free-Delivery</p>
@@ -119,7 +125,8 @@
                 <div class="field overview required">
                     <label class="label" for="overview"><span>Additional Note</span></label>
                     <div class="control">
-                        <textarea name="overview" id="overview" title="Brief Overview" class="input-text" cols="5" rows="7" data-validate="{required:true}"></textarea>
+                        <textarea name="overview" id="overview" title="Brief Overview" class="input-text" cols="5"
+                                  rows="7" data-validate="{required:true}"></textarea>
                     </div>
                 </div>
 
@@ -131,20 +138,17 @@
                         <p> <?= __("You can upload files with these file extensions only (%1)", $block->getAllowedFileExtensions()) ?> </p>
                     </div>
                 </div>
-                <!-- zo -->
-
             </div>
 
             <div class="col-xs-12 col-sm-6">
-
-                <!-- zo day -->
                 <div class="field standtype standtype_options">
                     <label class="label" for="standtype"><span>Stand Type</span></label>
                     <div class="control">
                         <select name="standtype_options" id="standtype_options">
                             <option value="N/A">--- Please select ---</option>
                             <option value="X-Frame">X-Frame</option>
-                            <option value="Retractable Stand  (Roll-up, Pop-up)">Retractable Stand  (Roll-up, Pop-up)</option>
+                            <option value="Retractable Stand  (Roll-up, Pop-up)">Retractable Stand (Roll-up, Pop-up)
+                            </option>
                             <option value="Outdoor Double Banner Stand">Outdoor Double Banner Stand</option>
                             <option value="Step and Repeat Banners">Step and Repeat Banners</option>
                         </select>
@@ -155,10 +159,10 @@
                     <div class="control">
                         <select name="material_01" id="material_01">
                             <option value="N/A">--- Please select ---</option>
-                            <option value="13oz Scrim Vinyl   - Matte">13oz Scrim Vinyl   - Matte</option>
-                            <option value="13oz Scrim Vinyl   - Gloss">13oz Scrim Vinyl   - Gloss</option>
-                            <option value="14oz Scrim Vinyl   - Matte">14oz Scrim Vinyl   - Matte</option>
-                            <option value="14oz Scrim Vinyl   - Gloss">14oz Scrim Vinyl   - Gloss</option>
+                            <option value="13oz Scrim Vinyl - Matte">13oz Scrim Vinyl - Matte</option>
+                            <option value="13oz Scrim Vinyl - Gloss">13oz Scrim Vinyl - Gloss</option>
+                            <option value="14oz Scrim Vinyl - Matte">14oz Scrim Vinyl - Matte</option>
+                            <option value="14oz Scrim Vinyl - Gloss">14oz Scrim Vinyl - Gloss</option>
                             <option value="16oz Blockout Banner">16oz Blockout Banner</option>
                             <option value="Backlit Banner">Backlit Banner</option>
                             <option value="Fabric Banner - Premium">Fabric Banner - Premium</option>
@@ -223,10 +227,10 @@
                     <div class="control">
                         <select name="material_05" id="material_05">
                             <option value="N/A">--- Please select ---</option>
-                            <option value="13oz Scrim Vinyl   - Matte">13oz Scrim Vinyl   - Matte</option>
-                            <option value="13oz Scrim Vinyl   - Gloss">13oz Scrim Vinyl   - Gloss</option>
-                            <option value="14oz Scrim Vinyl   - Matte">14oz Scrim Vinyl   - Matte</option>
-                            <option value="14oz Scrim Vinyl   - Gloss">14oz Scrim Vinyl   - Gloss</option>
+                            <option value="13oz Scrim Vinyl - Matte">13oz Scrim Vinyl - Matte</option>
+                            <option value="13oz Scrim Vinyl - Gloss">13oz Scrim Vinyl - Gloss</option>
+                            <option value="14oz Scrim Vinyl - Matte">14oz Scrim Vinyl - Matte</option>
+                            <option value="14oz Scrim Vinyl - Gloss">14oz Scrim Vinyl - Gloss</option>
                             <option value="SuperSmooth Banner">SuperSmooth Banner</option>
                             <option value="Polyropylene (PET)">Polyropylene (PET)</option>
                         </select>
@@ -273,19 +277,26 @@
                 <div class="field budget finishing_options">
                     <label for="budget">Finishing Options</label>
                     <div class="input-box custom-multi-option">
-                        <input name="finishing_options_mc01" id="finishing_options_mc01" value="Hemming" type="checkbox">Hemming
-                        <input name="finishing_options_mc02" id="finishing_options_mc02" value="Grommets" type="checkbox">Grommets
-                        <input name="finishing_options_mc03" id="finishing_options_mc03" value="Pole Pockets" type="checkbox">Pole Pockets
-                        <input name="finishing_options_mc04" id="finishing_options_mc04" value="Wind Holes" type="checkbox">Wind Holes
+                        <input name="finishing_options_mc01" id="finishing_options_mc01" value="Hemming"
+                               type="checkbox">Hemming
+                        <input name="finishing_options_mc02" id="finishing_options_mc02" value="Grommets"
+                               type="checkbox">Grommets
+                        <input name="finishing_options_mc03" id="finishing_options_mc03" value="Pole Pockets"
+                               type="checkbox">Pole Pockets
+                        <input name="finishing_options_mc04" id="finishing_options_mc04" value="Wind Holes"
+                               type="checkbox">Wind Holes
                     </div>
                 </div>
 
                 <div class="field budget lamination_options">
                     <label for="budget">Lamination</label>
                     <div class="input-box custom-multi-option">
-                        <input name="lamination_options_mc01" id="lamination_options_mc01" value="High Gloss Lamination" type="checkbox">High Gloss Lamination
-                        <input name="lamination_options_mc02" id="lamination_options_mc02" value="Matte Lamination" type="checkbox">Matte Lamination
-                        <input name="lamination_options_mc03" id="lamination_options_mc03" value="Dry-Erase Lamination" type="checkbox">Dry-Erase Lamination
+                        <input name="lamination_options_mc01" id="lamination_options_mc01" value="High Gloss Lamination"
+                               type="checkbox">High Gloss Lamination
+                        <input name="lamination_options_mc02" id="lamination_options_mc02" value="Matte Lamination"
+                               type="checkbox">Matte Lamination
+                        <input name="lamination_options_mc03" id="lamination_options_mc03" value="Dry-Erase Lamination"
+                               type="checkbox">Dry-Erase Lamination
                     </div>
                 </div>
 
@@ -320,7 +331,8 @@
                     <div class="control">
                         <select name="round_corners_options" id="round_corners_options">
                             <option value="N/A">--- Please select ---</option>
-                            <option value="1/2inch Rounded Corners ( 4 Corner)">1/2" Rounded Corners ( 4 Corner)</option>
+                            <option value="1/2inch Rounded Corners ( 4 Corner)">1/2" Rounded Corners ( 4 Corner)
+                            </option>
                             <option value="No Rounded Corners">No Rounded Corners</option>
                         </select>
                     </div>
@@ -331,7 +343,7 @@
                     <div class="control">
                         <select name="color_options" id="color_options">
                             <option value="N/A">--- Please select ---</option>
-                            <option value="4:0  (Full Color One Side)">4:0  (Full Color One Side)</option>
+                            <option value="4:0  (Full Color One Side)">4:0 (Full Color One Side)</option>
                             <option value="4:4 (Full color Both Sides)">4:4 (Full color Both Sides)</option>
                         </select>
                     </div>
@@ -448,8 +460,10 @@
                     <div class="control">
                         <select name="carwrapping" id="carwrapping">
                             <option value="N/A">--- Please select ---</option>
-                            <option value="No - We have a car wrapping designer">No - We have a car wrapping designer</option>
-                            <option value="Yes - please accommodate our design">Yes - please accommodate our design</option>
+                            <option value="No - We have a car wrapping designer">No - We have a car wrapping designer
+                            </option>
+                            <option value="Yes - please accommodate our design">Yes - please accommodate our design
+                            </option>
                         </select>
                     </div>
                 </div>
@@ -459,7 +473,8 @@
                             <div class="field company_name_02">
                                 <label class="label" for="company_name_02"><span>Company Name</span></label>
                                 <div class="control">
-                                    <input name="company_name_02" id="company_name_02" value="" class="input-text" type="text"/>
+                                    <input name="company_name_02" id="company_name_02" value="" class="input-text"
+                                           type="text"/>
                                 </div>
                             </div>
                         </div>
@@ -506,7 +521,8 @@
                             <div class="field state_options">
                                 <label class="label" for="state_options"><span>State</span></label>
                                 <div class="control">
-                                    <input name="state_options" id="state_options" value="" class="input-text" type="text"/>
+                                    <input name="state_options" id="state_options" value="" class="input-text"
+                                           type="text"/>
                                 </div>
                             </div>
                         </div>
@@ -525,12 +541,11 @@
         </div>
 
 
-
         <?= $block->getChildHtml('form.additional.info'); ?>
     </fieldset>
     <div class="actions-toolbar custom-submit">
         <div class="primary">
-            <input type="hidden" name="hideit" id="hideit" value="" />
+            <input type="hidden" name="hideit" id="hideit" value=""/>
             <button type="submit" title="Submit" class="action submit primary">
                 <span>SUBMIT</span>
             </button>
@@ -543,48 +558,48 @@
         $(document).ready(function () {
             // Custom Estimate
             function hoaReset() {
-  				$('#finishing_options_mc01').attr("checked", false);
-  				$('#finishing_options_mc02').attr("checked", false); 
-  				$('#finishing_options_mc03').attr("checked", false); 
-  				$('#finishing_options_mc04').attr("checked", false);
-  				$('#lamination_options_mc01').attr("checked", false);
-  				$('#lamination_options_mc02').attr("checked", false);
-  				$('#lamination_options_mc03').attr("checked", false);
-  				$('#material_01').val("N/A");
-  				$('#material_02').val("N/A");
-  				$('#material_03').val("N/A");
-  				$('#material_04').val("N/A");
-  				$('#material_05').val("N/A");
-  				$('#material_06').val("N/A");
-  				$('#width').val("");
-  				$('#height').val("");
-  				$('#round_corners_options').val("N/A");
-  				$('#lamination_options').val("N/A");
-  				$('#grommet_options').val("N/A");
-  				$('#color_options').val("N/A");
-  				$('#color_options_02').val("");
-  				$('#standtype_options').val("N/A");
-  				$('#size_options').val("N/A");
-  				$('#size_options_02').val("N/A");
-  				$('#diecut_options').val("N/A");
-  				$('#frame_options').val("N/A");
-  				$('#hstake_options').val("N/A");
-  				$('#thickness_options').val("N/A");
-  				$('#thickness_options_02').val("N/A");
-  				$('#thickness_options_03').val("N/A");
-  				$('#thickness_options_04').val("N/A");
-  				$('#carwrapping').val("N/A");
-  				$('#carmodel').val("");
-  				$('#color_options_02').val("");
-  				$('#finishing_options').val("");
-  				$('#note_options').val("");
-  				$('#product_options').val("");
-  			}
+                $('#finishing_options_mc01').attr("checked", false);
+                $('#finishing_options_mc02').attr("checked", false);
+                $('#finishing_options_mc03').attr("checked", false);
+                $('#finishing_options_mc04').attr("checked", false);
+                $('#lamination_options_mc01').attr("checked", false);
+                $('#lamination_options_mc02').attr("checked", false);
+                $('#lamination_options_mc03').attr("checked", false);
+                $('#material_01').val("N/A");
+                $('#material_02').val("N/A");
+                $('#material_03').val("N/A");
+                $('#material_04').val("N/A");
+                $('#material_05').val("N/A");
+                $('#material_06').val("N/A");
+                $('#width').val("");
+                $('#height').val("");
+                $('#round_corners_options').val("N/A");
+                $('#lamination_options').val("N/A");
+                $('#grommet_options').val("N/A");
+                $('#color_options').val("N/A");
+                $('#color_options_02').val("");
+                $('#standtype_options').val("N/A");
+                $('#size_options').val("N/A");
+                $('#size_options_02').val("N/A");
+                $('#diecut_options').val("N/A");
+                $('#frame_options').val("N/A");
+                $('#hstake_options').val("N/A");
+                $('#thickness_options').val("N/A");
+                $('#thickness_options_02').val("N/A");
+                $('#thickness_options_03').val("N/A");
+                $('#thickness_options_04').val("N/A");
+                $('#carwrapping').val("N/A");
+                $('#carmodel').val("");
+                $('#color_options_02').val("");
+                $('#finishing_options').val("");
+                $('#note_options').val("");
+                $('#product_options').val("");
+            }
 
             $("#category").change(function () {
-            	hoaReset();
-                var id = $(this).val();
-                if (id == "Banners") {
+                hoaReset();
+                let id = $(this).val();
+                if (id === "Banners") {
                     $('.material_01').removeClass('hidden');
                     $('.material_01').addClass('active');
                     $('.material_02').addClass('hidden');
@@ -619,7 +634,7 @@
                     $('.color_options_02').addClass('hidden');
                     $('.finish_options_02').addClass('hidden');
                     $('.note_options').addClass('hidden');
-                } else if (id == "Adhesive") {
+                } else if (id === "Adhesive") {
                     $('.material_01').addClass('hidden');
                     $('.material_02').removeClass('hidden');
                     $('.material_02').addClass('active');
@@ -655,7 +670,7 @@
                     $('.color_options_02').addClass('hidden');
                     $('.finish_options_02').addClass('hidden');
                     $('.note_options').addClass('hidden');
-                } else if (id == "Digital Print") {
+                } else if (id === "Digital Print") {
                     $('.material_01').addClass('hidden');
                     $('.material_02').addClass('hidden');
                     $('.material_03').removeClass('hidden');
@@ -689,7 +704,7 @@
                     $('.color_options_02').addClass('hidden');
                     $('.finish_options_02').addClass('hidden');
                     $('.note_options').addClass('hidden');
-                } else if (id == "Signs and Boards") {
+                } else if (id === "Signs and Boards") {
                     $('.material_01').addClass('hidden');
                     $('.material_02').addClass('hidden');
                     $('.material_03').addClass('hidden');
@@ -727,7 +742,7 @@
                     $('.color_options_02').addClass('hidden');
                     $('.finish_options_02').addClass('hidden');
                     $('.note_options').addClass('hidden');
-                } else if (id == "Banner Stands") {
+                } else if (id === "Banner Stands") {
                     $('.standtype_options').removeClass('hidden');
                     $('.standtype_options').addClass('active');
                     $('.material_01').addClass('hidden');
@@ -761,7 +776,7 @@
                     $('.color_options_02').addClass('hidden');
                     $('.finish_options_02').addClass('hidden');
                     $('.note_options').addClass('hidden');
-                } else if (id == "Car Wraps") {
+                } else if (id === "Car Wraps") {
                     $('.standtype_options').addClass('hidden');
                     $('.material_01').addClass('hidden');
                     $('.material_02').addClass('hidden');
@@ -794,7 +809,7 @@
                     $('.color_options_02').addClass('hidden');
                     $('.finish_options_02').addClass('hidden');
                     $('.note_options').addClass('hidden');
-                } else if ((id == "Lettering (Die Cut Vinyl - Plotter)") || (id == "Others")) {
+                } else if ((id === "Lettering (Die Cut Vinyl - Plotter)") || (id === "Others")) {
                     $('.standtype_options').addClass('hidden');
                     $('.material_01').addClass('hidden');
                     $('.material_02').addClass('hidden');
@@ -834,9 +849,9 @@
                 }
 
             });
-            $("#material_01").change(function() {
-                var id=$(this).val();
-                if(id == "SuperSmooth Banner") {
+            $("#material_01").change(function () {
+                let id = $(this).val();
+                if (id === "SuperSmooth Banner") {
                     $('.color_options').removeClass('hidden');
                     $('.color_options').addClass('active');
                 } else {
@@ -844,9 +859,9 @@
                     $('.color_options').addClass('hidden');
                 }
             });
-            $("#material_02").change(function() {
-                var id=$(this).val();
-                if(id == "Window Static Cling - White") {
+            $("#material_02").change(function () {
+                let id = $(this).val();
+                if (id === "Window Static Cling - White") {
                     $('.lamination_options').removeClass('active');
                     $('.lamination_options').addClass('hidden');
                 } else {
@@ -854,30 +869,30 @@
                     $('.lamination_options').addClass('active');
                 }
             });
-            $("#material_03").change(function() {
-                var id=$(this).val();
-                if((id == "Backlit Film") || (id == "Polyropylene (PET)")) {
+            $("#material_03").change(function () {
+                let id = $(this).val();
+                if ((id === "Backlit Film") || (id === "Polyropylene (PET)")) {
                     $('.frame_options').removeClass('active');
                     $('.frame_options').addClass('hidden');
                     $('.lamination_options_02').removeClass('active');
                     $('.lamination_options_02').addClass('hidden');
                     $('.round_corners_options').removeClass('active');
                     $('.round_corners_options').addClass('hidden');
-                } else  if (id == "Canvas") {
+                } else if (id === "Canvas") {
                     $('.lamination_options_02').removeClass('active');
                     $('.lamination_options_02').addClass('hidden');
                     $('.round_corners_options').removeClass('active');
                     $('.round_corners_options').addClass('hidden');
                     $('.frame_options').removeClass('hidden');
                     $('.frame_options').addClass('active');
-                } else  if (id == "Car Magnets") {
+                } else if (id === "Car Magnets") {
                     $('.lamination_options_02').removeClass('hidden');
                     $('.lamination_options_02').addClass('active');
                     $('.round_corners_options').removeClass('hidden');
                     $('.round_corners_options').addClass('active');
                     $('.frame_options').removeClass('active');
                     $('.frame_options').addClass('hidden');
-                } else  if((id== "Digital Poster Gloss") || (id== "Digital Poster Matte")) {
+                } else if ((id === "Digital Poster Gloss") || (id === "Digital Poster Matte")) {
                     $('.lamination_options_02').removeClass('hidden');
                     $('.lamination_options_02').addClass('active');
                     $('.round_corners_options').removeClass('active');
@@ -886,9 +901,9 @@
                     $('.frame_options').addClass('hidden');
                 }
             });
-            $("#material_04").change(function() {
-                var id=$(this).val();
-                if((id== "Acrylic Boards") || (id== "Aluminum Sandwhich Board (Dibond)") || (id== "Converd Coated Board") || (id== "Eagle Board")) {
+            $("#material_04").change(function () {
+                let id = $(this).val();
+                if ((id === "Acrylic Boards") || (id === "Aluminum Sandwhich Board (Dibond)") || (id === "Converd Coated Board") || (id === "Eagle Board")) {
                     $('.round_corners_options').removeClass('hidden');
                     $('.round_corners_options').addClass('active');
                     $('.color_options').removeClass('hidden');
@@ -909,7 +924,7 @@
                     $('.thickness_options_04').addClass('hidden');
                     $('.hstake_options').removeClass('active');
                     $('.hstake_options').addClass('hidden');
-                } else  if (id == "Aluminum Sheets") {
+                } else if (id === "Aluminum Sheets") {
                     $('.round_corners_options').removeClass('hidden');
                     $('.round_corners_options').addClass('active');
                     $('.color_options').removeClass('hidden');
@@ -930,7 +945,7 @@
                     $('.thickness_options_04').addClass('hidden');
                     $('.hstake_options').removeClass('active');
                     $('.hstake_options').addClass('hidden');
-                } else  if (id == "Foam Board") {
+                } else if (id === "Foam Board") {
                     $('.round_corners_options').removeClass('hidden');
                     $('.round_corners_options').addClass('active');
                     $('.color_options').removeClass('hidden');
@@ -951,7 +966,7 @@
                     $('.thickness_options_04').addClass('hidden');
                     $('.hstake_options').removeClass('active');
                     $('.hstake_options').addClass('hidden');
-                } else  if (id == "PVC") {
+                } else if (id === "PVC") {
                     $('.round_corners_options').removeClass('hidden');
                     $('.round_corners_options').addClass('active');
                     $('.color_options').removeClass('hidden');
@@ -972,7 +987,7 @@
                     $('.thickness_options_04').addClass('hidden');
                     $('.hstake_options').removeClass('active');
                     $('.hstake_options').addClass('hidden');
-                } else  if (id == "Styrene Board") {
+                } else if (id === "Styrene Board") {
                     $('.round_corners_options').removeClass('hidden');
                     $('.round_corners_options').addClass('active');
                     $('.color_options').removeClass('hidden');
@@ -993,7 +1008,7 @@
                     $('.thickness_options_04').addClass('hidden');
                     $('.hstake_options').removeClass('active');
                     $('.hstake_options').addClass('hidden');
-                } else  if (id == "Ultra/ Gator Board") {
+                } else if (id === "Ultra/ Gator Board") {
                     $('.round_corners_options').removeClass('hidden');
                     $('.round_corners_options').addClass('active');
                     $('.color_options').removeClass('hidden');
@@ -1014,7 +1029,7 @@
                     $('.thickness_options_04').addClass('hidden');
                     $('.hstake_options').removeClass('active');
                     $('.hstake_options').addClass('hidden');
-                } else if (id == "Coroplast (Yard Sign)")  {
+                } else if (id === "Coroplast (Yard Sign)") {
                     $('.round_corners_options').removeClass('hidden');
                     $('.round_corners_options').addClass('active');
                     $('.color_options').removeClass('hidden');
@@ -1037,9 +1052,9 @@
                     $('.hstake_options').addClass('active');
                 }
             });
-            $("#standtype_options").change(function() {
-                var id=$(this).val();
-                if(id == "X-Frame") {
+            $("#standtype_options").change(function () {
+                let id = $(this).val();
+                if (id === "X-Frame") {
                     $('.standtype_options').removeClass('hidden');
                     $('.standtype_options').addClass('active');
                     $('.material_01').addClass('hidden');
@@ -1067,7 +1082,7 @@
                     $('.size_options_02').addClass('hidden');
                     $('.width').addClass('hidden');
                     $('.height').addClass('hidden');
-                } else  if (id == "Retractable Stand  (Roll-up, Pop-up)") {
+                } else if (id === "Retractable Stand  (Roll-up, Pop-up)") {
                     $('.standtype_options').removeClass('hidden');
                     $('.standtype_options').addClass('active');
                     $('.material_01').addClass('hidden');
@@ -1095,7 +1110,7 @@
                     $('.size_options').addClass('hidden');
                     $('.width').addClass('hidden');
                     $('.height').addClass('hidden');
-                } else  if ((id == "Outdoor Double Banner Stand") || (id == "Step and Repeat Banners")) {
+                } else if ((id === "Outdoor Double Banner Stand") || (id === "Step and Repeat Banners")) {
                     $('.standtype_options').removeClass('hidden');
                     $('.standtype_options').addClass('active');
                     $('.material_01').addClass('hidden');
@@ -1123,9 +1138,9 @@
                     $('.height').addClass('hidden');
                 }
             });
-            $("#size_options").change(function() {
-                var id=$(this).val();
-                if(id == "Adjustable") {
+            $("#size_options").change(function () {
+                let id = $(this).val();
+                if (id === "Adjustable") {
                     $('.width').removeClass('hidden');
                     $('.width').addClass('active');
                     $('.height').removeClass('hidden');
@@ -1137,9 +1152,9 @@
                     $('.height').addClass('hidden');
                 }
             });
-            $("#delivery").change(function() {
-                var id=$(this).val();
-                if(id=="Pick-Up") {
+            $("#delivery").change(function () {
+                let id = $(this).val();
+                if (id === "Pick-Up") {
                     $('.delivery_options').removeClass('active');
                     $('.delivery_options').addClass('hidden');
                 } else {
