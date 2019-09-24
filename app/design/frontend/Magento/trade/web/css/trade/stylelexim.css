@@ -1,49 +1,57 @@
 .Agreement_1915, .Artworks_1917, .Art_1916, .Inches_1919, .Inches_1920, .addF_1921 {
     display: none;
 }
+
 .Agreement_1930, .Material-_1926, .Material_1925, .Artworks_1933, .Art_1932 {
     display: none;
 }
+
 .Agreement_2106, .Artworks_2110, .Art_2109, .Side_2101, .Side_2100 {
     display: none;
 }
-.Notice_2112{
+
+.Notice_2112 {
     display: none;
 }
-#options-2112-list .admin__field-option:nth-child(1){
+
+#options-2112-list .admin__field-option:nth-child(1) {
     display: none;
 }
+
 .cms-index-index #leftMenuUl li:nth-child(7) .submenu li:nth-child(12) > a,
-.cms-index-index #leftMenuUl li:nth-child(7) .submenu li:nth-child(13) > a{
-    margin-top: -5px;
+.cms-index-index #leftMenuUl li:nth-child(7) .submenu li:nth-child(13) > a {
+    /*margin-top: -5px;*/
 }
+
 .cms-index-index #leftMenuUl li:nth-child(7) .submenu li:nth-child(12) > a::before,
-.cms-index-index #leftMenuUl li:nth-child(7) .submenu li:nth-child(13) > a::before{
-    background-image: url('/pub/media/images/price-new.png');
-    height: 30px;
-    width: 30px;
-    content: '' !important;
-    margin: 0;
-    display: inline-block;
-    background-repeat: round;
-    z-index: 999;
-    margin-bottom: -10px;
-    margin-left: -30px;
+.cms-index-index #leftMenuUl li:nth-child(7) .submenu li:nth-child(13) > a::before {
+    /*background-image: url('/pub/media/images/price-new.png');*/
+    /*height: 30px;*/
+    /*width: 30px;*/
+    /*content: '' !important;*/
+    /*margin: 0;*/
+    /*display: inline-block;*/
+    /*background-repeat: round;*/
+    /*z-index: 999;*/
+    /*margin-bottom: -10px;*/
+    /*margin-left: -30px;*/
 }
+
 #leftMenuUl li:nth-child(8) .submenu li:nth-child(12) > a,
-#leftMenuUl li:nth-child(8) .submenu li:nth-child(13) > a{
-    margin-top: -5px;
+#leftMenuUl li:nth-child(8) .submenu li:nth-child(13) > a {
+    /*margin-top: -5px;*/
 }
+
 #leftMenuUl li:nth-child(8) .submenu li:nth-child(12) > a::before,
-#leftMenuUl li:nth-child(8) .submenu li:nth-child(13) > a::before{
-    background-image: url('/pub/media/images/price-new.png');
-    height: 30px;
-    width: 30px;
-    content: '' !important;
-    margin: 0;
-    display: inline-block;
-    background-repeat: round;
-    z-index: 999;
-    margin-bottom: -10px;
-    margin-left: -30px;
+#leftMenuUl li:nth-child(8) .submenu li:nth-child(13) > a::before {
+    /*background-image: url('/pub/media/images/price-new.png');*/
+    /*height: 30px;*/
+    /*width: 30px;*/
+    /*content: '' !important;*/
+    /*margin: 0;*/
+    /*display: inline-block;*/
+    /*background-repeat: round;*/
+    /*z-index: 999;*/
+    /*margin-bottom: -10px;*/
+    /*margin-left: -30px;*/
 }
