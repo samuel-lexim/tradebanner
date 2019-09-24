@@ -3248,6 +3248,7 @@ endforeach;
             } else if (id === 134) { // Ultra(Gator) Board Contour
                 let Lamination_559 = $('#select_559').find(":selected").attr('price');
                 Lamination_559 = (isNaN(Lamination_559)) ? 0 : parseFloat(Lamination_559);
+
                 let Color_557 = $('#select_557').find(":selected").attr('value');
                 Color_557 = (isNaN(Color_557)) ? 0 : parseFloat(Color_557);
 
@@ -3259,6 +3260,27 @@ endforeach;
 
                 let Turnaround_562 = $('#select_562').find(":selected").attr('value');
                 Turnaround_562 = (isNaN(Turnaround_562)) ? 0 : parseFloat(Turnaround_562);
+
+                // get width
+                let widthVal_555 = $('#options_555_text').attr('value');
+                widthVal_555 = (isNaN(widthVal_555)) ? 0 : parseFloat(widthVal_555);
+
+                // get height
+                let HeightVal_556 = $('#options_556_text').attr('value');
+                HeightVal_556 = (isNaN(HeightVal_556)) ? 0 : parseFloat(HeightVal_556);
+
+                // over size 46
+                $('#options_2000').hide();
+                $('#options_2000 + label').hide();
+                if ((widthVal_555 > 46) || (HeightVal_556 > 46)) {
+                    $('#options_2000').removeAttr('checked');
+                    $('#options_2000_2').removeAttr('disabled').prop('checked', true);
+                } else {
+                    $('#options_2000').prop('checked', true);
+                    $('#options_2000_2').attr('disabled', 'disabled').prop('checked', false);
+                }
+
+
                 value_qty = $('#qty').attr('value');
                 if ((value_qty > 1) || (Color_557 === 953)) {
                     $('.Art_941').addClass('Addactive');
@@ -3273,6 +3295,7 @@ endforeach;
                     $("#select_941 option:selected").removeAttr("selected");
                     // $("#select_941").prepend('<option value="0" price="0" selected="selected">No</option>');
                 }
+
                 $('.Advised_1070').removeClass('Addactive');
                 if ((Material_Single_558 === 955) || (Material_Single_558 === 957) || (Material_Double_938 === 1535)) {
                     $('.Advised_1070').addClass('Addactive');
