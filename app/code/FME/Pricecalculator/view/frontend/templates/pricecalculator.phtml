@@ -71,20 +71,25 @@ foreach ($customOptions as $option) {
         var current_url = window.location.href;
         var is_edit = current_url.indexOf('checkout/cart/configure/id');
 
+        // foreach
+        let parent, child, opId, opTitle;
+        <?php foreach ($customOptions as $option):
+        $opId = $option->getId();
+        $opTitle = $option->getTitle();
+        ?>
+        <?php if (isset($fieldOptions[$opTitle])): ?>
 
-        <?php foreach ($customOptions as $option): ?>
-        <?php if (isset($fieldOptions[$option->getTitle()])): ?>
+        opId = "<?= $opId ?>";
+        opTitle = "<?= $opTitle ?>";
 
-        var opId = "<?= $option->getId() ?>";
-        var opIdName = '#options_<?= $option->getId() ?>_text';
-        var opJid = $('#options_<?= $option->getId() ?>_text');
+        //var opIdName = '#options_'+opId+'_text';
+        //var opJid = $('#options_'+opId+'_text');
 
         //change field title/label for input/output
-        var parent = $('#options_<?= $option->getId() ?>_text').parent().parent();
-        var child = parent.find('label span');
+        parent = $('#options_' + opId + '_text').parent().parent();
+        child = parent.find('label span');
         // if (child.length > 0) {
-        var str = child[0].innerHTML + ' (' + '<?= $inputUnit ?>' + ')';
-        child[0].innerHTML = str;
+        child[0].innerHTML = child[0].innerHTML + ' (' + '<?= $inputUnit ?>' + ')';
         // }
 
 
@@ -106,39 +111,37 @@ foreach ($customOptions as $option) {
 
         if (opId !== "undefined") {
             fields[opId] = "options[" + opId + "]";
-            //fields.push("options[" + opId + "]");
         }
 
-        let min_<?= $option->getId() ?> = <?= $fieldOptions[$option->getTitle()]['min'] ?>;
-        let max_<?= $option->getId() ?> = <?= $fieldOptions[$option->getTitle()]['max'] ?>;
+        let min_<?= $opId ?> = <?= $fieldOptions[$opTitle]['min'] ?>;
+        let max_<?= $opId ?> = <?= $fieldOptions[$opTitle]['max'] ?>;
 
-        $.validator.addMethod('pricecalculator-minmax-<?= $option->getTitle() ?>', function (value) {
-            return !(value < min_<?= $option->getId() ?> || value > max_<?= $option->getId() ?>);
-        }, $.mage.__('Please enter between ' + min_<?= $option->getId() ?> + ' and ' + max_<?= $option->getId() ?>));
+        $.validator.addMethod('pricecalculator-minmax-<?= $opTitle ?>', function (value) {
+            return !(value < min_<?= $opId ?> || value > max_<?= $opId ?>);
+        }, $.mage.__('Please enter between ' + min_<?= $opId ?> + ' and ' + max_<?= $opId ?>));
 
-        $('#min_max_<?= $option->getId() ?>').text('Please enter between ' + min_<?= $option->getId() ?> + ' and ' + max_<?= $option->getId() ?>);
+        $('#min_max_<?= $opId ?>').text('Please enter between ' + min_<?= $opId ?> + ' and ' + max_<?= $opId ?>);
 
-        let dataId<?= $option->getId() ?> = $('#options_<?= $option->getId() ?>_text').data("validate");
+        let dataId<?= $opId ?> = $('#options_' + opId + '_text').data("validate");
 
-        if (!("pricecalculator-minmax-<?= $option->getTitle() ?>" in dataId<?= $option->getId() ?>)) {
-            let newObj = {"pricecalculator-minmax-<?= $option->getTitle() ?>": true};
-            $.extend(dataId<?= $option->getId() ?>, newObj);
-            let itemStringify = JSON.stringify(dataId<?= $option->getId() ?>)
-                .replace(/&quot;/g, '"');
-            $('#options_<?= $option->getId() ?>_text').attr("data-validate", itemStringify);
+        if (!("pricecalculator-minmax-<?= $opTitle ?>" in dataId<?= $opId ?>)) {
+            let newObj = {"pricecalculator-minmax-<?= $opTitle ?>": true};
+            $.extend(dataId<?= $opId ?>, newObj);
+            let itemStringify = JSON.stringify(dataId<?= $opId ?>).replace(/&quot;/g, '"');
+            $('#options_' + opId + '_text').attr("data-validate", itemStringify);
         }
 
         //check on change
-        $('#options_<?= $option->getId() ?>_text').change(function () {
+        $('#options_<?= $opId ?>_text').change(function () {
             let value = $(this).val();
 
             if (value === '') {
                 $(this).val(0);
-                updatePriceOnChange(0, <?= $option->getId() ?>);
+                updatePriceOnChange(0, opId);
                 return;
             }
 
-            if ($.validator.validateElement($('#options_<?= $option->getId() ?>_text'))) {
+            if ($.validator.validateElement($('#options_' + opId + '_text'))) {
                 disableAddToCartBtn('#product_addtocart_form');
                 //calculatePrice($(this));
                 enableAddToCartBtn('#product_addtocart_form');
@@ -148,6 +151,7 @@ foreach ($customOptions as $option) {
 
         <?php endif; ?>
         <?php endforeach; ?>
+        // end foreach
 
         /**
          * allow only numeric for width and height input
@@ -214,7 +218,6 @@ foreach ($customOptions as $option) {
             let outputUnit = "<?= $outputUnitLabel ?>";
 
             $.each(fields, function (key, val) {
-
                 if (val !== undefined) {
                     if (parseFloat($('#options_' + key + '_text').val()) !== 0.1) {
                         let option_val = parseFloat($('#options_' + key + '_text').val());
@@ -224,8 +227,8 @@ foreach ($customOptions as $option) {
                 }
             });
 
-            let unitConv = parseFloat(<?= $unitConversion ?>);
-            area = area * unitConv;
+            let unitConversion = parseFloat(<?= $unitConversion ?>);
+            area = area * unitConversion;
 
             let Cover = area / 144;
             Cover = Number(Math.round(Cover * 100) / 100);
@@ -1449,10 +1452,10 @@ foreach ($customOptions as $option) {
                         }
                     } else {
                         if ((widthVal_1140 < 12) || (widthVal_1140 > 48)) {
-                            alert("Please enter a value Width: between 12 and 48.");
+                            // alert("Please enter a value Width: between 12 and 48.");
                         }
                         if ((HeightVal_1141 < 12) || (HeightVal_1141 > 96)) {
-                            alert("Please enter a value Height:  between 12 and 96.");
+                            // alert("Please enter a value Height:  between 12 and 96.");
                         }
                         if (Lamination_468 === 862) {
                             Lamination_price = 0;
@@ -1512,10 +1515,10 @@ foreach ($customOptions as $option) {
                         }
                     } else {
                         if ((widthVal_1140 < 12) || (widthVal_1140 > 48)) {
-                            alert("Please enter a value Width: between 12 and 48.");
+                            // alert("Please enter a value Width: between 12 and 48.");
                         }
                         if ((HeightVal_1141 < 12) || (HeightVal_1141 > 96)) {
-                            alert("Please enter a value Height:  between 12 and 96.");
+                            // alert("Please enter a value Height:  between 12 and 96.");
                         }
                         if (Lamination_468 === 862) {
                             Lamination_price = 0;
@@ -4136,9 +4139,7 @@ foreach ($customOptions as $option) {
 
                 }
             } else {
-
-                let rateDiscount = getDiscountRate(qty * area);
-
+                rateDiscount = getDiscountRate(qty * area);
             }
             discountCustom = (total * rateDiscount / 100) * qty;
             discountCustom = Number(Math.round(discountCustom * 100) / 100);
