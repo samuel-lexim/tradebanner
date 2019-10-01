@@ -560,7 +560,10 @@ class Carrier extends AbstractCarrierOnline implements \Magento\Shipping\Model\C
 
                 if (is_array($response->RateReplyDetails)) {
                     foreach ($response->RateReplyDetails as $rate) {
-                        $serviceName = (string)$rate->ServiceType;
+                        $serviceName = '';
+                        if (isset($rate->ServiceType)) {
+                            $serviceName = (string)$rate->ServiceType;
+                        }
                         if (in_array($serviceName, $allowedMethods)) {
                             $amount = $this->_getRateAmountOriginBased($rate);
                             $costArr[$serviceName] = $amount;
@@ -570,7 +573,10 @@ class Carrier extends AbstractCarrierOnline implements \Magento\Shipping\Model\C
                     asort($priceArr);
                 } else {
                     $rate = $response->RateReplyDetails;
-                    $serviceName = (string)$rate->ServiceType;
+                    $serviceName = '';
+                    if (isset($rate->ServiceType)) {
+                        $serviceName = (string)$rate->ServiceType;
+                    }
                     if (in_array($serviceName, $allowedMethods)) {
                         $amount = $this->_getRateAmountOriginBased($rate);
                         $costArr[$serviceName] = $amount;
