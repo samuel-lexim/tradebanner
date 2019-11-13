@@ -28,8 +28,6 @@
 !/packages
 !/packages/**
 
-
-!/pub/media/images
 !/pub/js
 
 !S3.php
