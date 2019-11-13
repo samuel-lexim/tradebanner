@@ -1240,6 +1240,15 @@ foreach ($customOptions as $option) {
                 } else {
                     isTurnaround = 1;
                 }
+                // change Drill Holes and Rounded Corners to $5 when material is 3/16
+                if (Material_447 === 7) { // White Translucent Acrylic Board - 3/16" ($7.00)
+                    if (Drill_449 > 0) {
+                        Drill_449 = 5;
+                    }
+                    if (Rounded_450 > 0) {
+                        Rounded_450 = 5;
+                    }
+                }
                 isDefault = false;
                 total = (heso * (Lamination_448 + Material_447) + Drill_449) * isTurnaround + Rounded_450;
 
