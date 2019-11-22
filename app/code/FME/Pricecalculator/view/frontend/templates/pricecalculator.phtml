@@ -3019,14 +3019,16 @@ foreach ($customOptions as $option) {
                 if (heso === 0) {
                     total = 0.00;
                 }
+
                 if (Turnaround_786 === 1266 && heso !== 0) {
-                    total = (heso * 0.89) + 153.80;
+                    total = (heso * 0.7025) + 153.80; // old: 0.89
                 } else if (Turnaround_786 === 1267 && heso !== 0) {
-                    total = (heso * 1.513) + 153.80;
+                    total = (heso * 1.3255) + 153.80; // old: 1.513
                 }
-                // else {
-                //     total = 0.00;
-                // }
+                else {
+                    total = 0.00;
+                }
+
                 isDefault = false;
 
             } else if (id === 145) { // Retractable Stand
