@@ -89,7 +89,14 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
 <script type="text/javascript">
 
     require(['jquery', 'jquery/ui'], function ($) {
+
+        function checkTurnaroundIsSameDay(turnaroundId) {
+            let selectedOptionText = $(turnaroundId).find('option:selected').text();
+            return selectedOptionText.toLowerCase().indexOf("same day") >= 0;
+        }
+
         $(document).ready(function () {
+
             $('.tabsWrapper > a').click(function () {
                 var tab = $(this).attr("data-tab");
                 $('.tabContent').hide();
@@ -834,8 +841,7 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
             });
             // 3M IJ35 Adhesive Vinyl Contour Cut
             $("#select_1994").change(function () {
-                let id = $(this).val();
-                if (id === 3399) {
+                if (checkTurnaroundIsSameDay("#select_1994")) {
                     $('.Agreement_1995').addClass('Addactive');
                 } else {
                     $('.Agreement_1995').removeClass('Addactive');
@@ -1107,7 +1113,7 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
                     $('select[name="options[457]"]').removeAttr('disabled');
                 }
                 // fix err show ie 
-               let value_qty = $('#qty').attr('value');
+                let value_qty = $('#qty').attr('value');
                 if ((value_qty > 1) || (id === 836))
                     $('select[name="options[1052]"]').removeAttr('disabled');
                 else
@@ -2050,7 +2056,7 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
                     $('select[name="options[558]"]').removeAttr('disabled');
                 }
                 // fix err show ie 
-               let value_qty = $('#qty').attr('value');
+                let value_qty = $('#qty').attr('value');
                 if ((value_qty > 1) || (id === 953))
                     $('select[name="options[941]"]').removeAttr('disabled');
                 else
@@ -2103,7 +2109,7 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
                     $('select[name="options[568]"]').removeAttr('disabled');
                 }
                 // fix err show ie 
-               let value_qty = $('#qty').attr('value');
+                let value_qty = $('#qty').attr('value');
                 if ((value_qty > 1) || (id === 3245))
                     $('select[name="options[995]"]').removeAttr('disabled');
                 else
@@ -2154,7 +2160,7 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
                     $('select[name="options[578]"]').removeAttr('disabled');
                 }
                 // fix err show ie
-               let value_qty = $('#qty').attr('value');
+                let value_qty = $('#qty').attr('value');
                 if ((value_qty > 1) || (id === 984))
                     $('select[name="options[934]"]').removeAttr('disabled');
                 else
@@ -2205,7 +2211,7 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
                     $('select[name="options[1895]"]').removeAttr('disabled');
                 }
                 // fix err show ie 
-               let value_qty = $('#qty').attr('value');
+                let value_qty = $('#qty').attr('value');
                 if ((value_qty > 1) || (id === 1000))
                     $('select[name="options[929]"]').removeAttr('disabled');
                 else
