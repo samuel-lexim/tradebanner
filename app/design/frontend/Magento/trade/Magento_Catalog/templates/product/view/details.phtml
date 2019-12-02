@@ -95,6 +95,11 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
             return selectedOptionText.toLowerCase().indexOf("same day") >= 0;
         }
 
+        function checkArtIsDifferentArtWorks(artId) {
+            let selectedOptionText = $(artId).find('option:selected').text();
+            return selectedOptionText.toLowerCase().indexOf("different artwork") >= 0;
+        }
+
         $(document).ready(function () {
 
             $('.tabsWrapper > a').click(function () {
@@ -1131,9 +1136,8 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
                     }
                 });
             });
-            $("#select_1052").change(function () {
-                let id = $(this).val();
-                if (id == 1740) {
+            $("#select_1052").change(function () { //
+                if (checkArtIsDifferentArtWorks('#select_1052')) {
                     $('.Artworks_1053').show();
                 } else {
                     $('.Artworks_1053').hide();
@@ -1151,8 +1155,7 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
                 }
             });
             $("#select_919").change(function () {
-                let id = $(this).val();
-                if (id == 1499) {
+                if (checkArtIsDifferentArtWorks('#select_919')) {
                     $('.Artworks_920').show();
                 } else {
                     $('.Artworks_920').hide();
