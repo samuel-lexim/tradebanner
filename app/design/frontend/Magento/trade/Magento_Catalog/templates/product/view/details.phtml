@@ -116,8 +116,8 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
 
             // 13oz Vinyl Banner
             $("#select_1734").change(function () {
-                var id = $(this).val();
-                if ((id == 2997) || (id == 2998) || (id == 2999) || (id == 3000) || (id == 3001) || (id == 3002) || (id == 3003)) {
+                let id = $(this).val();
+                if ((id === 2997) || (id === 2998) || (id === 2999) || (id === 3000) || (id === 3001) || (id === 3002) || (id === 3003)) {
                     $('.Size_1736').addClass('Addactive');
                     $('.Hemming_1738').addClass('Addactive');
                     $('.Grommets_1740').addClass('Addactive');
@@ -168,8 +168,8 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
             $("#select_1739 option[value='0']").remove();
             $('#options_1731_text').change(function () {
                 $("#select_1734").change(function () {
-                    var id = $(this).val();
-                    if ((id == 2997) || (id == 2998) || (id == 2999) || (id == 3000) || (id == 3001) || (id == 3002) || (id == 3003)) {
+                    let id = $(this).val();
+                    if ((id === 2997) || (id === 2998) || (id === 2999) || (id === 3000) || (id === 3001) || (id === 3002) || (id === 3003)) {
                         $("#select_1736 option[value='0']").remove();
                         $("#select_1738 option[value='0']").remove();
                         $("#select_1740 option[value='0']").remove();
@@ -180,16 +180,16 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
                 });
             });
             $("#select_1742").change(function () {
-                var id = $(this).val();
-                if (id == 3027) {
+                let id = $(this).val();
+                if (id === 3027) {
                     $('.Agreement_1743').addClass('Addactive');
                 } else {
                     $('.Agreement_1743').removeClass('Addactive');
                 }
             });
             $("#select_1745").change(function () {
-                var id = $(this).val();
-                if (id == 3030) {
+                let id = $(this).val();
+                if (id === 3030) {
                     $('.Artworks_1746').show();
                 } else {
                     $('.Artworks_1746').hide();
@@ -197,8 +197,8 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
             });
             // 14oz Vinyl Banner
             $("#select_1753").change(function () {
-                var id = $(this).val();
-                if ((id == 3038) || (id == 3039) || (id == 3040) || (id == 3041) || (id == 3042) || (id == 3043) || (id == 3044)) {
+                let id = $(this).val();
+                if ((id === 3038) || (id === 3039) || (id === 3040) || (id === 3041) || (id === 3042) || (id === 3043) || (id === 3044)) {
                     $('.Size_1755').addClass('Addactive');
                     $('.Hemming_1757').addClass('Addactive');
                     $('.Grommets_1759').addClass('Addactive');
@@ -249,8 +249,8 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
             $("#select_1758 option[value='no']").remove();
             $('#options_1446_text').change(function () {
                 $("#select_1430").change(function () {
-                    var id = $(this).val();
-                    if ((id == 2393) || (id == 2394) || (id == 2395) || (id == 2396) || (id == 2397) || (id == 2398) || (id == 2399) || (id == 2933)) {
+                    let id = $(this).val();
+                    if ((id === 2393) || (id === 2394) || (id === 2395) || (id === 2396) || (id === 2397) || (id === 2398) || (id === 2399) || (id === 2933)) {
                         $("#select_1755 option[value='0']").remove();
                         $("#select_1757 option[value='0']").remove();
                         $("#select_1759 option[value='0']").remove();
@@ -261,16 +261,16 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
                 });
             });
             $("#select_1761").change(function () {
-                var id = $(this).val();
-                if (id == 3068) {
+                let id = $(this).val();
+                if (id === 3068) {
                     $('.Agreement_1762').addClass('Addactive');
                 } else {
                     $('.Agreement_1762').removeClass('Addactive');
                 }
             });
             $("#select_1764").change(function () {
-                var id = $(this).val();
-                if (id == 3071) {
+                let id = $(this).val();
+                if (id === 3071) {
                     $('.Artworks_1765').show();
                 } else {
                     $('.Artworks_1765').hide();
@@ -278,8 +278,8 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
             });
             // 16 oz Blockout Banner
             $("#select_1452").change(function () {
-                var id = $(this).val();
-                if ((id == 2434) || (id == 2435) || (id == 2436) || (id == 2437) || (id == 2438) || (id == 2439) || (id == 2440) || (id == 2934)) {
+                let id = $(this).val();
+                if ((id === 2434) || (id === 2435) || (id === 2436) || (id === 2437) || (id === 2438) || (id === 2439) || (id === 2440) || (id === 2934)) {
                     $('.Pocket-Size_1454').addClass('Addactive');
                     $('.Hemming_1456').addClass('Addactive');
                     $('.Grommets_1458').addClass('Addactive');
@@ -330,8 +330,8 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
             $("#select_1457 option[value='0']").remove();
             $('#options_1448_text').change(function () {
                 $("#select_1452").change(function () {
-                    var id = $(this).val();
-                    if ((id == 2434) || (id == 2435) || (id == 2436) || (id == 2437) || (id == 2438) || (id == 2439) || (id == 2440) || (id == 2934)) {
+                    let id = $(this).val();
+                    if ((id === 2434) || (id === 2435) || (id === 2436) || (id === 2437) || (id === 2438) || (id === 2439) || (id === 2440) || (id === 2934)) {
                         $("#select_1454 option[value='0']").remove();
                         $("#select_1456 option[value='0']").remove();
                         $("#select_1458 option[value='0']").remove();
@@ -342,16 +342,16 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
                 });
             });
             $("#select_1460").change(function () {
-                var id = $(this).val();
-                if (id == 2464) {
+                let id = $(this).val();
+                if (id === 2464) {
                     $('.Agreement_1461').addClass('Addactive');
                 } else {
                     $('.Agreement_1461').removeClass('Addactive');
                 }
             });
             $("#select_1463").change(function () {
-                var id = $(this).val();
-                if (id == 2467) {
+                let id = $(this).val();
+                if (id === 2467) {
                     $('.Artworks_1464').show();
                 } else {
                     $('.Artworks_1464').hide();
@@ -359,16 +359,16 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
             });
             // Backlit Banner
             $("#select_1473").change(function () {
-                var id = $(this).val();
-                if (id == 2484) {
+                let id = $(this).val();
+                if (id === 2484) {
                     $('.Agreement_1474').addClass('Addactive');
                 } else {
                     $('.Agreement_1474').removeClass('Addactive');
                 }
             });
             $("#select_1476").change(function () {
-                var id = $(this).val();
-                if (id == 2487) {
+                let id = $(this).val();
+                if (id === 2487) {
                     $('.Artworks_1477').show();
                 } else {
                     $('.Artworks_1477').hide();
@@ -376,8 +376,8 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
             });
             // Double Sided Banner (Super Smooth)
             $("#select_1571").change(function () {
-                var id = $(this).val();
-                if ((id == 2675) || (id == 2676) || (id == 2677) || (id == 2678) || (id == 2679) || (id == 2680) || (id == 2681) || (id == 2935)) {
+                let id = $(this).val();
+                if ((id === 2675) || (id === 2676) || (id === 2677) || (id === 2678) || (id === 2679) || (id === 2680) || (id === 2681) || (id === 2935)) {
                     $('.Pocket-Size_1572').addClass('Addactive');
                     $('.Grommets_1574').addClass('Addactive');
                     $('.Grommets_1573').addClass('Addhidden');
@@ -414,8 +414,8 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
             $("#select_1573 option[value='0']").remove();
             $('#options_1481_text').change(function () {
                 $("#select_1571").change(function () {
-                    var id = $(this).val();
-                    if ((id == 2675) || (id == 2676) || (id == 2677) || (id == 2678) || (id == 2679) || (id == 2680) || (id == 2681) || (id == 2935)) {
+                    let id = $(this).val();
+                    if ((id === 2675) || (id === 2676) || (id === 2677) || (id === 2678) || (id === 2679) || (id === 2680) || (id === 2681) || (id === 2935)) {
                         $("#select_1572 option[value='0']").remove();
                         $("#select_1574 option[value='0']").remove();
                         $("#select_1573").prepend('<option value="0" price="0" selected="selected">No</option>');
@@ -423,16 +423,16 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
                 });
             });
             $("#select_1579").change(function () {
-                var id = $(this).val();
-                if (id == 2702) {
+                let id = $(this).val();
+                if (id === 2702) {
                     $('.Artworks_1580').show();
                 } else {
                     $('.Artworks_1580').hide();
                 }
             });
             $("#select_1576").change(function () {
-                var id = $(this).val();
-                if (id == 2699) {
+                let id = $(this).val();
+                if (id === 2699) {
                     $('.Agreement_1577').addClass('Addactive');
                 } else {
                     $('.Agreement_1577').removeClass('Addactive');
@@ -440,8 +440,8 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
             });
             // Fabric Banner- Premium
             $("#select_351").change(function () {
-                var id = $(this).val();
-                if ((id == 660) || (id == 661) || (id == 662) || (id == 663) || (id == 664) || (id == 665) || (id == 666) || (id == 2936)) {
+                let id = $(this).val();
+                if ((id === 660) || (id === 661) || (id === 662) || (id === 663) || (id === 664) || (id === 665) || (id === 666) || (id === 2936)) {
                     $('.Size_837').addClass('Addactive');
                     $('.Grommets_838').addClass('Addactive');
                     $('.Grommets_841').addClass('Addhidden');
@@ -480,8 +480,8 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
             $("#select_841 option[value='0']").remove();
             $('#options_347_text').change(function () {
                 $("#select_351").change(function () {
-                    var id = $(this).val();
-                    if ((id == 660) || (id == 661) || (id == 662) || (id == 663) || (id == 664) || (id == 665) || (id == 666) || (id == 2936)) {
+                    let id = $(this).val();
+                    if ((id === 660) || (id === 661) || (id === 662) || (id === 663) || (id === 664) || (id === 665) || (id === 666) || (id === 2936)) {
                         $("#select_837 option[value='0']").remove();
                         $("#select_838 option[value='0']").remove();
                         $("#select_841").prepend('<option value="0" price="0" selected="selected">No</option>');
@@ -489,16 +489,16 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
                 });
             });
             $("#select_353").change(function () {
-                var id = $(this).val();
-                if (id == 675) {
+                let id = $(this).val();
+                if (id === 675) {
                     $('.Agreement_911').addClass('Addactive');
                 } else {
                     $('.Agreement_911').removeClass('Addactive');
                 }
             });
             $("#select_1014").change(function () {
-                var id = $(this).val();
-                if (id == 1664) {
+                let id = $(this).val();
+                if (id === 1664) {
                     $('.Artworks_1015').show();
                 } else {
                     $('.Artworks_1015').hide();
@@ -506,8 +506,8 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
             });
             // Mesh Banner
             $("#select_1500").change(function () {
-                var id = $(this).val();
-                if ((id == 2529) || (id == 2530) || (id == 2531) || (id == 2532) || (id == 2533) || (id == 2534)) {
+                let id = $(this).val();
+                if ((id === 2529) || (id === 2530) || (id === 2531) || (id === 2532) || (id === 2533) || (id === 2534)) {
                     $('.Size_1501').addClass('Addactive');
                     $('.Grommets_1503').addClass('Addactive');
                     $('.Grommets_1502').addClass('Addhidden');
@@ -545,8 +545,8 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
             $("#select_1502 option[value='0']").remove();
             $('#options_1497_text').change(function () {
                 $("#select_1500").change(function () {
-                    var id = $(this).val();
-                    if ((id == 2529) || (id == 2530) || (id == 2531) || (id == 2532) || (id == 2533) || (id == 2534)) {
+                    let id = $(this).val();
+                    if ((id === 2529) || (id === 2530) || (id === 2531) || (id === 2532) || (id === 2533) || (id === 2534)) {
                         $("#select_1501 option[value='0']").remove();
                         $("#select_1503 option[value='0']").remove();
                         $("#select_1502").prepend('<option value="0" price="0" selected="selected">No</option>');
@@ -554,16 +554,16 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
                 });
             });
             $("#select_1505").change(function () {
-                var id = $(this).val();
-                if (id == 2550) {
+                let id = $(this).val();
+                if (id === 2550) {
                     $('.Agreement_1506').addClass('Addactive');
                 } else {
                     $('.Agreement_1506').removeClass('Addactive');
                 }
             });
             $("#select_1508").change(function () {
-                var id = $(this).val();
-                if (id == 2553) {
+                let id = $(this).val();
+                if (id === 2553) {
                     $('.Artworks_1509').show();
                 } else {
                     $('.Artworks_1509').hide();
@@ -571,8 +571,8 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
             });
             // Premium Coated Banner
             $("#select_1536").change(function () {
-                var id = $(this).val();
-                if ((id == 2600) || (id == 2601) || (id == 2602) || (id == 2603) || (id == 2604) || (id == 2605)) {
+                let id = $(this).val();
+                if ((id === 2600) || (id === 2601) || (id === 2602) || (id === 2603) || (id === 2604) || (id === 2605)) {
                     $('.Pocket-Size_1538').addClass('Addactive');
                     $('.Hemming_1540').addClass('Addactive');
                     $('.Grommets_1542').addClass('Addactive');
@@ -625,8 +625,8 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
             $("#select_1541 option[value='0']").remove();
             $('#options_1531_text').change(function () {
                 $("#select_1536").change(function () {
-                    var id = $(this).val();
-                    if ((id == 2600) || (id == 2601) || (id == 2602) || (id == 2603) || (id == 2604) || (id == 2605)) {
+                    let id = $(this).val();
+                    if ((id === 2600) || (id === 2601) || (id === 2602) || (id === 2603) || (id === 2604) || (id === 2605)) {
                         $("#select_1538 option[value='0']").remove();
                         $("#select_1540 option[value='0']").remove();
                         $("#select_1542 option[value='0']").remove();
@@ -636,16 +636,16 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
                 });
             });
             $("#select_1883").change(function () {
-                var id = $(this).val();
-                if (id == 3254) {
+                let id = $(this).val();
+                if (id === 3254) {
                     $('.Agreement_1882').addClass('Addactive');
                 } else {
                     $('.Agreement_1882').removeClass('Addactive');
                 }
             });
             $("#select_1881").change(function () {
-                var id = $(this).val();
-                if (id == 3251) {
+                let id = $(this).val();
+                if (id === 3251) {
                     $('.Artworks_1885').show();
                 } else {
                     $('.Artworks_1885').hide();
@@ -653,8 +653,8 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
             });
             // Super Smooth Banner
             $("#select_1587").change(function () {
-                var id = $(this).val();
-                if ((id == 2710) || (id == 2711) || (id == 2712) || (id == 2713) || (id == 2714) || (id == 2715) || (id == 2716) || (id == 2937)) {
+                let id = $(this).val();
+                if ((id === 2710) || (id === 2711) || (id === 2712) || (id === 2713) || (id === 2714) || (id === 2715) || (id === 2716) || (id === 2937)) {
                     $('.Pocket-Size_1589').addClass('Addactive');
                     $('.Grommets_1591').addClass('Addactive');
                     $('.Grommets_1590').addClass('Addhidden');
@@ -706,8 +706,8 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
             $("#select_1557 option[value='0']").remove();
             $('#options_1551_text').change(function () {
                 $("#select_1587").change(function () {
-                    var id = $(this).val();
-                    if ((id == 2710) || (id == 2711) || (id == 2712) || (id == 2713) || (id == 2714) || (id == 2715) || (id == 2716) || (id == 2937)) {
+                    let id = $(this).val();
+                    if ((id === 2710) || (id === 2711) || (id === 2712) || (id === 2713) || (id === 2714) || (id === 2715) || (id === 2716) || (id === 2937)) {
                         $("#select_1556 option[value='0']").remove();
                         $("#select_1558 option[value='0']").remove();
                         $("#select_1590 option[value='0']").remove();
@@ -718,16 +718,16 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
                 });
             });
             $("#select_1592").change(function () {
-                var id = $(this).val();
-                if (id == 2735) {
+                let id = $(this).val();
+                if (id === 2735) {
                     $('.Agreement_1593').addClass('Addactive');
                 } else {
                     $('.Agreement_1593').removeClass('Addactive');
                 }
             });
             $("#select_1595").change(function () {
-                var id = $(this).val();
-                if (id == 2738) {
+                let id = $(this).val();
+                if (id === 2738) {
                     $('.Artworks_1596').show();
                 } else {
                     $('.Artworks_1596').hide();
@@ -735,8 +735,8 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
             });
             // Fabric Banner- Deluxe
             $("#select_360").change(function () {
-                var id = $(this).val();
-                if ((id == 679) || (id == 680) || (id == 681) || (id == 682) || (id == 683) || (id == 684) || (id == 685) || (id == 2938)) {
+                let id = $(this).val();
+                if ((id === 679) || (id === 680) || (id === 681) || (id === 682) || (id === 683) || (id === 684) || (id === 685) || (id === 2938)) {
                     $('.Size_851').addClass('Addactive');
                     $('.Grommets_852').addClass('Addactive');
                     $('.Grommets_361').addClass('Addhidden');
@@ -774,8 +774,8 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
             $("#select_361 option[value='0']").remove();
             $('#options_356_text').change(function () {
                 $("#select_360").change(function () {
-                    var id = $(this).val();
-                    if ((id == 679) || (id == 680) || (id == 681) || (id == 682) || (id == 683) || (id == 684) || (id == 685) || (id == 2938)) {
+                    let id = $(this).val();
+                    if ((id === 679) || (id === 680) || (id === 681) || (id === 682) || (id === 683) || (id === 684) || (id === 685) || (id === 2938)) {
                         $("#select_851 option[value='0']").remove();
                         $("#select_852 option[value='0']").remove();
                         $("#select_361").prepend('<option value="0" price="0" selected="selected">No</option>');
@@ -783,16 +783,16 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
                 });
             });
             $("#select_362").change(function () {
-                var id = $(this).val();
-                if (id == 694) {
+                let id = $(this).val();
+                if (id === 694) {
                     $('.Agreement_853').addClass('Addactive');
                 } else {
                     $('.Agreement_853').removeClass('Addactive');
                 }
             });
             $("#select_1022").change(function () {
-                var id = $(this).val();
-                if (id == 1680) {
+                let id = $(this).val();
+                if (id === 1680) {
                     $('.Artworks_1023').show();
                 } else {
                     $('.Artworks_1023').hide();
@@ -800,16 +800,16 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
             });
             // 3M Controltac (IJ 180C)
             $("#select_403").change(function () {
-                var id = $(this).val();
-                if (id == 770) {
+                let id = $(this).val();
+                if (id === 770) {
                     $('.Agreement_915').addClass('Addactive');
                 } else {
                     $('.Agreement_915').removeClass('Addactive');
                 }
             });
             $("#select_1024").change(function () {
-                var id = $(this).val();
-                if (id == 1684) {
+                let id = $(this).val();
+                if (id === 1684) {
                     $('.Artworks_1025').show();
                 } else {
                     $('.Artworks_1025').hide();
@@ -817,16 +817,16 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
             });
             // 3M IJ35 Adhesive Vinyl
             $("#select_411").change(function () {
-                var id = $(this).val();
-                if (id == 778) {
+                let id = $(this).val();
+                if (id === 778) {
                     $('.Agreement_855').addClass('Addactive');
                 } else {
                     $('.Agreement_855').removeClass('Addactive');
                 }
             });
             $("#select_1026").change(function () {
-                var id = $(this).val();
-                if (id == 1688) {
+                let id = $(this).val();
+                if (id === 1688) {
                     $('.Artworks_1027').show();
                 } else {
                     $('.Artworks_1027').hide();
@@ -834,16 +834,16 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
             });
             // 3M IJ35 Adhesive Vinyl Contour Cut
             $("#select_1994").change(function () {
-                var id = $(this).val();
-                if (id == 3399) {
+                let id = $(this).val();
+                if (id === 3399) {
                     $('.Agreement_1995').addClass('Addactive');
                 } else {
                     $('.Agreement_1995').removeClass('Addactive');
                 }
             });
             $("#select_1997").change(function () {
-                var id = $(this).val();
-                if (id == 3402) {
+                let id = $(this).val();
+                if (id === 3402) {
                     $('.Artworks_1998').show();
                 } else {
                     $('.Artworks_1998').hide();
@@ -851,16 +851,16 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
             });
             // Bumper Stickers
             $("#select_418").change(function () {
-                var id = $(this).val();
-                if (id == 788) {
+                let id = $(this).val();
+                if (id === 788) {
                     $('.Agreement_856').addClass('Addactive');
                 } else {
                     $('.Agreement_856').removeClass('Addactive');
                 }
             });
             $("#select_420").change(function () {
-                var id = $(this).val();
-                if (id == 790) {
+                let id = $(this).val();
+                if (id === 790) {
                     $('.Artworks_857').addClass('Addactive');
                 } else {
                     $('.Artworks_857').removeClass('Addactive');
@@ -868,16 +868,16 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
             });
             // Floor Graphics
             $("#select_508").change(function () {
-                var id = $(this).val();
-                if (id == 901) {
+                let id = $(this).val();
+                if (id === 901) {
                     $('.Agreement_858').addClass('Addactive');
                 } else {
                     $('.Agreement_858').removeClass('Addactive');
                 }
             });
             $("#select_1028").change(function () {
-                var id = $(this).val();
-                if (id == 1692) {
+                let id = $(this).val();
+                if (id === 1692) {
                     $('.Artworks_1029').show();
                 } else {
                     $('.Artworks_1029').hide();
@@ -885,16 +885,16 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
             });
             // Perforated Stickers (One-Way Vision)
             $("#select_500").change(function () {
-                var id = $(this).val();
-                if (id == 896) {
+                let id = $(this).val();
+                if (id === 896) {
                     $('.Agreement_859').addClass('Addactive');
                 } else {
                     $('.Agreement_859').removeClass('Addactive');
                 }
             });
             $("#select_1030").change(function () {
-                var id = $(this).val();
-                if (id == 1696) {
+                let id = $(this).val();
+                if (id === 1696) {
                     $('.Artworks_1031').show();
                 } else {
                     $('.Artworks_1031').hide();
@@ -902,16 +902,16 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
             });
             // Static Clings (Window Clings)
             $("#select_493").change(function () {
-                var id = $(this).val();
-                if (id == 892) {
+                let id = $(this).val();
+                if (id === 892) {
                     $('.Agreement_860').addClass('Addactive');
                 } else {
                     $('.Agreement_860').removeClass('Addactive');
                 }
             });
             $("#select_1032").change(function () {
-                var id = $(this).val();
-                if (id == 1700) {
+                let id = $(this).val();
+                if (id === 1700) {
                     $('.Artworks_1033').show();
                 } else {
                     $('.Artworks_1033').hide();
@@ -919,16 +919,16 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
             });
             // Vinyl Stickers (Window Decal)
             $("#select_1841").change(function () {
-                var id = $(this).val();
-                if (id == 3176) {
+                let id = $(this).val();
+                if (id === 3176) {
                     $('.Agreement_1842').addClass('Addactive');
                 } else {
                     $('.Agreement_1842').removeClass('Addactive');
                 }
             });
             $("#select_1844").change(function () {
-                var id = $(this).val();
-                if (id == 3179) {
+                let id = $(this).val();
+                if (id === 3179) {
                     $('.Artworks_1845').show();
                 } else {
                     $('.Artworks_1845').hide();
@@ -936,16 +936,16 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
             });
             // Wall Vinyl Decals
             $("#select_478").change(function () {
-                var id = $(this).val();
-                if (id == 877) {
+                let id = $(this).val();
+                if (id === 877) {
                     $('.Agreement_862').addClass('Addactive');
                 } else {
                     $('.Agreement_862').removeClass('Addactive');
                 }
             });
             $("#select_1036").change(function () {
-                var id = $(this).val();
-                if (id == 1708) {
+                let id = $(this).val();
+                if (id === 1708) {
                     $('.Artworks_1037').show();
                 } else {
                     $('.Artworks_1037').hide();
@@ -953,16 +953,16 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
             });
             // Backlit Film
             $("#select_427").change(function () {
-                var id = $(this).val();
-                if (id == 796) {
+                let id = $(this).val();
+                if (id === 796) {
                     $('.Agreement_863').addClass('Addactive');
                 } else {
                     $('.Agreement_863').removeClass('Addactive');
                 }
             });
             $("#select_1038").change(function () {
-                var id = $(this).val();
-                if (id == 1712) {
+                let id = $(this).val();
+                if (id === 1712) {
                     $('.Artworks_1039').show();
                 } else {
                     $('.Artworks_1039').hide();
@@ -970,16 +970,16 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
             });
             // Canvas Roll
             $("#select_434").change(function () {
-                var id = $(this).val();
-                if (id == 801) {
+                let id = $(this).val();
+                if (id === 801) {
                     $('.Agreement_864').addClass('Addactive');
                 } else {
                     $('.Agreement_864').removeClass('Addactive');
                 }
             });
             $("#select_1040").change(function () {
-                var id = $(this).val();
-                if (id == 1716) {
+                let id = $(this).val();
+                if (id === 1716) {
                     $('.Artworks_1041').show();
                 } else {
                     $('.Artworks_1041').hide();
@@ -987,16 +987,16 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
             });
             // Framed Canvas
             $("#select_815").change(function () {
-                var id = $(this).val();
-                if (id == 1305) {
+                let id = $(this).val();
+                if (id === 1305) {
                     $('.Agreement_865').addClass('Addactive');
                 } else {
                     $('.Agreement_865').removeClass('Addactive');
                 }
             });
             $("#select_1044").change(function () {
-                var id = $(this).val();
-                if (id == 1724) {
+                let id = $(this).val();
+                if (id === 1724) {
                     $('.Artworks_1045').show();
                 } else {
                     $('.Artworks_1045').hide();
@@ -1004,16 +1004,16 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
             });
             // Car Magnets
             $("#select_534").change(function () {
-                var id = $(this).val();
-                if (id == 931) {
+                let id = $(this).val();
+                if (id === 931) {
                     $('.Agreement_866').addClass('Addactive');
                 } else {
                     $('.Agreement_866').removeClass('Addactive');
                 }
             });
             $("#select_1048").change(function () {
-                var id = $(this).val();
-                if (id == 1732) {
+                let id = $(this).val();
+                if (id === 1732) {
                     $('.Artworks_1049').show();
                 } else {
                     $('.Artworks_1049').hide();
@@ -1021,16 +1021,16 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
             });
             // Polypropylene (PET)
             $("#select_515").change(function () {
-                var id = $(this).val();
-                if (id == 905) {
+                let id = $(this).val();
+                if (id === 905) {
                     $('.Agreement_867').addClass('Addactive');
                 } else {
                     $('.Agreement_867').removeClass('Addactive');
                 }
             });
             $("#select_1042").change(function () {
-                var id = $(this).val();
-                if (id == 1720) {
+                let id = $(this).val();
+                if (id === 1720) {
                     $('.Artworks_1043').show();
                 } else {
                     $('.Artworks_1043').hide();
@@ -1038,16 +1038,16 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
             });
             // Digital Poster
             $("#select_1046").change(function () {
-                var id = $(this).val();
-                if (id == 1728) {
+                let id = $(this).val();
+                if (id === 1728) {
                     $('.Artworks_1047').show();
                 } else {
                     $('.Artworks_1047').hide();
                 }
             });
             $("#select_525").change(function () {
-                var id = $(this).val();
-                if (id == 921) {
+                let id = $(this).val();
+                if (id === 921) {
                     $('.Agreement_1864').addClass('Addactive');
                 } else {
                     $('.Agreement_1864').removeClass('Addactive');
@@ -1055,16 +1055,16 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
             });
             // Acrylic Boards
             $("#select_451").change(function () {
-                var id = $(this).val();
-                if (id == 834) {
+                let id = $(this).val();
+                if (id === 834) {
                     $('.Agreement_868').addClass('Addactive');
                 } else {
                     $('.Agreement_868').removeClass('Addactive');
                 }
             });
             $("#select_1050").change(function () {
-                var id = $(this).val();
-                if (id == 1736) {
+                let id = $(this).val();
+                if (id === 1736) {
                     $('.Artworks_1051').show();
                 } else {
                     $('.Artworks_1051').hide();
@@ -1072,16 +1072,16 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
             });
             // Aluminum Sandwich Board “Dibond”
             $("#select_460").change(function () {
-                var id = $(this).val();
-                if (id == 848) {
+                let id = $(this).val();
+                if (id === 848) {
                     $('.Agreement_869').addClass('Addactive');
                 } else {
                     $('.Agreement_869').removeClass('Addactive');
                 }
             });
             $("#select_456").change(function () {
-                var id = $(this).val();
-                if (id == 836) {
+                let id = $(this).val();
+                if (id === 836) {
                     $('.Material-_870').addClass('Addactive');
                     $('.Material_457').removeClass('Addactive');
 
@@ -1107,8 +1107,8 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
                     $('select[name="options[457]"]').removeAttr('disabled');
                 }
                 // fix err show ie 
-                value_qty = $('#qty').attr('value');
-                if ((value_qty > 1) || (id == 836))
+               let value_qty = $('#qty').attr('value');
+                if ((value_qty > 1) || (id === 836))
                     $('select[name="options[1052]"]').removeAttr('disabled');
                 else
                     $('select[name="options[1052]"]').attr('disabled', 'disabled');
@@ -1118,16 +1118,16 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
             $("#select_870").prepend('<option value="0" price="0" selected="selected">No</option>');
             $('#options_338_text').change(function () {
                 $("#select_456").change(function () {
-                    var id = $(this).val();
-                    if (id == 836) {
+                    let id = $(this).val();
+                    if (id === 836) {
                         $("#select_870 option[value='0']").remove();
                         $("#select_457").prepend('<option value="0" price="0" selected="selected">No</option>');
                     }
                 });
             });
             $("#select_1052").change(function () {
-                var id = $(this).val();
-                if (id == 1740) {
+                let id = $(this).val();
+                if (id === 1740) {
                     $('.Artworks_1053').show();
                 } else {
                     $('.Artworks_1053').hide();
@@ -1135,8 +1135,8 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
             });
             // Aluminum Sheets
             $("#select_469").change(function () {
-                var id = $(this).val();
-                if (id == 868) {
+                let id = $(this).val();
+                if (id === 868) {
                     $('.Agreement_918').addClass('Addactive');
                     $('.Agreement_918').show();
                 } else {
@@ -1145,16 +1145,16 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
                 }
             });
             $("#select_919").change(function () {
-                var id = $(this).val();
-                if (id == 1499) {
+                let id = $(this).val();
+                if (id === 1499) {
                     $('.Artworks_920').show();
                 } else {
                     $('.Artworks_920').hide();
                 }
             });
             $("#select_1139").change(function () {
-                var id = $(this).val();
-                if (id == 1782) {
+                let id = $(this).val();
+                if (id === 1782) {
                     $('.Inches_1140').addClass('Addactive');
                     $('.Inches_1141').addClass('Addactive');
                     $('.addF_1142').addClass('Addactive');
@@ -1175,16 +1175,16 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
             $("#select_1142").prepend('<option value="0" price="0" selected="selected">No</option>');
             // Arrow Spinner Signs
             $("#select_747").change(function () {
-                var id = $(this).val();
-                if (id == 1226) {
+                let id = $(this).val();
+                if (id === 1226) {
                     $('.Agreement_871').addClass('Addactive');
                 } else {
                     $('.Agreement_871').removeClass('Addactive');
                 }
             });
             $("#select_1054").change(function () {
-                var id = $(this).val();
-                if (id == 1744) {
+                let id = $(this).val();
+                if (id === 1744) {
                     $('.Artworks_1055').show();
                 } else {
                     $('.Artworks_1055').hide();
@@ -1193,24 +1193,24 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
             // Yard Signs (Coroplast)
             $('.Color_1664').addClass('Addactive');
             $("#select_1668").change(function () {
-                var id = $(this).val();
-                if (id == 2875) {
+                let id = $(this).val();
+                if (id === 2875) {
                     $('.Agreement_1669').addClass('Addactive');
                 } else {
                     $('.Agreement_1669').removeClass('Addactive');
                 }
             });
             $("#select_1671").change(function () {
-                var id = $(this).val();
-                if (id == 2878) {
+                let id = $(this).val();
+                if (id === 2878) {
                     $('.Artworks_1672').show();
                 } else {
                     $('.Artworks_1672').hide();
                 }
             });
             $("#select_1663").change(function () {
-                var id = $(this).val();
-                if (id == 2862) {
+                let id = $(this).val();
+                if (id === 2862) {
                     $('.Color_1664').addClass('Addactive');
                     $('.Color_1665').removeClass('Addactive');
                     $("#select_1665 option:selected").removeAttr("selected");
@@ -1251,16 +1251,16 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
 
             // Ultra(Gator) Board
             $("#select_628").change(function () {
-                var id = $(this).val();
-                if (id == 1064) {
+                let id = $(this).val();
+                if (id === 1064) {
                     $('.Agreement_889').addClass('Addactive');
                 } else {
                     $('.Agreement_889').removeClass('Addactive');
                 }
             });
             $("#select_625").change(function () {
-                var id = $(this).val();
-                if (id == 1052) {
+                let id = $(this).val();
+                if (id === 1052) {
                     $('.Advised_1073').addClass('Addactive');
                     $('.Advised_1072').removeClass('Addactive');
                     $('.Grommets_627').removeClass('Addhidden');
@@ -1268,14 +1268,14 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
                     $('#options_1073').removeAttr('checked');
                     $('#options_1073_2').attr('checked', 'checked');
                     $("#select_627 option[value='0']").remove();
-                } else if (id == 1054) {
+                } else if (id === 1054) {
                     $('.Advised_1072').addClass('Addactive');
                     $('.Advised_1073').removeClass('Addactive');
                     $('.Grommets_627').removeClass('Addhidden');
                     $('#options_1072').removeAttr('checked');
                     $('#options_1072_2').attr('checked', 'checked');
                     $("#select_627 option[value='0']").remove();
-                } else if (id == 1053) {
+                } else if (id === 1053) {
                     $('.Grommets_627').addClass('Addhidden');
                     $('.Advised_1073').removeClass('Addactive');
                     $('.Advised_1072').removeClass('Addactive');
@@ -1299,8 +1299,8 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
                 }
             });
             $("#select_888").change(function () {
-                var id = $(this).val();
-                if (id == 1453) {
+                let id = $(this).val();
+                if (id === 1453) {
                     $('.Advised_1072').addClass('Addactive');
                     $('.Advised_1073').addClass('Addactive');
                     $('.Grommets_627').removeClass('Addhidden');
@@ -1310,7 +1310,7 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
                     $('#options_1072').removeAttr('checked');
                     $('#options_1072_2').attr('checked', 'checked');
                     $("#select_627 option[value='0']").remove();
-                } else if (id == 1452) {
+                } else if (id === 1452) {
                     $('.Grommets_627').addClass('Addhidden');
                     $('.Advised_1073').removeClass('Addactive');
                     $('.Advised_1072').removeClass('Addactive');
@@ -1333,8 +1333,8 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
                 }
             });
             $("#select_624").change(function () {
-                var id = $(this).val();
-                if (id == 1050) {
+                let id = $(this).val();
+                if (id === 1050) {
                     $('.Side_888').addClass('Addactive');
                     $('.Side_625').removeClass('Addactive');
                     $("#select_625 option:selected").removeAttr("selected");
@@ -1370,8 +1370,8 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
             $("#select_625 option[value='0']").remove();
             $("#select_888").prepend('<option value="0" price="0" selected="selected">No</option>');
             $("#select_904").change(function () {
-                var id = $(this).val();
-                if (id == 1480) {
+                let id = $(this).val();
+                if (id === 1480) {
                     $('.Artworks_905').show();
                 } else {
                     $('.Artworks_905').hide();
@@ -1379,16 +1379,16 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
             });
             // Styrene Boards
             $("#select_638").change(function () {
-                var id = $(this).val();
-                if (id == 1079) {
+                let id = $(this).val();
+                if (id === 1079) {
                     $('.Agreement_887').addClass('Addactive');
                 } else {
                     $('.Agreement_887').removeClass('Addactive');
                 }
             });
             $("#select_1058").change(function () {
-                var id = $(this).val();
-                if (id == 1752) {
+                let id = $(this).val();
+                if (id === 1752) {
                     $('.Artworks_1059').show();
                 } else {
                     $('.Artworks_1059').hide();
@@ -1398,8 +1398,8 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
             // remove field trung khi khong thay doi field
 
             $("#select_633").change(function () {
-                var id = $(this).val();
-                if (id == 3242) {
+                let id = $(this).val();
+                if (id === 3242) {
                     $('.Side_1879').addClass('Addactive');
                     $('.Side_634').removeClass('Addactive');
                     $("#select_634 option:selected").removeAttr("selected");
@@ -1434,12 +1434,12 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
             // $("#select_885").prepend('<option value="0" price="0" selected="selected">No</option>');
 
             $("#select_644").change(function () { // material
-                var id = $(this).val();
-                var nextDay = $('#select_648 > option[value=1096]');
-                var sameDay = $('#select_648 > option[value=1097]');
-                var twoDay = $('#select_648 > option[value=2939]');
+                let id = $(this).val();
+                let nextDay = $('#select_648 > option[value=1096]');
+                let sameDay = $('#select_648 > option[value=1097]');
+                let twoDay = $('#select_648 > option[value=2939]');
 
-                if (id == 1085) {
+                if (id === 1085) {
                     nextDay.hide();
                     sameDay.hide();
                     twoDay.show();
@@ -1455,12 +1455,12 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
             });
 
             $("#select_885").change(function () {
-                var id = $(this).val();
-                var nextDay = $('#select_648 > option[value=1096]');
-                var sameDay = $('#select_648 > option[value=1097]');
-                var twoDay = $('#select_648 > option[value=2939]');
+                let id = $(this).val();
+                let nextDay = $('#select_648 > option[value=1096]');
+                let sameDay = $('#select_648 > option[value=1097]');
+                let twoDay = $('#select_648 > option[value=2939]');
 
-                if (id == 1447) {
+                if (id === 1447) {
                     nextDay.hide();
                     sameDay.hide();
                     twoDay.show();
@@ -1475,16 +1475,16 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
                 }
             });
             $("#select_648").change(function () {
-                var id = $(this).val();
-                if (id == 1097) {
+                let id = $(this).val();
+                if (id === 1097) {
                     $('.Agreement_886').addClass('Addactive');
                 } else {
                     $('.Agreement_886').removeClass('Addactive');
                 }
             });
             $("#select_925").change(function () {
-                var id = $(this).val();
-                if (id == 1511) {
+                let id = $(this).val();
+                if (id === 1511) {
                     $('.Artworks_926').show();
                 } else {
                     $('.Artworks_926').hide();
@@ -1493,8 +1493,8 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
             // remove field trung khi khong thay doi field
 
             $("#select_643").change(function () {
-                var id = $(this).val();
-                if (id == 1081) {
+                let id = $(this).val();
+                if (id === 1081) {
                     $('.Side_885').addClass('Addactive');
                     $('.Side_644').removeClass('Addactive');
                     $("#select_644 option:selected").removeAttr("selected");
@@ -1523,16 +1523,16 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
             });
             // Foam Boards
             $("#select_1891").change(function () {
-                var id = $(this).val();
-                if (id == 3272) {
+                let id = $(this).val();
+                if (id === 3272) {
                     $('.Agreement_1892').addClass('Addactive');
                 } else {
                     $('.Agreement_1892').removeClass('Addactive');
                 }
             });
             $("#select_1893").change(function () {
-                var id = $(this).val();
-                if (id == 3275) {
+                let id = $(this).val();
+                if (id === 3275) {
                     $('.Artworks_1894').show();
                 } else {
                     $('.Artworks_1894').hide();
@@ -1542,8 +1542,8 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
             $("#select_654 option[value='0']").remove();
             $("#select_883").prepend('<option value="0" price="0" selected="selected">No</option>');
             $("#select_653").change(function () {
-                var id = $(this).val();
-                if (id == 1099) {
+                let id = $(this).val();
+                if (id === 1099) {
                     $('.Side_1888').addClass('Addactive');
                     $('.Side_654').removeClass('Addactive');
 
@@ -1570,24 +1570,24 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
                     $('select[name="options[654]"]').removeAttr('disabled');
                 }
                 // fix err show ie 
-                value_qty = $('#qty').attr('value');
-                if ((value_qty > 1) || (id == 1099))
+                let value_qty = $('#qty').attr('value');
+                if ((value_qty > 1) || (id === 1099))
                     $('select[name="options[1893]"]').removeAttr('disabled');
                 else
                     $('select[name="options[1893]"]').attr('disabled', 'disabled');
             });
             // Eagle Board (Eco Board)
             $("#select_665").change(function () {
-                var id = $(this).val();
-                if (id == 1121) {
+                let id = $(this).val();
+                if (id === 1121) {
                     $('.Agreement_882').addClass('Addactive');
                 } else {
                     $('.Agreement_882').removeClass('Addactive');
                 }
             });
             $("#select_921").change(function () {
-                var id = $(this).val();
-                if (id == 1503) {
+                let id = $(this).val();
+                if (id === 1503) {
                     $('.Artworks_922').show();
                 } else {
                     $('.Artworks_922').hide();
@@ -1597,8 +1597,8 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
             $("#select_663 option[value='0']").remove();
             $("#select_881").prepend('<option value="0" price="0" selected="selected">No</option>');
             $("#select_662").change(function () {
-                var id = $(this).val();
-                if (id == 1114) {
+                let id = $(this).val();
+                if (id === 1114) {
                     $('.Side_881').addClass('Addactive');
                     $('.Side_663').removeClass('Addactive');
                     $("#select_663 option:selected").removeAttr("selected");
@@ -1628,16 +1628,16 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
             });
             // Converd Coated Board
             $("#select_916").change(function () {
-                var id = $(this).val();
-                if (id == 1494) {
+                let id = $(this).val();
+                if (id === 1494) {
                     $('.Artworks_917').show();
                 } else {
                     $('.Artworks_917').hide();
                 }
             });
             $("#select_674").change(function () {
-                var id = $(this).val();
-                if (id == 1134) {
+                let id = $(this).val();
+                if (id === 1134) {
                     $('.Agreement_880').addClass('Addactive');
                 } else {
                     $('.Agreement_880').removeClass('Addactive');
@@ -1648,8 +1648,8 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
             $("#select_671 option[value='0']").remove();
             $("#select_879").prepend('<option value="0" price="0" selected="selected">No</option>');
             $("#select_670").change(function () {
-                var id = $(this).val();
-                if (id == 1123) {
+                let id = $(this).val();
+                if (id === 1123) {
                     $('.Material-_879').addClass('Addactive');
                     $('.Material_671').removeClass('Addactive');
                     $("#select_671 option:selected").removeAttr("selected");
@@ -1677,24 +1677,24 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
                     $('select[name="options[671]"]').removeAttr('disabled');
                 }
                 // fix err show ie 
-                value_qty = $('#qty').attr('value');
-                if ((value_qty > 1) || (id == 1123))
+                let value_qty = $('#qty').attr('value');
+                if ((value_qty > 1) || (id === 1123))
                     $('select[name="options[916]"]').removeAttr('disabled');
                 else
                     $('select[name="options[916]"]').attr('disabled', 'disabled');
             });
             // Mini Banner Stands
             $("#select_1872").change(function () {
-                var id = $(this).val();
-                if (id == 3236) {
+                let id = $(this).val();
+                if (id === 3236) {
                     $('.Artworks_1873').addClass('Addactive');
                 } else {
                     $('.Artworks_1873').removeClass('Addactive');
                 }
             });
             $("#select_756").change(function () {
-                var id = $(this).val();
-                if (id == 1237) {
+                let id = $(this).val();
+                if (id === 1237) {
                     $('.Agreement_1866').addClass('Addactive');
                 } else {
                     $('.Agreement_1866').removeClass('Addactive');
@@ -1703,8 +1703,8 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
             $("#select_754 option[value='0']").remove();
             $("#select_892").prepend('<option value="0" price="0" selected="selected">No</option>');
             $("#select_753").change(function () {
-                var id = $(this).val();
-                if (id == 1231) {
+                let id = $(this).val();
+                if (id === 1231) {
                     $('.Material_892').addClass('Addactive');
                     $('.Material_754').removeClass('Addactive');
                     $("#select_754 option:selected").removeAttr("selected");
@@ -1722,24 +1722,24 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
             });
             // Outdoor Banner Stand
             $("#select_765").change(function () {
-                var id = $(this).val();
-                if (id == 1247) {
+                let id = $(this).val();
+                if (id === 1247) {
                     $('.Agreement_893').addClass('Addactive');
                 } else {
                     $('.Agreement_893').removeClass('Addactive');
                 }
             });
             $("#select_767").change(function () {
-                var id = $(this).val();
-                if (id == 1249) {
+                let id = $(this).val();
+                if (id === 1249) {
                     $('.Artworks_962').addClass('Addactive');
                 } else {
                     $('.Artworks_962').removeClass('Addactive');
                 }
             });
             $("#select_761").change(function () {
-                var id = $(this).val();
-                if (id == 1241) {
+                let id = $(this).val();
+                if (id === 1241) {
                     $('.Hemming_763').addClass('Addactive');
                     $('.Grommets_764').addClass('Addactive');
                     $("#select_763 option[value='0']").remove();
@@ -1756,16 +1756,16 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
             });
             // Outdoor Double Banner Stand
             $("#select_774").change(function () {
-                var id = $(this).val();
-                if (id == 1257) {
+                let id = $(this).val();
+                if (id === 1257) {
                     $('.Agreement_894').addClass('Addactive');
                 } else {
                     $('.Agreement_894').removeClass('Addactive');
                 }
             });
             $("#select_776").change(function () {
-                var id = $(this).val();
-                if (id == 1259) {
+                let id = $(this).val();
+                if (id === 1259) {
                     $('.Artworks_961').addClass('Addactive');
                     $('.Artworks_961').removeAttr('disabled');
                 } else {
@@ -1775,24 +1775,24 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
             });
             // X-Frame with Supersmooth
             $("#select_808").change(function () {
-                var id = $(this).val();
-                if (id == 1300) {
+                let id = $(this).val();
+                if (id === 1300) {
                     $('.Agreement_902').addClass('Addactive');
                 } else {
                     $('.Agreement_902').removeClass('Addactive');
                 }
             });
             $("#select_1060").change(function () {
-                var id = $(this).val();
-                if (id == 1756) {
+                let id = $(this).val();
+                if (id === 1756) {
                     $('.Artworks_1061').show();
                 } else {
                     $('.Artworks_1061').hide();
                 }
             });
             $("#select_963").change(function () {
-                var id = $(this).val();
-                if ((id == 1572) || (id == 1573)) {
+                let id = $(this).val();
+                if ((id === 1572) || (id === 1573)) {
                     $('.Inches_965').addClass('Addactive');
                     $('.Inches_966').addClass('Addactive');
                 } else {
@@ -1802,24 +1802,24 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
             });
             // X-Frame with Polypropylene (PET)
             $("#select_801").change(function () {
-                var id = $(this).val();
-                if (id == 1290) {
+                let id = $(this).val();
+                if (id === 1290) {
                     $('.Agreement_901').addClass('Addactive');
                 } else {
                     $('.Agreement_901').removeClass('Addactive');
                 }
             });
             $("#select_1062").change(function () {
-                var id = $(this).val();
-                if (id == 1760) {
+                let id = $(this).val();
+                if (id === 1760) {
                     $('.Artworks_1063').show();
                 } else {
                     $('.Artworks_1063').hide();
                 }
             });
             $("#select_964").change(function () {
-                var id = $(this).val();
-                if ((id == 1577) || (id == 1578)) {
+                let id = $(this).val();
+                if ((id === 1577) || (id === 1578)) {
                     $('.Inches_969').addClass('Addactive');
                     $('.Inches_970').addClass('Addactive');
 
@@ -1830,24 +1830,24 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
             });
             // X-Frame with Banner
             $("#select_794").change(function () {
-                var id = $(this).val();
-                if (id == 1280) {
+                let id = $(this).val();
+                if (id === 1280) {
                     $('.Agreement_900').addClass('Addactive');
                 } else {
                     $('.Agreement_900').removeClass('Addactive');
                 }
             });
             $("#select_1064").change(function () {
-                var id = $(this).val();
-                if (id == 1764) {
+                let id = $(this).val();
+                if (id === 1764) {
                     $('.Artworks_1065').show();
                 } else {
                     $('.Artworks_1065').hide();
                 }
             });
             $("#select_978").change(function () {
-                var id = $(this).val();
-                if ((id == 1597) || (id == 1598)) {
+                let id = $(this).val();
+                if ((id === 1597) || (id === 1598)) {
                     $('.Inches_979').addClass('Addactive');
                     $('.Inches_980').addClass('Addactive');
 
@@ -1858,16 +1858,16 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
             });
             // Step and Repeat Banners
             $("#select_786").change(function () {
-                var id = $(this).val();
-                if (id == 1267) {
+                let id = $(this).val();
+                if (id === 1267) {
                     $('.Agreement_899').addClass('Addactive');
                 } else {
                     $('.Agreement_899').removeClass('Addactive');
                 }
             });
             $("#select_1066").change(function () {
-                var id = $(this).val();
-                if (id == 1768) {
+                let id = $(this).val();
+                if (id === 1768) {
                     $('.Artworks_1067').show();
                 } else {
                     $('.Artworks_1067').hide();
@@ -1875,24 +1875,24 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
             });
             // Retractable Stand
             $("#select_1698").change(function () {
-                var id = $(this).val();
-                if (id == 2923) {
+                let id = $(this).val();
+                if (id === 2923) {
                     $('.Agreement_1699').addClass('Addactive');
                 } else {
                     $('.Agreement_1699').removeClass('Addactive');
                 }
             });
             $("#select_1695").change(function () {
-                var id = $(this).val();
-                if (id == 2917) {
+                let id = $(this).val();
+                if (id === 2917) {
                     $('.Available_1696').addClass('Addactive');
                 } else {
                     $('.Available_1696').removeClass('Addactive');
                 }
             });
             $("#select_1701").change(function () {
-                var id = $(this).val();
-                if (id == 2926) {
+                let id = $(this).val();
+                if (id === 2926) {
                     $('.Artworks_1702').show();
                 } else {
                     $('.Artworks_1702').hide();
@@ -1900,8 +1900,8 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
             });
             // Economic Retractable Stand
             $("#select_1904").change(function () {
-                var id = $(this).val();
-                if (id == 3291) {
+                let id = $(this).val();
+                if (id === 3291) {
                     $('.Artworks_1905').show();
                 } else {
                     $('.Artworks_1905').hide();
@@ -1909,16 +1909,16 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
             });
             // Custom Sublimation Transfers
             $("#select_709").change(function () {
-                var id = $(this).val();
-                if (id == 1190) {
+                let id = $(this).val();
+                if (id === 1190) {
                     $('.Agreement_1865').addClass('Addactive');
                 } else {
                     $('.Agreement_1865').removeClass('Addactive');
                 }
             });
             $("#select_981").change(function () {
-                var id = $(this).val();
-                if (id == 1600) {
+                let id = $(this).val();
+                if (id === 1600) {
                     $('.Artworks_982').show();
                 } else {
                     $('.Artworks_982').hide();
@@ -1929,8 +1929,8 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
             $('#options_977_2').attr('checked', 'checked');
             // Flag Banners (Sublimation)
             $("#select_983").change(function () {
-                var id = $(this).val();
-                if (id == 1604) {
+                let id = $(this).val();
+                if (id === 1604) {
                     $('.Artworks_984').show();
                 } else {
                     $('.Artworks_984').hide();
@@ -1938,16 +1938,16 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
             });
             // 3M Controltac (IJ 180C) Contour
             $("#select_717").change(function () {
-                var id = $(this).val();
-                if (id == 1197) {
+                let id = $(this).val();
+                if (id === 1197) {
                     $('.Agreement_943').addClass('Addactive');
                 } else {
                     $('.Agreement_943').removeClass('Addactive');
                 }
             });
             $("#select_985").change(function () {
-                var id = $(this).val();
-                if (id == 1608) {
+                let id = $(this).val();
+                if (id === 1608) {
                     $('.Artworks_986').show();
                 } else {
                     $('.Artworks_986').hide();
@@ -1955,16 +1955,16 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
             });
             // Car Magnets Contour
             $("#select_987").change(function () {
-                var id = $(this).val();
-                if (id == 1612) {
+                let id = $(this).val();
+                if (id === 1612) {
                     $('.Artworks_988').show();
                 } else {
                     $('.Artworks_988').hide();
                 }
             });
             $("#select_726").change(function () {
-                var id = $(this).val();
-                if (id == 1207) {
+                let id = $(this).val();
+                if (id === 1207) {
                     $('.Agreement_944').addClass('Addactive');
                 } else {
                     $('.Agreement_944').removeClass('Addactive');
@@ -1972,16 +1972,16 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
             });
             // Floor Graphics – Contour
             $("#select_989").change(function () {
-                var id = $(this).val();
-                if (id == 1616) {
+                let id = $(this).val();
+                if (id === 1616) {
                     $('.Artworks_990').show();
                 } else {
                     $('.Artworks_990').hide();
                 }
             });
             $("#select_735").change(function () {
-                var id = $(this).val();
-                if (id == 1214) {
+                let id = $(this).val();
+                if (id === 1214) {
                     $('.Agreement_946').addClass('Addactive');
                 } else {
                     $('.Agreement_946').removeClass('Addactive');
@@ -1989,16 +1989,16 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
             });
             //  Yard Signs (Coroplast) Contour
             $("#select_959").change(function () {
-                var id = $(this).val();
-                if (id == 1562) {
+                let id = $(this).val();
+                if (id === 1562) {
                     $('.Artworks_960').show();
                 } else {
                     $('.Artworks_960').hide();
                 }
             });
             $("#select_552").change(function () {
-                var id = $(this).val();
-                if (id == 951) {
+                let id = $(this).val();
+                if (id === 951) {
                     $('.Agreement_958').addClass('Addactive');
                 } else {
                     $('.Agreement_958').removeClass('Addactive');
@@ -2006,16 +2006,16 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
             });
             //  Ultra(Gator) Board Contour
             $("#select_941").change(function () {
-                var id = $(this).val();
-                if (id == 1540) {
+                let id = $(this).val();
+                if (id === 1540) {
                     $('.Artworks_942').show();
                 } else {
                     $('.Artworks_942').hide();
                 }
             });
             $("#select_562").change(function () {
-                var id = $(this).val();
-                if (id == 967) {
+                let id = $(this).val();
+                if (id === 967) {
                     $('.Agreement_939').addClass('Addactive');
                 } else {
                     $('.Agreement_939').removeClass('Addactive');
@@ -2025,8 +2025,8 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
             $("#select_558 option[value='0']").remove();
             $("#select_938").prepend('<option value="0" price="0" selected="selected">No</option>');
             $("#select_557").change(function () {
-                var id = $(this).val();
-                if (id == 953) {
+                let id = $(this).val();
+                if (id === 953) {
                     $('.Side_938').addClass('Addactive');
                     $('.Side_558').removeClass('Addactive');
                     $("#select_558 option:selected").removeAttr("selected");
@@ -2050,24 +2050,24 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
                     $('select[name="options[558]"]').removeAttr('disabled');
                 }
                 // fix err show ie 
-                value_qty = $('#qty').attr('value');
-                if ((value_qty > 1) || (id == 953))
+               let value_qty = $('#qty').attr('value');
+                if ((value_qty > 1) || (id === 953))
                     $('select[name="options[941]"]').removeAttr('disabled');
                 else
                     $('select[name="options[941]"]').attr('disabled', 'disabled');
             });
             //  Styrene Boards Contour
             $("#select_572").change(function () {
-                var id = $(this).val();
-                if (id == 982) {
+                let id = $(this).val();
+                if (id === 982) {
                     $('.Agreement_936').addClass('Addactive');
                 } else {
                     $('.Agreement_936').removeClass('Addactive');
                 }
             });
             $("#select_995").change(function () {
-                var id = $(this).val();
-                if (id == 1628) {
+                let id = $(this).val();
+                if (id === 1628) {
                     $('.Artworks_996').show();
                 } else {
                     $('.Artworks_996').hide();
@@ -2075,8 +2075,8 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
             });
             // remove field trung khi khong thay doi field
             $("#select_567").change(function () {
-                var id = $(this).val();
-                if (id == 3245) {
+                let id = $(this).val();
+                if (id === 3245) {
                     $('.Side_1880').addClass('Addactive');
                     $('.Side_568').removeClass('Addactive');
                     $("#select_568 option:selected").removeAttr("selected");
@@ -2103,8 +2103,8 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
                     $('select[name="options[568]"]').removeAttr('disabled');
                 }
                 // fix err show ie 
-                value_qty = $('#qty').attr('value');
-                if ((value_qty > 1) || (id == 3245))
+               let value_qty = $('#qty').attr('value');
+                if ((value_qty > 1) || (id === 3245))
                     $('select[name="options[995]"]').removeAttr('disabled');
                 else
                     $('select[name="options[995]"]').attr('disabled', 'disabled');
@@ -2112,16 +2112,16 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
 
             //  PVC Sintra Board Contour
             $("#select_582").change(function () {
-                var id = $(this).val();
-                if (id == 998) {
+                let id = $(this).val();
+                if (id === 998) {
                     $('.Agreement_932').addClass('Addactive');
                 } else {
                     $('.Agreement_932').removeClass('Addactive');
                 }
             });
             $("#select_934").change(function () {
-                var id = $(this).val();
-                if (id == 1529) {
+                let id = $(this).val();
+                if (id === 1529) {
                     $('.Artworks_935').show();
                 } else {
                     $('.Artworks_935').hide();
@@ -2131,8 +2131,8 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
             $("#select_578 option[value='0']").remove();
             $("#select_1145").prepend('<option value="0" price="0" selected="selected">No</option>');
             $("#select_577").change(function () {
-                var id = $(this).val();
-                if (id == 984) {
+                let id = $(this).val();
+                if (id === 984) {
                     $('.Side_1145').addClass('Addactive');
                     $('.Side_578').removeClass('Addactive');
                     $("#select_1145 option[value='0']").remove();
@@ -2154,8 +2154,8 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
                     $('select[name="options[578]"]').removeAttr('disabled');
                 }
                 // fix err show ie
-                value_qty = $('#qty').attr('value');
-                if ((value_qty > 1) || (id == 984))
+               let value_qty = $('#qty').attr('value');
+                if ((value_qty > 1) || (id === 984))
                     $('select[name="options[934]"]').removeAttr('disabled');
                 else
                     $('select[name="options[934]"]').attr('disabled', 'disabled');
@@ -2163,16 +2163,16 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
             //  Foam Boards- Contour
             $('.Side_1895').addClass('Addactive');
             $("#select_592").change(function () {
-                var id = $(this).val();
-                if (id == 1013) {
+                let id = $(this).val();
+                if (id === 1013) {
                     $('.Agreement_956').addClass('Addactive');
                 } else {
                     $('.Agreement_956').removeClass('Addactive');
                 }
             });
             $("#select_929").change(function () {
-                var id = $(this).val();
-                if (id == 1519) {
+                let id = $(this).val();
+                if (id === 1519) {
                     $('.Artworks_930').show();
                 } else {
                     $('.Artworks_930').hide();
@@ -2181,8 +2181,8 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
             $("#select_1895 option[value='0']").remove();
             $("#select_955").prepend('<option value="0" price="0" selected="selected">No</option>');
             $("#select_587").change(function () {
-                var id = $(this).val();
-                if (id == 1000) {
+                let id = $(this).val();
+                if (id === 1000) {
                     $('.Side_955').addClass('Addactive');
                     $('.Side_1895').removeClass('Addactive');
 
@@ -2205,24 +2205,24 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
                     $('select[name="options[1895]"]').removeAttr('disabled');
                 }
                 // fix err show ie 
-                value_qty = $('#qty').attr('value');
-                if ((value_qty > 1) || (id == 1000))
+               let value_qty = $('#qty').attr('value');
+                if ((value_qty > 1) || (id === 1000))
                     $('select[name="options[929]"]').removeAttr('disabled');
                 else
                     $('select[name="options[929]"]').attr('disabled', 'disabled');
             });
             //  Wall Vinyl Decals Contour
             $("#select_601").change(function () {
-                var id = $(this).val();
-                if (id == 1023) {
+                let id = $(this).val();
+                if (id === 1023) {
                     $('.Agreement_951').addClass('Addactive');
                 } else {
                     $('.Agreement_951').removeClass('Addactive');
                 }
             });
             $("#select_997").change(function () {
-                var id = $(this).val();
-                if (id == 1632) {
+                let id = $(this).val();
+                if (id === 1632) {
                     $('.Artworks_998').show();
                 } else {
                     $('.Artworks_998').hide();
@@ -2230,16 +2230,16 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
             });
             //  Vinyl Stickers (Window Decal) Contour
             $("#select_610").change(function () {
-                var id = $(this).val();
-                if (id == 1035) {
+                let id = $(this).val();
+                if (id === 1035) {
                     $('.Agreement_949').addClass('Addactive');
                 } else {
                     $('.Agreement_949').removeClass('Addactive');
                 }
             });
             $("#select_999").change(function () {
-                var id = $(this).val();
-                if (id == 1636) {
+                let id = $(this).val();
+                if (id === 1636) {
                     $('.Artworks_1000').show();
                 } else {
                     $('.Artworks_1000').hide();
@@ -2247,16 +2247,16 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
             });
             //  Static Clings (Window Clings) Contour
             $("#select_542").change(function () {
-                var id = $(this).val();
-                if (id == 938) {
+                let id = $(this).val();
+                if (id === 938) {
                     $('.Agreement_948').addClass('Addactive');
                 } else {
                     $('.Agreement_948').removeClass('Addactive');
                 }
             });
             $("#select_1001").change(function () {
-                var id = $(this).val();
-                if (id == 1640) {
+                let id = $(this).val();
+                if (id === 1640) {
                     $('.Artworks_1002').show();
                 } else {
                     $('.Artworks_1002').hide();
@@ -2264,16 +2264,16 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
             });
             // Aluminum Sandwich Board “Dibond” Contour Cut
             $("#select_1944").change(function () {
-                var id = $(this).val();
-                if (id == 3360) {
+                let id = $(this).val();
+                if (id === 3360) {
                     $('.Agreement_1945').addClass('Addactive');
                 } else {
                     $('.Agreement_1945').removeClass('Addactive');
                 }
             });
             $("#select_1939").change(function () {
-                var id = $(this).val();
-                if (id == 3347) {
+                let id = $(this).val();
+                if (id === 3347) {
                     $('.Material-_1941').addClass('Addactive');
                     $('.Material_1940').removeClass('Addactive');
 
@@ -2304,16 +2304,16 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
             $("#select_1941").prepend('<option value="0" price="0" selected="selected">No</option>');
             $('#options_1937_text').change(function () {
                 $("#select_1939").change(function () {
-                    var id = $(this).val();
-                    if (id == 3347) {
+                    let id = $(this).val();
+                    if (id === 3347) {
                         $("#select_1941 option[value='0']").remove();
                         $("#select_1940").prepend('<option value="0" price="0" selected="selected">No</option>');
                     }
                 });
             });
             $("#select_1947").change(function () {
-                var id = $(this).val();
-                if (id == 3363) {
+                let id = $(this).val();
+                if (id === 3363) {
                     $('.Artworks_1948').show();
                 } else {
                     $('.Artworks_1948').hide();
@@ -2321,8 +2321,8 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
             });
             // Aluminum Sheets Contour
             $("#select_1927").change(function () {
-                var id = $(this).val();
-                if (id == 3335) {
+                let id = $(this).val();
+                if (id === 3335) {
                     $('.Agreement_1930').addClass('Addactive');
                     $('.Agreement_1930').show();
                 } else {
@@ -2331,8 +2331,8 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
                 }
             });
             $("#select_1931").change(function () {
-                var id = $(this).val();
-                if (id == 3338) {
+                let id = $(this).val();
+                if (id === 3338) {
                     $('.Artworks_1932').show();
                 } else {
                     $('.Artworks_1932').hide();
@@ -2341,8 +2341,8 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
 
 
             $("#select_1933").change(function () {
-                var id = $(this).val();
-                if (id == 3344) {
+                let id = $(this).val();
+                if (id === 3344) {
                     $('.Inches_1934').addClass('Addactive');
                     $('.Inches_1935').addClass('Addactive');
                     //  $('.addF_1936').addClass('Addactive');
@@ -2365,16 +2365,16 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
 
             //  Retractable Stand (stand ONLY)
             $("#select_699").change(function () {
-                var id = $(this).val();
-                if (id == 1175) {
+                let id = $(this).val();
+                if (id === 1175) {
                     $('.Available_1071').addClass('Addactive');
                 } else {
                     $('.Available_1071').removeClass('Addactive');
                 }
             });
             $("#select_1004").change(function () {
-                var id = $(this).val();
-                if (id == 1644) {
+                let id = $(this).val();
+                if (id === 1644) {
                     $('.Artworks_1005').show();
                 } else {
                     $('.Artworks_1005').hide();
@@ -2393,11 +2393,11 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
 
             setTimeout(function () {
                 $(".product-custom-option > option").each(function (index, item) {
-                    var op = $(item);
-                    var title = op.text();
+                    let op = $(item);
+                    let title = op.text();
 
                     if (title.indexOf('$')) {
-                        var ar = title.split('+$');
+                        let ar = title.split('+$');
                         title = ar[0];
                     }
                     $(this).text(title);
