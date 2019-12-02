@@ -13,11 +13,6 @@ class Data extends AbstractHelper
     const XML_PATH_ENABLED = 'yes';
     const XML_PATH_HEAD_TITLE = 'Home Banner CMS';
 
-
-    /**
-     * @var \Magento\Framework\App\Config\ScopeConfigInterface
-     */
-    protected $_scopeConfig;
     protected $httpFactory;
     protected $filesystem;
 
@@ -32,14 +27,12 @@ class Data extends AbstractHelper
     public function __construct(
         Context $context,
         \Magento\Framework\HTTP\Adapter\FileTransferFactory $httpFactory,
-        \Magento\Framework\Filesystem $filesystem,
-        ScopeConfigInterface $scopeConfig
+        \Magento\Framework\Filesystem $filesystem
     )
     {
         parent::__construct($context);
         $this->httpFactory = $httpFactory;
         $this->filesystem = $filesystem;
-        $this->_scopeConfig = $scopeConfig;
     }
 
 
@@ -50,7 +43,7 @@ class Data extends AbstractHelper
      */
     public function getHeadTitle()
     {
-        return $this->_scopeConfig->getValue(
+        return $this->scopeConfig->getValue(
             self::XML_PATH_HEAD_TITLE,
             ScopeInterface::SCOPE_STORE
         );
