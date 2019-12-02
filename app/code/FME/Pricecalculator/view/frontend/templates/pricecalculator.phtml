@@ -877,6 +877,7 @@ foreach ($customOptions as $option) {
                 Lamination_1993 = (isNaN(Lamination_1993)) ? 0 : parseFloat(Lamination_1993);
                 let Turnaround_1994 = $('#select_1994').find(":selected").attr('value');
                 Turnaround_1994 = (isNaN(Turnaround_1994)) ? 0 : parseFloat(Turnaround_1994);
+                let turnaroundText = $('#select_1994').find(":selected").text();
                 value_qty = $('#qty').attr('value');
                 if (value_qty > 1) {
                     $('.Art_1997').addClass('Addactive');
@@ -887,7 +888,7 @@ foreach ($customOptions as $option) {
                     $("#select_1997 option:selected").removeAttr("selected");
                     // $("#select_1997").prepend('<option value="0" price="0" selected="selected">No</option>');
                 }
-                if (Turnaround_1994 === 3399) {
+                if (turnaroundText.toLowerCase().indexOf('same day') >= 0 || Turnaround_1994 === 3399) {
                     isTurnaround = 1.7;
                 } else {
                     isTurnaround = 1;
