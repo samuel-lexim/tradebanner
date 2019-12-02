@@ -28,7 +28,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
 
     public function execute(\Magento\Framework\Event\Observer $observer)
     {
-      
+
         $quoteItem = $observer->getEvent()->getQuoteItem();
         $_product = $observer->getProduct();
         $customOptions = $_product->getOptions();
@@ -76,7 +76,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
 
         /** Banner */
         if ($id == 90) { // 13oz Vinyl Banner
-            
+
             $turn = $posted_options[1742];
             if (is_array($turn)) $turn = $turn[0];
             if ($turn == 3027) $has17 = true;
@@ -88,7 +88,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             if ($matOpId == 2993) $hasDiscount = false;
 
         } else if ($id == 91) { // 14oz Vinyl Banner
-            
+
             $turn = $posted_options[1761];
             if (is_array($turn)) $turn = $turn[0];
             if ($turn == 3068) $has17 = true;
@@ -100,7 +100,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             if ($matOpId == 3034) $hasDiscount = false;
 
         } else if ($id == 92) { // 16 oz Blockout Banner
-            
+
             $areaPrice = $area * 1.5 / 144;
 
             $turn = $posted_options[1460];
@@ -108,7 +108,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             if ($turn == 2464) $has17 = true;
 
         } else if ($id == 93) { // Backlit Banner
-            
+
             $areaPrice = $area * 3.99 / 144;
 
             $turn = $posted_options[1473];
@@ -116,7 +116,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             if ($turn == 2484) $has17 = true;
 
         } else if ($id == 94) { // Double Sided Banner (Super Smooth)
-            
+
             $matOpId = $posted_options[1569];
             if (is_array($matOpId)) $matOpId = $matOpId[0];
             $matObj = $opsAr[1569]->getValues();
@@ -130,7 +130,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             if ($turn == 2699) $has17 = true;
 
         } else if ($id == 95) { // Fabric Banner- Premium
-            
+
             $areaPrice = $area * 1.49 / 144;
 
             $turn = $posted_options[353];
@@ -138,7 +138,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             if ($turn == 675) $has17 = true;
 
         } else if ($id == 96) { // Mesh Banner
-            
+
             $areaPrice = $area * 1.5 / 144;
 
             $turn = $posted_options[1505];
@@ -146,7 +146,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             if ($turn == 2550) $has17 = true;
 
         } else if ($id == 97) { // Premium Coated Banner
-            
+
             $areaPrice = $area * 1.39 / 144;
 
             $turn = $posted_options[1883];
@@ -154,7 +154,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             if ($turn == 3254) $has17 = true;
 
         } else if ($id == 98) { // Super Smooth Banner
-            
+
             $matOpId = $posted_options[1585];
             if (is_array($matOpId)) $matOpId = $matOpId[0];
             $matObj = $opsAr[1585]->getValues();
@@ -168,7 +168,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             if ($turn == 2735) $has17 = true;
 
         } else if ($id == 99) { // Fabric Banner- Deluxe
-            
+
             $areaPrice = $area * 3.49 / 144;
 
             $turn = $posted_options[362];
@@ -177,7 +177,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
 
         } else if ($id == 100) {
             /** Adhesives */ // 3M Controltac (IJ 180C)
-            
+
             $laminationId = $posted_options[402];
             if (is_array($laminationId)) $laminationId = $laminationId[0];
             $lamObj = $opsAr[402]->getValues();
@@ -191,7 +191,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             if ($turn == 770) $has17 = true;
 
         } else if ($id == 101) { // 3M IJ35 Adhesive Vinyl
-            
+
             $laminationId = $posted_options[410];
             if (is_array($laminationId)) $laminationId = $laminationId[0];
             $lamObj = $opsAr[410]->getValues();
@@ -211,7 +211,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             if ($turn == 778) $has17 = true;
 
         } else if ($id == 102) { // Bumper Stickers
-            
+
             // $areaPrice = 0; dont need $areaPrice
 
             $turn = $posted_options[418];
@@ -219,7 +219,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             if ($turn == 788) $has17 = true;
 
         } else if ($id == 123) { // Floor Graphics
-            
+
 
             $matOpId = $posted_options[505];
             if (is_array($matOpId)) $matOpId = $matOpId[0];
@@ -234,7 +234,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             if ($turn == 901) $has17 = true;
 
         } else if ($id == 126) { // Perforated Stickers (One-Way Vision)
-            
+
             $matOpId = $posted_options[498];
             if (is_array($matOpId)) $matOpId = $matOpId[0];
             $matObj = $opsAr[498]->getValues();
@@ -248,7 +248,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             if ($turn == 896) $has17 = true;
 
         } else if ($id == 127) { // Static Clings (Window Clings)
-            
+
             $matOpId = $posted_options[491];
             if (is_array($matOpId)) $matOpId = $matOpId[0];
             $matObj = $opsAr[491]->getValues();
@@ -262,7 +262,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             if ($turn == 892) $has17 = true;
 
         } else if ($id == 128) { // Vinyl Stickers (Window Decal)
-            
+
             $matOpId = $posted_options[1838];
             if (is_array($matOpId)) $matOpId = $matOpId[0];
             $matObj = $opsAr[1838]->getValues();
@@ -282,7 +282,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             if ($turn == 3176) $has17 = true;
 
         } else if ($id == 129) { // Wall Vinyl Decals
-            
+
             $matOpId = $posted_options[475];
             if (is_array($matOpId)) $matOpId = $matOpId[0];
             $matObj = $opsAr[475]->getValues();
@@ -303,7 +303,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
 
         } else if ($id == 103) {
             /** Digital Prints */ // Backlit Film
-            
+
             $laminationId = $posted_options[426];
             if (is_array($laminationId)) $laminationId = $laminationId[0];
             $lamObj = $opsAr[426]->getValues();
@@ -317,7 +317,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             if ($turn == 796) $has17 = true;
 
         } else if ($id == 104) { // Canvas Roll
-            
+
             $matOpId = $posted_options[430];
             if (is_array($matOpId)) $matOpId = $matOpId[0];
             $matObj = $opsAr[430]->getValues();
@@ -334,7 +334,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             if ($matOpId == 798) $hasDiscount = false;
 
         } else if ($id == 130) { // Polypropylene (PET)
-            
+
             $laminationId = $posted_options[516];
             if (is_array($laminationId)) $laminationId = $laminationId[0];
             $lamObj = $opsAr[516]->getValues();
@@ -348,7 +348,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             if ($turn == 905) $has17 = true;
 
         } else if ($id == 131) { // Digital Poster
-            
+
             $laminationId = $posted_options[524];
             if (is_array($laminationId)) $laminationId = $laminationId[0];
             $lamObj = $opsAr[524]->getValues();
@@ -362,7 +362,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             if ($turn == 921) $has17 = true;
 
         } else if ($id == 132) { // Car Magnets
-            
+
             $laminationId = $posted_options[532];
             if (is_array($laminationId)) $laminationId = $laminationId[0];
             $lamObj = $opsAr[532]->getValues();
@@ -376,7 +376,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             if ($turn == 931) $has17 = true;
 
         } else if ($id == 155) { // Framed Canvas
-            
+
 
             $widthVal = $posted_options[811];
             $widthVal = is_null($widthVal) ? 0 : $widthVal;
@@ -400,7 +400,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
 
         } else if ($id == 106) {
             /** SIGNS & BOARDS */ // Acrylic Boards
-            
+
 
             $laminationId = $posted_options[448];
             if (is_array($laminationId)) $laminationId = $laminationId[0];
@@ -427,7 +427,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             if ($turn == 834) $areaPrice = ($area / 144 * ($lamPrice + $matPrice) + $drillPrice) * 1.7 - $lamPrice - $matPrice - $drillPrice;
 
         } else if ($id == 107) { // Aluminum Sandwich Board “Dibond”
-            
+
 
             $laminationId = $posted_options[458];
             if (is_array($laminationId)) $laminationId = $laminationId[0];
@@ -464,77 +464,95 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             $normal = false;
 
             // Get size id
-            $sizeId = $posted_options[1139];
+            $sizeId = $posted_options[2093];
             if (is_array($sizeId)) $sizeId = $sizeId[0];
 
+            $widthVal = $posted_options[1969];
+            $widthVal = is_null($widthVal) ? 0 : $widthVal;
+            $heightVal = $posted_options[1970];
+            $heightVal = is_null($heightVal) ? 0 : $heightVal;
+            // set 18 Inches x 12 Inches
+            if (($widthVal == 18) && ($heightVal == 12)){
+                $sizeId =3637;
+            }
+            // set 18 Inches x 24 Inches
+            if (($widthVal == 18) && ($heightVal == 24)){
+                $sizeId =3638;
+            }
+            // set 24 Inches x 36 Inches
+            if (($widthVal == 24) && ($heightVal == 36)){
+                $sizeId =3639;
+            }
 
             // Get color id
-            $colorId = $posted_options[464];
+            $colorId = $posted_options[1965];
             if (is_array($colorId)) $colorId = $colorId[0];
 
             // Get turnaround
-            $turn = $posted_options[469];
+            $turn = $posted_options[2037];
             if (is_array($turn)) $turn = $turn[0];
-            if ($turn == 867) $has15 = true; // next day: 1.5 --- 2 day: 1
-            else if ($turn == 868) $has175 = true; // same day: 1.75
+            if ($turn == 3558) $has15 = true; // next day: 1.5 --- 2 day: 1
+            else if ($turn == 3559) $has175 = true; // same day: 1.75
+
 
             // Get Lam id
-            $lamId = $posted_options[468];
+            $lamId = $posted_options[2036];
             if (is_array($lamId)) $lamId = $lamId[0];
             $lamPrice = 0;
-            if ($sizeId == 1779) {
-                if ($colorId == 850) { // 4:0- Full Color on Front Side Only
+            if ($sizeId == 3637) {
+                if ($colorId == 3392) { // 4:0- Full Color on Front Side Only
                     $size = 7.5;
-                    if ($lamId == 863) $lamPrice = 1.2;
-                    else if ($lamId == 864) $lamPrice = 1.21;
-                    else if ($lamId == 865) $lamPrice = 3.75;
+                    if ($lamId == 3554) $lamPrice = 1.2;
+                    else if ($lamId == 3555) $lamPrice = 1.21;
+                    else if ($lamId == 3556) $lamPrice = 3.75;
                 } else { // 4:4 - Full Color on Both Sides
                     $size = 11.25;
-                    if ($lamId == 863) $lamPrice = 2.4;
-                    else if ($lamId == 864) $lamPrice = 2.41;
-                    else if ($lamId == 865) $lamPrice = 7.5;
+                    if ($lamId == 3554) $lamPrice = 2.4;
+                    else if ($lamId == 3555) $lamPrice = 2.41;
+                    else if ($lamId == 3556) $lamPrice = 7.5;
                 }
 
-            } else if ($sizeId == 1780) {
-                if ($colorId == 850) { // 4:0- Full Color on Front Side Only
+            } else if ($sizeId == 3638) {
+                if ($colorId == 3392) { // 4:0- Full Color on Front Side Only
                     $size = 15;
-                    if ($lamId == 863) $lamPrice = 2.4;
-                    else if ($lamId == 864) $lamPrice = 2.41;
-                    else if ($lamId == 865) $lamPrice = 7.5;
+                    if ($lamId == 3554) $lamPrice = 2.4;
+                    else if ($lamId == 3555) $lamPrice = 2.41;
+                    else if ($lamId == 3556) $lamPrice = 7.5;
                 } else { // 4:4 - Full Color on Both Sides
                     $size = 22.5;
-                    if ($lamId == 863) $lamPrice = 4.8;
-                    else if ($lamId == 864) $lamPrice = 4.81;
-                    else if ($lamId == 865) $lamPrice = 15;
+                    if ($lamId == 3554) $lamPrice = 4.8;
+                    else if ($lamId == 3555) $lamPrice = 4.81;
+                    else if ($lamId == 3556) $lamPrice = 15;
                 }
 
-            } else if ($sizeId == 1781) {
-                if ($colorId == 850) { // 4:0- Full Color on Front Side Only
+            } else if ($sizeId == 3639) {
+                if ($colorId == 3392) { // 4:0- Full Color on Front Side Only
                     $size = 30;
-                    if ($lamId == 863) $lamPrice = 4.8;
-                    else if ($lamId == 864) $lamPrice = 4.81;
-                    else if ($lamId == 865) $lamPrice = 15;
+                    if ($lamId == 3554) $lamPrice = 4.8;
+                    else if ($lamId == 3555) $lamPrice = 4.81;
+                    else if ($lamId == 3556) $lamPrice = 15;
                 } else { // 4:4 - Full Color on Both Sides
                     $size = 45;
-                    if ($lamId == 863) $lamPrice = 9.6;
-                    else if ($lamId == 864) $lamPrice = 9.61;
-                    else if ($lamId == 865) $lamPrice = 30;
+                    if ($lamId == 3554) $lamPrice = 9.6;
+                    else if ($lamId == 3555) $lamPrice = 9.61;
+                    else if ($lamId == 3556) $lamPrice = 30;
                 }
 
             } else { // Custom
+
                 $normal = true;
 
-                $widthVal = $posted_options[1140];
+                $widthVal = $posted_options[1969];
                 $widthVal = is_null($widthVal) ? 0 : $widthVal;
-                $heightVal = $posted_options[1141];
+                $heightVal = $posted_options[1970];
                 $heightVal = is_null($heightVal) ? 0 : $heightVal;
 
-                if ($lamId == 863) $lamPrice = 0.8;
-                else if ($lamId == 864) $lamPrice = 0.81;
-                else if ($lamId == 865) $lamPrice = 2.5;
+                if ($lamId == 3554) $lamPrice = 0.8;
+                else if ($lamId == 3555) $lamPrice = 0.81;
+                else if ($lamId == 3556) $lamPrice = 2.5;
 
-                $lamPrice = ($colorId == 850) ? $lamPrice + 6 : $lamPrice * 2 + 10;
-                if ($turn == 868 && $colorId != 850) $lamPrice -= 4;
+                $lamPrice = ($colorId == 3392) ? $lamPrice + 6 : $lamPrice * 2 + 10;
+                if ($turn == 3559 && $colorId != 3392) $lamPrice -= 4;
 
                 $areaPrice = $widthVal * $heightVal / 144 * $lamPrice;
             }
@@ -543,7 +561,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             if (!$normal) $areaPrice = $size + $lamPrice;
 
         } else if ($id == 146) { // Arrow Spinner Signs
-            
+
             $colorId = $posted_options[744];
             if (is_array($colorId)) $colorId = $colorId[0];
             $sizeId = $posted_options[973];
@@ -612,7 +630,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             if ($turn == 1226) $has17 = true;
 
         } else if ($id == 147) { // Yard Signs (Coroplast)
-            
+
 
             $matOpId = $posted_options[1663];
             if (is_array($matOpId)) $matOpId = $matOpId[0];
@@ -637,7 +655,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
         } else if ($id == 148) { // Ultra(Gator) Board            
 
             $laminationId = $posted_options[626];
-        
+
             if (is_array($laminationId)) $laminationId = $laminationId[0];
             $lamObj = $opsAr[626]->getValues();
 
@@ -678,7 +696,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
                 $areaPrice = ($area / 144 * ($lamPrice * 2 + $matPrice)) - $lamPrice - $matPrice;
             }
 
-    
+
 
             if ($matOpId == 1053 || $matOpId == 1452) $areaPrice -= $groPrice;
 
@@ -689,7 +707,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             if ($turn == 1064) $has17 = true;
 
         } else if ($id == 149) { // Styrene Boards
-            
+
 
             $laminationId = $posted_options[635];
             if (is_array($laminationId)) $laminationId = $laminationId[0];
@@ -730,7 +748,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             }
 
         } else if ($id == 150) { // PVC Sintra Board
-            
+
 
             $laminationId = $posted_options[645];
             if (is_array($laminationId)) $laminationId = $laminationId[0];
@@ -769,7 +787,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             }
 
         } else if ($id == 151) { // Foam Boards
-            
+
 
             $laminationId = $posted_options[1889];
             if (is_array($laminationId)) $laminationId = $laminationId[0];
@@ -802,7 +820,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             if ($turn == 3272) $has17 = true;
 
         } else if ($id == 152) { // Eagle Board (Eco Board)
-            
+
 
             $laminationId = $posted_options[664];
             if (is_array($laminationId)) $laminationId = $laminationId[0];
@@ -835,7 +853,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             if ($turn == 1121) $has17 = true;
 
         } else if ($id == 153) { // Converd Coated Board
-            
+
 
             $laminationId = $posted_options[672];
             if (is_array($laminationId)) $laminationId = $laminationId[0];
@@ -869,7 +887,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
 
         } else if ($id == 110) {
             /** Banner stands */  // Mini Banner Stands
-            
+
             $areaPrice = 0;
 
             $turn = $posted_options[1869];
@@ -877,7 +895,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             if ($turn == 3234) $has17 = true;
 
         } else if ($id == 111) { // Outdoor Banner Stand
-            
+
             $areaPrice = 0;
 
             $turn = $posted_options[765];
@@ -885,7 +903,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             if ($turn == 1247) $has17 = true;
 
         } else if ($id == 112) { // Outdoor Double Banner Stand
-            
+
 
             $matOpId = $posted_options[770];
             if (is_array($matOpId)) $matOpId = $matOpId[0];
@@ -902,7 +920,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             }
 
         } else if ($id == 141) { // X-Frame with Supersmooth
-            
+
 
             $sizeId = $posted_options[963];
             if (is_array($sizeId)) $sizeId = $sizeId[0];
@@ -929,8 +947,36 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             if ($sizeId == 1572) $areaPrice += 15;
             else if ($sizeId == 1573) $areaPrice += 23;
 
+        } else if ($id == 174) { // X-Frame with Supersmooth test
+
+
+            $sizeId = $posted_options[2088];
+            if (is_array($sizeId)) $sizeId = $sizeId[0];
+
+            $w = $posted_options[2089];
+            if (is_array($w)) $w = $w[0];
+            $h = $posted_options[2090];
+            if (is_array($h)) $h = $h[0];
+            $w = is_null($w) ? 0 : floatval($w);
+            $h = is_null($h) ? 0 : floatval($h);
+
+            $turn = $posted_options[2084];
+            if (is_array($turn)) $turn = $turn[0];
+            if ($turn == 3626) { // Same day
+                if ($sizeId == 3628) $areaPrice = 15.35;
+                else if ($sizeId == 3629) $areaPrice = 21.94;
+                else if ($sizeId == 3630) $areaPrice = 31.69;
+                else $areaPrice = $w * $h * 3.41 / 144;
+            } else {
+                $areaPrice = 0;
+                if ($sizeId == 3631 || $sizeId == 3632) $areaPrice = $w * $h * 1.95 / 144;
+            }
+
+            if ($sizeId == 3631) $areaPrice += 15;
+            else if ($sizeId == 3632) $areaPrice += 23;
+
         } else if ($id == 142) { // X-Frame with Polypropylene (PET)
-            
+
 
             $sizeId = $posted_options[964];
             if (is_array($sizeId)) $sizeId = $sizeId[0];
@@ -958,7 +1004,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             else if ($sizeId == 1578) $areaPrice += 23;
 
         } else if ($id == 143) { // X-Frame with Banner
-            
+
 
             $sizeId = $posted_options[978];
             if (is_array($sizeId)) $sizeId = $sizeId[0];
@@ -986,7 +1032,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             else if ($sizeId == 1598) $areaPrice += 23;
 
         } else if ($id == 144) { // Step and Repeat Banners
-            
+
 
             $turn = $posted_options[786];
             if (is_array($turn)) $turn = $turn[0];
@@ -996,7 +1042,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
 
         } else if ($id == 145) { // Retractable Stand
 
-            $premiumStand = isset($posted_options[1696]) ? true : false;    
+            $premiumStand = isset($posted_options[1696]) ? true : false;
             // if(isset($posted_options[1696])){
             //     $premiumStand = true;
             // }else {
@@ -1010,7 +1056,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             // $isSameDay = $posted_options[1698];
             // if (is_array($isSameDay)) $isSameDay = $isSameDay[0];
             // $isSameDay = ($isSameDay == 2923);
-            
+
 
             if ($sizeId == 2916){
                 $areaPrice = 47; //47;
@@ -1026,7 +1072,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             }
             if ($premiumStand){
                 $areaPrice = $areaPrice + 29;
-            } 
+            }
 
         } else if ($id == 161) { // Economic Retractable Stand
 
@@ -1034,7 +1080,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
 
         } else if ($id == 113) {
             /** Sublimation */  // Custom Sublimation Transfers
-            
+
             $areaPrice = $area / 144 * 0.79;
 
             $turn = $posted_options[709];
@@ -1043,7 +1089,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
 
         } else if ($id == 115) {
             /** Contour Cut */  // 3M Controltac (IJ 180C) Contour
-            
+
 
             $laminationId = $posted_options[716];
             if (is_array($laminationId)) $laminationId = $laminationId[0];
@@ -1060,7 +1106,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             else if ($turn == 1196) $has15 = true;
 
         } else if ($id == 116) {  // Car Magnets Contour
-            
+
 
             $laminationId = $posted_options[724];
             if (is_array($laminationId)) $laminationId = $laminationId[0];
@@ -1077,7 +1123,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             else if ($turn == 1205) $has15 = true;
 
         } else if ($id == 117) {  // Floor Graphics – Contour
-            
+
 
             $areaPrice = $area / 144 * 5.88;
 
@@ -1088,7 +1134,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             else if ($turn == 1212) $has15 = true;
 
         } else if ($id == 133) {  // Yard Signs (Coroplast) Contour
-            
+
 
             $matId = $posted_options[548];
             if (is_array($matId)) $matId = $matId[0];
@@ -1112,7 +1158,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             else if ($turn == 949) $has15 = true;
 
         } else if ($id == 134) {  // Ultra(Gator) Board Contour
-            
+
 
             $laminationId = $posted_options[559];
             if (is_array($laminationId)) $laminationId = $laminationId[0];
@@ -1156,7 +1202,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             else if ($turn == 965) $has15 = true;
 
         } else if ($id == 135) {  // Styrene Boards Contour
-            
+
 
             $laminationId = $posted_options[569];
             if (is_array($laminationId)) $laminationId = $laminationId[0];
@@ -1185,7 +1231,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
                 $lam2Price = $lamPrice;
             }
             $matPrice = $matObj[$matOpId]->getPrice();
-            $matPrice = is_null($matPrice) ? 0 : $matPrice; 
+            $matPrice = is_null($matPrice) ? 0 : $matPrice;
             // end code
             $areaPrice = $area / 144 * ($matPrice + 1.89 + $lam2Price) - $lamPrice - $matPrice;
 
@@ -1196,7 +1242,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             else if ($turn == 981) $has15 = true;
 
         } else if ($id == 136) {  // PVC Sintra Board Contour
-            
+
             $laminationId = $posted_options[579];
             if (is_array($laminationId)) $laminationId = $laminationId[0];
             $lamObj = $opsAr[579]->getValues();
@@ -1209,8 +1255,8 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             if (is_array($colorId)) $colorId = $colorId[0];
 
             if ($colorId == 983) {
-            	$matId = $posted_options[578];
-            	if (is_array($matId)) $matId = $matId[0];
+                $matId = $posted_options[578];
+                if (is_array($matId)) $matId = $matId[0];
 
                 if ($matId == 985) $matPrice = 2.49;
                 else if ($matId == 986) $matPrice = 2.99;
@@ -1245,8 +1291,58 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             if ($turn == 998) $has17 = true;
             else if ($turn == 996) $has15 = true;
 
+        }else if ($id == 176) {  // PVC Sintra Board Contour test
+
+            $laminationId = $posted_options[2102];
+            if (is_array($laminationId)) $laminationId = $laminationId[0];
+            $lamObj = $opsAr[2102]->getValues();
+            $lamPrice = $lamObj[$laminationId]->getPrice();
+            $lamPrice = is_null($lamPrice) ? 0 : $lamPrice;
+
+            $dieCut = 1.89;
+
+            $colorId = $posted_options[2099];
+            if (is_array($colorId)) $colorId = $colorId[0];
+
+            if ($colorId == 3647) {
+                $matId = $posted_options[2100];
+                if (is_array($matId)) $matId = $matId[0];
+
+                if ($matId == 3649) $matPrice = 2.49;
+                else if ($matId == 3650) $matPrice = 2.99;
+                else if ($matId == 3651) {
+                    $matPrice = 4.25;
+                    $dieCut = 1.99;
+                } else {
+                    $matPrice = 6.5;
+                    $dieCut = 1.99;
+                }
+
+            } else {
+                $matId = $posted_options[2101];
+                if (is_array($matId)) $matId = $matId[0];
+
+                if ($matId == 3653) $matPrice = 3.5;
+                else if ($matId == 3654) $matPrice = 3.99;
+                else if ($matId == 3655) {
+                    $matPrice = 5.95;
+                    $dieCut = 1.99;
+                } else {
+                    $matPrice = 9;
+                    $dieCut = 1.99;
+                }
+            }
+
+            $areaPrice = $area / 144 * ($matPrice + $lamPrice + $dieCut) - $lamPrice;
+
+            $turn = $posted_options[2105];
+            if (is_array($turn)) $turn = $turn[0];
+
+            if ($turn == 3666) $has17 = true;
+            else if ($turn == 3665) $has15 = true;
+
         } else if ($id == 137) {  // Foam Boards- Contour
-            
+
 
             $laminationId = $posted_options[589];
             if (is_array($laminationId)) $laminationId = $laminationId[0];
@@ -1284,7 +1380,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             else if ($turn == 1011) $has15 = true;
 
         } else if ($id == 138) {  // Wall Vinyl Decals Contour
-            
+
 
             $laminationId = $posted_options[599];
             if (is_array($laminationId)) $laminationId = $laminationId[0];
@@ -1307,7 +1403,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             else if ($turn == 1021) $has15 = true;
 
         } else if ($id == 139) {  // Vinyl Stickers (Window Decal) Contour
-            
+
             $laminationId = $posted_options[609];
             if (is_array($laminationId)) $laminationId = $laminationId[0];
             $lamObj = $opsAr[609]->getValues();
@@ -1329,7 +1425,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             else if ($turn == 1034) $has15 = true;
 
         } else if ($id == 140) {  // Static Clings (Window Clings) Contour
-            
+
             $matId = $posted_options[539];
             if (is_array($matId)) $matId = $matId[0];
             $matObj = $opsAr[539]->getValues();
@@ -1344,140 +1440,140 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             if ($turn == 938) $has17 = true;
             else if ($turn == 937) $has15 = true;
 
-        }  else if ($id == 166) { // Aluminum Sandwich Board “Dibond” Contour Cut
-            
-            $laminationId = $posted_options[1942];
+        } else if ($id == 164) { // Aluminum Sandwich Board “Dibond” Contour Cut
+
+
+            $laminationId = $posted_options[1927];
             if (is_array($laminationId)) $laminationId = $laminationId[0];
-            $lamObj = $opsAr[1942]->getValues();
+            $lamObj = $opsAr[1927]->getValues();
             $lamPrice = $lamObj[$laminationId]->getPrice();
             $lamPrice = is_null($lamPrice) ? 0 : $lamPrice;
 
-            $colorOpId = $posted_options[1939];
+            $colorOpId = $posted_options[1924];
             if (is_array($colorOpId)) $colorOpId = $colorOpId[0];
-            if ($colorOpId == 3346) { // 4:0- Full Color on Front Side Only
-                $matOpId = $posted_options[1940];
+            if ($colorOpId == 3320) { // 4:0- Full Color on Front Side Only
+                $matOpId = $posted_options[1925];
                 if (is_array($matOpId)) $matOpId = $matOpId[0];
-                $matObj = $opsAr[1940]->getValues();
+                $matObj = $opsAr[1925]->getValues();
                 $lam2Price = $lamPrice;
             } else { // 4:4 - Full Color on Both Sides
-                $matOpId = $posted_options[1941];
+                $matOpId = $posted_options[1926];
                 if (is_array($matOpId)) $matOpId = $matOpId[0];
-                $matObj = $opsAr[1941]->getValues();
+                $matObj = $opsAr[1926]->getValues();
                 $lam2Price = $lamPrice * 2;
             }
             $matPrice = $matObj[$matOpId]->getPrice();
             $matPrice = is_null($matPrice) ? 0 : $matPrice;
-          
+
             $areaPrice = $area / 144 * ($lam2Price + $matPrice) - $lamPrice - $matPrice;
              // add $2
-            $areaPrice = $areaPrice;
-            $turn = $posted_options[1944];
+            //$areaPrice = $areaPrice;
+            $turn = $posted_options[1929];
             if (is_array($turn)) $turn = $turn[0];
 
-            if ($turn == 3359) $has15 = true;
-            else if ($turn == 3360) $has175 = true;
+            if ($turn == 3333) $has15 = true;
+            else if ($turn == 3334) $has175 = true;
 
-        }  else if ($id == 164) { // Aluminum Sheets Contour
+        } else if ($id == 162) { // Aluminum Sheets Contour
             $size = 0;
-            $addC = 0;
             $normal = false;
 
             // Get size id
-            $sizeId = $posted_options[1933];
+            $sizeId = $posted_options[2095];
             if (is_array($sizeId)) $sizeId = $sizeId[0];
 
-            $widthVal = $posted_options[1934];
+            $widthVal = $posted_options[2057];
             $widthVal = is_null($widthVal) ? 0 : $widthVal;
-            $heightVal = $posted_options[1935];
+            $heightVal = $posted_options[2058];
             $heightVal = is_null($heightVal) ? 0 : $heightVal;
             // set 18 Inches x 12 Inches
             if (($widthVal == 18) && ($heightVal == 12)){
-                $sizeId =3341;
+                $sizeId =3642;
             }
             // set 18 Inches x 24 Inches
             if (($widthVal == 18) && ($heightVal == 24)){
-                $sizeId =3342;
+                $sizeId =3643;
             }
             // set 24 Inches x 36 Inches
             if (($widthVal == 24) && ($heightVal == 36)){
-                $sizeId =3343;
+                $sizeId =3644;
             }
             // Get color id
-            $colorId = $posted_options[1923];
+            $colorId = $posted_options[2055];
             if (is_array($colorId)) $colorId = $colorId[0];
 
             // Get turnaround
-            $turn = $posted_options[1927];
+            $turn = $posted_options[2067];
             if (is_array($turn)) $turn = $turn[0];
-            if ($turn == 3334) $has15 = true; // next day: 1.5 --- 2 day: 1
-            else if ($turn == 3335) $has175 = true; // same day: 1.75
+            if ($turn == 3599) $has15 = true; // next day: 1.5 --- 2 day: 1
+            else if ($turn == 3600) $has175 = true; // same day: 1.75
 
             // Get Lam id
-            $lamId = $posted_options[1926];
+            $lamId = $posted_options[2061];
             if (is_array($lamId)) $lamId = $lamId[0];
             $lamPrice = 0;
-             if ($sizeId == 3341) {
-                if ($colorId == 3321) { // 4:0- Full Color on Front Side Only
-                    $size = 7.5;$addC = 0;
-                    if ($lamId == 3330) $lamPrice = 1.2;
-                    else if ($lamId == 3331) $lamPrice = 1.21;
-                    else if ($lamId == 3332) $lamPrice = 3.75;
+             if ($sizeId == 3642) {
+                if ($colorId == 3580) { // 4:0- Full Color on Front Side Only
+                    $size = 7.5;
+                    if ($lamId == 3590) $lamPrice = 1.2;
+                    else if ($lamId == 3591) $lamPrice = 1.21;
+                    else if ($lamId == 3592) $lamPrice = 3.75;
                 } else { // 4:4 - Full Color on Both Sides
-                    $size = 11.25;$addC = 0;
-                    if ($lamId == 3330) $lamPrice = 2.4;
-                    else if ($lamId == 3331) $lamPrice = 2.41;
-                    else if ($lamId == 3332) $lamPrice = 7.5;
+                    $size = 11.25;
+                    if ($lamId == 3590) $lamPrice = 2.4;
+                    else if ($lamId == 3591) $lamPrice = 2.41;
+                    else if ($lamId == 3592) $lamPrice = 7.5;
                 }
 
-            } else if ($sizeId == 3342) {
-                if ($colorId == 3321) { // 4:0- Full Color on Front Side Only
-                    $size = 15;$addC = 0;
-                    if ($lamId == 3330) $lamPrice = 2.4;
-                    else if ($lamId == 3331) $lamPrice = 2.41;
-                    else if ($lamId == 3332) $lamPrice = 7.5;
+            } else if ($sizeId == 3643) {
+                if ($colorId == 3580) { // 4:0- Full Color on Front Side Only
+                    $size = 15;
+                    if ($lamId == 3590) $lamPrice = 2.4;
+                    else if ($lamId == 3591) $lamPrice = 2.41;
+                    else if ($lamId == 3592) $lamPrice = 7.5;
                 } else { // 4:4 - Full Color on Both Sides
-                    $size = 22.5;$addC = 0;
-                    if ($lamId == 3330) $lamPrice = 4.8;
-                    else if ($lamId == 3331) $lamPrice = 4.81;
-                    else if ($lamId == 3332) $lamPrice = 15;
+                    $size = 22.5;
+                    if ($lamId == 3590) $lamPrice = 4.8;
+                    else if ($lamId == 3591) $lamPrice = 4.81;
+                    else if ($lamId == 3592) $lamPrice = 15;
                 }
 
-            } else if ($sizeId == 3343) {
-                if ($colorId == 3321) { // 4:0- Full Color on Front Side Only
-                    $size = 30;$addC = 0;
-                    if ($lamId == 3330) $lamPrice = 4.8;
-                    else if ($lamId == 3331) $lamPrice = 4.81;
-                    else if ($lamId == 3332) $lamPrice = 15;
+            } else if ($sizeId == 3644) {
+                if ($colorId == 3580) { // 4:0- Full Color on Front Side Only
+                    $size = 30;
+                    if ($lamId == 3590) $lamPrice = 4.8;
+                    else if ($lamId == 3591) $lamPrice = 4.81;
+                    else if ($lamId == 3592) $lamPrice = 15;
                 } else { // 4:4 - Full Color on Both Sides
-                    $size = 45;$addC = 0;
-                    if ($lamId == 3330) $lamPrice = 9.6;
-                    else if ($lamId == 3331) $lamPrice = 9.61;
-                    else if ($lamId == 3332) $lamPrice = 30;
+                    $size = 45;
+                    if ($lamId == 3590) $lamPrice = 9.6;
+                    else if ($lamId == 3591) $lamPrice = 9.61;
+                    else if ($lamId == 3592) $lamPrice = 30;
                 }
 
             } else { // Custom
 
                 $normal = true;
 
-                $widthVal = $posted_options[1934];
+                $widthVal = $posted_options[2057];
                 $widthVal = is_null($widthVal) ? 0 : $widthVal;
-                $heightVal = $posted_options[1935];
+                $heightVal = $posted_options[2058];
                 $heightVal = is_null($heightVal) ? 0 : $heightVal;
 
-                if ($lamId == 3330) $lamPrice = 0.8;
-                else if ($lamId == 3331) $lamPrice = 0.81;
-                else if ($lamId == 3332) $lamPrice = 2.5;
+                if ($lamId == 3590) $lamPrice = 0.8;
+                else if ($lamId == 3591) $lamPrice = 0.81;
+                else if ($lamId == 3592) $lamPrice = 2.5;
 
-                $lamPrice = ($colorId == 3321) ? $lamPrice + 6 : $lamPrice * 2 + 10;
-                if ($turn == 3335 && $colorId != 3321) $lamPrice -= 4;
+                $lamPrice = ($colorId == 3580) ? $lamPrice + 6 : $lamPrice * 2 + 10;
+                if ($turn == 3600 && $colorId != 3580) $lamPrice -= 4;
 
-               // $areaPrice = $widthVal * $heightVal / 144 * $lamPrice;
+              //  $areaPrice = $widthVal * $heightVal / 144 * $lamPrice;
                 $areaPrice = $widthVal * $heightVal / 144 *9;
             }
-                
+
             // add $2
-         //   $areaPrice =$areaPrice +2;
-               
+           // $areaPrice =$areaPrice +2;
+
             $size=$size;
             // Set price
             if (!$normal) $areaPrice = $size + $lamPrice;
@@ -1486,18 +1582,18 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             /** Hardware */ // Easel Backs
 
         } else if ($id == 119) {  // Retractable Stand (stand ONLY)
-			
 
-            $premiumStandonly = isset($posted_options[1071]) ? true : false;    
+
+            $premiumStandonly = isset($posted_options[1071]) ? true : false;
 
             $sizeId = $posted_options[699];
             if (is_array($sizeId)) $sizeId = $sizeId[0];
-                         
+
             if ($premiumStandonly){
                 $areaPrice = $areaPrice + 29;
-            } 		
-		
-		
+            }
+
+
 
         } else if ($id == 120) {  // Outdoor Stand (for Banner)
 
@@ -1575,29 +1671,12 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
                     $percentRate = 10;
                 }
 
-            } else if ($id == 111 || $id == 112 || $id == 120) {
-                if($qty <= 10){
-                    $percentRate = 0;
-                } else if($qty >= 11 && $qty <= 20){
-                    $percentRate = 5;
-                } else if($qty >= 21 && $qty <= 30){
-                    $percentRate = 10;
-                } else if($qty >= 31 && $qty <= 40){
-                    $percentRate = 15;
-                } else if($qty >= 41){
-                    $percentRate = 20;
-			
-				}				
-				
-				
-				
-				
             } else{
                 $percentRate = $hasDiscount ? $this->getDiscountRate(($area * $qty), $_product) : 0;
             }
         // $this->logger->debug("Discount percentRate : ". $percentRate);
         // $this->logger->debug("total : ". $total);
-   
+
         $total = $total - $total * $percentRate / 100;
         if ($qty * $total < 8) $total = $this->checkMinPriceForTotal($qty, 8.0);
         // End Discount
