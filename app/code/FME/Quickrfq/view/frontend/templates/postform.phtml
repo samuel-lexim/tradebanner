@@ -5,16 +5,20 @@
  */
 
 // @codingStandardsIgnoreFile
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$session = $objectManager->get('Magento\Customer\Model\Session');
+$idProduct = $session->getTestKey();
 
 ?>
 
-<form class="form quickrfq"
+<form class="form quickrfq <?= $idProduct; ?>"
       action="<?= $block->getFormAction(); ?>"
       id="quickrfq_form"
       enctype="multipart/form-data"
       method="post"
       data-hasrequired="* Required Fields"
       data-mage-init='{"validation":{}}'>
+
 
     <fieldset class="fieldset">
         <div class="custom-title">
@@ -26,8 +30,7 @@
                 <div class="field name required">
                     <label class="label" for="contact_name">Custom Quote Name</label>
                     <div class="control">
-                        <input name="contact_name" id="contact_name" title="Contact Name"
-                               value="<?= $block->escapeHtml($this->helper('Magento\Contact\Helper\Data')->getUserName()) ?>"
+                        <input name="contact_name" id="contact_name" title="Contact Name" value="<?= $block->escapeHtml($this->helper('Magento\Contact\Helper\Data')->getUserName()) ?>"
                                class="input-text" type="text" data-validate="{required:true}"/>
                     </div>
                 </div>
@@ -35,9 +38,8 @@
                 <div class="field email required">
                     <label class="label" for="email"><span>Email - Your User Name</span></label>
                     <div class="control">
-                        <input name="email" id="email" title="Email"
-                               value="<?= $block->escapeHtml($this->helper('Magento\Contact\Helper\Data')->getUserEmail()) ?>"
-                               class="input-text" type="email" data-validate="{required:true, 'validate-email':true}"/>
+                        <input name="email" id="email" title="Email" value="<?= $block->escapeHtml($this->helper('Magento\Contact\Helper\Data')->getUserEmail()) ?>" class="input-text" type="email"
+                               data-validate="{required:true, 'validate-email':true}"/>
                     </div>
                 </div>
             </div>
@@ -45,31 +47,64 @@
                 <div class="field contact_name required">
                     <label class="label" for="company"><span>Company Name</span></label>
                     <div class="control">
-                        <input name="company" id="company" value="" class="input-text" type="text"
-                               data-validate="{required:true}"/>
+                        <input name="company" id="company" value="" class="input-text" type="text" data-validate="{required:true}"/>
                     </div>
                 </div>
             </div>
         </div>
         <div class="estimate-group row">
             <div class="col-xs-12 col-sm-6">
-
-                <div class="field category">
-                    <label class="label" for="category"><span>Category</span></label>
-                    <div class="control">
-                        <select name="category" id="category">
-                            <option value="Banners">Banners</option>
-                            <option value="Adhesive">Adhesive</option>
-                            <option value="Digital Print">Digital Print</option>
-                            <option value="Signs and Boards">Signs and Boards</option>
-                            <option value="Banner Stands">Banner Stands</option>
-                            <option value="Car Wraps">Car Wraps</option>
-                            <option value="Lettering (Die Cut Vinyl - Plotter)">Lettering (Die Cut Vinyl - Plotter)
-                            </option>
-                            <option value="Others">Others</option>
-                        </select>
+                <?php if ($idProduct == "169" || $idProduct == "170") { ?>
+                    <div class="field category">
+                        <label class="label" for="category"><span>Category</span></label>
+                        <div class="control">
+                            <select name="category" id="category">
+                                <option value="White Ink Process">White Ink Process</option>
+                                <option value="Banners">Banners</option>
+                                <option value="Adhesive">Adhesive</option>
+                                <option value="Digital Print">Digital Print</option>
+                                <option value="Signs and Boards">Signs and Boards</option>
+                                <option value="Banner Stands">Banner Stands</option>
+                                <option value="Car Wraps">Car Wraps</option>
+                                <option value="Lettering (Die Cut Vinyl - Plotter)">Lettering (Die Cut Vinyl - Plotter)</option>
+                                <option value="Others">Others</option>
+                            </select>
+                        </div>
                     </div>
-                </div>
+                <?php } elseif ($idProduct == "171") { ?>
+                    <div class="field category">
+                        <label class="label" for="category"><span>Category</span></label>
+                        <div class="control">
+                            <select name="category" id="category">
+                                <option value="Specials">Specials</option>
+                                <option value="Banners">Banners</option>
+                                <option value="Adhesive">Adhesive</option>
+                                <option value="Digital Print">Digital Print</option>
+                                <option value="Signs and Boards">Signs and Boards</option>
+                                <option value="Banner Stands">Banner Stands</option>
+                                <option value="Car Wraps">Car Wraps</option>
+                                <option value="Lettering (Die Cut Vinyl - Plotter)">Lettering (Die Cut Vinyl - Plotter)</option>
+                                <option value="Others">Others</option>
+                            </select>
+                        </div>
+                    </div>
+                <?php } else { ?>
+                    <div class="field category">
+                        <label class="label" for="category"><span>Category</span></label>
+                        <div class="control">
+                            <select name="category" id="category">
+                                <option value="Banners">Banners</option>
+                                <option value="Adhesive">Adhesive</option>
+                                <option value="Digital Print">Digital Print</option>
+                                <option value="Signs and Boards">Signs and Boards</option>
+                                <option value="Banner Stands">Banner Stands</option>
+                                <option value="Car Wraps">Car Wraps</option>
+                                <option value="Lettering (Die Cut Vinyl - Plotter)">Lettering (Die Cut Vinyl - Plotter)</option>
+                                <option value="Others">Others</option>
+                            </select>
+                        </div>
+                    </div>
+                <?php } ?>
                 <div class="field product_options">
                     <label class="label" for="product_options"><span>Product</span></label>
                     <div class="control">
@@ -77,35 +112,37 @@
                     </div>
                 </div>
 
-                <div class="size-options row">
-                    <div class="col-xs-12 col-sm-4">
-                        <div class="field width">
-                            <label class="label" for="width"><span>Width</span></label>
-                            <div class="control">
-                                <input name="width" id="width" title="Width" value="" class="input-text" type="text""/>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-4">
-                        <div class="field height">
-                            <label class="label" for="height"><span>Height</span></label>
-                            <div class="control">
-                                <input name="height" id="height" title="Height" value="" class="input-text"
-                                       type="text"/>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-4">
-                        <div class="field quantity">
-                            <label class="label" for="quantity"><span>Quantity</span></label>
-                            <div class="control">
-                                <input name="quantity" id="quantity" title="Quantity" value="" class="input-text"
-                                       type="number" min="1" data-validate="{required:true}"/>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
+                <!-- zo day -->
+                <?php if ($idProduct == "169" || $idProduct == "170" || $idProduct == "171") { ?>
+                <?php } else { ?>
+                    <div class="size-options row">
+                        <div class="col-xs-12 col-sm-4">
+                            <div class="field width">
+                                <label class="label" for="width"><span>Width</span></label>
+                                <div class="control">
+                                    <input name="width" id="width" title="Width" value="" class="input-text" type="text""/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-4">
+                            <div class="field height">
+                                <label class="label" for="height"><span>Height</span></label>
+                                <div class="control">
+                                    <input name="height" id="height" title="Height" value="" class="input-text" type="text"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-4">
+                            <div class="field quantity">
+                                <label class="label" for="quantity"><span>Quantity</span></label>
+                                <div class="control">
+                                    <input name="quantity" id="quantity" title="Quantity" value="" class="input-text" type="number" min="1" data-validate="{required:true}"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <?php } ?>
                 <div class="field delivery">
                     <label class="label" for="delivery">Delivery Method Required</span></label>
                     <div class="control">
@@ -125,8 +162,7 @@
                 <div class="field overview required">
                     <label class="label" for="overview"><span>Additional Note</span></label>
                     <div class="control">
-                        <textarea name="overview" id="overview" title="Brief Overview" class="input-text" cols="5"
-                                  rows="7" data-validate="{required:true}"></textarea>
+                        <textarea name="overview" id="overview" title="Brief Overview" class="input-text" cols="5" rows="7" data-validate="{required:true}"></textarea>
                     </div>
                 </div>
 
@@ -138,406 +174,399 @@
                         <p> <?= __("You can upload files with these file extensions only (%1)", $block->getAllowedFileExtensions()) ?> </p>
                     </div>
                 </div>
+                <!-- zo -->
+
             </div>
+            <?php if ($idProduct == "169" || $idProduct == "170" || $idProduct == "171") { ?>
+            <?php } else { ?>
+                <div class="col-xs-12 col-sm-6">
 
-            <div class="col-xs-12 col-sm-6">
-                <div class="field standtype standtype_options">
-                    <label class="label" for="standtype"><span>Stand Type</span></label>
-                    <div class="control">
-                        <select name="standtype_options" id="standtype_options">
-                            <option value="N/A">--- Please select ---</option>
-                            <option value="X-Frame">X-Frame</option>
-                            <option value="Retractable Stand  (Roll-up, Pop-up)">Retractable Stand (Roll-up, Pop-up)
-                            </option>
-                            <option value="Outdoor Double Banner Stand">Outdoor Double Banner Stand</option>
-                            <option value="Step and Repeat Banners">Step and Repeat Banners</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="field material material_01">
-                    <label class="label" for="material"><span>Material</span></label>
-                    <div class="control">
-                        <select name="material_01" id="material_01">
-                            <option value="N/A">--- Please select ---</option>
-                            <option value="13oz Scrim Vinyl - Matte">13oz Scrim Vinyl - Matte</option>
-                            <option value="13oz Scrim Vinyl - Gloss">13oz Scrim Vinyl - Gloss</option>
-                            <option value="14oz Scrim Vinyl - Matte">14oz Scrim Vinyl - Matte</option>
-                            <option value="14oz Scrim Vinyl - Gloss">14oz Scrim Vinyl - Gloss</option>
-                            <option value="16oz Blockout Banner">16oz Blockout Banner</option>
-                            <option value="Backlit Banner">Backlit Banner</option>
-                            <option value="Fabric Banner - Premium">Fabric Banner - Premium</option>
-                            <option value="Fabric Banner - Deluxe">Fabric Banner - Deluxe</option>
-                            <option value="Mesh Banner">Mesh Banner</option>
-                            <option value="Premium Coated Banner">Premium Coated Banner</option>
-                            <option value="SuperSmooth Banner">SuperSmooth Banner</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="field material material_02">
-                    <label class="label" for="material"><span>Material</span></label>
-                    <div class="control">
-                        <select name="material_02" id="material_02">
-                            <option value="N/A">--- Please select ---</option>
-                            <option value="Window Vinyl Decal - White Gloss">Window Vinyl Decal - White Gloss</option>
-                            <option value="Window Vinyl Decal - White Matte">Window Vinyl Decal - White Matte</option>
-                            <option value="Window Vinyl Decal - Clear">Window Vinyl Decal - Clear</option>
-                            <option value="Window Static Cling - White">Window Static Cling - White</option>
-                            <option value="Window Static Cling - Clear">Window Static Cling - Clear</option>
-                            <option value="Perforated Stickers">Perforated Stickers</option>
-                            <option value="Wall Vinyl Decal">Wall Vinyl Decal</option>
-                            <option value="Floor Graphics">Floor Graphics</option>
-                            <option value="3M Controltac">3M Controltac</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="field material material_03">
-                    <label class="label" for="material"><span>Material</span></label>
-                    <div class="control">
-                        <select name="material_03" id="material_03">
-                            <option value="N/A">--- Please select ---</option>
-                            <option value="Backlit Film">Backlit Film</option>
-                            <option value="Canvas">Canvas</option>
-                            <option value="Car Magnets">Car Magnets</option>
-                            <option value="Digital Poster Gloss">Digital Poster Gloss</option>
-                            <option value="Digital Poster Matte">Digital Poster Matte</option>
-                            <option value="Polyropylene (PET)">Polyropylene (PET)</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="field material material_04">
-                    <label class="label" for="material"><span>Material</span></label>
-                    <div class="control">
-                        <select name="material_04" id="material_04">
-                            <option value="N/A">--- Please select ---</option>
-                            <option value="Acrylic Boards">Acrylic Boards</option>
-                            <option value="Aluminum Sandwhich Board (Dibond)">Aluminum Sandwhich Board (Dibond)</option>
-                            <option value="Aluminum Sheets">Aluminum Sheets</option>
-                            <option value="Converd Coated Board">Converd Coated Board</option>
-                            <option value="Eagle Board">Eagle Board</option>
-                            <option value="Foam Board">Foam Board</option>
-                            <option value="PVC">PVC</option>
-                            <option value="Styrene Board">Styrene Board</option>
-                            <option value="Ultra/ Gator Board">Ultra/ Gator Board</option>
-                            <option value="Coroplast (Yard Sign)">Coroplast (Yard Sign)</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="field material material_05">
-                    <label class="label" for="material"><span>Material</span></label>
-                    <div class="control">
-                        <select name="material_05" id="material_05">
-                            <option value="N/A">--- Please select ---</option>
-                            <option value="13oz Scrim Vinyl - Matte">13oz Scrim Vinyl - Matte</option>
-                            <option value="13oz Scrim Vinyl - Gloss">13oz Scrim Vinyl - Gloss</option>
-                            <option value="14oz Scrim Vinyl - Matte">14oz Scrim Vinyl - Matte</option>
-                            <option value="14oz Scrim Vinyl - Gloss">14oz Scrim Vinyl - Gloss</option>
-                            <option value="SuperSmooth Banner">SuperSmooth Banner</option>
-                            <option value="Polyropylene (PET)">Polyropylene (PET)</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="field material material_06">
-                    <label class="label" for="material"><span>Material</span></label>
-                    <div class="control">
-                        <select name="material_06" id="material_06">
-                            <option value="N/A">--- Please select ---</option>
-                            <option value="SuperSmooth Banner">SuperSmooth Banner</option>
-                            <option value="Premium Fabric">Premium Fabric</option>
-                            <option value="Polypropylene (PET)">Polypropylene (PET)</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="field size size_options">
-                    <label class="label" for="size"><span>Size</span></label>
-                    <div class="control">
-                        <select name="size_options" id="size_options">
-                            <option value="N/A">--- Please select ---</option>
-                            <option value="24inch x 63inch">24" x 63"</option>
-                            <option value="30inch x 72inch">30" x 72"</option>
-                            <option value="40inch x 78inch">40" x 78"</option>
-                            <option value="Adjustable">Adjustable</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="field size size_options_02">
-                    <label class="label" for="size"><span>Size</span></label>
-                    <div class="control">
-                        <select name="size_options_02" id="size_options_02">
-                            <option value="N/A">--- Please select ---</option>
-                            <option value="23inch x 80inch">23" x 80"</option>
-                            <option value="33inch x 80inch">33" x 80"</option>
-                            <option value="35inch x 80inch">35" x 80"</option>
-                            <option value="47inch x 80inch">47" x 80"</option>
-                        </select>
-                    </div>
-                </div>
-
-
-                <div class="field budget finishing_options">
-                    <label for="budget">Finishing Options</label>
-                    <div class="input-box custom-multi-option">
-                        <input name="finishing_options_mc01" id="finishing_options_mc01" value="Hemming"
-                               type="checkbox">Hemming
-                        <input name="finishing_options_mc02" id="finishing_options_mc02" value="Grommets"
-                               type="checkbox">Grommets
-                        <input name="finishing_options_mc03" id="finishing_options_mc03" value="Pole Pockets"
-                               type="checkbox">Pole Pockets
-                        <input name="finishing_options_mc04" id="finishing_options_mc04" value="Wind Holes"
-                               type="checkbox">Wind Holes
-                    </div>
-                </div>
-
-                <div class="field budget lamination_options">
-                    <label for="budget">Lamination</label>
-                    <div class="input-box custom-multi-option">
-                        <input name="lamination_options_mc01" id="lamination_options_mc01" value="High Gloss Lamination"
-                               type="checkbox">High Gloss Lamination
-                        <input name="lamination_options_mc02" id="lamination_options_mc02" value="Matte Lamination"
-                               type="checkbox">Matte Lamination
-                        <input name="lamination_options_mc03" id="lamination_options_mc03" value="Dry-Erase Lamination"
-                               type="checkbox">Dry-Erase Lamination
-                    </div>
-                </div>
-
-                <div class="field lamination lamination_options_02">
-                    <label class="label" for="lamination"><span>Lamination</span></label>
-                    <div class="control">
-                        <select name="lamination_options" id="lamination_options">
-                            <option value="N/A">--- Please select ---</option>
-                            <option value="High Gloss Lamination">High Gloss Lamination</option>
-                            <option value="Matte Lamination">Matte Lamination</option>
-                            <option value="Dry-Erase Lamination">Dry-Erase Lamination</option>
-                            <option value="NO Lamination">NO Lamination</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="field grommet grommet_options">
-                    <label class="label" for="grommet"><span>Grommets</span></label>
-                    <div class="control">
-                        <select name="grommet_options" id="grommet_options">
-                            <option value="N/A">--- Please select ---</option>
-                            <option value="No Grommets">No Grommets</option>
-                            <option value="Top Grommets">Top Grommets</option>
-                            <option value="Bottom Grommets">Bottom Grommets</option>
-                            <option value="All Corners Grommets">All Corners Grommets</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="field round round_corners_options">
-                    <label class="label" for="roundcorners"><span>Round Corners</span></label>
-                    <div class="control">
-                        <select name="round_corners_options" id="round_corners_options">
-                            <option value="N/A">--- Please select ---</option>
-                            <option value="1/2inch Rounded Corners ( 4 Corner)">1/2" Rounded Corners ( 4 Corner)
-                            </option>
-                            <option value="No Rounded Corners">No Rounded Corners</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="field color color_options">
-                    <label class="label" for="color"><span>Color</span></label>
-                    <div class="control">
-                        <select name="color_options" id="color_options">
-                            <option value="N/A">--- Please select ---</option>
-                            <option value="4:0  (Full Color One Side)">4:0 (Full Color One Side)</option>
-                            <option value="4:4 (Full color Both Sides)">4:4 (Full color Both Sides)</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="field color_options_02">
-                    <label class="label" for="color_options_02"><span>Color</span></label>
-                    <div class="control">
-                        <input name="color_options_02" id="color_options_02" value="" class="input-text" type="text"/>
-                    </div>
-                </div>
-                <div class="field finish_options_02">
-                    <label class="label" for="finish_options_02"><span>Finishing Options</span></label>
-                    <div class="control">
-                        <input name="finishing_options" id="finishing_options" value="" class="input-text" type="text"/>
-                    </div>
-                </div>
-                <div class="field note_options">
-                    <label class="label" for="note_options"><span>Options/Note</span></label>
-                    <div class="control">
-                        <input name="note_options" id="note_options" value="" class="input-text" type="text"/>
-                    </div>
-                </div>
-
-                <div class="field frame frame_options">
-                    <label class="label" for="frame"><span>Frame</span></label>
-                    <div class="control">
-                        <select name="frame_options" id="frame_options">
-                            <option value="N/A">--- Please select ---</option>
-                            <option value="Framed">Framed</option>
-                            <option value="Not Framed">Not Framed</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="field diecut diecut_options">
-                    <label class="label" for="diecut"><span>Die Cut</span></label>
-                    <div class="control">
-                        <select name="diecut_options" id="diecut_options">
-                            <option value="N/A">--- Please select ---</option>
-                            <option value="No">No</option>
-                            <option value="Yes">Yes</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="field hstake hstake_options">
-                    <label class="label" for="hstake"><span>H-Stakes</span></label>
-                    <div class="control">
-                        <select name="hstake_options" id="hstake_options">
-                            <option value="N/A">--- Please select ---</option>
-                            <option value="No H-Stakes">No H-Stakes</option>
-                            <option value="Standard H-Stake">Standard H-Stake</option>
-                            <option value="Heavy Duty H-Stake">Heavy Duty H-Stake</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="field thickness thickness_options">
-                    <label class="label" for="thickness"><span>Thickness</span></label>
-                    <div class="control">
-                        <select name="thickness_options" id="thickness_options">
-                            <option value="N/A">--- Please select ---</option>
-                            <option value="3/16inch">3/16"</option>
-                            <option value="1/4inch">1/4"</option>
-                            <option value="1/2inch">1/2"</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="field thickness thickness_options_02">
-                    <label class="label" for="thickness"><span>Thickness</span></label>
-                    <div class="control">
-                        <select name="thickness_options_02" id="thickness_options_02">
-                            <option value="N/A">--- Please select ---</option>
-                            <option value="1 mil (1/32inch)">1 mil (1/32")</option>
-                            <option value="3 mil (1/8inch)">3 mil (1/8")</option>
-                            <option value="6 mil (1/4inch)">6 mil (1/4")</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="field thickness thickness_options_03">
-                    <label class="label" for="thickness"><span>Thickness</span></label>
-                    <div class="control">
-                        <select name="thickness_options_03" id="thickness_options_03">
-                            <option value="N/A">--- Please select ---</option>
-                            <option value="3/16inch">3/16"</option>
-                            <option value="1/2inch">1/2"</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="field thickness thickness_options_04">
-                    <label class="label" for="thickness"><span>Thickness</span></label>
-                    <div class="control">
-                        <select name="thickness_options_04" id="thickness_options_04">
-                            <option value="N/A">--- Please select ---</option>
-                            <option value="4mm">4mm</option>
-                            <option value="6mm">6mm</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="field carmodel">
-                    <label class="label" for="carmodel"><span>Car Model, Make and Year</span></label>
-                    <div class="control">
-                        <input name="carmodel" id="carmodel" title="carmodel" value="" class="input-text" type="text""/>
-                    </div>
-                </div>
-
-                <div class="field carwrapping">
-                    <label class="label" for="carwrapping"><span>Car Wrapping Design</span></label>
-                    <div class="control">
-                        <select name="carwrapping" id="carwrapping">
-                            <option value="N/A">--- Please select ---</option>
-                            <option value="No - We have a car wrapping designer">No - We have a car wrapping designer
-                            </option>
-                            <option value="Yes - please accommodate our design">Yes - please accommodate our design
-                            </option>
-                        </select>
-                    </div>
-                </div>
-                <div class="delivery_options">
-                    <div class="delivery-name-options row">
-                        <div class="col-xs-12 col-sm-4">
-                            <div class="field company_name_02">
-                                <label class="label" for="company_name_02"><span>Company Name</span></label>
-                                <div class="control">
-                                    <input name="company_name_02" id="company_name_02" value="" class="input-text"
-                                           type="text"/>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xs-12 col-sm-4">
-                            <div class="field first_name">
-                                <label class="label" for="first_name"><span>First Name</span></label>
-                                <div class="control">
-                                    <input name="first_name" id="first_name" value="" class="input-text" type="text"/>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xs-12 col-sm-4">
-                            <div class="field last_name">
-                                <label class="label" for="last_name"><span>Last Name</span></label>
-                                <div class="control">
-                                    <input name="last_name" id="last_name" value="" class="input-text" type="text"/>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="field street_address">
-                        <label class="label" for="street_address"><span>Street Address</span></label>
+                    <!-- zo day -->
+                    <div class="field standtype standtype_options">
+                        <label class="label" for="standtype"><span>Stand Type</span></label>
                         <div class="control">
-                            <input name="street_address" id="street_address" value="" class="input-text" type="text"/>
+                            <select name="standtype_options" id="standtype_options">
+                                <option value="N/A">--- Please select ---</option>
+                                <option value="X-Frame">X-Frame</option>
+                                <option value="Retractable Stand  (Roll-up, Pop-up)">Retractable Stand (Roll-up, Pop-up)</option>
+                                <option value="Outdoor Double Banner Stand">Outdoor Double Banner Stand</option>
+                                <option value="Step and Repeat Banners">Step and Repeat Banners</option>
+                            </select>
                         </div>
                     </div>
-                    <div class="field address_line_02">
-                        <label class="label" for="address_line_02"><span>Address Line 2</span></label>
+                    <div class="field material material_01">
+                        <label class="label" for="material"><span>Material</span></label>
                         <div class="control">
-                            <input name="address_line_02" id="address_line_02" value="" class="input-text" type="text"/>
+                            <select name="material_01" id="material_01">
+                                <option value="N/A">--- Please select ---</option>
+                                <option value="13oz Scrim Vinyl - Matte">13oz Scrim Vinyl - Matte</option>
+                                <option value="13oz Scrim Vinyl - Gloss">13oz Scrim Vinyl - Gloss</option>
+                                <option value="14oz Scrim Vinyl - Matte">14oz Scrim Vinyl - Matte</option>
+                                <option value="14oz Scrim Vinyl - Gloss">14oz Scrim Vinyl - Gloss</option>
+                                <option value="16oz Blockout Banner">16oz Blockout Banner</option>
+                                <option value="Backlit Banner">Backlit Banner</option>
+                                <option value="Fabric Banner - Premium">Fabric Banner - Premium</option>
+                                <option value="Fabric Banner - Deluxe">Fabric Banner - Deluxe</option>
+                                <option value="Mesh Banner">Mesh Banner</option>
+                                <option value="Premium Coated Banner">Premium Coated Banner</option>
+                                <option value="SuperSmooth Banner">SuperSmooth Banner</option>
+                            </select>
                         </div>
                     </div>
-                    <div class="address-name-options row">
-                        <div class="col-xs-12 col-sm-4">
-                            <div class="field city">
-                                <label class="label" for="city"><span>City</span></label>
-                                <div class="control">
-                                    <input name="city" id="city" value="" class="input-text" type="text"/>
-                                </div>
-                            </div>
+                    <div class="field material material_02">
+                        <label class="label" for="material"><span>Material</span></label>
+                        <div class="control">
+                            <select name="material_02" id="material_02">
+                                <option value="N/A">--- Please select ---</option>
+                                <option value="Window Vinyl Decal - White Gloss">Window Vinyl Decal - White Gloss</option>
+                                <option value="Window Vinyl Decal - White Matte">Window Vinyl Decal - White Matte</option>
+                                <option value="Window Vinyl Decal - Clear">Window Vinyl Decal - Clear</option>
+                                <option value="Window Static Cling - White">Window Static Cling - White</option>
+                                <option value="Window Static Cling - Clear">Window Static Cling - Clear</option>
+                                <option value="Perforated Stickers">Perforated Stickers</option>
+                                <option value="Wall Vinyl Decal">Wall Vinyl Decal</option>
+                                <option value="Floor Graphics">Floor Graphics</option>
+                                <option value="3M Controltac">3M Controltac</option>
+                            </select>
                         </div>
-                        <div class="col-xs-12 col-sm-4">
-                            <div class="field state_options">
-                                <label class="label" for="state_options"><span>State</span></label>
-                                <div class="control">
-                                    <input name="state_options" id="state_options" value="" class="input-text"
-                                           type="text"/>
-                                </div>
-                            </div>
+                    </div>
+                    <div class="field material material_03">
+                        <label class="label" for="material"><span>Material</span></label>
+                        <div class="control">
+                            <select name="material_03" id="material_03">
+                                <option value="N/A">--- Please select ---</option>
+                                <option value="Backlit Film">Backlit Film</option>
+                                <option value="Canvas">Canvas</option>
+                                <option value="Car Magnets">Car Magnets</option>
+                                <option value="Digital Poster Gloss">Digital Poster Gloss</option>
+                                <option value="Digital Poster Matte">Digital Poster Matte</option>
+                                <option value="Polyropylene (PET)">Polyropylene (PET)</option>
+                            </select>
                         </div>
-                        <div class="col-xs-12 col-sm-4">
-                            <div class="field zip_code">
-                                <label class="label" for="zip_code"><span>Zip Code</span></label>
-                                <div class="control">
-                                    <input name="zip_code" id="zip_code" value="" class="input-text" type="number"/>
-                                </div>
-                            </div>
+                    </div>
+                    <div class="field material material_04">
+                        <label class="label" for="material"><span>Material</span></label>
+                        <div class="control">
+                            <select name="material_04" id="material_04">
+                                <option value="N/A">--- Please select ---</option>
+                                <option value="Acrylic Boards">Acrylic Boards</option>
+                                <option value="Aluminum Sandwhich Board (Dibond)">Aluminum Sandwhich Board (Dibond)</option>
+                                <option value="Aluminum Sheets">Aluminum Sheets</option>
+                                <option value="Converd Coated Board">Converd Coated Board</option>
+                                <option value="Eagle Board">Eagle Board</option>
+                                <option value="Foam Board">Foam Board</option>
+                                <option value="PVC">PVC</option>
+                                <option value="Styrene Board">Styrene Board</option>
+                                <option value="Ultra/ Gator Board">Ultra/ Gator Board</option>
+                                <option value="Coroplast (Yard Sign)">Coroplast (Yard Sign)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="field material material_05">
+                        <label class="label" for="material"><span>Material</span></label>
+                        <div class="control">
+                            <select name="material_05" id="material_05">
+                                <option value="N/A">--- Please select ---</option>
+                                <option value="13oz Scrim Vinyl   - Matte">13oz Scrim Vinyl - Matte</option>
+                                <option value="13oz Scrim Vinyl   - Gloss">13oz Scrim Vinyl - Gloss</option>
+                                <option value="14oz Scrim Vinyl   - Matte">14oz Scrim Vinyl - Matte</option>
+                                <option value="14oz Scrim Vinyl   - Gloss">14oz Scrim Vinyl - Gloss</option>
+                                <option value="SuperSmooth Banner">SuperSmooth Banner</option>
+                                <option value="Polyropylene (PET)">Polyropylene (PET)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="field material material_06">
+                        <label class="label" for="material"><span>Material</span></label>
+                        <div class="control">
+                            <select name="material_06" id="material_06">
+                                <option value="N/A">--- Please select ---</option>
+                                <option value="SuperSmooth Banner">SuperSmooth Banner</option>
+                                <option value="Premium Fabric">Premium Fabric</option>
+                                <option value="Polypropylene (PET)">Polypropylene (PET)</option>
+                            </select>
                         </div>
                     </div>
 
+                    <div class="field size size_options">
+                        <label class="label" for="size"><span>Size</span></label>
+                        <div class="control">
+                            <select name="size_options" id="size_options">
+                                <option value="N/A">--- Please select ---</option>
+                                <option value="24inch x 63inch">24" x 63"</option>
+                                <option value="30inch x 72inch">30" x 72"</option>
+                                <option value="40inch x 78inch">40" x 78"</option>
+                                <option value="Adjustable">Adjustable</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="field size size_options_02">
+                        <label class="label" for="size"><span>Size</span></label>
+                        <div class="control">
+                            <select name="size_options_02" id="size_options_02">
+                                <option value="N/A">--- Please select ---</option>
+                                <option value="23inch x 80inch">23" x 80"</option>
+                                <option value="33inch x 80inch">33" x 80"</option>
+                                <option value="35inch x 80inch">35" x 80"</option>
+                                <option value="47inch x 80inch">47" x 80"</option>
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="field budget finishing_options">
+                        <label for="budget">Finishing Options</label>
+                        <div class="input-box custom-multi-option">
+                            <input name="finishing_options_mc01" id="finishing_options_mc01" value="Hemming" type="checkbox">Hemming
+                            <input name="finishing_options_mc02" id="finishing_options_mc02" value="Grommets" type="checkbox">Grommets
+                            <input name="finishing_options_mc03" id="finishing_options_mc03" value="Pole Pockets" type="checkbox">Pole Pockets
+                            <input name="finishing_options_mc04" id="finishing_options_mc04" value="Wind Holes" type="checkbox">Wind Holes
+                        </div>
+                    </div>
+
+                    <div class="field budget lamination_options">
+                        <label for="budget">Lamination</label>
+                        <div class="input-box custom-multi-option">
+                            <input name="lamination_options_mc01" id="lamination_options_mc01" value="High Gloss Lamination" type="checkbox">High Gloss Lamination
+                            <input name="lamination_options_mc02" id="lamination_options_mc02" value="Matte Lamination" type="checkbox">Matte Lamination
+                            <input name="lamination_options_mc03" id="lamination_options_mc03" value="Dry-Erase Lamination" type="checkbox">Dry-Erase Lamination
+                        </div>
+                    </div>
+
+                    <div class="field lamination lamination_options_02">
+                        <label class="label" for="lamination"><span>Lamination</span></label>
+                        <div class="control">
+                            <select name="lamination_options" id="lamination_options">
+                                <option value="N/A">--- Please select ---</option>
+                                <option value="High Gloss Lamination">High Gloss Lamination</option>
+                                <option value="Matte Lamination">Matte Lamination</option>
+                                <option value="Dry-Erase Lamination">Dry-Erase Lamination</option>
+                                <option value="NO Lamination">NO Lamination</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="field grommet grommet_options">
+                        <label class="label" for="grommet"><span>Grommets</span></label>
+                        <div class="control">
+                            <select name="grommet_options" id="grommet_options">
+                                <option value="N/A">--- Please select ---</option>
+                                <option value="No Grommets">No Grommets</option>
+                                <option value="Top Grommets">Top Grommets</option>
+                                <option value="Bottom Grommets">Bottom Grommets</option>
+                                <option value="All Corners Grommets">All Corners Grommets</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="field round round_corners_options">
+                        <label class="label" for="roundcorners"><span>Round Corners</span></label>
+                        <div class="control">
+                            <select name="round_corners_options" id="round_corners_options">
+                                <option value="N/A">--- Please select ---</option>
+                                <option value="1/2inch Rounded Corners ( 4 Corner)">1/2" Rounded Corners ( 4 Corner)</option>
+                                <option value="No Rounded Corners">No Rounded Corners</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="field color color_options">
+                        <label class="label" for="color"><span>Color</span></label>
+                        <div class="control">
+                            <select name="color_options" id="color_options">
+                                <option value="N/A">--- Please select ---</option>
+                                <option value="4:0  (Full Color One Side)">4:0 (Full Color One Side)</option>
+                                <option value="4:4 (Full color Both Sides)">4:4 (Full color Both Sides)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="field color_options_02">
+                        <label class="label" for="color_options_02"><span>Color</span></label>
+                        <div class="control">
+                            <input name="color_options_02" id="color_options_02" value="" class="input-text" type="text"/>
+                        </div>
+                    </div>
+                    <div class="field finish_options_02">
+                        <label class="label" for="finish_options_02"><span>Finishing Options</span></label>
+                        <div class="control">
+                            <input name="finishing_options" id="finishing_options" value="" class="input-text" type="text"/>
+                        </div>
+                    </div>
+                    <div class="field note_options">
+                        <label class="label" for="note_options"><span>Options/Note</span></label>
+                        <div class="control">
+                            <input name="note_options" id="note_options" value="" class="input-text" type="text"/>
+                        </div>
+                    </div>
+
+                    <div class="field frame frame_options">
+                        <label class="label" for="frame"><span>Frame</span></label>
+                        <div class="control">
+                            <select name="frame_options" id="frame_options">
+                                <option value="N/A">--- Please select ---</option>
+                                <option value="Framed">Framed</option>
+                                <option value="Not Framed">Not Framed</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="field diecut diecut_options">
+                        <label class="label" for="diecut"><span>Die Cut</span></label>
+                        <div class="control">
+                            <select name="diecut_options" id="diecut_options">
+                                <option value="N/A">--- Please select ---</option>
+                                <option value="No">No</option>
+                                <option value="Yes">Yes</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="field hstake hstake_options">
+                        <label class="label" for="hstake"><span>H-Stakes</span></label>
+                        <div class="control">
+                            <select name="hstake_options" id="hstake_options">
+                                <option value="N/A">--- Please select ---</option>
+                                <option value="No H-Stakes">No H-Stakes</option>
+                                <option value="Standard H-Stake">Standard H-Stake</option>
+                                <option value="Heavy Duty H-Stake">Heavy Duty H-Stake</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="field thickness thickness_options">
+                        <label class="label" for="thickness"><span>Thickness</span></label>
+                        <div class="control">
+                            <select name="thickness_options" id="thickness_options">
+                                <option value="N/A">--- Please select ---</option>
+                                <option value="3/16inch">3/16"</option>
+                                <option value="1/4inch">1/4"</option>
+                                <option value="1/2inch">1/2"</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="field thickness thickness_options_02">
+                        <label class="label" for="thickness"><span>Thickness</span></label>
+                        <div class="control">
+                            <select name="thickness_options_02" id="thickness_options_02">
+                                <option value="N/A">--- Please select ---</option>
+                                <option value="1 mil (1/32inch)">1 mil (1/32")</option>
+                                <option value="3 mil (1/8inch)">3 mil (1/8")</option>
+                                <option value="6 mil (1/4inch)">6 mil (1/4")</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="field thickness thickness_options_03">
+                        <label class="label" for="thickness"><span>Thickness</span></label>
+                        <div class="control">
+                            <select name="thickness_options_03" id="thickness_options_03">
+                                <option value="N/A">--- Please select ---</option>
+                                <option value="3/16inch">3/16"</option>
+                                <option value="1/2inch">1/2"</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="field thickness thickness_options_04">
+                        <label class="label" for="thickness"><span>Thickness</span></label>
+                        <div class="control">
+                            <select name="thickness_options_04" id="thickness_options_04">
+                                <option value="N/A">--- Please select ---</option>
+                                <option value="4mm">4mm</option>
+                                <option value="6mm">6mm</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="field carmodel">
+                        <label class="label" for="carmodel"><span>Car Model, Make and Year</span></label>
+                        <div class="control">
+                            <input name="carmodel" id="carmodel" title="carmodel" value="" class="input-text" type="text""/>
+                        </div>
+                    </div>
+
+                    <div class="field carwrapping">
+                        <label class="label" for="carwrapping"><span>Car Wrapping Design</span></label>
+                        <div class="control">
+                            <select name="carwrapping" id="carwrapping">
+                                <option value="N/A">--- Please select ---</option>
+                                <option value="No - We have a car wrapping designer">No - We have a car wrapping designer</option>
+                                <option value="Yes - please accommodate our design">Yes - please accommodate our design</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="delivery_options">
+                        <div class="delivery-name-options row">
+                            <div class="col-xs-12 col-sm-4">
+                                <div class="field company_name_02">
+                                    <label class="label" for="company_name_02"><span>Company Name</span></label>
+                                    <div class="control">
+                                        <input name="company_name_02" id="company_name_02" value="" class="input-text" type="text"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-4">
+                                <div class="field first_name">
+                                    <label class="label" for="first_name"><span>First Name</span></label>
+                                    <div class="control">
+                                        <input name="first_name" id="first_name" value="" class="input-text" type="text"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-4">
+                                <div class="field last_name">
+                                    <label class="label" for="last_name"><span>Last Name</span></label>
+                                    <div class="control">
+                                        <input name="last_name" id="last_name" value="" class="input-text" type="text"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="field street_address">
+                            <label class="label" for="street_address"><span>Street Address</span></label>
+                            <div class="control">
+                                <input name="street_address" id="street_address" value="" class="input-text" type="text"/>
+                            </div>
+                        </div>
+                        <div class="field address_line_02">
+                            <label class="label" for="address_line_02"><span>Address Line 2</span></label>
+                            <div class="control">
+                                <input name="address_line_02" id="address_line_02" value="" class="input-text" type="text"/>
+                            </div>
+                        </div>
+                        <div class="address-name-options row">
+                            <div class="col-xs-12 col-sm-4">
+                                <div class="field city">
+                                    <label class="label" for="city"><span>City</span></label>
+                                    <div class="control">
+                                        <input name="city" id="city" value="" class="input-text" type="text"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-4">
+                                <div class="field state_options">
+                                    <label class="label" for="state_options"><span>State</span></label>
+                                    <div class="control">
+                                        <input name="state_options" id="state_options" value="" class="input-text" type="text"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-4">
+                                <div class="field zip_code">
+                                    <label class="label" for="zip_code"><span>Zip Code</span></label>
+                                    <div class="control">
+                                        <input name="zip_code" id="zip_code" value="" class="input-text" type="number"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
-            </div>
+            <?php } ?>
         </div>
 
 
@@ -1165,3 +1194,4 @@
         })
     })
 </script>
+<?php $session->unsTestKey(); ?>

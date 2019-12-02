@@ -4,34 +4,54 @@
 
 <?php $_product = $block->getProduct(); ?>
 <?php $buttonTitle = __('Add to Cart'); ?>
+<?php
+$idProduct = $_product->getId();
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
 
-<?php if ($_product->isSaleable()): ?>
+$session = $objectManager->get('Magento\Customer\Model\Session');
+$session->setTestKey($idProduct);
+?>
+
+<?php if ($idProduct == "169" || $idProduct == "170" || $idProduct == "171") { ?>
     <div class="box-tocart">
         <div class="fieldset">
-            <?php if ($block->shouldRenderQuantity()): ?>
-                <div class="field qty">
-                    <label class="label" for="qty"><span><?= __('Qty') ?></span></label>
-                    <div class="control">
-                        <input type="number" name="qty" id="qty" maxlength="12"
-                               value="<?= $block->getProductDefaultQty() * 1 ?>"
-                               title="<?= __('Qty') ?>" class="input-text qty"
-                               data-validate="<?= $block->escapeHtml(json_encode($block->getQuantityValidators())) ?>"
-                        />
-                    </div>
-                </div>
-            <?php endif; ?>
             <div class="actions">
-                <button type="submit" title="<?= $buttonTitle ?>" class="action primary tocart"
-                        id="product-addtocart-button">
-                    <span><?= $buttonTitle ?></span>
-                </button>
-                <?= $block->getChildHtml('', true) ?>
+                <a href="/custom-estimate" class="action primary tocart">Get Estimate</a>
             </div>
         </div>
     </div>
-<?php endif; ?>
-<?php if ($block->isRedirectToCartEnabled()) : ?>
-    <script type="text/x-magento-init">
+<?php } else { ?>
+    <?php if ($_product->isSaleable()): ?>
+        <div class="box-tocart <?= $idProduct; ?>">
+            <div class="fieldset">
+                <?php if ($block->shouldRenderQuantity()): ?>
+                    <div class="field qty">
+                        <label class="label" for="qty"><span><?= __('Qty') ?></span></label>
+                        <div class="control">
+                            <input type="number" name="qty" id="qty" maxlength="12"
+                                   value="<?= $block->getProductDefaultQty() * 1 ?>"
+                                   title="<?= __('Qty') ?>" class="input-text qty"
+                                   data-validate="<?= $block->escapeHtml(json_encode($block->getQuantityValidators())) ?>"
+                            />
+                        </div>
+                    </div>
+                <?php endif; ?>
+                <div class="actions">
+                    <button type="submit" title="<?= $buttonTitle ?>" class="action primary tocart"
+                            id="product-addtocart-button">
+                        <span><?= $buttonTitle ?></span>
+                    </button>
+                    <?= $block->getChildHtml('', true) ?>
+                </div>
+            </div>
+        </div>
+    <?php endif; ?>
+<?php } ?>
+
+<?php if ($idProduct == "169" || $idProduct == "170" || $idProduct == "171") { ?>
+<?php } else { ?>
+    <?php if ($block->isRedirectToCartEnabled()) : ?>
+        <script type="text/x-magento-init">
     {
         "#product_addtocart_form": {
             "Magento_Catalog/product/view/validation": {
@@ -39,160 +59,160 @@
             }
         }
     }
-    </script>
-<?php else : ?>
-    <script type="text/javascript">
-        require(['jquery',
-                'mage/mage',
-                'Magento_Catalog/product/view/validation',
-                'Magento_Catalog/js/catalog-add-to-cart'],
-            function ($) {
-                'use strict';
 
-                $('#product_addtocart_form').mage('validation', {
-                    radioCheckboxClosest: '.nested',
-                    submitHandler: function (form) {
-                        var areaVal = $('#areaInputId').val();
+        </script>
+    <?php else : ?>
+        <script type="text/javascript">
+            require(['jquery',
+                    'mage/mage',
+                    'Magento_Catalog/product/view/validation',
+                    'Magento_Catalog/js/catalog-add-to-cart'],
+                function ($) {
+                    'use strict';
 
-                        if (isNaN(areaVal) || areaVal > 0) {
-                            var widget = $(form).catalogAddToCart({
-                                bindSubmit: false
-                            });
-                            widget.catalogAddToCart('submitForm', $(form));
-                        }
-                        else {
-                            alert("Error! Please check width value or Height value.");
-                        }
+                    $('#product_addtocart_form').mage('validation', {
+                        radioCheckboxClosest: '.nested',
+                        submitHandler: function (form) {
+                            var areaVal = $('#areaInputId').val();
 
-                        return false;
-                    }
-                });
-            });
-    </script>
-<?php endif; ?>
-
-
-<div id="fedexWrapper">
-
-    <form id="fedexRateForm">
-        <div class="row">
-            <div class="col-xs-12 col-sm-12">
-                <div id="fedexHeading">SHIPPING ESTIMATE FOR THIS PRODUCT</div>
-            </div>
-            <div class="col-xs-6 col-sm-6">
-                <input type="number" id="zipCodeInput" name="zip-code" placeholder="ENTER 5 DIGIT ZIP CODE"/>
-            </div>
-            <div class="col-xs-6 col-sm-6">
-                <button type="button" id="fedexSubmit" class="action primary" disabled>GET ESTIMATE</button>
-            </div>
-        </div>
-
-    </form>
-    <div class="clearfix pad20"></div>
-    <div style="text-align: center; display: none" id="fedexLoading"><img src="/pub/media/images/icon/loading.gif"/>
-    </div>
-    <div id="fedexResult"></div>
-</div>
-
-<style type="text/css">
-    #fedexHeading {
-        background: #808080;
-        color: #fff;
-        text-align: center;
-        font-size: 16px;
-        padding: 10px 0;
-        margin: 0 0 20px;
-        font-weight: bold;
-    }
-
-    #fedexSubmit {
-        background: #1ca1ac;
-        color: #fff;
-        width: 100%;
-        font-size: 16px;
-        font-weight: bold;
-        padding: 9px 0;
-    }
-
-    #zipCodeInput {
-        height: 40px;
-        font-size: 16px;
-        outline: 0;
-        box-shadow: none;
-        font-weight: bold;
-    }
-</style>
-
-<script type="text/javascript">
-    require(['jquery', 'jquery/ui'], function ($) {
-        $(document).ready(function ($) {
-            var w = <?= ($_product->getWeight()) ? $_product->getWeight() : 0 ?>;
-            if (!w || w <= 0) w = 3;
-
-            // Event when zip-code is filled
-            $('#zipCodeInput').change(function (ele) {
-                var val = ele.target.value;
-                if (val == '') $('#fedexSubmit').prop('disabled', true);
-                else $('#fedexSubmit').prop('disabled', false);
-            });
-
-            // Get Fedex rate
-            $('#fedexSubmit').click(function () {
-                var zip = $('#zipCodeInput').val();
-                var qty = parseInt($('#qty').val());
-                qty = (isNaN(qty) || qty <= 0) ? 1 : qty;
-
-                var price = parseFloat($('#subTotalPrice').text().replace('$',''));
-                price = (isNaN(price) || price <= 0) ? -1 : price;
-
-                $('#fedexResult').html('');
-                $('#fedexLoading').css('display', 'block');
-                $('#fedexSubmit').prop('disabled', true);
-
-                // console.log(w*qty);
-                // console.log(zip);
-                // console.log(price);
-
-                $.ajax({
-                    url: '/lexim/fedex/rate/',
-                    type: 'post',
-                    data: {
-                        'w': w * qty,
-                        'z': zip,
-                        'p': price
-                    },
-                    cache: false,
-                    success: function (data) {
-                        var dataObj, array, result = 'Error!';
-
-                        dataObj = $.parseJSON(data);
-                        var check = typeof dataObj;
-
-                        if (check == 'object') {
-                            array = $.map(dataObj, function (value, index) {
-                                value.key = index;
-                                return [value];
-                            });
-
-                            if (array.length > 0) {
-                                result = '';
-                                array.forEach(function (item) {
-                                    result += '<p>' + item.name + ' - ' + item.price + '</p>';
-                                })
+                            if (isNaN(areaVal) || areaVal > 0) {
+                                var widget = $(form).catalogAddToCart({
+                                    bindSubmit: false
+                                });
+                                widget.catalogAddToCart('submitForm', $(form));
+                            } else {
+                                alert("Error! Please check width value or Height value.");
                             }
-                        } else {
-                            result = '<p>' + dataObj + '</p>'
+
+                            return false;
                         }
+                    });
+                });
+        </script>
+    <?php endif; ?>
 
-                        $('#fedexLoading').css('display', 'none');
-                        $('#fedexSubmit').prop('disabled', false);
-                        $('#fedexResult').html(result);
-                    }
-                })
+
+    <div id="fedexWrapper">
+
+        <form id="fedexRateForm">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12">
+                    <div id="fedexHeading">SHIPPING ESTIMATE FOR THIS PRODUCT</div>
+                </div>
+                <div class="col-xs-6 col-sm-6">
+                    <input type="number" id="zipCodeInput" name="zip-code" placeholder="ENTER 5 DIGIT ZIP CODE"/>
+                </div>
+                <div class="col-xs-6 col-sm-6">
+                    <button type="button" id="fedexSubmit" class="action primary" disabled>GET ESTIMATE</button>
+                </div>
+            </div>
+
+        </form>
+        <div class="clearfix pad20"></div>
+        <div style="text-align: center; display: none" id="fedexLoading"><img src="/pub/media/images/icon/loading.gif"/>
+        </div>
+        <div id="fedexResult"></div>
+    </div>
+
+    <style type="text/css">
+        #fedexHeading {
+            background: #808080;
+            color: #fff;
+            text-align: center;
+            font-size: 16px;
+            padding: 10px 0;
+            margin: 0 0 20px;
+            font-weight: bold;
+        }
+
+        #fedexSubmit {
+            background: #1ca1ac;
+            color: #fff;
+            width: 100%;
+            font-size: 16px;
+            font-weight: bold;
+            padding: 9px 0;
+        }
+
+        #zipCodeInput {
+            height: 40px;
+            font-size: 16px;
+            outline: 0;
+            box-shadow: none;
+            font-weight: bold;
+        }
+    </style>
+
+    <script type="text/javascript">
+        require(['jquery', 'jquery/ui'], function ($) {
+            $(document).ready(function ($) {
+                var w = <?= ($_product->getWeight()) ? $_product->getWeight() : 0 ?>;
+                if (!w || w <= 0) w = 3;
+
+                // Event when zip-code is filled
+                $('#zipCodeInput').change(function (ele) {
+                    var val = ele.target.value;
+                    if (val == '') $('#fedexSubmit').prop('disabled', true);
+                    else $('#fedexSubmit').prop('disabled', false);
+                });
+
+                // Get Fedex rate
+                $('#fedexSubmit').click(function () {
+                    var zip = $('#zipCodeInput').val();
+                    var qty = parseInt($('#qty').val());
+                    qty = (isNaN(qty) || qty <= 0) ? 1 : qty;
+
+                    var price = parseFloat($('#subTotalPrice').text().replace('$', ''));
+                    price = (isNaN(price) || price <= 0) ? -1 : price;
+
+                    $('#fedexResult').html('');
+                    $('#fedexLoading').css('display', 'block');
+                    $('#fedexSubmit').prop('disabled', true);
+
+                    // console.log(w*qty);
+                    // console.log(zip);
+                    // console.log(price);
+
+                    $.ajax({
+                        url: '/lexim/fedex/rate/',
+                        type: 'post',
+                        data: {
+                            'w': w * qty,
+                            'z': zip,
+                            'p': price
+                        },
+                        cache: false,
+                        success: function (data) {
+                            var dataObj, array, result = 'Error!';
+
+                            dataObj = $.parseJSON(data);
+                            var check = typeof dataObj;
+
+                            if (check == 'object') {
+                                array = $.map(dataObj, function (value, index) {
+                                    value.key = index;
+                                    return [value];
+                                });
+
+                                if (array.length > 0) {
+                                    result = '';
+                                    array.forEach(function (item) {
+                                        result += '<p>' + item.name + ' - ' + item.price + '</p>';
+                                    })
+                                }
+                            } else {
+                                result = '<p>' + dataObj + '</p>'
+                            }
+
+                            $('#fedexLoading').css('display', 'none');
+                            $('#fedexSubmit').prop('disabled', false);
+                            $('#fedexResult').html(result);
+                        }
+                    })
+                });
+
             });
-
         });
-    });
-</script>
-
+    </script>
+<?php } ?>
 <div class="clearfix pad20"></div>

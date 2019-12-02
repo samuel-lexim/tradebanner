@@ -5,7 +5,7 @@
         </head>
         <body>
             <referenceContainer name="content">
-                <block template="FME_Quickrfq::postform.phtml" class="FME\Quickrfq\Block\Postform" name="fme_quickrfq_postform">
+                <block template="FME_Quickrfq::postform.phtml" class="FME\Quickrfq\Block\Postform" name="fme_quickrfq_postform" cacheable="false">
                     <container name="form.additional.info" label="Form Additional Info"/>
                 </block>
             </referenceContainer>
