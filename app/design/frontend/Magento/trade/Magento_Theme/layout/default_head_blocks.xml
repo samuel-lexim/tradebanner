@@ -7,6 +7,7 @@
 -->
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <head>
+      
         <css src="css/styles-m.css" />
         <css src="css/styles-l.css" media="screen and (min-width: 768px)"/>
         <css src="css/print.css" media="print" />
@@ -16,6 +17,8 @@
         <css src="css/trade/kong.css" media="all" />
         <css src="css/trade/custom_estimate.css" media="all" />
         <css src="css/trade/lam.css" media="all" />
+        <css src="css/trade/stylelexim.css" media="all" />
         <link src="js/trade/override.js" />
+        <link src="js/trade/leximscript.js" />
     </head>
 </page>
