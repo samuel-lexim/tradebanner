@@ -1,11 +1,13 @@
 require(['jquery', 'Magento_Ui/js/modal/modal'],function($, modal) {
    $(document).ready(function($) {
 		// 13oz Vinyl Banner
+		/*
 		$('#options_1731_text').mousedown(function() {
 		    if( $(this).val().trim() == '0' ) {
 		          $(this).val('');
 		    }
 		});
+		*/
 		$('#options_1732_text').mousedown(function() {
 		    if( $(this).val().trim() == '0' ) {
 		          $(this).val('');
@@ -534,6 +536,13 @@ require(['jquery', 'Magento_Ui/js/modal/modal'],function($, modal) {
 		          $(this).val('');
 		    }
 		});
+		// Aluminum Sandwich Board “Dibond” Contour Cut
+		$('#options_1922_text').mousedown(function() {
+		    if( $(this).val().trim() == '0' ) {
+		          $(this).val('');
+		    }
+		});
+		
 		$('#options_538_text').mousedown(function() {
 		    if( $(this).val().trim() == '0' ) {
 		          $(this).val('');

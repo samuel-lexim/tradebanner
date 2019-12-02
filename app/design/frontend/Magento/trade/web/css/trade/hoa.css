@@ -85,114 +85,114 @@
 @media screen and (min-width: 1050px) {
     .button-to-top {
         bottom: 39px;
-    	right: 287px;
+        right: 287px;
     }
-}
 
-.footer-header img {
-    width: 100%;
-    height: 1px;
-}
+    .footer-header img {
+        width: 100%;
+        height: 1px;
+    }
 
-/************************** HEADER ******************************/
-.page-header .wrapper {
-    background: #f05624;
-}
+    /************************** HEADER ******************************/
+    .page-header .wrapper {
+        background: #f05624;
+    }
 
-.page-header .links a {
-    color: #fff;
-}
+    .page-header .links a {
+        color: #fff;
+    }
 
-#topRightInfo .tri-item a {
-    color: #fff;
-}
+    #topRightInfo .tri-item a {
+        color: #fff;
+    }
 
-.header-cross {
-    padding-right: 20px;
-    font-size: 15px;
-}
+    .header-cross {
+        padding-right: 20px;
+        font-size: 15px;
+    }
 
-/************************** REGISTER PAGE ******************************/
-.login-container {
-    display: none;
-}
+    /************************** REGISTER PAGE ******************************/
+    .login-container {
+        display: none;
+    }
 
-#form-validate {
-    width: 100%;
-    min-width: 10%;
-    max-width: 100%;
-}
+    #form-validate {
+        width: 100%;
+        min-width: 10%;
+        max-width: 100%;
+    }
 
-.customer-account-login .action.primary {
-    background: #1ca1ac;
-    border-radius: 0;
-    padding: 10px 30px;
-}
+    .customer-account-login .action.primary {
+        background: #1ca1ac;
+        border-radius: 0;
+        padding: 10px 30px;
+    }
 
-.customer-account-login .legend {
-    margin-left: 0;
-    border-bottom: #1ca1ac 1px solid;
-    padding: 8px 0;
-    margin-bottom: 10px;
-    font-size: 16px;
-}
+    .customer-account-login .legend {
+        margin-left: 0;
+        border-bottom: #1ca1ac 1px solid;
+        padding: 8px 0;
+        margin-bottom: 10px;
+        font-size: 16px;
+    }
 
-.customer-account-login .fieldset {
-    margin: 0;
-}
+    .customer-account-login .fieldset {
+        margin: 0;
+    }
 
-.customer-account-login .note {
-    color: #949494;
-}
+    .customer-account-login .note {
+        color: #949494;
+    }
 
-.customer-account-login .fieldset .field .label {
-    text-align: left;
-    padding: 8px 0;
-    font-weight: normal;
-    width: 100%;
-}
+    .customer-account-login .fieldset .field .label {
+        text-align: left;
+        padding: 8px 0;
+        font-weight: normal;
+        width: 100%;
+    }
 
-.customer-account-login .fieldset .field .control {
-    width: 100%;
-}
+    .customer-account-login .fieldset .field .control {
+        width: 100%;
+    }
 
-.customer-account-login .fieldset input {
-    height: 40px;
-}
+    .customer-account-login .fieldset input {
+        height: 40px;
+    }
 
-.customer-account-login .fieldset input[type="checkbox"] {
-    height: auto;
-}
+    .customer-account-login .fieldset input[type="checkbox"] {
+        height: auto;
+    }
 
-.customer-account-login .fieldset > .field {
-    margin: 0;
-}
+    .customer-account-login .fieldset > .field {
+        margin: 0;
+    }
 
-.customer-account-login .column:not(.sidebar-main) form .actions-toolbar {
-    margin-left: 0;
-}
+    .customer-account-login .column:not(.sidebar-main) form .actions-toolbar {
+        margin-left: 0;
+    }
 
-.customer-account-login .actions-toolbar > .primary {
-    float: right;
-}
+    .customer-account-login .actions-toolbar > .primary {
+        float: right;
+    }
 
-.customer-account-login .actions-toolbar > .secondary {
-    float: left;
-}
+    .customer-account-login .actions-toolbar > .secondary {
+        float: left;
+    }
 
-.customer-account-login .fieldset > .field {
-    margin: 8px 0;
-}
+    .customer-account-login .fieldset > .field {
+        margin: 8px 0;
+    }
 
-.customer-account-login .fieldset > .field:before {
-    width: 0;
-    padding: 0;
-}
+    .customer-account-login .fieldset > .field:before {
+        width: 0;
+        padding: 0;
+    }
 
-.login-register-title {
-    font-size: 20px;
-    font-weight: bold;
-    padding: 15px 0;
+    .login-register-title {
+        font-size: 20px;
+        font-weight: bold;
+        padding: 15px 0;
+    }
 }
 
 @media screen and (min-width: 720px) {
