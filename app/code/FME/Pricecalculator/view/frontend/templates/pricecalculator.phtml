@@ -1380,15 +1380,13 @@ foreach ($customOptions as $option) {
                     $('#options_1952_2').attr('disabled', 'disabled').prop('checked', false);
                 }
 
-                // get value size
-                let size_1139 = $('#select_1139').find(":selected").attr('value');
-                size_1139 = (isNaN(size_1139)) ? 0 : parseFloat(size_1139);
 
                 let Turnaround_469 = $('#select_469').find(":selected").attr('value');
                 Turnaround_469 = (isNaN(Turnaround_469)) ? 0 : parseFloat(Turnaround_469);
                 let Color_464 = $('#select_464').find(":selected").attr('value');
                 Color_464 = (isNaN(Color_464)) ? 0 : parseFloat(Color_464);
                 value_qty = $('#qty').attr('value');
+
                 if ((value_qty > 1) || (Color_464 === 851)) {
                     $('.Art_919').addClass('Addactive');
                     $("#select_919 option[value='0']").remove();
@@ -1407,155 +1405,53 @@ foreach ($customOptions as $option) {
                     $('select[name="options[2040]"]').attr('disabled', 'disabled');
                     $('.Artworks_2041').attr('disabled', 'disabled');
                 }
+
                 let sizeC = 0;
                 let TurnaroundC = 1;
                 let addC = 0;
                 let hesoC = 1;
                 let Lamination_price = 0;
+
+                hesoC = (widthVal_1140 * HeightVal_1141) / 144;
+                hesoC = (isNaN(hesoC)) ? 0 : parseFloat(hesoC);
+
                 if (Color_464 === 850) {
-                    if (size_1139 === 1779) {
-                        sizeC = 7.50;
-                        addC = 0;
-                        if (Lamination_468 === 862) {
-                            Lamination_price = 0;
-
-                        } else if (Lamination_468 === 863) {
-                            Lamination_price = 1.20;
-                        } else if (Lamination_468 === 864) {
-                            Lamination_price = 1.21;
-                        } else {
-                            Lamination_price = 3.75;
-                        }
-                    } else if (size_1139 === 1780) {
-                        sizeC = 15;
-                        addC = 0;
-                        if (Lamination_468 === 862) {
-                            Lamination_price = 0;
-
-                        } else if (Lamination_468 === 863) {
-                            Lamination_price = 2.40;
-                        } else if (Lamination_468 === 864) {
-                            Lamination_price = 2.41;
-                        } else {
-                            Lamination_price = 7.50;
-                        }
-                    } else if (size_1139 === 1781) {
-                        sizeC = 30;
-                        addC = 0;
-                        if (Lamination_468 === 862) {
-                            Lamination_price = 0;
-
-                        } else if (Lamination_468 === 863) {
-                            Lamination_price = 4.80;
-                        } else if (Lamination_468 === 864) {
-                            Lamination_price = 4.81;
-                        } else {
-                            Lamination_price = 15.00;
-                        }
+                    if (Lamination_468 === 862) {
+                        Lamination_price = 0;
+                    } else if (Lamination_468 === 863) {
+                        Lamination_price = 0.80;
+                    } else if (Lamination_468 === 864) {
+                        Lamination_price = 0.81;
                     } else {
-                        if ((widthVal_1140 < 12) || (widthVal_1140 > 48)) {
-                            // alert("Please enter a value Width: between 12 and 48.");
-                        }
-                        if ((HeightVal_1141 < 12) || (HeightVal_1141 > 96)) {
-                            // alert("Please enter a value Height:  between 12 and 96.");
-                        }
-                        if (Lamination_468 === 862) {
-                            Lamination_price = 0;
-
-                        } else if (Lamination_468 === 863) {
-                            Lamination_price = 0.80;
-                        } else if (Lamination_468 === 864) {
-                            Lamination_price = 0.81;
-                        } else {
-                            Lamination_price = 2.50;
-                        }
-                        // tinh custom gia
-                        hesoC = (widthVal_1140 * HeightVal_1141) / 144;
-                        addC = 6;
-                        hesoC = (isNaN(hesoC)) ? 0 : parseFloat(hesoC);
+                        Lamination_price = 2.50;
                     }
+                    addC = 6;
 
                 } else if (Color_464 === 851) {
-                    if (size_1139 === 1779) {
-                        sizeC = 11.25;
-                        addC = 0;
-                        if (Lamination_468 === 862) {
-                            Lamination_price = 0;
-                        } else if (Lamination_468 === 863) {
-                            Lamination_price = 2.40;
-                        } else if (Lamination_468 === 864) {
-                            Lamination_price = 2.41;
-                        } else {
-                            Lamination_price = 7.50;
-                        }
-                    } else if (size_1139 === 1780) {
-                        sizeC = 22.5;
-                        addC = 0;
-
-                        if (Lamination_468 === 862) {
-                            Lamination_price = 0;
-
-                        } else if (Lamination_468 === 863) {
-                            Lamination_price = 4.80;
-                        } else if (Lamination_468 === 864) {
-                            Lamination_price = 4.81;
-                        } else {
-                            Lamination_price = 15;
-                        }
-                    } else if (size_1139 === 1781) {
-                        sizeC = 45;
-                        addC = 0;
-                        if (Lamination_468 === 862) {
-                            Lamination_price = 0;
-
-                        } else if (Lamination_468 === 863) {
-                            Lamination_price = 9.60;
-                        } else if (Lamination_468 === 864) {
-                            Lamination_price = 9.61;
-                        } else {
-                            Lamination_price = 30;
-                        }
+                    if (Lamination_468 === 862) {
+                        Lamination_price = 0;
+                    } else if (Lamination_468 === 863) {
+                        Lamination_price = 0.80 * 2;
+                    } else if (Lamination_468 === 864) {
+                        Lamination_price = 0.81 * 2;
                     } else {
-                        if ((widthVal_1140 < 12) || (widthVal_1140 > 48)) {
-                            // alert("Please enter a value Width: between 12 and 48.");
-                        }
-                        if ((HeightVal_1141 < 12) || (HeightVal_1141 > 96)) {
-                            // alert("Please enter a value Height:  between 12 and 96.");
-                        }
-                        if (Lamination_468 === 862) {
-                            Lamination_price = 0;
+                        Lamination_price = 2.50 * 2;
+                    }
 
-                        } else if (Lamination_468 === 863) {
-                            Lamination_price = 0.80 * 2;
-                        } else if (Lamination_468 === 864) {
-                            Lamination_price = 0.81 * 2;
-                        } else {
-                            Lamination_price = 2.50 * 2;
-                        }
-                        // tinh custom gia
-
-                        hesoC = (widthVal_1140 * HeightVal_1141) / 144;
-                        addC = 10;
-                        hesoC = (isNaN(hesoC)) ? 0 : parseFloat(hesoC);
-                        if (Turnaround_469 === 868) {
-                            addC = 6;
-                        }
+                    addC = 10;
+                    if (Turnaround_469 === 868) {
+                        addC = 6;
                     }
                 }
-                if (Turnaround_469 === 866) {
-                    TurnaroundC = 1;
 
-                } else if (Turnaround_469 === 867) {
-                    TurnaroundC = 1.5;
-                } else if (Turnaround_469 === 868) {
+                TurnaroundC = 1;
+                if (Turnaround_469 === 868) {
                     TurnaroundC = 1.75;
                 }
+
+                total = hesoC * (addC + Lamination_price + Grommets_466 + Rounded_467) * TurnaroundC;
+
                 isDefault = false;
-                if (size_1139 === 1782) {
-                    total = ((hesoC * (sizeC + (addC + Lamination_price))) + Grommets_466 + Rounded_467) * TurnaroundC;
-                } else {
-                    total = hesoC * (sizeC + (addC + Lamination_price) + Grommets_466 + Rounded_467) * TurnaroundC;
-                }
 
 
             } else if (id === 146) { //  Arrow Spinner Signs
@@ -2390,12 +2286,12 @@ foreach ($customOptions as $option) {
                 value_qty = $('#qty').attr('value');
                 if ((value_qty > 1) || (Color_653 === 1099)) {
                     $('.Art_1893').addClass('Addactive');
-                    // fix err show ie 
+                    // fix err show ie
                     $('select[name="options[1893]"]').removeAttr('disabled');
                     $("#select_1893 option[value='0']").remove();
                 } else {
                     $('.Art_1893').removeClass('Addactive');
-                    // fix err show ie 
+                    // fix err show ie
                     $('select[name="options[1893]"]').attr('disabled', 'disabled');
                     $('.Artworks_1894').hide();
                     $("#select_1893 option:selected").removeAttr("selected");
@@ -2592,12 +2488,12 @@ foreach ($customOptions as $option) {
                 value_qty = $('#qty').attr('value');
                 if ((value_qty > 1) || (Color_670 === 1123)) {
                     $('.Art_916').addClass('Addactive');
-                    // fix err show ie 
+                    // fix err show ie
                     $('select[name="options[916]"]').removeAttr('disabled');
                     $("#select_916 option[value='0']").remove();
                 } else {
                     $('.Art_916').removeClass('Addactive');
-                    // fix err show ie 
+                    // fix err show ie
                     $('select[name="options[916]"]').attr('disabled', 'disabled');
                     $('.Artworks_917').hide();
                     $("#select_916 option:selected").removeAttr("selected");
@@ -3025,8 +2921,7 @@ foreach ($customOptions as $option) {
                     total = (heso * 0.7025) + 153.80; // old: 0.89
                 } else if (Turnaround_786 === 1267 && heso !== 0) {
                     total = (heso * 1.3255) + 153.80; // old: 1.513
-                }
-                else {
+                } else {
                     total = 0.00;
                 }
 

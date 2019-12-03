@@ -51,7 +51,6 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
         }
 
 
-
         // if ($totalOp == 0) return; // If not exists width, height then break
 
         $params = $this->_request->getParams();
@@ -70,6 +69,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
         $has34 = false;
         // $notFixAreaPrice = true;
         $hasDiscount = true;
+        $noFinalPrice = false;
         $areaPrice = 0;
         $area = $this->_calculateArea($_product, $posted_options);
 
@@ -123,7 +123,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             $matPrice = $matObj[$matOpId]->getPrice();
             $matPrice = is_null($matPrice) ? 0 : $matPrice;
 
-            $areaPrice = ($area / 144* $matPrice) - $matPrice;
+            $areaPrice = ($area / 144 * $matPrice) - $matPrice;
 
             $turn = $posted_options[1576];
             if (is_array($turn)) $turn = $turn[0];
@@ -227,7 +227,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             $matPrice = $matObj[$matOpId]->getPrice();
             $matPrice = is_null($matPrice) ? 0 : $matPrice;
 
-            $areaPrice = ($area / 144 * $matPrice ) - $matPrice;
+            $areaPrice = ($area / 144 * $matPrice) - $matPrice;
             $turn = $posted_options[508];
             if (is_array($turn)) $turn = $turn[0];
 
@@ -460,105 +460,106 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             else if ($turn == 848) $has175 = true;
 
         } else if ($id == 108) { // Aluminum Sheets
-            $size = 0;
-            $normal = false;
-
-            // Get size id
-            $sizeId = $posted_options[2093];
-            if (is_array($sizeId)) $sizeId = $sizeId[0];
-
-            $widthVal = $posted_options[1969];
-            $widthVal = is_null($widthVal) ? 0 : $widthVal;
-            $heightVal = $posted_options[1970];
-            $heightVal = is_null($heightVal) ? 0 : $heightVal;
-            // set 18 Inches x 12 Inches
-            if (($widthVal == 18) && ($heightVal == 12)){
-                $sizeId =3637;
-            }
-            // set 18 Inches x 24 Inches
-            if (($widthVal == 18) && ($heightVal == 24)){
-                $sizeId =3638;
-            }
-            // set 24 Inches x 36 Inches
-            if (($widthVal == 24) && ($heightVal == 36)){
-                $sizeId =3639;
-            }
 
             // Get color id
-            $colorId = $posted_options[1965];
-            if (is_array($colorId)) $colorId = $colorId[0];
-
-            // Get turnaround
-            $turn = $posted_options[2037];
-            if (is_array($turn)) $turn = $turn[0];
-            if ($turn == 3558) $has15 = true; // next day: 1.5 --- 2 day: 1
-            else if ($turn == 3559) $has175 = true; // same day: 1.75
-
-
-            // Get Lam id
-            $lamId = $posted_options[2036];
-            if (is_array($lamId)) $lamId = $lamId[0];
-            $lamPrice = 0;
-            if ($sizeId == 3637) {
-                if ($colorId == 3392) { // 4:0- Full Color on Front Side Only
-                    $size = 7.5;
-                    if ($lamId == 3554) $lamPrice = 1.2;
-                    else if ($lamId == 3555) $lamPrice = 1.21;
-                    else if ($lamId == 3556) $lamPrice = 3.75;
-                } else { // 4:4 - Full Color on Both Sides
-                    $size = 11.25;
-                    if ($lamId == 3554) $lamPrice = 2.4;
-                    else if ($lamId == 3555) $lamPrice = 2.41;
-                    else if ($lamId == 3556) $lamPrice = 7.5;
-                }
-
-            } else if ($sizeId == 3638) {
-                if ($colorId == 3392) { // 4:0- Full Color on Front Side Only
-                    $size = 15;
-                    if ($lamId == 3554) $lamPrice = 2.4;
-                    else if ($lamId == 3555) $lamPrice = 2.41;
-                    else if ($lamId == 3556) $lamPrice = 7.5;
-                } else { // 4:4 - Full Color on Both Sides
-                    $size = 22.5;
-                    if ($lamId == 3554) $lamPrice = 4.8;
-                    else if ($lamId == 3555) $lamPrice = 4.81;
-                    else if ($lamId == 3556) $lamPrice = 15;
-                }
-
-            } else if ($sizeId == 3639) {
-                if ($colorId == 3392) { // 4:0- Full Color on Front Side Only
-                    $size = 30;
-                    if ($lamId == 3554) $lamPrice = 4.8;
-                    else if ($lamId == 3555) $lamPrice = 4.81;
-                    else if ($lamId == 3556) $lamPrice = 15;
-                } else { // 4:4 - Full Color on Both Sides
-                    $size = 45;
-                    if ($lamId == 3554) $lamPrice = 9.6;
-                    else if ($lamId == 3555) $lamPrice = 9.61;
-                    else if ($lamId == 3556) $lamPrice = 30;
-                }
-
-            } else { // Custom
-
-                $normal = true;
-
-                $widthVal = $posted_options[1969];
-                $widthVal = is_null($widthVal) ? 0 : $widthVal;
-                $heightVal = $posted_options[1970];
-                $heightVal = is_null($heightVal) ? 0 : $heightVal;
-
-                if ($lamId == 3554) $lamPrice = 0.8;
-                else if ($lamId == 3555) $lamPrice = 0.81;
-                else if ($lamId == 3556) $lamPrice = 2.5;
-
-                $lamPrice = ($colorId == 3392) ? $lamPrice + 6 : $lamPrice * 2 + 10;
-                if ($turn == 3559 && $colorId != 3392) $lamPrice -= 4;
-
-                $areaPrice = $widthVal * $heightVal / 144 * $lamPrice;
+            $colorId = 0;
+            if (isset($posted_options[464])) {
+                $colorId = $posted_options[464];
+                if (is_array($colorId)) $colorId = $colorId[0];
             }
 
-            // Set price
-            if (!$normal) $areaPrice = $size + $lamPrice;
+            // Get turnaround
+            $turnId = 0;
+            if (isset($posted_options[469])) {
+                $turnId = $posted_options[469];
+                if (is_array($turnId)) $turnId = $turnId[0];
+                if ($turnId == 868) $has175 = true; // same day: 1.75
+            }
+
+            // Get Lam id
+            $lamPrice = 1;
+            $lamId = 0;
+            if (isset($posted_options[468])) {
+                $lamId = $posted_options[468];
+                if (is_array($lamId)) $lamId = $lamId[0];
+            }
+
+            // Get width
+            $widthVal = 0;
+            if (isset($posted_options[1140])) {
+                $widthVal = $posted_options[1140];
+                $widthVal = is_null($widthVal) ? 0 : $widthVal;
+            }
+
+            // Get height
+            $heightVal = 0;
+            if (isset($posted_options[1141])) {
+                $heightVal = $posted_options[1141];
+                $heightVal = is_null($heightVal) ? 0 : $heightVal;
+            }
+
+            // get grommets price
+            $groId = $posted_options[466];
+            if (is_array($groId)) {
+                $groId = $groId[0];
+            }
+            $groObj = $opsAr[466]->getValues();
+            if (isset($groObj[$groId])) {
+                $groPrice = $groObj[$groId]->getPrice();
+            } else {
+                $groPrice = 0;
+            }
+            $groPrice = is_null($groPrice) ? 0 : $groPrice;
+
+            // get Rounded Corners price
+            $roundedCornerId = $posted_options[467];
+            if (is_array($roundedCornerId)) {
+                $roundedCornerId = $roundedCornerId[0];
+            }
+            $roundedObj = $opsAr[467]->getValues();
+            if (isset($roundedObj[$roundedCornerId])) {
+                $roundedPrice = $roundedObj[$roundedCornerId]->getPrice();
+            } else {
+                $roundedPrice = 0;
+            }
+            $roundedPrice = is_null($roundedPrice) ? 0 : $roundedPrice;
+
+
+            $addC = 0;
+            if ($colorId == 850) {
+                if ($lamId == 862) {
+                    $lamPrice = 0;
+                } else if ($lamId == 863) {
+                    $lamPrice = 0.80;
+                } else if ($lamId == 864) {
+                    $lamPrice = 0.81;
+                } else {
+                    $lamPrice = 2.50;
+                }
+                $addC = 6;
+
+            } else if ($colorId == 851) {
+                if ($lamId == 862) {
+                    $lamPrice = 0;
+                } else if ($lamId == 863) {
+                    $lamPrice = 0.80 * 2;
+                } else if ($lamId == 864) {
+                    $lamPrice = 0.81 * 2;
+                } else {
+                    $lamPrice = 2.50 * 2;
+                }
+
+                $addC = 10;
+                if ($turnId == 868) {
+                    $addC = 6;
+                }
+            }
+
+            $areaPrice = $widthVal * $heightVal / 144 * ($addC + $lamPrice + $groPrice + $roundedPrice);
+
+            $noFinalPrice = true;
+
+            // # 108 Aluminum Sheets
 
         } else if ($id == 146) { // Arrow Spinner Signs
 
@@ -652,7 +653,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             if (is_array($turn)) $turn = $turn[0];
             if ($turn == 2875) $has17 = true;
 
-        } else if ($id == 148) { // Ultra(Gator) Board            
+        } else if ($id == 148) { // Ultra(Gator) Board
 
             $laminationId = $posted_options[626];
 
@@ -695,7 +696,6 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
 
                 $areaPrice = ($area / 144 * ($lamPrice * 2 + $matPrice)) - $lamPrice - $matPrice;
             }
-
 
 
             if ($matOpId == 1053 || $matOpId == 1452) $areaPrice -= $groPrice;
@@ -947,34 +947,6 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             if ($sizeId == 1572) $areaPrice += 15;
             else if ($sizeId == 1573) $areaPrice += 23;
 
-        } else if ($id == 174) { // X-Frame with Supersmooth test
-
-
-            $sizeId = $posted_options[2088];
-            if (is_array($sizeId)) $sizeId = $sizeId[0];
-
-            $w = $posted_options[2089];
-            if (is_array($w)) $w = $w[0];
-            $h = $posted_options[2090];
-            if (is_array($h)) $h = $h[0];
-            $w = is_null($w) ? 0 : floatval($w);
-            $h = is_null($h) ? 0 : floatval($h);
-
-            $turn = $posted_options[2084];
-            if (is_array($turn)) $turn = $turn[0];
-            if ($turn == 3626) { // Same day
-                if ($sizeId == 3628) $areaPrice = 15.35;
-                else if ($sizeId == 3629) $areaPrice = 21.94;
-                else if ($sizeId == 3630) $areaPrice = 31.69;
-                else $areaPrice = $w * $h * 3.41 / 144;
-            } else {
-                $areaPrice = 0;
-                if ($sizeId == 3631 || $sizeId == 3632) $areaPrice = $w * $h * 1.95 / 144;
-            }
-
-            if ($sizeId == 3631) $areaPrice += 15;
-            else if ($sizeId == 3632) $areaPrice += 23;
-
         } else if ($id == 142) { // X-Frame with Polypropylene (PET)
 
 
@@ -1058,19 +1030,18 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             // $isSameDay = ($isSameDay == 2923);
 
 
-            if ($sizeId == 2916){
+            if ($sizeId == 2916) {
                 $areaPrice = 47; //47;
-            }  else if($sizeId == 2917) {
+            } else if ($sizeId == 2917) {
                 $areaPrice = 49; //39;
             } else if ($sizeId == 2918) {
                 $areaPrice = 52; //52;
             } else if ($sizeId == 2919) {
-                $areaPrice = 69; //69; 
-            }
-            else {
+                $areaPrice = 69; //69;
+            } else {
                 $areaPrice = 0;
             }
-            if ($premiumStand){
+            if ($premiumStand) {
                 $areaPrice = $areaPrice + 29;
             }
 
@@ -1291,56 +1262,6 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             if ($turn == 998) $has17 = true;
             else if ($turn == 996) $has15 = true;
 
-        }else if ($id == 176) {  // PVC Sintra Board Contour test
-
-            $laminationId = $posted_options[2102];
-            if (is_array($laminationId)) $laminationId = $laminationId[0];
-            $lamObj = $opsAr[2102]->getValues();
-            $lamPrice = $lamObj[$laminationId]->getPrice();
-            $lamPrice = is_null($lamPrice) ? 0 : $lamPrice;
-
-            $dieCut = 1.89;
-
-            $colorId = $posted_options[2099];
-            if (is_array($colorId)) $colorId = $colorId[0];
-
-            if ($colorId == 3647) {
-                $matId = $posted_options[2100];
-                if (is_array($matId)) $matId = $matId[0];
-
-                if ($matId == 3649) $matPrice = 2.49;
-                else if ($matId == 3650) $matPrice = 2.99;
-                else if ($matId == 3651) {
-                    $matPrice = 4.25;
-                    $dieCut = 1.99;
-                } else {
-                    $matPrice = 6.5;
-                    $dieCut = 1.99;
-                }
-
-            } else {
-                $matId = $posted_options[2101];
-                if (is_array($matId)) $matId = $matId[0];
-
-                if ($matId == 3653) $matPrice = 3.5;
-                else if ($matId == 3654) $matPrice = 3.99;
-                else if ($matId == 3655) {
-                    $matPrice = 5.95;
-                    $dieCut = 1.99;
-                } else {
-                    $matPrice = 9;
-                    $dieCut = 1.99;
-                }
-            }
-
-            $areaPrice = $area / 144 * ($matPrice + $lamPrice + $dieCut) - $lamPrice;
-
-            $turn = $posted_options[2105];
-            if (is_array($turn)) $turn = $turn[0];
-
-            if ($turn == 3666) $has17 = true;
-            else if ($turn == 3665) $has15 = true;
-
         } else if ($id == 137) {  // Foam Boards- Contour
 
 
@@ -1440,141 +1361,145 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             if ($turn == 938) $has17 = true;
             else if ($turn == 937) $has15 = true;
 
-        } else if ($id == 164) { // Aluminum Sandwich Board “Dibond” Contour Cut
+        } else if ($id == 166) { // Aluminum Sandwich Board “Dibond” Contour Cut
 
-
-            $laminationId = $posted_options[1927];
+            $laminationId = $posted_options[1942];
             if (is_array($laminationId)) $laminationId = $laminationId[0];
-            $lamObj = $opsAr[1927]->getValues();
+            $lamObj = $opsAr[1942]->getValues();
             $lamPrice = $lamObj[$laminationId]->getPrice();
             $lamPrice = is_null($lamPrice) ? 0 : $lamPrice;
 
-            $colorOpId = $posted_options[1924];
+            $colorOpId = $posted_options[1939];
             if (is_array($colorOpId)) $colorOpId = $colorOpId[0];
-            if ($colorOpId == 3320) { // 4:0- Full Color on Front Side Only
-                $matOpId = $posted_options[1925];
+            if ($colorOpId == 3346) { // 4:0- Full Color on Front Side Only
+                $matOpId = $posted_options[1940];
                 if (is_array($matOpId)) $matOpId = $matOpId[0];
-                $matObj = $opsAr[1925]->getValues();
+                $matObj = $opsAr[1940]->getValues();
                 $lam2Price = $lamPrice;
             } else { // 4:4 - Full Color on Both Sides
-                $matOpId = $posted_options[1926];
+                $matOpId = $posted_options[1941];
                 if (is_array($matOpId)) $matOpId = $matOpId[0];
-                $matObj = $opsAr[1926]->getValues();
+                $matObj = $opsAr[1941]->getValues();
                 $lam2Price = $lamPrice * 2;
             }
             $matPrice = $matObj[$matOpId]->getPrice();
             $matPrice = is_null($matPrice) ? 0 : $matPrice;
 
             $areaPrice = $area / 144 * ($lam2Price + $matPrice) - $lamPrice - $matPrice;
-             // add $2
-            //$areaPrice = $areaPrice;
-            $turn = $posted_options[1929];
+            // add $2
+            $turn = $posted_options[1944];
             if (is_array($turn)) $turn = $turn[0];
 
-            if ($turn == 3333) $has15 = true;
-            else if ($turn == 3334) $has175 = true;
+            if ($turn == 3359) $has15 = true;
+            else if ($turn == 3360) $has175 = true;
 
-        } else if ($id == 162) { // Aluminum Sheets Contour
+        } else if ($id == 164) { // Aluminum Sheets Contour
             $size = 0;
+            $addC = 0;
             $normal = false;
 
             // Get size id
-            $sizeId = $posted_options[2095];
+            $sizeId = $posted_options[1933];
             if (is_array($sizeId)) $sizeId = $sizeId[0];
 
-            $widthVal = $posted_options[2057];
+            $widthVal = $posted_options[1934];
             $widthVal = is_null($widthVal) ? 0 : $widthVal;
-            $heightVal = $posted_options[2058];
+            $heightVal = $posted_options[1935];
             $heightVal = is_null($heightVal) ? 0 : $heightVal;
             // set 18 Inches x 12 Inches
-            if (($widthVal == 18) && ($heightVal == 12)){
-                $sizeId =3642;
+            if (($widthVal == 18) && ($heightVal == 12)) {
+                $sizeId = 3341;
             }
             // set 18 Inches x 24 Inches
-            if (($widthVal == 18) && ($heightVal == 24)){
-                $sizeId =3643;
+            if (($widthVal == 18) && ($heightVal == 24)) {
+                $sizeId = 3342;
             }
             // set 24 Inches x 36 Inches
-            if (($widthVal == 24) && ($heightVal == 36)){
-                $sizeId =3644;
+            if (($widthVal == 24) && ($heightVal == 36)) {
+                $sizeId = 3343;
             }
             // Get color id
-            $colorId = $posted_options[2055];
+            $colorId = $posted_options[1923];
             if (is_array($colorId)) $colorId = $colorId[0];
 
             // Get turnaround
-            $turn = $posted_options[2067];
+            $turn = $posted_options[1927];
             if (is_array($turn)) $turn = $turn[0];
-            if ($turn == 3599) $has15 = true; // next day: 1.5 --- 2 day: 1
-            else if ($turn == 3600) $has175 = true; // same day: 1.75
+            if ($turn == 3334) $has15 = true; // next day: 1.5 --- 2 day: 1
+            else if ($turn == 3335) $has175 = true; // same day: 1.75
 
             // Get Lam id
-            $lamId = $posted_options[2061];
+            $lamId = $posted_options[1926];
             if (is_array($lamId)) $lamId = $lamId[0];
             $lamPrice = 0;
-             if ($sizeId == 3642) {
-                if ($colorId == 3580) { // 4:0- Full Color on Front Side Only
+            if ($sizeId == 3341) {
+                if ($colorId == 3321) { // 4:0- Full Color on Front Side Only
                     $size = 7.5;
-                    if ($lamId == 3590) $lamPrice = 1.2;
-                    else if ($lamId == 3591) $lamPrice = 1.21;
-                    else if ($lamId == 3592) $lamPrice = 3.75;
+                    $addC = 0;
+                    if ($lamId == 3330) $lamPrice = 1.2;
+                    else if ($lamId == 3331) $lamPrice = 1.21;
+                    else if ($lamId == 3332) $lamPrice = 3.75;
                 } else { // 4:4 - Full Color on Both Sides
                     $size = 11.25;
-                    if ($lamId == 3590) $lamPrice = 2.4;
-                    else if ($lamId == 3591) $lamPrice = 2.41;
-                    else if ($lamId == 3592) $lamPrice = 7.5;
+                    $addC = 0;
+                    if ($lamId == 3330) $lamPrice = 2.4;
+                    else if ($lamId == 3331) $lamPrice = 2.41;
+                    else if ($lamId == 3332) $lamPrice = 7.5;
                 }
 
-            } else if ($sizeId == 3643) {
-                if ($colorId == 3580) { // 4:0- Full Color on Front Side Only
+            } else if ($sizeId == 3342) {
+                if ($colorId == 3321) { // 4:0- Full Color on Front Side Only
                     $size = 15;
-                    if ($lamId == 3590) $lamPrice = 2.4;
-                    else if ($lamId == 3591) $lamPrice = 2.41;
-                    else if ($lamId == 3592) $lamPrice = 7.5;
+                    $addC = 0;
+                    if ($lamId == 3330) $lamPrice = 2.4;
+                    else if ($lamId == 3331) $lamPrice = 2.41;
+                    else if ($lamId == 3332) $lamPrice = 7.5;
                 } else { // 4:4 - Full Color on Both Sides
                     $size = 22.5;
-                    if ($lamId == 3590) $lamPrice = 4.8;
-                    else if ($lamId == 3591) $lamPrice = 4.81;
-                    else if ($lamId == 3592) $lamPrice = 15;
+                    $addC = 0;
+                    if ($lamId == 3330) $lamPrice = 4.8;
+                    else if ($lamId == 3331) $lamPrice = 4.81;
+                    else if ($lamId == 3332) $lamPrice = 15;
                 }
 
-            } else if ($sizeId == 3644) {
-                if ($colorId == 3580) { // 4:0- Full Color on Front Side Only
+            } else if ($sizeId == 3343) {
+                if ($colorId == 3321) { // 4:0- Full Color on Front Side Only
                     $size = 30;
-                    if ($lamId == 3590) $lamPrice = 4.8;
-                    else if ($lamId == 3591) $lamPrice = 4.81;
-                    else if ($lamId == 3592) $lamPrice = 15;
+                    $addC = 0;
+                    if ($lamId == 3330) $lamPrice = 4.8;
+                    else if ($lamId == 3331) $lamPrice = 4.81;
+                    else if ($lamId == 3332) $lamPrice = 15;
                 } else { // 4:4 - Full Color on Both Sides
                     $size = 45;
-                    if ($lamId == 3590) $lamPrice = 9.6;
-                    else if ($lamId == 3591) $lamPrice = 9.61;
-                    else if ($lamId == 3592) $lamPrice = 30;
+                    $addC = 0;
+                    if ($lamId == 3330) $lamPrice = 9.6;
+                    else if ($lamId == 3331) $lamPrice = 9.61;
+                    else if ($lamId == 3332) $lamPrice = 30;
                 }
 
             } else { // Custom
 
                 $normal = true;
 
-                $widthVal = $posted_options[2057];
+                $widthVal = $posted_options[1934];
                 $widthVal = is_null($widthVal) ? 0 : $widthVal;
-                $heightVal = $posted_options[2058];
+                $heightVal = $posted_options[1935];
                 $heightVal = is_null($heightVal) ? 0 : $heightVal;
 
-                if ($lamId == 3590) $lamPrice = 0.8;
-                else if ($lamId == 3591) $lamPrice = 0.81;
-                else if ($lamId == 3592) $lamPrice = 2.5;
+                if ($lamId == 3330) $lamPrice = 0.8;
+                else if ($lamId == 3331) $lamPrice = 0.81;
+                else if ($lamId == 3332) $lamPrice = 2.5;
 
-                $lamPrice = ($colorId == 3580) ? $lamPrice + 6 : $lamPrice * 2 + 10;
-                if ($turn == 3600 && $colorId != 3580) $lamPrice -= 4;
+                $lamPrice = ($colorId == 3321) ? $lamPrice + 6 : $lamPrice * 2 + 10;
+                if ($turn == 3335 && $colorId != 3321) $lamPrice -= 4;
 
-              //  $areaPrice = $widthVal * $heightVal / 144 * $lamPrice;
-                $areaPrice = $widthVal * $heightVal / 144 *9;
+                // $areaPrice = $widthVal * $heightVal / 144 * $lamPrice;
+                $areaPrice = $widthVal * $heightVal / 144 * 9;
             }
 
             // add $2
-           // $areaPrice =$areaPrice +2;
+            //   $areaPrice =$areaPrice +2;
 
-            $size=$size;
             // Set price
             if (!$normal) $areaPrice = $size + $lamPrice;
 
@@ -1589,32 +1514,23 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             $sizeId = $posted_options[699];
             if (is_array($sizeId)) $sizeId = $sizeId[0];
 
-            if ($premiumStandonly){
+            if ($premiumStandonly) {
                 $areaPrice = $areaPrice + 29;
             }
-
-
-
-        } else if ($id == 120) {  // Outdoor Stand (for Banner)
-
-        } else if ($id == 121) {  // Step and Repeat Stand
-
-        } else if ($id == 122) {  // Suction Cups
-
-        } else if ($id == 124) {  // H-Stakes
-
-        } else if ($id == 154) {  // X - Stand
-
         }
 
 
         // Default Calc
         $final_price = $quoteItem->getProduct()->getFinalPrice(); //base-price + selected options
-        //$this->logger->debug('$final_price: ' . $final_price);
+        $this->logger->debug('$final_price: ' . $final_price);
         // if ($notFixAreaPrice)  $areaPrice = $this->_calculatePrice($_product, $posted_options); // Default
 
-        $total = $areaPrice + $final_price;
-        //$this->logger->debug('$areaPrice: ' . $areaPrice);
+        if ($noFinalPrice) {
+            $total = $areaPrice;
+        } else {
+            $total = $areaPrice + $final_price;
+        }
+//        $this->logger->debug('$areaPrice: ' . $areaPrice);
 
         if ($has15) $total *= 1.5;
         else if ($has17) $total *= 1.7;
@@ -1625,55 +1541,71 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
         // Start Discount
         $item = ($quoteItem->getParentItem() ? $quoteItem->getParentItem() : $quoteItem);
         $qty = $item->getQty();
-        //$this->logger->debug('$total before discount: ' . $total);
+//        $this->logger->debug('$total before discount: ' . $total);
 
         // Get Discount
-        if ($id == 145 || $id == 161) {
-                if($qty <= 5){
-                    $percentRate = 0;
-                } else if($qty >= 6 && $qty <= 10){
-                    $percentRate = 1;
-                } else if($qty >= 11 && $qty <= 20){
-                    $percentRate = 2;
-                } else if($qty >= 21 && $qty <= 30){
-                    $percentRate = 3;
-                } else if($qty >= 31 && $qty <= 40){
-                    $percentRate = 4;
-                } else if($qty >= 41 && $qty <= 50){
-                    $percentRate = 5;
-                } else if($qty >= 51 && $qty <= 60){
-                    $percentRate = 6;
-                } else if($qty >= 61 && $qty <= 70){
-                    $percentRate = 7;
-                } else if($qty >= 71 && $qty <= 80){
-                    $percentRate = 8;
-                } else if($qty >= 81 && $qty <= 90){
-                    $percentRate = 9;
-                } else if($qty >= 91 && $qty <= 100){
-                    $percentRate = 10;
-                } else if($qty >= 101 && $qty <= 110){
-                    $percentRate = 10;
-                } else if($qty >= 111 && $qty <= 120){
-                    $percentRate = 10;
-                } else if($qty >= 121 && $qty <= 130){
-                    $percentRate = 10;
-                } else if($qty >= 131 && $qty <= 140){
-                    $percentRate = 10;
-                } else if($qty >= 141 && $qty <= 150){
-                    $percentRate = 10;
-                } else if($qty >= 151 && $qty <= 160){
-                    $percentRate = 10;
-                } else if($qty >= 161 && $qty <= 170){
-                    $percentRate = 10;
-                } else if($qty >= 171 && $qty <= 180){
-                    $percentRate = 10;
-                } else if($qty >= 181){
-                    $percentRate = 10;
-                }
+        $percentRate = 0;
 
-            } else{
-                $percentRate = $hasDiscount ? $this->getDiscountRate(($area * $qty), $_product) : 0;
+        if ($id == 145 || $id == 161) {
+            if ($qty <= 5) {
+                $percentRate = 0;
+            } else if ($qty >= 6 && $qty <= 10) {
+                $percentRate = 1;
+            } else if ($qty >= 11 && $qty <= 20) {
+                $percentRate = 2;
+            } else if ($qty >= 21 && $qty <= 30) {
+                $percentRate = 3;
+            } else if ($qty >= 31 && $qty <= 40) {
+                $percentRate = 4;
+            } else if ($qty >= 41 && $qty <= 50) {
+                $percentRate = 5;
+            } else if ($qty >= 51 && $qty <= 60) {
+                $percentRate = 6;
+            } else if ($qty >= 61 && $qty <= 70) {
+                $percentRate = 7;
+            } else if ($qty >= 71 && $qty <= 80) {
+                $percentRate = 8;
+            } else if ($qty >= 81 && $qty <= 90) {
+                $percentRate = 9;
+            } else if ($qty >= 91 && $qty <= 100) {
+                $percentRate = 10;
+            } else if ($qty >= 101 && $qty <= 110) {
+                $percentRate = 10;
+            } else if ($qty >= 111 && $qty <= 120) {
+                $percentRate = 10;
+            } else if ($qty >= 121 && $qty <= 130) {
+                $percentRate = 10;
+            } else if ($qty >= 131 && $qty <= 140) {
+                $percentRate = 10;
+            } else if ($qty >= 141 && $qty <= 150) {
+                $percentRate = 10;
+            } else if ($qty >= 151 && $qty <= 160) {
+                $percentRate = 10;
+            } else if ($qty >= 161 && $qty <= 170) {
+                $percentRate = 10;
+            } else if ($qty >= 171 && $qty <= 180) {
+                $percentRate = 10;
+            } else if ($qty >= 181) {
+                $percentRate = 10;
             }
+
+        } else if ($id == 111 || $id == 112 || $id == 120) {
+            if ($qty <= 10) {
+                $percentRate = 0;
+            } else if ($qty >= 11 && $qty <= 20) {
+                $percentRate = 5;
+            } else if ($qty >= 21 && $qty <= 30) {
+                $percentRate = 10;
+            } else if ($qty >= 31 && $qty <= 40) {
+                $percentRate = 15;
+            } else if ($qty >= 41) {
+                $percentRate = 20;
+
+            }
+
+        } else {
+            $percentRate = $hasDiscount ? $this->getDiscountRate(($area * $qty), $_product) : 0;
+        }
         // $this->logger->debug("Discount percentRate : ". $percentRate);
         // $this->logger->debug("total : ". $total);
 
@@ -1708,10 +1640,10 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
         $min10 = [113, 116, 140, 139, 137, 136, 134, 133];
 
         if ($id == 109) $total = 5; // sample-kit
-        else if ( ($qty * $total) <= 10 && in_array($id, $min10) ) $total = $this->checkMinPriceForTotal($qty, 10.0);
-        else if ( ($qty * $total) <= 5 && in_array($id, $min5) ) $total = $this->checkMinPriceForTotal($qty, 5.0);
-        else if ( $total <= 8 && in_array($id, $banner) ) $total = 8;
-        else if ( ($qty * $total) <= 8 ) $total = $this->checkMinPriceForTotal($qty, 8.0);
+        else if (($qty * $total) <= 10 && in_array($id, $min10)) $total = $this->checkMinPriceForTotal($qty, 10.0);
+        else if (($qty * $total) <= 5 && in_array($id, $min5)) $total = $this->checkMinPriceForTotal($qty, 5.0);
+        else if ($total <= 8 && in_array($id, $banner)) $total = 8;
+        else if (($qty * $total) <= 8) $total = $this->checkMinPriceForTotal($qty, 8.0);
 
 
         // Update Price
@@ -1719,8 +1651,8 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
         $item->setOriginalCustomPrice($total);
         $item->getProduct()->setIsSuperMode(true);
 
-        //$this->logger->debug('$total final: ' . $total);
-        //$this->logger->debug("================== End debug kong ====================");
+//        $this->logger->debug('$total final: ' . $total);
+//        $this->logger->debug("================== End debug kong ====================");
     }
 
     /**
