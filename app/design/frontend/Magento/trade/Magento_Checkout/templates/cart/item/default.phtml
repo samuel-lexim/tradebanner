@@ -7,8 +7,18 @@ $isVisibleProduct = $product->isVisibleInSiteVisibility();
 /** @var \Magento\Msrp\Helper\Data $helper */
 $helper = $this->helper('Magento\Msrp\Helper\Data');
 $canApplyMsrp = $helper->isShowBeforeOrderConfirm($product) && $helper->isMinimalPriceLessMsrp($product);
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$cart = $objectManager->get('\Magento\Checkout\Model\Cart');
+$items = $cart->getQuote()->getAllItems();
+
+$weight = 0;
+foreach($items as $item) {
+    $weight += ($item->getWeight() * $item->getQty()) ;
+}
+
+
 ?>
-<tbody class="cart item">
+<tbody class="cart item" weight="<?php echo $weight ?>">
 <tr class="item-info">
     <td data-th="<?= $block->escapeHtml(__('Item')); ?>" class="col item itemCartCol">
 

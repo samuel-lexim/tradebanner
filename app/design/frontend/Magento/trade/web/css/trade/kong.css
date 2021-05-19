@@ -1913,5 +1913,10 @@ a.showDetailCartCol {
     font-size: 20px;
     font-weight: bold;
 }
-
 /* # Upload page cms */
+
+.shipping-notice {
+    border-top: 1px solid #dddddd;
+    padding: 8px 4px;
+    color: #ff0000;
+}

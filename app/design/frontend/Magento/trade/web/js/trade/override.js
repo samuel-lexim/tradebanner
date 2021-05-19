@@ -1,549 +1,99 @@
 require(['jquery', 'Magento_Ui/js/modal/modal'],function($, modal) {
    $(document).ready(function($) {
-		// 13oz Vinyl Banner
-		/*
-		$('#options_1731_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-		*/
-		$('#options_1732_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-
-		// 14oz Vinyl Banner
-		$('#options_1750_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-		$('#options_1751_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-
-		// 16 oz Blockout Banner
-		$('#options_1448_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-		$('#options_1447_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-
-		// Backlit Banner
-		$('#options_1467_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-		$('#options_1466_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-
-		// Double Sided Banner (Super Smooth)
-		$('#options_1567_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-		$('#options_1566_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-
-		// Fabric Banner- Premium
-		$('#options_347_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-		$('#options_348_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-
-		// Mesh Banner
-		$('#options_1496_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-		$('#options_1497_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-
-		// Premium Coated Banner
-		$('#options_1532_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-		$('#options_1531_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-
-		// Super Smooth Banner
-		$('#options_1583_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-		$('#options_1582_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-
-		// Fabric Banner- Deluxe
-		$('#options_356_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-		$('#options_357_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-
-		// 3M Controltac (IJ 180C)
-		$('#options_398_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-		$('#options_399_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-
-		// 3M IJ35 Adhesive Vinyl
-		$('#options_406_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-		$('#options_407_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-
-		// Floor Graphics
-		$('#options_504_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-		$('#options_503_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-
-		// Perforated Stickers (One-Way Vision)
-		$('#options_496_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-		$('#options_497_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-
-		// Static Clings (Window Clings)
-		$('#options_489_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-		$('#options_490_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-
-		// Vinyl Stickers (Window Decal)
-		$('#options_1836_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-		$('#options_1837_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-
-		// Wall Vinyl Decals
-		$('#options_473_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-		$('#options_474_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-
-		// Backlit Film
-		$('#options_423_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-		$('#options_422_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-
-		// Canvas Roll
-		$('#options_433_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-		$('#options_432_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-
-		// Polypropylene (PET)
-		$('#options_511_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-		$('#options_512_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-
-		// Digital Poster
-		$('#options_520_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-		$('#options_521_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-
-		// Car Magnets
-		$('#options_528_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-		$('#options_529_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-
-		// Framed Canvas
-		$('#options_811_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-		$('#options_812_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-
-		// Acrylic Boards
-		$('#options_444_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-		$('#options_445_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-
-		// Aluminum Sandwich Board “Dibond”
-		$('#options_454_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-		$('#options_455_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-
-		// Yard Signs (Coroplast)
-		$('#options_1662_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-		$('#options_1661_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-
-		// Ultra(Gator) Board
-		$('#options_622_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-		$('#options_623_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-
-		// Styrene Boards
-		$('#options_632_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-		$('#options_631_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-
-		// PVC Sintra Board
-		$('#options_641_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-		$('#options_642_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-
-		// Foam Boards
-		$('#options_651_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-		$('#options_652_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-
-		// Eagle Board (Eco Board)
-		$('#options_660_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-		$('#options_661_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-
-		// Converd Coated Board
-		$('#options_669_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-		$('#options_668_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-
-		// Step and Repeat Banners
-		$('#options_781_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-		$('#options_782_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-
-		// Custom Sublimation Transfers
-		$('#options_705_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-		$('#options_706_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-
-		// 3M Controltac (IJ 180C) Contour
-		$('#options_712_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-		$('#options_713_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-
-		// Car Magnets Contour
-		$('#options_720_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-		$('#options_721_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-
-		// Floor Graphics – Contour
-		$('#options_729_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-		$('#options_730_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-
-		// Yard Signs (Coroplast) Contour
-		$('#options_545_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-		$('#options_546_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-
-		// Ultra(Gator) Board Contour
-		$('#options_555_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-		$('#options_556_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-
-		// Styrene Boards Contour
-		$('#options_565_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-		$('#options_566_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-
-		// PVC Sintra Board Contour
-		$('#options_575_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-		$('#options_576_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-
-		// Foam Boards- Contour
-		$('#options_585_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-		$('#options_586_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-
-		// Wall Vinyl Decals Contour
-		$('#options_595_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-		$('#options_596_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-
-		// Vinyl Stickers (Window Decal) Contour
-		$('#options_605_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-		$('#options_604_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-
-		// Static Clings (Window Clings) Contour
-		$('#options_537_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-		// Aluminum Sandwich Board “Dibond” Contour Cut
-		$('#options_1922_text').mousedown(function() {
-		    if( $(this).val().trim() == '0' ) {
-		          $(this).val('');
-		    }
-		});
-		
-		$('#options_538_text').mousedown(function() {
+		var elements = [
+			//'#options_1731_text',
+			'#options_1732_text',
+			'#options_1750_text',
+			'#options_1751_text',
+			'#options_1448_text',
+			'#options_1447_text',
+			'#options_1467_text',
+			'#options_1466_text',
+			'#options_1567_text',
+			'#options_1566_text',
+			'#options_347_text',
+			'#options_348_text',
+			'#options_1496_text',
+			'#options_1497_text',
+			'#options_1532_text',
+			'#options_1531_text',
+			'#options_1583_text',
+			'#options_1582_text',
+			'#options_356_text',
+			'#options_357_text',
+			'#options_398_text',
+			'#options_399_text',
+			'#options_406_text',
+			'#options_407_text',
+			'#options_504_text',
+			'#options_503_text',
+			'#options_496_text',
+			'#options_497_text',
+			'#options_489_text',
+			'#options_490_text',
+			'#options_1836_text',
+			'#options_1837_text',
+			'#options_473_text',
+			'#options_474_text',
+			'#options_423_text',
+			'#options_422_text',
+			'#options_433_text',
+			'#options_432_text',
+			'#options_511_text',
+			'#options_512_text',
+			'#options_520_text',
+			'#options_521_text',
+			'#options_528_text',
+			'#options_529_text',
+			'#options_811_text',
+			'#options_812_text',
+			'#options_444_text',
+			'#options_445_text',
+			'#options_454_text',
+			'#options_455_text',
+			'#options_1662_text',
+			'#options_1661_text',
+			'#options_622_text',
+			'#options_623_text',
+			'#options_632_text',
+			'#options_631_text',
+			'#options_641_text',
+			'#options_642_text',
+			'#options_651_text',
+			'#options_652_text',
+			'#options_660_text',
+			'#options_661_text',
+			'#options_669_text',
+			'#options_668_text',
+			'#options_781_text',
+			'#options_782_text',
+			'#options_705_text',
+			'#options_706_text',
+			'#options_712_text',
+			'#options_713_text',
+			'#options_720_text',
+			'#options_721_text',
+			'#options_729_text',
+			'#options_730_text',
+			'#options_545_text',
+			'#options_546_text',
+			'#options_555_text',
+			'#options_556_text',
+			'#options_565_text',
+			'#options_566_text',
+			'#options_575_text',
+			'#options_576_text',
+			'#options_585_text',
+			'#options_586_text',
+			'#options_595_text',
+			'#options_596_text',
+			'#options_605_text',
+			'#options_604_text',
+			'#options_537_text',
+			'#options_1922_text',
+			'#options_538_text',
+		];
+		$(elements.join(', ')).mousedown(function() {
 		    if( $(this).val().trim() == '0' ) {
 		          $(this).val('');
 		    }

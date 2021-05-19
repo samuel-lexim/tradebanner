@@ -182,7 +182,7 @@ class Items extends AbstractHelper
     }
 
     function getPreviewImage($pdfFilePath) {
-        $previewImagePath = str_replace(array('uploads', '.pdf'), array('uploads/preview', '.jpg'), $pdfFilePath);
+        $previewImagePath = str_replace(array('uploads', '.pdf'), array('uploads/_preview', '.jpg'), $pdfFilePath);
         if (!file_exists($previewImagePath)) {
             $this->generatePreview($pdfFilePath);
         }
@@ -191,7 +191,7 @@ class Items extends AbstractHelper
     }
 
     function generatePreview($pdfFilePath, $maxWidth = 100) {
-        $previewImagePath = str_replace(array('uploads', '.pdf'), array('uploads/preview', '.jpg'), $pdfFilePath);
+        $previewImagePath = str_replace(array('uploads', '.pdf'), array('uploads/_preview', '.jpg'), $pdfFilePath);
         $im = new \imagick($pdfFilePath . '[0]');
         $im->setImageFormat('jpg');
         $im->scaleImage($maxWidth, 0);

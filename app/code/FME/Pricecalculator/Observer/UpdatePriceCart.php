@@ -430,6 +430,9 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
                 if ($turn == 1305) $areaPrice *= 2;
             } else $areaPrice = $area * 9 / 144;
 
+            // set minimum
+            $areaPrice = max([$areaPrice, 20]);
+
             if ($turn == 1303) $has15 = true; // next day: 1.5 --- 2 day: 1
             else if ($turn == 1305) $has17 = true; // same day: 1.7
 
@@ -591,7 +594,12 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
                 }
             }
 
-            $areaPrice = $widthVal * $heightVal / 144 * ($addC + $lamPrice + $groPrice + $roundedPrice);
+            $turnaroundC = 1;
+            if ($turnId == 868) {
+                $turnaroundC = 1.75;
+            }
+
+            $areaPrice = $widthVal * $heightVal / 144 * ($addC + $lamPrice + $groPrice) * $turnaroundC + $roundedPrice;
 
             $noFinalPrice = true;
 
@@ -1132,7 +1140,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
         } else if ($id == 117) {  // Floor Graphics – Contour
 
 
-            $areaPrice = $area / 144 * 5.88;
+            $areaPrice = $area / 144 * 3.5;
 
             $turn = $posted_options[735];
             if (is_array($turn)) $turn = $turn[0];

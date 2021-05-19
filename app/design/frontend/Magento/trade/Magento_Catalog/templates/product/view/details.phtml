@@ -1091,7 +1091,8 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
                 }
             });
             $("#select_456").change(function () {
-                let id = $(this).val();
+                // moved to pricecalculator.phtml
+                /*let id = $(this).val();
                 if (id == 836) {
                     $('.Material-_870').addClass('Addactive');
                     $('.Material_457').removeClass('Addactive');
@@ -1122,7 +1123,7 @@ if ($frame != "") $tabArray['Frame'] = $pro->getFrame();
                 if ((value_qty > 1) || (id == 836))
                     $('select[name="options[1052]"]').removeAttr('disabled');
                 else
-                    $('select[name="options[1052]"]').attr('disabled', 'disabled');
+                    $('select[name="options[1052]"]').attr('disabled', 'disabled');*/
             });
             // remove field trung khi khong thay doi field
             $("#select_457 option[value='0']").remove();

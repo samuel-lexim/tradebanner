@@ -54,7 +54,7 @@
     <?php $orderNumber = $_item->getOrder()->getIncrementId(); ?>
     <?php $localPath = '/pub/uploads/' . ($orderNumber > '000116944' ? ($name . '/' . $orderNumber) : ($orderNumber . '/' . $name)); ?>
     <?php $fullPath = getcwd() . $localPath ?>
-    <?php $s3 = new S3('AKIAJGKTM67FZFIX3CEA', 'VdJqlC5tBKqDwMWRSLfg39gInSxF1buKueGUZv/1'); ?>
+    <?php /*$s3 = new S3('AKIAJGKTM67FZFIX3CEA', 'VdJqlC5tBKqDwMWRSLfg39gInSxF1buKueGUZv/1'); ?>
     <?php $objects = $s3->getBucket('tradebanner', $name . '/' . $orderNumber) ?>
     <?php if (count($objects)) : ?>
 		<br>
@@ -62,7 +62,7 @@
         <?php foreach ($objects as $uri => $object) : ?>
 			<div><a href="<?php echo 'https://tradebanner.s3-us-west-1.amazonaws.com/' . $uri ?>" target="_blank"><?php echo end(explode('/', $uri)) ?></a></div>
         <?php endforeach; ?>
-    <?php endif; ?>
+    <?php endif;*/ ?>
     <?php if (file_exists($fullPath)) : ?>
 		<br>
 		<div><b>Files from local server:</b></div>
