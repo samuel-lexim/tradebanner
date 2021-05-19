@@ -76,8 +76,7 @@ class FileFactory
 
         //  Samuel kong
         $isPdf = ($baseDir == "order_pdf") ? true : false;
-        $orderPdfPath = 'http://tradebanner.com/pub/media/order_pdf/';
-        $orderPdfPath = 'http://34.217.10.208/pub/media/order_pdf/';
+        $orderPdfPath = '/pub/media/order_pdf/';
 
         if ($isPdf && !$isFile) {
             $this->_response->setHttpResponseCode(200)

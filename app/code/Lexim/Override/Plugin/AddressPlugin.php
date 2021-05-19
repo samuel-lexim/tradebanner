@@ -1,16 +1,15 @@
 <?php
 
-namespace Lexim\Override\Model;
+namespace Lexim\Override\Plugin;
 
-class QuoteModelQuoteAddress extends \Magento\Quote\Model\Quote\Address {
+class AddressPlugin {
 
     public function getGroupedAllShippingRates()
     {
         \Magento\Framework\App\ObjectManager::getInstance()->get(\Psr\Log\LoggerInterface::class)->debug('Custom');
         $rates = [];
         $customer = $this->getQuote()->getCustomer();
-        $freeDeliveryAttribute = $customer->getCustomAttribute('free_delivery_kong');
-        $freeStatus = $freeDeliveryAttribute ? $freeDeliveryAttribute->getValue() : '0';
+        $freeStatus = $customer->getCustomAttribute('free_delivery_kong')->getValue();
 
         foreach ($this->getShippingRatesCollection() as $rate) {
             if (!$rate->isDeleted() && $this->_carrierFactory->get($rate->getCarrier())) {

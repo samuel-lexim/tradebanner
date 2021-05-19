@@ -57,11 +57,24 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
         // {"uenc":"aHR0cDovLzUyLjM5LjQyLjgvZmxvb3ItZ3JhcGhpY3MuaHRtbA,,","product":"123","selected_configurable_option":"","related_product":"","form_key":"E69AxhEPz3TTpxAE","options":{"503":"45","504":"55","505":"897","506":"898","507":"899","508":"900","509":"12","1028":"1691","1029":"","510":"123"},"qty":"1","zip-code":""}
         //$this->logger->debug("= params ==" . json_encode($params));
 
-        $posted_options = $params['options']; // { 'select id' => 'option id' }
+        if (isset($params['options'])) {
+            $posted_options = $params['options']; // { 'select id' => 'option id' }
+        }
+        else if (isset($params['order_id'])) {
+            $order = $this->_objectManager->create('Magento\Sales\Model\Order')->load($params['order_id']);
+            $orderItems = $order->getAllItems();
+            foreach ($orderItems as $orderItem) {
+                $options = $orderItem->getProductOptions()['options'];
+                foreach ($options as $option) {
+                    $posted_options[$option['option_id']] = $option['option_value'];
+                }
+            }
+        }
         // {"318":"44","319":"66","316":"594","317":"595","320":"598","680":"1136","321":"605","322":"606","323":"609","324":"615","325":"618","326":"22","740":"asdsad"}
 
 
         // Calc price foreach products - Flags
+        $has115 = false;
         $has15 = false;
         $has17 = false;
         $has175 = false;
@@ -209,6 +222,28 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             $turn = $posted_options[411];
             if (is_array($turn)) $turn = $turn[0];
             if ($turn == 778) $has17 = true;
+
+        } else if ($id == 168) {  // 3M IJ35 Adhesive Vinyl Contour Cut
+
+
+            $laminationId = $posted_options[1993];
+            if (is_array($laminationId)) $laminationId = $laminationId[0];
+            $lamObj = $opsAr[1993]->getValues();
+            $lamPrice = $lamObj[$laminationId]->getPrice();
+            $lamPrice = is_null($lamPrice) ? 0 : $lamPrice;
+
+            $matId = $posted_options[1983];
+            if (is_array($matId)) $matId = $matId[0];
+            $matObj = $opsAr[1983]->getValues();
+            $matPrice = $matObj[$matId]->getPrice();
+            $matPrice = is_null($matPrice) ? 0 : $matPrice;
+
+            $areaPrice = $area / 144 * ($matPrice + $lamPrice) - $lamPrice - $matPrice;
+
+            $turn = $posted_options[1994];
+            if (is_array($turn)) $turn = $turn[0];
+
+            if ($turn == 3404) $has17 = true;
 
         } else if ($id == 102) { // Bumper Stickers
 
@@ -456,8 +491,9 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             $turn = $posted_options[460];
             if (is_array($turn)) $turn = $turn[0];
 
-            if ($turn == 846) $has15 = true;
-            else if ($turn == 848) $has175 = true;
+            if ($turn == 3415) $has115 = true;
+            else if ($turn == 3415) $has15 = true;
+            else if ($turn == 848) $has17 = true;
 
         } else if ($id == 108) { // Aluminum Sheets
 
@@ -1009,8 +1045,8 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             $turn = $posted_options[786];
             if (is_array($turn)) $turn = $turn[0];
             if ($turn == 1267) {
-                $areaPrice = $area / 144 * 1.513 + 153.8;
-            } else  $areaPrice = $area / 144 * 0.89 + 153.8;
+                $areaPrice = $area / 144 * 1.3255 + 153.8;
+            } else  $areaPrice = $area / 144 * 0.7025 + 153.8;
 
         } else if ($id == 145) { // Retractable Stand
 
@@ -1532,7 +1568,8 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
         }
 //        $this->logger->debug('$areaPrice: ' . $areaPrice);
 
-        if ($has15) $total *= 1.5;
+        if ($has115) $total *= 1.15;
+        else if ($has15) $total *= 1.15;
         else if ($has17) $total *= 1.7;
         else if ($has175) $total *= 1.75;
         else if ($has2) $total *= 2;

@@ -102,10 +102,19 @@ class Items extends AbstractHelper
         $templateBodyParts = $this->formated->getItemsArea($templateModel->getData('template_body'), '##productlist_start##', '##productlist_end##');
         $itemHtml = '';
 
+        $orderRepository = \Magento\Framework\App\ObjectManager::getInstance()->get('\Magento\Sales\Api\OrderRepositoryInterface');
+        $orderId = $source->getEntityId();
+        $order = $orderRepository->get($orderId);
+        $images = $this->getImages($order);
+
         $i = 1;
         foreach ($items as $item) {
             $item->setData('shipping', $source->getBaseShippingAmount());
             $item->setData('position', $i++);
+
+            if (isset($images[$item->getId()])) {
+                $item->setData('images', implode('', $images[$item->getId()]));
+            }
 
             if ($item instanceof \Magento\Sales\Model\Order\Item) {
                 if ($parentItem = $item->getParentItem()) {
@@ -150,4 +159,50 @@ class Items extends AbstractHelper
         return $item;
     }
 
+    function getImages($order) {
+        $incrementId = $order->getIncrementId();
+        $images = array();
+        foreach ($order->getAllVisibleItems() as $item) {
+            $localPath = '/pub/uploads/' . ($incrementId > '000116944' ? (trim($item->getName()) . '/' . $incrementId) : ($incrementId . '/' . trim($item->getName())));
+            $fullPath = getcwd() . $localPath;
+
+            if (file_exists($fullPath)) {
+                foreach (array_diff(scandir($fullPath), array('..', '.')) as $file) {
+                    $fullImagePath = $fullPath . '/' . $file;
+                    $previewImagePath = $this->getPreviewImage($fullImagePath);
+                    $images[$item->getId()][] = '<img src="' . $this->getImageUrl($previewImagePath) . '" style="display: inline-block; vertical-align: top; margin: 5px;" />';
+                }
+            }
+        }
+        return $images;
+    }
+
+    function getImageUrl($imagePath) {
+        return str_replace(getcwd(), '', $imagePath);
+    }
+
+    function getPreviewImage($pdfFilePath) {
+        $previewImagePath = str_replace(array('uploads', '.pdf'), array('uploads/preview', '.jpg'), $pdfFilePath);
+        if (!file_exists($previewImagePath)) {
+            $this->generatePreview($pdfFilePath);
+        }
+
+        return $previewImagePath;
+    }
+
+    function generatePreview($pdfFilePath, $maxWidth = 100) {
+        $previewImagePath = str_replace(array('uploads', '.pdf'), array('uploads/preview', '.jpg'), $pdfFilePath);
+        $im = new \imagick($pdfFilePath . '[0]');
+        $im->setImageFormat('jpg');
+        $im->scaleImage($maxWidth, 0);
+
+        $previewImageDirectoryArray = explode('/', $previewImagePath);
+        array_pop($previewImageDirectoryArray);
+        $previewImageDirectory = implode('/', $previewImageDirectoryArray);
+
+        if (!file_exists($previewImageDirectory)) {
+            mkdir($previewImageDirectory, 0777, true);
+        }
+        file_put_contents($previewImagePath, $im);
+    }
 }

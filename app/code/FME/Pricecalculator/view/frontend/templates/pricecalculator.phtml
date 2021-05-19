@@ -1148,6 +1148,8 @@ foreach ($customOptions as $option) {
                         total = area * 9 / 144;
                     }
                 }
+                // set minimum
+                total = Math.max(total, 20);
                 isDefault = false;
 
             } else if (id === 131) { // Digital Poster
@@ -1278,6 +1280,14 @@ foreach ($customOptions as $option) {
                 Turnaround_460 = (isNaN(Turnaround_460)) ? 0 : parseFloat(Turnaround_460);
                 let Color_456 = $('#select_456').find(":selected").attr('value');
                 Color_456 = (isNaN(Color_456)) ? 0 : parseFloat(Color_456);
+
+                // fix err show ie
+                let value_qty = $('#qty').attr('value');
+                if ((value_qty > 1) || (Color_456 == 836))
+                    $('select[name="options[1052]"]').removeAttr('disabled');
+                else
+                    $('select[name="options[1052]"]').attr('disabled', 'disabled');
+
                 value_qty = $('#qty').attr('value');
                 let isMaterial = 0;
                 let isNumber = 1;
@@ -1295,35 +1305,34 @@ foreach ($customOptions as $option) {
                     $("#select_1052 option:selected").removeAttr("selected");
                     // $("#select_1052").prepend('<option value="0" price="0" selected="selected">No</option>');
                 }
-                if (Color_456 === 835) {
+                /*if (Color_456 === 835) {
                     $('.Material-_870').removeClass('Addactive');
                     $('.Material_457').addClass('Addactive');
-                }
-                if ((Turnaround_460 === 848) && (Color_456 === 836)) {
+                }*/
+                if ((Turnaround_460 === 848) && (Color_456 === 836)) {// Turnaround = Same Day && Color = 4:4
                     isTurnaround = 1.7;
                     isNumber = 2;
                     isMaterial = Material_870;
-                } else if ((Turnaround_460 === 848) && (Color_456 === 835)) {
+                } else if ((Turnaround_460 === 848) && (Color_456 === 835)) {// Turnaround = Same Day && Color = 4:0
                     isTurnaround = 1.7;
                     isNumber = 1;
                     isMaterial = Material_457;
-                } else if ((Turnaround_460 === 847) && (Color_456 === 836)) {
+                } else if ((Turnaround_460 === 3415) && (Color_456 === 836)) {// Turnaround = Next Day && Color = 4:4
+                    isTurnaround = 1.15;
+                    isNumber = 2;
+                    isMaterial = Material_870;
+                } else if ((Turnaround_460 === 3415) && (Color_456 === 835)) {// Turnaround = Next Day && Color = 4:0
+                    isTurnaround = 1.15;
+                    isNumber = 1;
+                    isMaterial = Material_457;
+                } else if ((Turnaround_460 === 847) && (Color_456 === 836)) {// Turnaround = 2nd Day && Color = 4:4
                     isTurnaround = 1;
                     isNumber = 2;
                     isMaterial = Material_870;
-                } else if ((Turnaround_460 === 847) && (Color_456 === 835)) {
+                } else if ((Turnaround_460 === 847) && (Color_456 === 835)) {// Turnaround = 2nd Day && Color = 4:0
                     isTurnaround = 1;
                     isNumber = 1;
                     isMaterial = Material_457;
-                } else if ((Turnaround_460 === 846) && (Color_456 === 836)) {
-                    isTurnaround = 1.5;
-                    isNumber = 2;
-                    isMaterial = Material_870;
-                } else if ((Turnaround_460 === 846) && (Color_456 === 835)) {
-                    isTurnaround = 1.5;
-                    isNumber = 1;
-                    isMaterial = Material_457;
-
                 } else {
                     isTurnaround = 1;
                     isNumber = 1;
@@ -1331,6 +1340,18 @@ foreach ($customOptions as $option) {
                 }
 
                 if (Color_456 === 835) {
+                    $('.Material-_870').removeClass('Addactive');
+                    $('.Material_457').addClass('Addactive');
+
+                    $("#select_457 option[value='0']").remove();
+                    $("#select_870").prepend('<option value="0" price="0" selected="selected">No</option>');
+
+                    // fix err show ie
+                    $('select[name="options[870]"]').attr('disabled', 'disabled');
+                    $('.Artworks_1053').attr('disabled', 'disabled');
+
+                    $('select[name="options[457]"]').removeAttr('disabled');
+
                     Material_870 = 0;
                     // $('#select_457 option[value=837]').attr('selected', 'selected');
                     Material_457 = $('#select_457').find(":selected").attr('price');
@@ -1338,6 +1359,18 @@ foreach ($customOptions as $option) {
                     isMaterial = Material_457;
 
                 } else if (Color_456 === 836) {
+                    $('.Material-_870').addClass('Addactive');
+                    $('.Material_457').removeClass('Addactive');
+
+                    $("#select_870 option[value='0']").remove();
+                    $("#select_457").prepend('<option value="0" price="0" selected="selected">No</option>');
+
+                    // fix err show ie
+                    $('select[name="options[870]"]').removeAttr('disabled');
+                    $('.Artworks_1053').removeAttr('disabled');
+
+                    $('select[name="options[457]"]').attr('disabled', 'disabled');
+
                     Material_457 = 0;
                     // $('#select_870 option[value=1416]').attr('selected', 'selected');
                     Material_870 = $('#select_870').find(":selected").attr('price');
@@ -1449,7 +1482,7 @@ foreach ($customOptions as $option) {
                     TurnaroundC = 1.75;
                 }
 
-                total = hesoC * (addC + Lamination_price + Grommets_466 + Rounded_467) * TurnaroundC;
+                total = hesoC * (addC + Lamination_price + Grommets_466) * TurnaroundC + Rounded_467;
 
                 isDefault = false;
 
@@ -2286,12 +2319,12 @@ foreach ($customOptions as $option) {
                 value_qty = $('#qty').attr('value');
                 if ((value_qty > 1) || (Color_653 === 1099)) {
                     $('.Art_1893').addClass('Addactive');
-                    // fix err show ie
+                    // fix err show ie 
                     $('select[name="options[1893]"]').removeAttr('disabled');
                     $("#select_1893 option[value='0']").remove();
                 } else {
                     $('.Art_1893').removeClass('Addactive');
-                    // fix err show ie
+                    // fix err show ie 
                     $('select[name="options[1893]"]').attr('disabled', 'disabled');
                     $('.Artworks_1894').hide();
                     $("#select_1893 option:selected").removeAttr("selected");
@@ -2488,12 +2521,12 @@ foreach ($customOptions as $option) {
                 value_qty = $('#qty').attr('value');
                 if ((value_qty > 1) || (Color_670 === 1123)) {
                     $('.Art_916').addClass('Addactive');
-                    // fix err show ie
+                    // fix err show ie 
                     $('select[name="options[916]"]').removeAttr('disabled');
                     $("#select_916 option[value='0']").remove();
                 } else {
                     $('.Art_916').removeClass('Addactive');
-                    // fix err show ie
+                    // fix err show ie 
                     $('select[name="options[916]"]').attr('disabled', 'disabled');
                     $('.Artworks_917').hide();
                     $("#select_916 option:selected").removeAttr("selected");
@@ -2934,6 +2967,11 @@ foreach ($customOptions as $option) {
                 Size_1695 = (isNaN(Size_1695)) ? 0 : parseFloat(Size_1695);
                 let Turnaround_1698 = $('#select_1698').find(":selected").attr('value');
                 Turnaround_1698 = (isNaN(Turnaround_1698)) ? 0 : parseFloat(Turnaround_1698);
+                if (Turnaround_1698 === 2923) {
+                    isTurnaround = 25;
+                } else {
+                    isTurnaround = 0;
+                }
                 value_qty = $('#qty').attr('value');
                 if (value_qty > 1) {
                     $('.Art_1701').addClass('Addactive');
@@ -2946,22 +2984,22 @@ foreach ($customOptions as $option) {
                 }
                 let Premium_stand = 0;
                 if ($('#options_1696_2').attr('checked')) {
-                    let Premium_stand = 29;
+                    Premium_stand = 29;
                 } else {
-                    let Premium_stand = 0;
+                    Premium_stand = 0;
                 }
 
                 if (Size_1695 === 2916) {
-                    total = 47;//47; 
+                    total = 47 + isTurnaround;//47;
 
                 } else if (Size_1695 === 2917) {
-                    total = 49 + Premium_stand;
+                    total = 49 + Premium_stand + isTurnaround;
                 } else if (Size_1695 === 2918) {
-                    total = 52;//52;  
+                    total = 52 + isTurnaround;//52;
                 } else if (Size_1695 === 2919) {
-                    total = 69;//69;  
+                    total = 69 + isTurnaround;//69;
                 } else {
-                    total = 0;
+                    total = 0 + isTurnaround;
                 }
 
                 isDefault = false;
@@ -3101,7 +3139,7 @@ foreach ($customOptions as $option) {
                     isTurnaround = 1;
                 }
                 isDefault = false;
-                total = (heso * (5.88 + 0)) * isTurnaround;
+                total = (heso * (3.5 + 0)) * isTurnaround;
 
             } else if (id === 133) { // Yard Signs (Coroplast) Contour Cut
                 let Color_547 = $('#select_547').find(":selected").attr('value');
@@ -3650,6 +3688,7 @@ foreach ($customOptions as $option) {
                 let Color_1939 = $('#select_1939').find(":selected").attr('value');
                 Color_1939 = (isNaN(Color_1939)) ? 0 : parseFloat(Color_1939);
                 value_qty = $('#qty').attr('value');
+                let isNumber = 1;
                 if ((value_qty > 1) || (Color_1939 === 3347)) {
                     $('.Art_1947').addClass('Addactive');
                     $("#select_1947 option[value='0']").remove();
@@ -3664,11 +3703,11 @@ foreach ($customOptions as $option) {
                     $('.Material_1940').addClass('Addactive');
                 }
                 if ((Turnaround_1944 === 3360) && (Color_1939 === 3347)) {
-                    isTurnaround = 1.7;
+                    isTurnaround = 1.75;
                     let isNumber = 2;
                     isMaterial = Material_1941;
                 } else if ((Turnaround_1944 === 3360) && (Color_1939 === 3346)) {
-                    isTurnaround = 1.7;
+                    isTurnaround = 1.75;
                     let isNumber = 1;
                     isMaterial = Material_1940;
                 } else if ((Turnaround_1944 === 3358) && (Color_1939 === 3347)) {
@@ -3680,11 +3719,11 @@ foreach ($customOptions as $option) {
                     let isNumber = 1;
                     isMaterial = Material_1940;
                 } else if ((Turnaround_1944 === 3359) && (Color_1939 === 3347)) {
-                    isTurnaround = 1.5;
+                    isTurnaround = 1.15;
                     let isNumber = 2;
                     isMaterial = Material_1941;
                 } else if ((Turnaround_1944 === 3359) && (Color_1939 === 3346)) {
-                    isTurnaround = 1.5;
+                    isTurnaround = 1.15;
                     let isNumber = 1;
                     isMaterial = Material_1940;
                 } else {
@@ -3712,6 +3751,7 @@ foreach ($customOptions as $option) {
 
                 // add $2
                 total = ((heso * ((Lamination_1942 * isNumber) + isMaterial)) + Holes_1943) * isTurnaround;
+                console.log('total : '+ total +'   heso : '+ heso + '   Lamination_1942 : '+Lamination_1942 + '  isNumber : '+isNumber +  '   isMaterial : ' + isMaterial + '   Holes_1943 : ' + Holes_1943 + '   isTurnaround : ' + isTurnaround);
 
             } else if (id === 164) { // Aluminum Sheets Contour
 

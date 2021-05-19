@@ -1420,7 +1420,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper {
     }
     
     public function recordPoints($orderId, $customerId, $storeId, $dateInsertion = null, $points_gathered = 0, $points_used = 0, $reload_object = false, $delay = null, $end_days = null, $state = null, $status = null, $bypassObjectReload = false, $processOnce = false) {
-        
+
         $date_start = $date_end = null;
 
         $add_delay = 0;

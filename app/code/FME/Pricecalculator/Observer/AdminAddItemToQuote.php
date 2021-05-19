@@ -230,6 +230,23 @@ class AdminAddItemToQuote implements ObserverInterface
                 if (is_array($turn)) $turn = $turn[0];
                 if ($turn == 778) $has17 = true;
 
+            } else if ($id == 168) {  // 3M IJ35 Adhesive Vinyl Contour Cut
+
+
+                $laminationId = $posted_options[1993];
+                $lamPrice = isset($opPrice[$laminationId]) ? $opPrice[$laminationId] : 0;
+
+                $matId = $posted_options[1983];
+                $matPrice = isset($opPrice[$matId]) ? $opPrice[$matId] : 0;
+
+                $areaPrice = $area / 144 * ($matPrice + $lamPrice) - $lamPrice - $matPrice;
+
+                $turn = $posted_options[1994];
+                if (is_array($turn)) $turn = $turn[0];
+
+                if ($turn == 3404) $has2 = true;
+                else if ($turn == 3403) $has15 = true;
+
             } else if ($id == 102) { // Bumper Stickers
 
                 // $areaPrice = 0; dont need $areaPrice
@@ -376,6 +393,9 @@ class AdminAddItemToQuote implements ObserverInterface
                     $areaPrice = $area * 8 / 144;
                     if ($turn == 1305) $areaPrice *= 2;
                 } else $areaPrice = $area * 9 / 144;
+
+                // set minimum
+                $areaPrice = max([$areaPrice, 20]);
 
                 if ($turn == 1303) $has15 = true; // next day: 1.5 --- 2 day: 1
                 else if ($turn == 1305) $has17 = true; // same day: 1.7
@@ -852,8 +872,8 @@ class AdminAddItemToQuote implements ObserverInterface
                 $turn = $posted_options[786];
                 if (is_array($turn)) $turn = $turn[0];
                 if ($turn == 1267) {
-                    $areaPrice = $area / 144 * 1.513 + 153.8;
-                } else  $areaPrice = $area / 144 * 0.89 + 153.8;
+                    $areaPrice = $area / 144 * 1.3255 + 153.8;
+                } else  $areaPrice = $area / 144 * 0.7025 + 153.8;
 
             } else if ($id == 145) { // Retractable Stand
 
@@ -944,7 +964,7 @@ class AdminAddItemToQuote implements ObserverInterface
             } else if ($id == 117) {  // Floor Graphics – Contour
 
 
-                $areaPrice = $area / 144 * 5.88;
+                $areaPrice = $area / 144 * 3.5;
 
                 $turn = $posted_options[735];
                 if (is_array($turn)) $turn = $turn[0];

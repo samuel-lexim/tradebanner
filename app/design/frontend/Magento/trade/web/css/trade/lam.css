@@ -534,6 +534,15 @@
     font-weight: bold;
     color: #ffffff;
     text-transform: uppercase;
+    line-height: 1.5;
+    text-align: left;
+}
+
+#topLeftInfo span a,
+#topLeftInfo span a:hover,
+#topLeftInfo span a:visited {
+    color: #ffffff;
+    text-decoration: underline;
 }
 
 #topLeftInfo span .small-text-header {

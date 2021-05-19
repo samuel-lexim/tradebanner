@@ -120,7 +120,7 @@
             }, 4000);
 
             $("#select_1698 option[value='2923']").each(function() {
-                    $(this).remove();
+                    // $(this).remove();
                 });
 
         });
@@ -147,3 +147,5 @@
 }
 
 </style>
+
+<?php echo $this->getLayout()->createBlock('Magento\Framework\View\Element\Template')->setTemplate('Magento_Theme::oitmain/popup.phtml')->toHtml(); ?>

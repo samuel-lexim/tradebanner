@@ -817,6 +817,32 @@ class Address extends \Magento\Customer\Model\Address\AbstractAddress implements
      */
     public function getGroupedAllShippingRates()
     {
+        /** Core file modification start (Wasn't able to get override to work) **/
+        //\Magento\Framework\App\ObjectManager::getInstance()->get(\Psr\Log\LoggerInterface::class)->debug('Magento');
+        $rates = [];
+        $customer = $this->getQuote()->getCustomer();
+        $freeDeliveryAttribute = $customer->getCustomAttribute('free_delivery_kong');
+        $freeStatus = $freeDeliveryAttribute ? $freeDeliveryAttribute->getValue() : '0';
+
+        foreach ($this->getShippingRatesCollection() as $rate) {
+            if (!$rate->isDeleted() && $this->_carrierFactory->get($rate->getCarrier())) {
+
+                if ($rate->getCarrier() != 'freeshipping' || ($rate->getCarrier() == 'freeshipping' && $freeStatus == '1') ) {
+
+                    if (!isset($rates[$rate->getCarrier()])) {
+                        $rates[$rate->getCarrier()] = [];
+                    }
+
+                    $rates[$rate->getCarrier()][] = $rate;
+                    $rates[$rate->getCarrier()][0]->carrier_sort_order = $this->_carrierFactory->get(
+                        $rate->getCarrier()
+                    )->getSortOrder();
+                }
+            }
+        }
+        uasort($rates, [$this, '_sortRates']);
+        return $rates;
+        /** Core file modification end **/
         $rates = [];
         foreach ($this->getShippingRatesCollection() as $rate) {
             if (!$rate->isDeleted() && $this->_carrierFactory->get($rate->getCarrier())) {

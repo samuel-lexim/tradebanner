@@ -1,0 +1,47 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php $_shipment = $block->getShipment() ?>
+<?php $_order = $block->getOrder() ?>
+<?php if ($_shipment && $_order && $_shipment->getAllTracks()): ?>
+<br />
+<table class="shipment-track">
+    <thead>
+        <tr>
+            <th><?= /* @escapeNotVerified */  __('Shipped By') ?></th>
+            <th><?= /* @escapeNotVerified */  __('Tracking Number') ?></th>
+        </tr>
+    </thead>
+    <tbody>
+    <?php foreach ($_shipment->getAllTracks() as $_item): ?>
+        <?php
+        $trackingNumber = $_item->getNumber();
+        switch ($_item->getCarrierCode()) {
+            case 'fedex':
+                $trackingUrl = 'https://www.fedex.com/apps/fedextrack/?action=track&trackingnumber=' . $trackingNumber;
+                break;
+            case 'usps':
+                $trackingUrl = 'https://tools.usps.com/go/TrackConfirmAction_input?qtc_tLabels1=' . $trackingNumber;
+                break;
+            case 'ups':
+                $trackingUrl = 'https://wwwapps.ups.com/WebTracking/returnToDetails?tracknum=' . $trackingNumber;
+                break;
+            default:
+                $trackingUrl = '';
+        }
+        $tracking = $trackingUrl ? ('<a href="' . $trackingUrl . '">' . $this->escapeHtml($trackingNumber) . '</a>') : $trackingNumber;
+        ?>
+        <tr>
+            <td><?= $block->escapeHtml($_item->getTitle()) ?>:</td>
+            <td><?= $tracking ?></td>
+        </tr>
+    <?php endforeach ?>
+    </tbody>
+</table>
+<?php endif; ?>

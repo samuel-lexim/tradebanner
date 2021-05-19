@@ -30,6 +30,7 @@
                         <th scope="col" class="col shipping"><?= __('Ship To') ?></th>
                         <th scope="col" class="col total"><?= __('Order Total') ?></th>
                         <th scope="col" class="col status"><?= __('Status') ?></th>
+                        <th scope="col" class="col status"><?= __('Preview') ?></th>
                         <th scope="col" class="col status"><?= __('Job Name') ?></th>
                         <th scope="col" class="col actions"><?= __('Action') ?></th>
                     </tr>
@@ -39,11 +40,25 @@
                         <?php // Get Job Name
                             $job = "";                
                             $items = $_order->getItems();
-
+                            $html = '';
                             if (count($items) > 0) {
                                 $firstItem = array_values($items)[0];  
-                                $options = $firstItem->getProductOptions();  
-                                if (isset($options['options'])) {                
+                                $options = $firstItem->getProductOptions();
+
+                                $localPath = '/pub/uploads/' . $_order->getIncrementId() . '/' . trim($firstItem->getName());
+                                $fullPath = getcwd() . $localPath;
+
+                                if (file_exists($fullPath)) {
+
+                                    foreach (array_diff(scandir($fullPath), array('..', '.')) as $file) {
+                                        $fullImagePath = $fullPath . '/' . $file;
+                                        $previewImagePath = str_replace(array('uploads', '.pdf'), array('uploads/preview', '.jpg'), $fullImagePath);
+                                        $imageUrl = str_replace(getcwd(), '', $previewImagePath);
+                                        $html .= '<img src="' . $imageUrl . '" style="display: inline-block; vertical-align: top; margin: 5px;" />';
+                                    }
+                                }
+
+                                if (isset($options['options'])) {
                                     foreach ($options['options'] as $itemOption) {
                                         if ( strtolower($itemOption['label']) == 'job name') {
                                             $job = $itemOption['value'];
@@ -60,6 +75,7 @@
                             <td data-th="<?= $block->escapeHtml(__('Ship To')) ?>" class="col shipping"><?= $_order->getShippingAddress() ? $block->escapeHtml($_order->getShippingAddress()->getName()) : '&nbsp;' ?></td>
                             <td data-th="<?= $block->escapeHtml(__('Order Total')) ?>" class="col total"><?= $_order->formatPrice($_order->getGrandTotal()) ?></td>
                             <td data-th="<?= $block->escapeHtml(__('Status')) ?>" class="col status"><?= $_order->getStatusLabel() ?></td>
+                            <td data-th="<?= $block->escapeHtml(__('Preview')) ?>" class="col preview"><?= $html; ?></td>
                             <td class="col jobName"><?= $job ?></td>
                             <td data-th="<?= $block->escapeHtml(__('Actions')) ?>" class="col actions">
                                 <a href="<?= $block->getViewUrl($_order) ?>" class="action view">

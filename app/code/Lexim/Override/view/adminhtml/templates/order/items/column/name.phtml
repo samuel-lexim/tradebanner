@@ -1,0 +1,73 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php
+/**
+ * @see \Magento\Sales\Block\Adminhtml\Items\Column\Name
+ */
+?>
+
+<?php if ($_item = $block->getItem()): ?>
+    <div id="order_item_<?php /* @escapeNotVerified */ echo $_item->getId() ?>_title"
+         class="product-title">
+        <?php echo $block->escapeHtml($_item->getName()) ?>
+    </div>
+
+    <div class="product-sku-block">
+        <span><?php /* @escapeNotVerified */ echo __('SKU') ?>:</span> <?php echo implode('<br />', $this->helper('Magento\Catalog\Helper\Data')->splitSku($block->escapeHtml($block->getSku()))); ?>
+    </div>
+
+    <?php if ($block->getOrderOptions()): ?>
+        <dl class="item-options">
+            <?php foreach ($block->getOrderOptions() as $_option): ?>
+                <dt><?php /* @escapeNotVerified */ echo $_option['label'] ?>:</dt>
+                <dd>
+                    <?php if (isset($_option['custom_view']) && $_option['custom_view']): ?>
+                        <?php /* @escapeNotVerified */ echo $block->getCustomizedOptionValue($_option); ?>
+                    <?php else: ?>
+                        <?php $_option = $block->getFormattedOption($_option['value']); ?>
+                        <?php /* @escapeNotVerified */ echo $_option['value']; ?><?php if (isset($_option['remainder']) && $_option['remainder']): ?><span id="<?php /* @escapeNotVerified */ echo $_dots = 'dots' . uniqid()?>"> ...</span><span id="<?php /* @escapeNotVerified */ echo $_id = 'id' . uniqid()?>"><?php /* @escapeNotVerified */ echo $_option['remainder'] ?></span>
+                            <script>
+                                require(['prototype'], function() {
+                                    $('<?php /* @escapeNotVerified */ echo $_id ?>').hide();
+                                    $('<?php /* @escapeNotVerified */ echo $_id ?>').up().observe('mouseover', function(){$('<?php /* @escapeNotVerified */ echo $_id ?>').show();});
+                                    $('<?php /* @escapeNotVerified */ echo $_id ?>').up().observe('mouseover', function(){$('<?php /* @escapeNotVerified */ echo $_dots?>').hide();});
+                                    $('<?php /* @escapeNotVerified */ echo $_id ?>').up().observe('mouseout',  function(){$('<?php /* @escapeNotVerified */ echo $_id ?>').hide();});
+                                    $('<?php /* @escapeNotVerified */ echo $_id ?>').up().observe('mouseout',  function(){$('<?php /* @escapeNotVerified */ echo $_dots ?>').show();});
+                                });
+                            </script>
+                        <?php endif; ?>
+                    <?php endif; ?>
+                </dd>
+            <?php endforeach; ?>
+        </dl>
+    <?php endif; ?>
+    <?php echo $block->escapeHtml($_item->getDescription()) ?>
+
+    <?php $name = trim($_item->getName()); ?>
+    <?php $orderNumber = $_item->getOrder()->getIncrementId(); ?>
+    <?php $localPath = '/pub/uploads/' . ($orderNumber > '000116944' ? ($name . '/' . $orderNumber) : ($orderNumber . '/' . $name)); ?>
+    <?php $fullPath = getcwd() . $localPath ?>
+    <?php $s3 = new S3('AKIAJGKTM67FZFIX3CEA', 'VdJqlC5tBKqDwMWRSLfg39gInSxF1buKueGUZv/1'); ?>
+    <?php $objects = $s3->getBucket('tradebanner', $name . '/' . $orderNumber) ?>
+    <?php if (count($objects)) : ?>
+		<br>
+		<div><b>Files from S3 server:</b></div>
+        <?php foreach ($objects as $uri => $object) : ?>
+			<div><a href="<?php echo 'https://tradebanner.s3-us-west-1.amazonaws.com/' . $uri ?>" target="_blank"><?php echo end(explode('/', $uri)) ?></a></div>
+        <?php endforeach; ?>
+    <?php endif; ?>
+    <?php if (file_exists($fullPath)) : ?>
+		<br>
+		<div><b>Files from local server:</b></div>
+        <?php foreach (array_diff(scandir($fullPath), array('..', '.')) as $file) : ?>
+			<div><a href="<?php echo $localPath . '/' . $file ?>" target="_blank"><?php echo $file ?></a></div>
+        <?php endforeach; ?>
+    <?php endif; ?>
+<?php endif; ?>
