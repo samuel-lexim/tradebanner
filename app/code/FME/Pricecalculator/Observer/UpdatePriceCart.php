@@ -988,8 +988,8 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
                 if ($sizeId == 1572 || $sizeId == 1573) $areaPrice = $w * $h * 1.95 / 144;
             }
 
-            if ($sizeId == 1572) $areaPrice += 15;
-            else if ($sizeId == 1573) $areaPrice += 23;
+            if ($sizeId == 1572) $areaPrice += 20;
+            else if ($sizeId == 1573) $areaPrice += 28;
 
         } else if ($id == 142) { // X-Frame with Polypropylene (PET)
 
@@ -1049,12 +1049,14 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
 
         } else if ($id == 144) { // Step and Repeat Banners
 
-
             $turn = $posted_options[786];
             if (is_array($turn)) $turn = $turn[0];
             if ($turn == 1267) {
                 $areaPrice = $area / 144 * 1.3255 + 153.8;
-            } else  $areaPrice = $area / 144 * 0.7025 + 153.8;
+            } else {
+                $areaPrice = $area / 144 * 0.7025 + 153.8;
+            }
+            $areaPrice = $areaPrice * 1.1;
 
         } else if ($id == 145) { // Retractable Stand
 
@@ -1088,10 +1090,11 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             if ($premiumStand) {
                 $areaPrice = $areaPrice + 29;
             }
+            $areaPrice = $areaPrice * 1.1;
 
         } else if ($id == 161) { // Economic Retractable Stand
 
-            $areaPrice = 39;
+            $areaPrice = 39 * 1.1;
 
         } else if ($id == 113) {
             /** Sublimation */  // Custom Sublimation Transfers

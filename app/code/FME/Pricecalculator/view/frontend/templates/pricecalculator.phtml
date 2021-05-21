@@ -2724,7 +2724,7 @@ foreach ($customOptions as $option) {
                     if ((HeightVal_966 < 60) || (HeightVal_966 > 78)) {
                         alert("Please enter a value Height:  between 60 and 78.");
                     }
-                    Size1 = 15;
+                    Size1 = 20;
                     if (Turnaround_808 === 1299) {
 
                         Coso = ((widthVal_965 * HeightVal_966) / 144) * 1.95;
@@ -2744,7 +2744,7 @@ foreach ($customOptions as $option) {
                     if ((HeightVal_966 < 60) || (HeightVal_966 > 78)) {
                         alert("Please enter a value Height:  between 60 and 78.");
                     }
-                    Size1 = 23;
+                    Size1 = 28;
                     if (Turnaround_808 === 1299) {
                         Coso = ((widthVal_965 * HeightVal_966) / 144) * 1.95;
                         Coso = (isNaN(Coso)) ? 0 : parseFloat(Coso);
@@ -2958,6 +2958,8 @@ foreach ($customOptions as $option) {
                     total = 0.00;
                 }
 
+                total = total * 1.1
+
                 isDefault = false;
 
             } else if (id === 145) { // Retractable Stand
@@ -3002,6 +3004,8 @@ foreach ($customOptions as $option) {
                     total = 0 + isTurnaround;
                 }
 
+                total = total * 1.1;
+
                 isDefault = false;
 
             } else if (id === 161) { // Economic Retractable Stand
@@ -3017,7 +3021,7 @@ foreach ($customOptions as $option) {
                     // $("#select_1904").prepend('<option value="0" price="0" selected="selected">No</option>');
                 }
 
-                total = 39;
+                total = 39 * 1.1;
                 isDefault = false;
 
             } else if (id === 113) { // Custom Sublimation Transfers
