@@ -144,7 +144,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
 
         } else if ($id == 95) { // Fabric Banner- Premium
 
-            $areaPrice = $area * 1.49 / 144;
+            $areaPrice = $area * 1.65 / 144;
 
             $turn = $posted_options[353];
             if (is_array($turn)) $turn = $turn[0];
@@ -152,7 +152,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
 
         } else if ($id == 96) { // Mesh Banner
 
-            $areaPrice = $area * 1.5 / 144;
+            $areaPrice = $area * 1.65 / 144;
 
             $turn = $posted_options[1505];
             if (is_array($turn)) $turn = $turn[0];
@@ -160,7 +160,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
 
         } else if ($id == 97) { // Premium Coated Banner
 
-            $areaPrice = $area * 1.39 / 144;
+            $areaPrice = $area * 1.65 / 144;
 
             $turn = $posted_options[1883];
             if (is_array($turn)) $turn = $turn[0];
@@ -197,7 +197,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             $lamPrice = $lamObj[$laminationId]->getPrice();
             $lamPrice = is_null($lamPrice) ? 0 : $lamPrice;
 
-            $areaPrice = ($area / 144 * (2.5 + $lamPrice)) - $lamPrice;
+            $areaPrice = ($area / 144 * (3 + $lamPrice)) - $lamPrice;
 
             $turn = $posted_options[403];
             if (is_array($turn)) $turn = $turn[0];
@@ -1683,12 +1683,26 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
         $banner = [90, 91, 92, 93, 94, 95, 96, 97, 98, 99];
         $min5 = [102, 115, 117, 138, 135, 118];
         $min10 = [113, 116, 140, 139, 137, 136, 134, 133];
+        $min12 = [100];
 
-        if ($id == 109) $total = 5; // sample-kit
-        else if (($qty * $total) <= 10 && in_array($id, $min10)) $total = $this->checkMinPriceForTotal($qty, 10.0);
-        else if (($qty * $total) <= 5 && in_array($id, $min5)) $total = $this->checkMinPriceForTotal($qty, 5.0);
-        else if ($total <= 8 && in_array($id, $banner)) $total = 8;
-        else if (($qty * $total) <= 8) $total = $this->checkMinPriceForTotal($qty, 8.0);
+        if ($id == 109) {
+            $total = 5; // sample-kit
+        }
+        else if (($qty * $total) <= 12 && in_array($id, $min12)) {
+            $total = $this->checkMinPriceForTotal($qty, 12.0);
+        }
+        else if (($qty * $total) <= 10 && in_array($id, $min10)) {
+            $total = $this->checkMinPriceForTotal($qty, 10.0);
+        }
+        else if (($qty * $total) <= 5 && in_array($id, $min5)) {
+            $total = $this->checkMinPriceForTotal($qty, 5.0);
+        }
+        else if ($total <= 8 && in_array($id, $banner)) {
+            $total = 8;
+        }
+        else if (($qty * $total) <= 8) {
+            $total = $this->checkMinPriceForTotal($qty, 8.0);
+        }
 
 
         // Update Price

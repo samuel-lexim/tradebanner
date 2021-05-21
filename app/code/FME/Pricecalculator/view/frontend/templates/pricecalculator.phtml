@@ -548,7 +548,7 @@ foreach ($customOptions as $option) {
                     isTurnaround = 1;
                 }
                 isDefault = false;
-                total = (heso * 1.49 + Pole_351 + PocketSize_837) * isTurnaround;
+                total = (heso * 1.65 + Pole_351 + PocketSize_837) * isTurnaround;
 
             } else if (id === 96) { // Mesh Banner
                 // get width
@@ -586,7 +586,7 @@ foreach ($customOptions as $option) {
                     isTurnaround = 1;
                 }
                 isDefault = false;
-                total = ((heso * 1.50) + Pole_1500 + PocketSize_1501) * isTurnaround;
+                total = ((heso * 1.65) + Pole_1500 + PocketSize_1501) * isTurnaround;
 
             } else if (id === 97) { // Premium Coated Banner
                 // get width
@@ -635,7 +635,7 @@ foreach ($customOptions as $option) {
                     isTurnaround = 1;
                 }
                 isDefault = false;
-                total = ((heso * 1.39) + Pole_1536 + Wind_1537 + PocketSize_1538 + Reinforced_1884) * isTurnaround;
+                total = ((heso * 1.65) + Pole_1536 + Wind_1537 + PocketSize_1538 + Reinforced_1884) * isTurnaround;
 
             } else if (id === 90) { // 13oz Vinyl Banner
                 let Material_1729 = $('#select_1729').find(":selected").attr('value');
@@ -843,7 +843,7 @@ foreach ($customOptions as $option) {
                     isTurnaround = 1;
                 }
                 isDefault = false;
-                total = heso * (2.5 + Lamination_402) * isTurnaround;
+                total = heso * (3 + Lamination_402) * isTurnaround;
 
             } else if (id === 101) { // 3M IJ35 Adhesive Vinyl
                 let Material_408 = $('#select_408').find(":selected").attr('price');
@@ -4102,6 +4102,10 @@ foreach ($customOptions as $option) {
             let mSet5 = new Set(myArray5);
             let hasId5 = mSet5.has(id);
 
+            let myArray12 = [100];
+            let mSet12 = new Set(myArray12);
+            let hasId12 = mSet12.has(id);
+
             let myArray10 = [113, 116, 133, 134, 136, 137, 139, 140];
             let mSet10 = new Set(myArray10);
             let hasId10 = mSet10.has(id);
@@ -4114,11 +4118,14 @@ foreach ($customOptions as $option) {
             if (total > 0 && (qty * total <= 5) && hasId5) {
                 total = 5 / qty;
 
+            } else if (total > 0 && (total <= 8) && hasId8) {
+                total = 8; //category banner
+
             } else if (total > 0 && (qty * total <= 10) && hasId10) {
                 total = 10 / qty;
 
-            } else if (total > 0 && (total <= 8) && hasId8) {
-                total = 8; //category banner
+            } else if (total > 0 && (qty * total <= 12) && hasId12) {
+                total = 12 / qty;
 
             } else if (total > 0 && id === 109) { // sample-kit
                 total = 5;
