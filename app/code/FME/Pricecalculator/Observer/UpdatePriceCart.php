@@ -345,7 +345,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             $lamPrice = $lamObj[$laminationId]->getPrice();
             $lamPrice = is_null($lamPrice) ? 0 : $lamPrice;
 
-            $areaPrice = ($area / 144 * (3.5 + $lamPrice)) - $lamPrice;
+            $areaPrice = ($area / 144 * (3.8 + $lamPrice)) - $lamPrice;
 
             $turn = $posted_options[427];
             if (is_array($turn)) $turn = $turn[0];
@@ -376,7 +376,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             $lamPrice = $lamObj[$laminationId]->getPrice();
             $lamPrice = is_null($lamPrice) ? 0 : $lamPrice;
 
-            $areaPrice = ($area / 144 * (2.5 + $lamPrice)) - $lamPrice;
+            $areaPrice = ($area / 144 * (2.75 + $lamPrice)) - $lamPrice;
 
             $turn = $posted_options[515];
             if (is_array($turn)) $turn = $turn[0];

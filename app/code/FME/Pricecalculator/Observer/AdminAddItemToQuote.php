@@ -322,7 +322,7 @@ class AdminAddItemToQuote implements ObserverInterface
                 $laminationId = $posted_options[426];
                 $lamPrice = isset($opPrice[$laminationId]) ? $opPrice[$laminationId] : 0;
 
-                $areaPrice = ($area / 144 * (3.5 + $lamPrice)) - $lamPrice;
+                $areaPrice = ($area / 144 * (3.8 + $lamPrice)) - $lamPrice;
 
                 $turn = $posted_options[427];
                 if (is_array($turn)) $turn = $turn[0];
@@ -347,7 +347,7 @@ class AdminAddItemToQuote implements ObserverInterface
                 $laminationId = $posted_options[516];
                 $lamPrice = isset($opPrice[$laminationId]) ? $opPrice[$laminationId] : 0;
 
-                $areaPrice = ($area / 144 * (2.5 + $lamPrice)) - $lamPrice;
+                $areaPrice = ($area / 144 * (2.75 + $lamPrice)) - $lamPrice;
 
                 $turn = $posted_options[515];
                 if (is_array($turn)) $turn = $turn[0];

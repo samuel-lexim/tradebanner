@@ -1054,7 +1054,7 @@ foreach ($customOptions as $option) {
                     isTurnaround = 1;
                 }
                 isDefault = false;
-                total = heso * (3.5 + Lamination_426) * isTurnaround;
+                total = heso * (3.8 + Lamination_426) * isTurnaround;
 
             } else if (id === 104) { // Canvas Roll
                 let Material_430 = $('#select_430').find(":selected").attr('price');
@@ -1192,9 +1192,9 @@ foreach ($customOptions as $option) {
                     // $("#select_1042").prepend('<option value="0" price="0" selected="selected">No</option>');
                 }
                 if (Turnaround_515 === 905) {
-                    total = (heso * (Lamination_516 + 2.5)) * 1.7;
+                    total = (heso * (Lamination_516 + 2.75)) * 1.7;
                 } else if (Turnaround_515 === 904) {
-                    total = heso * (Lamination_516 + 2.5);
+                    total = heso * (Lamination_516 + 2.75);
                 } else {
                     total = 0;
                 }
