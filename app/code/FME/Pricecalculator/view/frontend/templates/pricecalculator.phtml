@@ -895,6 +895,7 @@ foreach ($customOptions as $option) {
                 }
                 isDefault = false;
                 total = (heso * (Material_1983 + Lamination_1993)) * isTurnaround;
+                total = total * 1.1;
 
             } else if (id === 102) { // Bumper Stickers
                 let Size_416 = $('#select_416').find(":selected").attr('price');
@@ -3093,6 +3094,7 @@ foreach ($customOptions as $option) {
                 }
                 isDefault = false;
                 total = (heso * (4.40 + Lamination_716_price)) * isTurnaround;
+                total = total * 1.1;
 
             } else if (id === 116) { // Car Magnets Contour
                 value_qty = $('#qty').attr('value');
@@ -3121,6 +3123,7 @@ foreach ($customOptions as $option) {
                 }
                 isDefault = false;
                 total = (heso * (Die_725 + Lamination_724)) * isTurnaround;
+                total = total * 1.1;
 
             } else if (id === 117) { // Floor Graphics � Contour
                 value_qty = $('#qty').attr('value');
@@ -3143,7 +3146,8 @@ foreach ($customOptions as $option) {
                     isTurnaround = 1;
                 }
                 isDefault = false;
-                total = (heso * (3.5 + 0)) * isTurnaround;
+                total = (heso * 3.5) * isTurnaround;
+                total = total * 1.1;
 
             } else if (id === 133) { // Yard Signs (Coroplast) Contour Cut
                 let Color_547 = $('#select_547').find(":selected").attr('value');
@@ -3207,6 +3211,7 @@ foreach ($customOptions as $option) {
                 }
                 isDefault = false;
                 total = ((heso * (Color_price + Die_price)) + Stakes_549) * isTurnaround;
+                total = total * 1.1;
 
             } else if (id === 134) { // Ultra(Gator) Board Contour
                 let Lamination_559 = $('#select_559').find(":selected").attr('price');
@@ -3309,6 +3314,7 @@ foreach ($customOptions as $option) {
                 } else {
                     total = 0;
                 }
+                total = total * 1.1;
                 isDefault = false;
 
             } else if (id === 135) { // Styrene Boards Contour
@@ -3397,7 +3403,10 @@ foreach ($customOptions as $option) {
                     total = ((heso * (Lamination_569 + 1.89 + Material_Single_568)) + Grommets_570) * isTurnaround;
 
                 }
+
+                total = total * 1.1;
                 isDefault = false;
+
             } else if (id === 136) { // PVC Sintra Board Contour
                 let Material_578 = $('#select_578').find(":selected").attr('value');
                 Material_578 = (isNaN(Material_578)) ? 0 : parseFloat(Material_578);
@@ -3508,6 +3517,7 @@ foreach ($customOptions as $option) {
                 }
                 isDefault = false;
                 total = (heso * (Lamination_579 + Die_cut + Material_Double_price + Material_Single_price)) * isTurnaround;
+                total = total * 1.1;
 
             } else if (id === 137) { // Foam Boards- Contour
                 let Material_Single_1895 = $('#select_1895').find(":selected").attr('value');
@@ -3590,6 +3600,7 @@ foreach ($customOptions as $option) {
                 }
                 isDefault = false;
                 total = (heso * (Lamination_589 + Die_cut + Material_Double_price + Material_Single_price)) * Turnaround_c;
+                total = total * 1.1;
 
             } else if (id === 138) { // Wall Vinyl Decals Contour
                 value_qty = $('#qty').attr('value');
@@ -3618,6 +3629,7 @@ foreach ($customOptions as $option) {
                 } else {
                     total = 0;
                 }
+                total = total * 1.1;
                 isDefault = false;
 
             } else if (id === 139) { // Vinyl Stickers (Window Decal) Contour
@@ -3649,6 +3661,7 @@ foreach ($customOptions as $option) {
                 }
                 isDefault = false;
                 total = (heso * (Material_606 + Lamination_609)) * isTurnaround;
+                total = total * 1.1;
 
             } else if (id === 140) { // Static Clings (Window Clings) Contour
                 value_qty = $('#qty').attr('value');
@@ -3675,6 +3688,7 @@ foreach ($customOptions as $option) {
                 } else {
                     total = 0;
                 }
+                total = total * 1.1;
                 isDefault = false;
 
             } else if (id === 166) { //  Aluminum Sandwich Board Dibond Contour Cut
@@ -3755,7 +3769,7 @@ foreach ($customOptions as $option) {
 
                 // add $2
                 total = ((heso * ((Lamination_1942 * isNumber) + isMaterial)) + Holes_1943) * isTurnaround;
-                console.log('total : '+ total +'   heso : '+ heso + '   Lamination_1942 : '+Lamination_1942 + '  isNumber : '+isNumber +  '   isMaterial : ' + isMaterial + '   Holes_1943 : ' + Holes_1943 + '   isTurnaround : ' + isTurnaround);
+                total = total * 1.1;
 
             } else if (id === 164) { // Aluminum Sheets Contour
 
@@ -3969,6 +3983,7 @@ foreach ($customOptions as $option) {
                 } else {
                     total = hesoC * (sizeC + (addC + Lamination_price) + Grommets_1924 + Rounded_1925) * TurnaroundC;
                 }
+                total = total * 1.1;
 
             } else if (id === 119) { // Retractable Stand (stand ONLY)
                 let Size_699_val = $('#select_699').find(":selected").attr('value');
@@ -4149,7 +4164,6 @@ foreach ($customOptions as $option) {
             $('#pricePerUnit').text('$' + total.toFixed(2));
             $('#subTotalPrice').text('$' + subTotal.toFixed(2));
             let cusArea = area / 144;
-            console.log("area : " + area);
             cusArea = Number(Math.round(cusArea * 100) / 100);
             $('#test').text('Area:  ' + cusArea.toFixed(2) + '(Square Feet)');
 

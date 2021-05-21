@@ -239,6 +239,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             $matPrice = is_null($matPrice) ? 0 : $matPrice;
 
             $areaPrice = $area / 144 * ($matPrice + $lamPrice) - $lamPrice - $matPrice;
+            $areaPrice = $areaPrice * 1.1;
 
             $turn = $posted_options[1994];
             if (is_array($turn)) $turn = $turn[0];
@@ -1108,7 +1109,6 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
         } else if ($id == 115) {
             /** Contour Cut */  // 3M Controltac (IJ 180C) Contour
 
-
             $laminationId = $posted_options[716];
             if (is_array($laminationId)) $laminationId = $laminationId[0];
             $lamObj = $opsAr[716]->getValues();
@@ -1116,12 +1116,18 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             $lamPrice = is_null($lamPrice) ? 0 : $lamPrice;
 
             $areaPrice = $area / 144 * (4.4 + $lamPrice) - $lamPrice;
+            $areaPrice = $areaPrice * 1.1;
 
             $turn = $posted_options[717];
-            if (is_array($turn)) $turn = $turn[0];
+            if (is_array($turn)) {
+                $turn = $turn[0];
+            }
 
-            if ($turn == 1197) $has17 = true;
-            else if ($turn == 1196) $has15 = true;
+            if ($turn == 1197) {
+                $has17 = true;
+            }            else if ($turn == 1196) {
+                $has15 = true;
+            }
 
         } else if ($id == 116) {  // Car Magnets Contour
 
@@ -1133,6 +1139,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             $lamPrice = is_null($lamPrice) ? 0 : $lamPrice;
 
             $areaPrice = $area / 144 * ($lamPrice + 1.9) - $lamPrice - 1.9;
+            $areaPrice = $areaPrice * 1.1;
 
             $turn = $posted_options[726];
             if (is_array($turn)) $turn = $turn[0];
@@ -1144,6 +1151,8 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
 
 
             $areaPrice = $area / 144 * 3.5;
+            $areaPrice = $areaPrice * 1.1;
+
 
             $turn = $posted_options[735];
             if (is_array($turn)) $turn = $turn[0];
@@ -1168,6 +1177,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             }
 
             $areaPrice = $area / 144 * ($color + $dieCut);
+            $areaPrice = $areaPrice * 1.1;
 
             $turn = $posted_options[552];
             if (is_array($turn)) $turn = $turn[0];
@@ -1212,6 +1222,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             }
 
             $areaPrice = $area / 144 * ($matPrice + 1.99 + $lamPrice) - $lamPrice;
+            $areaPrice = $areaPrice * 1.1;
 
             $turn = $posted_options[562];
             if (is_array($turn)) $turn = $turn[0];
@@ -1252,6 +1263,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             $matPrice = is_null($matPrice) ? 0 : $matPrice;
             // end code
             $areaPrice = $area / 144 * ($matPrice + 1.89 + $lam2Price) - $lamPrice - $matPrice;
+            $areaPrice = $areaPrice * 1.1;
 
             $turn = $posted_options[572];
             if (is_array($turn)) $turn = $turn[0];
@@ -1302,6 +1314,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             }
 
             $areaPrice = $area / 144 * ($matPrice + $lamPrice + $dieCut) - $lamPrice;
+            $areaPrice = $areaPrice * 1.1;
 
             $turn = $posted_options[582];
             if (is_array($turn)) $turn = $turn[0];
@@ -1340,6 +1353,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             }
 
             $areaPrice = $area / 144 * ($matPrice + $lamPrice + $dieCut) - $lamPrice;
+            $areaPrice = $areaPrice * 1.1;
 
             $turn = $posted_options[592];
             if (is_array($turn)) $turn = $turn[0];
@@ -1363,6 +1377,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             $matPrice = is_null($matPrice) ? 0 : $matPrice;
 
             $areaPrice = $area / 144 * ($matPrice + $lamPrice) - $lamPrice - $matPrice;
+            $areaPrice = $areaPrice * 1.1;
 
             $turn = $posted_options[601];
             if (is_array($turn)) $turn = $turn[0];
@@ -1385,6 +1400,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             $matPrice = is_null($matPrice) ? 0 : $matPrice;
 
             $areaPrice = $area / 144 * ($matPrice + $lamPrice) - $lamPrice - $matPrice;
+            $areaPrice = $areaPrice * 1.1;
 
             $turn = $posted_options[610];
             if (is_array($turn)) $turn = $turn[0];
@@ -1401,6 +1417,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             $matPrice = is_null($matPrice) ? 0 : $matPrice;
 
             $areaPrice = $area / 144 * $matPrice - $matPrice;
+            $areaPrice = $areaPrice * 1.1;
 
             $turn = $posted_options[542];
             if (is_array($turn)) $turn = $turn[0];
@@ -1433,6 +1450,8 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             $matPrice = is_null($matPrice) ? 0 : $matPrice;
 
             $areaPrice = $area / 144 * ($lam2Price + $matPrice) - $lamPrice - $matPrice;
+            $areaPrice = $areaPrice * 1.1;
+
             // add $2
             $turn = $posted_options[1944];
             if (is_array($turn)) $turn = $turn[0];
@@ -1544,11 +1563,9 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
                 $areaPrice = $widthVal * $heightVal / 144 * 9;
             }
 
-            // add $2
-            //   $areaPrice =$areaPrice +2;
-
             // Set price
             if (!$normal) $areaPrice = $size + $lamPrice;
+            $areaPrice = $areaPrice * 1.1;
 
         } else if ($id == 118) {
             /** Hardware */ // Easel Backs

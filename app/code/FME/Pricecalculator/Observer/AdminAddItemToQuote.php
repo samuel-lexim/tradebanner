@@ -240,6 +240,7 @@ class AdminAddItemToQuote implements ObserverInterface
                 $matPrice = isset($opPrice[$matId]) ? $opPrice[$matId] : 0;
 
                 $areaPrice = $area / 144 * ($matPrice + $lamPrice) - $lamPrice - $matPrice;
+                $areaPrice = $areaPrice * 1.1;
 
                 $turn = $posted_options[1994];
                 if (is_array($turn)) $turn = $turn[0];
@@ -940,25 +941,30 @@ class AdminAddItemToQuote implements ObserverInterface
             } else if ($id == 115) {
                 /** Contour Cut */  // 3M Controltac (IJ 180C) Contour
 
-
                 $laminationId = $posted_options[716];
                 $lamPrice = isset($opPrice[$laminationId]) ? $opPrice[$laminationId] : 0;
 
                 $areaPrice = $area / 144 * (4.4 + $lamPrice) - $lamPrice;
+                $areaPrice = $areaPrice * 1.1;
 
                 $turn = $posted_options[717];
-                if (is_array($turn)) $turn = $turn[0];
+                if (is_array($turn)) {
+                    $turn = $turn[0];
+                }
 
-                if ($turn == 1197) $has17 = true;
-                else if ($turn == 1196) $has15 = true;
+                if ($turn == 1197) {
+                    $has17 = true;
+                }  else if ($turn == 1196) {
+                    $has15 = true;
+                }
 
             } else if ($id == 116) {  // Car Magnets Contour
-
 
                 $laminationId = $posted_options[724];
                 $lamPrice = isset($opPrice[$laminationId]) ? $opPrice[$laminationId] : 0;
 
                 $areaPrice = $area / 144 * ($lamPrice + 1.9) - $lamPrice - 1.9;
+                $areaPrice = $areaPrice * 1.1;
 
                 $turn = $posted_options[726];
                 if (is_array($turn)) $turn = $turn[0];
@@ -970,6 +976,7 @@ class AdminAddItemToQuote implements ObserverInterface
 
 
                 $areaPrice = $area / 144 * 3.5;
+                $areaPrice = $areaPrice * 1.1;
 
                 $turn = $posted_options[735];
                 if (is_array($turn)) $turn = $turn[0];
@@ -994,6 +1001,7 @@ class AdminAddItemToQuote implements ObserverInterface
                 }
 
                 $areaPrice = $area / 144 * ($color + $dieCut);
+                $areaPrice = $areaPrice * 1.1;
 
                 $turn = $posted_options[552];
                 if (is_array($turn)) $turn = $turn[0];
@@ -1035,6 +1043,7 @@ class AdminAddItemToQuote implements ObserverInterface
                 }
 
                 $areaPrice = $area / 144 * ($matPrice + 1.99 + $lamPrice) - $lamPrice;
+                $areaPrice = $areaPrice * 1.1;
 
                 $turn = $posted_options[562];
                 if (is_array($turn)) $turn = $turn[0];
@@ -1067,6 +1076,7 @@ class AdminAddItemToQuote implements ObserverInterface
                 }
 
                 $areaPrice = $area / 144 * ($matPrice + 1.89 + $lamPrice) - $lamPrice - $matPrice;
+                $areaPrice = $areaPrice * 1.1;
 
                 $turn = $posted_options[572];
                 if (is_array($turn)) $turn = $turn[0];
@@ -1110,7 +1120,8 @@ class AdminAddItemToQuote implements ObserverInterface
                     }
                 }
 
-                $areaPrice = $area / 144 * ($matPrice + $lamPrice + $dieCut) - $lamPrice;      
+                $areaPrice = $area / 144 * ($matPrice + $lamPrice + $dieCut) - $lamPrice;
+                $areaPrice = $areaPrice * 1.1;
 
                 $turn = $posted_options[582];
                 if (is_array($turn)) $turn = $turn[0];
@@ -1146,6 +1157,7 @@ class AdminAddItemToQuote implements ObserverInterface
                 }
 
                 $areaPrice = $area / 144 * ($matPrice + $lamPrice + $dieCut) - $lamPrice;
+                $areaPrice = $areaPrice * 1.1;
 
                 $turn = $posted_options[592];
                 if (is_array($turn)) $turn = $turn[0];
@@ -1163,6 +1175,7 @@ class AdminAddItemToQuote implements ObserverInterface
                 $matPrice = isset($opPrice[$matId]) ? $opPrice[$matId] : 0;
 
                 $areaPrice = $area / 144 * ($matPrice + $lamPrice) - $lamPrice - $matPrice;
+                $areaPrice = $areaPrice * 1.1;
 
                 $turn = $posted_options[601];
                 if (is_array($turn)) $turn = $turn[0];
@@ -1179,6 +1192,7 @@ class AdminAddItemToQuote implements ObserverInterface
                 $matPrice = isset($opPrice[$matId]) ? $opPrice[$matId] : 0;
 
                 $areaPrice = $area / 144 * ($matPrice + $lamPrice) - $lamPrice - $matPrice;
+                $areaPrice = $areaPrice * 1.1;
 
                 $turn = $posted_options[610];
                 if (is_array($turn)) $turn = $turn[0];
@@ -1192,6 +1206,7 @@ class AdminAddItemToQuote implements ObserverInterface
                 $matPrice = isset($opPrice[$matId]) ? $opPrice[$matId] : 0;
 
                 $areaPrice = $area / 144 * $matPrice - $matPrice;
+                $areaPrice = $areaPrice * 1.1;
 
                 $turn = $posted_options[542];
                 if (is_array($turn)) $turn = $turn[0];
@@ -1231,7 +1246,7 @@ class AdminAddItemToQuote implements ObserverInterface
             $qty = $item->getQty();
 
             // Get Discount
-        if ($id == 145 || $id == 161) {
+            if ($id == 145 || $id == 161) {
                 if($qty <= 5){
                     $percentRate = 0;
                 } else if($qty >= 6 && $qty <= 10){
@@ -1274,7 +1289,7 @@ class AdminAddItemToQuote implements ObserverInterface
                     $percentRate = 10;
                 }
 
-            } else{
+            } else {
                 $percentRate = $hasDiscount ? $this->getDiscountRate(($area * $qty), $_product) : 0;
             }
             //$this->logger->debug("Discount percentRate 222 : ". $percentRate);
