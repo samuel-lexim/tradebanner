@@ -217,7 +217,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             $matPrice = $matObj[$matOpId]->getPrice();
             $matPrice = is_null($matPrice) ? 0 : $matPrice;
 
-            $areaPrice = ($area / 144 * ($matPrice + $lamPrice)) - $lamPrice - $matPrice;
+            $areaPrice = ($area / 144 * (2.2 + $matPrice + $lamPrice)) - $lamPrice - $matPrice;
 
             $turn = $posted_options[411];
             if (is_array($turn)) $turn = $turn[0];
@@ -462,8 +462,14 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             $areaPrice = ($area / 144 * ($lamPrice + $matPrice)) - $lamPrice - $matPrice;
 
             $turn = $posted_options[451];
-            if (is_array($turn)) $turn = $turn[0];
-            if ($turn == 834) $areaPrice = ($area / 144 * ($lamPrice + $matPrice) + $drillPrice) * 1.7 - $lamPrice - $matPrice - $drillPrice;
+            if (is_array($turn)) {
+                $turn = $turn[0];
+            }
+            if ($turn == 834) {
+                $areaPrice = ($area / 144 * ($lamPrice + $matPrice) + $drillPrice) * 1.7 - $lamPrice - $matPrice - $drillPrice;
+            }
+            $areaPrice = $areaPrice * 1.1;
+
 
         } else if ($id == 107) { // Aluminum Sandwich Board “Dibond”
 
@@ -601,6 +607,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             }
 
             $areaPrice = $widthVal * $heightVal / 144 * ($addC + $lamPrice + $groPrice) * $turnaroundC + $roundedPrice;
+            $areaPrice = $areaPrice * 1.2;
 
             $noFinalPrice = true;
 
@@ -670,6 +677,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             }
 
             $areaPrice = $sizeVal + $lamVal;
+            $areaPrice = $areaPrice * 1.1;
 
             $turn = $posted_options[747];
             if (is_array($turn)) $turn = $turn[0];

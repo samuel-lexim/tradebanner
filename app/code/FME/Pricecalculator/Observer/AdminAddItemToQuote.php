@@ -224,7 +224,7 @@ class AdminAddItemToQuote implements ObserverInterface
                 $matOpId = $posted_options[408];
                 $matPrice = isset($opPrice[$matOpId]) ? $opPrice[$matOpId] : 0;
 
-                $areaPrice = ($area / 144 * ($matPrice + $lamPrice)) - $lamPrice - $matPrice;
+                $areaPrice = ($area / 144 * (2.2 + $matPrice + $lamPrice)) - $lamPrice - $matPrice;
 
                 $turn = $posted_options[411];
                 if (is_array($turn)) $turn = $turn[0];
@@ -416,8 +416,13 @@ class AdminAddItemToQuote implements ObserverInterface
                 $areaPrice = ($area / 144 * ($lamPrice + $matPrice)) - $lamPrice - $matPrice;
 
                 $turn = $posted_options[451];
-                if (is_array($turn)) $turn = $turn[0];
-                if ($turn == 834) $areaPrice = ($area / 144 * ($lamPrice + $matPrice) + $drillPrice) * 1.7 - $lamPrice - $matPrice - $drillPrice;
+                if (is_array($turn)) {
+                    $turn = $turn[0];
+                }
+                if ($turn == 834) {
+                    $areaPrice = ($area / 144 * ($lamPrice + $matPrice) + $drillPrice) * 1.7 - $lamPrice - $matPrice - $drillPrice;
+                }
+                $areaPrice = $areaPrice * 1.1;
 
             } else if ($id == 107) { // Aluminum Sandwich Board “Dibond”
 
@@ -523,7 +528,12 @@ class AdminAddItemToQuote implements ObserverInterface
                 }
 
                 // Set price
-                if (!$normal) $areaPrice = $size + $lamPrice;
+                if (!$normal) {
+                    $areaPrice = $size + $lamPrice;
+                }
+
+                $areaPrice = $areaPrice * 1.2;
+
 
             } else if ($id == 146) { // Arrow Spinner Signs
 
@@ -589,6 +599,7 @@ class AdminAddItemToQuote implements ObserverInterface
                 }
 
                 $areaPrice = $sizeVal + $lamVal;
+                $areaPrice = $areaPrice * 1.1;
 
                 $turn = $posted_options[747];
                 if (is_array($turn)) $turn = $turn[0];
