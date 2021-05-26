@@ -816,8 +816,8 @@ class AdminAddItemToQuote implements ObserverInterface
                     if ($sizeId == 1572 || $sizeId == 1573) $areaPrice = $w * $h * 1.95 / 144;
                 }
 
-                if ($sizeId == 1572) $areaPrice += 20;
-                else if ($sizeId == 1573) $areaPrice += 28;
+                if ($sizeId == 1572) $areaPrice += 20 + 5;
+                else if ($sizeId == 1573) $areaPrice += 28 + 5;
 
             } else if ($id == 142) { // X-Frame with Polypropylene (PET)
 
