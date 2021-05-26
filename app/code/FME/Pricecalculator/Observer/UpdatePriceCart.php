@@ -1025,8 +1025,8 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
                 if ($sizeId == 1577 || $sizeId == 1578) $areaPrice = $w * $h * 2.5 / 144;
             }
 
-            if ($sizeId == 1577) $areaPrice += 15;
-            else if ($sizeId == 1578) $areaPrice += 23;
+            if ($sizeId == 1577) $areaPrice += 15 + 5;
+            else if ($sizeId == 1578) $areaPrice += 23 + 5;
 
         } else if ($id == 143) { // X-Frame with Banner
 
