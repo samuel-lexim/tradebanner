@@ -2876,21 +2876,21 @@ foreach ($customOptions as $option) {
                 let Size1 = 0;
                 let Coso = 0;
                 if (Size_978 === 1594) {
-                    Size1 = 18.50;
+                    Size1 = 23.50;
                     if (Turnaround_794 === 1280) {
                         Coso = 7.01;
                     } else {
                         Coso = 0;
                     }
                 } else if (Size_978 === 1595) {
-                    Size1 = 24.50;
+                    Size1 = 29.50;
                     if (Turnaround_794 === 1290) {
                         Coso = 10.01;
                     } else {
                         Coso = 0;
                     }
                 } else if (Size_978 === 1596) {
-                    Size1 = 37.50;
+                    Size1 = 42.50;
                     if (Turnaround_794 === 1290) {
                         Coso = 14.46;
                     } else {
@@ -2936,6 +2936,9 @@ foreach ($customOptions as $option) {
                 }
                 isDefault = false;
                 total = Size1 + Coso;
+                if (Size_978 === 1597 || Size_978 === 1598) {
+                    total = total + 5;
+                }
 
             } else if (id === 144) { // Step and Repeat Banners
                 let Turnaround_786 = $('#select_786').find(":selected").attr('value');

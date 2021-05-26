@@ -875,8 +875,8 @@ class AdminAddItemToQuote implements ObserverInterface
                     if ($sizeId == 1597 || $sizeId == 1598) $areaPrice = $w * $h * 0.89 / 144;
                 }
 
-                if ($sizeId == 1597) $areaPrice += 15;
-                else if ($sizeId == 1598) $areaPrice += 23;
+                if ($sizeId == 1597) $areaPrice += 15 + 5;
+                else if ($sizeId == 1598) $areaPrice += 23 + 5;
 
             } else if ($id == 144) { // Step and Repeat Banners
 
