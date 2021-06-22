@@ -519,7 +519,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
             if (isset($posted_options[469])) {
                 $turnId = $posted_options[469];
                 if (is_array($turnId)) $turnId = $turnId[0];
-                if ($turnId == 868) $has175 = true; // same day: 1.75
+                //if ($turnId == 868) $has175 = true; // same day: 1.75
             }
 
             // Get Lam id
@@ -601,7 +601,12 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
                 }
             }
 
-            $areaPrice = $widthVal * $heightVal / 144 * ($addC + $lamPrice + $groPrice) * $roundedPrice;
+            $turnaroundC = 1;
+            if ($turnId == 868) {
+                $turnaroundC = 1.75;
+            }
+
+            $areaPrice = $widthVal * $heightVal / 144 * ($addC + $lamPrice + $groPrice) * $turnaroundC + $roundedPrice;
             $areaPrice = $areaPrice * 1.2;
 
             $noFinalPrice = true;
