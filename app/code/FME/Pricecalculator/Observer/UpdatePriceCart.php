@@ -601,12 +601,7 @@ class UpdatePriceCart implements \Magento\Framework\Event\ObserverInterface
                 }
             }
 
-            $turnaroundC = 1;
-            if ($turnId == 868) {
-                $turnaroundC = 1.75;
-            }
-
-            $areaPrice = $widthVal * $heightVal / 144 * ($addC + $lamPrice + $groPrice) * $turnaroundC + $roundedPrice;
+            $areaPrice = $widthVal * $heightVal / 144 * ($addC + $lamPrice + $groPrice) * $roundedPrice;
             $areaPrice = $areaPrice * 1.2;
 
             $noFinalPrice = true;
